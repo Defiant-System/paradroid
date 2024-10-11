@@ -6,6 +6,7 @@
 			<xsl:attribute name="style">
 				--w: <xsl:value-of select="@width" />;
 				--h: <xsl:value-of select="@height" />;
+				--bg: url(~/img/<xsl:value-of select="translate(@id, $uppercase, $lowercase)"/>.png);
 				<xsl:if test="@x">--x: <xsl:value-of select="@x" />;</xsl:if>
 				<xsl:if test="@y">--y: <xsl:value-of select="@y" />;</xsl:if>
 			</xsl:attribute>

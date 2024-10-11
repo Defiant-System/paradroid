@@ -57,6 +57,7 @@ content {
 				position: absolute;
 				top: calc( var( --tile ) * var( --t ) );
 				left: calc( var( --tile ) * var( --l ) );
+				z-index: 5;
 				pointer-events: none;
 
 				> b {
@@ -89,13 +90,14 @@ content {
 					opacity: .5;
 					background-size: 100% auto;
 					background-repeat: no-repeat;
+					background-image: var( --bg );
 					pointer-events: none;
 					image-rendering: pixelated;
 					filter: sepia(1) saturate(2) hue-rotate(135deg);
 				}
 
-				&[data-level="A"]:before { background-image: url(~/img/a.png); }
-				&[data-level="B"]:before { background-image: url(~/img/b.png); }
+				// &[data-level="A"]:before { background-image: url(~/img/a.png); }
+				// &[data-level="B"]:before { background-image: url(~/img/b.png); }
 
 				b {
 					// opacity: .5;
