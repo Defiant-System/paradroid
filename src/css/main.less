@@ -57,6 +57,7 @@ content {
 				position: absolute;
 				top: calc( var( --tile ) * var( --t ) );
 				left: calc( var( --tile ) * var( --l ) );
+				transform: translateX( calc( var( --tile ) * -.5 ) ) translateY( calc( var( --tile ) * -.5 ) );
 				z-index: 5;
 				pointer-events: none;
 
@@ -78,6 +79,8 @@ content {
 				height: calc( var( --tile ) * var( --h ) );
 
 				&.hide-bg:before { display: none; }
+
+				&.hide-grid b { box-shadow: none; }
 				
 				&:before {
 					content: "";

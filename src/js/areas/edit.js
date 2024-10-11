@@ -43,6 +43,10 @@
 					Self.els.palette.find(`.${Self.palette.tile}`).addClass("active");
 				}
 				break;
+			case "toggle-grid":
+				el = Self.els.viewport.find(".level");
+				el.toggleClass("hide-grid", el.hasClass("hide-grid"));
+				break;
 			case "toggle-bg":
 				el = Self.els.viewport.find(".level");
 				el.toggleClass("hide-bg", el.hasClass("hide-bg"));
@@ -52,7 +56,7 @@
 				// render + append HTML
 				window.render({
 					template: "level",
-					match: `//Level[@id = "${event.id}"]`,
+					match: `//Level[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
 				break;
