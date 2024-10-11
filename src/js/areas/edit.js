@@ -8,10 +8,16 @@
 			content: window.find("content"),
 			palette: window.find(".tile-palette"),
 			viewport: window.find(".viewport"),
+			cursor: window.find(".cursor"),
 		};
 		// palette details
 		this.palette = {
-			selection: [{ x: 0, y: 0, id: "m00" }],
+			selection: [
+				{ x: 0, y: 0, id: "m42" },
+				{ x: 1, y: 0, id: "m43" },
+				{ x: 0, y: 1, id: "m50" },
+				{ x: 1, y: 1, id: "m51" },
+			],
 		};
 		// pan viewport level
 		this.els.viewport.on("mousedown mousemove mouseup", this.doPan);
@@ -30,8 +36,18 @@
 				} else if (event.metaKey) {
 					Self.dispatch({ ...event, type: "select-tile" });
 				} else {
-					el = $(event.target);
-					el.prop({ className: Self.palette.tile });
+					let levelEl = $(event.target),
+						tiles = levelEl.find("b"),
+						grid = parseInt(levelEl.cssProp("--tile"), 10),
+						w = +levelEl.cssProp("--w"),
+						l = Math.ceil(event.offsetX / grid) - 1,
+						t = Math.ceil(event.offsetY / grid) - 1;
+					// apply palette selection;
+					Self.palette.selection.map(sel => {
+						let index = ((t + sel.y) * w) + (l + sel.x),
+							el = tiles.get(index);
+						el.prop({ className: sel.id });
+					});
 				}
 				break;
 			case "select-tile":
@@ -80,6 +96,8 @@
 			Drag = Self.drag;
 		switch (event.type) {
 			case "mousedown":
+				if (event.button != 1) return;
+
 				// prevent default behaviour
 				event.preventDefault();
 
@@ -102,24 +120,29 @@
 				break;
 			case "mousemove":
 				if (Drag) {
-					let top = event.clientY - Drag.click.y,
+					let threshold = Drag.data.tile >> 1,
+						top = event.clientY - Drag.click.y,
 						left = event.clientX - Drag.click.x;
 					Drag.el.css({ top, left, });
-					// save drag details
-					Drag.moved = { top, left, };
-				} else if (event.target.nodeName === "B") {
+					if (Math.abs(Drag.data.top - top) > threshold || Math.abs(Drag.data.top - top) > threshold) {
+						// save drag details
+						Drag.moved = { top, left, };
+					}
+				} else if (event.target.classList.contains("level")) {
 					let el = $(event.target),
-						offset = el.offset(".level"),
-						x = event.offsetX + offset.top,
-						y = event.offsetY + offset.left;
-					console.log(x, y);
+						tile = parseInt(el.cssProp("--tile"), 10),
+						l = Math.ceil(event.offsetX / tile),
+						t = Math.ceil(event.offsetY / tile);
+					Self.els.cursor.css({ "--t": t, "--l": l });
 				}
 				break;
 			case "mouseup":
-				if (Drag.moved) {
+				if (Drag && Drag.moved) {
 					let y = Math.round(Drag.moved.top / Drag.data.tile),
 						x = Math.round(Drag.moved.left / Drag.data.tile);
 					Drag.el.css({ top: "", left: "", "--y": y, "--x": x });
+				} else if (Drag) {
+					Drag.el.css({ top: "", left: "" });
 				}
 				// reset drag data
 				delete Self.drag;
