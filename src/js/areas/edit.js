@@ -11,10 +11,10 @@
 		};
 		// palette details
 		this.palette = {
-			tile: "m00",
+			selection: [{ x: 0, y: 0, id: "m00" }],
 		};
 		// pan viewport level
-		this.els.viewport.on("mousedown", this.doPan);
+		this.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -25,6 +25,9 @@
 			// custom events
 			case "put-tile":
 				if (event.metaKey) {
+					// activate "PAN"
+					return;
+				} else if (event.metaKey) {
 					Self.dispatch({ ...event, type: "select-tile" });
 				} else {
 					el = $(event.target);
@@ -45,10 +48,12 @@
 				el.toggleClass("hide-bg", el.hasClass("hide-bg"));
 				break;
 			case "render-level":
+				Self.els.viewport.find(".level").remove();
+				// render + append HTML
 				window.render({
 					template: "level",
 					match: `//Level[@id = "${event.id}"]`,
-					target: Self.els.viewport,
+					append: Self.els.viewport,
 				});
 				break;
 			case "output-pgn":
@@ -71,10 +76,44 @@
 			Drag = Self.drag;
 		switch (event.type) {
 			case "mousedown":
+				// prevent default behaviour
+				event.preventDefault();
+
+				let el = Self.els.viewport.find(".level"),
+					offset = el.offset(".viewport"),
+					data = {
+						...offset,
+						y: +el.cssProp("--y"),
+						x: +el.cssProp("--x"),
+						tile: parseInt(el.cssProp("--tile"), 10),
+					},
+					click = {
+						y: event.clientY - offset.top,
+						x: event.clientX - offset.left,
+					};
+				
+				Self.drag = { el, data, click };
 				break;
 			case "mousemove":
+				if (Drag) {
+					let top = event.clientY - Drag.click.y,
+						left = event.clientX - Drag.click.x;
+					Drag.el.css({
+						top, left,
+						// "--y": y,
+						// "--x": x,
+					});
+				} else if (event.target.nodeName === "B") {
+					let el = $(event.target),
+						offset = el.offset(".level"),
+						x = event.offsetX,
+						y = event.offsetY;
+					// console.log(x, y);
+				}
 				break;
 			case "mouseup":
+				// reset drag data
+				delete Self.drag;
 				break;
 		}
 	}

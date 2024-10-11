@@ -10,6 +10,8 @@ content {
 
 	.edit-view {
 		--tile: 32px;
+		--y: 0;
+		--x: 0;
 
 		.tile-palette {
 			position: absolute;
@@ -19,9 +21,13 @@ content {
 			width: calc( var( --tile ) * var( --w ) );
 			height: calc( var( --tile ) * var( --h ) );
 			box-shadow: 0 0 0 2px rgba(#000,.75);
+			background-image: conic-gradient(#69d 0 25%,#ddf 25% 50%,#69d 50% 75%,#ddf 75% 100%);
+			background-size: 16px 16px;
 			--tile: 32px;
 
 			b {
+				box-shadow: inset 0 0 0 1px rgba(#000,.25);
+
 				&.active {
 					z-index: 3;
 					box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
@@ -31,20 +37,36 @@ content {
 
 		.viewport {
 			position: absolute;
-			left: 11px;
-			bottom: 11px;
+			left: 15px;
+			bottom: 15px;
 			overflow: hidden;
 			width: calc( var( --tile ) * var( --w ) );
 			height: calc( var( --tile ) * var( --h ) );
 			box-shadow: 0 0 0 2px #a22;
 			background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
 			background-size: 32px 32px;
+			font-size: 0;
+
+			.cursor {
+				position: absolute;
+				top: calc( var( --tile ) * var( --t ) );
+				left: calc( var( --tile ) * var( --l ) );
+				pointer-events: none;
+
+				> b {
+					position: absolute;
+					top: calc( var( --tile ) * var( --y ) );
+					left: calc( var( --tile ) * var( --x ) );
+					width: var( --tile );
+					height: var( --tile );
+					box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
+				}
+			}
 
 			.level {
 				position: absolute;
-				top: 0;
-				left: 0;
-				font-size: 0;
+				top: calc( var( --tile ) * var( --y ) );
+				left: calc( var( --tile ) * var( --x ) );
 				width: calc( var( --tile ) * var( --w ) );
 				height: calc( var( --tile ) * var( --h ) );
 
