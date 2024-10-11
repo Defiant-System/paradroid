@@ -12,11 +12,12 @@
 		};
 		// palette details
 		this.palette = {
-			selection: [
-				{ x: 0, y: 0, id: "m42" },
-				{ x: 1, y: 0, id: "m43" },
-				{ x: 0, y: 1, id: "m50" },
-				{ x: 1, y: 1, id: "m51" },
+			cursor: [
+				{ x: 0, y: 0, id: "" },
+				// { x: 0, y: 0, id: "m42" },
+				// { x: 1, y: 0, id: "m43" },
+				// { x: 0, y: 1, id: "m50" },
+				// { x: 1, y: 1, id: "m51" },
 			],
 		};
 		// pan viewport level
@@ -25,6 +26,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.edit,
+			value,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -33,8 +35,26 @@
 				if (event.metaKey) {
 					// activate "PAN"
 					return;
-				} else if (event.metaKey) {
-					Self.dispatch({ ...event, type: "select-tile" });
+				} else if (event.shiftKey) {
+					let levelEl = $(event.target),
+						tiles = levelEl.find("b"),
+						grid = parseInt(levelEl.cssProp("--tile"), 10),
+						x = Math.ceil(event.offsetX / grid) - 1,
+						y = Math.ceil(event.offsetY / grid) - 1,
+						w = +levelEl.cssProp("--w"),
+						id = tiles.get((y * w) + x).prop("class").split(" ")[0];
+					// build custom palette cursor
+					if (!Self.palette.cursorOrigo) {
+						Self.palette.cursorOrigo = { x, y, id };
+						Self.palette.cursor = [];
+					}
+					// adjust position relative to origo
+					x -= Self.palette.cursorOrigo.x;
+					y -= Self.palette.cursorOrigo.y;
+					Self.palette.cursor.push({ x, y, id });
+					// insert viewport cursor tiles
+					value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
+					Self.els.cursor.html(value.join(""));
 				} else {
 					let levelEl = $(event.target),
 						tiles = levelEl.find("b"),
@@ -42,8 +62,8 @@
 						w = +levelEl.cssProp("--w"),
 						l = Math.ceil(event.offsetX / grid) - 1,
 						t = Math.ceil(event.offsetY / grid) - 1;
-					// apply palette selection;
-					Self.palette.selection.map(sel => {
+					// apply palette cursor;
+					Self.palette.cursor.map(sel => {
 						let index = ((t + sel.y) * w) + (l + sel.x),
 							el = tiles.get(index);
 						el.prop({ className: sel.id });
@@ -58,6 +78,13 @@
 				if (Self.palette.tile) {
 					Self.els.palette.find(`.${Self.palette.tile}`).addClass("active");
 				}
+				// empty palette cursor / eraser
+				Self.palette.cursor = [{ x: 0, y: 0, id: Self.palette.tile }];
+				// update viewport cursor
+				value = `<b class="${Self.palette.tile}" style="--x: 0; --y: 0;"></b>`;
+				Self.els.cursor.html(value);
+				// reset palette cursor
+				delete Self.palette.cursorOrigo;
 				break;
 			case "toggle-grid":
 				el = Self.els.viewport.find(".level");
@@ -68,6 +95,19 @@
 				el.toggleClass("hide-bg", el.hasClass("hide-bg"));
 				break;
 			case "render-level":
+				// check if level has tile nodes
+				let xLevel = window.bluePrint.selectSingleNode(`//Level[@id = "${event.arg}"]`);
+				if (!xLevel.selectNodes("./i").length) {
+					let nodes = [],
+						len = +xLevel.getAttribute("height") * +xLevel.getAttribute("width");
+					while (len--) { nodes.push(`<i />`); }
+					// insert nodes
+					$.xmlFromString(`<data>${nodes.join("")}</data>`)
+						.selectNodes(`/data/i`).map(x => xLevel.appendChild(x));
+					
+					console.log(xLevel);
+				}
+				// delete old level HTML
 				Self.els.viewport.find(".level").remove();
 				// render + append HTML
 				window.render({
@@ -96,7 +136,7 @@
 			Drag = Self.drag;
 		switch (event.type) {
 			case "mousedown":
-				if (event.button != 1) return;
+				if (event.button != 0) return;
 
 				// prevent default behaviour
 				event.preventDefault();
@@ -129,11 +169,15 @@
 						Drag.moved = { top, left, };
 					}
 				} else if (event.target.classList.contains("level")) {
+					if (event.shiftKey) return;
+
 					let el = $(event.target),
 						tile = parseInt(el.cssProp("--tile"), 10),
+						tx = +el.cssProp("--x") - 1,
+						ty = +el.cssProp("--y") - 1,
 						l = Math.ceil(event.offsetX / tile),
 						t = Math.ceil(event.offsetY / tile);
-					Self.els.cursor.css({ "--t": t, "--l": l });
+					Self.els.cursor.css({ "--t": t, "--l": l, "--tx": tx, "--ty": ty });
 				}
 				break;
 			case "mouseup":
