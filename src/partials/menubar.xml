@@ -1,0 +1,17 @@
+<MenuBar>
+	<Menu name="Paradroid">
+		<Menu name="About Paradroid" shell="win -a"/>
+		<Menu type="divider"/>
+		<Menu name="Quit Paradroid" shell="win -c"/>
+	</Menu>
+	<Menu name="Game" for="game-content">
+		<Menu name="New Game"/>
+		<Menu type="divider"/>
+		<Menu name="Output PGN" click="output-pgn"/>
+	</Menu>
+	<Menu name="Help">
+		<Menu name="Help" click="open-help"/>
+		<Menu type="divider"/>
+		<Menu name="License" shell="win -al"/>
+	</Menu>
+</MenuBar>

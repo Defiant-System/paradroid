@@ -1,0 +1,221 @@
+
+overflow: visible;
+
+content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	.edit-view {
+		--tile: 32px;
+
+		.tile-palette {
+			position: absolute;
+			top: 30px;
+			right: -530px;
+			font-size: 0;
+			width: calc( var( --tile ) * var( --w ) );
+			height: calc( var( --tile ) * var( --h ) );
+			box-shadow: 0 0 0 2px rgba(#000,.75);
+			--tile: 32px;
+
+			b {
+				&.active {
+					z-index: 3;
+					box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
+				}
+			}
+		}
+
+		.viewport {
+			position: absolute;
+			left: 11px;
+			bottom: 11px;
+			overflow: hidden;
+			width: calc( var( --tile ) * var( --w ) );
+			height: calc( var( --tile ) * var( --h ) );
+			box-shadow: 0 0 0 2px #a22;
+
+			.level {
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size: 0;
+				width: calc( var( --tile ) * var( --w ) );
+				height: calc( var( --tile ) * var( --h ) );
+				
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					z-index: 1;
+					opacity: .75;
+					background-size: 100% auto;
+					background-repeat: no-repeat;
+					pointer-events: none;
+				}
+
+				&[data-level="A"]:before { background-image: url(~/img/a.png); }
+
+				b {
+					// opacity: .5;
+				}
+			}
+		}
+	}
+
+	b {
+		position: relative;
+		z-index: 2;
+		background-image: url(~/img/tiles.gif);
+		background-repeat: no-repeat;
+		background-size: calc( var( --tile ) * 16 ) auto;
+		background-position: var( --tile ) var( --tile );
+		display: inline-block;
+		width: var( --tile );
+		height: var( --tile );
+		box-shadow: inset 0 0 0 1px rgba(#000,.15);
+	
+		&.m00 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -0 ); }
+		&.m01 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -0 ); }
+		&.m02 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -0 ); }
+		&.m03 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -0 ); }
+		&.m04 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -0 ); }
+		&.m05 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -0 ); }
+		&.m06 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -0 ); }
+		&.m07 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -0 ); }
+		&.m08 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -0 ); }
+		&.m09 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -0 ); }
+		&.m0a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -0 ); }
+		&.m0b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -0 ); }
+		&.m0c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -0 ); }
+		&.m0d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -0 ); }
+		&.m0e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -0 ); }
+		&.m0f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -0 ); }
+
+		&.m10 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -1 ); }
+		&.m11 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -1 ); }
+		&.m12 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -1 ); }
+		&.m13 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -1 ); }
+		&.m14 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -1 ); }
+		&.m15 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -1 ); }
+		&.m16 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -1 ); }
+		&.m17 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -1 ); }
+		&.m18 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -1 ); }
+		&.m19 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -1 ); }
+		&.m1a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -1 ); }
+		&.m1b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -1 ); }
+		&.m1c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -1 ); }
+		&.m1d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -1 ); }
+		&.m1e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -1 ); }
+		&.m1f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -1 ); }
+
+		&.m20 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -2 ); }
+		&.m21 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -2 ); }
+		&.m22 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -2 ); }
+		&.m23 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -2 ); }
+		&.m24 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -2 ); }
+		&.m25 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -2 ); }
+		&.m26 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -2 ); }
+		&.m27 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -2 ); }
+		&.m28 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -2 ); }
+		&.m29 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -2 ); }
+		&.m2a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -2 ); }
+		&.m2b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -2 ); }
+		&.m2c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -2 ); }
+		&.m2d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -2 ); }
+		&.m2e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -2 ); }
+		&.m2f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -2 ); }
+
+		&.m30 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -3 ); }
+		&.m31 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -3 ); }
+		&.m32 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -3 ); }
+		&.m33 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -3 ); }
+		&.m34 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -3 ); }
+		&.m35 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -3 ); }
+		&.m36 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -3 ); }
+		&.m37 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -3 ); }
+		&.m38 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -3 ); }
+		&.m39 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -3 ); }
+		&.m3a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -3 ); }
+		&.m3b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -3 ); }
+		&.m3c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -3 ); }
+		&.m3d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -3 ); }
+		&.m3e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -3 ); }
+		&.m3f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -3 ); }
+
+
+		&.m40 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -4 ); }
+		&.m41 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -4 ); }
+		&.m42 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -4 ); }
+		&.m43 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -4 ); }
+		&.m44 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -4 ); }
+		&.m45 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -4 ); }
+		&.m46 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -4 ); }
+		&.m47 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -4 ); }
+		&.m48 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -4 ); }
+		&.m49 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -4 ); }
+		&.m4a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -4 ); }
+		&.m4b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -4 ); }
+		&.m4c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -4 ); }
+		&.m4d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -4 ); }
+		&.m4e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -4 ); }
+		&.m4f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -4 ); }
+
+		&.m50 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -5 ); }
+		&.m51 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -5 ); }
+		&.m52 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -5 ); }
+		&.m53 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -5 ); }
+		&.m54 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -5 ); }
+		&.m55 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -5 ); }
+		&.m56 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -5 ); }
+		&.m57 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -5 ); }
+		&.m58 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -5 ); }
+		&.m59 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -5 ); }
+		&.m5a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -5 ); }
+		&.m5b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -5 ); }
+		&.m5c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -5 ); }
+		&.m5d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -5 ); }
+		&.m5e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -5 ); }
+		&.m5f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -5 ); }
+
+		&.m60 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -6 ); }
+		&.m61 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -6 ); }
+		&.m62 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -6 ); }
+		&.m63 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -6 ); }
+		&.m64 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -6 ); }
+		&.m65 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -6 ); }
+		&.m66 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -6 ); }
+		&.m67 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -6 ); }
+		&.m68 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -6 ); }
+		&.m69 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -6 ); }
+		&.m6a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -6 ); }
+		&.m6b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -6 ); }
+		&.m6c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -6 ); }
+		&.m6d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -6 ); }
+		&.m6e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -6 ); }
+		&.m6f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -6 ); }
+
+		&.m70 { background-position: calc( var( --tile ) * -0 ) calc( var( --tile ) * -7 ); }
+		&.m71 { background-position: calc( var( --tile ) * -1 ) calc( var( --tile ) * -7 ); }
+		&.m72 { background-position: calc( var( --tile ) * -2 ) calc( var( --tile ) * -7 ); }
+		&.m73 { background-position: calc( var( --tile ) * -3 ) calc( var( --tile ) * -7 ); }
+		&.m74 { background-position: calc( var( --tile ) * -4 ) calc( var( --tile ) * -7 ); }
+		&.m75 { background-position: calc( var( --tile ) * -5 ) calc( var( --tile ) * -7 ); }
+		&.m76 { background-position: calc( var( --tile ) * -6 ) calc( var( --tile ) * -7 ); }
+		&.m77 { background-position: calc( var( --tile ) * -7 ) calc( var( --tile ) * -7 ); }
+		&.m78 { background-position: calc( var( --tile ) * -8 ) calc( var( --tile ) * -7 ); }
+		&.m79 { background-position: calc( var( --tile ) * -9 ) calc( var( --tile ) * -7 ); }
+		&.m7a { background-position: calc( var( --tile ) * -10 ) calc( var( --tile ) * -7 ); }
+		&.m7b { background-position: calc( var( --tile ) * -11 ) calc( var( --tile ) * -7 ); }
+		&.m7c { background-position: calc( var( --tile ) * -12 ) calc( var( --tile ) * -7 ); }
+		&.m7d { background-position: calc( var( --tile ) * -13 ) calc( var( --tile ) * -7 ); }
+		&.m7e { background-position: calc( var( --tile ) * -14 ) calc( var( --tile ) * -7 ); }
+		&.m7f { background-position: calc( var( --tile ) * -15 ) calc( var( --tile ) * -7 ); }
+	}
+}

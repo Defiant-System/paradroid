@@ -1,0 +1,26 @@
+<Application>
+	<Head>
+		<meta name="id" value="paradroid"/>
+		<meta name="title" value="Paradroid" version="1.0"/>
+		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
+		<meta name="license" value="AGPL-3.0"/>
+		<meta name="repository" value="https://github.com/Defiant-System/paradroid"/>
+		<meta name="width" value="640"/>
+		<meta name="height" value="400"/>
+		<meta name="top" value="220"/>
+		<meta name="left" value="120"/>
+		<meta name="minimize"/>
+		<meta name="maximize" value="disabled"/>
+		<meta name="resize" value="disabled"/>
+		<meta name="script" value="src/js/main.js"/>
+		<meta name="style" value="src/css/main.less"/>
+		<meta name="icons" value="src/svg/icons.svg"/>
+		<meta name="content" value="src/partials/content.htm"/>
+		<meta name="xsl" value="src/partials/templates.xsl"/>
+
+		@import "src/partials/menubar.xml"
+	</Head>
+
+	@import "src/partials/data.xml"
+
+</Application>
