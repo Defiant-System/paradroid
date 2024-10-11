@@ -47,6 +47,12 @@ content {
 			background-size: 32px 32px;
 			font-size: 0;
 
+			&.hide-cursor {
+				.cursor {
+					display: none;
+				}
+			}
+
 			.cursor {
 				position: absolute;
 				top: calc( var( --tile ) * var( --t ) );

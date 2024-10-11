@@ -91,29 +91,36 @@
 						y: event.clientY - offset.top,
 						x: event.clientX - offset.left,
 					};
-				
+				// save drag details
 				Self.drag = { el, data, click };
+				// hide cursor
+				Self.els.viewport.addClass("hide-cursor");
 				break;
 			case "mousemove":
 				if (Drag) {
 					let top = event.clientY - Drag.click.y,
 						left = event.clientX - Drag.click.x;
-					Drag.el.css({
-						top, left,
-						// "--y": y,
-						// "--x": x,
-					});
+					Drag.el.css({ top, left, });
+					// save drag details
+					Drag.moved = { top, left, };
 				} else if (event.target.nodeName === "B") {
 					let el = $(event.target),
 						offset = el.offset(".level"),
-						x = event.offsetX,
-						y = event.offsetY;
-					// console.log(x, y);
+						x = event.offsetX + offset.top,
+						y = event.offsetY + offset.left;
+					console.log(x, y);
 				}
 				break;
 			case "mouseup":
+				if (Drag.moved) {
+					let y = Math.round(Drag.moved.top / Drag.data.tile),
+						x = Math.round(Drag.moved.left / Drag.data.tile);
+					Drag.el.css({ top: "", left: "", "--y": y, "--x": x });
+				}
 				// reset drag data
 				delete Self.drag;
+				// show cursor
+				Self.els.viewport.removeClass("hide-cursor");
 				break;
 		}
 	}
