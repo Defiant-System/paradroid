@@ -164,8 +164,8 @@
 						top = event.clientY - Drag.click.y,
 						left = event.clientX - Drag.click.x;
 					Drag.el.css({ top, left, });
-					if (Math.abs(Drag.data.top - top) > threshold || Math.abs(Drag.data.top - top) > threshold) {
-						// save drag details
+					// save drag details
+					if (Math.abs(Drag.data.top - top) > threshold || Math.abs(Drag.data.left - left) > threshold) {
 						Drag.moved = { top, left, };
 					}
 				} else if (event.target.classList.contains("level")) {
