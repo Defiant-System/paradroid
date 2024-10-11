@@ -37,6 +37,8 @@ content {
 			width: calc( var( --tile ) * var( --w ) );
 			height: calc( var( --tile ) * var( --h ) );
 			box-shadow: 0 0 0 2px #a22;
+			background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
+			background-size: 32px 32px;
 
 			.level {
 				position: absolute;
@@ -45,6 +47,8 @@ content {
 				font-size: 0;
 				width: calc( var( --tile ) * var( --w ) );
 				height: calc( var( --tile ) * var( --h ) );
+
+				&.hide-bg:before { display: none; }
 				
 				&:before {
 					content: "";
@@ -54,13 +58,16 @@ content {
 					right: 0;
 					bottom: 0;
 					z-index: 1;
-					opacity: .75;
+					opacity: .5;
 					background-size: 100% auto;
 					background-repeat: no-repeat;
 					pointer-events: none;
+					image-rendering: pixelated;
+					filter: sepia(1) saturate(2) hue-rotate(135deg);
 				}
 
 				&[data-level="A"]:before { background-image: url(~/img/a.png); }
+				&[data-level="B"]:before { background-image: url(~/img/b.png); }
 
 				b {
 					// opacity: .5;
@@ -72,7 +79,7 @@ content {
 	b {
 		position: relative;
 		z-index: 2;
-		background-image: url(~/img/tiles.gif);
+		background-image: url(~/img/tiles.png);
 		background-repeat: no-repeat;
 		background-size: calc( var( --tile ) * 16 ) auto;
 		background-position: var( --tile ) var( --tile );

@@ -23,14 +23,14 @@ const paradroid = {
 		switch (event.type) {
 			// system events
 			case "window.init":
+			case "window.focus":
+			case "window.blur":
 				break;
 			// custom events
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
 			// proxy event
-			case "output-pgn":
-				return Self.edit.dispatch(event);
 			default:
 				el = event.el;
 				if (!el && event.origin) el = event.origin.el;

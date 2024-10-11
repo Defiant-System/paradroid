@@ -5,7 +5,7 @@
 		<Menu name="Quit Paradroid" shell="win -c"/>
 	</Menu>
 	<Menu name="Game" for="game-content">
-		<Menu name="New Game"/>
+		<Menu name="Toggle Level BG" click="toggle-bg"/>
 		<Menu type="divider"/>
 		<Menu name="Output PGN" click="output-pgn"/>
 	</Menu>

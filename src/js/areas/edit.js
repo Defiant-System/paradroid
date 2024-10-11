@@ -9,10 +9,12 @@
 			palette: window.find(".tile-palette"),
 			viewport: window.find(".viewport"),
 		};
-		// 
+		// palette details
 		this.palette = {
 			tile: "m00",
 		};
+		// pan viewport level
+		this.el.viewport.on("mousedown", this.doPan);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -32,24 +34,41 @@
 				Self.els.palette.find(".active").removeClass("active");
 				el.addClass("active");
 				break;
+			case "toggle-bg":
+				el = Self.els.viewport.find(".level");
+				el.toggleClass("hide-bg", el.hasClass("hide-bg"));
+				break;
 			case "render-level":
 				window.render({
 					template: "level",
-					match: "//Level[@id = 'a']",
+					match: `//Level[@id = "${event.id}"]`,
 					target: Self.els.viewport,
 				});
 				break;
 			case "output-pgn":
 				let tiles = [];
 
-				tiles.push(`<Level id="a" width="12" height="6">`);
+				tiles.push(`<Level id="a" width="12" height="6">\n`);
 				Self.els.viewport.find(`.level b`).map(tile => {
 					let id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
-					tiles.push(`\t<i ${id}/>`);
+					tiles.push(`<i ${id}/>`);
 				});
-				tiles.push(`</Level>`);
+				tiles.push(`\n</Level>`);
 
-				console.log(tiles.join("\n"));
+				console.log(tiles.join(""));
+				break;
+		}
+	},
+	doPan(event) {
+		let APP = paradroid,
+			Self = APP.edit,
+			Drag = Self.drag;
+		switch (event.type) {
+			case "mousedown":
+				break;
+			case "mousemove":
+				break;
+			case "mouseup":
 				break;
 		}
 	}
