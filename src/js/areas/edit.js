@@ -119,12 +119,12 @@
 			case "output-pgn":
 				let tiles = [];
 
-				tiles.push(`<Level id="a" width="12" height="6">\n`);
+				// tiles.push(`<Level id="a" width="12" height="6">\n`);
 				Self.els.viewport.find(`.level b`).map(tile => {
 					let id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
 					tiles.push(`<i ${id}/>`);
 				});
-				tiles.push(`\n</Level>`);
+				// tiles.push(`\n</Level>`);
 
 				console.log(tiles.join(""));
 				break;
