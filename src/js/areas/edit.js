@@ -14,7 +14,7 @@
 			tile: "m00",
 		};
 		// pan viewport level
-		this.el.viewport.on("mousedown", this.doPan);
+		this.els.viewport.on("mousedown", this.doPan);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -24,15 +24,21 @@
 		switch (event.type) {
 			// custom events
 			case "put-tile":
-				el = $(event.target);
-				el.prop({ className: Self.palette.tile });
+				if (event.metaKey) {
+					Self.dispatch({ ...event, type: "select-tile" });
+				} else {
+					el = $(event.target);
+					el.prop({ className: Self.palette.tile });
+				}
 				break;
 			case "select-tile":
 				el = $(event.target);
 				Self.palette.tile = el.prop("class").split(" ")[0];
 				// update UI
 				Self.els.palette.find(".active").removeClass("active");
-				el.addClass("active");
+				if (Self.palette.tile) {
+					Self.els.palette.find(`.${Self.palette.tile}`).addClass("active");
+				}
 				break;
 			case "toggle-bg":
 				el = Self.els.viewport.find(".level");
