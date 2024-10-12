@@ -12,14 +12,34 @@
 		};
 		// palette details
 		this.palette = {
-			cursor: [
-				{ x: 0, y: 0, id: "" },
-				// { x: 0, y: 0, id: "m42" },
-				// { x: 1, y: 0, id: "m43" },
-				// { x: 0, y: 1, id: "m50" },
-				// { x: 1, y: 1, id: "m51" },
-			],
+			cursor: [{ x: 0, y: 0, id: "" }],
 		};
+
+		this.groups = {
+			"m02": [{ x: 0, y: 0, id: "m02" }, { x: 1, y: 0, id: "m03" }, { x: 0, y: 1, id: "m12" }, { x: 1, y: 1, id: "m13" }],
+			"m04": [{ x: 0, y: 0, id: "m04" }, { x: 1, y: 0, id: "m05" }, { x: 0, y: 1, id: "m14" }, { x: 1, y: 1, id: "m15" }],
+			"m06": [{ x: 0, y: 0, id: "m06" }, { x: 1, y: 0, id: "m07" }, { x: 0, y: 1, id: "m16" }, { x: 1, y: 1, id: "m17" }],
+
+			"m2e": [{ x: 0, y: 0, id: "m2e" }, { x: 1, y: 0, id: "m2f" }, { x: 0, y: 1, id: "m3e" }, { x: 1, y: 1, id: "m3f" }],
+			"m40": [{ x: 0, y: 0, id: "m40" }, { x: 1, y: 0, id: "m41" }, { x: 0, y: 1, id: "m50" }, { x: 1, y: 1, id: "m51" }],
+			"m42": [{ x: 0, y: 0, id: "m42" }, { x: 1, y: 0, id: "m43" }, { x: 0, y: 1, id: "m52" }, { x: 1, y: 1, id: "m53" }],
+			"m44": [{ x: 0, y: 0, id: "m44" }, { x: 1, y: 0, id: "m45" }, { x: 0, y: 1, id: "m54" }, { x: 1, y: 1, id: "m55" }],
+
+			"m46": [{ x: 0, y: 0, id: "m46" }, { x: 1, y: 0, id: "m47" }, { x: 0, y: 1, id: "m56" }, { x: 1, y: 1, id: "m57" }],
+			"m48": [{ x: 0, y: 0, id: "m48" }, { x: 1, y: 0, id: "m49" }, { x: 0, y: 1, id: "m58" }, { x: 1, y: 1, id: "m59" }],
+			"m4a": [{ x: 0, y: 0, id: "m4a" }, { x: 1, y: 0, id: "m4b" }, { x: 0, y: 1, id: "m5a" }, { x: 1, y: 1, id: "m5b" }],
+			"m4c": [{ x: 0, y: 0, id: "m4c" }, { x: 1, y: 0, id: "m4d" }, { x: 0, y: 1, id: "m5c" }, { x: 1, y: 1, id: "m5d" }],
+
+			"m60": [{ x: 0, y: 0, id: "m60" }, { x: 1, y: 0, id: "m61" }, { x: 0, y: 1, id: "m70" }, { x: 1, y: 1, id: "m71" }],
+			"m68": [{ x: 0, y: 0, id: "m68" }, { x: 1, y: 0, id: "m69" }, { x: 0, y: 1, id: "m78" }, { x: 1, y: 1, id: "m79" }],
+			"m6a": [{ x: 0, y: 0, id: "m6a" }, { x: 1, y: 0, id: "m6b" }, { x: 0, y: 1, id: "m7a" }, { x: 1, y: 1, id: "m7b" }],
+			"m6c": [{ x: 0, y: 0, id: "m6c" }, { x: 1, y: 0, id: "m6d" }, { x: 0, y: 1, id: "m7c" }, { x: 1, y: 1, id: "m7d" }],
+		};
+		// { x: 0, y: 0, id: "m42" },
+		// { x: 1, y: 0, id: "m43" },
+		// { x: 0, y: 1, id: "m50" },
+		// { x: 1, y: 1, id: "m51" },
+
 		// pan viewport level
 		this.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 	},
@@ -73,6 +93,15 @@
 			case "select-tile":
 				el = $(event.target);
 				Self.palette.tile = el.prop("class").split(" ")[0];
+				// grouped tiles
+				if (Self.groups[Self.palette.tile]) {
+					Self.palette.cursorOrigo = { x: 0, y: 0 };
+					Self.palette.cursor = [...Self.groups[Self.palette.tile]];
+					// insert viewport cursor tiles
+					value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
+					Self.els.cursor.html(value.join(""));
+					return;
+				}
 				// update UI
 				Self.els.palette.find(".active").removeClass("active");
 				if (Self.palette.tile) {
