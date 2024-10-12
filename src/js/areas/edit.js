@@ -86,6 +86,20 @@
 				// reset palette cursor
 				delete Self.palette.cursorOrigo;
 				break;
+			case "cursor-eraser":
+				// empty palette cursor / eraser
+				Self.palette.tile = "";
+				Self.palette.cursor = [{ x: 0, y: 0, id: Self.palette.tile }];
+				// update viewport cursor
+				value = `<b class="${Self.palette.tile}" style="--x: 0; --y: 0;"></b>`;
+				Self.els.cursor.html(value);
+				// reset palette cursor
+				delete Self.palette.cursorOrigo;
+				break;
+			case "toggle-overflow":
+				el = Self.els.viewport;
+				el.toggleClass("show-overflow", el.hasClass("show-overflow"));
+				break;
 			case "toggle-grid":
 				el = Self.els.viewport.find(".level");
 				el.toggleClass("hide-grid", el.hasClass("hide-grid"));
@@ -95,6 +109,20 @@
 				el.toggleClass("hide-bg", el.hasClass("hide-bg"));
 				break;
 			case "render-level":
+				// if active level; save modifications
+				if (Self.xLevel) {
+					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" });
+					// delete old data
+					while (Self.xLevel.hasChildNodes()) {
+						Self.xLevel.removeChild(Self.xLevel.firstChild);
+					}
+					// insert new tiles
+					nodes.map(x => Self.xLevel.appendChild(x));
+					// save "position"
+					el = Self.els.viewport.find(".level");
+					Self.xLevel.setAttribute("y", +el.css("--y"));
+					Self.xLevel.setAttribute("x", +el.css("--x"));
+				}
 				// check if level has tile nodes
 				let xLevel = window.bluePrint.selectSingleNode(`//Level[@id = "${event.arg}"]`);
 				if (!xLevel.selectNodes("./i").length) {
@@ -104,9 +132,12 @@
 					// insert nodes
 					$.xmlFromString(`<data>${nodes.join("")}</data>`)
 						.selectNodes(`/data/i`).map(x => xLevel.appendChild(x));
-					
-					console.log(xLevel);
 				}
+				// save reference to current
+				Self.xLevel = xLevel;
+				// update menu
+				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
+				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
 				Self.els.viewport.find(".level").remove();
 				// render + append HTML
@@ -126,6 +157,7 @@
 				});
 				// tiles.push(`\n</Level>`);
 
+				if (event.arg === "get-nodes") return $.xmlFromString(`<data>${tiles.join("")}</data>`).selectNodes("//i");
 				console.log(tiles.join(""));
 				break;
 		}

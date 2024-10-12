@@ -15,22 +15,51 @@ content {
 
 		.tile-palette {
 			position: absolute;
-			top: 30px;
+			top: -200px;
 			right: -530px;
 			font-size: 0;
+			z-index: 11;
 			width: calc( var( --tile ) * var( --w ) );
 			height: calc( var( --tile ) * var( --h ) );
-			box-shadow: 0 0 0 2px rgba(#000,.75);
-			background-image: conic-gradient(#f90 0 25%,#f69 25% 50%,#f90 50% 75%,#f69 75% 100%);
-			background-size: 16px 16px;
-			--tile: 32px;
 
-			b {
-				box-shadow: inset 0 0 0 1px rgba(#000,.25);
+			.buttons {
+				background: #bbb;
+				padding: 3px;
+				box-shadow: 0 0 0 2px rgba(#000,.75);
 
-				&.active {
-					z-index: 3;
-					box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
+				span {
+					display: inline-block;
+					vertical-align: top;
+					margin-right: 5px;
+					padding: 3px 7px 0;
+					height: 24px;
+					font-size: 14px;
+					background: #aaa;
+					border: 2px solid;
+					border-color: #fff #888 #888 #fff;
+					cursor: pointer;
+
+					&:active {
+						padding-top: 4px;
+						height: 23px;
+						border-color: #aaa;
+					}
+				}
+			}
+
+			.tiles {
+				--tile: 32px;
+				box-shadow: 0 0 0 2px rgba(#000,.75);
+				background-image: conic-gradient(#f90 0 25%,#f69 25% 50%,#f90 50% 75%,#f69 75% 100%);
+				background-size: 16px 16px;
+
+				b {
+					box-shadow: inset 0 0 0 1px rgba(#000,.25);
+
+					&.active {
+						z-index: 3;
+						box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
+					}
 				}
 			}
 		}
@@ -53,6 +82,10 @@ content {
 				}
 			}
 
+			&.show-overflow {
+				overflow: visible;
+			}
+
 			.cursor {
 				position: absolute;
 				top: calc( var( --tile ) * var( --t ) );
@@ -68,7 +101,7 @@ content {
 					width: var( --tile );
 					height: var( --tile );
 					box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
-					opacity: .75;
+					// opacity: .75;
 				}
 			}
 
