@@ -13,9 +13,19 @@ content {
 	right: 0;
 	bottom: 0;
 	border-radius: inherit;
+	background: radial-gradient(ellipse at top center, #ddd, transparent),
+				linear-gradient(180deg, #ccc, #a2a2a2);
+
 
 	&[data-show="start"] {
 		> div.start-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&[data-show="lift"] {
+		> div.lift-view {
 			opacity: 1;
 			visibility: visible;
 		}
@@ -40,9 +50,6 @@ content {
 	}
 
 	.start-view {
-		background: radial-gradient(ellipse at top center, #ddd, transparent),
-					linear-gradient(180deg, #ccc, #a2a2a2);
-
 		.logo {
 			position: relative;
 			margin: 47px auto 19px;
@@ -74,6 +81,43 @@ content {
 							drop-shadow(0 2px 0 hsl(174, 0%, 68%))
 							drop-shadow(0 3px 0 hsl(174, 0%, 63%))
 							drop-shadow(0 1px 2px rgba(0, 0, 0, .15));
+				}
+			}
+		}
+	}
+
+	.lift-view {
+		.ship {
+			position: relative;
+			width: 600px;
+			height: 300px;
+			margin: 53px auto;
+			box-shadow: 0 0 0 1px #999;
+
+			.deck {
+				position: relative;
+				height: 23px;
+				margin-bottom: -1px;
+				// box-shadow: 0 0 0 1px #999;
+
+				.level {
+					position: absolute;
+					top: 0;
+					height: 23px;
+					box-shadow: inset 0 0 0 1px #d55;
+				}
+
+				&[data-id="3"] {
+					.level[data-sub="1"] { left: 60px; width: 180px; }
+					.level[data-sub="2"] { right: 80px; width: 280px; }
+				}
+
+				&[data-id="4"] {
+					.level[data-sub="1"] { right: 40px; width: 300px; }
+				}
+
+				&[data-id="5"] {
+					.level[data-sub="1"] { right: 0; width: 300px; }
 				}
 			}
 		}

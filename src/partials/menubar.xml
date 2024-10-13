@@ -7,7 +7,7 @@
 	<Menu name="Game" for="game-content">
 		<Menu name="Show&#8230;">
 			<Menu name="Start" click="show-view" arg="start"/>
-			<Menu name="List" click="show-view" arg="lift"/>
+			<Menu name="Lift" click="show-view" arg="lift"/>
 			<Menu name="Editor" click="show-view" arg="edit"/>
 		</Menu>
 		<Menu type="divider"/>
