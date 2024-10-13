@@ -454,10 +454,10 @@ content {
 
 		.board {
 			position: absolute;
-			top: 100px;
+			top: 117px;
 			left: 30px;
 			right: 30px;
-			bottom: 30px;
+			bottom: 13px;
 			display: flex;
 
 			.left,
@@ -630,7 +630,18 @@ content {
 				}
 
 				.cpu {
+					top: -47px;
 					height: 53px;
+
+					&:before {
+						content: "";
+						position: absolute;
+						top: 11px;
+						left: -41px;
+						width: 171px;
+						height: 85px;
+						background: url(~/icons/cpu-circuit.png) 50% 50%/contain no-repeat;
+					}
 
 					.led {
 						position: relative;
@@ -665,6 +676,84 @@ content {
 							right: 0;
 							height: 1px;
 							background: linear-gradient(90deg, transparent 5%, rgba(#fff,.175), transparent 95%);
+						}
+					}
+
+					b {
+						position: absolute;
+						background: #8ed8eb66;
+						box-shadow: none;
+
+						&[data-i="1"] {
+							top: 14px;
+							left: -9px;
+							width: 9px;
+							height: 9px;
+							border-radius: 3px 0 0 3px;
+						}
+
+						&[data-i="2"] {
+							top: 30px;
+							left: -9px;
+							width: 9px;
+							height: 9px;
+							border-radius: 3px 0 0 3px;
+						}
+
+						&[data-i="3"] {
+							bottom: -9px;
+							left: 10px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 0 3px 3px;
+						}
+
+						&[data-i="4"] {
+							bottom: -9px;
+							left: 25px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 0 3px 3px;
+						}
+
+						&[data-i="5"] {
+							bottom: -9px;
+							left: 40px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 0 3px 3px;
+						}
+
+						&[data-i="6"] {
+							bottom: -9px;
+							left: 55px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 0 3px 3px;
+						}
+
+						&[data-i="7"] {
+							bottom: -9px;
+							left: 70px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 0 3px 3px;
+						}
+
+						&[data-i="8"] {
+							top: 30px;
+							right: -9px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 3px 3px 0;
+						}
+
+						&[data-i="9"] {
+							top: 14px;
+							right: -9px;
+							width: 9px;
+							height: 9px;
+							border-radius: 0 3px 3px 0;
 						}
 					}
 				}
@@ -721,6 +810,7 @@ content {
 							bottom: 4px;
 							left: -20px;
 							width: 13px;
+							box-shadow: none;
 							background: #8ed8eb66;
 							border-radius: 3px 0 0 3px;
 							// box-shadow: inset 0 1px 0 rgba(#fff,.1),
@@ -733,6 +823,7 @@ content {
 							bottom: 5px;
 							right: -20px;
 							width: 13px;
+							box-shadow: none;
 							background: #8ed8eb66;
 							border-radius: 0 3px 3px 0;
 							// box-shadow: inset 0 1px 0 rgba(#fff,.1),
