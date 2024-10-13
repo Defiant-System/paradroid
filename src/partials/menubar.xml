@@ -8,6 +8,8 @@
 		<Menu name="Show&#8230;">
 			<Menu name="Start" click="show-view" arg="start"/>
 			<Menu name="Lift" click="show-view" arg="lift"/>
+			<Menu name="Challenge" click="show-view" arg="challenge"/>
+			<Menu name="Console" click="show-view" arg="console"/>
 			<Menu name="Editor" click="show-view" arg="edit"/>
 		</Menu>
 		<Menu type="divider"/>

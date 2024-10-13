@@ -31,6 +31,20 @@ content {
 		}
 	}
 
+	&[data-show="challenge"] {
+		> div.challenge-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&[data-show="console"] {
+		> div.console-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
 	&[data-show="edit"] {
 		> div.edit-view {
 			opacity: 1;
@@ -172,8 +186,8 @@ content {
 				position: absolute;
 				width: 18px;
 				background: #7af;
-				box-shadow: inset 0 0 0 2px #44a;
 				filter: grayscale(.85);
+				box-shadow: inset 0 0 0 2px #44a;
 
 				&[data-id="1"] { left: 81px; top: 8px; height: 162px; }
 				&[data-id="2"] { left: 144px; top: 56px; height: 146px; }
@@ -186,6 +200,9 @@ content {
 
 				&.active {
 					filter: none;
+					background: linear-gradient(90deg, rgba(215, 131, 227, 0.5), transparent),
+							  	conic-gradient(from 150deg at 25%, transparent 40deg, #8b42ab 0%) 0/ 0.7em,
+							  	conic-gradient(from 150deg at 75%, #8b42ab 40deg, #9956b3 0%) 0/ 0.7em;
 
 					.elevator {
 						display: block;
@@ -239,7 +256,7 @@ content {
 						left: 0;
 						right: 0;
 						height: 1px;
-						background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
+						background: linear-gradient(90deg, transparent, rgba(#fff,.65), transparent);
 					}
 				}
 
@@ -291,6 +308,7 @@ content {
 					.level[data-sub="1"] {
 						left: 49px;
 						width: 191px;
+						--fg: #ff9bf2;
 					}
 
 					.level[data-sub="2"] {
@@ -325,7 +343,7 @@ content {
 				}
 
 				&[data-id="6"] {
-					--fg: #f1cd02;
+					--fg: #4bd36a;
 					
 					.level[data-sub="1"] {
 						left: 319px;
@@ -373,7 +391,7 @@ content {
 				}
 
 				&[data-id="10"] {
-					--fg: #f1cd02;
+					--fg: #f68f8f;
 					
 					.level[data-sub="1"] {
 						left: 3px;
@@ -397,6 +415,116 @@ content {
 					.level[data-sub="4"] {
 						left: 319px;
 						width: 49px;
+					}
+				}
+			}
+		}
+	}
+
+	.challenge-view {
+		.board {
+			position: absolute;
+			top: 100px;
+			left: 30px;
+			right: 30px;
+			bottom: 30px;
+			display: flex;
+
+			.left {
+				// background: rgba(#000,.1);
+				position: relative;
+				flex: 1;
+			}
+			
+			.right {
+				// background: rgba(#000,.1);
+				position: relative;
+				flex: 1;
+			}
+			
+			.center {
+				position: relative;
+				background: #bbb linear-gradient(180deg, rgba(#fff,.15), transparent 95%);
+				width: 90px;
+				padding: 11px;
+				border-radius: 11px;
+				box-shadow: inset 0px 1px 0px 0px rgba(#888,.15),
+							0 2px 7px rgba(#000,.175);
+
+				&:before {
+					content: "";
+					background-image: radial-gradient(ellipse at top center, rgba(#fff,.25), transparent);
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					border-radius: inherit;
+				}
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: 6px;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, transparent 5%, rgba(#fff,.5), transparent 95%);
+				}
+
+
+				> div {
+					position: relative;
+					background: #f90;
+					margin-bottom: 2px;
+					border-radius: 7px;
+					box-shadow: inset 0px 4px 0px 0px rgba(#a50,.15),
+								inset 0 0 1px rgba(#fff,.5),
+								0 0 1px rgba(#000,.25);
+
+					&:before {
+						content: "";
+						background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.5), transparent);
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						border-radius: inherit;
+					}
+
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: 4px;
+						left: 0;
+						right: 0;
+						height: 1px;
+						background: linear-gradient(90deg, transparent 5%, rgba(#fff,.125), transparent 95%);
+					}
+				}
+
+				.cpu {
+					height: 43px;
+					margin-bottom: 7px;
+				}
+
+				.io-led {
+					height: 21px;
+					box-shadow: inset 0px 2px 0px 0px rgba(#a50,.15),
+								inset 0 0 1px rgba(#fff,.5),
+								0 0 1px rgba(#000,.25);
+
+					&:after {
+						bottom: 2px;
+					}
+					
+					&.yellow {
+						background: #f90;
+					}
+					
+					&.purple {
+						background: #90f;
 					}
 				}
 			}
