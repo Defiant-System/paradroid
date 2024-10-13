@@ -206,12 +206,13 @@ content {
 
 				&.active {
 					filter: none;
-					background: linear-gradient(90deg, rgba(215, 131, 227, 0.5), transparent),
-							  	conic-gradient(from 150deg at 25%, transparent 40deg, #8b42ab 0%) 0/ 0.7em,
-							  	conic-gradient(from 150deg at 75%, #8b42ab 40deg, #9956b3 0%) 0/ 0.7em;
+					// background: linear-gradient(90deg, rgba(215, 131, 227, 0.5), transparent),
+					// 		  	conic-gradient(from -30deg at 25%, transparent 240deg, #8b42ab 0%) 0/ 0.7em,
+					// 		  	conic-gradient(from -30deg at 75%, #8b42ab 240deg, #9956b3 0%) 0/ 0.7em;
 
 					.elevator {
 						display: block;
+						top: 32px;
 					}
 				}
 
@@ -255,6 +256,17 @@ content {
 					background: var( --fg );
 					box-shadow: inset 0 0 0 2px #555;
 
+					&:before {
+						content: "";
+						background-image: radial-gradient(ellipse at top center, rgba(#fff,.2), transparent);
+						position: absolute;
+						top: 2px;
+						left: 2px;
+						right: 2px;
+						bottom: 2px;
+						border-radius: inherit;
+					}
+
 					&:after {
 						content: "";
 						position: absolute;
@@ -262,7 +274,7 @@ content {
 						left: 0;
 						right: 0;
 						height: 1px;
-						background: linear-gradient(90deg, transparent, rgba(#fff,.65), transparent);
+						background: linear-gradient(90deg, transparent, rgba(#fff,.5), transparent);
 					}
 				}
 
