@@ -57,7 +57,7 @@
 
 	<svg id="cpu-circuit" viewBox="0 0 171 85">
 		<style type="text/css">
-			.st0{fill:none;stroke:#8ed8eb66;stroke-miterlimit:10;}
+			.st0{fill:none;stroke:#8ed8eb66;stroke-width:1.5;stroke-miterlimit:10;}
 		</style>
 		<line class="st0" x1="85.5" y1="51.2" x2="85.5" y2="85"/>
 		<polyline class="st0" points="100.3,51.2 100.3,57.8 90.5,65.6 90.5,85 "/>
