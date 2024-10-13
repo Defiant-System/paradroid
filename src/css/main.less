@@ -57,30 +57,89 @@ content {
 			height: 300px;
 			filter: drop-shadow(0 2px 7px rgba(0, 0, 0, .15));
 
-			svg {
+			> div {
 				position: absolute;
 				top: 0;
 				left: 0;
-				// z-index: 2;
 				width: inherit;
 				height: inherit;
-				overflow: visible;
 
-				&.logo-text {
-					top: -10px;
-					filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
-							drop-shadow(0 2px 0 hsl(174, 0%, 88%))
-							drop-shadow(0 3px 1px hsl(174, 0%, 83%))
-							drop-shadow(0 4px 0 hsl(174, 0%, 79%))
-							drop-shadow(0 5px 0 hsl(174, 0%, 77%))
-							drop-shadow(0 1px 2px rgba(0, 0, 0, .15));
+				svg {
+					width: inherit;
+					height: inherit;
+					overflow: visible;
 				}
 
-				&.boxes {
-					filter: drop-shadow(0 1px 0 hsl(174, 0%, 73%))
-							drop-shadow(0 2px 0 hsl(174, 0%, 68%))
-							drop-shadow(0 3px 0 hsl(174, 0%, 63%))
-							drop-shadow(0 1px 2px rgba(0, 0, 0, .15));
+				&.boxes-top {
+					z-index: 1;
+
+					svg {
+						filter: drop-shadow(0 1px 0 hsl(174, 0%, 73%))
+								drop-shadow(0 2px 0 hsl(174, 0%, 68%))
+								drop-shadow(0 3px 0 hsl(174, 0%, 63%))
+								drop-shadow(0 4px 0 hsl(174, 0%, 60%))
+								drop-shadow(0 1px 2px rgba(0, 0, 0, .1));
+					}
+
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						top: 144px;
+						left: 5px;
+						width: 83px;
+						height: 1px;
+						z-index: 2;
+						background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
+					}
+
+					&:after {
+						left: 211px;
+						width: 263px;
+					}
+				}
+
+				&.logo-text {
+					top: -6px;
+					z-index: 2;
+
+					svg {
+						filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
+								drop-shadow(0 2px 0 hsl(174, 0%, 88%))
+								drop-shadow(0 3px 1px hsl(174, 0%, 83%))
+								drop-shadow(0 4px 0 hsl(174, 0%, 79%))
+								drop-shadow(0 5px 0 hsl(174, 0%, 77%))
+								drop-shadow(0 1px 2px rgba(0, 0, 0, .15));
+					}
+				}
+
+				&.boxes-bottom {
+					z-index: 3;
+					
+					svg {
+						filter: drop-shadow(0 1px 0 hsl(174, 0%, 73%))
+								drop-shadow(0 2px 0 hsl(174, 0%, 68%))
+								drop-shadow(0 3px 0 hsl(174, 0%, 63%))
+								drop-shadow(0 4px 0 hsl(174, 0%, 60%))
+								drop-shadow(0 1px 2px rgba(0, 0, 0, .1));
+					}
+
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						top: 298px;
+						left: 5px;
+						width: 83px;
+						height: 1px;
+						z-index: 2;
+						background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
+					}
+
+					&:after {
+						left: 211px;
+						width: 263px;
+					}
 				}
 			}
 		}
