@@ -5,7 +5,9 @@
 const paradroid = {
 	init() {
 		// fast references
-		this.content = window.find("content");
+		this.els = {
+			content: window.find("content"),
+		};
 
 		// init all sub-objects
 		Object.keys(this)
@@ -29,6 +31,9 @@ const paradroid = {
 			// custom events
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
+				break;
+			case "show-view":
+				Self.els.content.data({ show: event.arg });
 				break;
 			// proxy event
 			default:
