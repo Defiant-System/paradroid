@@ -445,8 +445,9 @@ content {
 
 		.droid-001 {
 			top: 70px;
-			width: 48px;
-			height: 48px;
+			width: 54px;
+			height: 42px;
+			background-size: 100% 100%;
 
 			&.left { left: 120px; }
 			&.right { left: 470px; }
@@ -537,11 +538,12 @@ content {
 							content: "";
 							position: absolute;
 							top: 8px;
-							left: 9px;
-							width: 8px;
-							height: 8px;
-							border-radius: 50%;
-							border: 2px solid #8ed8eb66;
+							left: -13px;
+							width: 34px;
+							height: 12px;
+							background: url(~/icons/switch.png) 50% 50%/contain no-repeat;
+							// border-radius: 50%;
+							// border: 2px solid #8ed8eb66;
 						}
 
 						&:after {
@@ -552,6 +554,26 @@ content {
 							width: 170px;
 							height: 0;
 							border: 1px solid #8ed8eb66;
+						}
+
+						&.switch-conn:before {
+							background-image: url(~/icons/switch-conn.png);
+						}
+
+
+
+						&.first {
+							position: absolute;
+							top: -23px;
+							left: 17px;
+
+							&:before {
+								background-image: url(~/icons/conn.png);
+							}
+
+							&:after {
+								display: none;
+							}
 						}
 					}
 				}
@@ -583,13 +605,13 @@ content {
 
 						&:before {
 							left: auto;
-							right: 9px;
+							right: -12px;
+							transform: rotate(180deg);
 						}
 
 						&:after {
 							left: auto;
-							right: 21px;
-							width: 171px;
+							right: 22px;
 						}
 					}
 				}
