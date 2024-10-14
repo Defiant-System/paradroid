@@ -470,7 +470,7 @@ content {
 					position: absolute;
 					top: 23px;
 					bottom: 4px;
-					left: 0;
+					left: 10px;
 					width: 41px;
 					border-radius: 7px;
 					background: #322c64 linear-gradient(180deg, rgba(#fff,.15), transparent 95%);
@@ -538,7 +538,7 @@ content {
 							content: "";
 							position: absolute;
 							top: 8px;
-							left: -13px;
+							left: -3px;
 							width: 34px;
 							height: 12px;
 							background: url(~/icons/switch.png) 50% 50%/contain no-repeat;
@@ -550,25 +550,31 @@ content {
 							content: "";
 							position: absolute;
 							top: 13px;
-							left: 21px;
-							width: 170px;
+							left: 31px;
+							width: 160px;
 							height: 0;
 							border: 1px solid #8ed8eb66;
 						}
 
-						&.switch-conn:before {
-							background-image: url(~/icons/switch-conn.png);
+						&.active {
+							&:before {
+								background-image: url(~/icons/switch-conn.png);
+							}
+
+							&:first-child:before {
+								background-image: url(~/icons/conn.png);
+							}
 						}
 
 
 
-						&.first {
+						&:first-child {
 							position: absolute;
 							top: -23px;
 							left: 17px;
 
 							&:before {
-								background-image: url(~/icons/conn.png);
+								background-image: none;
 							}
 
 							&:after {
@@ -582,7 +588,7 @@ content {
 			.right {
 				.side {
 					left: auto;
-					right: 0;
+					right: 10px;
 
 					.led {
 						background: #b4f;
@@ -605,13 +611,13 @@ content {
 
 						&:before {
 							left: auto;
-							right: -12px;
+							right: -2px;
 							transform: rotate(180deg);
 						}
 
 						&:after {
 							left: auto;
-							right: 22px;
+							right: 32px;
 						}
 					}
 				}
