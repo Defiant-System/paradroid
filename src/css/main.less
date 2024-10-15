@@ -67,17 +67,248 @@ content {
 			animation: droid-spin 1200ms steps(8) infinite;
 		}
 
-		&.player {
+		&:after {
+			content: attr(data-id);
+			position: absolute;
+			bottom: -17px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			font-size: 13px;
+			color: #666;
+		}
+
+		&.player,
+		&[data-id="001"] {
 			&:before {
 				filter: invert(1) brightness(1.5);
+				transform: rotate(180deg);
 			}
 
 			b {
+				top: 14px;
 				filter: invert(1) brightness(1.5);
 			}
 		}
 
-		> b {
+
+		&[data-id="001"] {
+			b {
+				&:after { background-position: -14px 0; }
+			}
+		}
+
+		&[data-id="123"] {
+			b {
+				left: -1px;
+				background-position: -14px 0;
+
+				&:before { background-position: -28px 0; }
+				&:after { background-position: -42px 0; }
+			}
+		}
+		
+		&[data-id="139"] {
+			b {
+				left: -1px;
+				background-position: -14px 0;
+
+				&:before { background-position: -42px 0; }
+				&:after { background-position: -126px 0; }
+
+			}
+		}
+		
+		&[data-id="247"] {
+			b {
+				background-position: -28px 0;
+
+				&:before { background-position: -56px 0; }
+				&:after { background-position: -98px 0; }
+			}
+		}
+		
+		&[data-id="249"] {
+			b {
+				background-position: -28px 0;
+
+				&:before { background-position: -56px 0; }
+				&:after { background-position: -126px 0; }
+			}
+		}
+		
+		&[data-id="296"] {
+			b {
+				background-position: -28px 0;
+
+				&:before { background-position: -126px 0; }
+				&:after { background-position: -84px 0; }
+			}
+		}
+		
+		&[data-id="302"] {
+			b {
+				background-position: -42px 0;
+
+				&:before { background-position: 0 0; }
+				&:after { background-position: -28px 0; }
+			}
+		}
+		
+		&[data-id="329"] {
+			b {
+				background-position: -42px 0;
+
+				&:before { background-position: -28px 0; }
+				&:after { background-position: -126px 0; }
+			}
+		}
+		
+		&[data-id="420"] {
+			b {
+				background-position: -56px 0;
+
+				&:before { background-position: -28px 0; }
+				&:after { background-position: 0 0; }
+			}
+		}
+		
+		&[data-id="476"] {
+			b {
+				background-position: -56px 0;
+
+				&:before { background-position: -98px 0; }
+				&:after { background-position: -84px 0; }
+			}
+		}
+		
+		&[data-id="493"] {
+			b {
+				background-position: -56px 0;
+
+				&:before { background-position: -126px 0; }
+				&:after { background-position: -42px 0; }
+			}
+		}
+		
+		&[data-id="516"] {
+			b {
+				background-position: -70px 0;
+
+				&:before { background-position: -14px 0; }
+				&:after { background-position: -84px 0; }
+			}
+		}
+		
+		&[data-id="571"] {
+			b {
+				background-position: -70px 0;
+
+				&:before { background-position: -98px 0; }
+				&:after { background-position: -14px 0; }
+			}
+		}
+		
+		&[data-id="598"] {
+			b {
+				background-position: -70px 0;
+
+				&:before { background-position: -126px 0; }
+				&:after { background-position: -112px 0; }
+			}
+		}
+		
+		&[data-id="614"] {
+			b {
+				background-position: -84px 0;
+
+				&:before { background-position: -14px 0; }
+				&:after { background-position: -56px 0; }
+			}
+		}
+		
+		&[data-id="615"] {
+			b {
+				background-position: -84px 0;
+
+				&:before { background-position: -14px 0; }
+				&:after { background-position: -70px 0; }
+			}
+		}
+		
+		&[data-id="629"] {
+			b {
+				background-position: -84px 0;
+
+				&:before { background-position: -28px 0; }
+				&:after { background-position: -126px 0; }
+			}
+		}
+		
+		&[data-id="711"] {
+			b {
+				background-position: -98px 0;
+
+				&:before { background-position: -14px 0; }
+				&:after { background-position: -14px 0; }
+			}
+		}
+		
+		&[data-id="742"] {
+			b {
+				background-position: -98px 0;
+
+				&:before { background-position: -56px 0; }
+				&:after { background-position: -28px 0; }
+			}
+		}
+		
+		&[data-id="751"] {
+			b {
+				background-position: -98px 0;
+
+				&:before { background-position: -70px 0; }
+				&:after { background-position: -14px 0; }
+			}
+		}
+		
+		&[data-id="821"] {
+			b {
+				background-position: -112px 0;
+
+				&:before { background-position: -28px 0; }
+				&:after { background-position: -14px 0; }
+			}
+		}
+		
+		&[data-id="834"] {
+			b {
+				background-position: -112px 0;
+
+				&:before { background-position: -42px 0; }
+				&:after { background-position: -56px 0; }
+			}
+		}
+		
+		&[data-id="883"] {
+			b {
+				background-position: -112px 0;
+
+				&:before { background-position: -112px 0; }
+				&:after { background-position: -42px 0; }
+			}
+		}
+		
+		&[data-id="999"] {
+			b {
+				background-position: -126px 0;
+
+				&:before { background-position: -126px 0; }
+				&:after { background-position: -126px 0; }
+			}
+		}
+
+		b {
 			background: url(~/icons/droid-digits.png) 0 0 no-repeat;
 			background-size: auto 16px;
 			position: absolute;
@@ -100,78 +331,7 @@ content {
 			&:after {
 				left: 30px;
 			}
-
-			&[data-id="001"] {
-				&:after { background-position: -14px 0; }
-			}
-
-
-			&[data-id="123"] {  }
-			
-			&[data-id="139"] {  }
-			
-			&[data-id="247"] {
-				background-position: -28px 0;
-
-				&:before { background-position: -56px 0; }
-				&:after { background-position: -98px 0; }
-			}
-			
-			&[data-id="249"] {  }
-			
-			&[data-id="296"] {  }
-			
-			&[data-id="302"] {  }
-			
-			&[data-id="329"] {  }
-			
-			&[data-id="420"] {  }
-			
-			&[data-id="476"] {
-				background-position: -56px 0;
-
-				&:before { background-position: -98px 0; }
-				&:after { background-position: -84px 0; }
-			}
-			
-			&[data-id="493"] {  }
-			
-			&[data-id="516"] {  }
-			
-			&[data-id="571"] {  }
-			
-			&[data-id="598"] {  }
-			
-			&[data-id="614"] {  }
-			
-			&[data-id="615"] {  }
-			
-			&[data-id="629"] {  }
-			
-			&[data-id="711"] {  }
-			
-			&[data-id="742"] {  }
-			
-			&[data-id="751"] {  }
-			
-			&[data-id="821"] {  }
-			
-			&[data-id="834"] {  }
-			
-			&[data-id="883"] {  }
-			
-			&[data-id="999"] {  }
 		}
-	}
-
-	.droid-001 {
-		position: absolute;
-		width: 64px;
-		height: 64px;
-		background: url(~/icons/droid-001.png) 50% 50%/contain no-repeat;
-		filter: drop-shadow(0 1px 1px hsl(174, 0%, 88%))
-				// drop-shadow(0 2px 1px hsl(174, 0%, 83%))
-				drop-shadow(0 2px 4px rgba(#000,.25));
 	}
 
 	> div {
@@ -281,11 +441,6 @@ content {
 					}
 				}
 			}
-		}
-
-		.droid-001 {
-			top: 376px;
-			left: 290px;
 		}
 	}
 
@@ -1003,6 +1158,16 @@ content {
 			}
 		}
 	}
+
+	.console-view {
+		padding: 21px;
+
+		.droid {
+			position: relative;
+			margin: 0 23px 37px;
+			display: inline-block;
+		}
+	}
 }
 
 
@@ -1013,8 +1178,8 @@ content {
 }
 
 @keyframes droid-spin {
-	0%   { background-position: 0px 0px; }
-	100% { background-position: -360px 0px; }
+	0%   { background-position: -360px 0px; }
+	100% { background-position: 0px 0px; }
 }
 
 
