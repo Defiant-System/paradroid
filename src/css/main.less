@@ -67,16 +67,16 @@ content {
 			animation: droid-spin 1200ms steps(8) infinite;
 		}
 
-		&:after {
-			content: attr(data-id);
-			position: absolute;
-			bottom: -17px;
-			left: 0;
-			right: 0;
-			text-align: center;
-			font-size: 13px;
-			color: #666;
-		}
+		// &:after {
+		// 	content: attr(data-id);
+		// 	position: absolute;
+		// 	bottom: -17px;
+		// 	left: 0;
+		// 	right: 0;
+		// 	text-align: center;
+		// 	font-size: 13px;
+		// 	color: #666;
+		// }
 
 		&.player,
 		&[data-id="001"] {
@@ -94,27 +94,29 @@ content {
 
 		&[data-id="001"] {
 			b {
-				&:after { background-position: -14px 0; }
+				left: 2px;
+
+				&:after { background-position: -14px 0; left: 29px; }
 			}
 		}
 
 		&[data-id="123"] {
 			b {
-				left: -1px;
 				background-position: -14px 0;
+				left: -1px;
 
-				&:before { background-position: -28px 0; }
+				&:before { background-position: -28px 0; left: 14px; }
 				&:after { background-position: -42px 0; }
 			}
 		}
 		
 		&[data-id="139"] {
 			b {
-				left: -1px;
 				background-position: -14px 0;
+				left: 0px;
 
-				&:before { background-position: -42px 0; }
-				&:after { background-position: -126px 0; }
+				&:before { background-position: -42px 0; left: 14px; }
+				&:after { background-position: -126px 0; left: 29px; }
 
 			}
 		}
@@ -140,9 +142,10 @@ content {
 		&[data-id="296"] {
 			b {
 				background-position: -28px 0;
+				left: 2px;
 
 				&:before { background-position: -126px 0; }
-				&:after { background-position: -84px 0; }
+				&:after { background-position: -84px 0; left: 29px; }
 			}
 		}
 		
@@ -167,6 +170,7 @@ content {
 		&[data-id="420"] {
 			b {
 				background-position: -56px 0;
+				left: 0;
 
 				&:before { background-position: -28px 0; }
 				&:after { background-position: 0 0; }
@@ -176,6 +180,7 @@ content {
 		&[data-id="476"] {
 			b {
 				background-position: -56px 0;
+				left: 0;
 
 				&:before { background-position: -98px 0; }
 				&:after { background-position: -84px 0; }
@@ -185,6 +190,7 @@ content {
 		&[data-id="493"] {
 			b {
 				background-position: -56px 0;
+				left: 0;
 
 				&:before { background-position: -126px 0; }
 				&:after { background-position: -42px 0; }
@@ -194,18 +200,20 @@ content {
 		&[data-id="516"] {
 			b {
 				background-position: -70px 0;
+				left: 2px;
 
-				&:before { background-position: -14px 0; }
-				&:after { background-position: -84px 0; }
+				&:before { background-position: -14px 0; left: 14px; }
+				&:after { background-position: -84px 0; left: 28px; }
 			}
 		}
 		
 		&[data-id="571"] {
 			b {
 				background-position: -70px 0;
+				left: 2px;
 
 				&:before { background-position: -98px 0; }
-				&:after { background-position: -14px 0; }
+				&:after { background-position: -14px 0; left: 29px; }
 			}
 		}
 		
@@ -221,18 +229,20 @@ content {
 		&[data-id="614"] {
 			b {
 				background-position: -84px 0;
+				left: 2px;
 
-				&:before { background-position: -14px 0; }
-				&:after { background-position: -56px 0; }
+				&:before { background-position: -14px 0; left: 13px; }
+				&:after { background-position: -56px 0; left: 27px; }
 			}
 		}
 		
 		&[data-id="615"] {
 			b {
 				background-position: -84px 0;
+				left: 2px;
 
-				&:before { background-position: -14px 0; }
-				&:after { background-position: -70px 0; }
+				&:before { background-position: -14px 0; left: 13px; }
+				&:after { background-position: -70px 0; left: 27px; }
 			}
 		}
 		
@@ -248,9 +258,10 @@ content {
 		&[data-id="711"] {
 			b {
 				background-position: -98px 0;
+				left: 3px;
 
-				&:before { background-position: -14px 0; }
-				&:after { background-position: -14px 0; }
+				&:before { background-position: -14px 0; left: 14px; }
+				&:after { background-position: -14px 0; left: 27px; }
 			}
 		}
 		
@@ -267,7 +278,7 @@ content {
 			b {
 				background-position: -98px 0;
 
-				&:before { background-position: -70px 0; }
+				&:before { background-position: -70px 0; left: 16px; }
 				&:after { background-position: -14px 0; }
 			}
 		}
@@ -276,7 +287,7 @@ content {
 			b {
 				background-position: -112px 0;
 
-				&:before { background-position: -28px 0; }
+				&:before { background-position: -28px 0; left: 16px; }
 				&:after { background-position: -14px 0; }
 			}
 		}
@@ -284,9 +295,10 @@ content {
 		&[data-id="834"] {
 			b {
 				background-position: -112px 0;
+				left: 0;
 
-				&:before { background-position: -42px 0; }
-				&:after { background-position: -56px 0; }
+				&:before { background-position: -42px 0; left: 16px; }
+				&:after { background-position: -56px 0; left: 31px; }
 			}
 		}
 		
@@ -302,9 +314,10 @@ content {
 		&[data-id="999"] {
 			b {
 				background-position: -126px 0;
+				left: 2px;
 
-				&:before { background-position: -126px 0; }
-				&:after { background-position: -126px 0; }
+				&:before { background-position: -126px 0; left: 14px; }
+				&:after { background-position: -126px 0; left: 28px; }
 			}
 		}
 
