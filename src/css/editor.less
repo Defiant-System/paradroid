@@ -1,8 +1,17 @@
 
 .edit-view {
-	--tile: 32px;
 	--y: 0;
 	--x: 0;
+
+	&.big-tiles {
+		--tile-bg: url(~/img/tiles-big.png);
+		--tile: 32px;
+	}
+
+	&.small-tiles {
+		--tile-bg: url(~/img/tiles-bw.png);
+		--tile: 8px;
+	}
 
 	.tile-palette {
 		position: absolute;
@@ -10,8 +19,8 @@
 		right: -530px;
 		font-size: 0;
 		z-index: 11;
-		width: calc( var( --tile ) * var( --w ) );
-		height: calc( var( --tile ) * var( --h ) );
+		width: 512px;
+		height: 288px;
 
 		.buttons {
 			background: #bbb;
@@ -35,16 +44,34 @@
 					height: 23px;
 					border-color: #aaa;
 				}
+
+				&.active {
+					padding-top: 4px;
+					height: 23px;
+					border-color: #888 #fff #fff #888;
+				}
+
+				&.divider {
+					padding-left: 0;
+					padding-right: 0;
+					font-size: 0;
+					width: 0;
+				}
+
+				&[data-arg="1"] { margin-right: 0; }
 			}
 		}
 
 		.tiles {
-			// --tile: 32px;
+			--tile: 32px;
+			width: calc( var( --tile ) * var( --w ) );
+			height: calc( var( --tile ) * var( --h ) );
 			box-shadow: 0 0 0 2px rgba(#000,.75);
 			background-image: conic-gradient(#f90 0 25%,#f69 25% 50%,#f90 50% 75%,#f69 75% 100%);
 			background-size: 16px 16px;
 
 			b {
+				image-rendering: pixelated;
 				box-shadow: inset 0 0 0 1px rgba(#000,.25);
 
 				&.active {
@@ -60,12 +87,15 @@
 		left: 15px;
 		bottom: 15px;
 		overflow: hidden;
-		width: calc( var( --tile ) * var( --w ) );
-		height: calc( var( --tile ) * var( --h ) );
+		width: 608px;
+		height: 384px;
+		// width: calc( var( --tile ) * var( --w ) );
+		// height: calc( var( --tile ) * var( --h ) );
 		box-shadow: 0 0 0 2px #a22;
 		background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
 		background-size: 32px 32px;
 		font-size: 0;
+		// --tile: 16px;
 
 		&.hide-cursor {
 			.cursor {
@@ -135,7 +165,7 @@
 	b {
 		position: relative;
 		z-index: 2;
-		background-image: url(~/img/tiles.png);
+		background-image: var( --tile-bg );
 		background-repeat: no-repeat;
 		background-size: calc( var( --tile ) * 16 ) auto;
 		background-position: var( --tile ) var( --tile );

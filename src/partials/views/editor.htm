@@ -1,15 +1,17 @@
 
 <!-- editor view -->
-<div class="edit-view" data-context="edit-content" data-area="edit">
-	<div class="tile-palette" style="--w: 16; --h: 9;" data-click="select-tile">
+<div class="edit-view big-tiles" data-context="edit-content" data-area="edit">
+	<div class="tile-palette" data-click="select-tile">
 		<div class="buttons">
+			<span data-click="grid-size" data-arg="1" class="active">1</span>
+			<span data-click="grid-size" data-arg=".25">.25</span>
+			<span class="divider"></span>
 			<span data-click="cursor-eraser">Eraser</span>
 			<span data-click="toggle-overflow">Toggle Overflow</span>
 			<span data-click="toggle-bg">Toggle BG</span>
 			<span data-click="toggle-grid">Toggle Grid</span>
 		</div>
-		<div class="tiles">
-			<!-- <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b> -->
+		<div class="tiles" style="--w: 16; --h: 8;">
 			<b class="m00"></b><b class="m01"></b><b class="m02"></b><b class="m03"></b><b class="m04"></b><b class="m05"></b><b class="m06"></b><b class="m07"></b><b class="m08"></b><b class="m09"></b><b class="m0a"></b><b class="m0b"></b><b class="m0c"></b><b class="m0d"></b><b class="m0e"></b><b class="m0f"></b>
 			<b class="m10"></b><b class="m11"></b><b class="m12"></b><b class="m13"></b><b class="m14"></b><b class="m15"></b><b class="m16"></b><b class="m17"></b><b class="m18"></b><b class="m19"></b><b class="m1a"></b><b class="m1b"></b><b class="m1c"></b><b class="m1d"></b><b class="m1e"></b><b class="m1f"></b>
 			<b class="m20"></b><b class="m21"></b><b class="m22"></b><b class="m23"></b><b class="m24"></b><b class="m25"></b><b class="m26"></b><b class="m27"></b><b class="m28"></b><b class="m29"></b><b class="m2a"></b><b class="m2b"></b><b class="m2c"></b><b class="m2d"></b><b class="m2e"></b><b class="m2f"></b>
@@ -21,7 +23,7 @@
 		</div>
 	</div>
 
-	<div class="viewport" style="--w: 19; --h: 12;">
+	<div class="viewport" style="--tile: 16px;">
 		<!-- insert tiles with cursor -->
 		<div class="cursor" style="--l: 1; --t: 1; --tx: -.5; --ty: -.5;">
 			<b style="--x: 0; --y: 0;"></b>

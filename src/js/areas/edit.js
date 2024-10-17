@@ -177,6 +177,15 @@
 					append: Self.els.viewport,
 				});
 				break;
+			case "grid-size":
+				console.log( event );
+				event.el.parent().find(".active").removeClass("active");
+				event.el.addClass("active");
+				
+				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
+				// Self.els.viewport.css({ "--tile": `${+event.arg * 32}px` });
+				// Self.els.viewport.parent().css({ "--tile-bg": `url(~/img/${event.arg === "1" ? "tiles-big" : "tiles-bw"}.png)` });
+				break;
 			case "output-pgn":
 				let tiles = [];
 
