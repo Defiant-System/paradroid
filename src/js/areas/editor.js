@@ -1,5 +1,5 @@
 
-// paradroid.edit
+// paradroid.editor
 
 {
 	init() {
@@ -46,7 +46,7 @@
 	},
 	dispatch(event) {
 		let APP = paradroid,
-			Self = APP.edit,
+			Self = APP.editor,
 			value,
 			el;
 		// console.log(event);
@@ -200,7 +200,7 @@
 	},
 	doPan(event) {
 		let APP = paradroid,
-			Self = APP.edit,
+			Self = APP.editor,
 			Drag = Self.drag;
 		switch (event.type) {
 			case "mousedown":

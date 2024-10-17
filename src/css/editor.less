@@ -1,5 +1,5 @@
 
-.edit-view {
+.editor-view {
 	--y: 0;
 	--x: 0;
 
@@ -14,6 +14,10 @@
 
 		.level {
 			background: #f90;
+
+			&:before {
+				display: none;
+			}
 
 			b {
 				mix-blend-mode: hard-light;
@@ -80,7 +84,6 @@
 			background-size: 16px 16px;
 
 			b {
-				image-rendering: pixelated;
 				box-shadow: inset 0 0 0 1px rgba(#000,.25);
 
 				&.active {
@@ -178,6 +181,7 @@
 		background-repeat: no-repeat;
 		background-size: calc( var( --tile ) * 16 ) auto;
 		background-position: var( --tile ) var( --tile );
+		image-rendering: pixelated;
 		display: inline-block;
 		width: var( --tile );
 		height: var( --tile );

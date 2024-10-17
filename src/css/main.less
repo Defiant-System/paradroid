@@ -24,6 +24,13 @@ content {
 		}
 	}
 
+	&[data-show="mobile"] {
+		> div.mobile-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
 	&[data-show="lift"] {
 		> div.lift-view {
 			opacity: 1;
@@ -31,8 +38,8 @@ content {
 		}
 	}
 
-	&[data-show="challenge"] {
-		> div.challenge-view {
+	&[data-show="transfer"] {
+		> div.transfer-view {
 			opacity: 1;
 			visibility: visible;
 		}
@@ -45,8 +52,8 @@ content {
 		}
 	}
 
-	&[data-show="edit"] {
-		> div.edit-view {
+	&[data-show="editor"] {
+		> div.editor-view {
 			opacity: 1;
 			visibility: visible;
 		}
@@ -729,7 +736,7 @@ content {
 		}
 	}
 
-	.challenge-view {
+	.transfer-view {
 		background: radial-gradient(ellipse at top center, #028ceb99, transparent),
 					linear-gradient(180deg, #018fed, #003d92);
 
@@ -1179,6 +1186,65 @@ content {
 					}
 				}
 			}
+		}
+	}
+
+	.mobile-view {
+		display: flex;
+		flex-direction: column;
+
+		.hud {
+			position: relative;
+			height: 70px;
+			display: flex;
+
+			.left {
+				position: relative;
+				flex: 1;
+			}
+
+			.center {
+				// background: rgba(#000,.1);
+				position: relative;
+				width: 360px;
+				text-align: center;
+
+				.hud-logo {
+					// background: rgba(#000,.1);
+					display: inline-block;
+					position: relative;
+					top: 10px;
+					width: 360px;
+					height: 45px;
+					// filter: drop-shadow(0 2px 7px rgba(0, 0, 0, .15));
+
+					svg {
+						width: inherit;
+						height: inherit;
+						overflow: visible;
+						filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
+								drop-shadow(0 2px 1px hsl(174, 0%, 88%))
+								drop-shadow(0 3px 0 hsl(174, 0%, 83%))
+								// drop-shadow(0 4px 0 hsl(174, 0%, 79%))
+								// drop-shadow(0 5px 0 hsl(174, 0%, 77%))
+								drop-shadow(0 1px 2px rgba(#000, .2));
+					}
+				}
+			}
+
+			.right {
+				position: relative;
+				flex: 1;
+			}
+		}
+
+		.game {
+			background: rgba(#000,.1);
+			flex: 1;
+			border-radius: inherit;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			position: relative;
 		}
 	}
 

@@ -48,7 +48,12 @@ const paradroid = {
 				}
 		}
 	},
-	edit: @import "./areas/edit.js",
+	start: @import "./areas/start.js",
+	editor: @import "./areas/editor.js",
+	lift: @import "./areas/lift.js",
+	mobile: @import "./areas/mobile.js",
+	console: @import "./areas/console.js",
+	transfer: @import "./areas/transfer.js",
 };
 
 window.exports = paradroid;

@@ -8,12 +8,13 @@
 		<Menu name="Show&#8230;">
 			<Menu name="Start" click="show-view" arg="start"/>
 			<Menu name="Lift" click="show-view" arg="lift"/>
-			<Menu name="Challenge" click="show-view" arg="challenge"/>
+			<Menu name="Mobile" click="show-view" arg="mobile"/>
+			<Menu name="Transfer" click="show-view" arg="transfer"/>
 			<Menu name="Console" click="show-view" arg="console"/>
 			<Menu name="Editor" click="show-view" arg="edit"/>
 		</Menu>
 		<Menu type="divider"/>
-		<Menu name="Editor" for="edit-content">
+		<Menu name="Editor" for="editor-content">
 			<Menu name="Toggle Level BG" click="toggle-bg"/>
 			<Menu name="Toggle Grid" click="toggle-grid"/>
 			<Menu type="divider"/>
