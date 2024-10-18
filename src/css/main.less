@@ -429,14 +429,15 @@ content {
 				&.logo-text {
 					top: -6px;
 					z-index: 2;
+					filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
+							drop-shadow(0 2px 0 hsl(174, 0%, 88%))
+							drop-shadow(0 3px 1px hsl(174, 0%, 83%))
+							drop-shadow(0 4px 0 hsl(174, 0%, 79%))
+							drop-shadow(0 5px 0 hsl(174, 0%, 77%))
+							drop-shadow(0 1px 2px rgba(#000, .15));
 
 					svg {
-						filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
-								drop-shadow(0 2px 0 hsl(174, 0%, 88%))
-								drop-shadow(0 3px 1px hsl(174, 0%, 83%))
-								drop-shadow(0 4px 0 hsl(174, 0%, 79%))
-								drop-shadow(0 5px 0 hsl(174, 0%, 77%))
-								drop-shadow(0 1px 2px rgba(#000, .15));
+						// animation: glowPulse 1500ms alternate infinite;
 					}
 				}
 
@@ -495,19 +496,21 @@ content {
 			border-radius: inherit;
 			position: relative;
 			flex: 1;
-			background: rgba(#000,.1) radial-gradient(ellipse at bottom center, rgba(#fff,.5), transparent);
-			box-shadow: inset 0px 6px 0px 0px rgba(#aaa,.15),
-						inset 0 0 1px rgba(#777,.75),
-						inset 0 0 1px rgba(#777,.75);
+			background: rgba(#000,.125) radial-gradient(ellipse at bottom center, rgba(#fff,.5), transparent);
+			box-shadow: inset 0 0 1px rgba(#777,.75),
+						inset 0 1px 1px rgba(#777,.35),
+						// 0 1px 0 rgba(#fff,.15),
+						inset 0px 6px 0px 0px rgba(#aaa,.35),
+						inset 0 2px 0 rgba(#fff,.5);
 
 			&:before {
 				content: "";
 				position: absolute;
-				top: 0;
+				bottom: 1px;
 				left: 0;
 				right: 0;
 				height: 1px;
-				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.35), transparent 95%);
+				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.4), transparent 95%);
 			}
 
 			&:after {
@@ -527,7 +530,7 @@ content {
 				right: 0;
 				border-radius: inherit;
 
-				&:after {
+				&:after1 {
 					content: "";
 					position: absolute;
 					top: 1px;
@@ -544,20 +547,17 @@ content {
 		}
 
 		.center {
-			// background: rgba(#000,.1);
 			position: relative;
 			width: 310px;
 			margin: 0 11px;
 			text-align: center;
 
 			.hud-logo {
-				// background: rgba(#000,.1);
 				display: inline-block;
 				position: relative;
 				top: 5px;
 				width: inherit;
 				height: 45px;
-				// filter: drop-shadow(0 2px 7px rgba(0, 0, 0, .15));
 
 				svg {
 					width: inherit;
@@ -566,9 +566,7 @@ content {
 					filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
 							drop-shadow(0 2px 1px hsl(174, 0%, 88%))
 							drop-shadow(0 3px 0 hsl(174, 0%, 83%))
-							// drop-shadow(0 4px 0 hsl(174, 0%, 79%))
-							// drop-shadow(0 5px 0 hsl(174, 0%, 77%))
-							drop-shadow(0 1px 2px rgba(#000, .2));
+							drop-shadow(0 1px 2px rgba(#000, .3));
 				}
 			}
 		}
@@ -850,10 +848,10 @@ content {
 
 		.board {
 			position: absolute;
-			top: 54px;
+			top: 79px;
 			left: 30px;
 			right: 30px;
-			bottom: 13px;
+			bottom: 31px;
 			display: flex;
 
 			.left,
@@ -1313,6 +1311,12 @@ content {
 	}
 }
 
+
+// @keyframes glowPulse {
+// 	0%   { transform: translateY(-4px); filter: drop-shadow(0 0 3px rgba(#fff, .35)); }
+// 	50%,
+// 	100% { transform: translateY(0); filter: drop-shadow(0 0 0 rgba(#fff,0)); }
+// }
 
 @keyframes pulse {
 	0% { opacity: 1; transform: scale(1); }
