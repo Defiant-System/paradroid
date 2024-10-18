@@ -1,4 +1,5 @@
 
+<Data>
 @import "levels/a.xml"
 @import "levels/b.xml"
 @import "levels/c.xml"
@@ -19,3 +20,4 @@
 @import "levels/r.xml"
 @import "levels/s.xml"
 @import "levels/t.xml"
+</Data>

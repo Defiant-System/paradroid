@@ -1,4 +1,10 @@
 
+@import "./classes/droid.js"
+@import "./classes/player.js"
+@import "./classes/arena.js"
+@import "./classes/map.js"
+@import "./classes/viewport.js"
+
 @import "./modules/test.js"
 
 

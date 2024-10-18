@@ -11,7 +11,7 @@
 			<Menu name="Mobile" click="show-view" arg="mobile"/>
 			<Menu name="Transfer" click="show-view" arg="transfer"/>
 			<Menu name="Console" click="show-view" arg="console"/>
-			<Menu name="Editor" click="show-view" arg="edit"/>
+			<Menu name="Editor" click="show-view" arg="editor"/>
 		</Menu>
 		<Menu type="divider"/>
 		<Menu name="Editor" for="editor-content">
