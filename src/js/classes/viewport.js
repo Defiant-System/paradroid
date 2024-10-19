@@ -2,6 +2,7 @@
 class Viewport {
 	constructor(cfg) {
 		let { arena, x, y, w, h } = cfg;
+		
 		this.arena = arena;
 		this.x = x;
 		this.y = y;

@@ -2,14 +2,7 @@
 class Map {
 	constructor(cfg) {
 	    this.arena = cfg.arena;
-	    this.data = {};
-
-	    let img = new Image;
-	    img.src = cfg.map;
-	    img.onload = () => {
-	    	this._img = img;
-	    	if (typeof cfg.ready === "function") cfg.ready();
-	    };
+	    // this.data = {};
 	}
 
 	layout(id) {
@@ -37,42 +30,34 @@ class Map {
 	render(ctx) {
 		let win = this.arena.win,
 			size = this.arena.tiles.size,
-			viewport = this.arena.viewport;
-		let x_min = Math.floor(viewport.x / size);
-		let y_min = Math.floor(viewport.y / size);
-		let x_max = Math.ceil((viewport.x + viewport.w) / size);
-		let y_max = Math.ceil((viewport.y + viewport.h) / size);
+			viewport = this.arena.viewport,
+		
+			x_min = Math.floor(viewport.x / size),
+			y_min = Math.floor(viewport.y / size),
+			x_max = Math.ceil((viewport.x + viewport.w) / size),
+			y_max = Math.ceil((viewport.y + viewport.h) / size);
 
 		if (x_min < 0) x_min = 0;
 		if (y_min < 0) y_min = 0;
 		if (x_max > this.width) x_max = this.width;
 		if (y_max > this.height) y_max = this.height;
-
-		ctx.fillStyle = "red";
-		ctx.fillRect(20, 20, size, size);
+        // console.log( viewport.x, viewport.y );
 
 		for (let y = y_min; y < y_max; y++) {
 			for (let x = x_min; x < x_max; x++) {
-				// let value  = this.layout[y][x] - 1;
-				// let tile_x = Math.floor((x * config.size.tile) - viewport.x + (config.win.width / 2) - (viewport.w / 2));
-				// let tile_y = Math.floor((y * config.size.tile) - viewport.y + (config.win.height / 2) - (viewport.h / 2));
+				let col = this.layout[y][x];
+				if (!col) continue;
 
-				let [a,t,l] = this.layout[y][x].split("").map(i => parseInt(i, 16)),
-					o_x = l * size,
-					o_y = t * size,
-					tile_x = Math.floor((x * size) - viewport.x + (win.width / 2) - (viewport.w / 2)),
-					tile_y = Math.floor((y * size) - viewport.y + (win.height / 2) - (viewport.h / 2));
+				let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
+					oX = l * size,
+					oY = t * size,
+					tX = Math.floor((x * size) - viewport.x + (win.width / 2) - (viewport.w / 2)),
+					tY = Math.floor((y * size) - viewport.y + (win.height / 2) - (viewport.h / 2));
 
 				ctx.drawImage(
 					this._img,
-					o_x,
-					o_y,
-					size,
-					size,
-					tile_x,
-					tile_y,
-					size,
-					size
+					oX, oY, size, size,
+					tX, tY, size, size
 				);
 			}
 		}
