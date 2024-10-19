@@ -11,20 +11,19 @@ class Player extends Droid {
 	}
 
 	move(x, y) {
-		let map = this.arena.map;
-
-		let pos = {
-			x: Math.ceil(this.pos.x / this.arena.tiles.size),
-			y: Math.ceil(this.pos.y / this.arena.tiles.size)
-		};
-
-		let new_pos = {
-			x: Math.ceil((this.pos.x + x) / this.arena.tiles.size),
-			y: Math.ceil((this.pos.y + y) / this.arena.tiles.size)
-		};
+		let map = this.arena.map,
+			size = this.arena.tiles.size,
+			pos = {
+				x: Math.ceil(this.pos.x / size),
+				y: Math.ceil(this.pos.y / size)
+			},
+			new_pos = {
+				x: Math.ceil((this.pos.x + x) / size),
+				y: Math.ceil((this.pos.y + y) / size)
+			};
 
 		for (let i = 0; i <= 1; i++) {
-			let tile = ((i == 0) ? map.layout[pos.y][new_pos.x] : map.layout[new_pos.y][pos.x]) - 1;
+			let tile = (i == 0) ? map.layout[pos.y][new_pos.x] : map.layout[new_pos.y][pos.x];
 			// let collision = map.assets[tile].collision;
 
 			// if (!collision) {

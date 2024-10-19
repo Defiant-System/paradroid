@@ -5,8 +5,12 @@ class Droid {
 
 		this.arena = arena;
 		this.id = id;
-		this.pos = { x, y };
 		this.tile = { x, y };
+		this.color = (id === "001") ? "#fff" : "";
+		this.pos = {
+			x: x * arena.tiles.size,
+			y: y * arena.tiles.size
+		};
 
 		let adjust = {
 			"001": { a: 1, b: 1, c: 0 },
@@ -47,7 +51,7 @@ class Droid {
 
 	}
 
-	update() {
+	update(delta) {
 
 	}
 
@@ -56,7 +60,7 @@ class Droid {
 			digits = this.digits;
 
 		ctx.save();
-		ctx.translate(100, 100);
+		ctx.translate(this.pos.x, this.pos.y);
 
 		// top + bottom caps
 		ctx.drawImage(assets["droid"].img,
@@ -76,6 +80,13 @@ class Droid {
 			this.digits[2].x, 0, 28, 32,
 			this.digits[2].l, 15, 14, 16
 		);
+
+		if (this.color) {
+			// droid color
+			ctx.globalCompositeOperation = "source-atop";
+			ctx.fillStyle = this.color;
+			ctx.fillRect(0, 0, 45, 45);
+		}
 		
 		ctx.restore();
 	}

@@ -19,7 +19,8 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
-			case "put-tile":
+			case "restore-state":
+				Self.arena.setState(event.state);
 				break;
 		}
 	}

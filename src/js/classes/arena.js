@@ -58,8 +58,16 @@ class Arena {
 		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
 		// map
 		this.map = new Map({ arena: this, ...this.tiles });
-		this.map.layout("a");
+		// this.map.layout();
 
+		// this.render();
+	}
+
+	setState(state) {
+		this.map.setState(state.map);
+		// move player / "001"
+		this.player.move(state["001"].x, state["001"].y);
+		// re-render
 		this.render();
 	}
 
@@ -70,7 +78,6 @@ class Arena {
 	render() {
 		this.viewport.center();
 		this.map.render(this.ctx);
-
 		this.player.render(this.ctx);
 	}
 }

@@ -1,11 +1,19 @@
 
 class Map {
 	constructor(cfg) {
-	    this.arena = cfg.arena;
-	    // this.data = {};
+		let { arena } = cfg;
+
+	    this.arena = arena;
+	    this.data = {
+	    	droids: [],
+	    };
+
+		// sample droid
+		this.data.droids.push(new Droid({ arena, id: "247", x: 6, y: 4 }));
 	}
 
-	layout(id) {
+	setState(state) {
+		let { id, droids } = state;
 		let xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${id}"]`);
 		// dimensions of this level map
 		this.width = +xLevel.getAttribute("width");
@@ -21,10 +29,13 @@ class Map {
 			let row = Math.floor(col / this.width);
 			this.layout[row].push(xTile.getAttribute("id"));
 		});
+
+		// update droids array
+		this.droids = droids;
 	}
 
-	update() {
-		
+	update(delta) {
+		this.data.droids.map(droid => droid.update(delta));
 	}
 
 	render(ctx) {
@@ -62,5 +73,8 @@ class Map {
 				);
 			}
 		}
+
+		// draw droids
+		this.data.droids.map(droid => droid.render(ctx));
 	}
 }
