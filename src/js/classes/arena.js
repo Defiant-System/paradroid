@@ -7,16 +7,17 @@ class Arena {
 		};
 
 		// files config
+		let size = 32,
+			char = 96;
 		this.tiles = {
-			size: 32,
-			char: 96,
+			size,
+			char,
+			x: Math.ceil(this.win.width/size) + 2,
+			y: Math.ceil(this.win.height/size) + 2,
 		};
-		this.tiles.x = Math.ceil(this.win.width / this.tiles.size) + 2;
-		this.tiles.y = Math.ceil(this.win.height / this.tiles.size) + 2;
-
 		this.center = {
-			x: Math.round(this.win.width / this.tiles.size) / 2,
-			y: Math.round(this.win.height / this.tiles.size) / 2,
+			x: Math.round(this.win.width/size) / 2,
+			y: Math.round(this.win.height/size) / 2,
 		};
 		this.speed = 5;
 
@@ -27,37 +28,34 @@ class Arena {
 
 		// assets list
 		let assets = [
-				{ width: 64, height: 32, id: "tiny-map", src: "~/icons/tiles-8.png", },
-				{ width: 512, height: 256, id: "big-map", src: "~/icons/tiles-32.png", },
-				{ width: 405, height: 45, id: "droid", src: "~/icons/droid.png", },
-				{ width: 150, height: 17, id: "digits", src: "~/icons/droid-digits.png", },
+				{ id: "tiny-map", width: 64, height: 32, src: "~/img/tiles-8.png" },
+				{ id: "big-map",  width: 512, height: 256, src: "~/img/tiles-32.png" },
+				{ id: "droid",    width: 405, height: 45, src: "~/icons/droid.png" },
+				{ id: "digits",   width: 140, height: 16, src: "~/icons/droid-digits.png" },
 			],
 			loadAssets = () => {
-				let item = assets.pop();
-				console.log(item.id);
-				// let img = new Image;
-			    // img.src = cfg.map;
-			    // img.onload = () => {
-			    // 	this._img = img;
-			    // 	if (typeof cfg.ready === "function") cfg.ready();
-			    // };
-
-			    if (assets.length) loadAssets();
-			    else this.ready();
+				let item = assets.pop(),
+					img = new Image();
+			    img.src = item.src;
+			    img.onload = () => {
+			    	// save reference to asset
+			    	this.assets[item.id] = { item, img };
+			    	// are we done yet?
+				    assets.length ? loadAssets() : this.ready();
+			    };
 			};
-
-		this.assets = [];
+		// asset lib
+		this.assets = {};
 		
 		// load assets
 		loadAssets();
 	}
 
 	ready() {
-		return console.log("ready");
 		// viewport
 		this.viewport = new Viewport({ arena: this, x: 0, y: 0, w: this.win.width, h: this.win.height });
 		// create "001"
-		this.player = new Player({ arena: this, x: 0, y: 0 });
+		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
 		// map
 		this.map = new Map({ arena: this, ...this.tiles });
 		this.map.layout("a");
@@ -73,8 +71,6 @@ class Arena {
 		this.viewport.center();
 		this.map.render(this.ctx);
 
-		// this.ctx.drawImage(
-		// 	this.player
-		// );
+		this.player.render(this.ctx);
 	}
 }

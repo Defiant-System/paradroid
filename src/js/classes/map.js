@@ -29,6 +29,7 @@ class Map {
 
 	render(ctx) {
 		let win = this.arena.win,
+			assets = this.arena.assets,
 			size = this.arena.tiles.size,
 			viewport = this.arena.viewport,
 		
@@ -55,7 +56,7 @@ class Map {
 					tY = Math.floor((y * size) - viewport.y + (win.height / 2) - (viewport.h / 2));
 
 				ctx.drawImage(
-					this._img,
+					assets["big-map"].img,
 					oX, oY, size, size,
 					tX, tY, size, size
 				);
