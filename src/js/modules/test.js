@@ -8,7 +8,7 @@ let Test = {
 			let state = {
 				"001": { x: 4, y: 6 },
 				"map": {
-					id: "b",
+					id: "q",
 					droids: [
 						{ id: "247", x: 2, y: 4 },
 						{ id: "516", x: 1, y: 5 },
@@ -16,6 +16,9 @@ let Test = {
 				},
 			};
 			APP.mobile.dispatch({ type: "restore-state", state });
+
+			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 2500);
+
 		}, 1000);
 		return;
 

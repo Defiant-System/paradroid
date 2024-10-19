@@ -26,6 +26,7 @@ const paradroid = {
 	},
 	dispatch(event) {
 		let Self = paradroid,
+			name,
 			el;
 		// console.log(event.type);
 		switch (event.type) {
@@ -33,6 +34,11 @@ const paradroid = {
 			case "window.init":
 			case "window.focus":
 			case "window.blur":
+				break;
+			case "window.keydown":
+			case "window.keyup":
+				name = Self.els.content.data("show");
+				Self[name].dispatch(event);
 				break;
 			// custom events
 			case "open-help":
@@ -48,7 +54,7 @@ const paradroid = {
 				if (el) {
 					let pEl = el.parents(`?div[data-area]`);
 					if (pEl.length) {
-						let name = pEl.data("area");
+						name = pEl.data("area");
 						return Self[name].dispatch(event);
 					}
 				}

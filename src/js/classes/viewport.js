@@ -11,20 +11,21 @@ class Viewport {
 	}
 
 	center() {
-		let move_x = 0,
-			move_y = 0,
-			center_x = this.arena.player.pos.x + (this.arena.tiles.char / 2),
-			center_y = this.arena.player.pos.y + (this.arena.tiles.char / 2);
+		let arena = this.arena,
+			moveX = 0,
+			moveY = 0,
+			centerX = arena.player.pos.x + (arena.tiles.char / 2),
+			centerY = arena.player.pos.y + (arena.tiles.char / 2);
 
-		// for (let key in keys) {
-		// 	if (keys[key].a) {
-		// 		if (keys[key].x != 0) move_x = keys[key].x;
-		// 		if (keys[key].y != 0) move_y = keys[key].y;
-		// 	}
-		// }
+		for (let key in arena.input) {
+			if (arena.input[key].pressed) {
+				if (arena.input[key].x != 0) moveX = arena.input[key].x;
+				if (arena.input[key].y != 0) moveY = arena.input[key].y;
+			}
+		}
 
-		this.arena.player.move(move_x, move_y);
-		this.scroll(center_x, center_y);
+		this.arena.player.move(moveX, moveY);
+		this.scroll(centerX, centerY);
 	}
 	
 	scroll(x, y) {
