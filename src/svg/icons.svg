@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 
+@import "tiles-32.svg"
+
 	<svg id="paradroid-logo" viewBox="0 0 480 300" cache="keep">
 		<style type="text/css">
 			.paradroid-st0{fill:#fff;}
