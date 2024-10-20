@@ -80,9 +80,9 @@ class Arena {
 		this.player.spawn(state["001"].x, state["001"].y);
 
 		// re-render
-		this.render();
+		// this.render();
 
-		// this.fpsControl.start();
+		this.fpsControl.start();
 	}
 
 	update() {
