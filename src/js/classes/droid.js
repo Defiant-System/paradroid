@@ -84,8 +84,8 @@ class Droid {
 		// 	ctx.fillStyle = this.color;
 		// 	ctx.fillRect(0, 0, 45, 45);
 		// }
-
-		ctx.fillRect(0, 0, 45, 45);
+		
+		// ctx.fillRect(0, 0, 45, 45);
 		
 		ctx.restore();
 	}

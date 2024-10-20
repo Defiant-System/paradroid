@@ -6,7 +6,7 @@ let Test = {
 		APP.dispatch({ type: "show-view", arg: "mobile" });
 		return setTimeout(() => {
 			let state = {
-				"001": { x: 1, y: 1 },
+				"001": { x: 3, y: 1 },
 				"map": {
 					id: "a",
 					droids: [

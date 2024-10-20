@@ -11,11 +11,13 @@ class Player extends Droid {
 	}
 
 	spawn(x, y) {
-		let map = this.arena.map,
-			size = this.arena.tiles.size,
+		let arena = this.arena,
+			size = arena.tiles.size,
+			oX = (arena.viewport.w - arena.map.w) >> 1,
+			oY = (arena.viewport.h - arena.map.h) >> 1,
 			pos = {
-				x: 155 + (x * size),
-				y: 103 + (y * size),
+				x: oX + ((x * 2) * size) + 9,
+				y: oY + ((y * 2) * size) + 9,
 			};
 		
 		this.pos.x = pos.x;
