@@ -6,6 +6,10 @@ class Map {
 	    this.arena = arena;
 	    this.data = {
 	    	droids: [],
+	    	tiles: {
+	    		"m2a": { wall: true },
+	    		"m3a": { wall: true },
+	    	},
 	    };
 
 		// sample droid

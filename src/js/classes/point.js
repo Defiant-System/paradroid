@@ -83,7 +83,10 @@ class Point {
 	copy(point) {
 		this._x = point._x;
 		this._y = point._y;
-
 		return this;
+	}
+
+	toString() {
+		return `${this._x}, ${this._y}`
 	}
 }

@@ -25,7 +25,35 @@ class Player extends Droid {
 	}
 
 	move(point) {
-		this.pos = this.pos.add(point);
+		let map = this.arena.map,
+			viewport = this.arena.viewport,
+			size = this.arena.tiles.size,
+			oldPos = {
+				x: Math.ceil((this.pos.x - map.x) / size),
+				y: Math.ceil((this.pos.y - map.y) / size),
+			},
+			move = this.pos.add(point),
+			newPos = {
+				x: Math.ceil((move.x - map.x) / size),
+				y: Math.ceil((move.y - map.y) / size),
+			};
+			// console.log( oldPos, newPos );
+
+		// for (let i = 0; i <= 1; i++) {
+			// let tile = (i == 0) ? map.layout[oldPos.y][newPos.x] : map.layout[newPos.y][oldPos.x];
+		// 	let wall = map.tiles[tile].wall;
+
+		// 	if (!wall) {
+		// 		if (i == 0) {
+		// 			this.pos.x += x;
+		// 			this.tile.x = newPos.x;
+		// 		} else {
+		// 			this.pos.y += y;
+		// 			this.tile.y = newPos.y;
+		// 		}
+		// 	}
+		// }
+		this.pos = move;
 	}
 
 	move_(x, y) {
@@ -42,9 +70,9 @@ class Player extends Droid {
 
 		for (let i = 0; i <= 1; i++) {
 			// let tile = (i == 0) ? map.layout[pos.y][newPos.x] : map.layout[newPos.y][pos.x];
-			// let collision = map.assets[tile].collision;
+			// let wall = map.assets[tile].wall;
 
-			// if (!collision) {
+			// if (!wall) {
 				if (i == 0) {
 					this.pos.x += x;
 					this.tile.x = newPos.x;
@@ -56,3 +84,6 @@ class Player extends Droid {
 		}
 	}
 }
+
+// m2a
+// m3a
