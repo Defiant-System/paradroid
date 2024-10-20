@@ -30,8 +30,7 @@ class Player extends Droid {
 				if (i == 0) {
 					this.pos.x += x;
 					this.tile.x = new_pos.x;
-				}
-				else {
+				} else {
 					this.pos.y += y;
 					this.tile.y = new_pos.y;
 				}

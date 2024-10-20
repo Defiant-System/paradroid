@@ -13,11 +13,19 @@ class Map {
 	}
 
 	setState(state) {
-		let { id, droids } = state;
-		let xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${id}"]`);
+		let { id, droids } = state,
+			size = this.arena.tiles.size,
+			xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${id}"]`);
+		// level colors
+		// if (xLevel.getAttribute("bg")) {
+		// 	this.arena.cvs.parent().css({ background: xLevel.getAttribute("bg") });
+		// 	this.arena.cvs.css({ filter: xLevel.getAttribute("filter") });
+		// }
 		// dimensions of this level map
 		this.width = +xLevel.getAttribute("width");
 		this.height = +xLevel.getAttribute("height");
+		this.w = this.width * size;
+		this.h = this.height * size;
 		
 		// reset level map layout
 		this.layout = [];
@@ -39,32 +47,31 @@ class Map {
 	}
 
 	render(ctx) {
-		let win = this.arena.win,
-			assets = this.arena.assets,
+		let assets = this.arena.assets,
 			size = this.arena.tiles.size,
 			viewport = this.arena.viewport,
-		
-			x_min = Math.floor(viewport.x / size),
-			y_min = Math.floor(viewport.y / size),
-			x_max = Math.ceil((viewport.x + viewport.w) / size),
-			y_max = Math.ceil((viewport.y + viewport.h) / size);
+			xMin = Math.floor(viewport.x / size),
+			yMin = Math.floor(viewport.y / size),
+			xMax = Math.ceil((viewport.x + viewport.w) / size),
+			yMax = Math.ceil((viewport.y + viewport.h) / size),
+			vX = viewport.x + ((this.arena.width - viewport.w) >> 1),
+			vY = viewport.y + ((this.arena.height - viewport.h) >> 1);
 
-		if (x_min < 0) x_min = 0;
-		if (y_min < 0) y_min = 0;
-		if (x_max > this.width) x_max = this.width;
-		if (y_max > this.height) y_max = this.height;
-        // console.log( viewport.x, viewport.y );
+		if (xMin < 0) xMin = 0;
+		if (yMin < 0) yMin = 0;
+		if (xMax > this.width) xMax = this.width;
+		if (yMax > this.height) yMax = this.height;
 
-		for (let y = y_min; y < y_max; y++) {
-			for (let x = x_min; x < x_max; x++) {
+		for (let y = yMin; y < yMax; y++) {
+			for (let x = xMin; x < xMax; x++) {
 				let col = this.layout[y][x];
 				if (!col) continue;
 
 				let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
 					oX = l * size,
 					oY = t * size,
-					tX = Math.floor((x * size) - viewport.x + (win.width / 2) - (viewport.w / 2)),
-					tY = Math.floor((y * size) - viewport.y + (win.height / 2) - (viewport.h / 2));
+					tX = Math.floor((x * size) - vX),
+					tY = Math.floor((y * size) - vY);
 
 				ctx.drawImage(
 					assets["big-map"].img,
@@ -75,6 +82,6 @@ class Map {
 		}
 
 		// draw droids
-		this.data.droids.map(droid => droid.render(ctx));
+		// this.data.droids.map(droid => droid.render(ctx));
 	}
 }

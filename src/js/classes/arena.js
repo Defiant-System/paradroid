@@ -1,31 +1,29 @@
 
 class Arena {
 	constructor(cvs) {
-		this.win = {
-			width: window.innerWidth,
-			height: window.innerHeight,
-		};
+		// set dimensions of canvas
+		let { width, height } = cvs.offset();
+		this.width = width;
+		this.height = height;
+		this.cvs = cvs.attr({ width, height });
+		this.ctx = cvs[0].getContext("2d");
 
-		// files config
-		let size = 32,
-			char = 45,
-			speed = 5;
+		// config
+		this.speed = 5;
 		this.tiles = {
-			size,
-			char,
-			x: Math.ceil(this.win.width/size) + 2,
-			y: Math.ceil(this.win.height/size) + 2,
+			size: 32,
+			char: 45,
 		};
 		this.center = {
-			x: Math.round(this.win.width/size) / 2,
-			y: Math.round(this.win.height/size) / 2,
+			x: Math.round(this.width / this.tiles.size) / 2,
+			y: Math.round(this.height / this.tiles.size) / 2,
 		};
 
 		this.input = {
-			up: { pressed: false, x: 0, y: -speed },
-			left: { pressed: false, x: -speed, y: 0 },
-			down: { pressed: false, x: 0, y: speed },
-			right: { pressed: false, x: speed, y: 0 },
+			up: { pressed: false, x: 0, y: -this.speed },
+			left: { pressed: false, x: -this.speed, y: 0 },
+			down: { pressed: false, x: 0, y: this.speed },
+			right: { pressed: false, x: this.speed, y: 0 },
 		};
 
 		// create FPS controller
@@ -37,13 +35,6 @@ class Arena {
 				Self.render();
 			}
 		});
-
-		// set dimensions of canvas
-		let { width, height } = cvs.offset();
-		this.width = width;
-		this.height = height;
-		this.cvs = cvs.attr({ width, height });
-		this.ctx = cvs[0].getContext("2d");
 
 		// assets list
 		let assets = [
@@ -72,7 +63,7 @@ class Arena {
 
 	ready() {
 		// viewport
-		this.viewport = new Viewport({ arena: this, x: 0, y: 0, w: this.win.width, h: this.win.height });
+		this.viewport = new Viewport({ arena: this, x: 0, y: 0, w: this.width, h: this.height });
 		// create "001"
 		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
 		// map
@@ -81,13 +72,17 @@ class Arena {
 	}
 
 	setState(state) {
+		// temporary; this prevents setting state if not completly ready
+		if (!this.map) return setTimeout(() => this.setState(state), 100);
+
 		this.map.setState(state.map);
 		// move player / "001"
-		this.player.move(state["001"].x, state["001"].y);
-		// re-render
-		// this.render();
+		// this.player.move(300, 300);
 
-		this.fpsControl.start();
+		// re-render
+		this.render();
+
+		// this.fpsControl.start();
 	}
 
 	update() {
