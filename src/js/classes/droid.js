@@ -6,11 +6,8 @@ class Droid {
 		this.arena = arena;
 		this.id = id;
 		this.tile = { x, y };
+		this.pos = new Point(x * arena.tiles.size, y * arena.tiles.size);
 		this.color = (id === "001") ? "#fff" : "";
-		this.pos = {
-			x: x * arena.tiles.size,
-			y: y * arena.tiles.size
-		};
 
 		let adjust = {
 			"001": { a: 1, b: 1, c: 0 },
@@ -81,12 +78,14 @@ class Droid {
 			this.digits[2].l, 15, 14, 16
 		);
 
-		if (this.color) {
-			// droid color
-			ctx.globalCompositeOperation = "source-atop";
-			ctx.fillStyle = this.color;
-			ctx.fillRect(0, 0, 45, 45);
-		}
+		// if (this.color) {
+		// 	// droid color
+		// 	ctx.globalCompositeOperation = "source-atop";
+		// 	ctx.fillStyle = this.color;
+		// 	ctx.fillRect(0, 0, 45, 45);
+		// }
+
+		ctx.fillRect(0, 0, 45, 45);
 		
 		ctx.restore();
 	}

@@ -8,7 +8,7 @@ let Test = {
 			let state = {
 				"001": { x: 1, y: 1 },
 				"map": {
-					id: "b",
+					id: "a",
 					droids: [
 						{ id: "247", x: 2, y: 4 },
 						{ id: "516", x: 1, y: 5 },

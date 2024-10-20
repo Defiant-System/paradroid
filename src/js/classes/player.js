@@ -10,6 +10,18 @@ class Player extends Droid {
 		};
 	}
 
+	spawn(x, y) {
+		let map = this.arena.map,
+			size = this.arena.tiles.size,
+			pos = {
+				x: 155 + (x * size),
+				y: 103 + (y * size),
+			};
+		
+		this.pos.x = pos.x;
+		this.pos.y = pos.y;
+	}
+
 	move(x, y) {
 		let map = this.arena.map,
 			size = this.arena.tiles.size,
@@ -17,22 +29,22 @@ class Player extends Droid {
 				x: Math.ceil(this.pos.x / size),
 				y: Math.ceil(this.pos.y / size)
 			},
-			new_pos = {
+			newPos = {
 				x: Math.ceil((this.pos.x + x) / size),
 				y: Math.ceil((this.pos.y + y) / size)
 			};
 
 		for (let i = 0; i <= 1; i++) {
-			let tile = (i == 0) ? map.layout[pos.y][new_pos.x] : map.layout[new_pos.y][pos.x];
+			// let tile = (i == 0) ? map.layout[pos.y][newPos.x] : map.layout[newPos.y][pos.x];
 			// let collision = map.assets[tile].collision;
 
 			// if (!collision) {
 				if (i == 0) {
 					this.pos.x += x;
-					this.tile.x = new_pos.x;
+					this.tile.x = newPos.x;
 				} else {
 					this.pos.y += y;
-					this.tile.y = new_pos.y;
+					this.tile.y = newPos.y;
 				}
 			// }
 		}

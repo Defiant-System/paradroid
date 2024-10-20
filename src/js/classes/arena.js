@@ -77,7 +77,7 @@ class Arena {
 
 		this.map.setState(state.map);
 		// move player / "001"
-		// this.player.move(300, 300);
+		this.player.spawn(state["001"].x, state["001"].y);
 
 		// re-render
 		this.render();
