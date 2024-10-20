@@ -30,7 +30,8 @@
 					case "d":
 					case "right": Self.arena.input.right.pressed = true; break;
 					case "p":
-						Self.arena.fpsControl.stop();
+						if (Self.arena.fpsControl._stopped) Self.arena.fpsControl.start();
+						else Self.arena.fpsControl.stop();
 						break;
 				}
 				break;

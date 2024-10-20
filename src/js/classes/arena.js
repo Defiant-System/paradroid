@@ -26,6 +26,12 @@ class Arena {
 			right: { pressed: false, x: this.speed, y: 0 },
 		};
 
+		this.debug = {
+			on: true,
+			elFps: window.find(".debug .fps span"),
+			elCoords: window.find(".debug .coords span"),
+		};
+
 		// create FPS controller
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
@@ -97,5 +103,10 @@ class Arena {
 		this.viewport.center();
 		this.map.render(this.ctx);
 		this.player.render(this.ctx);
+
+		if (this.debug.on) {
+			this.debug.elFps.html(`60`);
+			this.debug.elCoords.html(`1, 1`);
+		}
 	}
 }

@@ -62,7 +62,7 @@ class Droid {
 	update(delta) {
 		this.frame.last -= delta;
 		if (this.frame.last < 0) {
-			this.frame.last += this.frame.speed;
+			this.frame.last = (this.frame.last + this.frame.speed) % this.frame.speed;
 			this.frame.index++;
 			if (this.frame.index > 8) this.frame.index = 0;
 		}
