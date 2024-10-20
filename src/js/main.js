@@ -6,6 +6,7 @@
 @import "./classes/map.js"
 @import "./classes/viewport.js"
 
+@import "./modules/utils.js"
 @import "./modules/test.js"
 
 

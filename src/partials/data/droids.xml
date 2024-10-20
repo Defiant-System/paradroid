@@ -1,0 +1,25 @@
+
+<Droid id="001" digits="1,1,0"><![CDATA[Unit type 001 - Influence device This is the unit that you currently control. Prepare to board Robo-Freighter Daradroid to eliminate all rogue robots.]]></Droid>
+<Droid id="123" digits="0,-2,-1"><![CDATA[Unit type 123 - Disposal robot]]></Droid>
+<Droid id="139" digits="1,-1,-1"><![CDATA[Unit tope 130 - Disposal robot]]></Droid>
+<Droid id="247" digits="1,1,0"><![CDATA[unit type 247 - servant robot]]></Droid>
+<Droid id="249" digits="1,1,1"><![CDATA[unit type 249 - servant robot]]></Droid>
+<Droid id="296" digits="2,2,2"><![CDATA[unit type 296 - servant robot]]></Droid>
+<Droid id="302" digits="0,0,0"><![CDATA[unit type 302 - messenger robot]]></Droid>
+<Droid id="329" digits="1,1,1"><![CDATA[unit type 329 - messenger robot]]></Droid>
+<Droid id="420" digits="-1,-1,-1"><![CDATA[Unit type 420 - maintenance robot]]></Droid>
+<Droid id="476" digits="1,0,-1"><![CDATA[Unit tope 476 - Maintenance robot]]></Droid>
+<Droid id="493" digits="0,0,0"><![CDATA[unit type 493 - maintenance robot]]></Droid>
+<Droid id="516" digits="2,0,-2"><![CDATA[Unit tupe 516 - Crew droid]]></Droid>
+<Droid id="571" digits="2,2,0"><![CDATA[Unit tope 571 - Creco droid]]></Droid>
+<Droid id="598" digits="0,0,0"></Droid>
+<Droid id="614" digits="2,0,-2"><![CDATA[Unit tope 612 - Sentinel droid]]></Droid>
+<Droid id="615" digits="0,-2,-2"><![CDATA[Unit tope 615 - Sentinel droid]]></Droid>
+<Droid id="629" digits="0,0,0"><![CDATA[Unit type 629 - sentinel droid]]></Droid>
+<Droid id="711" digits="2,2,0"></Droid>
+<Droid id="742" digits="1,0,0"><![CDATA[Unit tope 742 - Battle droid]]></Droid>
+<Droid id="751" digits="2,2,0"><![CDATA[Unit tope 751 - Battle droid]]></Droid>
+<Droid id="821" digits="1,2,0"><![CDATA[Unit tope 821 - Security droid]]></Droid>
+<Droid id="834" digits="0,0,0"><![CDATA[Unit tope 834 - Security droid]]></Droid>
+<Droid id="883" digits="-1,-1,-1"></Droid>
+<Droid id="999" digits="0,0,0"><![CDATA[Unit type 999 - Command cyborg This is the unit that you wish to control. Prepare to transfer.]]></Droid>

@@ -6,7 +6,7 @@ class Arena {
 		this.width = width;
 		this.height = height;
 		this.cvs = cvs.attr({ width, height });
-		this.ctx = cvs[0].getContext("2d");
+		this.ctx = cvs[0].getContext("2d", { willReadFrequently: true });
 
 		// config
 		this.speed = 5;
@@ -30,8 +30,8 @@ class Arena {
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
 			fps: 60,
-			callback() {
-				Self.update();
+			callback(time=0, delta=0) {
+				Self.update(delta);
 				Self.render();
 			}
 		});
@@ -85,8 +85,9 @@ class Arena {
 		this.fpsControl.start();
 	}
 
-	update() {
-
+	update(delta) {
+		this.map.update(delta);
+		this.player.update(delta);
 	}
 
 	render() {

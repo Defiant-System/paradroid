@@ -7,41 +7,52 @@ class Droid {
 		this.id = id;
 		this.tile = { x, y };
 		this.pos = new Point(x * arena.tiles.size, y * arena.tiles.size);
-		this.color = (id === "001") ? "#fff" : "";
 
-		let adjust = {
-			"001": { a: 1, b: 1, c: 0 },
-			"123": { a: 0, b: -2, c: -1 },
-			"139": { a: 1, b: -1, c: -1 },
-			"247": { a: 1, b: 1, c: 0 },
-			"249": { a: 1, b: 1, c: 1 },
-			"296": { a: 2, b: 2, c: 2 },
-			"302": { a: 0, b: 0, c: 0 },
-			"329": { a: 1, b: 1, c: 1 },
-			"420": { a: -1, b: -1, c: -1 },
-			"476": { a: 1, b: 0, c: -1 },
-			"493": { a: 0, b: 0, c: 0 },
-			"516": { a: 2, b: 0, c: -2 },
-			"571": { a: 2, b: 2, c: 0 },
-			"598": { a: 0, b: 0, c: 0 },
-			"614": { a: 2, b: 0, c: -2 },
-			"615": { a: 0, b: -2, c: -2 },
-			"629": { a: 0, b: 0, c: 0 },
-			"711": { a: 2, b: 2, c: 0 },
-			"742": { a: 1, b: 0, c: 0 },
-			"751": { a: 2, b: 2, c: 0 },
-			"821": { a: 1, b: 2, c: 0 },
-			"834": { a: 0, b: 0, c: 0 },
-			"883": { a: -1, b: -1, c: -1 },
-			"999": { a: 0, b: 0, c: 0 },
+		this.blur = {
+			color: "#000",
+			size: 0,
+		};
+		this.sprites = {
+			bg: arena.assets["droid"].img,
+			digits: arena.assets["digits"].img,
 		};
 
+		if (id === "001") {
+			// create white versions of sprites
+			Object.keys(this.sprites).map(k => {
+				// for BG sprite
+				let w = this.sprites[k].width,
+					h = this.sprites[k].height,
+					{ cvs, ctx } = Utils.createCanvas(w, h);
+				// draw orignal droid sprite
+				ctx.drawImage(this.sprites[k], 0, 0);
+				// change droid color
+				ctx.globalCompositeOperation = "source-atop";
+				ctx.fillStyle = "#fff";
+				ctx.fillRect(0, 0, w, h);
+				// replace sprite
+				this.sprites[k] = cvs[0];
+			});
+			// a little bit blur
+			this.blur = {
+				color: "#fff",
+				size: 3,
+			};
+		}
+
+		// paint digits on droid
 		this.digits = this.id.toString().split("").map((x, i) => {
 			return {
 				x: +x * 28,
-				l: (i * 15) + adjust[this.id][String.fromCharCode(97+i)],
+				l: (i * 15) + Utils.digits[this.id][i],
 			};
 		});
+
+		this.frame = {
+			index: 0,
+			last: 80,
+			speed: 80,
+		};
 	}
 
 	move(x, y) {
@@ -49,44 +60,51 @@ class Droid {
 	}
 
 	update(delta) {
-
+		this.frame.last -= delta;
+		if (this.frame.last < 0) {
+			this.frame.last += this.frame.speed;
+			this.frame.index++;
+			if (this.frame.index > 8) this.frame.index = 0;
+		}
 	}
 
 	render(ctx) {
 		let assets = this.arena.assets,
-			digits = this.digits;
+			digits = this.digits,
+			w = 45,
+			f = this.frame.index * w;
 
 		ctx.save();
 		ctx.translate(this.pos.x, this.pos.y);
 
+		if (this.blur.size) {
+			// droid "001"
+			ctx.shadowColor = this.blur.color;
+			ctx.shadowBlur = this.blur.size;
+		} else {
+			// other droids
+			f = (8 - this.frame.index) * w;
+		}
+
 		// top + bottom caps
-		ctx.drawImage(assets["droid"].img,
-			0, 0, 90, 90,
-			0, 0, 45, 45
+		ctx.drawImage(this.sprites.bg,
+			f, 0, w, w,
+			0, 0, w, w
 		);
 		// digits
-		ctx.drawImage(assets["digits"].img,
+		ctx.drawImage(this.sprites.digits,
 			this.digits[0].x, 0, 28, 32,
 			this.digits[0].l, 15, 14, 16
 		);
-		ctx.drawImage(assets["digits"].img,
+		ctx.drawImage(this.sprites.digits,
 			this.digits[1].x, 0, 28, 32,
 			this.digits[1].l, 15, 14, 16
 		);
-		ctx.drawImage(assets["digits"].img,
+		ctx.drawImage(this.sprites.digits,
 			this.digits[2].x, 0, 28, 32,
 			this.digits[2].l, 15, 14, 16
 		);
 
-		// if (this.color) {
-		// 	// droid color
-		// 	ctx.globalCompositeOperation = "source-atop";
-		// 	ctx.fillStyle = this.color;
-		// 	ctx.fillRect(0, 0, 45, 45);
-		// }
-		
-		// ctx.fillRect(0, 0, 45, 45);
-		
 		ctx.restore();
 	}
 }

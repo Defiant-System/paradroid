@@ -9,7 +9,7 @@ class Map {
 	    };
 
 		// sample droid
-		this.data.droids.push(new Droid({ arena, id: "247", x: 6, y: 4 }));
+		// this.data.droids.push(new Droid({ arena, id: "247", x: 6, y: 4 }));
 	}
 
 	setState(state) {
@@ -17,10 +17,10 @@ class Map {
 			size = this.arena.tiles.size,
 			xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${id}"]`);
 		// level colors
-		// if (xLevel.getAttribute("bg")) {
-		// 	this.arena.cvs.parent().css({ background: xLevel.getAttribute("bg") });
-		// 	this.arena.cvs.css({ filter: xLevel.getAttribute("filter") });
-		// }
+		if (xLevel.getAttribute("bg")) {
+			this.arena.cvs.parent().css({ background: xLevel.getAttribute("bg") });
+			this.arena.cvs.css({ filter: xLevel.getAttribute("filter") });
+		}
 		// dimensions of this level map
 		this.width = +xLevel.getAttribute("width");
 		this.height = +xLevel.getAttribute("height");
@@ -39,7 +39,7 @@ class Map {
 		});
 
 		// update droids array
-		this.droids = droids;
+		this.data.droids = droids.map(d => new Droid({ arena: this.arena, ...d }));
 	}
 
 	update(delta) {
@@ -82,6 +82,6 @@ class Map {
 		}
 
 		// draw droids
-		// this.data.droids.map(droid => droid.render(ctx));
+		this.data.droids.map(droid => droid.render(ctx));
 	}
 }

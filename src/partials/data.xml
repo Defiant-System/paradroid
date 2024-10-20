@@ -1,5 +1,7 @@
 
 <Data>
+@import "data/droids.xml"
+
 @import "levels/a.xml"
 @import "levels/b.xml"
 @import "levels/c.xml"
