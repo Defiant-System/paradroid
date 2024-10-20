@@ -6,11 +6,11 @@ let Test = {
 		APP.dispatch({ type: "show-view", arg: "mobile" });
 		return setTimeout(() => {
 			let state = {
-					"001": { x: 7, y: 2 },
+					"001": { x: 1, y: 1 },
 					"map": {
-						id: "c",
+						id: "a",
 						droids: [
-							// { id: "247", x: 11, y: 5 },
+							{ id: "247", x: 14, y: 7 },
 							// { id: "516", x: 1, y: 5 },
 						],
 					},

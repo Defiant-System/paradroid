@@ -9,7 +9,6 @@ class Arena {
 		this.ctx = cvs[0].getContext("2d", { willReadFrequently: true });
 
 		// config
-		this.speed = 5;
 		this.tiles = {
 			size: 32,
 			char: 45,
@@ -20,10 +19,10 @@ class Arena {
 		};
 
 		this.input = {
-			up: { pressed: false, x: 0, y: -this.speed },
-			left: { pressed: false, x: -this.speed, y: 0 },
-			down: { pressed: false, x: 0, y: this.speed },
-			right: { pressed: false, x: this.speed, y: 0 },
+			up: { pressed: false, move: new Point(0, -5) },
+			left: { pressed: false, move: new Point(-5, 0) },
+			down: { pressed: false, move: new Point(0, 5) },
+			right: { pressed: false, move: new Point(5, 0) },
 		};
 
 		this.debug = {

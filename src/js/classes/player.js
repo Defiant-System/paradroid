@@ -24,7 +24,11 @@ class Player extends Droid {
 		this.pos.y = pos.y;
 	}
 
-	move(x, y) {
+	move(point) {
+		this.pos = this.pos.add(point);
+	}
+
+	move_(x, y) {
 		let map = this.arena.map,
 			size = this.arena.tiles.size,
 			pos = {

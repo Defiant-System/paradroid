@@ -12,19 +12,19 @@ class Viewport {
 
 	center() {
 		let arena = this.arena,
-			moveX = 0,
-			moveY = 0,
+			step = new Point(0, 0),
 			centerX = (arena.map.w < this.w ? (arena.width - this.w + arena.map.w) : this.w) >> 1,
 			centerY = (arena.map.h < this.h ? (arena.height - this.h + arena.map.h) : this.h) >> 1;
 
 		for (let key in arena.input) {
 			if (arena.input[key].pressed) {
-				if (arena.input[key].x != 0) moveX = arena.input[key].x;
-				if (arena.input[key].y != 0) moveY = arena.input[key].y;
+				step = step.add(arena.input[key].move);
+				// if (arena.input[key].x != 0) moveX = arena.input[key].x;
+				// if (arena.input[key].y != 0) moveY = arena.input[key].y;
 			}
 		}
 		
-		this.arena.player.move(moveX, moveY);
+		this.arena.player.move(step);
 		this.scroll(centerX, centerY);
 	}
 
