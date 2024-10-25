@@ -483,6 +483,27 @@ content {
 					height: 1px;
 					background: linear-gradient(90deg, transparent, #fff, transparent);
 				}
+
+				s {
+					display: none;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, transparent 3%, #fff, transparent 97%);
+
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						height: 1px;
+						background: inherit;
+					}
+				}
 				
 				&.logo-c1-p {
 					background-image: url(~/icons/logo-p.png);
@@ -490,6 +511,10 @@ content {
 					left: 103px;
 
 					&:after { right: 51px; }
+
+					s { display: block; top: 55px; left: 42px; }
+					s:before { top: -39px; left: 2px; right: 17px; }
+					s:after { display:none; }
 				}
 
 				&.logo-c2-a {
@@ -498,6 +523,10 @@ content {
 					left: 103px;
 
 					&:after { right: 51px; }
+
+					s { display: block; top: 55px; left: 42px; right: 17px; }
+					s:before { top: -39px; left: 2px; right: 0; }
+					s:after { top: 11px; left: 35px; right: -17px; }
 				}
 
 				&.logo-c3-r {
@@ -506,6 +535,10 @@ content {
 					left: 103px;
 
 					&:after { right: 51px; }
+
+					s { display: block; top: 55px; left: 42px; right: 17px; }
+					s:before { top: -39px; right: 13px; }
+					s:after { top: 11px; left: 35px; right: -17px; }
 				}
 
 				&.logo-c4-a {
@@ -514,18 +547,30 @@ content {
 					left: 103px;
 
 					&:after { right: 51px; }
+
+					s { display: block; top: 55px; left: 42px; right: 17px; }
+					s:before { top: -39px; left: 2px; right: 0; }
+					s:after { top: 11px; left: 35px; right: -17px; }
 				}
 
 				&.logo-c5-d {
 					background-image: url(~/icons/logo-d.png);
 					top: 150px;
 					left: 0;
+
+					s { display: block; top: 29px; left: 44px; right: 17px; }
+					s:before { display: none; }
+					s:after { display: none; }
 				}
 
 				&.logo-c6-o {
 					background-image: url(~/icons/logo-o.png);
 					top: 150px;
 					left: 205px;
+
+					s { display: block; top: 17px; left: 42px; right: 17px; }
+					s:before { display: none; }
+					s:after { display: none; }
 				}
 
 				&.logo-c7-i {
@@ -533,12 +578,20 @@ content {
 					top: 150px;
 					left: 308px;
 					width: 68px;
+
+					s { display: block; top: 17px; left: 0; right: 55px; }
+					s:before { left: 55px; right: -55px; }
+					s:after { display: none; }
 				}
 
 				&.logo-c8-d {
 					background-image: url(~/icons/logo-d.png);
 					top: 150px;
 					left: 385px;
+
+					s { display: block; top: 29px; left: 44px; right: 17px; }
+					s:before { display: none; }
+					s:after { display: none; }
 				}
 			}
 
@@ -619,7 +672,7 @@ content {
 
 		.center {
 			position: relative;
-			width: 310px;
+			width: 312px;
 			margin: 0 11px;
 			text-align: center;
 
@@ -631,58 +684,65 @@ content {
 				height: 45px;
 
 				b[class^="logo-"] {
-					background: rgba(#f00,.6);
+					// background: rgba(#f00,.6);
 					position: absolute;
 					top: 11px;
 					left: 0;
 					width: 34px;
 					height: 24px;
 					z-index: 2;
-
+					background-position: 0 0;
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-image: inherit;
+					filter: drop-shadow(0 1px 0 hsl(174, 0%, 90%))
+							drop-shadow(0 2px 0 hsl(174, 0%, 85%))
+							drop-shadow(0 3px 0 hsl(174, 0%, 80%))
+							drop-shadow(0 1px 2px rgba(#000, .25));
 
 					&.logo-c1-p {
-						// background-image: url(~/icons/logo-p.png);
+						background-image: url(~/icons/logo-p.png);
 						left: 0px;
 					}
 
 					&.logo-c2-a {
-						// background-image: url(~/icons/logo-a.png);
+						background-image: url(~/icons/logo-a.png);
 						left: 36px;
 					}
 
 					&.logo-c3-r {
-						// background-image: url(~/icons/logo-r.png);
+						background-image: url(~/icons/logo-r.png);
 						left: 72px;
 					}
 
 					&.logo-c4-a {
-						// background-image: url(~/icons/logo-a.png);
+						background-image: url(~/icons/logo-a.png);
 						left: 108px;
 					}
 
 					&.logo-c5-d {
-						// background-image: url(~/icons/logo-d.png);
+						background-image: url(~/icons/logo-d.png);
 						left: 144px;
 					}
 
 					&.logo-c6-r {
-						// background-image: url(~/icons/logo-r.png);
+						background-image: url(~/icons/logo-r.png);
 						left: 180px;
 					}
 
 					&.logo-c7-o {
-						// background-image: url(~/icons/logo-o.png);
+						background-image: url(~/icons/logo-o.png);
 						left: 216px;
 					}
 
 					&.logo-c8-i {
-						// background-image: url(~/icons/logo-i.png);
+						background-image: url(~/icons/logo-i.png);
 						left: 252px;
 						width: 24px;
 					}
 
 					&.logo-c9-d {
-						// background-image: url(~/icons/logo-d.png);
+						background-image: url(~/icons/logo-d.png);
 						left: 278px;
 					}
 				}
