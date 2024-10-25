@@ -374,8 +374,17 @@ content {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		// background: url(/cdn/img/bg/svg-wp/circuit-board.svg);
-		// radial-gradient(circle at 50% 95%, #25aaee 0%, #217877 50%, #0c2727 100%);
+
+		// &:before {
+		// 	content: "";
+		// 	background: url(/cdn/img/bg/svg-wp/circuit-board.svg),
+		// 				radial-gradient(circle at 50% 95%, #25aaee 0%, #217877 50%, #0c2727 100%);
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 100%;
+		// }
 
 		.logo {
 			position: relative;
@@ -398,10 +407,10 @@ content {
 					height: inherit;
 					border-radius: inherit;
 					filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
-							drop-shadow(0 2px 0 hsl(174, 0%, 66%))
-							drop-shadow(0 3px 0 hsl(174, 0%, 61%))
-							drop-shadow(0 4px 0 hsl(174, 0%, 58%))
-							drop-shadow(0 1px 3px rgba(#222, .1));
+							drop-shadow(0 2px 0 hsl(174, 0%, 69%))
+							drop-shadow(0 3px 0 hsl(174, 0%, 67%))
+							drop-shadow(0 4px 0 hsl(174, 0%, 65%))
+							drop-shadow(0 1px 0 rgba(#222, .2));
 				}
 
 				&:after {
@@ -467,12 +476,12 @@ content {
 					background-size: contain;
 					background-repeat: no-repeat;
 					background-image: inherit;
-					filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
+					filter: drop-shadow(0 1px 0 hsl(174, 0%, 89%))
 							drop-shadow(0 2px 0 hsl(174, 0%, 88%))
-							drop-shadow(0 3px 1px hsl(174, 0%, 83%))
-							drop-shadow(0 4px 0 hsl(174, 0%, 79%))
-							drop-shadow(0 5px 0 hsl(174, 0%, 77%))
-							drop-shadow(0 1px 2px rgba(#000, .15));
+							drop-shadow(0 3px 0 hsl(174, 0%, 86%))
+							drop-shadow(0 4px 0 hsl(174, 0%, 83%))
+							drop-shadow(0 5px 0 hsl(174, 0%, 80%))
+							drop-shadow(0 1px 0 rgba(#000, .15));
 				}
 
 				&:after {
@@ -525,9 +534,9 @@ content {
 
 					&:after { right: 51px; }
 
-					s { display: block; top: 55px; left: 42px; right: 17px; }
+					s { display: block; top: 54px; left: 42px; right: 17px; }
 					s:before { top: -39px; left: 2px; right: 0; }
-					s:after { top: 11px; left: 35px; right: -17px; }
+					s:after { top: 12px; left: 36px; right: -17px; }
 				}
 
 				&.logo-c3-r {
@@ -539,7 +548,7 @@ content {
 
 					s { display: block; top: 55px; left: 42px; right: 17px; }
 					s:before { top: -39px; right: 13px; }
-					s:after { top: 11px; left: 35px; right: -17px; }
+					s:after { top: 11px; left: 36px; right: -17px; }
 				}
 
 				&.logo-c4-a {
@@ -549,9 +558,9 @@ content {
 
 					&:after { right: 51px; }
 
-					s { display: block; top: 55px; left: 42px; right: 17px; }
+					s { display: block; top: 54px; left: 42px; right: 17px; }
 					s:before { top: -39px; left: 2px; right: 0; }
-					s:after { top: 11px; left: 35px; right: -17px; }
+					s:after { top: 12px; left: 36px; right: -17px; }
 				}
 
 				&.logo-c5-d {
@@ -569,7 +578,7 @@ content {
 					top: 150px;
 					left: 205px;
 
-					s { display: block; top: 17px; left: 42px; right: 17px; }
+					s { display: block; top: 15px; left: 44px; right: 17px; }
 					s:before { display: none; }
 					s:after { display: none; }
 				}
@@ -580,7 +589,7 @@ content {
 					left: 308px;
 					width: 68px;
 
-					s { display: block; top: 17px; left: 0; right: 55px; }
+					s { display: block; top: 15px; left: 0; right: 55px; }
 					s:before { left: 55px; right: -55px; }
 					s:after { display: none; }
 				}
@@ -590,21 +599,22 @@ content {
 					top: 150px;
 					left: 385px;
 
-					s { display: block; top: 29px; left: 44px; right: 17px; }
+					s { display: block; top: 28px; left: 45px; right: 17px; }
 					s:before { display: none; }
 					s:after { display: none; }
 				}
 			}
 
-				// &.paradroid-3001 {
-				// 	position: absolute;
-				// 	top: 50px;
-				// 	left: 250px;
-				// 	width: 201px;
-				// 	height: 38px;
-				// 	z-index: 2;
-				// 	filter: drop-shadow(0 1px 0 #fff);
-				// }
+			.paradroid-3001 {
+				background: url(~/icons/paradroid-3001.png) 50% 50%/contain no-repeat;
+				position: absolute;
+				top: 263px;
+				left: 356px;
+				width: 111px;
+				height: 28px;
+				z-index: 5;
+				filter: grayscale(1) brightness(2.5);
+			}
 		}
 	}
 

@@ -34,10 +34,10 @@ class Droid {
 				this.sprites[k] = cvs[0];
 			});
 			// a little bit blur
-			// this.blur = {
-			// 	color: "#fff",
-			// 	size: 3,
-			// };
+			this.blur = {
+				color: "#00000044",
+				size: 3,
+			};
 		}
 
 		// paint digits on droid

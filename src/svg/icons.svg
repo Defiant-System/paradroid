@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 
 @import "tiles-32.svg"
+@import "3001.svg"
 
 	<svg id="logo-p" viewBox="0 0 94 68">
 		<style type="text/css">
