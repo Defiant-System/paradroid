@@ -34,10 +34,10 @@ class Droid {
 				this.sprites[k] = cvs[0];
 			});
 			// a little bit blur
-			this.blur = {
-				color: "#fff",
-				size: 3,
-			};
+			// this.blur = {
+			// 	color: "#fff",
+			// 	size: 3,
+			// };
 		}
 
 		// paint digits on droid
@@ -77,7 +77,21 @@ class Droid {
 		ctx.save();
 		ctx.translate(this.pos.x, this.pos.y);
 
-		if (this.blur.size) {
+		if (this.light) {
+			let lightX = (this.arena.tiles.size / 2);
+			let lightY = (this.arena.tiles.size / 2);
+
+			let radius = this.light.radius;
+			let radialGradient = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, radius);
+			radialGradient.addColorStop(0, "rgba(255, 255, 255, 0.325)");
+			radialGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+			ctx.fillStyle = radialGradient;
+			ctx.arc(lightX, lightY, radius, 0, Math.TAU);
+			ctx.fill();
+		}
+
+		if (this.blur) {
 			// droid "001"
 			ctx.shadowColor = this.blur.color;
 			ctx.shadowBlur = this.blur.size;

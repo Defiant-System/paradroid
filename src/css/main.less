@@ -13,8 +13,8 @@ content {
 	right: 0;
 	bottom: 0;
 	border-radius: inherit;
-	background: radial-gradient(ellipse at top center, #ddd, transparent),
-				linear-gradient(180deg, #ccc, #a2a2a2);
+	background: radial-gradient(ellipse at top center, #c1c1c1, transparent),
+				linear-gradient(180deg, #d1d1d1, #969696);
 
 
 	&[data-show="start"] {
@@ -383,92 +383,164 @@ content {
 			width: 480px;
 			height: 300px;
 			filter: drop-shadow(0 2px 7px rgba(0, 0, 0, .15));
-
+			
 			> div {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: inherit;
-				height: inherit;
+				border-radius: 6px;
 
-				svg {
+				&:before {
+					content: "";
+					background: #d2d2d2;
+					position: absolute;
+					top: 0;
+					left: 0;
 					width: inherit;
 					height: inherit;
-					overflow: visible;
+					border-radius: inherit;
+					filter: drop-shadow(0 1px 0 hsl(174, 0%, 73%))
+							drop-shadow(0 2px 0 hsl(174, 0%, 68%))
+							drop-shadow(0 3px 0 hsl(174, 0%, 63%))
+							drop-shadow(0 4px 0 hsl(174, 0%, 60%))
+							drop-shadow(0 1px 2px rgba(0, 0, 0, .1));
 				}
 
-				&.boxes-top {
-					z-index: 1;
-
-					svg {
-						filter: drop-shadow(0 1px 0 hsl(174, 0%, 73%))
-								drop-shadow(0 2px 0 hsl(174, 0%, 68%))
-								drop-shadow(0 3px 0 hsl(174, 0%, 63%))
-								drop-shadow(0 4px 0 hsl(174, 0%, 60%))
-								drop-shadow(0 1px 2px rgba(0, 0, 0, .1));
-					}
-
-					&:before,
-					&:after {
-						content: "";
-						position: absolute;
-						top: 144px;
-						left: 5px;
-						width: 83px;
-						height: 1px;
-						z-index: 2;
-						background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
-					}
-
-					&:after {
-						left: 211px;
-						width: 263px;
-					}
-				}
-
-				&.logo-text {
-					top: -6px;
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 1px;
 					z-index: 2;
+					background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
+				}
+
+				&.boxes-top-left {
+					z-index: 1;
+					top: 0px;
+					left: 0px;
+					width: 93px;
+					height: 145px;
+				}
+
+				&.boxes-top-right {
+					z-index: 1;
+					top: 0px;
+					left: 206px;
+					width: 273px;
+					height: 145px;
+				}
+
+				&.boxes-bottom-left {
+					z-index: 3;
+					top: 231px;
+					left: 0px;
+					width: 93px;
+					height: 68px;
+				}
+
+				&.boxes-bottom-right {
+					z-index: 3;
+					top: 231px;
+					left: 206px;
+					width: 273px;
+					height: 68px;
+				}
+			}
+
+			b[class^="logo-"] {
+				position: absolute;
+				width: 94px;
+				height: 68px;
+				z-index: 2;
+				background-size: 0 0;
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: inherit;
+					height: inherit;
+					background-position: 0 0;
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-image: inherit;
 					filter: drop-shadow(0 1px 0 hsl(174, 0%, 93%))
 							drop-shadow(0 2px 0 hsl(174, 0%, 88%))
 							drop-shadow(0 3px 1px hsl(174, 0%, 83%))
 							drop-shadow(0 4px 0 hsl(174, 0%, 79%))
 							drop-shadow(0 5px 0 hsl(174, 0%, 77%))
 							drop-shadow(0 1px 2px rgba(#000, .15));
-
-					svg {
-						// animation: glowPulse 1500ms alternate infinite;
-					}
 				}
 
-				&.boxes-bottom {
-					z-index: 3;
-					
-					svg {
-						filter: drop-shadow(0 1px 0 hsl(174, 0%, 73%))
-								drop-shadow(0 2px 0 hsl(174, 0%, 64%))
-								drop-shadow(0 3px 0 hsl(174, 0%, 59%))
-								drop-shadow(0 4px 0 hsl(174, 0%, 56%))
-								drop-shadow(0 1px 2px rgba(#000, .1));
-					}
-
-					&:before,
-					&:after {
-						content: "";
-						position: absolute;
-						top: 298px;
-						left: 5px;
-						width: 83px;
-						height: 1px;
-						z-index: 2;
-						background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
-					}
-
-					&:after {
-						left: 211px;
-						width: 263px;
-					}
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, transparent, #fff, transparent);
 				}
+				
+				&.logo-c1-p {
+					background-image: url(~/icons/logo-p.png);
+					top: -4px;
+					left: 103px;
+
+					&:after { right: 51px; }
+				}
+
+				&.logo-c2-a {
+					background-image: url(~/icons/logo-a.png);
+					top: 73px;
+					left: 103px;
+
+					&:after { right: 51px; }
+				}
+
+				&.logo-c3-r {
+					background-image: url(~/icons/logo-r.png);
+					top: 150px;
+					left: 103px;
+
+					&:after { right: 51px; }
+				}
+
+				&.logo-c4-a {
+					background-image: url(~/icons/logo-a.png);
+					top: 227px;
+					left: 103px;
+
+					&:after { right: 51px; }
+				}
+
+				&.logo-c5-d {
+					background-image: url(~/icons/logo-d.png);
+					top: 150px;
+					left: 0;
+				}
+
+				&.logo-c6-o {
+					background-image: url(~/icons/logo-o.png);
+					top: 150px;
+					left: 205px;
+				}
+
+				&.logo-c7-i {
+					background-image: url(~/icons/logo-i.png);
+					top: 150px;
+					left: 308px;
+					width: 68px;
+				}
+
+				&.logo-c8-d {
+					background-image: url(~/icons/logo-d.png);
+					top: 150px;
+					left: 385px;
+				}
+			}
 
 				// &.paradroid-3001 {
 				// 	position: absolute;
@@ -479,7 +551,6 @@ content {
 				// 	z-index: 2;
 				// 	filter: drop-shadow(0 1px 0 #fff);
 				// }
-			}
 		}
 	}
 
@@ -558,6 +629,63 @@ content {
 				top: 5px;
 				width: inherit;
 				height: 45px;
+
+				b[class^="logo-"] {
+					background: rgba(#f00,.6);
+					position: absolute;
+					top: 11px;
+					left: 0;
+					width: 34px;
+					height: 24px;
+					z-index: 2;
+
+
+					&.logo-c1-p {
+						// background-image: url(~/icons/logo-p.png);
+						left: 0px;
+					}
+
+					&.logo-c2-a {
+						// background-image: url(~/icons/logo-a.png);
+						left: 36px;
+					}
+
+					&.logo-c3-r {
+						// background-image: url(~/icons/logo-r.png);
+						left: 72px;
+					}
+
+					&.logo-c4-a {
+						// background-image: url(~/icons/logo-a.png);
+						left: 108px;
+					}
+
+					&.logo-c5-d {
+						// background-image: url(~/icons/logo-d.png);
+						left: 144px;
+					}
+
+					&.logo-c6-r {
+						// background-image: url(~/icons/logo-r.png);
+						left: 180px;
+					}
+
+					&.logo-c7-o {
+						// background-image: url(~/icons/logo-o.png);
+						left: 216px;
+					}
+
+					&.logo-c8-i {
+						// background-image: url(~/icons/logo-i.png);
+						left: 252px;
+						width: 24px;
+					}
+
+					&.logo-c9-d {
+						// background-image: url(~/icons/logo-d.png);
+						left: 278px;
+					}
+				}
 
 				svg {
 					width: inherit;
@@ -1302,10 +1430,23 @@ content {
 			width: 100%;
 			height: 100%;
 			mix-blend-mode: soft-light;
+			pointer-events: none;
 			border-radius: inherit;
 			box-shadow: inset 0 0 0 1px rgba(#322,.25),
+						inset 0 2px 0 rgba(#fff,.75),
 						0 1px 0 rgba(#fff,.35),
 						0 -1px 0 rgba(#111,.5);
+		}
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 1px;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: linear-gradient(90deg, transparent 5%, rgba(#fff,.4), transparent 95%);
+			pointer-events: none;
 		}
 
 		canvas.game {
@@ -1325,14 +1466,15 @@ content {
 			color: #ccc;
 			font-size: 13px;
 			text-align: center;
+			mix-blend-mode: hard-light;
 
 			div {
 				position: relative;
 				display: inline-block;
 				margin: 0 21px;
 
-				&.fps { width: 90px; }
-				&.coords { width: 130px; }
+				&.fps { width: 80px; }
+				&.coords { width: 160px; }
 
 				span {
 					position: absolute;

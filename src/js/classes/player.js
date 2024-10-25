@@ -4,6 +4,10 @@ class Player extends Droid {
 	constructor(cfg) {
 		super(cfg);
 
+		this.light = {
+			radius: 100,
+		};
+
 		this.torch = {
 			lit: false,
 			frame: 0

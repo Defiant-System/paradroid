@@ -2,13 +2,14 @@
 let Test = {
 	init(APP) {
 		// return;
+		return APP.dispatch({ type: "show-view", arg: "mobile" });
 
 		APP.dispatch({ type: "show-view", arg: "mobile" });
 		return setTimeout(() => {
 			let state = {
-					"001": { x: 1, y: 1 },
+					"001": { x: 2, y: 1 },
 					"map": {
-						id: "a",
+						id: "b",
 						droids: [
 							// { id: "247", x: 14, y: 7 },
 							// { id: "516", x: 1, y: 5 },
