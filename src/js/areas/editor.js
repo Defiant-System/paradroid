@@ -134,10 +134,6 @@
 				el = Self.els.viewport.find(".level");
 				el.toggleClass("hide-grid", el.hasClass("hide-grid"));
 				break;
-			case "toggle-bg":
-				el = Self.els.viewport.find(".level");
-				el.toggleClass("hide-bg", el.hasClass("hide-bg"));
-				break;
 			case "render-level":
 				// if active level; save modifications
 				if (Self.xLevel) {

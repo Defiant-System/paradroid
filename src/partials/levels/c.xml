@@ -1,5 +1,5 @@
 
-<Level id="c" width="44" height="10" y=".5" x=".5" show-bg="0" bg="#808080" filter="grayscale(1) brightness(1.1)">
+<Level id="c" width="44" height="10" y=".5" x=".5" bg="#808080" filter="grayscale(1) brightness(1.1)">
 	<Layer id="collision">
 		
 	</Layer>

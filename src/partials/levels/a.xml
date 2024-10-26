@@ -1,5 +1,5 @@
 
-<Level id="a" width="12" height="6" y="2.5" x="3" show-bg="0">
+<Level id="a" width="12" height="6" y="2.5" x="3">
 	<Layer id="collision">
 		
 	</Layer>

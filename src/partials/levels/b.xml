@@ -1,5 +1,5 @@
 
-<Level id="b" width="20" height="10" y=".5" x=".5" show-bg="0" bg="#65a951" filter="hue-rotate(115deg) brightness(1.05)">
+<Level id="b" width="20" height="10" y=".5" x=".5" bg="#65a951" filter="hue-rotate(115deg) brightness(1.05)">
 	<Layer id="collision">
 		
 	</Layer>
