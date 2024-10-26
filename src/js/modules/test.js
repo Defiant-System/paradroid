@@ -2,7 +2,8 @@
 let Test = {
 	init(APP) {
 		// return;
-		return APP.dispatch({ type: "show-view", arg: "start" });
+		
+		// return APP.dispatch({ type: "show-view", arg: "start" });
 
 		APP.dispatch({ type: "show-view", arg: "mobile" });
 		return setTimeout(() => {
