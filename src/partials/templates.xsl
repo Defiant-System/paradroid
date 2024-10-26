@@ -13,7 +13,7 @@
 			<xsl:if test="@show-bg = '0'">
 				<xsl:attribute name="class">level hide-bg</xsl:attribute>
 			</xsl:if>
-			<xsl:for-each select="./*">
+			<xsl:for-each select="./Layer[@id='background']/*">
 				<b>
 					<xsl:attribute name="class"><xsl:value-of select="@id" /></xsl:attribute>
 				</b>

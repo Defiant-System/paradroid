@@ -4,6 +4,15 @@ let Test = {
 		// return;
 		
 		// return APP.dispatch({ type: "show-view", arg: "start" });
+		// return APP.dispatch({ type: "show-view", arg: "console" });
+
+		APP.dispatch({ type: "show-view", arg: "editor" });
+		APP.editor.dispatch({ type: "render-level", arg: "a" });
+		// APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
+		// APP.editor.dispatch({ type: "output-pgn" });
+
+		return;
+
 
 		APP.dispatch({ type: "show-view", arg: "mobile" });
 		return setTimeout(() => {
@@ -21,11 +30,6 @@ let Test = {
 			// pause test
 			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 2500);
 		}, 300);
-		
-
-		APP.editor.dispatch({ type: "render-level", arg: "c" });
-		APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
-		// APP.editor.dispatch({ type: "output-pgn" });
 
 	}
 };

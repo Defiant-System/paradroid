@@ -141,27 +141,29 @@
 			case "render-level":
 				// if active level; save modifications
 				if (Self.xLevel) {
-					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" });
+					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" }),
+						xBg = Self.xLevel.selectSingleNode(`./Layer[@id="background"]`);
 					// delete old data
-					while (Self.xLevel.hasChildNodes()) {
-						Self.xLevel.removeChild(Self.xLevel.firstChild);
+					while (xBg.hasChildNodes()) {
+						xBg.removeChild(xBg.firstChild);
 					}
 					// insert new tiles
-					nodes.map(x => Self.xLevel.appendChild(x));
+					nodes.map(x => xBg.appendChild(x));
 					// save "position"
 					el = Self.els.viewport.find(".level");
 					Self.xLevel.setAttribute("y", +el.css("--y"));
 					Self.xLevel.setAttribute("x", +el.css("--x"));
 				}
 				// check if level has tile nodes
-				let xLevel = window.bluePrint.selectSingleNode(`//Level[@id = "${event.arg}"]`);
-				if (!xLevel.selectNodes("./i").length) {
+				let xLevel = window.bluePrint.selectSingleNode(`//Level[@id = "${event.arg}"]`),
+					xBg = xLevel.selectSingleNode(`./Layer[@id="background"]`);
+				if (!xBg.selectNodes(`./i`).length) {
 					let nodes = [],
 						len = +xLevel.getAttribute("height") * +xLevel.getAttribute("width");
 					while (len--) { nodes.push(`<i />`); }
 					// insert nodes
 					$.xmlFromString(`<data>${nodes.join("")}</data>`)
-						.selectNodes(`/data/i`).map(x => xLevel.appendChild(x));
+						.selectNodes(`/data/i`).map(x => xBg.appendChild(x));
 				}
 				// save reference to current
 				Self.xLevel = xLevel;
