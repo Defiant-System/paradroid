@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:template name="level">
-		<div class="level" data-click="put-tile">
+	<xsl:template name="layer-background">
+		<div class="layer-background" data-click="put-tile">
 			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
 			<xsl:attribute name="style">
 				--w: <xsl:value-of select="@width" />;
@@ -15,6 +15,14 @@
 				</b>
 			</xsl:for-each>
 		</div>
+	</xsl:template>
+
+	<xsl:template name="layer-collision">
+		
+	</xsl:template>
+
+	<xsl:template name="layer-action">
+		
 	</xsl:template>
 
 </xsl:stylesheet>

@@ -55,9 +55,9 @@
 			case "select-layer":
 				el = $(event.target);
 				value = el.index();
+				if (!el.parent().hasClass("tab-row")) return;
 				Self.els.palette.find(".tab-row span.active").removeClass("active");
 				Self.els.palette.find(".tab-body.active").removeClass("active");
-
 				Self.els.palette.find(`.tab-row span:nth(${value})`).addClass("active");
 				Self.els.palette.find(`.tab-body:nth(${value})`).addClass("active");
 				break;
@@ -100,7 +100,11 @@
 					});
 				}
 				break;
-			case "select-tile":
+			case "select-action-tile":
+				break;
+			case "select-col-tile":
+				break;
+			case "select-bg-tile":
 				el = $(event.target);
 				Self.palette.tile = el.prop("class").split(" ")[0];
 				// grouped tiles
@@ -113,7 +117,7 @@
 					return;
 				}
 				// update UI
-				Self.els.palette.find(".active").removeClass("active");
+				Self.els.palette.find(".tiles .active").removeClass("active");
 				if (Self.palette.tile) {
 					Self.els.palette.find(`.${Self.palette.tile}`).addClass("active");
 				}
@@ -140,7 +144,7 @@
 				el.toggleClass("show-overflow", el.hasClass("show-overflow"));
 				break;
 			case "toggle-grid":
-				el = Self.els.viewport.find(".level");
+				el = Self.els.viewport.find(".layer-background");
 				el.toggleClass("hide-grid", el.hasClass("hide-grid"));
 				break;
 			case "render-level":
@@ -155,7 +159,7 @@
 					// insert new tiles
 					nodes.map(x => xBg.appendChild(x));
 					// save "position"
-					el = Self.els.viewport.find(".level");
+					el = Self.els.viewport.find(".layer-background");
 					Self.xLevel.setAttribute("y", +el.css("--y"));
 					Self.xLevel.setAttribute("x", +el.css("--x"));
 				}
@@ -176,10 +180,17 @@
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
 				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
-				Self.els.viewport.find(".level").remove();
+				Self.els.viewport.find(".layer-background").remove();
 				// render + append HTML
 				window.render({
-					template: "level",
+					template: "layer-background",
+					match: `//Level[@id = "${event.arg}"]`,
+					append: Self.els.viewport,
+				});
+
+				// render + append HTML
+				window.render({
+					template: "layer-collision",
 					match: `//Level[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
@@ -194,7 +205,7 @@
 				let tiles = [];
 
 				// tiles.push(`<Level id="a" width="12" height="6">\n`);
-				Self.els.viewport.find(`.level b`).map(tile => {
+				Self.els.viewport.find(`.layer-background b`).map(tile => {
 					let id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
 					tiles.push(`<i ${id}/>`);
 				});
@@ -216,7 +227,7 @@
 				// prevent default behaviour
 				event.preventDefault();
 
-				let el = Self.els.viewport.find(".level"),
+				let el = Self.els.viewport.find(".layer-background"),
 					offset = el.offset(".viewport"),
 					data = {
 						...offset,

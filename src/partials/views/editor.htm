@@ -1,7 +1,7 @@
 
 <!-- editor view -->
 <div class="editor-view big-tiles" data-context="editor-content" data-area="editor">
-	<div class="tile-palette" data-click="select-tile">
+	<div class="tile-palette">
 		<div class="tab-row">
 			<span data-click="select-layer" class="active">Background</span>
 			<span data-click="select-layer">Collision</span>
@@ -17,7 +17,7 @@
 				<span data-click="toggle-overflow">Toggle Overflow</span>
 				<span data-click="toggle-grid">Toggle Grid</span>
 			</div>
-			<div class="tiles" style="--w: 16; --h: 8;">
+			<div class="tiles" style="--w: 16; --h: 8;" data-click="select-bg-tile">
 				<b class="m00"></b><b class="m01"></b><b class="m02"></b><b class="m03"></b><b class="m04"></b><b class="m05"></b><b class="m06"></b><b class="m07"></b><b class="m08"></b><b class="m09"></b><b class="m0a"></b><b class="m0b"></b><b class="m0c"></b><b class="m0d"></b><b class="m0e"></b><b class="m0f"></b>
 				<b class="m10"></b><b class="m11"></b><b class="m12"></b><b class="m13"></b><b class="m14"></b><b class="m15"></b><b class="m16"></b><b class="m17"></b><b class="m18"></b><b class="m19"></b><b class="m1a"></b><b class="m1b"></b><b class="m1c"></b><b class="m1d"></b><b class="m1e"></b><b class="m1f"></b>
 				<b class="m20"></b><b class="m21"></b><b class="m22"></b><b class="m23"></b><b class="m24"></b><b class="m25"></b><b class="m26"></b><b class="m27"></b><b class="m28"></b><b class="m29"></b><b class="m2a"></b><b class="m2b"></b><b class="m2c"></b><b class="m2d"></b><b class="m2e"></b><b class="m2f"></b>
@@ -30,11 +30,23 @@
 		</div>
 		<!-- Layer Collision -->
 		<div class="tab-body">
-			Collision
+			<div class="buttons">
+				<span data-click="toggle-overflow">Toggle Overflow</span>
+			</div>
+			<div class="tiles" style="--w: 16; --h: 8;" data-click="select-col-tile">
+				<b class="c0"></b>
+				<b class="c1"></b>
+			</div>
 		</div>
 		<!-- Layer Action -->
 		<div class="tab-body">
-			Action
+			<div class="buttons">
+				<span data-click="toggle-overflow">Toggle Overflow</span>
+			</div>
+			<div class="tiles" style="--w: 16; --h: 8;" data-click="select-action-tile">
+				<b class="a0"></b>
+				<b class="a1"></b>
+			</div>
 		</div>
 	</div>
 
