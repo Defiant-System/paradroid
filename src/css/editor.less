@@ -178,7 +178,8 @@
 			}
 		}
 
-		.layer-background {
+		.layer-background,
+		.layer-collision {
 			position: absolute;
 			top: calc( var( --tile ) * var( --y ) );
 			left: calc( var( --tile ) * var( --x ) );
@@ -189,6 +190,15 @@
 			
 			b {
 				pointer-events: none;
+			}
+		}
+
+		.layer-collision {
+			b {
+				position: absolute;
+				top: calc( var( --tile ) * var( --y ) );
+				left: calc( var( --tile ) * var( --x ) );
+				z-index: 3;
 			}
 		}
 	}
