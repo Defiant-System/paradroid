@@ -52,6 +52,15 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
+			case "select-layer":
+				el = $(event.target);
+				value = el.index();
+				Self.els.palette.find(".tab-row span.active").removeClass("active");
+				Self.els.palette.find(".tab-body.active").removeClass("active");
+
+				Self.els.palette.find(`.tab-row span:nth(${value})`).addClass("active");
+				Self.els.palette.find(`.tab-body:nth(${value})`).addClass("active");
+				break;
 			case "put-tile":
 				if (event.metaKey) {
 					// activate "PAN"

@@ -7,6 +7,7 @@ let Test = {
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 
 		APP.dispatch({ type: "show-view", arg: "editor" });
+		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		APP.editor.dispatch({ type: "render-level", arg: "a" });
 		// APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
 		// APP.editor.dispatch({ type: "output-pgn" });
