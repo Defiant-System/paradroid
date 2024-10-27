@@ -103,6 +103,28 @@
 			case "select-action-tile":
 				break;
 			case "select-col-tile":
+				el = $(event.target);
+				Self.palette.tile = el.prop("class").split(" ")[0];
+				// update UI
+				Self.els.palette.find(".tiles .active").removeClass("active");
+				el.addClass("active");
+
+				// empty palette cursor / eraser
+				Self.palette.cursorOrigo = { x: 0, y: 0 };
+				Self.palette.cursor = [];
+				// apply cursor
+				if (el.data("size")) {
+					let [cX, cY] = el.data("size").split("x").map(i => +i);
+					for (let y=0; y<cY; y++) {
+						for (let x=0; x<cX; x++) {
+							Self.palette.cursor.push({ x, y, id: Self.palette.tile });
+						}
+					}
+				}
+
+				// update viewport cursor
+				value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
+				Self.els.cursor.html(value);
 				break;
 			case "select-bg-tile":
 				el = $(event.target);
@@ -187,20 +209,18 @@
 					match: `//Level[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
-
 				// render collision layer
 				window.render({
 					template: "layer-collision",
 					match: `//Level[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
-
 				// render action layer
-				window.render({
-					template: "layer-action",
-					match: `//Level[@id = "${event.arg}"]`,
-					append: Self.els.viewport,
-				});
+				// window.render({
+				// 	template: "layer-action",
+				// 	match: `//Level[@id = "${event.arg}"]`,
+				// 	append: Self.els.viewport,
+				// });
 				break;
 			case "grid-size":
 				event.el.parent().find(".active").removeClass("active");
@@ -261,7 +281,8 @@
 					if (Math.abs(Drag.data.top - top) > threshold || Math.abs(Drag.data.left - left) > threshold) {
 						Drag.moved = { top, left, };
 					}
-				} else if (event.target.classList.contains("level")) {
+				// } else if (event.target.classList.contains("level")) {
+				} else {
 					if (event.shiftKey) return;
 
 					let el = $(event.target),
