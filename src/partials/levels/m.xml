@@ -1,5 +1,8 @@
 
 <Level id="m" width="20" height="18" y=".5" x=".5">
+	<Layer id="action">
+
+	</Layer>
 	<Layer id="collision">
 		
 	</Layer>

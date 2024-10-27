@@ -1,5 +1,11 @@
+<Layer id="action">
 
+	</Layer>
+	
 <Level id="g" width="12" height="6" y="2.5" x="3.5">
+	<Layer id="action">
+
+	</Layer>
 	<Layer id="collision">
 		
 	</Layer>

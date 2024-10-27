@@ -88,6 +88,20 @@
 					// insert viewport cursor tiles
 					value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
 					Self.els.cursor.html(value.join(""));
+				} else if (Self.palette.tile.startsWith("c") || Self.palette.tile.startsWith("a")) {
+					let levelEl = $(event.target),
+						grid = parseInt(levelEl.cssProp("--tile"), 10),
+						w = +levelEl.cssProp("--w"),
+						l = Math.ceil(event.offsetX / grid) - 1,
+						t = Math.ceil(event.offsetY / grid) - 1,
+						add = levelEl.find(`b.${Self.palette.tile}[style="--x: ${l};--y: ${t};"]`).length < 1;
+					// action tile
+					Self.palette.cursor.map(sel => {
+						// remove old element
+						levelEl.find(`b.${Self.palette.tile}[style="--x: ${l + sel.x};--y: ${t + sel.y};"]`).remove();
+						// append new item
+						if (add) levelEl.append(`<b class="${Self.palette.tile}" style="--x: ${l + sel.x};--y: ${t + sel.y};"></b>`);
+					});
 				} else {
 					let levelEl = $(event.target),
 						tiles = levelEl.find("b"),
@@ -173,10 +187,20 @@
 				// if active level; save modifications
 				if (Self.xLevel) {
 					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" }),
-						xBg = Self.xLevel.selectSingleNode(`./Layer[@id="background"]`);
-					// delete old data
+						xBg = Self.xLevel.selectSingleNode(`./Layer[@id="background"]`),
+						xCol = Self.xLevel.selectSingleNode(`./Layer[@id="collision"]`),
+						xAct = Self.xLevel.selectSingleNode(`./Layer[@id="action"]`);
+					// delete old background data
 					while (xBg.hasChildNodes()) {
 						xBg.removeChild(xBg.firstChild);
+					}
+					// delete old collision data
+					while (xCol.hasChildNodes()) {
+						xCol.removeChild(xCol.firstChild);
+					}
+					// delete old action data
+					while (xAct.hasChildNodes()) {
+						xAct.removeChild(xAct.firstChild);
 					}
 					// insert new tiles
 					nodes.map(x => xBg.appendChild(x));
@@ -203,6 +227,8 @@
 				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
 				Self.els.viewport.find(".layer-background").remove();
+				Self.els.viewport.find(".layer-collision").remove();
+				Self.els.viewport.find(".layer-action").remove();
 				// render + append HTML
 				window.render({
 					template: "layer-background",
@@ -320,6 +346,8 @@
 					let y = Math.round(Drag.moved.top / Drag.data.tile),
 						x = Math.round(Drag.moved.left / Drag.data.tile);
 					Drag.el.css({ top: "", left: "", "--y": y, "--x": x });
+					Self.els.viewport.find(".layer-collision").css({ "--y": y, "--x": x });
+					Self.els.viewport.find(".layer-action").css({ "--y": y, "--x": x });
 				} else if (Drag) {
 					Drag.el.css({ top: "", left: "" });
 				}
