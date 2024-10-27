@@ -60,6 +60,8 @@
 				Self.els.palette.find(".tab-body.active").removeClass("active");
 				Self.els.palette.find(`.tab-row span:nth(${value})`).addClass("active");
 				Self.els.palette.find(`.tab-body:nth(${value})`).addClass("active");
+				// toggles layers depending on selected tab
+				Self.els.viewport.data({ show: el.data("arg") });
 				break;
 			case "put-tile":
 				if (event.metaKey) {
@@ -101,14 +103,12 @@
 				}
 				break;
 			case "select-action-tile":
-				break;
 			case "select-col-tile":
 				el = $(event.target);
 				Self.palette.tile = el.prop("class").split(" ")[0];
 				// update UI
 				Self.els.palette.find(".tiles .active").removeClass("active");
 				el.addClass("active");
-
 				// empty palette cursor / eraser
 				Self.palette.cursorOrigo = { x: 0, y: 0 };
 				Self.palette.cursor = [];
@@ -121,7 +121,6 @@
 						}
 					}
 				}
-
 				// update viewport cursor
 				value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
 				Self.els.cursor.html(value);
@@ -216,11 +215,11 @@
 					append: Self.els.viewport,
 				});
 				// render action layer
-				// window.render({
-				// 	template: "layer-action",
-				// 	match: `//Level[@id = "${event.arg}"]`,
-				// 	append: Self.els.viewport,
-				// });
+				window.render({
+					template: "layer-action",
+					match: `//Level[@id = "${event.arg}"]`,
+					append: Self.els.viewport,
+				});
 				break;
 			case "grid-size":
 				event.el.parent().find(".active").removeClass("active");

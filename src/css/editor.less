@@ -35,7 +35,7 @@
 		min-width: 526px;
 
 		.tab-row {
-			padding: 0 0 0 3px;
+			padding: 0 0 0 4px;
 			margin-bottom: -2px;
 
 			span {
@@ -67,6 +67,7 @@
 			background: #bbb;
 			min-height: 286px;
 			padding: 5px;
+			border-radius: 4px;
 			border: 2px solid rgba(#000,.75);
 
 			&.active {
@@ -173,6 +174,14 @@
 			overflow: visible;
 		}
 
+		&[data-show="action"] .layer-action {
+			display: block;
+		}
+
+		&[data-show="collision"] .layer-collision {
+			display: block;
+		}
+
 		.cursor {
 			position: absolute;
 			top: calc( var( --tile ) * var( --t ) );
@@ -208,6 +217,8 @@
 
 		.layer-action,
 		.layer-collision {
+			display: none;
+
 			b {
 				position: absolute;
 				top: calc( var( --tile ) * var( --y ) );
