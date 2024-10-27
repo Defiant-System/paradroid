@@ -188,9 +188,16 @@
 					append: Self.els.viewport,
 				});
 
-				// render + append HTML
+				// render collision layer
 				window.render({
 					template: "layer-collision",
+					match: `//Level[@id = "${event.arg}"]`,
+					append: Self.els.viewport,
+				});
+
+				// render action layer
+				window.render({
+					template: "layer-action",
 					match: `//Level[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});

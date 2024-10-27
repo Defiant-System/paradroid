@@ -179,6 +179,7 @@
 		}
 
 		.layer-background,
+		.layer-action,
 		.layer-collision {
 			position: absolute;
 			top: calc( var( --tile ) * var( --y ) );
@@ -188,11 +189,10 @@
 
 			&.hide-grid b { box-shadow: none; }
 			
-			b {
-				pointer-events: none;
-			}
+			b { pointer-events: none; }
 		}
 
+		.layer-action,
 		.layer-collision {
 			b {
 				position: absolute;
@@ -200,6 +200,8 @@
 				left: calc( var( --tile ) * var( --x ) );
 				z-index: 3;
 			}
+
+			&.layer-action b { z-index: 4; }
 		}
 	}
 
