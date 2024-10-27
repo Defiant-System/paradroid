@@ -48,6 +48,7 @@
 		let APP = paradroid,
 			Self = APP.editor,
 			value,
+			tiles,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -227,9 +228,30 @@
 				
 				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
 				break;
+			case "output-collision-pgn":
+				tiles = [];
+				Self.els.viewport.find(`.layer-collision b`).map(tile => {
+					let tEl = $(tile),
+						x = tEl.cssProp("--x"),
+						y = tEl.cssProp("--y"),
+						id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
+					tiles.push(`<i ${id} x="${x}" y="${y}"/>`);
+				});
+				console.log(tiles.join(""));
+				break;
+			case "output-action-pgn":
+				tiles = [];
+				Self.els.viewport.find(`.layer-action b`).map(tile => {
+					let tEl = $(tile),
+						x = tEl.cssProp("--x"),
+						y = tEl.cssProp("--y"),
+						id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
+					tiles.push(`<i ${id} x="${x}" y="${y}"/>`);
+				});
+				console.log(tiles.join(""));
+				break;
 			case "output-pgn":
-				let tiles = [];
-
+				tiles = [];
 				// tiles.push(`<Level id="a" width="12" height="6">\n`);
 				Self.els.viewport.find(`.layer-background b`).map(tile => {
 					let id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
