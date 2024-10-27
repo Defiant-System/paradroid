@@ -119,10 +119,41 @@
 		.field {
 			margin-top: 12px;
 			height: 148px;
+			
+			.row {
+				display: flex;
+				height: 31px;
 
-			input {
-				width: 50%;
-				box-shadow: 0 0 0 1px rgba(#000,.1);
+				span {
+					flex: 1;
+					color: #333;
+					font-size: 13px;
+					padding: 3px 7px 0;
+				}
+
+				div {
+					margin: 0 11px 0 0;
+					padding: 3px 7px 0;
+					width: 13%;
+					height: 25px;
+					font-size: 14px;
+					background: #aaa;
+					border-radius: 7px 0;
+					border: 2px solid;
+					border-color: #eee #888 #888 #eee;
+					cursor: pointer;
+
+					&.active {
+						padding-top: 4px;
+						height: 24px;
+						border-color: #888 #eee #eee #888;
+					}
+				}
+
+				input {
+					width: 67%;
+					box-shadow: 0 0 0 1px rgba(#000,.1);
+				}
 			}
 		}
 

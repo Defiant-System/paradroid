@@ -254,6 +254,21 @@
 				
 				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
 				break;
+			case "select-action-tiles":
+				Self.els.palette.find(`.field .row .active`).removeClass("active");
+				event.el.addClass("active");
+
+				Self.palette.mode = "select";
+				break;
+			case "update-action-tiles":
+				Self.els.palette.find(`.field .row .active`).removeClass("active");
+				event.el.addClass("active");
+
+				value = Self.els.palette.find(`input[name="action-id"]`).val();
+				console.log(value);
+
+				delete Self.palette.mode;
+				break;
 			case "output-collision-pgn":
 				tiles = [];
 				Self.els.viewport.find(`.layer-collision b`).map(tile => {
