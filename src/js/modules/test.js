@@ -7,7 +7,7 @@ let Test = {
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "b" });
+		APP.editor.dispatch({ type: "render-level", arg: "q" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="2x1"]`).trigger("click");

@@ -316,7 +316,7 @@
 				// save drag details
 				Self.drag = { el, data, click };
 				// hide cursor
-				Self.els.viewport.addClass("hide-cursor");
+				if (event.metaKey) Self.els.viewport.addClass("hide-cursor");
 				break;
 			case "mousemove":
 				if (Drag) {
