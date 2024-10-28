@@ -291,6 +291,8 @@
 			case "set-action-id":
 				value = event.el.data("arg");
 				Self.els.palette.find(`input[name="action-id"]`).val(value);
+				// update node
+				Self.dispatch({ type: "update-action-tiles" });
 				break;
 			case "update-action-tiles":
 			case "clear-action-tiles":
@@ -303,7 +305,7 @@
 					// clear DOM
 					aEl.remove();
 					// clear from xml
-					xNode.parentNode.removeChild(xNode);
+					if (xNode) xNode.parentNode.removeChild(xNode);
 					// console.log( Self.xLevel );
 				} else {
 					let xLayer = Self.xLevel.selectSingleNode(`./Layer[@id="action"]`),
