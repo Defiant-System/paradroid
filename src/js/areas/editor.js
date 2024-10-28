@@ -288,6 +288,10 @@
 				
 				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
 				break;
+			case "set-action-id":
+				value = event.el.data("arg");
+				Self.els.palette.find(`input[name="action-id"]`).val(value);
+				break;
 			case "update-action-tiles":
 			case "clear-action-tiles":
 				let aId = Self.els.palette.find(`input[name="action-id"]`).val(),

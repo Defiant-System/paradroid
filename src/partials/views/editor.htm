@@ -66,13 +66,22 @@
 			<div class="field" style="--w: 16; --h: 3;">
 				<div class="row">
 					<span>Coord</span>
-					<div data-click="update-action-tiles">Update</div>
-					<input type="text" name="action-coord" placeholder="[x,y]" />
+					<input type="text" name="action-coord" disabled placeholder="[x,y]" />
 				</div>
 				<div class="row">
 					<span>Action</span>
+					<input type="text" name="action-id" disabled placeholder="Action ID" />
+				</div>
+				<div class="options">
+					<div data-click="set-action-id" data-arg="exit">Exit</div>
+					<div data-click="set-action-id" data-arg="recharge">Recharge</div>
+					<div data-click="set-action-id" data-arg="console">Console</div>
+					<div data-click="set-action-id" data-arg="door-v">Door (V)</div>
+					<div data-click="set-action-id" data-arg="door-h">Door (H)</div>
+				</div>
+				<div class="buttons">
+					<div data-click="update-action-tiles">Update</div>
 					<div data-click="clear-action-tiles">Clear</div>
-					<input type="text" name="action-id" placeholder="Action ID" />
 				</div>
 			</div>
 		</div>
