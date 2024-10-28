@@ -37,7 +37,7 @@ class Map {
 		// add rows
 		[...Array(this.height)].map(row => this.layout.push([]));
 
-		xLevel.selectNodes(`./i`).map((xTile, col) => {
+		xLevel.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
 			let row = Math.floor(col / this.width);
 			this.layout[row].push(xTile.getAttribute("id"));
 		});
