@@ -49,11 +49,14 @@
 			</xsl:attribute>
 			<xsl:for-each select="./Layer[@id='action']/*">
 				<b>
-					<xsl:attribute name="class"><xsl:value-of select="@id" /></xsl:attribute>
+					<xsl:attribute name="class">a1</xsl:attribute>
 					<xsl:attribute name="style">
 						<xsl:if test="@x">--x: <xsl:value-of select="@x" />;</xsl:if>
 						<xsl:if test="@y">--y: <xsl:value-of select="@y" />;</xsl:if>
+						<xsl:if test="@w">--w: <xsl:value-of select="@w" />;</xsl:if>
+						<xsl:if test="@h">--h: <xsl:value-of select="@h" />;</xsl:if>
 					</xsl:attribute>
+					<xsl:attribute name="data-action"><xsl:value-of select="@action" /></xsl:attribute>
 				</b>
 			</xsl:for-each>
 		</div>

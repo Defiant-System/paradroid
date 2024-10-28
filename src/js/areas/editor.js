@@ -88,7 +88,24 @@
 					// insert viewport cursor tiles
 					value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
 					Self.els.cursor.html(value.join(""));
-				} else if (Self.palette.tile.startsWith("c") || Self.palette.tile.startsWith("a")) {
+				} else if (Self.palette.tile.startsWith("a")) {
+					let levelEl = $(event.target),
+						grid = parseInt(levelEl.cssProp("--tile"), 10),
+						tW = +levelEl.cssProp("--w"),
+						l = Math.ceil(event.offsetX / grid) - 1,
+						t = Math.ceil(event.offsetY / grid) - 1,
+						{ w, h } = Self.palette.cursor[0],
+						tile = levelEl.find(`b.a1[style="--x: ${l};--y: ${t};--w: ${w};--h: ${h};"]`);
+					
+					if (tile.length < 1) {
+						// append new entry
+						tile = levelEl.append(`<b class="a1" style="--x: ${l};--y: ${t};--w: ${w};--h: ${h};"></b>`);
+					}
+
+					Self.els.palette.find(`input[name="action-coord"]`).val(`${l},${t},${w},${h}`);
+					Self.els.palette.find(`input[name="action-id"]`).val(tile.data("action"));
+
+				} else if (Self.palette.tile.startsWith("c")) {
 					let levelEl = $(event.target),
 						grid = parseInt(levelEl.cssProp("--tile"), 10),
 						w = +levelEl.cssProp("--w"),
@@ -118,6 +135,23 @@
 				}
 				break;
 			case "select-action-tile":
+				el = $(event.target);
+				Self.palette.tile = el.prop("class").split(" ")[0];
+				// update UI
+				Self.els.palette.find(".tiles .active").removeClass("active");
+				el.addClass("active");
+
+				let [cX, cY] = [0, 0],
+					[cW, cH] = el.data("size") ? el.data("size").split("x").map(i => +i) : [1, 1];
+
+				// empty palette cursor / eraser
+				Self.palette.cursorOrigo = { x: 0, y: 0 };
+				Self.palette.cursor = [{ x: cX, y: cY, w: cW, h: cH }];
+
+				// update viewport cursor
+				value = `<b class="a1" style="--x: ${cX}; --y: ${cY}; --w: ${cW}; --h: ${cH};"></b>`;
+				Self.els.cursor.html(value);
+				break;
 			case "select-col-tile":
 				el = $(event.target);
 				Self.palette.tile = el.prop("class").split(" ")[0];
@@ -254,20 +288,26 @@
 				
 				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
 				break;
-			case "select-action-tiles":
-				Self.els.palette.find(`.field .row .active`).removeClass("active");
-				event.el.addClass("active");
-
-				Self.palette.mode = "select";
-				break;
 			case "update-action-tiles":
-				Self.els.palette.find(`.field .row .active`).removeClass("active");
-				event.el.addClass("active");
-
-				value = Self.els.palette.find(`input[name="action-id"]`).val();
-				console.log(value);
-
-				delete Self.palette.mode;
+			case "clear-action-tiles":
+				let aId = Self.els.palette.find(`input[name="action-id"]`).val(),
+					[aX, aY, aW, aH] = Self.els.palette.find(`input[name="action-coord"]`).val().split(",").map(i => +i),
+					aEl = Self.els.viewport.find(`.layer-action b.a1[style="--x: ${aX};--y: ${aY};--w: ${aW};--h: ${aH};"]`),
+					xNode = Self.xLevel.selectSingleNode(`./Layer[@id="action"]/i[@x="${aX}"][@y="${aY}"][@w="${aW}"][@h="${aH}"]`);
+				
+				if (event.type === "clear-action-tiles") {
+					// clear DOM
+					aEl.remove();
+					// clear from xml
+					xNode.parentNode.removeChild(xNode);
+					// console.log( Self.xLevel );
+				} else {
+					let xLayer = Self.xLevel.selectSingleNode(`./Layer[@id="action"]`),
+						xAction = $.nodeFromString(`<i x="${aX}" y="${aY}" w="${aW}" h="${aH}" action="${aId}"/>`);
+					xLayer.appendChild(xAction);
+					// update UI element attribute
+					aEl.data({ action: aId });
+				}
 				break;
 			case "output-collision-pgn":
 				tiles = [];
@@ -286,10 +326,11 @@
 					let tEl = $(tile),
 						x = tEl.cssProp("--x"),
 						y = tEl.cssProp("--y"),
-						id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
-					tiles.push(`<i ${id} x="${x}" y="${y}"/>`);
+						w = tEl.cssProp("--w"),
+						h = tEl.cssProp("--h");
+					tiles.push(`<i x="${x}" y="${y}" w="${w}" h="${h}" action="${tEl.data("action")}"/>`);
 				});
-				console.log(tiles.join(""));
+				console.log(tiles.join("\n"));
 				break;
 			case "output-pgn":
 				tiles = [];

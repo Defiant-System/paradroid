@@ -128,7 +128,7 @@
 					flex: 1;
 					color: #333;
 					font-size: 13px;
-					padding: 3px 7px 0;
+					padding: 5px 7px 0;
 				}
 
 				div {
@@ -143,7 +143,12 @@
 					border-color: #eee #888 #888 #eee;
 					cursor: pointer;
 
-					&.active {
+					&.hidden {
+						opacity: 0;
+						pointer-events: none;
+					}
+
+					&:active {
 						padding-top: 4px;
 						height: 24px;
 						border-color: #888 #eee #eee #888;
@@ -153,6 +158,8 @@
 				input {
 					width: 67%;
 					box-shadow: 0 0 0 1px rgba(#000,.1);
+
+					// &[name="action-clear"] { opacity: 0; pointer-events: none; }
 				}
 			}
 		}
@@ -233,13 +240,15 @@
 			transform: translateX( calc( var( --tile ) * var( --tx ) ) ) translateY( calc( var( --tile ) * var( --ty ) ) );
 			z-index: 5;
 			pointer-events: none;
+			--w: 1;
+			--h: 1;
 
 			> b {
 				position: absolute;
 				top: calc( var( --tile ) * var( --y ) );
 				left: calc( var( --tile ) * var( --x ) );
-				width: var( --tile );
-				height: var( --tile );
+				width: calc( var( --tile ) * var( --w ) );
+				height: calc( var( --tile ) * var( --h ) );
 				box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
 				// opacity: .75;
 			}
@@ -270,7 +279,11 @@
 				z-index: 3;
 			}
 
-			&.layer-action b { z-index: 4; }
+			&.layer-action b {
+				z-index: 4;
+				width: calc( var( --tile ) * var( --w ) );
+				height: calc( var( --tile ) * var( --h ) );
+			}
 		}
 	}
 

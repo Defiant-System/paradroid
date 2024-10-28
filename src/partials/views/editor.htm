@@ -58,7 +58,7 @@
 				<span data-click="output-action-pgn">Output PGN</span>
 			</div>
 			<div class="tiles" style="--w: 16; --h: 3;" data-click="select-action-tile">
-				<b></b>
+				<b class="a1" data-size="1x1"></b>
 				<b class="a1" data-size="1x2"></b>
 				<b class="a1" data-size="2x1"></b>
 				<b class="a1" data-size="2x2"></b>
@@ -66,12 +66,12 @@
 			<div class="field" style="--w: 16; --h: 3;">
 				<div class="row">
 					<span>Coord</span>
-					<div data-click="select-action-tiles" class="active">Select</div>
+					<div data-click="update-action-tiles">Update</div>
 					<input type="text" name="action-coord" placeholder="[x,y]" />
 				</div>
 				<div class="row">
 					<span>Action</span>
-					<div data-click="update-action-tiles">Update</div>
+					<div data-click="clear-action-tiles">Clear</div>
 					<input type="text" name="action-id" placeholder="Action ID" />
 				</div>
 			</div>

@@ -10,7 +10,7 @@ let Test = {
 		APP.editor.dispatch({ type: "render-level", arg: "a" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(2)`).trigger("click");
-		APP.editor.els.palette.find(`.tiles[data-click="select-action-tile"] b[data-size="2x1"]`).trigger("click");
+		APP.editor.els.palette.find(`.tiles[data-click="select-action-tile"] b[data-size="2x2"]`).trigger("click");
 		// APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
 		// APP.editor.dispatch({ type: "output-pgn" });
 
