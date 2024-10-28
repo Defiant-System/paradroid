@@ -3,7 +3,8 @@ let Test = {
 	init(APP) {
 		// return;
 		
-		// // return APP.dispatch({ type: "show-view", arg: "start" });
+		return APP.dispatch({ type: "show-view", arg: "lift" });
+		// return APP.dispatch({ type: "show-view", arg: "start" });
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 
 		// // EDITOR

@@ -682,7 +682,7 @@ content {
 			}
 		}
 
-		.view-mode {
+		.view-title {
 			padding: 7px 0 0 9px;
 		}
 
@@ -695,7 +695,7 @@ content {
 			.hud-logo {
 				display: inline-block;
 				position: relative;
-				top: 0;
+				top: 1px;
 				width: inherit;
 				height: 45px;
 
@@ -777,22 +777,57 @@ content {
 	}
 
 	.lift-view {
+		.box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 67%;
+			border-radius: 6px;
+			background: rgba(#809,.5) radial-gradient(ellipse at bottom center, rgba(#fef,.25), transparent);
+			box-shadow: inset 0 0 1px rgba(#777,.75),
+						inset 0 1px 1px rgba(#777,.35),
+						inset 0px 6px 0px 0px rgba(#b3c,.2),
+						inset 0 2px 0 rgba(#fff,.5);
+
+			&:before {
+				content: "";
+				position: absolute;
+				bottom: 1px;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.4), transparent 95%);
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.5), transparent 95%);
+			}
+		}
+
 		.ship {
 			position: relative;
+			z-index: 2;
 			width: 600px;
 			height: 211px;
-			margin: 83px auto;
+			margin: 49px auto 0;
 			padding: 8px 0 0 0;
 			// box-shadow: 0 0 0 1px #999;
 			// background: url(~/img/ship.png) 0 0/contain no-repeat;
-			background-size: 100% auto;
+			// background-size: 100% auto;
 
 			.lift {
 				position: absolute;
 				width: 18px;
 				background: #7af;
 				filter: grayscale(.85);
-				box-shadow: inset 0 0 0 2px #44a;
+				box-shadow: inset 0 0 0 2px #228;
 
 				&[data-id="1"] { left: 81px; top: 8px; height: 162px; }
 				&[data-id="2"] { left: 144px; top: 56px; height: 146px; }
@@ -823,8 +858,8 @@ content {
 					right: 2px;
 					height: 18px;
 					background: #eee;
-					border-top: 2px solid #44a;
-					border-bottom: 2px solid #44a;
+					border-top: 2px solid #228;
+					border-bottom: 2px solid #228;
 
 					&:before {
 						content: "";
@@ -853,7 +888,7 @@ content {
 					top: 0;
 					height: inherit;
 					background: var( --fg );
-					box-shadow: inset 0 0 0 2px #555;
+					box-shadow: inset 0 0 0 2px #333;
 
 					&:before {
 						content: "";

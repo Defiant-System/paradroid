@@ -48,6 +48,7 @@ const paradroid = {
 				break;
 			case "show-view":
 				Self.els.content.data({ show: event.arg });
+				Self.hud.dispatch({ type: "set-view-title" });
 				break;
 			// proxy event
 			default:
@@ -64,6 +65,7 @@ const paradroid = {
 	},
 	start: @import "./areas/start.js",
 	editor: @import "./areas/editor.js",
+	hud: @import "./areas/hud.js",
 	lift: @import "./areas/lift.js",
 	mobile: @import "./areas/mobile.js",
 	console: @import "./areas/console.js",
