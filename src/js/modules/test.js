@@ -3,7 +3,11 @@ let Test = {
 	init(APP) {
 		// return;
 		
-		return APP.dispatch({ type: "show-view", arg: "lift" });
+		// LIFT View
+		APP.dispatch({ type: "show-view", arg: "lift" });
+		APP.lift.els.el.find(".lift").get(0).trigger("click");
+		return;
+
 		// return APP.dispatch({ type: "show-view", arg: "start" });
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 

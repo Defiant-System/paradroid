@@ -12,7 +12,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.lift,
-			levels,
+			sections,
 			index,
 			el;
 		// console.log(event);
@@ -22,21 +22,19 @@
 				switch (event.char) {
 					case "up":
 						el = Self.els.el.find(".lift.active");
-						levels = el.data("levels").split(",");
-						index = levels.indexOf(el.data("deck"));
-						if (!levels[index-1]) return;
-						// console.log(`current: ${levels[index]} - go up: ${levels[index-1]}`);
-						console.log(`Level: ${levels[index-1]}`);
-						el.data({ deck: levels[index-1] });
+						sections = el.data("sections").split(",");
+						index = sections.indexOf(el.data("section"));
+						if (!sections[index-1]) return;
+						// select section
+						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index-1] });
 						break;
 					case "down":
 						el = Self.els.el.find(".lift.active");
-						levels = el.data("levels").split(",");
-						index = levels.indexOf(el.data("deck"));
-						if (!levels[index+1]) return;
-						// console.log(`current: ${levels[index]} - go down: ${levels[index+1]}`);
-						console.log(`Level: ${levels[index+1]}`);
-						el.data({ deck: levels[index+1] });
+						sections = el.data("sections").split(",");
+						index = sections.indexOf(el.data("section"));
+						if (!sections[index+1]) return;
+						// select section
+						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index+1] });
 						break;
 					// temp for dev purposes
 					case "left":
@@ -57,8 +55,16 @@
 				if (!el.hasClass("lift")) return;
 				Self.els.el.find(".lift.active").removeClass("active");
 				el.addClass("active");
+				// select level
+				Self.dispatch({ type: "select-level", lift: el.data("id"), section: el.data("section") });
+				break;
+			case "select-level":
+				// get lift
+				el = Self.els.el.find(`.lift[data-id="${event.lift}"]`);
+				el.data({ section: event.section });
 
-				console.log(`Level: ${el.data("deck")}`);
+				el = Self.els.el.find(`.section[data-id="${event.section}"]`);
+				Self.els.el.find(`.ship`).data({ "active-level": el.data("level") });
 				break;
 		}
 	}
