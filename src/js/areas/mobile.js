@@ -55,9 +55,13 @@
 			case "go-to-section":
 				// set view
 				APP.dispatch({ type: "show-view", arg: "mobile" });
+
+				let ship = APP.lift.els.el.find(`.ship`),
+					sectionEl = ship.find(`.section[data-id="${event.state.map.id}"]`);
+				// set ship active level attribute
+				ship.data({ "active-level": sectionEl.data("level") });
 				// level colors
-				let sectionEl = APP.lift.els.el.find(`.ship .section[data-id="${event.state.map.id}"]`),
-					background = sectionEl.cssProp("--fg"),
+				let background = sectionEl.cssProp("--fg"),
 					filter = sectionEl.cssProp("--filter") || "";
 
 				Self.els.cvs.parent().css({ background });

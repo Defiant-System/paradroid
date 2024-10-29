@@ -2,14 +2,16 @@
 let Test = {
 	init(APP) {
 		// return;
-		
-		// LIFT View
-		APP.dispatch({ type: "show-view", arg: "lift" });
-		APP.lift.els.el.find(".lift").get(0).trigger("click");
-		return;
 
+		return APP.dispatch({ type: "show-view", arg: "more" });
 		// return APP.dispatch({ type: "show-view", arg: "start" });
 		// return APP.dispatch({ type: "show-view", arg: "console" });
+
+		
+		// LIFT View
+		// APP.dispatch({ type: "show-view", arg: "lift" });
+		// APP.lift.els.el.find(".lift").get(0).trigger("click");
+		// return;
 
 		// // EDITOR
 		// APP.dispatch({ type: "show-view", arg: "editor" });
@@ -28,13 +30,7 @@ let Test = {
 		return setTimeout(() => {
 			let state = {
 					"001": { x: 2, y: 1 },
-					"map": {
-						id: "19",
-						// droids: [
-						// 	{ id: "247", x: 14, y: 7 },
-						// 	{ id: "516", x: 1, y: 5 },
-						// ],
-					},
+					"map": { id: "1" },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test
