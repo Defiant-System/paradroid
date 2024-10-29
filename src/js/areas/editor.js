@@ -219,11 +219,11 @@
 				break;
 			case "render-level":
 				// if active level; save modifications
-				if (Self.xLevel) {
+				if (Self.xSection) {
 					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" }),
-						xBg = Self.xLevel.selectSingleNode(`./Layer[@id="background"]`),
-						xCol = Self.xLevel.selectSingleNode(`./Layer[@id="collision"]`),
-						xAct = Self.xLevel.selectSingleNode(`./Layer[@id="action"]`);
+						xBg = Self.xSection.selectSingleNode(`./Layer[@id="background"]`),
+						xCol = Self.xSection.selectSingleNode(`./Layer[@id="collision"]`),
+						xAct = Self.xSection.selectSingleNode(`./Layer[@id="action"]`);
 					// delete old background data
 					while (xBg.hasChildNodes()) {
 						xBg.removeChild(xBg.firstChild);
@@ -240,22 +240,22 @@
 					nodes.map(x => xBg.appendChild(x));
 					// save "position"
 					el = Self.els.viewport.find(".layer-background");
-					Self.xLevel.setAttribute("y", +el.css("--y"));
-					Self.xLevel.setAttribute("x", +el.css("--x"));
+					Self.xSection.setAttribute("y", +el.css("--y"));
+					Self.xSection.setAttribute("x", +el.css("--x"));
 				}
 				// check if level has tile nodes
-				let xLevel = window.bluePrint.selectSingleNode(`//Level[@id = "${event.arg}"]`),
-					xBg = xLevel.selectSingleNode(`./Layer[@id="background"]`);
+				let xSection = window.bluePrint.selectSingleNode(`//Section[@id = "${event.arg}"]`),
+					xBg = xSection.selectSingleNode(`./Layer[@id="background"]`);
 				if (!xBg.selectNodes(`./i`).length) {
 					let nodes = [],
-						len = +xLevel.getAttribute("height") * +xLevel.getAttribute("width");
+						len = +xSection.getAttribute("height") * +xSection.getAttribute("width");
 					while (len--) { nodes.push(`<i />`); }
 					// insert nodes
 					$.xmlFromString(`<data>${nodes.join("")}</data>`)
 						.selectNodes(`/data/i`).map(x => xBg.appendChild(x));
 				}
 				// save reference to current
-				Self.xLevel = xLevel;
+				Self.xSection = xSection;
 				// update menu
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
 				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
@@ -266,19 +266,19 @@
 				// render + append HTML
 				window.render({
 					template: "layer-background",
-					match: `//Level[@id = "${event.arg}"]`,
+					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
 				// render collision layer
 				window.render({
 					template: "layer-collision",
-					match: `//Level[@id = "${event.arg}"]`,
+					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
 				// render action layer
 				window.render({
 					template: "layer-action",
-					match: `//Level[@id = "${event.arg}"]`,
+					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
 				break;
@@ -299,16 +299,16 @@
 				let aId = Self.els.palette.find(`input[name="action-id"]`).val(),
 					[aX, aY, aW, aH] = Self.els.palette.find(`input[name="action-coord"]`).val().split(",").map(i => +i),
 					aEl = Self.els.viewport.find(`.layer-action b.a1[style="--x: ${aX};--y: ${aY};--w: ${aW};--h: ${aH};"]`),
-					xNode = Self.xLevel.selectSingleNode(`./Layer[@id="action"]/i[@x="${aX}"][@y="${aY}"][@w="${aW}"][@h="${aH}"]`);
+					xNode = Self.xSection.selectSingleNode(`./Layer[@id="action"]/i[@x="${aX}"][@y="${aY}"][@w="${aW}"][@h="${aH}"]`);
 				
 				if (event.type === "clear-action-tiles") {
 					// clear DOM
 					aEl.remove();
 					// clear from xml
 					if (xNode) xNode.parentNode.removeChild(xNode);
-					// console.log( Self.xLevel );
+					// console.log( Self.xSection );
 				} else {
-					let xLayer = Self.xLevel.selectSingleNode(`./Layer[@id="action"]`),
+					let xLayer = Self.xSection.selectSingleNode(`./Layer[@id="action"]`),
 						xAction = $.nodeFromString(`<i x="${aX}" y="${aY}" w="${aW}" h="${aH}" action="${aId}"/>`);
 					xLayer.appendChild(xAction);
 					// update UI element attribute
@@ -340,12 +340,12 @@
 				break;
 			case "output-pgn":
 				tiles = [];
-				// tiles.push(`<Level id="a" width="12" height="6">\n`);
+				// tiles.push(`<Section id="a" width="12" height="6">\n`);
 				Self.els.viewport.find(`.layer-background b`).map(tile => {
 					let id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
 					tiles.push(`<i ${id}/>`);
 				});
-				// tiles.push(`\n</Level>`);
+				// tiles.push(`\n</Section>`);
 
 				if (event.arg === "get-nodes") return $.xmlFromString(`<data>${tiles.join("")}</data>`).selectNodes("//i");
 				console.log(tiles.join(""));

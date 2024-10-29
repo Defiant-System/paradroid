@@ -19,15 +19,15 @@ class Map {
 	setState(state) {
 		let { id, droids } = state,
 			size = this.arena.tiles.size,
-			xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${id}"]`);
+			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`);
 		// level colors
-		if (xLevel.getAttribute("bg")) {
-			this.arena.cvs.parent().css({ background: xLevel.getAttribute("bg") });
-			this.arena.cvs.css({ filter: xLevel.getAttribute("filter") });
+		if (xSection.getAttribute("bg")) {
+			this.arena.cvs.parent().css({ background: xSection.getAttribute("bg") });
+			this.arena.cvs.css({ filter: xSection.getAttribute("filter") });
 		}
 		// dimensions of this level map
-		this.width = +xLevel.getAttribute("width");
-		this.height = +xLevel.getAttribute("height");
+		this.width = +xSection.getAttribute("width");
+		this.height = +xSection.getAttribute("height");
 		this.w = this.width * size;
 		this.h = this.height * size;
 		
@@ -37,7 +37,7 @@ class Map {
 		// add rows
 		[...Array(this.height)].map(row => this.layout.push([]));
 
-		xLevel.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
+		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
 			let row = Math.floor(col / this.width);
 			this.layout[row].push(xTile.getAttribute("id"));
 		});
