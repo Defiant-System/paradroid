@@ -636,21 +636,21 @@ content {
 			border-radius: inherit;
 			position: relative;
 			flex: 1;
-			background: rgba(#000,.125) radial-gradient(ellipse at bottom center, rgba(#fff,.5), transparent);
-			box-shadow: inset 0 0 1px rgba(#777,.75),
-						inset 0 1px 1px rgba(#777,.35),
+			background: rgba(#000,.125) radial-gradient(ellipse at top center, rgba(#fff,.25), transparent 105%);
+			box-shadow: inset 0 0 0 1px rgba(#666,.15),
+						inset 0 -1px 0 rgba(#777,.125),
 						// 0 1px 0 rgba(#fff,.15),
-						inset 0px 6px 0px 0px rgba(#aaa,.35),
-						inset 0 2px 0 rgba(#fff,.5);
+						// inset 0px 6px 0px 0px rgba(#aaa,.35),
+						inset 0 2px 0 rgba(#fff,.25);
 
 			&:before {
 				content: "";
 				position: absolute;
-				bottom: 1px;
+				top: 1px;
 				left: 0;
 				right: 0;
 				height: 1px;
-				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.4), transparent 95%);
+				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.35), transparent 95%);
 			}
 
 			&:after {
@@ -785,10 +785,10 @@ content {
 			height: 67%;
 			border-radius: 6px;
 			background: rgba(#809,.5) radial-gradient(ellipse at bottom center, rgba(#fef,.25), transparent);
-			box-shadow: inset 0 0 1px rgba(#777,.75),
+			box-shadow: inset 0 0 1px rgba(#666,.75),
 						inset 0 1px 1px rgba(#777,.35),
-						inset 0px 6px 0px 0px rgba(#b3c,.2),
-						inset 0 2px 0 rgba(#fff,.5);
+						// inset 0px 6px 0px 0px rgba(#b3c,.2),
+						inset 0 2px 0 rgba(#fff,.3);
 
 			&:before {
 				content: "";
@@ -824,7 +824,7 @@ content {
 
 			&[data-active-level="1"] {
 				.section[data-id="5"],
-				.section[data-id="19"] { --fg: #f90; }
+				.section[data-id="19"] { --fg: #e07777; }
 			}
 
 			&[data-active-level="2"] {
@@ -837,57 +837,57 @@ content {
 			}
 
 			&[data-active-level="4"] {
-				.section[data-id="17"] { --fg: #ff9bf2; }
+				.section[data-id="17"] { --fg: #a1fc60; }
 			}
 
 			&[data-active-level="5"] {
-				.section[data-id="16"] { --fg: #a1fc60; }
+				.section[data-id="16"] { --fg: #e07777; }
 			}
 
 			&[data-active-level="6"] {
-				.section[data-id="15"] { --fg: #00ceb2; }
+				.section[data-id="15"] { --fg: #f1cd02; }
 			}
 
 			&[data-active-level="7"] {
-				.section[data-id="14"] { --fg: #d88; }
+				.section[data-id="14"] { --fg: #7175f9; }
 			}
 
 			&[data-active-level="8"] {
-				.section[data-id="13"] { --fg: #4bd36a; }
+				.section[data-id="13"] { --fg: #7175f9; }
 			}
 
 			&[data-active-level="9"] {
-				.section[data-id="12"] { --fg: #7175f9; }
+				.section[data-id="12"] { --fg: #e89736; }
 			}
 
 			&[data-active-level="10"] {
-				.section[data-id="9"] { --fg: #666ae1; }
+				.section[data-id="9"] { --fg: #00ceb2; }
 			}
 
 			&[data-active-level="11"] {
-				.section[data-id="7"] { --fg: #e84f46; }
+				.section[data-id="7"] { --fg: #a1fb60; }
 			}
 
 			&[data-active-level="12"] {
-				.section[data-id="8"] { --fg: #a1fb60; }
+				.section[data-id="8"] { --fg: #e74f45; }
 			}
 
 			&[data-active-level="13"] {
 				.section[data-id="2"],
-				.section[data-id="11"] { --fg: #f68f8f; }
+				.section[data-id="11"] { --fg: #00ceb2; }
 			}
 
 			&[data-active-level="14"] {
 				.section[data-id="1"],
-				.section[data-id="10"] { --fg: #992; }
+				.section[data-id="10"] { --fg: #e84f46; }
 			}
 
 			&[data-active-level="15"] {
-				.section[data-id="9"] { --fg: #e3f; }
+				.section[data-id="4"] { --fg: #7175f9; }
 			}
 
 			&[data-active-level="16"] {
-				.section[data-id="6"] { --fg: #27c; }
+				.section[data-id="6"] { --fg: #f1cd02; }
 			}
 
 			.lift {
@@ -982,12 +982,12 @@ content {
 				&[data-id="5"] {
 					left: 319px;
 					top: 72px;
-					height: 112px;
+					height: 114px;
 
 					&[data-section="15"] .elevator { top: 0px; }
 					&[data-section="8"] .elevator { top: 16px; }
 					&[data-section="7"] .elevator { top: 64px; }
-					&[data-section="9"] .elevator { top: 94px; }
+					&[data-section="9"] .elevator { top: 96px; }
 				}
 
 				&[data-id="6"] {
@@ -1199,7 +1199,7 @@ content {
 					.section:nth-child(3) {
 						left: 271px;
 						width: 66px;
-						height: 32px;
+						height: 34px;
 					}
 
 					.section:nth-child(4) {
