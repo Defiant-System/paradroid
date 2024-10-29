@@ -1,5 +1,5 @@
 
-<Section id="4" width="44" height="10" y=".5" x=".5" bg="#808080" filter="grayscale(1) brightness(1.1)">
+<Section id="4" width="44" height="10" y=".5" x=".5">
 	<Layer id="action">
 		<i x="2" y="4" w="2" h="2" action="exit"/>
 		<i x="24" y="2" w="2" h="1" action="console"/>

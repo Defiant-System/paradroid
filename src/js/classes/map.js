@@ -20,11 +20,6 @@ class Map {
 		let { id, droids } = state,
 			size = this.arena.tiles.size,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`);
-		// level colors
-		if (xSection.getAttribute("bg")) {
-			this.arena.cvs.parent().css({ background: xSection.getAttribute("bg") });
-			this.arena.cvs.css({ filter: xSection.getAttribute("filter") });
-		}
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");

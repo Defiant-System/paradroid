@@ -1,5 +1,5 @@
 
-<Section id="18" width="64" height="18" y=".5" x=".5" bg="#8174da" filter="hue-rotate(265deg) brightness(1.1)">
+<Section id="18" width="64" height="18" y=".5" x=".5">
 	<Layer id="action">
 		<i x="18" y="8" w="2" h="2" action="exit"/>
 		<i x="44" y="8" w="2" h="2" action="exit"/>

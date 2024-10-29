@@ -80,7 +80,8 @@ class Arena {
 		// temporary; this prevents setting state if not completly ready
 		if (!this.map) return setTimeout(() => this.setState(state), 100);
 
-		this.map.setState(state.map);
+		let mapState = { droids: [], ...state.map };
+		this.map.setState(mapState);
 		// move player / "001"
 		this.player.spawn(state["001"].x, state["001"].y);
 

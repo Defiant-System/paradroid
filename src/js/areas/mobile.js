@@ -21,6 +21,9 @@
 			// system events
 			case "window.keydown":
 				switch (event.char) {
+					case "esc":
+						APP.dispatch({ type: "show-view", arg: "lift" });
+						break;
 					case "w":
 					case "up": Self.arena.input.up.pressed = true; break;
 					case "s":
@@ -49,6 +52,17 @@
 				break;
 			// custom events
 			case "restore-state":
+			case "go-to-section":
+				// set view
+				APP.dispatch({ type: "show-view", arg: "mobile" });
+				// level colors
+				let sectionEl = APP.lift.els.el.find(`.ship .section[data-id="${event.state.map.id}"]`),
+					background = sectionEl.cssProp("--fg"),
+					filter = sectionEl.cssProp("--filter") || "";
+
+				Self.els.cvs.parent().css({ background });
+				Self.els.cvs.css({ filter });
+				// change arena
 				Self.arena.setState(event.state);
 				break;
 		}

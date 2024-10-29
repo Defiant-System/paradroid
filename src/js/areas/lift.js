@@ -8,6 +8,8 @@
 			content: window.find("content"),
 			el: window.find(".lift-view"),
 		};
+		// elevator data
+		this.elevator = {};
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -20,6 +22,10 @@
 			// system events
 			case "window.keydown":
 				switch (event.char) {
+					case "return":
+						let state = { "001": { x: 2, y: 1 }, "map": { id: Self.elevator.section } };
+						APP.mobile.dispatch({ type: "go-to-section", state });
+						break;
 					case "up":
 						el = Self.els.el.find(".lift.active");
 						sections = el.data("sections").split(",");
@@ -65,6 +71,10 @@
 
 				el = Self.els.el.find(`.section[data-id="${event.section}"]`);
 				Self.els.el.find(`.ship`).data({ "active-level": el.data("level") });
+				// save level information
+				Self.elevator.level = el.data("level");
+				Self.elevator.section = event.section;
+				Self.elevator.lift = event.lift;
 				break;
 		}
 	}
