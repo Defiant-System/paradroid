@@ -19,17 +19,35 @@
 		switch (event.type) {
 			// system events
 			case "window.keydown":
-				el = Self.els.el.find(".lift.active");
-				levels = el.data("decks").split(",");
-				index = levels.indexOf(el.data("deck"));
 				switch (event.char) {
 					case "up":
-						console.log(`current: ${levels[index]} - go: ${levels[index-1]}`);
+						el = Self.els.el.find(".lift.active");
+						levels = el.data("levels").split(",");
+						index = levels.indexOf(el.data("deck"));
+						if (!levels[index-1]) return;
+						// console.log(`current: ${levels[index]} - go up: ${levels[index-1]}`);
+						console.log(`Level: ${levels[index-1]}`);
 						el.data({ deck: levels[index-1] });
 						break;
 					case "down":
-						console.log(`current: ${levels[index]} - go: ${levels[index+1]}`);
+						el = Self.els.el.find(".lift.active");
+						levels = el.data("levels").split(",");
+						index = levels.indexOf(el.data("deck"));
+						if (!levels[index+1]) return;
+						// console.log(`current: ${levels[index]} - go down: ${levels[index+1]}`);
+						console.log(`Level: ${levels[index+1]}`);
 						el.data({ deck: levels[index+1] });
+						break;
+					// temp for dev purposes
+					case "left":
+						el = Self.els.el.find(".lift.active");
+						index = +el.data("id");
+						Self.els.el.find(`.lift[data-id="${index-1}"]`).trigger("click");
+						break;
+					case "right":
+						el = Self.els.el.find(".lift.active");
+						index = +el.data("id");
+						Self.els.el.find(`.lift[data-id="${index+1}"]`).trigger("click");
 						break;
 				}
 				break;
@@ -39,6 +57,8 @@
 				if (!el.hasClass("lift")) return;
 				Self.els.el.find(".lift.active").removeClass("active");
 				el.addClass("active");
+
+				console.log(`Level: ${el.data("deck")}`);
 				break;
 		}
 	}
