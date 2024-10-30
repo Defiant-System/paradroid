@@ -11,8 +11,8 @@
 
 		.errors {
 			position: absolute;
-			top: 50px;
-			left: 100px;
+			top: 79px;
+			left: 178px;
 			width: 400px;
 			height: 280px;
 			perspective: 700px;
@@ -49,12 +49,31 @@
 				transform-style: preserve-3d;
 			}
 
-			.a7 {
-				left: -100px;
+			.fa7 {
+				left: -61px;
 				top: 20px;
 				color: #03F;
-				transform: scale(0.7);
+				font-size: 10px;
+				// transform: scale(0.75);
 				animation: fa7 2s ease-in-out infinite;
+
+				span {
+					display:block;
+
+					b {
+						font-weight:normal;
+						// margin-left:-4px;
+						// text-shadow:0 0 1px #666;
+					}
+				}
+
+				.fa71 { font-size:40%; }
+				.fa72 { font-size:50%; }
+				.fa73 { font-size:100%; }
+				.fa74 { font-size:80%; }
+				.fa75 { font-size:50%; }
+				.fa76 { font-size:40%; }
+
 			}
 
 			.f1 {
@@ -100,8 +119,8 @@
 			}
 
 			.f3 {
-				top:10px;
-				left:10px;
+				top:13px;
+				left:13px;
 				height:140px;
 				width:140px;
 				border-radius:50%;
@@ -381,6 +400,55 @@
 			}
 		}
 
+		.a4 {
+			// background: rgba(#fff,.1);
+			position: absolute;
+			top: 40px;
+			left: 0;
+			width: 14px;
+			height: 150px;
+
+			span {
+				position: relative;
+				width: 100%;
+				height: 3px;
+				display: block;
+				margin-bottom: 12px;
+				background: #555;
+
+				&:before,
+				&:after {
+					content: "";
+					background: inherit;
+					position: absolute;
+					top: 5px;
+					left: 0;
+					height: inherit;
+					width: inherit;
+					animation: inherit;
+					animation-name: a42;
+					animation-delay: 2200ms;
+				}
+
+				&:after {
+					top: 10px;
+					animation-name: a43;
+					animation-delay: 700ms;
+				}
+
+				&.a41 { animation: a41 3s alternate infinite; }
+				&.a42 { animation: a41 5s alternate infinite; animation-delay: 300ms; }
+				&.a43 { animation: a41 3.5s alternate infinite; animation-delay: 200ms; }
+				&.a44 { animation: a41 4s alternate infinite; }
+				&.a45 { animation: a41 3s alternate infinite; }
+				&.a46 { animation: a41 2s alternate infinite; animation-delay: 200ms; }
+				&.a47 { animation: a41 2s alternate infinite; animation-delay: 100ms; }
+				&.a48 { animation: a41 4s alternate infinite; }
+				&.a49 { animation: a41 3s alternate infinite; animation-delay: 300ms; }
+				&.a40 { animation: a41 4s alternate infinite; }
+			}
+		}
+
 		.a7 {
 			position: absolute;
 			top:4px;
@@ -388,25 +456,67 @@
 			width:80px;
 			text-align:right;
 			font-family: Arial;
-			color: #444;
+			color: #555;
 
 			span {
-				display:block;
+				position: relative;
+				overflow: hidden;
 				font-size: 7px;
+				display: inline-block;
+				height: 1em;
+
+				&.a71 { opacity: .75; }
+				&.a76 { opacity: .75; }
 
 				b {
+					position: relative;
+					vertical-align: top;
+					display: inline-block;
+					height: 1em;
+					font-family: Courier New;
 					font-size: 10px;
-					font-weight:normal;
-					margin-right:-2px;
-					color: #555;
+					font-weight: bold;
 
-					&.a71 { font-size: 40%; }
-					&.a72 { font-size: 50%; }
-					&.a73 { font-size: 100%; }
-					&.a74 { font-size: 80%; }
-					&.a75 { font-size: 50%; }
-					&.a76 { font-size: 40%; }
+					&.a739 {
+						margin-left: -2px;
+						margin-right: -2px;
+					}
+
+					&.a731 { animation: a731 2s steps(1) alternate infinite; }
+					&.a732 { animation: a732 3s steps(1) alternate infinite; }
+
+					&.a741 { animation: a732 3s steps(1) alternate infinite; }
+					&.a731 { animation: a741 2s steps(1) alternate infinite; }
+					&.a743 { animation: a732 3s steps(1) alternate infinite; }
 				}
+			}
+		}
+
+		.a9 {
+			position: absolute;
+			bottom:0;
+			right:5px;
+			width: 270px;
+			height: 13px;
+			overflow: hidden;
+			font-family: Courier New;
+			font-size: 0;
+			font-weight: bold;
+			text-align: right;
+			color: #555;
+
+			div {
+				position: relative;
+				font-size: 12px;
+				vertical-align: top;
+				display: inline-block;
+				height: 1em;
+
+				&:nth-child(1) { animation: a91 3s steps(1) alternate infinite; }
+				&:nth-child(3) { animation: a91 3s steps(1) alternate infinite; }
+				&:nth-child(5) { animation: a91 3s steps(1) alternate infinite; }
+				&:nth-child(7) { animation: a91 3s steps(1) alternate infinite; }
+				&:nth-child(9) { animation: a91 3s steps(1) alternate infinite; }
 			}
 		}
 
@@ -460,7 +570,6 @@
 		}
 
 		.single-bar {
-			background: rgba(#aaa,.1);
 			position: absolute;
 			bottom:17px;
 			width:41px;
@@ -531,6 +640,87 @@
 @keyframes a21 {
 	from { transform:rotateZ(0deg) translateY(50%); }
 	to   { transform:rotateZ(360deg) translateY(50%); }
+}
+
+@keyframes a41 {
+	from { width: 100%; }
+	20%  { width: 30%; }
+	40%  { width: 60%; }
+	60%  { width: 15%; }
+	80%  { width: 50%; }
+	to   { width: 100%; }				
+}
+
+@keyframes a42 {
+	from { width: 60%; }
+	20%  { width: 15%; }
+	40%  { width: 100%; }
+	60%  { width: 55%; }
+	80%  { width: 25%; }
+	to   { width: 60%; }				
+}
+
+@keyframes a43 {
+	from { width: 30%; }
+	20%  { width: 80%; }
+	40%  { width: 40%; }
+	60%  { width: 100%; }
+	80%  { width: 20%; }
+	to   { width: 30%; }				
+}
+
+
+@keyframes a731 {
+	0% { top: 0; }
+	10% { top: -10px; }
+	20% { top: -20px; }
+	30% { top: -30px; }
+	40% { top: -40px; }
+	50% { top: -50px; }
+	60% { top: -60px; }
+	70% { top: -70px; }
+	80% { top: -80px; }
+	90% { top: -90px; }
+	100% { top: -100px; }
+}
+
+@keyframes a732 {
+	0% { top: 0; }
+	5% { top: -10px; }
+	10% { top: -20px; }
+	15% { top: -30px; }
+	20% { top: -40px; }
+	25% { top: -50px; }
+	30% { top: -60px; }
+	35% { top: -70px; }
+	40% { top: -80px; }
+	45% { top: -90px; }
+	50% { top: -100px; }
+	55% { top: -110px; }
+	60% { top: -120px; }
+	65% { top: -130px; }
+	70% { top: -140px; }
+	75% { top: -150px; }
+	80% { top: -160px; }
+	85% { top: -170px; }
+	90% { top: -180px; }
+	95% { top: -190px; }
+	100% { top: -200px; }
+}
+
+
+@keyframes a91 {
+	0% { top: 0; }
+	10% { top: -12px; }
+	20% { top: -24px; }
+	30% { top: -36px; }
+	40% { top: -48px; }
+	50% { top: -60px; }
+	60% { top: -72px; }
+	70% { top: -84px; }
+	80% { top: -96px; }
+	90% { top: -108px; }
+	100% { top: -120px; }
 }
 
 @keyframes b1 {
