@@ -1,0 +1,454 @@
+
+.transfer-view {
+	background: radial-gradient(ellipse at top center, #028ceb99, transparent),
+				linear-gradient(180deg, #018fed, #003d92);
+	border-radius: 5px;
+
+	.droid {
+		top: 88px;
+
+		&.left { left: 120px; }
+		&.right { left: 470px; }
+	}
+
+	.board {
+		position: absolute;
+		top: 79px;
+		left: 30px;
+		right: 30px;
+		bottom: 31px;
+		display: flex;
+
+		.left,
+		.right {
+			position: relative;
+			flex: 1;
+
+			.side {
+				position: absolute;
+				top: 23px;
+				bottom: 4px;
+				left: 3px;
+				width: 33px;
+				border-radius: 7px;
+				background: #322c64 linear-gradient(180deg, rgba(#fff,.15), transparent 95%);
+				box-shadow: inset 0px 1px 0px 0px rgba(#888,.15),
+							0 5px 7px rgba(#000,.1);
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: 4px;
+					left: 2px;
+					right: 2px;
+					height: 1px;
+					background: linear-gradient(90deg, transparent 5%, rgba(#fff,.2), transparent 95%);
+				}
+
+				.led {
+					position: absolute;
+					top: 4px;
+					left: 7px;
+					right: 7px;
+					bottom: 10px;
+					border-radius: 3px;
+					background: #f90;
+					box-shadow: inset 0px 6px 0px 0px rgba(#a50,.15),
+								inset 0 0 1px rgba(#940,.75),
+								0 0 3px rgba(#fb3,.35),
+								0 0 17px rgba(#f90,.65);
+
+					&:before {
+						content: "";
+						background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.15), transparent);
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						border-radius: inherit;
+					}
+
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: 1px;
+						left: 0;
+						right: 0;
+						height: 1px;
+						background: linear-gradient(90deg, transparent 5%, rgba(#fff,.5), transparent 95%);
+					}
+				}
+
+				.ammo {
+					// background: rgba(#000,.1);
+					position: absolute;
+					top: 13px;
+					left: -19px;
+
+					> div {
+						position: relative;
+						width: 11px;
+						height: 12px;
+						margin-bottom: 7px;
+						background: url(~/icons/switch-conn.png) 0% 50% no-repeat;
+						background-size: auto 100%;
+					}
+				}
+			}
+
+			.io {
+				position: absolute;
+				top: 55px;
+				left: 36px;
+				right: -4px;
+
+				> div {
+					position: relative;
+					left: 3px;
+					height: 19px;
+					margin-bottom: 3px;
+
+					&:before {
+						content: "";
+						position: absolute;
+						top: 8px;
+						left: -3px;
+						width: 34px;
+						height: 12px;
+						background: url(~/icons/switch.png) 50% 50%/contain no-repeat;
+						// border-radius: 50%;
+						// border: 2px solid #8ed8eb66;
+					}
+
+					&:after {
+						content: "";
+						position: absolute;
+						top: 13px;
+						left: 31px;
+						right: 3px;
+						height: 0;
+						// border: 1px solid #8ed8eb66;
+					}
+
+					&.active {
+						&:before {
+							background-image: url(~/icons/switch-conn.png);
+						}
+
+						&:first-child:before {
+							background-image: url(~/icons/conn.png);
+						}
+					}
+
+
+
+					&:first-child {
+						position: absolute;
+						top: -23px;
+						left: 3px;
+
+						&:before {
+							background-image: none;
+						}
+
+						&:after {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		
+		.right {
+			.side {
+				left: auto;
+				right: 3px;
+
+				.led {
+					background: #b4f;
+					box-shadow: 0 -1px 0 rgba(#111,.15),
+								inset 0px 6px 0px 0px rgba(#50a,.15),
+								inset 0 0 1px rgba(#408,.95),
+								0 0 2px rgba(#c5f,.75),
+								0 0 7px rgba(#b4f,.5);
+				}
+
+				.ammo {
+					left: auto;
+					right: -19px;
+
+					> div {
+						transform: rotate(180deg);
+					}
+				}
+			}
+				
+			.io {
+				top: 54px;
+				left: -4px;
+				right: 42px;
+
+				> div {
+					left: auto;
+					right: -3px;
+
+					&:first-child {
+						left: auto;
+						right: -4px;
+					}
+
+					&:before {
+						left: auto;
+						right: -3px;
+						transform: rotate(180deg);
+					}
+
+					&:after {
+						left: -3px;
+						right: 32px;
+					}
+				}
+			}
+		}
+		
+		.center {
+			position: relative;
+			width: 90px;
+			display: flex;
+			flex-direction: column;
+
+			> div {
+				position: relative;
+				background: #3c357a linear-gradient(180deg, rgba(#fff,.15), transparent);
+				border-radius: 9px;
+				box-shadow: inset 0px 1px 0px 0px rgba(#888,.15),
+							0 5px 7px rgba(#000,.1);
+
+				// &:before {
+				// 	content: "";
+				// 	background-image: radial-gradient(ellipse at top center, rgba(#fff,.25), transparent);
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	right: 0;
+				// 	bottom: 0;
+				// 	border-radius: inherit;
+				// }
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: 4px;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, transparent 5%, rgba(#fff,.25), transparent 95%);
+				}
+			}
+
+			.cpu {
+				top: -47px;
+				height: 53px;
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 11px;
+					left: -41px;
+					width: 171px;
+					height: 85px;
+					background: url(~/icons/cpu-circuit.png) 50% 50%/contain no-repeat;
+				}
+
+				.led {
+					position: relative;
+					top: 3px;
+					left: 8px;
+					width: 74px;
+					height: 41px;
+					background: #f90;
+					// margin-bottom: 2px;
+					border-radius: 5px;
+					box-shadow: inset 0px 6px 0px 0px rgba(#a50,.15),
+								inset 0 0 1px rgba(#940,.95),
+								0 0 3px #fb3,
+								0 0 17px rgba(#f90,.85);
+
+					&:before {
+						content: "";
+						background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.5), transparent);
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						border-radius: inherit;
+					}
+
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: 2px;
+						left: 0;
+						right: 0;
+						height: 1px;
+						background: linear-gradient(90deg, transparent 5%, rgba(#fff,.5), transparent 95%);
+					}
+				}
+
+				b {
+					position: absolute;
+					background: #8ed8eb66;
+					box-shadow: none;
+
+					&[data-i="1"] {
+						top: 14px;
+						left: -9px;
+						width: 9px;
+						height: 9px;
+						border-radius: 3px 0 0 3px;
+					}
+
+					&[data-i="2"] {
+						top: 30px;
+						left: -9px;
+						width: 9px;
+						height: 9px;
+						border-radius: 3px 0 0 3px;
+					}
+
+					&[data-i="3"] {
+						bottom: -9px;
+						left: 10px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 0 3px 3px;
+					}
+
+					&[data-i="4"] {
+						bottom: -9px;
+						left: 25px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 0 3px 3px;
+					}
+
+					&[data-i="5"] {
+						bottom: -9px;
+						left: 40px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 0 3px 3px;
+					}
+
+					&[data-i="6"] {
+						bottom: -9px;
+						left: 55px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 0 3px 3px;
+					}
+
+					&[data-i="7"] {
+						bottom: -9px;
+						left: 70px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 0 3px 3px;
+					}
+
+					&[data-i="8"] {
+						top: 30px;
+						right: -9px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 3px 3px 0;
+					}
+
+					&[data-i="9"] {
+						top: 14px;
+						right: -9px;
+						width: 9px;
+						height: 9px;
+						border-radius: 0 3px 3px 0;
+					}
+				}
+			}
+
+			.io-leds {
+				top: -4px;
+				left: 15px;
+				flex: 1;
+				padding: 9px 7px 0;
+				width: 60px;
+
+				div {
+					position: relative;
+					height: 19px;
+					border-radius: 4px;
+					margin-bottom: 3px;
+
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: 1px;
+						left: 0;
+						right: 0;
+						height: 1px;
+						background: linear-gradient(90deg, transparent 5%, rgba(#fff,.35), transparent 95%);
+					}
+
+					&:after {
+						bottom: -1px;
+					}
+
+					&.yellow {
+						background: #fb4;
+						box-shadow: 0 -1px 0 rgba(#111,.15),
+									inset 0px 5px 0px 0px rgba(#a50,.15),
+									inset 0 0 1px rgba(#940,.95),
+									0 0 2px #fb3,
+									0 0 7px rgba(#fb4,.5);
+					}
+					
+					&.purple {
+						background: #b4f;
+						box-shadow: 0 -1px 0 rgba(#111,.15),
+									inset 0px 5px 0px 0px rgba(#50a,.15),
+									inset 0 0 1px rgba(#408,.95),
+									0 0 2px rgba(#c5f,.75),
+									0 0 7px rgba(#b4f,.5);
+					}
+
+					b {
+						position: absolute;
+						top: 6px;
+						bottom: 4px;
+						left: -18px;
+						width: 11px;
+						box-shadow: none;
+						background: #8ed8eb66;
+						border-radius: 3px 0 0 3px;
+						// box-shadow: inset 0 1px 0 rgba(#fff,.1),
+						// 			0 1px 0 rgba(#000,.1);
+					}
+
+					i {
+						position: absolute;
+						top: 5px;
+						bottom: 5px;
+						right: -18px;
+						width: 11px;
+						box-shadow: none;
+						background: #8ed8eb66;
+						border-radius: 0 3px 3px 0;
+						// box-shadow: inset 0 1px 0 rgba(#fff,.1),
+						// 			0 1px 0 rgba(#000,.1);
+					}
+				}
+			}
+		}
+	}
+}
