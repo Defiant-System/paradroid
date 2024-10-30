@@ -8,6 +8,7 @@
 		<Menu name="Show&#8230;">
 			<Menu name="Start" click="show-view" arg="start"/>
 			<Menu name="Lift" click="show-view" arg="lift"/>
+			<Menu name="More" click="show-view" arg="more"/>
 			<Menu name="Mobile" click="show-view" arg="mobile"/>
 			<Menu name="Transfer" click="show-view" arg="transfer"/>
 			<Menu name="Console" click="show-view" arg="console"/>

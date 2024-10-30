@@ -72,10 +72,12 @@ class Droid {
 		let arena = this.arena,
 			digits = this.digits,
 			w = 45,
-			f = this.frame.index * w;
+			f = this.frame.index * w,
+			pX = arena.viewport.half.w,
+			pY = arena.viewport.half.h;
 
 		ctx.save();
-		ctx.translate(arena.viewport.half.w, arena.viewport.half.h);
+		ctx.translate(pX, pY);
 
 		if (this.light) {
 			let lightX = (arena.tiles.size / 2);

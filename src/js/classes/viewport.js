@@ -37,7 +37,7 @@ class Viewport {
 	scroll(x, y) {
 		let newX = x - (this.w / 2),
 			newY = y - (this.h / 2);
-		this.x += (newX - this.x) * .1;
-		this.y += (newY - this.y) * .1;
+		this.x += (newX - this.x) * .115;
+		this.y += (newY - this.y) * .115;
 	}
 }
