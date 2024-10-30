@@ -8,9 +8,14 @@ class Player extends Droid {
 			radius: 100,
 		};
 
+		this.tile = {
+			x: 0,
+			y: 0,
+		};
+
 		this.torch = {
 			lit: false,
-			frame: 0
+			frame: 0,
 		};
 	}
 
@@ -29,19 +34,18 @@ class Player extends Droid {
 	}
 
 	move(point) {
-		let map = this.arena.map,
-			viewport = this.arena.viewport,
+		let viewport = this.arena.viewport,
 			size = this.arena.tiles.size,
 			oldPos = {
-				x: Math.ceil((this.pos.x - map.x) / size),
-				y: Math.ceil((this.pos.y - map.y) / size),
+				x: Math.ceil((this.pos.x - viewport.x) / size),
+				y: Math.ceil((this.pos.y - viewport.y) / size),
 			},
 			move = this.pos.add(point),
 			newPos = {
-				x: Math.ceil((move.x - map.x) / size),
-				y: Math.ceil((move.y - map.y) / size),
+				x: Math.ceil((move.x + viewport.x) / size),
+				y: Math.ceil((move.y + viewport.y) / size),
 			};
-			// console.log( oldPos, newPos );
+		// console.log( newPos );
 
 		// for (let i = 0; i <= 1; i++) {
 			// let tile = (i == 0) ? map.layout[oldPos.y][newPos.x] : map.layout[newPos.y][oldPos.x];
@@ -50,10 +54,10 @@ class Player extends Droid {
 		// 	if (!wall) {
 		// 		if (i == 0) {
 		// 			this.pos.x += x;
-		// 			this.tile.x = newPos.x;
+					this.tile.x = newPos.x;
 		// 		} else {
 		// 			this.pos.y += y;
-		// 			this.tile.y = newPos.y;
+					this.tile.y = newPos.y;
 		// 		}
 		// 	}
 		// }

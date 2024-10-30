@@ -106,7 +106,7 @@ class Arena {
 
 		if (this.debug.on) {
 			this.debug.elFps.html(this.fpsControl._fps);
-			this.debug.elCoords.html(this.player.pos.toString());
+			this.debug.elCoords.html(`${this.player.tile.x}, ${this.player.tile.y}`);
 		}
 	}
 }
