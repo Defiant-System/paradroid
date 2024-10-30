@@ -13,7 +13,7 @@
 			position: absolute;
 			top: 79px;
 			left: 178px;
-			width: 400px;
+			width: 393px;
 			height: 280px;
 			perspective: 700px;
 			font-size: 10px;
@@ -31,8 +31,8 @@
 
 		.figure {
 			position: absolute;
-			top: 55px;
-			left: 140px;
+			top: 53px;
+			left: 135px;
 			height: 170px;
 			width: 170px;
 			transform: rotateY(-30deg) rotateX(10deg);
@@ -364,7 +364,7 @@
 		.progress-bar {
 			position: absolute;
 			top:9px;
-			left:20px;
+			left:11px;
 			height:4px;
 			width:70px;
 			border:1px dotted #666;
@@ -390,12 +390,13 @@
 
 			.a21 {
 				position: absolute;
-				top:8px;
+				top:14px;
 				left:13px;
-				height:14px;
-				width:4px;
-				background:#333;
+				height:13px;
+				width:3px;
+				background:#555;
 				border-radius:3px;
+				transform-origin: 50% 0;
 				animation: a21 8s linear infinite;
 			}
 		}
@@ -486,7 +487,7 @@
 					&.a732 { animation: a732 3s steps(1) alternate infinite; }
 
 					&.a741 { animation: a732 3s steps(1) alternate infinite; }
-					&.a731 { animation: a741 2s steps(1) alternate infinite; }
+					&.a742 { animation: a731 2s steps(1) alternate infinite; }
 					&.a743 { animation: a732 3s steps(1) alternate infinite; }
 				}
 			}
@@ -512,11 +513,11 @@
 				display: inline-block;
 				height: 1em;
 
-				&:nth-child(1) { animation: a91 3s steps(1) alternate infinite; }
-				&:nth-child(3) { animation: a91 3s steps(1) alternate infinite; }
-				&:nth-child(5) { animation: a91 3s steps(1) alternate infinite; }
-				&:nth-child(7) { animation: a91 3s steps(1) alternate infinite; }
-				&:nth-child(9) { animation: a91 3s steps(1) alternate infinite; }
+				&:nth-child(1) { animation: a91 2s steps(1) alternate infinite; }
+				&:nth-child(3) { animation: a91 1s steps(1) alternate infinite; }
+				&:nth-child(5) { animation: a91 2s steps(1) alternate infinite; }
+				&:nth-child(7) { animation: a91 1s steps(1) alternate infinite; }
+				&:nth-child(9) { animation: a91 2.5s steps(1) alternate infinite; }
 			}
 		}
 
@@ -537,7 +538,44 @@
 				width:100px;
 				background:#555;
 				right:65px;
-				animation:a10 2s ease-in-out infinite;
+				animation:a10 3.5s ease-in-out infinite;
+			}
+		}
+
+		.numbers {
+			position: absolute;
+			top: 23px;
+			left: 20px;
+			height: 200px;
+			font-family: Courier New;
+			font-weight: bold;
+			font-size: 10px;
+			color: #555;
+
+			div {
+				position: relative;
+				width: 100%;
+				height: 10px;
+				overflow: hidden;
+				margin-bottom: 7px;
+
+				&:nth-child(1) { animation: a3 1.5s ease-in-out 100ms infinite; }
+				&:nth-child(1) { animation: a3 1s ease-in-out 200ms infinite; }
+				&:nth-child(2) { animation: a3 1.5s ease-in-out 100ms infinite; }
+				&:nth-child(3) { animation: a3 1s ease-in-out 400ms infinite; }
+				&:nth-child(4) { animation: a3 1.5s ease-in-out 200ms infinite; }
+				&:nth-child(5) { animation: a3 1.5s ease-in-out 400ms infinite; }
+				&:nth-child(6) { animation: a3 1s ease-in-out 100ms infinite; }
+				&:nth-child(7) { animation: a3 1.5s ease-in-out 600ms infinite; }
+				&:nth-child(8) { animation: a3 1s ease-in-out 100ms infinite; }
+				&:nth-child(9) { animation: a3 1.5s ease-in-out 200ms infinite; }
+				&:nth-child(10) { animation: a3 1.5s ease-in-out 500ms infinite; }
+				&:nth-child(11) { animation: a3 1s ease-in-out 200ms infinite; }
+
+				span {
+					position: relative;
+					animation: a731 2s steps(1) alternate infinite;
+				}
 			}
 		}
 
@@ -620,7 +658,76 @@
 				}
 			}
 		}
+
+		.kit {
+			position: absolute;
+			left: -1px;
+			right: -1px;
+			bottom: -29px;
+			height: 29px;
+			border: inherit;
+			border-top: 0;
+			font-size: 0;
+
+			span {
+				position: relative;
+				display: inline-block;
+				width: 23px;
+				height: inherit;
+				border-right: 1px solid;
+				border-color: inherit;
+
+				&:last-child {
+					border: 0;
+				}
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 3px;
+					left: 2px;
+					right: 2px;
+					bottom: 3px;
+					opacity: .1;
+					background: #555;
+				}
+
+				&:nth-child(1):before { animation: a3 1s ease-in-out 100ms infinite; }
+				&:nth-child(2):before { animation: a3 1s ease-in-out 200ms infinite; }
+				&:nth-child(3):before { animation: a3 1s ease-in-out 300ms infinite; }
+				&:nth-child(4):before { animation: a3 1s ease-in-out 400ms infinite; }
+				&:nth-child(5):before { animation: a3 1s ease-in-out 500ms infinite; }
+				&:nth-child(6):before { animation: a3 1s ease-in-out 600ms infinite; }
+				&:nth-child(7):before { animation: a3 1s ease-in-out 700ms infinite; }
+				&:nth-child(8):before { animation: a3 1s ease-in-out 800ms infinite; }
+				&:nth-child(9):before { animation: a3 1s ease-in-out 900ms infinite; }
+				&:nth-child(10):before { animation: a3 1s ease-in-out 800ms infinite; }
+				&:nth-child(11):before { animation: a3 1s ease-in-out 700ms infinite; }
+				&:nth-child(12):before { animation: a3 1s ease-in-out 600ms infinite; }
+				&:nth-child(13):before { animation: a3 1s ease-in-out 500ms infinite; }
+				&:nth-child(14):before { animation: a3 1s ease-in-out 400ms infinite; }
+				&:nth-child(15):before { animation: a3 1s ease-in-out 300ms infinite; }
+				&:nth-child(16):before { animation: a3 1s ease-in-out 200ms infinite; }
+				&:nth-child(17):before { animation: a3 1s ease-in-out 100ms infinite; }
+			}
+		}
 	}
+}
+
+
+@keyframes a3 {
+	from { opacity: .1; }
+	50%  { opacity: 1; }
+	to   { opacity: .1; }
+}
+
+@keyframes a10 {
+	from { width: 100px; }
+	20%  { width: 10px; }
+	40%  { width: 140px; }
+	60%  { width: 50px; }
+	80%  { width: 120px; }
+	to   { width: 100px; }
 }
 
 @keyframes a11 {
@@ -638,8 +745,8 @@
 }
 
 @keyframes a21 {
-	from { transform:rotateZ(0deg) translateY(50%); }
-	to   { transform:rotateZ(360deg) translateY(50%); }
+	from { transform: rotateZ(0deg); }
+	to   { transform: rotateZ(360deg); }
 }
 
 @keyframes a41 {
@@ -848,13 +955,4 @@
 	60%  { height: 120px; }
 	80%  { height: 70px; }
 	to   { height: 0; }
-}
-
-@keyframes a10 {
-	from { width: 100px; }
-	20%  { width: 10px; }
-	40%  { width: 140px; }
-	60%  { width: 50px; }
-	80%  { width: 120px; }
-	to   { width: 100px; }
 }
