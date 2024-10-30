@@ -17,11 +17,11 @@ class Player extends Droid {
 	spawn(x, y) {
 		let arena = this.arena,
 			size = arena.tiles.size,
-			oX = (arena.viewport.w - arena.map.w) >> 1,
-			oY = (arena.viewport.h - arena.map.h) >> 1,
+			oX = arena.viewport.w - arena.tiles.char,// - arena.map.w,
+			oY = arena.viewport.h - arena.tiles.char,// - arena.map.h,
 			pos = {
-				x: oX + ((x * 2) * size) + 9,
-				y: oY + ((y * 2) * size) + 9,
+				x: (oX >> 1) + ((x * 2) * size),
+				y: (oY >> 1) + ((y * 2) * size),
 			};
 		
 		this.pos.x = pos.x;
@@ -58,6 +58,7 @@ class Player extends Droid {
 		// 	}
 		// }
 		this.pos = move;
+		// this.pos = new Point(150, 150);
 	}
 
 	move_(x, y) {
@@ -88,6 +89,3 @@ class Player extends Droid {
 		}
 	}
 }
-
-// m2a
-// m3a

@@ -3,7 +3,7 @@ let Test = {
 	init(APP) {
 		// return;
 
-		return APP.dispatch({ type: "show-view", arg: "more" });
+		// return APP.dispatch({ type: "show-view", arg: "more" });
 		// return APP.dispatch({ type: "show-view", arg: "start" });
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 
@@ -29,8 +29,8 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					"001": { x: 2, y: 1 },
-					"map": { id: "1" },
+					"001": { x: 3, y: 3 },
+					"map": { id: "3" },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test

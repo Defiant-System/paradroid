@@ -69,17 +69,17 @@ class Droid {
 	}
 
 	render(ctx) {
-		let assets = this.arena.assets,
+		let arena = this.arena,
 			digits = this.digits,
 			w = 45,
 			f = this.frame.index * w;
 
 		ctx.save();
-		ctx.translate(this.pos.x, this.pos.y);
+		ctx.translate(arena.viewport.half.w, arena.viewport.half.h);
 
 		if (this.light) {
-			let lightX = (this.arena.tiles.size / 2);
-			let lightY = (this.arena.tiles.size / 2);
+			let lightX = (arena.tiles.size / 2);
+			let lightY = (arena.tiles.size / 2);
 
 			let radius = this.light.radius;
 			let radialGradient = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, radius);

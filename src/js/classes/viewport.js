@@ -8,13 +8,17 @@ class Viewport {
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		// mid point of viewport
+		this.half = { w: w >> 1, h: h >> 1 };
 	}
 
 	center() {
 		let arena = this.arena,
 			step = new Point(0, 0),
-			centerX = (arena.map.w < this.w ? (arena.width - this.w + arena.map.w) : this.w) >> 1,
-			centerY = (arena.map.h < this.h ? (arena.height - this.h + arena.map.h) : this.h) >> 1;
+			// centerX = (arena.map.w < this.w ? (arena.width - this.w + arena.map.w) : this.w) >> 1,
+			// centerY = (arena.map.h < this.h ? (arena.height - this.h + arena.map.h) : this.h) >> 1;
+			centerX = arena.player.pos.x - arena.viewport.half.w + arena.tiles.size,
+			centerY = arena.player.pos.y - arena.viewport.half.h + arena.tiles.size;
 
 		for (let key in arena.input) {
 			if (arena.input[key].pressed) {
@@ -31,7 +35,9 @@ class Viewport {
 	}
 
 	scroll(x, y) {
-		this.x = x - (this.w / 2);
-		this.y = y - (this.h / 2);
+		let newX = x - (this.w / 2),
+			newY = y - (this.h / 2);
+		this.x += (newX - this.x) * .1;
+		this.y += (newY - this.y) * .1;
 	}
 }
