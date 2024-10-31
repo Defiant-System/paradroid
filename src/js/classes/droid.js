@@ -71,7 +71,7 @@ class Droid {
 	render(ctx) {
 		let arena = this.arena,
 			digits = this.digits,
-			w = 45,
+			w = arena.tiles.char,
 			f = this.frame.index * w,
 			pX = arena.viewport.half.w,
 			pY = arena.viewport.half.h;
@@ -122,5 +122,13 @@ class Droid {
 		);
 
 		ctx.restore();
+
+		// if debug mode on, draw extras
+		if (this.arena.debug.on) {
+			ctx.save();
+			ctx.fillStyle = "#ff000077";
+			ctx.fillRect(pX, pY, w, w);
+			ctx.restore();
+		}
 	}
 }

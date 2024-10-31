@@ -54,7 +54,7 @@ class Player extends Droid {
 	checkCollision(x, y) {
 
 		x -= 320;
-		y -= 160;
+		y -= 180;
 
 		let arena = this.arena,
 			size = arena.tiles.size,

@@ -19,6 +19,7 @@
 		<meta name="xsl" value="src/partials/templates.xsl"/>
 
 		@import "src/partials/menubar.xml"
+		@import "src/partials/sounds.xml"
 	</Head>
 
 	@import "src/partials/data.xml"

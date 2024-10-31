@@ -33,6 +33,8 @@
 						if (!sections[index-1]) return;
 						// select section
 						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index-1] });
+						// play sound fx
+						window.audio.play("lift-move");
 						break;
 					case "down":
 						el = Self.els.el.find(".lift.active");
@@ -41,17 +43,23 @@
 						if (!sections[index+1]) return;
 						// select section
 						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index+1] });
+						// play sound fx
+						window.audio.play("lift-move");
 						break;
 					// temp for dev purposes
 					case "left":
 						el = Self.els.el.find(".lift.active");
 						index = +el.data("id");
 						Self.els.el.find(`.lift[data-id="${index-1}"]`).trigger("click");
+						// play sound fx
+						window.audio.play("lift-enter");
 						break;
 					case "right":
 						el = Self.els.el.find(".lift.active");
 						index = +el.data("id");
 						Self.els.el.find(`.lift[data-id="${index+1}"]`).trigger("click");
+						// play sound fx
+						window.audio.play("lift-enter");
 						break;
 				}
 				break;
