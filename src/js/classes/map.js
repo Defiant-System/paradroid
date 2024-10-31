@@ -93,7 +93,19 @@ class Map {
 
 		// if debug mode on, draw extras
 		if (this.arena.debug.on) {
+			ctx.save();
 
+			ctx.fillStyle = "#00000066";
+			
+			this.arena.map.collision.map((row, cY) => {
+				row.map((cell, cX) => {
+					let wX = (cX * size) - viewport.x,
+						wY = (cY * size) - viewport.y;
+					if (cell > 0) ctx.fillRect(wX, wY, size, size);
+				});
+			});
+
+			ctx.restore();
 		}
 	}
 }

@@ -27,7 +27,7 @@ class Viewport {
 		if (step.x !== 0 || step.y !== 0) {
 			this.arena.player.move(step);
 		}
-		this.scroll(centerX, centerY-80);
+		this.scroll(centerX, centerY);
 	}
 
 	scroll(x, y) {

@@ -47,8 +47,8 @@ class Player extends Droid {
 			this.pos.x = move.x;
 		}
 
-		this.tile.x = Math.ceil((move.x + viewport.x) / size);
-		this.tile.y = Math.ceil((move.y + viewport.y) / size);
+		this.tile.x = Math.ceil((this.pos.x + viewport.x) / size);
+		this.tile.y = Math.ceil((this.pos.y + viewport.y) / size);
 	}
 
 	checkCollision(x, y) {
