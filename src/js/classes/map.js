@@ -81,11 +81,11 @@ class Map {
 					tX = Math.round((x * size) - vX),
 					tY = Math.round((y * size) - vY);
 
-				// ctx.drawImage(
-				// 	assets["big-map"].img,
-				// 	oX, oY, size, size,
-				// 	tX, tY, size, size
-				// );
+				ctx.drawImage(
+					assets["big-map"].img,
+					oX, oY, size, size,
+					tX, tY, size, size
+				);
 			}
 		}
 		// draw droids

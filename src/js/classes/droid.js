@@ -77,7 +77,7 @@ class Droid {
 			pY = arena.viewport.half.h;
 
 		ctx.save();
-		ctx.translate(pX, pY);
+		ctx.translate(pX-5, pY-9);
 
 		if (this.light) {
 			let lightX = (arena.tiles.size / 2);

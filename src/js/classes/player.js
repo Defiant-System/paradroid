@@ -8,7 +8,7 @@ class Player extends Droid {
 			radius: 100,
 		};
 
-		this.speed = .85;
+		this.speed = .5;
 
 		this.tile = {
 			x: 0,
@@ -36,37 +36,45 @@ class Player extends Droid {
 	}
 
 	move(point) {
-		let viewport = this.arena.viewport,
-			size = this.arena.tiles.size,
-			move = this.pos.add(point.multiply(this.speed));
-
-		// Only check "y", use old "x"
-		if (!this.checkCollision(this.pos.x, move.y)) {
-			this.pos.y = move.y;
-		}
-		// Only check "x", use old "y"
-		if (!this.checkCollision(move.x, this.pos.y)) {
-			this.pos.x = move.x;
-		}
-
-		this.tile.x = Math.ceil((this.pos.x + viewport.x) / size);
-		this.tile.y = Math.ceil((this.pos.y + viewport.y) / size);
-	}
-
-	checkCollision(x, y) {
-
-		x -= 320;
-		y -= 180;
-
 		let arena = this.arena,
 			size = arena.tiles.size,
+			// move = this.pos.add(point.multiply(this.speed)),
 			map = arena.map.collision,
-			x1 = Math.floor((x + 1) / size), 
-			y1 = Math.floor((y + 1) / size),
-			x2 = Math.floor((x + 1 - 1) / size), 
-			y2 = Math.floor((y + 1 - 1) / size);
-		// if there is wall, return true
-		return (map[y1][x1] !== 0 || map[y2][x1] !== 0 || map[y1][x2] !== 0 ||  map[y2][x2] !== 0);
+			vX = (arena.viewport.half.w - 32),
+			vY = (arena.viewport.half.h - 32);
+
+		let old_pos = {
+			x: Math.floor((this.pos.x - vX) / size),
+			y: Math.floor((this.pos.y - vY) / size),
+		};
+		let new_pos = {
+			x: Math.floor((this.pos.x - vX + point.x + (point.x > 0 ? size : 0)) / size),
+			y: Math.floor((this.pos.y - vY + point.y + (point.y > 0 ? size : 0)) / size),
+		};
+
+		for (let i=0; i<=1; i++) {
+			let tile = (i === 0) ? map[old_pos.y][new_pos.x] : map[new_pos.y][old_pos.x];
+			
+			if (tile !== 1) {
+				if (i == 0) {
+					this.pos.x += point.x;
+					this.tile.x = new_pos.x;
+				} else {
+					this.pos.y += point.y;
+					this.tile.y = new_pos.y;
+				}
+			} else {
+				if (i == 0) {
+					this.pos.x = point.x > 0
+								? Math.max(vX + ((new_pos.x - 1) * size), this.pos.x)
+								: Math.min(vX + ((new_pos.x + 1) * size), this.pos.x);
+				} else {
+					this.pos.y = point.y > 0
+								? Math.max(vY + ((new_pos.y - 1) * size), this.pos.y)
+								: Math.min(vY + ((new_pos.y + 1) * size), this.pos.y);
+				}
+			}
+		}
 	}
 
 	update(delta) {
