@@ -25,8 +25,8 @@ class Player extends Droid {
 			oX = arena.viewport.w - arena.tiles.char,// - arena.map.w,
 			oY = arena.viewport.h - arena.tiles.char,// - arena.map.h,
 			pos = {
-				x: (oX >> 1) + ((x * 2) * size),
-				y: (oY >> 1) + ((y * 2) * size),
+				x: (oX >> 1) + (x * size),
+				y: (oY >> 1) + (y * size),
 			};
 		
 		this.pos.x = pos.x;
@@ -52,17 +52,42 @@ class Player extends Droid {
 	}
 
 	checkCollision(x, y) {
+
+		x -= 320;
+		y -= 160;
+
 		let arena = this.arena,
-			size = this.arena.tiles.size,
+			size = arena.tiles.size,
 			map = arena.map.collision,
 			x1 = Math.floor((x + 1) / size), 
 			y1 = Math.floor((y + 1) / size),
 			x2 = Math.floor((x + 1 - 1) / size), 
 			y2 = Math.floor((y + 1 - 1) / size);
-		
-		if (map[y1][x1] !== 0 || map[y2][x1] !== 0 || map[y1][x2] !== 0 ||  map[y2][x2] !== 0) {
-			return true;
+		// console.log( x1, y1 );
+		// return false;
+		// if there is wall, return true
+		return (map[y1][x1] !== 0 || map[y2][x1] !== 0 || map[y1][x2] !== 0 ||  map[y2][x2] !== 0);
+	}
+
+	update(delta) {
+		let arena = this.arena,
+			step = new Point(0, 0);
+
+		// check input
+		for (let key in arena.input) {
+			if (arena.input[key].pressed) {
+				step = step.add(arena.input[key].move);
+			}
 		}
-		return false;
+		
+		if (step.x !== 0 || step.y !== 0) {
+			this.move(step);
+		}
+
+		super.update(delta);
+	}
+
+	render(ctx) {
+		super.render(ctx);
 	}
 }

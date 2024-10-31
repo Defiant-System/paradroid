@@ -14,25 +14,14 @@ class Viewport {
 
 	center() {
 		let arena = this.arena,
-			step = new Point(0, 0),
-			centerX = arena.player.pos.x - arena.viewport.half.w + arena.tiles.size,
-			centerY = arena.player.pos.y - arena.viewport.half.h + arena.tiles.size;
-
-		for (let key in arena.input) {
-			if (arena.input[key].pressed) {
-				step = step.add(arena.input[key].move);
-			}
-		}
-		
-		if (step.x !== 0 || step.y !== 0) {
-			this.arena.player.move(step);
-		}
+			centerX = arena.player.pos.x - this.half.w + arena.tiles.size,
+			centerY = arena.player.pos.y - this.half.h + arena.tiles.size;
 		this.scroll(centerX, centerY);
 	}
 
 	scroll(x, y) {
-		let newX = x - (this.w / 2),
-			newY = y - (this.h / 2);
+		let newX = x - this.half.w,
+			newY = y - this.half.h;
 		this.x += (newX - this.x); // * .115;
 		this.y += (newY - this.y); // * .115;
 	}
