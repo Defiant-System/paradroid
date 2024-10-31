@@ -73,7 +73,6 @@ class Arena {
 		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
 		// map
 		this.map = new Map({ arena: this, ...this.tiles });
-		// this.map.layout();
 	}
 
 	setState(state) {

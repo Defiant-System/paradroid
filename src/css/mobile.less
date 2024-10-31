@@ -3,10 +3,10 @@
 	// background: #e07777;
 	border-radius: 5px;
 
-	&:before1 {
+	&:before {
 		content: "";
-		background: radial-gradient(ellipse at top center, rgba(#fff,.5), transparent),
-					linear-gradient(180deg, rgba(#fff,.5), rgba(#222,.05));
+		background: radial-gradient(ellipse at top center, rgba(#fff,.35), transparent),
+					linear-gradient(180deg, rgba(#fff,.25), rgba(#222,.25));
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -42,11 +42,14 @@
 	}
 
 	.debug {
+		background: rgba(#000,.2);
 		position: absolute;
 		bottom: 5px;
-		left: 7px;
-		right: 7px;
+		left: 203px;
+		right: 203px;
 		color: #ccc;
+		padding: 3px 0;
+		border-radius: 4px;
 		font-size: 13px;
 		text-align: center;
 		mix-blend-mode: hard-light;

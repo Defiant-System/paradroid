@@ -34,7 +34,7 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test
-			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 2500);
+			setTimeout(() => APP.mobile.arena.fpsControl.stop(), 500);
 		}, 300);
 
 	}

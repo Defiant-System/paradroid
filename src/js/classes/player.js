@@ -48,7 +48,7 @@ class Player extends Droid {
 		// console.log( newPos );
 
 		// for (let i = 0; i <= 1; i++) {
-			// let tile = (i == 0) ? map.layout[oldPos.y][newPos.x] : map.layout[newPos.y][oldPos.x];
+			// let tile = (i == 0) ? map.background[oldPos.y][newPos.x] : map.background[newPos.y][oldPos.x];
 		// 	let wall = map.tiles[tile].wall;
 
 		// 	if (!wall) {
@@ -78,7 +78,7 @@ class Player extends Droid {
 			};
 
 		for (let i = 0; i <= 1; i++) {
-			// let tile = (i == 0) ? map.layout[pos.y][newPos.x] : map.layout[newPos.y][pos.x];
+			// let tile = (i == 0) ? map.background[pos.y][newPos.x] : map.background[newPos.y][pos.x];
 			// let wall = map.assets[tile].wall;
 
 			// if (!wall) {

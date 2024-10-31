@@ -26,16 +26,25 @@ class Map {
 		this.w = this.width * size;
 		this.h = this.height * size;
 		
-		// reset level map layout
-		this.layout = [];
+		// reset level map data
+		this.background = [];
+		this.collision = [];
 
 		// add rows
-		[...Array(this.height)].map(row => this.layout.push([]));
+		[...Array(this.height)].map(row => this.background.push([]));
 
 		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
 			let row = Math.floor(col / this.width);
-			this.layout[row].push(xTile.getAttribute("id"));
+			this.background[row].push(xTile.getAttribute("id"));
 		});
+
+		this.collision = [...Array(this.height)].map(row => ([...Array(this.width)].map(i => 0)));
+		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
+			let x = xColl.getAttribute("x"),
+				y = xColl.getAttribute("y");
+			this.collision[y][x] = 1;
+		});
+		// console.log(this.collision.join("\n"));
 
 		// update droids array
 		this.data.droids = droids.map(d => new Droid({ arena: this.arena, ...d }));
@@ -63,14 +72,14 @@ class Map {
 
 		for (let y = yMin; y < yMax; y++) {
 			for (let x = xMin; x < xMax; x++) {
-				let col = this.layout[y][x];
+				let col = this.background[y][x];
 				if (!col) continue;
 
 				let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
 					oX = l * size,
 					oY = t * size,
-					tX = Math.floor((x * size) - vX),
-					tY = Math.floor((y * size) - vY);
+					tX = Math.round((x * size) - vX),
+					tY = Math.round((y * size) - vY);
 
 				ctx.drawImage(
 					assets["big-map"].img,
@@ -79,8 +88,12 @@ class Map {
 				);
 			}
 		}
-
 		// draw droids
 		this.data.droids.map(droid => droid.render(ctx));
+
+		// if debug mode on, draw extras
+		if (this.arena.debug.on) {
+
+		}
 	}
 }
