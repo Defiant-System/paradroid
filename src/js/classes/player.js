@@ -42,32 +42,32 @@ class Player extends Droid {
 			map = arena.map.collision,
 			vX = (arena.viewport.half.w - size),
 			vY = (arena.viewport.half.h - size),
-			old_pos = {
+			oldPos = {
 				x: Math.floor((this.pos.x - vX) / size),
 				y: Math.floor((this.pos.y - vY) / size),
 			},
-			new_pos = {
+			newPos = {
 				x: Math.floor((this.pos.x - vX + point.x + (point.x > 0 ? size : 0)) / size),
 				y: Math.floor((this.pos.y - vY + point.y + (point.y > 0 ? size : 0)) / size),
 			},
 			tile;
 
-		tile = map[old_pos.y][new_pos.x] || map[old_pos.y+1][new_pos.x];
+		tile = map[oldPos.y][newPos.x] || map[oldPos.y+1][newPos.x];
 		if (tile !== 1) {
 			this.pos.x += point.x;
 		} else {
 			this.pos.x = point.x > 0
-						? Math.max(vX + ((new_pos.x - 1) * size), this.pos.x)
-						: Math.min(vX + ((new_pos.x + 1) * size), this.pos.x);
+						? Math.max(vX + ((newPos.x - 1) * size), this.pos.x)
+						: Math.min(vX + ((newPos.x + 1) * size), this.pos.x);
 		}
 
-		tile = map[new_pos.y][old_pos.x] || map[new_pos.y][old_pos.x+1];
+		tile = map[newPos.y][oldPos.x] || map[newPos.y][oldPos.x+1];
 		if (tile !== 1) {
 			this.pos.y += point.y;
 		} else {
 			this.pos.y = point.y > 0
-						? Math.max(vY + ((new_pos.y - 1) * size), this.pos.y)
-						: Math.min(vY + ((new_pos.y + 1) * size), this.pos.y);
+						? Math.max(vY + ((newPos.y - 1) * size), this.pos.y)
+						: Math.min(vY + ((newPos.y + 1) * size), this.pos.y);
 		}
 	}
 

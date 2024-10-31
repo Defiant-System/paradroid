@@ -29,7 +29,7 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					"001": { x: 23, y: 4 },
+					"001": { x: 21, y: 6 },
 					"map": { id: "4" },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
