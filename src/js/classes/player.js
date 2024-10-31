@@ -36,60 +36,33 @@ class Player extends Droid {
 	move(point) {
 		let viewport = this.arena.viewport,
 			size = this.arena.tiles.size,
-			oldPos = {
-				x: Math.ceil((this.pos.x - viewport.x) / size),
-				y: Math.ceil((this.pos.y - viewport.y) / size),
-			},
-			move = this.pos.add(point),
-			newPos = {
-				x: Math.ceil((move.x + viewport.x) / size),
-				y: Math.ceil((move.y + viewport.y) / size),
-			};
-		// console.log( newPos );
+			move = this.pos.add(point);
 
-		// for (let i = 0; i <= 1; i++) {
-			// let tile = (i == 0) ? map.background[oldPos.y][newPos.x] : map.background[newPos.y][oldPos.x];
-		// 	let wall = map.tiles[tile].wall;
+		// Only check "y", use old "x"
+		if (!this.checkCollision(this.pos.x, move.y)) {
+			this.pos.y = move.y;
+		}
+		// Only check "x", use old "y"
+		if (!this.checkCollision(move.x, this.pos.y)) {
+			this.pos.x = move.x;
+		}
 
-		// 	if (!wall) {
-		// 		if (i == 0) {
-		// 			this.pos.x += x;
-					this.tile.x = newPos.x;
-		// 		} else {
-		// 			this.pos.y += y;
-					this.tile.y = newPos.y;
-		// 		}
-		// 	}
-		// }
-		this.pos = move;
-		// this.pos = new Point(150, 150);
+		this.tile.x = Math.ceil((move.x + viewport.x) / size);
+		this.tile.y = Math.ceil((move.y + viewport.y) / size);
 	}
 
-	move_(x, y) {
-		let map = this.arena.map,
+	checkCollision(x, y) {
+		let arena = this.arena,
 			size = this.arena.tiles.size,
-			pos = {
-				x: Math.ceil(this.pos.x / size),
-				y: Math.ceil(this.pos.y / size)
-			},
-			newPos = {
-				x: Math.ceil((this.pos.x + x) / size),
-				y: Math.ceil((this.pos.y + y) / size)
-			};
-
-		for (let i = 0; i <= 1; i++) {
-			// let tile = (i == 0) ? map.background[pos.y][newPos.x] : map.background[newPos.y][pos.x];
-			// let wall = map.assets[tile].wall;
-
-			// if (!wall) {
-				if (i == 0) {
-					this.pos.x += x;
-					this.tile.x = newPos.x;
-				} else {
-					this.pos.y += y;
-					this.tile.y = newPos.y;
-				}
-			// }
+			map = arena.map.collision,
+			x1 = Math.floor((x + 1) / size), 
+			y1 = Math.floor((y + 1) / size),
+			x2 = Math.floor((x + 1 - 1) / size), 
+			y2 = Math.floor((y + 1 - 1) / size);
+		
+		if (map[y1][x1] !== 0 || map[y2][x1] !== 0 || map[y1][x2] !== 0 ||  map[y2][x2] !== 0) {
+			return true;
 		}
+		return false;
 	}
 }

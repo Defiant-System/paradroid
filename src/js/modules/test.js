@@ -30,11 +30,11 @@ let Test = {
 		return setTimeout(() => {
 			let state = {
 					"001": { x: 3, y: 3 },
-					"map": { id: "3" },
+					"map": { id: "2" },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test
-			setTimeout(() => APP.mobile.arena.fpsControl.stop(), 500);
+			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 2500);
 		}, 300);
 
 	}
