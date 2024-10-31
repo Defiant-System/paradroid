@@ -76,16 +76,16 @@ class Map {
 				if (!col) continue;
 
 				let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
-					oX = l * size,
-					oY = t * size,
+					oX = Math.round(l * size),
+					oY = Math.round(t * size),
 					tX = Math.round((x * size) - vX),
 					tY = Math.round((y * size) - vY);
 
-				ctx.drawImage(
-					assets["big-map"].img,
-					oX, oY, size, size,
-					tX, tY, size, size
-				);
+				// ctx.drawImage(
+				// 	assets["big-map"].img,
+				// 	oX, oY, size, size,
+				// 	tX, tY, size, size
+				// );
 			}
 		}
 		// draw droids
@@ -99,8 +99,8 @@ class Map {
 			
 			this.arena.map.collision.map((row, cY) => {
 				row.map((cell, cX) => {
-					let wX = (cX * size) - viewport.x,
-						wY = (cY * size) - viewport.y;
+					let wX = Math.round((cX * size) - viewport.x),
+						wY = Math.round((cY * size) - viewport.y);
 					if (cell > 0) ctx.fillRect(wX, wY, size, size);
 				});
 			});

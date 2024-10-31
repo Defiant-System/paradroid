@@ -102,24 +102,24 @@ class Droid {
 			f = (8 - this.frame.index) * w;
 		}
 
-		// top + bottom caps
-		ctx.drawImage(this.sprites.bg,
-			f, 0, w, w,
-			0, 0, w, w
-		);
-		// digits
-		ctx.drawImage(this.sprites.digits,
-			this.digits[0].x, 0, 28, 32,
-			this.digits[0].l, 15, 14, 16
-		);
-		ctx.drawImage(this.sprites.digits,
-			this.digits[1].x, 0, 28, 32,
-			this.digits[1].l, 15, 14, 16
-		);
-		ctx.drawImage(this.sprites.digits,
-			this.digits[2].x, 0, 28, 32,
-			this.digits[2].l, 15, 14, 16
-		);
+		// // top + bottom caps
+		// ctx.drawImage(this.sprites.bg,
+		// 	f, 0, w, w,
+		// 	0, 0, w, w
+		// );
+		// // digits
+		// ctx.drawImage(this.sprites.digits,
+		// 	this.digits[0].x, 0, 28, 32,
+		// 	this.digits[0].l, 15, 14, 16
+		// );
+		// ctx.drawImage(this.sprites.digits,
+		// 	this.digits[1].x, 0, 28, 32,
+		// 	this.digits[1].l, 15, 14, 16
+		// );
+		// ctx.drawImage(this.sprites.digits,
+		// 	this.digits[2].x, 0, 28, 32,
+		// 	this.digits[2].l, 15, 14, 16
+		// );
 
 		ctx.restore();
 
@@ -127,7 +127,7 @@ class Droid {
 		if (this.arena.debug.on) {
 			ctx.save();
 			ctx.fillStyle = "#ff000077";
-			ctx.fillRect(pX, pY, w, w);
+			ctx.fillRect(pX, pY, 32, 32);
 			ctx.restore();
 		}
 	}

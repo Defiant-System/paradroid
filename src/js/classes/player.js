@@ -8,6 +8,8 @@ class Player extends Droid {
 			radius: 100,
 		};
 
+		this.speed = .85;
+
 		this.tile = {
 			x: 0,
 			y: 0,
@@ -36,7 +38,7 @@ class Player extends Droid {
 	move(point) {
 		let viewport = this.arena.viewport,
 			size = this.arena.tiles.size,
-			move = this.pos.add(point);
+			move = this.pos.add(point.multiply(this.speed));
 
 		// Only check "y", use old "x"
 		if (!this.checkCollision(this.pos.x, move.y)) {
@@ -63,8 +65,6 @@ class Player extends Droid {
 			y1 = Math.floor((y + 1) / size),
 			x2 = Math.floor((x + 1 - 1) / size), 
 			y2 = Math.floor((y + 1 - 1) / size);
-		// console.log( x1, y1 );
-		// return false;
 		// if there is wall, return true
 		return (map[y1][x1] !== 0 || map[y2][x1] !== 0 || map[y1][x2] !== 0 ||  map[y2][x2] !== 0);
 	}
