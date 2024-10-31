@@ -40,40 +40,34 @@ class Player extends Droid {
 			size = arena.tiles.size,
 			// move = this.pos.add(point.multiply(this.speed)),
 			map = arena.map.collision,
-			vX = (arena.viewport.half.w - 32),
-			vY = (arena.viewport.half.h - 32);
+			vX = (arena.viewport.half.w - size),
+			vY = (arena.viewport.half.h - size),
+			old_pos = {
+				x: Math.floor((this.pos.x - vX) / size),
+				y: Math.floor((this.pos.y - vY) / size),
+			},
+			new_pos = {
+				x: Math.floor((this.pos.x - vX + point.x + (point.x > 0 ? size : 0)) / size),
+				y: Math.floor((this.pos.y - vY + point.y + (point.y > 0 ? size : 0)) / size),
+			},
+			tile;
 
-		let old_pos = {
-			x: Math.floor((this.pos.x - vX) / size),
-			y: Math.floor((this.pos.y - vY) / size),
-		};
-		let new_pos = {
-			x: Math.floor((this.pos.x - vX + point.x + (point.x > 0 ? size : 0)) / size),
-			y: Math.floor((this.pos.y - vY + point.y + (point.y > 0 ? size : 0)) / size),
-		};
+		tile = map[old_pos.y][new_pos.x] || map[old_pos.y+1][new_pos.x];
+		if (tile !== 1) {
+			this.pos.x += point.x;
+		} else {
+			this.pos.x = point.x > 0
+						? Math.max(vX + ((new_pos.x - 1) * size), this.pos.x)
+						: Math.min(vX + ((new_pos.x + 1) * size), this.pos.x);
+		}
 
-		for (let i=0; i<=1; i++) {
-			let tile = (i === 0) ? map[old_pos.y][new_pos.x] : map[new_pos.y][old_pos.x];
-			
-			if (tile !== 1) {
-				if (i == 0) {
-					this.pos.x += point.x;
-					this.tile.x = new_pos.x;
-				} else {
-					this.pos.y += point.y;
-					this.tile.y = new_pos.y;
-				}
-			} else {
-				if (i == 0) {
-					this.pos.x = point.x > 0
-								? Math.max(vX + ((new_pos.x - 1) * size), this.pos.x)
-								: Math.min(vX + ((new_pos.x + 1) * size), this.pos.x);
-				} else {
-					this.pos.y = point.y > 0
-								? Math.max(vY + ((new_pos.y - 1) * size), this.pos.y)
-								: Math.min(vY + ((new_pos.y + 1) * size), this.pos.y);
-				}
-			}
+		tile = map[new_pos.y][old_pos.x] || map[new_pos.y][old_pos.x+1];
+		if (tile !== 1) {
+			this.pos.y += point.y;
+		} else {
+			this.pos.y = point.y > 0
+						? Math.max(vY + ((new_pos.y - 1) * size), this.pos.y)
+						: Math.min(vY + ((new_pos.y + 1) * size), this.pos.y);
 		}
 	}
 
