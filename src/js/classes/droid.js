@@ -39,7 +39,6 @@ class Droid {
 				size: 3,
 			};
 		}
-
 		// paint digits on droid
 		this.digits = this.id.toString().split("").map((x, i) => {
 			return {
@@ -47,12 +46,14 @@ class Droid {
 				l: (i * 15) + Utils.digits[this.id][i],
 			};
 		});
-
+		// used to animate droid "spin"
 		this.frame = {
 			index: 0,
 			last: 80,
 			speed: 80,
 		};
+		// add player to map droids array
+		this.arena.map.droids.push(this);
 	}
 
 	move(x, y) {

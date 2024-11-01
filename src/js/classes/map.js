@@ -6,6 +6,7 @@ class Map {
 	    this.arena = arena;
 	    // items on the map
 	    this.entries = [];
+	    this.droids = [];
 	}
 
 	setState(state) {

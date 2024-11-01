@@ -69,10 +69,10 @@ class Arena {
 	ready() {
 		// viewport
 		this.viewport = new Viewport({ arena: this, x: 0, y: 0, w: this.width, h: this.height });
-		// create "001"
-		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
 		// map
 		this.map = new Map({ arena: this, ...this.tiles });
+		// create "001"
+		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
 	}
 
 	setState(state) {

@@ -7,29 +7,24 @@ class Player extends Droid {
 		this.light = {
 			radius: 100,
 		};
-
 		this.speed = .75;
-
 		this.tile = {
 			x: 0,
 			y: 0,
-		};
-
-		this.torch = {
-			lit: false,
-			frame: 0,
 		};
 	}
 
 	spawn(x, y) {
 		let arena = this.arena,
 			size = arena.tiles.size,
-			oX = arena.viewport.w - arena.tiles.char,
-			oY = arena.viewport.h - arena.tiles.char;
+			// oX = arena.viewport.w - arena.tiles.char,
+			// oY = arena.viewport.h - arena.tiles.char;
+			oX = arena.viewport.half.w - size,
+			oY = arena.viewport.half.h - size;
 		this.tile.x = x;
 		this.tile.y = y;
-		this.pos.x = (oX >> 1) + (x * size);
-		this.pos.y = (oY >> 1) + (y * size);
+		this.pos.x = oX + (x * size);
+		this.pos.y = oY + (y * size);
 	}
 
 	move(vel) {
