@@ -8,11 +8,14 @@ class Recharge {
 		this.y = y;
 		this.w = w;
 		this.h = h;
+
 		this.angle = 0;
+		this.freq = 0;
 	}
 
 	update(delta) {
 		this.angle = (this.angle+2) % 360;
+		this.freq += .03;
 	}
 
 	render(ctx) {
@@ -21,23 +24,17 @@ class Recharge {
 			size = arena.tiles.size,
 			vX = viewport.x + ((this.arena.width - viewport.w) >> 1),
 			vY = viewport.y + ((this.arena.height - viewport.h) >> 1),
-			x = (this.x * size) - vX,
-			y = (this.y * size) - vY,
-			w = this.w * size,
-			h = this.h * size,
+			x = Math.round((this.x * size) - vX) + .5,
+			y = Math.round((this.y * size) - vY) + .5,
 			rad = (this.angle * Math.PI) / 180,
-			args = [arena.assets["big-map"].img, 16, 273, 14, 14, -7.5, -7.5, 14, 14];
-
-		// console.log(x, y, viewport.x, viewport.y);
-		// ctx.save();
-		// ctx.fillStyle = "#69d";
-		// ctx.fillRect(x, y, w, h);
-		// ctx.restore();
+			args = [arena.assets["big-map"].img, 0, 257, 14, 14, -7, -7, 14, 14],
+			r;
 
 		ctx.save();
-		ctx.fillStyle = "#fff";
+		ctx.fillStyle = "#ffffff77";
 		ctx.translate(x, y);
-		
+
+		// rotations
 		ctx.save();
 		ctx.translate(24, 24);
 		ctx.rotate(rad);
@@ -62,12 +59,52 @@ class Recharge {
 		ctx.drawImage(...args);
 		ctx.restore();
 
+		// 1
 		ctx.beginPath();
-		ctx.arc(24, 7.5, 5, 0, Math.TAU);
+		r = Math.sin((this.freq + 2.0) * 5) + 4;
+		ctx.arc(24, 7.5, r, 0, Math.TAU);
 		ctx.fill();
 		
+		// 2
 		ctx.beginPath();
-		ctx.arc(40, 7.5, 5, 0, Math.TAU);
+		r = Math.sin((this.freq + 1.75) * 5) + 4;
+		ctx.arc(40, 7.5, r, 0, Math.TAU);
+		ctx.fill();
+		
+		// 3
+		ctx.beginPath();
+		r = Math.sin((this.freq + 1.0) * 5) + 4;
+		ctx.arc(56, 24, r, 0, Math.TAU);
+		ctx.fill();
+		
+		// 4
+		ctx.beginPath();
+		r = Math.sin((this.freq + 1.25) * 5) + 4;
+		ctx.arc(56, 40, r, 0, Math.TAU);
+		ctx.fill();
+		
+		// 5
+		ctx.beginPath();
+		r = Math.sin((this.freq + 0.75) * 5) + 4;
+		ctx.arc(40, 56, r, 0, Math.TAU);
+		ctx.fill();
+		
+		// 6
+		ctx.beginPath();
+		r = Math.sin((this.freq + 0.5) * 5) + 4;
+		ctx.arc(24, 56, r, 0, Math.TAU);
+		ctx.fill();
+		
+		// 7
+		ctx.beginPath();
+		r = Math.sin((this.freq + 0.25) * 5) + 4;
+		ctx.arc(8, 40, r, 0, Math.TAU);
+		ctx.fill();
+		
+		// 8
+		ctx.beginPath();
+		r = Math.sin((this.freq + 0.0) * 5) + 4;
+		ctx.arc(8, 24, r, 0, Math.TAU);
 		ctx.fill();
 
 		ctx.restore();
