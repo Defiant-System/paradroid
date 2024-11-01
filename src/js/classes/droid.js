@@ -102,33 +102,35 @@ class Droid {
 			f = (8 - this.frame.index) * w;
 		}
 
-		// // top + bottom caps
-		// ctx.drawImage(this.sprites.bg,
-		// 	f, 0, w, w,
-		// 	0, 0, w, w
-		// );
-		// // digits
-		// ctx.drawImage(this.sprites.digits,
-		// 	this.digits[0].x, 0, 28, 32,
-		// 	this.digits[0].l, 15, 14, 16
-		// );
-		// ctx.drawImage(this.sprites.digits,
-		// 	this.digits[1].x, 0, 28, 32,
-		// 	this.digits[1].l, 15, 14, 16
-		// );
-		// ctx.drawImage(this.sprites.digits,
-		// 	this.digits[2].x, 0, 28, 32,
-		// 	this.digits[2].l, 15, 14, 16
-		// );
-
-		ctx.restore();
-
+		// normal draw if debug mode is < 3
+		if (this.arena.debug.mode < 3) {
+			// top + bottom caps
+			ctx.drawImage(this.sprites.bg,
+				f, 0, w, w,
+				0, 0, w, w
+			);
+			// digits
+			ctx.drawImage(this.sprites.digits,
+				this.digits[0].x, 0, 28, 32,
+				this.digits[0].l, 15, 14, 16
+			);
+			ctx.drawImage(this.sprites.digits,
+				this.digits[1].x, 0, 28, 32,
+				this.digits[1].l, 15, 14, 16
+			);
+			ctx.drawImage(this.sprites.digits,
+				this.digits[2].x, 0, 28, 32,
+				this.digits[2].l, 15, 14, 16
+			);
+		}
 		// if debug mode on, draw extras
-		if (this.arena.debug.on) {
+		if (this.arena.debug.mode > 0) {
 			ctx.save();
 			ctx.fillStyle = "#ff000077";
-			ctx.fillRect(pX, pY, 32, 32);
+			ctx.fillRect(5, 9, 32, 32);
 			ctx.restore();
 		}
+
+		ctx.restore();
 	}
 }

@@ -8,7 +8,7 @@ class Player extends Droid {
 			radius: 100,
 		};
 
-		this.speed = .5;
+		this.speed = .75;
 
 		this.tile = {
 			x: 0,
@@ -35,40 +35,46 @@ class Player extends Droid {
 		this.pos.y = pos.y;
 	}
 
-	move(point) {
+	move(vel) {
 		let arena = this.arena,
 			size = arena.tiles.size,
-			// move = this.pos.add(point.multiply(this.speed)),
 			map = arena.map.collision,
-			vX = (arena.viewport.half.w - size),
-			vY = (arena.viewport.half.h - size),
+			point = vel.multiply(this.speed),
+			viewX = (arena.viewport.half.w - size),
+			viewY = (arena.viewport.half.h - size),
 			oldPos = {
-				x: Math.floor((this.pos.x - vX) / size),
-				y: Math.floor((this.pos.y - vY) / size),
+				x: Math.floor((this.pos.x - viewX) / size),
+				y: Math.floor((this.pos.y - viewY) / size),
 			},
 			newPos = {
-				x: Math.floor((this.pos.x - vX + point.x + (point.x > 0 ? size : 0)) / size),
-				y: Math.floor((this.pos.y - vY + point.y + (point.y > 0 ? size : 0)) / size),
+				x: Math.floor((this.pos.x - viewX + point.x + (point.x > 0 ? size : 0)) / size),
+				y: Math.floor((this.pos.y - viewY + point.y + (point.y > 0 ? size : 0)) / size),
 			},
 			tile;
 
-		tile = map[oldPos.y][newPos.x] || map[oldPos.y+1][newPos.x];
-		if (tile !== 1) {
-			this.pos.x += point.x;
-		} else {
-			this.pos.x = point.x > 0
-						? Math.max(vX + ((newPos.x - 1) * size), this.pos.x)
-						: Math.min(vX + ((newPos.x + 1) * size), this.pos.x);
+		if (point.x !== 0) {
+			tile = map[oldPos.y][newPos.x] || map[oldPos.y+1][newPos.x];
+			if (tile !== 1) {
+				this.pos.x += point.x;
+			} else {
+				this.pos.x = point.x > 0
+							? Math.max(viewX - 1 + ((newPos.x - 1) * size), this.pos.x)
+							: Math.min(viewX + 1 + ((newPos.x + 1) * size), this.pos.x);
+			}
 		}
 
-		tile = map[newPos.y][oldPos.x] || map[newPos.y][oldPos.x+1];
-		if (tile !== 1) {
-			this.pos.y += point.y;
-		} else {
-			this.pos.y = point.y > 0
-						? Math.max(vY + ((newPos.y - 1) * size), this.pos.y)
-						: Math.min(vY + ((newPos.y + 1) * size), this.pos.y);
+		if (point.y !== 0) {
+			tile = map[newPos.y][oldPos.x] || map[newPos.y][oldPos.x+1];
+			if (tile !== 1) {
+				this.pos.y += point.y;
+			} else {
+				this.pos.y = point.y > 0
+							? Math.max(viewY - 1 + ((newPos.y - 1) * size), this.pos.y)
+							: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
+			}
 		}
+		this.tile.x = Math.floor((this.pos.x - viewX) / size);
+		this.tile.y = Math.floor((this.pos.y - viewY) / size);
 	}
 
 	update(delta) {

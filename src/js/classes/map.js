@@ -70,33 +70,31 @@ class Map {
 		if (xMax > this.width) xMax = this.width;
 		if (yMax > this.height) yMax = this.height;
 
-		for (let y = yMin; y < yMax; y++) {
-			for (let x = xMin; x < xMax; x++) {
-				let col = this.background[y][x];
-				if (!col) continue;
+		// normal draw if debug mode is < 3
+		if (this.arena.debug.mode < 3) {
+			for (let y = yMin; y < yMax; y++) {
+				for (let x = xMin; x < xMax; x++) {
+					let col = this.background[y][x];
+					if (!col) continue;
 
-				let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
-					oX = Math.round(l * size),
-					oY = Math.round(t * size),
-					tX = Math.round((x * size) - vX),
-					tY = Math.round((y * size) - vY);
+					let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
+						oX = Math.round(l * size),
+						oY = Math.round(t * size),
+						tX = Math.round((x * size) - vX),
+						tY = Math.round((y * size) - vY);
 
-				ctx.drawImage(
-					assets["big-map"].img,
-					oX, oY, size, size,
-					tX, tY, size, size
-				);
+					ctx.drawImage(
+						assets["big-map"].img,
+						oX, oY, size, size,
+						tX, tY, size, size
+					);
+				}
 			}
 		}
-		// draw droids
-		this.data.droids.map(droid => droid.render(ctx));
-
-		// if debug mode on, draw extras
-		if (this.arena.debug.on) {
+		// if debug mode on, draw walls / extras
+		if (this.arena.debug.mode > 0) {
 			ctx.save();
-
 			ctx.fillStyle = "#00000066";
-			
 			this.arena.map.collision.map((row, cY) => {
 				row.map((cell, cX) => {
 					let wX = Math.round((cX * size) - viewport.x),
@@ -104,8 +102,9 @@ class Map {
 					if (cell > 0) ctx.fillRect(wX, wY, size, size);
 				});
 			});
-
 			ctx.restore();
 		}
+		// draw droids
+		this.data.droids.map(droid => droid.render(ctx));
 	}
 }

@@ -26,7 +26,7 @@ class Arena {
 		};
 
 		this.debug = {
-			on: true,
+			mode: 1,
 			elFps: window.find(".debug .fps span"),
 			elCoords: window.find(".debug .coords span"),
 		};
@@ -103,9 +103,8 @@ class Arena {
 		this.map.render(this.ctx);
 		this.player.render(this.ctx);
 
-		if (this.debug.on) {
-			this.debug.elFps.html(this.fpsControl._fps);
-			this.debug.elCoords.html(`${this.player.tile.x}, ${this.player.tile.y}`);
-		}
+		// for debug row at bottom
+		this.debug.elFps.html(this.fpsControl._fps);
+		this.debug.elCoords.html(`${this.player.tile.x}, ${this.player.tile.y}`);
 	}
 }
