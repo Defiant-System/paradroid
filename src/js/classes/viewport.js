@@ -22,7 +22,7 @@ class Viewport {
 	scroll(x, y) {
 		let newX = x - this.half.w,
 			newY = y - this.half.h;
-		this.x += (newX - this.x); // * .115;
-		this.y += (newY - this.y); // * .115;
+		this.x += (newX - this.x) * .115;
+		this.y += (newY - this.y) * .115;
 	}
 }

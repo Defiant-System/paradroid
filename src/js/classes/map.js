@@ -2,24 +2,15 @@
 class Map {
 	constructor(cfg) {
 		let { arena } = cfg;
-
+		// parent object
 	    this.arena = arena;
-	    this.data = {
-	    	droids: [],
-	    	tiles: {
-	    		"m2a": { wall: true },
-	    		"m3a": { wall: true },
-	    	},
-	    };
-
-		// sample droid
-		// this.data.droids.push(new Droid({ arena, id: "247", x: 6, y: 4 }));
+	    // items on the map
+	    this.entries = [];
 	}
 
 	setState(state) {
-		let { id, droids } = state,
-			size = this.arena.tiles.size,
-			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`);
+		let size = this.arena.tiles.size,
+			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`);
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
@@ -32,7 +23,6 @@ class Map {
 
 		// add rows
 		[...Array(this.height)].map(row => this.background.push([]));
-
 		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
 			let row = Math.floor(col / this.width);
 			this.background[row].push(xTile.getAttribute("id"));
@@ -46,12 +36,22 @@ class Map {
 		});
 		// console.log(this.collision.join("\n"));
 
-		// update droids array
-		this.data.droids = droids.map(d => new Droid({ arena: this.arena, ...d }));
+		// add item classses
+		xSection.selectNodes(`./Layer[@id="action"]/i`).map((xItem, index) => {
+			let x = +xItem.getAttribute("x"),
+				y = +xItem.getAttribute("y"),
+				w = +xItem.getAttribute("w"),
+				h = +xItem.getAttribute("h");
+			switch (xItem.getAttribute("action")) {
+				case "recharge":
+					this.entries.push(new Recharge({ arena: this.arena, x, y, w, h }));
+					break;
+			}
+		});
 	}
 
 	update(delta) {
-		this.data.droids.map(droid => droid.update(delta));
+		this.entries.map(item => item.update(delta));
 	}
 
 	render(ctx) {
@@ -91,6 +91,12 @@ class Map {
 				}
 			}
 		}
+
+		// draw entries
+		this.entries.map(entry => {
+			if (entry.x >= xMin && entry.x <= xMax && entry.y >= yMin && entry.y <= yMax) entry.render(ctx);
+		});
+
 		// if debug mode on, draw walls / extras
 		if (this.arena.debug.mode > 0) {
 			ctx.save();
@@ -104,7 +110,5 @@ class Map {
 			});
 			ctx.restore();
 		}
-		// draw droids
-		this.data.droids.map(droid => droid.render(ctx));
 	}
 }
