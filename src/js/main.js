@@ -2,10 +2,12 @@
 @import "./classes/point.js"
 @import "./classes/droid.js"
 @import "./classes/player.js"
-@import "./classes/recharge.js"
 @import "./classes/arena.js"
 @import "./classes/map.js"
 @import "./classes/viewport.js"
+
+@import "./classes/recharge.js"
+@import "./classes/door.js"
 
 @import "./modules/utils.js"
 @import "./modules/test.js"

@@ -41,8 +41,14 @@ class Map {
 			let x = +xItem.getAttribute("x"),
 				y = +xItem.getAttribute("y"),
 				w = +xItem.getAttribute("w"),
-				h = +xItem.getAttribute("h");
-			switch (xItem.getAttribute("action")) {
+				h = +xItem.getAttribute("h"),
+				action = xItem.getAttribute("action");
+			switch (action) {
+				case "door-h":
+				case "door-v":
+					let type = action.split("-")[1];
+					this.entries.push(new Door({ arena: this.arena, type, x, y, w, h }));
+					break;
 				case "recharge":
 					this.entries.push(new Recharge({ arena: this.arena, x, y, w, h }));
 					break;
@@ -94,7 +100,7 @@ class Map {
 
 		// draw entries
 		this.entries.map(entry => {
-			if (entry.x >= xMin && entry.x <= xMax && entry.y >= yMin && entry.y <= yMax) entry.render(ctx);
+			if (entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax) entry.render(ctx);
 		});
 
 		// if debug mode on, draw walls / extras

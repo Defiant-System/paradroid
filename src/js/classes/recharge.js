@@ -31,7 +31,7 @@ class Recharge {
 			r;
 
 		ctx.save();
-		ctx.fillStyle = "#ffffff77";
+		ctx.fillStyle = "#ffccccaa";
 		ctx.translate(x, y);
 
 		// rotations
