@@ -2,6 +2,7 @@
 @import "./classes/point.js"
 @import "./classes/droid.js"
 @import "./classes/player.js"
+@import "./classes/charger.js"
 @import "./classes/arena.js"
 @import "./classes/map.js"
 @import "./classes/viewport.js"

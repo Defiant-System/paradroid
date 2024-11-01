@@ -8,15 +8,19 @@ let Test = {
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 
 		
-		// LIFT View
-		// APP.dispatch({ type: "show-view", arg: "lift" });
-		// APP.lift.els.el.find(".lift").get(0).trigger("click");
-		// return;
+		/*
+		 * LIFT View
+		APP.dispatch({ type: "show-view", arg: "lift" });
+		APP.lift.els.el.find(".lift").get(0).trigger("click");
+		return;
+		 */
 
-		// // EDITOR
-		// APP.dispatch({ type: "show-view", arg: "editor" });
-		// APP.editor.dispatch({ type: "render-level", arg: "1" });
-		// return;
+		/*
+		 * EDITOR
+		APP.dispatch({ type: "show-view", arg: "editor" });
+		APP.editor.dispatch({ type: "render-level", arg: "1" });
+		return;
+		 */
 
 		// APP.editor.els.palette.find(`.tab-row span:nth(2)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-action-tile"] b[data-size="2x2"]`).trigger("click");
@@ -29,8 +33,8 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					"map": { id: "1" }, "001": { x: 32, y: 6 },
-					// "map": { id: "4" }, "001": { x: 21, y: 6 },
+					"map": { id: "1" }, "001": { x: 32, y: 6 }, debug: { mode: 0 },
+					// "map": { id: "4" }, "001": { x: 21, y: 6 }, debug: { mode: 1 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test

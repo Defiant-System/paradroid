@@ -26,7 +26,7 @@ class Arena {
 		};
 
 		this.debug = {
-			mode: 1,
+			mode: 0,
 			elFps: window.find(".debug .fps span"),
 			elCoords: window.find(".debug .coords span"),
 		};
@@ -79,14 +79,15 @@ class Arena {
 		// temporary; this prevents setting state if not completly ready
 		if (!this.map) return setTimeout(() => this.setState(state), 100);
 
+		// change debug state
+		if (state.debug) this.debug.mode = state.debug.mode;
+
 		let mapState = { droids: [], ...state.map };
 		this.map.setState(mapState);
 		// move player / "001"
 		this.player.spawn(state["001"].x, state["001"].y);
 
-		// re-render
-		// this.render();
-
+		// start "loop"
 		this.fpsControl.start();
 	}
 
