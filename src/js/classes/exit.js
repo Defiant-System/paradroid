@@ -16,7 +16,13 @@ class Exit {
 
 	update(delta) {
 		let dist = this.arena.player.pos.distance(this.pos);
-		if (dist < 32) this.arena.player.setState({ id: "exit" });
+		if (dist < 32) {
+			this.active = true;
+			this.arena.player.setState({ id: "exit" });
+		} else if (this.active) {
+			delete this.active;
+			this.arena.player.setState({ id: "clear" });
+		}
 	}
 
 	render(ctx) {

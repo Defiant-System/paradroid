@@ -10,37 +10,11 @@ class Droid {
 		this.tile = { x, y };
 		this.pos = new Point(pX, pY);
 
-		this.blur = {
-			color: "#000",
-			size: 0,
-		};
 		this.sprites = {
 			bg: arena.assets["droid"].img,
 			digits: arena.assets["digits"].img,
 		};
-
-		if (id === "001") {
-			// create white versions of sprites
-			Object.keys(this.sprites).map(k => {
-				// for BG sprite
-				let w = this.sprites[k].width,
-					h = this.sprites[k].height,
-					{ cvs, ctx } = Utils.createCanvas(w, h);
-				// draw orignal droid sprite
-				ctx.drawImage(this.sprites[k], 0, 0);
-				// change droid color
-				ctx.globalCompositeOperation = "source-atop";
-				ctx.fillStyle = "#fff";
-				ctx.fillRect(0, 0, w, h);
-				// replace sprite
-				this.sprites[k] = cvs[0];
-			});
-			// a little bit blur
-			this.blur = {
-				color: "#00000044",
-				size: 3,
-			};
-		}
+		
 		// paint digits on droid
 		this.digits = this.id.toString().split("").map((x, i) => {
 			return {
@@ -81,20 +55,6 @@ class Droid {
 
 		ctx.save();
 		ctx.translate(pX-5, pY-9);
-
-		if (this.light) {
-			let lightX = (arena.tiles.size / 2);
-			let lightY = (arena.tiles.size / 2);
-
-			let radius = this.light.radius;
-			let radialGradient = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, radius);
-			radialGradient.addColorStop(0, "rgba(255, 255, 255, 0.325)");
-			radialGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-
-			ctx.fillStyle = radialGradient;
-			ctx.arc(lightX, lightY, radius, 0, Math.TAU);
-			ctx.fill();
-		}
 
 		if (this.blur) {
 			// droid "001"

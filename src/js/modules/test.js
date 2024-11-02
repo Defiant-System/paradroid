@@ -18,11 +18,12 @@ let Test = {
 		/*
 		 * EDITOR
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "18" });
+		APP.editor.dispatch({ type: "render-level", arg: "1" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(2)`).trigger("click");
-		// APP.editor.els.palette.find(`.tiles[data-click="select-action-tile"] b[data-size="2x2"]`).trigger("click");
+		APP.editor.els.palette.find(`.tiles[data-click="select-action-tile"] b[data-size="2x2"]`).trigger("click");
 		// // APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
+		APP.editor.dispatch({ type: "toggle-overflow" });
 		// // APP.editor.dispatch({ type: "output-pgn" });
 		return;
 		 */
@@ -33,7 +34,7 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					"map": { id: "1" }, "001": { x: 34, y: 17 }, debug: { mode: 0 },
+					"map": { id: "1" }, "001": { x: 31, y: 10 }, debug: { mode: 0 },
 					// "map": { id: "4" }, "001": { x: 21, y: 6 }, debug: { mode: 1 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });

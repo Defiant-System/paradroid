@@ -17,7 +17,13 @@ class Recharge {
 
 	update(delta) {
 		let dist = this.arena.player.pos.distance(this.pos);
-		if (dist < 32) this.arena.player.setState({ id: "charge" });
+		if (dist < 32) {
+			this.active = true;
+			this.arena.player.setState({ id: "recharge" });
+		} else if (this.active) {
+			delete this.active;
+			this.arena.player.setState({ id: "clear" });
+		}
 
 		this.angle = (this.angle+2) % 360;
 		this.freq += .03;

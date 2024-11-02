@@ -18,8 +18,13 @@ class Console {
 
 	update(delta) {
 		let dist = this.arena.player.pos.distance(this.pos);
-		// if (this.x === 44 && this.y === 10) console.log( dist );
-		if (dist < 42) this.arena.player.setState({ id: "console" });
+		if (dist < 16) {
+			this.active = true;
+			this.arena.player.setState({ id: "console" });
+		} else if (this.active) {
+			delete this.active;
+			this.arena.player.setState({ id: "clear" });
+		}
 	}
 
 	render(ctx) {
