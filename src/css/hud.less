@@ -5,6 +5,7 @@
 	right: 7px;
 	height: 41px;
 	display: flex;
+	z-index: 2;
 	border-radius: 6px;
 	font-family: "ParaDrew";
 	font-size: 27px;
@@ -12,8 +13,8 @@
 	text-shadow: 0 1px 1px rgba(#fff,.75);
 
 
-	.left,
-	.right {
+	// .right,
+	.left {
 		border-radius: inherit;
 		position: relative;
 		flex: 1;
@@ -61,6 +62,12 @@
 				background: linear-gradient(90deg, transparent 5%, rgba(#fff,.35), transparent 95%);
 			}
 		}
+	}
+
+	.right {
+		position: relative;
+		// flex: 1;
+		width: 210px;
 	}
 
 	.view-title {
