@@ -1,12 +1,14 @@
 
 class Droid {
 	constructor(cfg) {
-		let { arena, id, x, y } = cfg;
+		let { arena, id, x, y } = cfg,
+			pX = x * arena.tiles.size,
+			pY = y * arena.tiles.size;
 
 		this.arena = arena;
 		this.id = id;
 		this.tile = { x, y };
-		this.pos = new Point(x * arena.tiles.size, y * arena.tiles.size);
+		this.pos = new Point(pX, pY);
 
 		this.blur = {
 			color: "#000",
