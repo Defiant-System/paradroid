@@ -17,14 +17,21 @@ class Player extends Droid {
 	spawn(x, y) {
 		let arena = this.arena,
 			size = arena.tiles.size,
-			// oX = arena.viewport.w - arena.tiles.char,
-			// oY = arena.viewport.h - arena.tiles.char;
 			oX = arena.viewport.half.w - size,
 			oY = arena.viewport.half.h - size;
 		this.tile.x = x;
 		this.tile.y = y;
 		this.pos.x = oX + (x * size);
 		this.pos.y = oY + (y * size);
+	}
+
+	setState(state) {
+		console.log( state.id );
+		switch (state.id) {
+			case "exit": break;
+			case "charge": break;
+			case "console": break;
+		}
 	}
 
 	move(vel) {

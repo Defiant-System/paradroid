@@ -7,7 +7,9 @@
 @import "./classes/viewport.js"
 
 @import "./classes/recharge.js"
+@import "./classes/console.js"
 @import "./classes/door.js"
+@import "./classes/exit.js"
 
 @import "./modules/utils.js"
 @import "./modules/test.js"

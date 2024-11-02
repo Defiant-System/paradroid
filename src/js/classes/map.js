@@ -48,10 +48,16 @@ class Map {
 				case "door-h":
 				case "door-v":
 					let type = action.split("-")[1];
-					this.entries.push(new Door({ arena: this.arena, type, x, y, w, h }));
+					this.entries.push(new Door({ arena: this.arena, type, x, y }));
+					break;
+				case "exit":
+					this.entries.push(new Exit({ arena: this.arena, x, y }));
+					break;
+				case "console":
+					this.entries.push(new Console({ arena: this.arena, x, y, w, h }));
 					break;
 				case "recharge":
-					this.entries.push(new Recharge({ arena: this.arena, x, y, w, h }));
+					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;
 			}
 		});

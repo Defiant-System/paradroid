@@ -1,19 +1,24 @@
 
 class Recharge {
 	constructor(cfg) {
-		let { arena, x, y, w, h } = cfg;
+		let { arena, x, y } = cfg,
+			size = arena.tiles.size,
+			pX = arena.viewport.half.w + (x * size),
+			pY = arena.viewport.half.h + (y * size);
 		
 		this.arena = arena;
 		this.x = x;
 		this.y = y;
-		this.w = w;
-		this.h = h;
 
+		this.pos = new Point(pX, pY);
 		this.angle = 0;
 		this.freq = 0;
 	}
 
 	update(delta) {
+		let dist = this.arena.player.pos.distance(this.pos);
+		if (dist < 32) this.arena.player.setState({ id: "charge" });
+
 		this.angle = (this.angle+2) % 360;
 		this.freq += .03;
 	}
