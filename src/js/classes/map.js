@@ -116,8 +116,8 @@ class Map {
 			ctx.fillStyle = "#00000066";
 			this.arena.map.collision.map((row, cY) => {
 				row.map((cell, cX) => {
-					let wX = Math.round((cX * size) - viewport.x),
-						wY = Math.round((cY * size) - viewport.y);
+					let wX = Math.floor((cX * size) - viewport.x),
+						wY = Math.floor((cY * size) - viewport.y);
 					if (cell > 0) ctx.fillRect(wX, wY, size, size);
 				});
 			});

@@ -18,7 +18,7 @@ class Console {
 
 	update(delta) {
 		let dist = this.arena.player.pos.distance(this.pos);
-		if (dist < 16) {
+		if (dist < 38) {
 			this.active = true;
 			this.arena.player.setState({ id: "console" });
 		} else if (this.active) {

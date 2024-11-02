@@ -54,7 +54,7 @@ class Droid {
 			pY = arena.viewport.half.h;
 
 		ctx.save();
-		ctx.translate(pX-5, pY-9);
+		ctx.translate(pX, pY);
 
 		if (this.blur) {
 			// droid "001"
@@ -67,6 +67,8 @@ class Droid {
 
 		// normal draw if debug mode is < 3
 		if (this.arena.debug.mode < 3) {
+			ctx.save();
+			ctx.translate(-6, -9);
 			// top + bottom caps
 			ctx.drawImage(this.sprites.bg,
 				f, 0, w, w,
@@ -85,12 +87,13 @@ class Droid {
 				this.digits[2].x, 0, 28, 32,
 				this.digits[2].l, 15, 14, 16
 			);
+			ctx.restore();
 		}
 		// if debug mode on, draw extras
 		if (this.arena.debug.mode > 0) {
 			ctx.save();
 			ctx.fillStyle = "#ff000077";
-			ctx.fillRect(5, 9, 32, 32);
+			ctx.fillRect(0, 0, 32, 32);
 			ctx.restore();
 		}
 
