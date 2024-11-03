@@ -43,6 +43,7 @@ class Map {
 				y = +xItem.getAttribute("y"),
 				w = +xItem.getAttribute("w"),
 				h = +xItem.getAttribute("h"),
+				id = xItem.getAttribute("id"),
 				action = xItem.getAttribute("action");
 			switch (action) {
 				case "door-h":
@@ -58,6 +59,9 @@ class Map {
 					break;
 				case "recharge":
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
+					break;
+				case "droid":
+					this.entries.push(new Droid({ arena: this.arena, id, x, y }));
 					break;
 			}
 		});
@@ -107,7 +111,13 @@ class Map {
 
 		// draw entries
 		this.entries.map(entry => {
-			if (entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax) entry.render(ctx);
+			// if (entry.id === "420") {
+			// 	console.log( xMin-1, yMin-1, xMax, yMax );
+			// 	console.log( entry.x, entry.y );
+			// }
+			if (entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax) {
+				entry.render(ctx);
+			}
 		});
 
 		// if debug mode on, draw walls / extras

@@ -9,10 +9,7 @@ class Player extends Droid {
 			radius: 100,
 		};
 		this.speed = .75;
-		this.tile = {
-			x: 0,
-			y: 0,
-		};
+		this.player = true;
 
 		// create white versions of sprites
 		Object.keys(this.sprites).map(k => {
@@ -41,8 +38,9 @@ class Player extends Droid {
 			size = arena.tiles.size,
 			oX = arena.viewport.half.w - size,
 			oY = arena.viewport.half.h - size;
-		this.tile.x = x;
-		this.tile.y = y;
+		// tile coords
+		this.x = x;
+		this.y = y;
 		this.pos.x = oX + (x * size);
 		this.pos.y = oY + (y * size);
 	}
@@ -79,7 +77,7 @@ class Player extends Droid {
 			tile;
 
 		if (point.x !== 0) {
-			tile = map[this.tile.y][newPos.x] || map[this.tile.y+1][newPos.x];
+			tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
 			if (tile !== 1) {
 				this.pos.x += point.x;
 			} else {
@@ -90,7 +88,7 @@ class Player extends Droid {
 		}
 
 		if (point.y !== 0) {
-			tile = map[newPos.y][this.tile.x] || map[newPos.y][this.tile.x+1];
+			tile = map[newPos.y][this.x] || map[newPos.y][this.x+1];
 			if (tile !== 1) {
 				this.pos.y += point.y;
 			} else {
@@ -99,8 +97,8 @@ class Player extends Droid {
 							: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
 			}
 		}
-		this.tile.x = Math.floor((this.pos.x - viewX) / size);
-		this.tile.y = Math.floor((this.pos.y - viewY) / size);
+		this.x = Math.floor((this.pos.x - viewX) / size);
+		this.y = Math.floor((this.pos.y - viewY) / size);
 	}
 
 	update(delta) {

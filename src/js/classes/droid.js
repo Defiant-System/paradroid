@@ -7,7 +7,9 @@ class Droid {
 
 		this.arena = arena;
 		this.id = id;
-		this.tile = { x, y };
+		// tile coords
+		this.x = x || 0;
+		this.y = y || 0;
 		this.pos = new Point(pX, pY);
 
 		this.sprites = {
@@ -50,8 +52,9 @@ class Droid {
 			digits = this.digits,
 			w = arena.tiles.char,
 			f = this.frame.index * w,
-			pX = arena.viewport.half.w,
-			pY = arena.viewport.half.h;
+			pos = this.pos.subtract(new Point(arena.viewport.x, arena.viewport.y)),
+			pX = this.player ? arena.viewport.half.w : pos.x,
+			pY = this.player ? arena.viewport.half.h : pos.y;
 
 		ctx.save();
 		ctx.translate(pX, pY);
