@@ -7,6 +7,8 @@ let Test = {
 		// return APP.dispatch({ type: "show-view", arg: "start" });
 		// return APP.dispatch({ type: "show-view", arg: "console" });
 
+		/*
+		 * Finder algorithm
 		var graph = new Finder.Graph([
 			[1,1,1,1],
 			[0,1,1,0],
@@ -16,6 +18,7 @@ let Test = {
 		var end = graph.grid[2][2];
 		var result = Finder.astar.search(graph, start, end);
 		console.log( result );
+		 */
 
 		
 		/*

@@ -1,16 +1,23 @@
 
 class Droid {
 	constructor(cfg) {
-		let { arena, id, x, y } = cfg,
+		let { arena, id, x, y, speed, patrol } = cfg,
 			pX = x * arena.tiles.size,
 			pY = y * arena.tiles.size;
 
 		this.arena = arena;
 		this.id = id;
+		this.speed = speed;
 		// tile coords
 		this.x = x || 0;
 		this.y = y || 0;
 		this.pos = new Point(pX, pY);
+
+		if (id !== "001") {
+			// patrol points
+			let index = patrol.findIndex(e => e[0] == x && e[1] == y);
+			this.home = { index, patrol };
+		}
 
 		this.sprites = {
 			bg: arena.assets["droid"].img,
@@ -34,8 +41,42 @@ class Droid {
 		this.arena.map.droids.push(this);
 	}
 
-	move(x, y) {
+	move(vel) {
+		let arena = this.arena,
+			size = arena.tiles.size,
+			map = arena.map.collision,
+			point = vel.multiply(this.speed),
+			viewX = (arena.viewport.half.w - size),
+			viewY = (arena.viewport.half.h - size),
+			newPos = {
+				x: Math.floor((this.pos.x - viewX + point.x + (point.x > 0 ? size : 0)) / size),
+				y: Math.floor((this.pos.y - viewY + point.y + (point.y > 0 ? size : 0)) / size),
+			},
+			tile;
 
+		if (point.x !== 0) {
+			tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
+			if (tile !== 1) {
+				this.pos.x += point.x;
+			} else {
+				this.pos.x = point.x > 0
+							? Math.max(viewX - 1 + ((newPos.x - 1) * size), this.pos.x)
+							: Math.min(viewX + 1 + ((newPos.x + 1) * size), this.pos.x);
+			}
+		}
+
+		if (point.y !== 0) {
+			tile = map[newPos.y][this.x] || map[newPos.y][this.x+1];
+			if (tile !== 1) {
+				this.pos.y += point.y;
+			} else {
+				this.pos.y = point.y > 0
+							? Math.max(viewY - 1 + ((newPos.y - 1) * size), this.pos.y)
+							: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
+			}
+		}
+		this.x = Math.floor((this.pos.x - viewX) / size);
+		this.y = Math.floor((this.pos.y - viewY) / size);
 	}
 
 	update(delta) {
@@ -45,6 +86,11 @@ class Droid {
 			this.frame.index++;
 			if (this.frame.index > 8) this.frame.index = 0;
 		}
+
+		if (!this.isPlayer) {
+			let vel = new Point(-2, 0);
+			this.move(vel);
+		}
 	}
 
 	render(ctx) {
@@ -53,8 +99,8 @@ class Droid {
 			w = arena.tiles.char,
 			f = this.frame.index * w,
 			pos = this.pos.subtract(new Point(arena.viewport.x, arena.viewport.y)),
-			pX = this.player ? arena.viewport.half.w : pos.x,
-			pY = this.player ? arena.viewport.half.h : pos.y;
+			pX = this.isPlayer ? arena.viewport.half.w : pos.x,
+			pY = this.isPlayer ? arena.viewport.half.h : pos.y;
 
 		ctx.save();
 		ctx.translate(pX, pY);

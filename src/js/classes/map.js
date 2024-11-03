@@ -61,7 +61,9 @@ class Map {
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;
 				case "droid":
-					this.entries.push(new Droid({ arena: this.arena, id, x, y }));
+					let patrol = [[31, 8], [34, 10]],
+						speed = .25;
+					this.entries.push(new Droid({ arena: this.arena, id, x, y, speed, patrol }));
 					break;
 			}
 		});

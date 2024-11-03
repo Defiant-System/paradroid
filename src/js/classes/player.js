@@ -9,7 +9,7 @@ class Player extends Droid {
 			radius: 100,
 		};
 		this.speed = .75;
-		this.player = true;
+		this.isPlayer = true;
 
 		// create white versions of sprites
 		Object.keys(this.sprites).map(k => {
@@ -61,44 +61,6 @@ class Player extends Droid {
 				this.light.strength = .325;
 				break;
 		}
-	}
-
-	move(vel) {
-		let arena = this.arena,
-			size = arena.tiles.size,
-			map = arena.map.collision,
-			point = vel.multiply(this.speed),
-			viewX = (arena.viewport.half.w - size),
-			viewY = (arena.viewport.half.h - size),
-			newPos = {
-				x: Math.floor((this.pos.x - viewX + point.x + (point.x > 0 ? size : 0)) / size),
-				y: Math.floor((this.pos.y - viewY + point.y + (point.y > 0 ? size : 0)) / size),
-			},
-			tile;
-
-		if (point.x !== 0) {
-			tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
-			if (tile !== 1) {
-				this.pos.x += point.x;
-			} else {
-				this.pos.x = point.x > 0
-							? Math.max(viewX - 1 + ((newPos.x - 1) * size), this.pos.x)
-							: Math.min(viewX + 1 + ((newPos.x + 1) * size), this.pos.x);
-			}
-		}
-
-		if (point.y !== 0) {
-			tile = map[newPos.y][this.x] || map[newPos.y][this.x+1];
-			if (tile !== 1) {
-				this.pos.y += point.y;
-			} else {
-				this.pos.y = point.y > 0
-							? Math.max(viewY - 1 + ((newPos.y - 1) * size), this.pos.y)
-							: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
-			}
-		}
-		this.x = Math.floor((this.pos.x - viewX) / size);
-		this.y = Math.floor((this.pos.y - viewY) / size);
 	}
 
 	update(delta) {
