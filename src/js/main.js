@@ -12,6 +12,7 @@
 @import "./classes/exit.js"
 
 @import "./modules/utils.js"
+@import "./modules/astar.js"
 @import "./modules/test.js"
 
 
