@@ -61,8 +61,8 @@ class Map {
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;
 				case "droid":
-					let patrol = [[31, 8], [34, 10]],
-						speed = .25;
+					let patrol = [[30, 10], [34, 10]],
+						speed = .5;
 					this.entries.push(new Droid({ arena: this.arena, id, x, y, speed, patrol }));
 					break;
 			}
@@ -111,16 +111,14 @@ class Map {
 			}
 		}
 
-		// draw entries
-		this.entries.map(entry => {
-			// if (entry.id === "420") {
-			// 	console.log( xMin-1, yMin-1, xMax, yMax );
-			// 	console.log( entry.x, entry.y );
-			// }
-			if (entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax) {
-				entry.render(ctx);
-			}
-		});
+		// draw entries - exclude droids
+		this.entries
+			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
+			.map(entry => entry.render(ctx));
+		// now render droids on top
+		this.entries
+			.filter(entry => entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
+			.map(entry => entry.render(ctx));
 
 		// if debug mode on, draw walls / extras
 		if (this.arena.debug.mode > 0) {

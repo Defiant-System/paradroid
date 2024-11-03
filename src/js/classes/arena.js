@@ -12,6 +12,7 @@ class Arena {
 		this.tiles = {
 			size: 32,
 			char: 45,
+			step: 5,
 		};
 		this.center = {
 			x: Math.round(this.width / this.tiles.size) / 2,
@@ -19,10 +20,10 @@ class Arena {
 		};
 
 		this.input = {
-			up: { pressed: false, move: new Point(0, -5) },
-			left: { pressed: false, move: new Point(-5, 0) },
-			down: { pressed: false, move: new Point(0, 5) },
-			right: { pressed: false, move: new Point(5, 0) },
+			up: { pressed: false, move: new Point(0, -this.tiles.step) },
+			left: { pressed: false, move: new Point(-this.tiles.step, 0) },
+			down: { pressed: false, move: new Point(0, this.tiles.step) },
+			right: { pressed: false, move: new Point(this.tiles.step, 0) },
 		};
 
 		this.debug = {

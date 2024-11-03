@@ -15,8 +15,10 @@ class Droid {
 
 		if (id !== "001") {
 			// patrol points
-			let index = patrol.findIndex(e => e[0] == x && e[1] == y);
-			this.home = { index, patrol };
+			let index = patrol.findIndex(e => e[0] == x && e[1] == y),
+				target = patrol[(index + 1) % patrol.length],
+				dir = -2;
+			this.home = { index, patrol, target, dir };
 		}
 
 		this.sprites = {
@@ -46,8 +48,8 @@ class Droid {
 			size = arena.tiles.size,
 			map = arena.map.collision,
 			point = vel.multiply(this.speed),
-			viewX = (arena.viewport.half.w - size),
-			viewY = (arena.viewport.half.h - size),
+			viewX = this.isPlayer ? (arena.viewport.half.w - size) : 0,
+			viewY = this.isPlayer ? (arena.viewport.half.h - size) : 0,
 			newPos = {
 				x: Math.floor((this.pos.x - viewX + point.x + (point.x > 0 ? size : 0)) / size),
 				y: Math.floor((this.pos.y - viewY + point.y + (point.y > 0 ? size : 0)) / size),
@@ -75,6 +77,7 @@ class Droid {
 							: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
 			}
 		}
+		// update tile position
 		this.x = Math.floor((this.pos.x - viewX) / size);
 		this.y = Math.floor((this.pos.y - viewY) / size);
 	}
@@ -88,8 +91,16 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			let vel = new Point(-2, 0);
-			this.move(vel);
+			// console.log( this.home.target, this.x, this.y );
+			if (this.x === this.home.target[0] && this.y === this.home.target[1]) {
+				// droid reached target - change target
+				this.home.target = this.home.patrol[this.home.index % this.home.patrol.length];
+				this.home.index++;
+				this.home.dir *= -1;
+			} else {
+				let vel = new Point(this.home.dir, 0);
+				this.move(vel);
+			}
 		}
 	}
 
@@ -99,8 +110,16 @@ class Droid {
 			w = arena.tiles.char,
 			f = this.frame.index * w,
 			pos = this.pos.subtract(new Point(arena.viewport.x, arena.viewport.y)),
-			pX = this.isPlayer ? arena.viewport.half.w : pos.x,
-			pY = this.isPlayer ? arena.viewport.half.h : pos.y;
+			pX,
+			pY;
+
+		if (this.isPlayer) {
+			pX = arena.viewport.half.w;
+			pY = arena.viewport.half.h;
+		} else {
+			pX = pos.x;
+			pY = pos.y;
+		}
 
 		ctx.save();
 		ctx.translate(pX, pY);
