@@ -61,8 +61,8 @@ class Map {
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;
 				case "droid":
-					let patrol = [[30, 10], [34, 10]],
-						speed = .5;
+					let patrol = JSON.parse(xItem.getAttribute("patrol")),
+						speed = +xItem.getAttribute("speed");
 					this.entries.push(new Droid({ arena: this.arena, id, x, y, speed, patrol }));
 					break;
 			}

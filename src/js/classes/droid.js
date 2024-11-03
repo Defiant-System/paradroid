@@ -16,9 +16,9 @@ class Droid {
 		if (id !== "001") {
 			// patrol points
 			let index = patrol.findIndex(e => e[0] == x && e[1] == y),
-				target = patrol[(index + 1) % patrol.length],
-				dir = -2;
-			this.home = { index, patrol, target, dir };
+				target = patrol[index % patrol.length],
+				step = new Point(0, 0);
+			this.home = { index, patrol, target, step };
 		}
 
 		this.sprites = {
@@ -96,10 +96,13 @@ class Droid {
 				// droid reached target - change target
 				this.home.target = this.home.patrol[this.home.index % this.home.patrol.length];
 				this.home.index++;
-				this.home.dir *= -1;
+
+				this.home.step.x = 0;
+				this.home.step.y = 0;
+				if (this.home.target[0] !== this.x) this.home.step.x = this.home.target[0] < this.x ? -2 : 2;
+				if (this.home.target[1] !== this.y) this.home.step.y = this.home.target[1] < this.y ? -2 : 2;
 			} else {
-				let vel = new Point(this.home.dir, 0);
-				this.move(vel);
+				this.move(this.home.step);
 			}
 		}
 	}
