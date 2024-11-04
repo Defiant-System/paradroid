@@ -83,10 +83,14 @@ class Arena {
 		// change debug state
 		if (state.debug) this.debug.mode = state.debug.mode;
 
-		let mapState = { droids: [], ...state.map };
+		let mapState = { droids: [], ...state.map },
+			size = this.tiles.size;
 		this.map.setState(mapState);
 		// move player / "001"
 		this.player.spawn(state["001"].x, state["001"].y);
+		// move player / "001"
+		// this.viewport.x = this.player.pos.x - this.viewport.half.w + size;
+		// this.viewport.y = this.player.pos.y - this.viewport.half.h + size;
 
 		// start "loop"
 		this.fpsControl.start();
