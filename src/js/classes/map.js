@@ -18,6 +18,12 @@ class Map {
 		this.w = this.width * size;
 		this.h = this.height * size;
 		
+		// TODO: save current state for when coming back
+
+	    // reset map arrays
+	    this.entries = [];
+	    this.droids = [this.arena.player];
+
 		// reset level map data
 		this.background = [];
 		this.collision = [];
@@ -45,6 +51,7 @@ class Map {
 				h = +xItem.getAttribute("h"),
 				id = xItem.getAttribute("id"),
 				action = xItem.getAttribute("action");
+			// console.log( action );
 			switch (action) {
 				case "door-h":
 				case "door-v":

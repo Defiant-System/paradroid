@@ -23,7 +23,15 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "return":
-						let state = { "001": { x: 35, y: 15 }, "map": { id: Self.elevator.section } };
+						let lift = Self.els.el.find(".lift.active"),
+							xSection = window.bluePrint.selectSingleNode(`//Section[@id="${Self.elevator.section}"]`),
+							xExit = xSection.selectSingleNode(`./Layer[@id="action"]/*[@action="exit"][@lift="${lift.data("id")}"]`),
+							exit = {
+								x: +xExit.getAttribute("x"),
+								y: +xExit.getAttribute("y"),
+							},
+							state = { "001": exit, "map": { id: Self.elevator.section } };
+						console.log( state );
 						APP.mobile.dispatch({ type: "go-to-section", state });
 						break;
 					case "up":
