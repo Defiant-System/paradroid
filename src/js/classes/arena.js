@@ -89,8 +89,10 @@ class Arena {
 		// move player / "001"
 		this.player.spawn(state["001"].x, state["001"].y);
 		// move player / "001"
-		// this.viewport.x = this.player.pos.x - this.viewport.half.w + size;
-		// this.viewport.y = this.player.pos.y - this.viewport.half.h + size;
+		this.viewport.x = (this.player.x * size) - this.viewport.half.w;
+		this.viewport.y = (this.player.y * size) - this.viewport.half.h;
+
+		// this.render();
 
 		// start "loop"
 		this.fpsControl.start();

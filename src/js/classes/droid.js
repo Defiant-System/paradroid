@@ -66,26 +66,30 @@ class Droid {
 			},
 			tile;
 
-		if (point.x !== 0) {
-			tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
-			if (tile !== 1) {
-				this.pos.x += point.x;
-			} else {
-				this.pos.x = point.x > 0
-							? Math.max(viewX - 1 + ((newPos.x - 1) * size), this.pos.x)
-							: Math.min(viewX + 1 + ((newPos.x + 1) * size), this.pos.x);
+		if (this.isPlayer) {
+			if (point.x !== 0) {
+				tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
+				if (tile !== 1) {
+					this.pos.x += point.x;
+				} else {
+					this.pos.x = point.x > 0
+								? Math.max(viewX - 1 + ((newPos.x - 1) * size), this.pos.x)
+								: Math.min(viewX + 1 + ((newPos.x + 1) * size), this.pos.x);
+				}
 			}
-		}
-
-		if (point.y !== 0) {
-			tile = map[newPos.y][this.x] || map[newPos.y][this.x+1];
-			if (tile !== 1) {
-				this.pos.y += point.y;
-			} else {
-				this.pos.y = point.y > 0
-							? Math.max(viewY - 1 + ((newPos.y - 1) * size), this.pos.y)
-							: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
+			if (point.y !== 0) {
+				tile = map[newPos.y][this.x] || map[newPos.y][this.x+1];
+				if (tile !== 1) {
+					this.pos.y += point.y;
+				} else {
+					this.pos.y = point.y > 0
+								? Math.max(viewY - 1 + ((newPos.y - 1) * size), this.pos.y)
+								: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
+				}
 			}
+		} else {
+			this.pos.x += point.x;
+			this.pos.y += point.y;
 		}
 		// update tile position
 		this.x = Math.floor((this.pos.x - viewX) / size);
