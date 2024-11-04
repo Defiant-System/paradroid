@@ -1,7 +1,7 @@
 
 <Section id="1" width="52" height="30" y=".5" x=".5">
 	<Layer id="action">
-		<i x="30" y="10" id="420" action="droid" speed=".5" patrol="[[30,10], [30,7], [34,7], [34,10]]"/>
+		<i id="420" action="droid" speed=".5" patrol="[[24,6], [34,6]]"/>
 		<i x="16" y="6" w="2" h="2" action="door-h"/>
 		<i x="28" y="6" w="2" h="2" action="door-h"/>
 		<i x="36" y="18" w="2" h="2" action="door-h"/>

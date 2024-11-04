@@ -17,9 +17,10 @@
 		flex: 1;
 
 		.bar {
-			top: -16px;
+			top: -15px;
 
 			.box {
+				transform: rotateX(80deg) rotateY(0deg);
 				--c1: #d242ed;
 
 				> div {
@@ -42,6 +43,8 @@
 					}
 
 					&.bottom {
+						transform: translateY(3px);
+
 						&:before {
 							height: 20px;
 						}
@@ -54,7 +57,9 @@
 
 					&.full {
 						width: 20px;
-						transform: rotateX(90deg) rotateY(-90deg) translateX(40px) translateY(15px) translateZ(-10px);
+						height: 30px;
+						transform: rotateX(90deg) rotateY(-90deg) translateX(37px) translateY(16px) translateZ(-8px);
+						opacity: .35;
 					}
 
 					&.front {
@@ -66,7 +71,7 @@
 						}
 
 						&:after {
-							bottom: 21px;
+							display: none;
 						}
 					}
 				}
@@ -76,13 +81,13 @@
 		.view-title {
 			padding: 5px 0 0 9px;
 			position: absolute;
-			top: 4px;
+			top: 3px;
 			left: 13px;
 			width: 200px;
 			height: 34px;
 			font-size: 22px;
 			color: rgba(#7100ac,.75);
-			text-shadow: 0 1px 0 rgba(#fff,.5);
+			text-shadow: 0 1px 0 #e186ff;
 			pointer-events: none;
 		}
 	}

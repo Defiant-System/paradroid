@@ -1,8 +1,9 @@
 
 class Droid {
 	constructor(cfg) {
-		let { arena, id, x, y, speed, patrol } = cfg,
-			pX = x * arena.tiles.size,
+		let { arena, id, speed, x, y, patrol } = cfg;
+		if (patrol) [x, y] = patrol[0];
+		let pX = x * arena.tiles.size,
 			pY = y * arena.tiles.size;
 
 		this.arena = arena;
@@ -57,7 +58,7 @@ class Droid {
 			tile;
 
 		if (point.x !== 0) {
-			tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
+			tile = map[this.y][newPos.x];
 			if (tile !== 1) {
 				this.pos.x += point.x;
 			} else {

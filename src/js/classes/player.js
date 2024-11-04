@@ -66,18 +66,15 @@ class Player extends Droid {
 	update(delta) {
 		let arena = this.arena,
 			step = new Point(0, 0);
-
 		// check input
 		for (let key in arena.input) {
 			if (arena.input[key].pressed) {
 				step = step.add(arena.input[key].move);
 			}
 		}
-		
 		if (step.x !== 0 || step.y !== 0) {
 			this.move(step);
 		}
-
 		super.update(delta);
 	}
 
