@@ -23,10 +23,10 @@ let Test = {
 		
 		/*
 		 * LIFT View
-		 */
 		APP.dispatch({ type: "show-view", arg: "lift" });
 		APP.lift.els.el.find(".lift").get(0).trigger("click");
 		return;
+		 */
 
 		/*
 		 * EDITOR
