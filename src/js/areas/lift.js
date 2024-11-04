@@ -23,7 +23,7 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "return":
-						let state = { "001": { x: 2, y: 1 }, "map": { id: Self.elevator.section } };
+						let state = { "001": { x: 35, y: 15 }, "map": { id: Self.elevator.section } };
 						APP.mobile.dispatch({ type: "go-to-section", state });
 						break;
 					case "up":

@@ -1,8 +1,8 @@
 
 <Section id="18" width="64" height="18" y=".5" x=".5">
 	<Layer id="action">
-		<i x="18" y="8" w="2" h="2" action="exit"/>
-		<i x="44" y="8" w="2" h="2" action="exit"/>
+		<i x="18" y="8" w="2" h="2" action="exit" lift="3"/>
+		<i x="44" y="8" w="2" h="2" action="exit" lift="4"/>
 		<i x="16" y="2" w="2" h="2" action="door-h"/>
 		<i x="16" y="14" w="2" h="2" action="door-h"/>
 		<i x="32" y="2" w="2" h="2" action="door-h"/>

@@ -1,9 +1,9 @@
 
 <Section id="15" width="76" height="30" y=".5" x=".5">
 	<Layer id="action">
-		<i x="8" y="14" w="2" h="2" action="exit"/>
-		<i x="8" y="26" w="2" h="2" action="exit"/>
-		<i x="22" y="10" w="2" h="2" action="exit"/>
+		<i x="8" y="14" w="2" h="2" action="exit" lift="4"/>
+		<i x="8" y="26" w="2" h="2" action="exit" lift="5"/>
+		<i x="22" y="10" w="2" h="2" action="exit" lift="7"/>
 		<i x="10" y="6" w="2" h="2" action="door-h"/>
 		<i x="22" y="6" w="2" h="2" action="door-h"/>
 		<i x="22" y="22" w="2" h="2" action="door-h"/>

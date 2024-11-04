@@ -9,8 +9,8 @@
 		<i x="26" y="10" w="2" h="2" action="door-h"/>
 		<i x="12" y="6" w="2" h="2" action="door-h"/>
 		<i x="2" y="8" w="2" h="2" action="door-v"/>
-		<i x="14" y="6" w="2" h="2" action="exit"/>
-		<i x="2" y="4" w="2" h="2" action="exit"/>
+		<i x="14" y="6" w="2" h="2" action="exit" lift="7"/>
+		<i x="2" y="4" w="2" h="2" action="exit" lift="6"/>
 		<i x="10" y="18" w="2" h="2" action="console"/>
 		<i x="12" y="2" w="2" h="2" action="console"/>
 	</Layer>

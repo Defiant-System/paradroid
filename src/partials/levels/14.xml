@@ -9,7 +9,7 @@
 		<i x="34" y="12" w="2" h="2" action="door-h"/>
 		<i x="10" y="6" w="2" h="2" action="door-v"/>
 		<i x="20" y="18" w="2" h="2" action="door-v"/>
-		<i x="14" y="8" w="2" h="2" action="exit"/>
+		<i x="14" y="8" w="2" h="2" action="exit" lift="7"/>
 		<i x="46" y="12" w="2" h="2" action="door-h"/>
 		<i x="54" y="12" w="2" h="2" action="door-h"/>
 		<i x="12" y="2" w="2" h="2" action="console"/>

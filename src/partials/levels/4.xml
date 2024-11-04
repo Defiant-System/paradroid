@@ -1,7 +1,7 @@
 
 <Section id="4" width="44" height="10" y=".5" x=".5">
 	<Layer id="action">
-		<i x="2" y="4" w="2" h="2" action="exit"/>
+		<i x="2" y="4" w="2" h="2" action="exit" lift="1"/>
 		<i x="36" y="2" w="2" h="2" action="recharge"/>
 		<i x="40" y="2" w="2" h="2" action="recharge"/>
 		<i x="36" y="6" w="2" h="2" action="recharge"/>

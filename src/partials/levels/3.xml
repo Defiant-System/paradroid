@@ -3,8 +3,8 @@
 	<Layer id="action">
 		<i x="2" y="8" w="2" h="2" action="recharge"/>
 		<i x="2" y="20" w="2" h="2" action="recharge"/>
-		<i x="18" y="14" w="2" h="2" action="exit"/>
-		<i x="58" y="14" w="2" h="2" action="exit"/>
+		<i x="18" y="14" w="2" h="2" action="exit" lift="1"/>
+		<i x="58" y="14" w="2" h="2" action="exit" lift="3"/>
 		<i x="24" y="2" w="2" h="2" action="door-h"/>
 		<i x="24" y="14" w="2" h="2" action="door-h"/>
 		<i x="24" y="26" w="2" h="2" action="door-h"/>

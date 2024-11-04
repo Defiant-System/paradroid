@@ -1,7 +1,7 @@
 
 <Section id="20" width="12" height="6" y="2.5" x="3.5">
 	<Layer id="action">
-		<i x="2" y="2" w="2" h="2" action="exit"/>
+		<i x="2" y="2" w="2" h="2" action="exit" lift="8"/>
 	</Layer>
 	<Layer id="collision">
 		<i id="c1" x="8" y="0"/><i id="c1" x="9" y="0"/><i id="c1" x="10" y="0"/><i id="c1" x="11" y="0"/><i id="c1" x="8" y="1"/><i id="c1" x="9" y="1"/><i id="c1" x="10" y="1"/><i id="c1" x="11" y="1"/><i id="c1" x="0" y="0"/><i id="c1" x="1" y="0"/><i id="c1" x="2" y="0"/><i id="c1" x="3" y="0"/><i id="c1" x="4" y="0"/><i id="c1" x="5" y="0"/><i id="c1" x="6" y="0"/><i id="c1" x="7" y="0"/><i id="c1" x="0" y="1"/><i id="c1" x="1" y="1"/><i id="c1" x="2" y="1"/><i id="c1" x="3" y="1"/><i id="c1" x="4" y="1"/><i id="c1" x="5" y="1"/><i id="c1" x="6" y="1"/><i id="c1" x="7" y="1"/><i id="c1" x="8" y="4"/><i id="c1" x="9" y="4"/><i id="c1" x="10" y="4"/><i id="c1" x="11" y="4"/><i id="c1" x="8" y="5"/><i id="c1" x="9" y="5"/><i id="c1" x="10" y="5"/><i id="c1" x="11" y="5"/><i id="c1" x="0" y="4"/><i id="c1" x="1" y="4"/><i id="c1" x="2" y="4"/><i id="c1" x="3" y="4"/><i id="c1" x="4" y="4"/><i id="c1" x="5" y="4"/><i id="c1" x="6" y="4"/><i id="c1" x="7" y="4"/><i id="c1" x="0" y="5"/><i id="c1" x="1" y="5"/><i id="c1" x="2" y="5"/><i id="c1" x="3" y="5"/><i id="c1" x="4" y="5"/><i id="c1" x="5" y="5"/><i id="c1" x="6" y="5"/><i id="c1" x="7" y="5"/><i id="c1" x="10" y="2"/><i id="c1" x="11" y="2"/><i id="c1" x="10" y="3"/><i id="c1" x="11" y="3"/><i id="c1" x="0" y="2"/><i id="c1" x="1" y="2"/><i id="c1" x="0" y="3"/><i id="c1" x="1" y="3"/>

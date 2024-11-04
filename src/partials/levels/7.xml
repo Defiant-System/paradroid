@@ -1,7 +1,7 @@
 
 <Section id="7" width="68" height="32" y=".5" x=".5">
 	<Layer id="action">
-		<i x="2" y="8" w="2" h="2" action="exit"/>
+		<i x="2" y="8" w="2" h="2" action="exit" lift="2"/>
 		<i x="6" y="12" w="2" h="2" action="recharge"/>
 		<i x="20" y="14" w="2" h="2" action="recharge"/>
 		<i x="20" y="24" w="2" h="2" action="recharge"/>
@@ -9,7 +9,7 @@
 		<i x="42" y="10" w="2" h="2" action="recharge"/>
 		<i x="46" y="8" w="2" h="2" action="recharge"/>
 		<i x="52" y="8" w="2" h="2" action="recharge"/>
-		<i x="64" y="28" w="2" h="2" action="exit"/>
+		<i x="64" y="28" w="2" h="2" action="exit" lift="5"/>
 		<i x="58" y="6" w="2" h="2" action="door-v"/>
 		<i x="56" y="6" w="2" h="2" action="door-v"/>
 		<i x="44" y="26" w="2" h="2" action="door-h"/>
