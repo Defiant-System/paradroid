@@ -1,7 +1,8 @@
 
 <Section id="1" width="52" height="30" y=".5" x=".5">
 	<Layer id="action">
-		<i id="420" action="droid" speed=".5" patrol="[[30,8], [30,5], [33,5], [33,8]]"/>
+		<!-- <i id="420" action="droid" speed=".5" patrol="[[30,11], [30,5], [33,5], [33,11]]"/> -->
+		<i id="420" action="droid" speed=".5" patrol="[[18,6], [24,6]]"/>
 		<i x="16" y="6" w="2" h="2" action="door-h"/>
 		<i x="28" y="6" w="2" h="2" action="door-h"/>
 		<i x="36" y="18" w="2" h="2" action="door-h"/>

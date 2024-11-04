@@ -116,6 +116,7 @@ class Droid {
 				if (this.home.target[0] !== this.x) this.home.step.x = this.home.target[0] < this.x ? -2 : 2;
 				if (this.home.target[1] !== this.y) this.home.step.y = this.home.target[1] < this.y ? -2 : 2;
 			} else {
+				// console.log(this.home.target.join(","));
 				this.move(this.home.step);
 			}
 		}
@@ -177,8 +178,11 @@ class Droid {
 		// if debug mode on, draw extras
 		if (this.arena.debug.mode > 0) {
 			ctx.save();
-			ctx.fillStyle = "#ff000077";
-			ctx.fillRect(0, 0, 32, 32);
+			ctx.fillStyle = this.isPlayer ? "#6699ff77" : "#ff000077";
+			// ctx.fillRect(0, 0, 32, 32);
+			ctx.beginPath();
+			ctx.arc(16, 16, 16, 0, Math.TAU);
+			ctx.fill();
 			ctx.restore();
 		}
 
