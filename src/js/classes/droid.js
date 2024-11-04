@@ -44,6 +44,15 @@ class Droid {
 		this.arena.map.droids.push(this);
 	}
 
+	getDistance(point) {
+		let pos = this.pos;
+		if (!this.isPlayer) {
+			let vH = this.arena.viewport.half;
+			point = point.subtract(new Point(vH.w, vH.h));
+		}
+		return pos.distance(point);
+	}
+
 	move(vel) {
 		let arena = this.arena,
 			size = arena.tiles.size,
@@ -58,7 +67,7 @@ class Droid {
 			tile;
 
 		if (point.x !== 0) {
-			tile = map[this.y][newPos.x];
+			tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
 			if (tile !== 1) {
 				this.pos.x += point.x;
 			} else {
