@@ -22,11 +22,12 @@ class Door {
 	}
 
 	update(delta) {
-		this.arena.map.droids.map(droid => {
-			let dist = droid.pos.distance(this.pos);
-			if (dist < 64 && this.state !== "open") this.state = "opening";
-			else if (dist > 64 && this.state !== "close") this.state = "closing";
-		});
+		let dist = [];
+		this.arena.map.droids.map(droid => dist.push(droid.pos.distance(this.pos)));
+		// if closest droid is within range, open door
+		let closest = Math.min(...dist);
+		if (closest < 64 && this.state !== "open") this.state = "opening";
+		else if (closest > 64 && this.state !== "close") this.state = "closing";
 
 		switch (this.state) {
 			case "opening":
