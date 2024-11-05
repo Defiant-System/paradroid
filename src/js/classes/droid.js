@@ -12,6 +12,7 @@ class Droid {
 		// tile coords
 		this.x = x || 0;
 		this.y = y || 0;
+		this.r = 23;
 		this.pos = new Point(pX, pY);
 
 		if (id !== "001") {
@@ -44,13 +45,13 @@ class Droid {
 		this.arena.map.droids.push(this);
 	}
 
-	getDistance(point) {
-		let pos = this.pos;
-		if (!this.isPlayer) {
-			let vH = this.arena.viewport.half;
-			point = point.subtract(new Point(vH.w, vH.h));
+	collide(other) {
+		let impactVector = this.pos.subtract(other.pos);
+		let d = impactVector.mag();
+		
+		if (d < this.r + other.r) {
+			console.log( "collision" );
 		}
-		return pos.distance(point);
 	}
 
 	move(vel) {
@@ -58,11 +59,9 @@ class Droid {
 			size = arena.tiles.size,
 			map = arena.map.collision,
 			point = vel.multiply(this.speed),
-			viewX = this.isPlayer ? (arena.viewport.half.w - size) : 0,
-			viewY = this.isPlayer ? (arena.viewport.half.h - size) : 0,
 			newPos = {
-				x: Math.floor((this.pos.x - viewX + point.x + (point.x > 0 ? size : 0)) / size),
-				y: Math.floor((this.pos.y - viewY + point.y + (point.y > 0 ? size : 0)) / size),
+				x: Math.floor((this.pos.x + point.x + (point.x > 0 ? size : 0)) / size),
+				y: Math.floor((this.pos.y + point.y + (point.y > 0 ? size : 0)) / size),
 			},
 			tile;
 
@@ -73,8 +72,8 @@ class Droid {
 					this.pos.x += point.x;
 				} else {
 					this.pos.x = point.x > 0
-								? Math.max(viewX - 1 + ((newPos.x - 1) * size), this.pos.x)
-								: Math.min(viewX + 1 + ((newPos.x + 1) * size), this.pos.x);
+								? Math.max(((newPos.x - 1) * size) - 1, this.pos.x)
+								: Math.min(((newPos.x + 1) * size) + 1, this.pos.x);
 				}
 			}
 			if (point.y !== 0) {
@@ -83,8 +82,8 @@ class Droid {
 					this.pos.y += point.y;
 				} else {
 					this.pos.y = point.y > 0
-								? Math.max(viewY - 1 + ((newPos.y - 1) * size), this.pos.y)
-								: Math.min(viewY + 1 + ((newPos.y + 1) * size), this.pos.y);
+								? Math.max(((newPos.y - 1) * size) - 1, this.pos.y)
+								: Math.min(((newPos.y + 1) * size) + 1, this.pos.y);
 				}
 			}
 		} else {
@@ -92,8 +91,8 @@ class Droid {
 			this.pos.y += point.y;
 		}
 		// update tile position
-		this.x = Math.floor((this.pos.x - viewX) / size);
-		this.y = Math.floor((this.pos.y - viewY) / size);
+		this.x = Math.floor(this.pos.x / size);
+		this.y = Math.floor(this.pos.y / size);
 	}
 
 	update(delta) {

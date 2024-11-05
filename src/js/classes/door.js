@@ -3,8 +3,8 @@ class Door {
 	constructor(cfg) {
 		let { arena, type, x, y } = cfg,
 			size = arena.tiles.size,
-			pX = arena.viewport.half.w + (x * size),
-			pY = arena.viewport.half.h + (y * size);
+			pX = x * size,
+			pY = y * size;
 		
 		this.arena = arena;
 		this.type = type;
@@ -23,7 +23,7 @@ class Door {
 
 	update(delta) {
 		let dist = [];
-		this.arena.map.droids.map(droid => dist.push(droid.getDistance(this.pos)));
+		this.arena.map.droids.map(droid => dist.push(droid.pos.distance(this.pos)));
 		// if closest droid is within range, open door
 		let closest = Math.min(...dist);
 		// if (this.x === 28 && this.y === 6) console.log( dist );

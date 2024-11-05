@@ -3,8 +3,8 @@ class Recharge {
 	constructor(cfg) {
 		let { arena, x, y } = cfg,
 			size = arena.tiles.size,
-			pX = arena.viewport.half.w + (x * size),
-			pY = arena.viewport.half.h + (y * size);
+			pX = x * size,
+			pY = y * size;
 		
 		this.arena = arena;
 		this.x = x;

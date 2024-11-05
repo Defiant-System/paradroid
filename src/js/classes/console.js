@@ -3,8 +3,8 @@ class Console {
 	constructor(cfg) {
 		let { arena, type, x, y, w, h } = cfg,
 			size = arena.tiles.size,
-			pX = arena.viewport.half.w + (x * size),
-			pY = arena.viewport.half.h + (y * size);
+			pX = x * size,
+			pY = y * size;
 		
 		this.arena = arena;
 		this.type = type;

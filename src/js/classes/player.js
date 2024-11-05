@@ -34,15 +34,12 @@ class Player extends Droid {
 	}
 
 	spawn(x, y) {
-		let arena = this.arena,
-			size = arena.tiles.size,
-			oX = arena.viewport.half.w - size,
-			oY = arena.viewport.half.h - size;
+		let size = this.arena.tiles.size;
 		// tile coords
 		this.x = x;
 		this.y = y;
-		this.pos.x = oX + (x * size);
-		this.pos.y = oY + (y * size);
+		this.pos.x = x * size;
+		this.pos.y = y * size;
 	}
 
 	setState(state) {

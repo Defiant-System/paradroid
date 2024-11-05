@@ -10,12 +10,13 @@ class Viewport {
 		this.h = h;
 		// mid point of viewport
 		this.half = { w: w >> 1, h: h >> 1 };
+		this.half.p = new Point(this.half.w, this.half.h);
 	}
 
 	center() {
 		let arena = this.arena,
-			centerX = arena.player.pos.x - this.half.w + arena.tiles.size,
-			centerY = arena.player.pos.y - this.half.h + arena.tiles.size;
+			centerX = arena.player.pos.x,
+			centerY = arena.player.pos.y;
 		this.scroll(centerX, centerY);
 	}
 

@@ -78,10 +78,19 @@ class Map {
 
 	update(delta) {
 		this.entries.map(item => item.update(delta));
+
+		for (let i=0; i<this.droids.length; i++) {
+			let droidA = this.droids[i];
+			for (let j=i+1; j<this.droids.length; j++) {
+				droidA.collide(this.droids[j]);
+			}
+		}
+
 		// this.droids.map(d1 => {
 		// 	this.droids.map(d2 => {
 		// 		if (d1 === d2 || d1.isPlayer) return;
-		// 		console.log( d1.id, d1.getDistance(d2.pos) | 0 );
+		// 		// console.log( d1.id, d1.getDistance(d2.pos) | 0 );
+		// 		d1.collide(d2);
 		// 	});
 		// });
 	}

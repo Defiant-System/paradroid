@@ -46,6 +46,10 @@ class Point {
 		return this;
 	}
 
+	mag() {
+		return Math.sqrt(this._x * this._x + this._y * this._y);
+	}
+
 	normalize(thickness) { 
 		var length = Math.sqrt(this._x * this._x + this._y * this._y),
 			myInversed = 1 / length;
