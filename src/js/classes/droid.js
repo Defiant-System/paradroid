@@ -152,7 +152,7 @@ class Droid {
 		}
 
 		// normal draw if debug mode is < 3
-		if (this.arena.debug.mode < 3) {
+		if (arena.debug.mode < 3) {
 			ctx.save();
 			ctx.translate(-6, -9);
 			// top + bottom caps
@@ -176,10 +176,9 @@ class Droid {
 			ctx.restore();
 		}
 		// if debug mode on, draw extras
-		if (this.arena.debug.mode > 0) {
+		if (arena.debug.mode > 0) {
 			ctx.save();
 			ctx.fillStyle = this.isPlayer ? "#6699ff77" : "#ff000077";
-			// ctx.fillRect(0, 0, 32, 32);
 			ctx.beginPath();
 			ctx.arc(16, 16, 16, 0, Math.TAU);
 			ctx.fill();

@@ -78,12 +78,12 @@ class Map {
 
 	update(delta) {
 		this.entries.map(item => item.update(delta));
-		this.droids.map(d1 => {
-			this.droids.map(d2 => {
-				if (d1 === d2 || d1.isPlayer) return;
-				console.log( d1.id, d1.getDistance(d2.pos) | 0 );
-			});
-		});
+		// this.droids.map(d1 => {
+		// 	this.droids.map(d2 => {
+		// 		if (d1 === d2 || d1.isPlayer) return;
+		// 		console.log( d1.id, d1.getDistance(d2.pos) | 0 );
+		// 	});
+		// });
 	}
 
 	render(ctx) {

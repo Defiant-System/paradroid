@@ -62,19 +62,32 @@ class Door {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			size = arena.tiles.size,
-			vX = viewport.x + ((this.arena.width - viewport.w) >> 1),
-			vY = viewport.y + ((this.arena.height - viewport.h) >> 1),
+			vX = viewport.x + ((arena.width - viewport.w) >> 1),
+			vY = viewport.y + ((arena.height - viewport.h) >> 1),
 			x = Math.round((this.x * size) - vX),
 			y = Math.round((this.y * size) - vY),
 			frame = 128 + (this.frame.index * 64),
-			args = [arena.assets["big-map"].img, frame, 256, 64, 64, 0, 0, 64, 64];
+			args = [arena.assets["big-map"].img, frame, 256, 64, 64, 0, 0, 64, 64],
+			isVert = this.type === "v";
 
 		// frames for vertical door
-		if (this.type === "v") args[2] = 320;
+		if (isVert) args[2] = 320;
 
 		ctx.save();
 		ctx.translate(x, y);
-		ctx.drawImage(...args);
+
+		// normal draw if debug mode is < 3
+		if (arena.debug.mode < 3) {
+			ctx.drawImage(...args);
+		}
+
+		// if debug mode on, draw extras
+		if (arena.debug.mode > 0) {
+			args = isVert ? [0, 16, 64, 32] : [16, 0, 32, 64];
+			ctx.fillStyle = "#00000066";
+			ctx.fillRect(...args);
+		}
+
 		ctx.restore();
 	}
 }
