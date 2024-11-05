@@ -1,5 +1,6 @@
 
 <Data>
+@import "data/weapon.xml"
 @import "data/droids.xml"
 
 @import "levels/1.xml"

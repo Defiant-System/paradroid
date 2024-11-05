@@ -1,0 +1,24 @@
+
+<Weapon id="1" recharge="0.95" damage="25">
+	<i id="notes"><![CDATA[This is the influencers small double shot]]></i>
+</Weapon>
+
+<Weapon id="2" recharge="1.2" damage="40">
+	<i id="notes"><![CDATA[This is the 476 standard shot]]></i>
+</Weapon>
+
+<Weapon id="3" recharge="1.4" damage="55">
+	<i id="notes"><![CDATA[This is the double 821 military shot]]></i>
+</Weapon>
+
+<Weapon id="4" recharge="1.0" damage="40">
+	<i id="notes"><![CDATA[This is the disruptor, the 742 and 711 use]]></i>
+</Weapon>
+
+<Weapon id="5" recharge="3.0" damage="80">
+	<i id="notes"><![CDATA[This is the exterminator, the 883 uses]]></i>
+</Weapon>
+
+<Weapon id="6" recharge="1.4" damage="40">
+	<i id="notes"><![CDATA[This is the laser rifle of the 614]]></i>
+</Weapon>

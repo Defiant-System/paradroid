@@ -1,120 +1,120 @@
 
-<Droid id="001" digits="1,1,0" speed="5" energy="100" loss="1" agression="0" score="0">
+<Droid id="001" digits="1,1,0" weight="27" speed="5" energy="100" loss="1" agression="0" weapon="1" score="0">
 	<i id="title"><![CDATA[Influence device]]></i>
 	<i id="notes"><![CDATA[Robot activity influence device. This is the unit that you currently control. Prepare to board Robo-Freighter Daradroid to eliminate all rogue robots.]]></i>
 </Droid>
 
-<Droid id="123" digits="0,-2,-1" speed="2" energy="20" loss="2" agression="0" score="25">
+<Droid id="123" digits="0,-2,-1" weight="85" speed="2" energy="20" loss="2" agression="0" weapon="1" score="25">
 	<i id="title"><![CDATA[Disposal robot]]></i>
 	<i id="notes"><![CDATA[Simpe rubbish diposal robot. Common device in most space craft to maintain a clean ship.]]></i>
 </Droid>
 
-<Droid id="139" digits="1,-1,-1" speed="2" energy="20" loss="2" agression="0" score="25">
+<Droid id="139" digits="1,-1,-1" weight="61" speed="2" energy="20" loss="2" agression="0" weapon="1" score="25">
 	<i id="title"><![CDATA[Disposal robot]]></i>
 	<i id="notes"><![CDATA[Created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally.]]></i>
 </Droid>
 
-<Droid id="247" digits="1,1,0" speed="4" energy="20" loss="2" agression="0" score="50">
+<Droid id="247" digits="1,1,0" weight="78" speed="4" energy="20" loss="2" agression="0" weapon="1" score="50">
 	<i id="title"><![CDATA[servant robot]]></i>
 	<i id="notes"><![CDATA[Light duty servant robot. One of the first to use the anti-grav system.]]></i>
 </Droid>
 
-<Droid id="249" digits="1,1,1" speed="3" energy="24" loss="2" agression="0" score="50">
+<Droid id="249" digits="1,1,1" weight="83" speed="3" energy="24" loss="2" agression="0" weapon="1" score="50">
 	<i id="title"><![CDATA[Servant robot]]></i>
 	<i id="notes"><![CDATA[Cheaper version of the anti-grav servant robot.]]></i>
 </Droid>
 
-<Droid id="296" digits="2,2,2" speed="3" energy="40" loss="2" agression="0" score="50">
+<Droid id="296" digits="2,2,2" weight="47" speed="3" energy="40" loss="2" agression="0" weapon="1" score="50">
 	<i id="title"><![CDATA[Servant robot]]></i>
 	<i id="notes"><![CDATA[This robot is used mainly for serving drinks. A tray is mounted on the head. Built by Orchard and Marsden Enterprises.]]></i>
 </Droid>
 
-<Droid id="302" digits="0,0,0" speed="7" energy="40" loss="2" agression="0" score="75">
+<Droid id="302" digits="0,0,0" weight="23" speed="7" energy="40" loss="2" agression="0" weapon="1" score="75">
 	<i id="title"><![CDATA[Messenger robot]]></i>
 	<i id="notes"><![CDATA[Common device for moving small packages. Clamp is mounted on the lower body.]]></i>
 </Droid>
 
-<Droid id="329" digits="1,1,1" speed="3" energy="40" loss="2" agression="0" score="75">
+<Droid id="329" digits="1,1,1" weight="31" speed="3" energy="40" loss="2" agression="0" weapon="1" score="75">
 	<i id="title"><![CDATA[Messenger robot]]></i>
 	<i id="notes"><![CDATA[Early type messenger robot. Large wheels impede motion on small craft.an]]></i>
 </Droid>
 
-<Droid id="420" digits="-1,-1,-1" speed="3" energy="60" loss="2" agression="0" score="100">
+<Droid id="420" digits="-1,-1,-1" weight="57" speed="3" energy="60" loss="2" agression="0" weapon="1" score="100">
 	<i id="title"><![CDATA[Maintenance robot]]></i>
 	<i id="notes"><![CDATA[Slow maintenance robot. Confined to drive maintenance during flight.]]></i>
 </Droid>
 
-<Droid id="476" digits="1,0,-1" speed="4" energy="70" loss="2" agression="30" score="100">
+<Droid id="476" digits="1,0,-1" weight="42" speed="4" energy="70" loss="2" agression="30" weapon="2" score="100">
 	<i id="title"><![CDATA[Maintenance robot]]></i>
 	<i id="notes"><![CDATA[Ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these.]]></i>
 </Droid>
 
-<Droid id="493" digits="0,0,0" speed="4" energy="80" loss="3" agression="0" score="100">
+<Droid id="493" digits="0,0,0" weight="51" speed="4" energy="80" loss="3" agression="0" weapon="1" score="100">
 	<i id="title"><![CDATA[maintenance robot]]></i>
 	<i id="notes"><![CDATA[Slave maintenance droid. Standard version will carry its own toolbox.]]></i>
 </Droid>
 
-<Droid id="516" digits="2,0,-2" speed="3" energy="80" loss="3" agression="0" score="125">
+<Droid id="516" digits="2,0,-2" weight="74" speed="3" energy="80" loss="3" agression="0" weapon="1" score="125">
 	<i id="title"><![CDATA[Crew droid]]></i>
 	<i id="notes"><![CDATA[Early crew droid. Able to carry out simple flight checks only. No longer supplied.]]></i>
 </Droid>
 
-<Droid id="571" digits="2,2,0" speed="4" energy="80" loss="3" agression="0" score="125">
+<Droid id="571" digits="2,2,0" weight="62" speed="4" energy="80" loss="3" agression="0" weapon="1" score="125">
 	<i id="title"><![CDATA[Creco droid]]></i>
 	<i id="notes"><![CDATA[Standard crew droid. Supplied with the ship.]]></i>
 </Droid>
 
-<Droid id="598" digits="0,0,0" speed="3" energy="80" loss="3" agression="0" score="125">
+<Droid id="598" digits="0,0,0" weight="93" speed="3" energy="80" loss="3" agression="0" weapon="1" score="125">
 	<i id="title"><![CDATA[Freighter droid]]></i>
 	<i id="notes"><![CDATA[A highly sophisticated device. Able to control the Robo-Freighter on its own.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="614" digits="2,0,-2" speed="3" energy="100" loss="3" agression="30" score="150">
+<Droid id="614" digits="2,0,-2" weight="121" speed="3" energy="100" loss="3" agression="30" weapon="6" score="150">
 	<i id="title"><![CDATA[Sentinel droid]]></i>
 	<i id="notes"><![CDATA[Low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device.]]></i>
 </Droid>
 
-<Droid id="615" digits="0,-2,-2" speed="4" energy="100" loss="3" agression="30" score="150">
+<Droid id="615" digits="0,-2,-2" weight="29" speed="4" energy="100" loss="3" agression="30" weapon="2" score="150">
 	<i id="title"><![CDATA[Sentinel droid]]></i>
 	<i id="notes"><![CDATA[Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these are now very rare.]]></i>
 </Droid>
 
-<Droid id="629" digits="0,0,0" speed="3" energy="100" loss="3" agression="40" score="150">
+<Droid id="629" digits="0,0,0" weight="59" speed="3" energy="100" loss="3" agression="40" weapon="3" score="150">
 	<i id="title"><![CDATA[Sentinel droid]]></i>
 	<i id="notes"><![CDATA[Low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version.]]></i>
 </Droid>
 
-<Droid id="711" digits="2,2,0" speed="5" energy="110" loss="4" agression="60" score="175">
+<Droid id="711" digits="2,2,0" weight="102" speed="5" energy="110" loss="4" agression="60" weapon="4" score="175">
 	<i id="title"><![CDATA[Disruptor droid]]></i>
 	<i id="notes"><![CDATA[Heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="742" digits="1,0,0" speed="4" energy="130" loss="4" agression="60" score="175">
+<Droid id="742" digits="1,0,0" weight="140" speed="4" energy="130" loss="4" agression="60" weapon="4" score="175">
 	<i id="title"><![CDATA[Battle droid]]></i>
 	<i id="notes"><![CDATA[This version is the one mainly used by the Military.]]></i>
 </Droid>
 
-<Droid id="751" digits="2,2,0" speed="5" energy="150" loss="4" agression="80" score="175">
+<Droid id="751" digits="2,2,0" weight="227" speed="5" energy="150" loss="4" agression="80" weapon="2" score="175">
 	<i id="title"><![CDATA[Battle droid]]></i>
 	<i id="notes"><![CDATA[Very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built.]]></i>
 </Droid>
 
-<Droid id="821" digits="1,2,0" speed="6" energy="160" loss="4" agression="65" score="200">
+<Droid id="821" digits="1,2,0" weight="28" speed="6" energy="160" loss="4" agression="65" weapon="3" score="200">
 	<i id="title"><![CDATA[Security droid]]></i>
 	<i id="notes"><![CDATA[A very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors.]]></i>
 </Droid>
 
-<Droid id="834" digits="0,0,0" speed="8" energy="140" loss="4" agression="70" score="200">
+<Droid id="834" digits="0,0,0" weight="34" speed="8" energy="140" loss="4" agression="70" weapon="2" score="200">
 	<i id="title"><![CDATA[Security droid]]></i>
 	<i id="notes"><![CDATA[Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable.]]></i>
 </Droid>
 
-<Droid id="883" digits="-1,-1,-1" speed="2" energy="180" loss="4" agression="90" score="200">
+<Droid id="883" digits="-1,-1,-1" weight="79" speed="2" energy="180" loss="4" agression="90" weapon="5" score="200">
 	<i id="title"><![CDATA[Archive droid]]></i>
 	<i id="notes"><![CDATA[This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="999" digits="0,0,0" speed="6" energy="100" loss="0" agression="90" score="225">
+<Droid id="999" digits="0,0,0" weight="162" speed="6" energy="100" loss="0" agression="90" weapon="3" score="225">
 	<i id="title"><![CDATA[Command cyborg This is the unit that you wish to control. Prepare to transfer.]]></i>
 	<i id="notes"><![CDATA[Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long.]]></i>
 </Droid>
