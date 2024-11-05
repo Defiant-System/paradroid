@@ -8,12 +8,15 @@ class Droid {
 
 		this.arena = arena;
 		this.id = id;
-		this.speed = speed;
+		this.speed = speed || 1;
 		// tile coords
 		this.x = x || 0;
 		this.y = y || 0;
-		this.r = 23;
 		this.pos = new Point(pX, pY);
+
+		this.r = 20;
+		this.mass = 20;
+		this.velocity = new Point(0, 0);
 
 		if (id !== "001") {
 			// patrol points
@@ -47,10 +50,37 @@ class Droid {
 
 	collide(other) {
 		let impactVector = this.pos.subtract(other.pos);
-		let d = impactVector.mag();
+		let d = impactVector.magnitude();
 		
 		if (d < this.r + other.r) {
-			console.log( "collision" );
+			// Push the particles out so that they are not overlapping
+			let overlap = d - (this.r + other.r);
+			let dir = impactVector.clone();
+			dir.setMagnitude(overlap * 0.5);
+			this.pos.add(dir);
+			other.pos.subtract(dir);
+
+			// Correct the distance!
+			d = this.r + other.r;
+			impactVector.setMagnitude(d);
+			
+			let mSum = this.mass + other.mass;
+			let vDiff = this.velocity.subtract(other.velocity);
+			let num = vDiff.dot(impactVector);
+			let den = mSum * d * d;
+
+			// Particle A (this)
+			let deltaVA = impactVector.clone();
+			deltaVA = deltaVA.multiply(2 * other.mass * num / den);
+			this.velocity = this.velocity.add(deltaVA);
+
+			// Particle B (other)
+			let deltaVB = impactVector.clone();
+			deltaVB = deltaVB.multiply(-2 * this.mass * num / den);
+			other.velocity = other.velocity.add(deltaVB);
+
+			// other.move(other.velocity);
+			other.move(new Point(-5, 0));
 		}
 	}
 
@@ -58,38 +88,39 @@ class Droid {
 		let arena = this.arena,
 			size = arena.tiles.size,
 			map = arena.map.collision,
-			point = vel.multiply(this.speed),
+			velocity = vel.multiply(this.speed),
 			newPos = {
-				x: Math.floor((this.pos.x + point.x + (point.x > 0 ? size : 0)) / size),
-				y: Math.floor((this.pos.y + point.y + (point.y > 0 ? size : 0)) / size),
+				x: Math.floor((this.pos.x + velocity.x + (velocity.x > 0 ? size : 0)) / size),
+				y: Math.floor((this.pos.y + velocity.y + (velocity.y > 0 ? size : 0)) / size),
 			},
 			tile;
 
 		if (this.isPlayer) {
-			if (point.x !== 0) {
+			if (velocity.x !== 0) {
 				tile = map[this.y][newPos.x] || map[this.y+1][newPos.x];
 				if (tile !== 1) {
-					this.pos.x += point.x;
+					this.pos.x += velocity.x;
 				} else {
-					this.pos.x = point.x > 0
+					this.pos.x = velocity.x > 0
 								? Math.max(((newPos.x - 1) * size) - 1, this.pos.x)
 								: Math.min(((newPos.x + 1) * size) + 1, this.pos.x);
 				}
 			}
-			if (point.y !== 0) {
+			if (velocity.y !== 0) {
 				tile = map[newPos.y][this.x] || map[newPos.y][this.x+1];
 				if (tile !== 1) {
-					this.pos.y += point.y;
+					this.pos.y += velocity.y;
 				} else {
-					this.pos.y = point.y > 0
+					this.pos.y = velocity.y > 0
 								? Math.max(((newPos.y - 1) * size) - 1, this.pos.y)
 								: Math.min(((newPos.y + 1) * size) + 1, this.pos.y);
 				}
 			}
 		} else {
-			this.pos.x += point.x;
-			this.pos.y += point.y;
+			this.pos.x += velocity.x;
+			this.pos.y += velocity.y;
 		}
+		this.velocity = velocity;
 		// update tile position
 		this.x = Math.floor(this.pos.x / size);
 		this.y = Math.floor(this.pos.y / size);

@@ -46,8 +46,16 @@ class Point {
 		return this;
 	}
 
-	mag() {
+	dot(p) {
+		return this.x * p.x + this.y * p.y;
+	}
+
+	magnitude() {
 		return Math.sqrt(this._x * this._x + this._y * this._y);
+	}
+
+	setMagnitude(n) {
+		this.normalize().multiply(n);
 	}
 
 	normalize(thickness) { 
