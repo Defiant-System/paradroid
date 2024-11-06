@@ -31,7 +31,11 @@ class Map {
 		this.background = [];
 		this.collision = [];
 
-		let bodies = [];
+		// player physics body
+		this.arena.player.body = Matter.Bodies.circle(390, 250, 17);
+
+		// physics bodies array
+		let bodies = [this.arena.player.body];
 
 		// add rows
 		[...Array(this.height)].map(row => this.background.push([]));
@@ -40,14 +44,16 @@ class Map {
 			this.background[row].push(xTile.getAttribute("id"));
 		});
 
+		// console.log( this.arena.viewport );
 		this.collision = [...Array(this.height)].map(row => ([...Array(this.width)].map(i => 0)));
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
 			let x = +xColl.getAttribute("x"),
 				y = +xColl.getAttribute("y");
 			this.collision[y][x] = 1;
 
-			let box = Matter.Bodies.rectangle(x*tile, y*tile, tile, tile, { isStatic: true });
-			bodies.push(box);
+			let bX = (x * tile) + 261,
+				bY = (y * tile) + 123;
+			bodies.push(Matter.Bodies.rectangle(bX, bY, tile, tile, { isStatic: true }));
 		});
 
 		// physics setup
@@ -97,7 +103,7 @@ class Map {
 		}
 
 		if (this.arena.debug.mode > 0) {
-			let bodies = [];
+			let bodies = Matter.Composite.allBodies(this.engine.world);
 
 			ctx.beginPath();
 			bodies.map(body => {

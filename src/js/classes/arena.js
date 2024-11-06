@@ -85,12 +85,13 @@ class Arena {
 
 		let mapState = { droids: [], ...state.map },
 			tile = this.config.tile;
-		this.map.setState(mapState);
 		// move player / "001"
 		this.player.spawn(state.player.x, state.player.y);
 		// move player / "001"
 		this.viewport.x = (this.player.x * tile) - this.viewport.half.w;
 		this.viewport.y = (this.player.y * tile) - this.viewport.half.h;
+		// set map state
+		this.map.setState(mapState);
 
 		// this.render();
 
