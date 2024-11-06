@@ -7,6 +7,11 @@ class Map {
 		// items on the map
 		this.entries = [];
 		this.droids = [];
+
+		// physics engine
+		this.engine = Matter.Engine.create();
+		// no gravity since it is top-down 2d
+		this.engine.world.gravity.y = 0;
 	}
 
 	setState(state) {
@@ -26,6 +31,8 @@ class Map {
 		this.background = [];
 		this.collision = [];
 
+		let bodies = [];
+
 		// add rows
 		[...Array(this.height)].map(row => this.background.push([]));
 		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
@@ -35,10 +42,16 @@ class Map {
 
 		this.collision = [...Array(this.height)].map(row => ([...Array(this.width)].map(i => 0)));
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
-			let x = xColl.getAttribute("x"),
-				y = xColl.getAttribute("y");
+			let x = +xColl.getAttribute("x"),
+				y = +xColl.getAttribute("y");
 			this.collision[y][x] = 1;
+
+			let box = Matter.Bodies.rectangle(x*tile, y*tile, tile, tile, { isStatic: true });
+			bodies.push(box);
 		});
+
+		// physics setup
+		Matter.Composite.add(this.engine.world, bodies);
 	}
 
 	update(delta) {
@@ -81,6 +94,22 @@ class Map {
 					);
 				}
 			}
+		}
+
+		if (this.arena.debug.mode > 0) {
+			let bodies = [];
+
+			ctx.beginPath();
+			bodies.map(body => {
+				ctx.moveTo(body.vertices[0].x, body.vertices[0].y);
+				body.vertices.slice(1).map(vertices => {
+					ctx.lineTo(vertices.x, vertices.y);
+				});
+				ctx.lineTo(body.vertices[0].x, body.vertices[0].y);
+			});
+		    ctx.lineWidth = 2;
+		    ctx.strokeStyle = '#f00';
+		    ctx.stroke();
 		}
 	}
 }
