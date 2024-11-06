@@ -28,11 +28,21 @@ class Player extends Droid {
 		});
 	}
 
+	spawn(x, y) {
+		let size = this.arena.config.tile;
+		// tile coords
+		this.x = x;
+		this.y = y;
+		this.pos.x = x * size;
+		this.pos.y = y * size;
+	}
+
 	update(delta) {
-		
+		super.update(delta);
 	}
 
 	render(ctx) {
-		
+		// render droid
+		super.render(ctx);
 	}
 }

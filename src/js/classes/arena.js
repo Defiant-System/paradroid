@@ -19,6 +19,13 @@ class Arena {
 			y: Math.round(this.height / this.config.tile) / 2,
 		};
 
+		this.input = {
+			up: { pressed: false, force: { x: 0, y: -0.005 } },
+			left: { pressed: false, force: { x: -0.005, y: 0 } },
+			down: { pressed: false, force: { x: 0, y: 0.005 } },
+			right: { pressed: false, force: { x: 0.005, y: 0 } },
+		};
+
 		this.debug = {
 			mode: 0,
 			elFps: window.find(".debug .fps span"),
@@ -76,13 +83,19 @@ class Arena {
 		// change debug state
 		if (state.debug) this.debug.mode = state.debug.mode;
 
-		let mapState = { droids: [], ...state.map };
+		let mapState = { droids: [], ...state.map },
+			tile = this.config.tile;
 		this.map.setState(mapState);
+		// move player / "001"
+		this.player.spawn(state.player.x, state.player.y);
+		// move player / "001"
+		this.viewport.x = (this.player.x * tile) - this.viewport.half.w;
+		this.viewport.y = (this.player.y * tile) - this.viewport.half.h;
 
-		this.render();
+		// this.render();
 
 		// start "loop"
-		// this.fpsControl.start();
+		this.fpsControl.start();
 	}
 
 	update(delta) {
@@ -97,6 +110,22 @@ class Arena {
 		this.viewport.center();
 		this.map.render(this.ctx);
 		this.player.render(this.ctx);
+
+		if (this.debug.mode > 0) {
+			let bodies = [];
+			
+			this.ctx.beginPath();
+			bodies.map(body => {
+				this.ctx.moveTo(body.vertices[0].x, body.vertices[0].y);
+				body.vertices.slice(1).map(vertices => {
+					this.ctx.lineTo(vertices.x, vertices.y);
+				});
+				this.ctx.lineTo(body.vertices[0].x, body.vertices[0].y);
+			});
+		    this.ctx.lineWidth = 1;
+		    this.ctx.strokeStyle = '#999';
+		    this.ctx.stroke();
+		}
 
 		// for debug row at bottom
 		this.debug.elFps.html(this.fpsControl._fps);
