@@ -10,7 +10,9 @@ class Droid {
 		this.y = y || 0;
 		this.pos = { x: 0, y: 0 };
 		// radius
-		this.r = 20;
+		this.r = 15;
+		// droid physics body
+		this.body = Matter.Bodies.circle(390, 250, this.r, { frictionAir: .1 });
 
 		// droid "spining" sprite
 		this.sprites = {
@@ -45,13 +47,8 @@ class Droid {
 			digits = this.digits,
 			w = arena.config.char,
 			f = this.frame.index * w,
-			pX,
-			pY;
-
-		if (this.isPlayer) {
-			pX = arena.viewport.half.w;
-			pY = arena.viewport.half.h;
-		}
+			pX = this.body.position.x,
+			pY = this.body.position.y;
 
 		ctx.save();
 		ctx.translate(pX, pY);
@@ -68,7 +65,7 @@ class Droid {
 		// normal draw if debug mode is < 3
 		if (arena.debug.mode < 3) {
 			ctx.save();
-			ctx.translate(-6, -9);
+			ctx.translate(-23, -25);
 			// top + bottom caps
 			ctx.drawImage(this.sprites.bg,
 				f, 0, w, w,

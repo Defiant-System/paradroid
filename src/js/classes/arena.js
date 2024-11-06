@@ -105,6 +105,25 @@ class Arena {
 		this.map.render(this.ctx);
 		this.player.render(this.ctx);
 
+
+		if (this.debug.mode > 0) {
+			let bodies = Matter.Composite.allBodies(this.map.engine.world);
+
+			this.ctx.save();
+		    this.ctx.lineWidth = 2;
+		    this.ctx.strokeStyle = "#f00";
+			this.ctx.beginPath();
+			bodies.map(body => {
+				this.ctx.moveTo(body.vertices[0].x, body.vertices[0].y);
+				body.vertices.slice(1).map(vertices => {
+					this.ctx.lineTo(vertices.x, vertices.y);
+				});
+				this.ctx.lineTo(body.vertices[0].x, body.vertices[0].y);
+			});
+		    this.ctx.stroke();
+			this.ctx.restore();
+		}
+
 		// for debug row at bottom
 		this.debug.elFps.html(this.fpsControl._fps);
 		this.debug.elCoords.html(`${this.player.x}, ${this.player.y}`);

@@ -31,8 +31,8 @@ class Map {
 		this.background = [];
 		this.collision = [];
 
-		// player physics body
-		this.arena.player.body = Matter.Bodies.circle(390, 250, 17, { frictionAir: .1 });
+		// // player physics body
+		// this.arena.player.body = Matter.Bodies.circle(390, 250, 17, { frictionAir: .1 });
 
 		// physics bodies array
 		let bodies = [this.arena.player.body];
@@ -103,22 +103,6 @@ class Map {
 					);
 				}
 			}
-		}
-
-		if (this.arena.debug.mode > 0) {
-			let bodies = Matter.Composite.allBodies(this.engine.world);
-
-			ctx.beginPath();
-			bodies.map(body => {
-				ctx.moveTo(body.vertices[0].x, body.vertices[0].y);
-				body.vertices.slice(1).map(vertices => {
-					ctx.lineTo(vertices.x, vertices.y);
-				});
-				ctx.lineTo(body.vertices[0].x, body.vertices[0].y);
-			});
-		    ctx.lineWidth = 2;
-		    ctx.strokeStyle = '#f00';
-		    ctx.stroke();
 		}
 	}
 }
