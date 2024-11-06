@@ -3,26 +3,24 @@ class Map {
 	constructor(cfg) {
 		let { arena } = cfg;
 		// parent object
-	    this.arena = arena;
-	    // items on the map
-	    this.entries = [];
-	    this.droids = [];
+		this.arena = arena;
+		// items on the map
+		this.entries = [];
+		this.droids = [];
 	}
 
 	setState(state) {
-		let size = this.arena.tiles.size,
+		let tile = this.arena.config.tile,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`);
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
-		this.w = this.width * size;
-		this.h = this.height * size;
-		
-		// TODO: save current state for when coming back
+		this.w = this.width * tile;
+		this.h = this.height * tile;
 
-	    // reset map arrays
-	    this.entries = [];
-	    this.droids = [this.arena.player];
+		// reset map arrays
+		this.entries = [];
+		this.droids = [this.arena.player];
 
 		// reset level map data
 		this.background = [];
@@ -41,68 +39,20 @@ class Map {
 				y = xColl.getAttribute("y");
 			this.collision[y][x] = 1;
 		});
-		// console.log(this.collision.join("\n"));
-
-		// add item classses
-		xSection.selectNodes(`./Layer[@id="action"]/i`).map((xItem, index) => {
-			let x = +xItem.getAttribute("x"),
-				y = +xItem.getAttribute("y"),
-				w = +xItem.getAttribute("w"),
-				h = +xItem.getAttribute("h"),
-				id = xItem.getAttribute("id"),
-				action = xItem.getAttribute("action");
-			// console.log( action );
-			switch (action) {
-				case "door-h":
-				case "door-v":
-					let type = action.split("-")[1];
-					this.entries.push(new Door({ arena: this.arena, type, x, y }));
-					break;
-				case "exit":
-					this.entries.push(new Exit({ arena: this.arena, x, y }));
-					break;
-				case "console":
-					this.entries.push(new Console({ arena: this.arena, x, y, w, h }));
-					break;
-				case "recharge":
-					this.entries.push(new Recharge({ arena: this.arena, x, y }));
-					break;
-				case "droid":
-					let patrol = JSON.parse(xItem.getAttribute("patrol")),
-						speed = +xItem.getAttribute("speed");
-					this.entries.push(new Droid({ arena: this.arena, id, x, y, speed, patrol }));
-					break;
-			}
-		});
 	}
 
 	update(delta) {
-		this.entries.map(item => item.update(delta));
-
-		for (let i=0; i<this.droids.length; i++) {
-			let droidA = this.droids[i];
-			for (let j=i+1; j<this.droids.length; j++) {
-				droidA.collide(this.droids[j]);
-			}
-		}
-
-		// this.droids.map(d1 => {
-		// 	this.droids.map(d2 => {
-		// 		if (d1 === d2 || d1.isPlayer) return;
-		// 		// console.log( d1.id, d1.getDistance(d2.pos) | 0 );
-		// 		d1.collide(d2);
-		// 	});
-		// });
+		
 	}
 
 	render(ctx) {
 		let assets = this.arena.assets,
-			size = this.arena.tiles.size,
+			tile = this.arena.config.tile,
 			viewport = this.arena.viewport,
-			xMin = Math.floor(viewport.x / size),
-			yMin = Math.floor(viewport.y / size),
-			xMax = Math.ceil((viewport.x + viewport.w) / size),
-			yMax = Math.ceil((viewport.y + viewport.h) / size),
+			xMin = Math.floor(viewport.x / tile),
+			yMin = Math.floor(viewport.y / tile),
+			xMax = Math.ceil((viewport.x + viewport.w) / tile),
+			yMax = Math.ceil((viewport.y + viewport.h) / tile),
 			vX = viewport.x + ((this.arena.width - viewport.w) >> 1),
 			vY = viewport.y + ((this.arena.height - viewport.h) >> 1);
 
@@ -119,41 +69,18 @@ class Map {
 					if (!col) continue;
 
 					let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
-						oX = Math.round(l * size),
-						oY = Math.round(t * size),
-						tX = Math.round((x * size) - vX),
-						tY = Math.round((y * size) - vY);
+						oX = Math.floor(l * tile),
+						oY = Math.floor(t * tile),
+						tX = Math.floor((x * tile) - vX),
+						tY = Math.floor((y * tile) - vY);
 
 					ctx.drawImage(
 						assets["big-map"].img,
-						oX, oY, size, size,
-						tX, tY, size, size
+						oX, oY, tile, tile,
+						tX, tY, tile, tile
 					);
 				}
 			}
-		}
-
-		// draw entries - exclude droids
-		this.entries
-			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
-			.map(entry => entry.render(ctx));
-		// now render droids on top
-		this.entries
-			.filter(entry => entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
-			.map(entry => entry.render(ctx));
-
-		// if debug mode on, draw walls / extras
-		if (this.arena.debug.mode > 0) {
-			ctx.save();
-			ctx.fillStyle = "#00000066";
-			this.arena.map.collision.map((row, cY) => {
-				row.map((cell, cX) => {
-					let wX = Math.floor((cX * size) - viewport.x),
-						wY = Math.floor((cY * size) - viewport.y);
-					if (cell > 0) ctx.fillRect(wX, wY, size, size);
-				});
-			});
-			ctx.restore();
 		}
 	}
 }

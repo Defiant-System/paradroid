@@ -9,21 +9,14 @@ class Arena {
 		this.ctx = cvs[0].getContext("2d", { willReadFrequently: true });
 
 		// config
-		this.tiles = {
-			size: 32,
+		this.config = {
+			tile: 32,
 			char: 45,
-			step: 5,
+			speed: 5,
 		};
 		this.center = {
-			x: Math.round(this.width / this.tiles.size) / 2,
-			y: Math.round(this.height / this.tiles.size) / 2,
-		};
-
-		this.input = {
-			up: { pressed: false, move: new Point(0, -this.tiles.step) },
-			left: { pressed: false, move: new Point(-this.tiles.step, 0) },
-			down: { pressed: false, move: new Point(0, this.tiles.step) },
-			right: { pressed: false, move: new Point(this.tiles.step, 0) },
+			x: Math.round(this.width / this.config.tile) / 2,
+			y: Math.round(this.height / this.config.tile) / 2,
 		};
 
 		this.debug = {
@@ -52,13 +45,13 @@ class Arena {
 			loadAssets = () => {
 				let item = assets.pop(),
 					img = new Image();
-			    img.src = item.src;
-			    img.onload = () => {
-			    	// save reference to asset
-			    	this.assets[item.id] = { item, img };
-			    	// are we done yet?
-				    assets.length ? loadAssets() : this.ready();
-			    };
+				img.src = item.src;
+				img.onload = () => {
+					// save reference to asset
+					this.assets[item.id] = { item, img };
+					// are we done yet?
+					assets.length ? loadAssets() : this.ready();
+				};
 			};
 		// asset lib
 		this.assets = {};
@@ -71,9 +64,9 @@ class Arena {
 		// viewport
 		this.viewport = new Viewport({ arena: this, x: 0, y: 0, w: this.width, h: this.height });
 		// map
-		this.map = new Map({ arena: this, ...this.tiles });
+		this.map = new Map({ arena: this });
 		// create "001"
-		this.player = new Player({ arena: this, id: "001", x: 0, y: 0 });
+		this.player = new Player({ arena: this, id: "001" });
 	}
 
 	setState(state) {
@@ -83,19 +76,13 @@ class Arena {
 		// change debug state
 		if (state.debug) this.debug.mode = state.debug.mode;
 
-		let mapState = { droids: [], ...state.map },
-			size = this.tiles.size;
+		let mapState = { droids: [], ...state.map };
 		this.map.setState(mapState);
-		// move player / "001"
-		this.player.spawn(state["001"].x, state["001"].y);
-		// move player / "001"
-		this.viewport.x = (this.player.x * size) - this.viewport.half.w;
-		this.viewport.y = (this.player.y * size) - this.viewport.half.h;
 
-		// this.render();
+		this.render();
 
 		// start "loop"
-		this.fpsControl.start();
+		// this.fpsControl.start();
 	}
 
 	update(delta) {

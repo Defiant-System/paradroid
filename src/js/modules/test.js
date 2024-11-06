@@ -47,8 +47,8 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					"map": { id: "1" }, "001": { x: 25, y: 8 }, debug: { mode: 0 },
-					// "map": { id: "4" }, "001": { x: 21, y: 6 }, debug: { mode: 1 },
+					// "map": { id: "1" }, "001": { x: 25, y: 8 }, debug: { mode: 0 },
+					"map": { id: "4" }, "001": { x: 21, y: 6 }, debug: { mode: 1 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test
