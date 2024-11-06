@@ -56,13 +56,13 @@ class Droid {
 			// Push the particles out so that they are not overlapping
 			let overlap = d - (this.r + other.r);
 			let dir = impactVector.clone();
-			dir.setMagnitude(overlap * 0.5);
-			this.pos.add(dir);
-			other.pos.subtract(dir);
+			dir = dir.setMagnitude(overlap * 0.5);
+			this.pos = this.pos.add(dir);
+			other.pos = other.pos.subtract(dir);
 
 			// Correct the distance!
 			d = this.r + other.r;
-			impactVector.setMagnitude(d);
+			impactVector = impactVector.setMagnitude(d);
 			
 			let mSum = this.mass + other.mass;
 			let vDiff = this.velocity.subtract(other.velocity);
@@ -72,15 +72,16 @@ class Droid {
 			// Particle A (this)
 			let deltaVA = impactVector.clone();
 			deltaVA = deltaVA.multiply(2 * other.mass * num / den);
-			this.velocity = this.velocity.add(deltaVA);
+			// this.velocity = this.velocity.add(deltaVA);
+			// this.move(deltaVA);
 
 			// Particle B (other)
 			let deltaVB = impactVector.clone();
 			deltaVB = deltaVB.multiply(-2 * this.mass * num / den);
-			other.velocity = other.velocity.add(deltaVB);
+			// other.velocity = other.velocity.add(deltaVB);
+			other.move(deltaVB);
 
-			// other.move(other.velocity);
-			other.move(new Point(-5, 0));
+			// other.move(new Point(-5, 0));
 		}
 	}
 

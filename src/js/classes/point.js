@@ -55,7 +55,7 @@ class Point {
 	}
 
 	setMagnitude(n) {
-		this.normalize().multiply(n);
+		return this.normalize().multiply(n);
 	}
 
 	normalize(thickness) { 
