@@ -25,13 +25,13 @@
 						APP.dispatch({ type: "show-view", arg: "lift" });
 						break;
 					case "w":
-					case "up": Self.arena.input.up.pressed = true; break;
+					case "up": Self.arena.player.input.up.pressed = true; break;
 					case "s":
-					case "down": Self.arena.input.down.pressed = true; break;
+					case "down": Self.arena.player.input.down.pressed = true; break;
 					case "a":
-					case "left": Self.arena.input.left.pressed = true; break;
+					case "left": Self.arena.player.input.left.pressed = true; break;
 					case "d":
-					case "right": Self.arena.input.right.pressed = true; break;
+					case "right": Self.arena.player.input.right.pressed = true; break;
 					case "p":
 						if (Self.arena.fpsControl._stopped) Self.arena.fpsControl.start();
 						else Self.arena.fpsControl.stop();
@@ -41,13 +41,13 @@
 			case "window.keyup":
 				switch (event.char) {
 					case "w":
-					case "up": Self.arena.input.up.pressed = false; break;
+					case "up": Self.arena.player.input.up.pressed = false; break;
 					case "s":
-					case "down": Self.arena.input.down.pressed = false; break;
+					case "down": Self.arena.player.input.down.pressed = false; break;
 					case "a":
-					case "left": Self.arena.input.left.pressed = false; break;
+					case "left": Self.arena.player.input.left.pressed = false; break;
 					case "d":
-					case "right": Self.arena.input.right.pressed = false; break;
+					case "right": Self.arena.player.input.right.pressed = false; break;
 				}
 				break;
 			// custom events

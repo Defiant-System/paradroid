@@ -9,9 +9,9 @@ class Map {
 		this.droids = [];
 
 		// physics engine
-		this.engine = Matter.Engine.create();
-		// no gravity since it is top-down 2d
-		this.engine.world.gravity.y = 0;
+		this.engine = Matter.Engine.create({ gravity: { x: 0, y: 0, scale: 1 } });
+		// create runner
+		this.runner = Matter.Runner.create();
 	}
 
 	setState(state) {
@@ -32,7 +32,7 @@ class Map {
 		this.collision = [];
 
 		// player physics body
-		this.arena.player.body = Matter.Bodies.circle(390, 250, 17);
+		this.arena.player.body = Matter.Bodies.circle(390, 250, 17, { frictionAir: .1 });
 
 		// physics bodies array
 		let bodies = [this.arena.player.body];
@@ -58,6 +58,9 @@ class Map {
 
 		// physics setup
 		Matter.Composite.add(this.engine.world, bodies);
+
+		// run the engine
+		Matter.Runner.run(this.runner, this.engine);
 	}
 
 	update(delta) {

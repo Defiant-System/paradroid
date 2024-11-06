@@ -11,6 +11,13 @@ class Player extends Droid {
 		this.speed = .75;
 		this.isPlayer = true;
 
+		this.input = {
+			up:    { pressed: false, force: { x: 0, y: -1 } },
+			left:  { pressed: false, force: { x: -1, y: 0 } },
+			down:  { pressed: false, force: { x: 0, y: 1 } },
+			right: { pressed: false, force: { x: 1, y: 0 } },
+		};
+
 		// create white versions of sprites
 		Object.keys(this.sprites).map(k => {
 			// for BG sprite
@@ -38,6 +45,22 @@ class Player extends Droid {
 	}
 
 	update(delta) {
+		let force = { x: 0, y: 0 };
+		// check input
+		for (let key in this.input) {
+			if (this.input[key].pressed) {
+				let f = this.input[key].force;
+				force = { ...force, ...f };
+			}
+		}
+		// if (force.x !== 0 || force.y !== 0) {
+		// 	console.log(this.body.mass);
+		// }
+
+		force.x = this.body.mass * force.x * 0.0025;
+		force.y = this.body.mass * force.y * 0.0025;
+		Matter.Body.applyForce(this.body, this.body.position, force);
+
 		super.update(delta);
 	}
 

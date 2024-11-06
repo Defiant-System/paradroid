@@ -19,13 +19,6 @@ class Arena {
 			y: Math.round(this.height / this.config.tile) / 2,
 		};
 
-		this.input = {
-			up: { pressed: false, force: { x: 0, y: -0.005 } },
-			left: { pressed: false, force: { x: -0.005, y: 0 } },
-			down: { pressed: false, force: { x: 0, y: 0.005 } },
-			right: { pressed: false, force: { x: 0.005, y: 0 } },
-		};
-
 		this.debug = {
 			mode: 0,
 			elFps: window.find(".debug .fps span"),
