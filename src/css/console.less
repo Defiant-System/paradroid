@@ -1,14 +1,93 @@
 
 .console-view {
+	display: flex;
 	padding: 21px;
 	font-family: "ParaDrew";
 	font-size: 22px;
 	color: #626262;
 	text-shadow: 0 1px 1px rgba(#fff,.85);
 
-	.droid {
-		position: relative;
-		margin: 0 23px 37px;
-		display: inline-block;
+	.menu {
+		// background: rgba(#000,.1);
+		width: 90px;
+		margin-right: 11px;
+		text-align: center;
+
+		.option {
+			// background: rgba(#000,.1);
+			position: relative;
+			display: block;
+			width: 90px;
+			height: 90px;
+			margin: 0 0 13px;
+			padding: 19px 0 0;
+			border-radius: 6px;
+
+			&:before {
+				content: "";
+				background: #c7c7c7 radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: inherit;
+				height: inherit;
+				border-radius: inherit;
+				filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
+						drop-shadow(0 2px 0 hsl(174, 0%, 69%))
+						drop-shadow(0 3px 0 hsl(174, 0%, 67%))
+						// drop-shadow(0 4px 0 hsl(174, 0%, 65%))
+						drop-shadow(0 1px 2px rgba(#222, .35));
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 1px;
+				z-index: 2;
+				background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
+			}
+
+			.droid {
+				position: relative;
+				top: 3px;
+				display: inline-block;
+				filter: drop-shadow(0 1px 0 rgba(#fff,.5));
+
+				&:before {
+					top: 0;
+					left: 0;
+					animation: none;
+					filter: invert(1) brightness(.75);
+					// transform: rotate(180deg);
+				}
+
+				b {
+					filter: invert(1) brightness(.75);
+				}
+
+				&[data-id="?"] {
+					b {
+						left: 18px;
+						background-image: none;
+
+						&:after {
+							content: "?";
+							text-shadow: none;
+							top: -4px;
+							left: 0;
+							opacity: .65;
+							font-size: 24px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.data {
+		flex: 1;
 	}
 }
