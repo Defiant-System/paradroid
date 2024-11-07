@@ -12,7 +12,7 @@ class Droid {
 		// radius
 		this.r = 15;
 		// droid physics body
-		this.body = Matter.Bodies.circle(390, 250, this.r, { frictionAir: .1 });
+		this.body = Matter.Bodies.circle(this.pos.x, this.pos.y, this.r, { frictionAir: .1 });
 
 		// droid "spining" sprite
 		this.sprites = {
@@ -32,6 +32,22 @@ class Droid {
 			last: 80,
 			speed: 80,
 		};
+	}
+
+	spawn(x, y) {
+		let tile = this.arena.config.tile,
+			hT = tile >> 1;
+		// tile coords
+		this.x = x;
+		this.y = y;
+		this.pos.x = x * tile;
+		this.pos.y = y * tile;
+
+		let pos = {
+			x: this.arena.viewport.half.w + this.pos.x - hT,
+			y: this.arena.viewport.half.h + this.pos.y - hT,
+		};
+		Matter.Body.setPosition(this.body, pos);
 	}
 
 	update(delta) {
@@ -65,7 +81,7 @@ class Droid {
 		// normal draw if debug mode is < 3
 		if (arena.debug.mode < 3) {
 			ctx.save();
-			ctx.translate(-23, -25);
+			// ctx.translate(-23, -25);
 			// top + bottom caps
 			ctx.drawImage(this.sprites.bg,
 				f, 0, w, w,

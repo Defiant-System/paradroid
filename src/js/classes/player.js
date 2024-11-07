@@ -35,15 +35,6 @@ class Player extends Droid {
 		});
 	}
 
-	spawn(x, y) {
-		let size = this.arena.config.tile;
-		// tile coords
-		this.x = x;
-		this.y = y;
-		this.pos.x = x * size;
-		this.pos.y = y * size;
-	}
-
 	update(delta) {
 		let force = { x: 0, y: 0 };
 		// check input

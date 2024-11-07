@@ -14,8 +14,11 @@ class Viewport {
 
 	center() {
 		let arena = this.arena,
-			centerX = arena.player.body.position.x,
-			centerY = arena.player.body.position.y;
+			// tile = arena.config.tile,
+			centerX = 0,
+			centerY = 0;
+		// this.x = (this.player.x * tile) - this.half.w;
+		// this.y = (this.player.y * tile) - this.half.h;
 		this.scroll(centerX, centerY);
 	}
 

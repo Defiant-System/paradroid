@@ -16,6 +16,7 @@ class Map {
 
 	setState(state) {
 		let tile = this.arena.config.tile,
+			hT = tile >> 1,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`);
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
@@ -41,18 +42,14 @@ class Map {
 			this.background[row].push(xTile.getAttribute("id"));
 		});
 
-		// console.log( this.arena.viewport );
-		let vX = this.arena.viewport.half.w - (this.arena.player.x * tile) + (tile >> 1),
-			vY = this.arena.viewport.half.h - (this.arena.player.y * tile) + (tile >> 1);
-
 		this.collision = [...Array(this.height)].map(row => ([...Array(this.width)].map(i => 0)));
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
 			let x = +xColl.getAttribute("x"),
 				y = +xColl.getAttribute("y");
 			this.collision[y][x] = 1;
 
-			let bX = (x * tile) + vX,
-				bY = (y * tile) + vY;
+			let bX = (x * tile) - this.arena.viewport.x + hT,
+				bY = (y * tile) - this.arena.viewport.y + hT;
 			bodies.push(Matter.Bodies.rectangle(bX, bY, tile, tile, { isStatic: true }));
 		});
 
@@ -71,8 +68,8 @@ class Map {
 		let assets = this.arena.assets,
 			tile = this.arena.config.tile,
 			viewport = this.arena.viewport,
-			vX = viewport.x - viewport.half.w,
-			vY = viewport.y - viewport.half.h,
+			vX = viewport.x,
+			vY = viewport.y,
 			xMin = Math.floor(vX / tile),
 			yMin = Math.floor(vY / tile),
 			xMax = Math.ceil((vX + viewport.w) / tile),

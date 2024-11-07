@@ -80,13 +80,12 @@ class Arena {
 			tile = this.config.tile;
 		// move player / "001"
 		this.player.spawn(state.player.x, state.player.y);
-		// move player / "001"
-		this.viewport.x = (this.player.x * tile) - this.viewport.half.w;
-		this.viewport.y = (this.player.y * tile) - this.viewport.half.h;
+		// center viewport
+		this.viewport.center();
 		// set map state
 		this.map.setState(mapState);
 
-		// this.render();
+		//this.render();
 
 		// start "loop"
 		this.fpsControl.start();
@@ -110,7 +109,7 @@ class Arena {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);
 
 			this.ctx.save();
-			this.ctx.translate(-this.viewport.x, -this.viewport.y);
+			// this.ctx.translate(-this.viewport.x, -this.viewport.y);
 		    this.ctx.lineWidth = 2;
 		    this.ctx.strokeStyle = "#f00";
 			this.ctx.beginPath();
