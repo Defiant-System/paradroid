@@ -9,8 +9,7 @@ class Viewport {
 		this.w = w;
 		this.h = h;
 		// mid point of viewport
-		let p = { x: w >> 1, y: h >> 1 };
-		this.half = { p, w: p.x, h: p.y };
+		this.half = { w: w >> 1, h: h >> 1 };
 	}
 
 	center() {
@@ -23,7 +22,7 @@ class Viewport {
 	scroll(x, y) {
 		let newX = x - this.half.w,
 			newY = y - this.half.h;
-		this.x += (newX - this.x); // * .115;
-		this.y += (newY - this.y); // * .115;
+		this.x = newX; // * .115;
+		this.y = newY; // * .115;
 	}
 }

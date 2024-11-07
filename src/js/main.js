@@ -8,7 +8,7 @@
 
 
 @import "./modules/utils.js"
-@import "./modules/matter.js"
+@import "./modules/matter.min.js"
 @import "./modules/astar.js"
 @import "./modules/test.js"
 

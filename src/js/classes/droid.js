@@ -47,8 +47,8 @@ class Droid {
 			digits = this.digits,
 			w = arena.config.char,
 			f = this.frame.index * w,
-			pX = this.body.position.x,
-			pY = this.body.position.y;
+			pX = arena.viewport.half.w,
+			pY = arena.viewport.half.h;
 
 		ctx.save();
 		ctx.translate(pX, pY);

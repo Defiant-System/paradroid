@@ -42,14 +42,17 @@ class Map {
 		});
 
 		// console.log( this.arena.viewport );
+		let vX = this.arena.viewport.half.w - (this.arena.player.x * tile) + (tile >> 1),
+			vY = this.arena.viewport.half.h - (this.arena.player.y * tile) + (tile >> 1);
+
 		this.collision = [...Array(this.height)].map(row => ([...Array(this.width)].map(i => 0)));
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
 			let x = +xColl.getAttribute("x"),
 				y = +xColl.getAttribute("y");
 			this.collision[y][x] = 1;
 
-			let bX = (x * tile) + 261,
-				bY = (y * tile) + 123;
+			let bX = (x * tile) + vX,
+				bY = (y * tile) + vY;
 			bodies.push(Matter.Bodies.rectangle(bX, bY, tile, tile, { isStatic: true }));
 		});
 
@@ -68,12 +71,12 @@ class Map {
 		let assets = this.arena.assets,
 			tile = this.arena.config.tile,
 			viewport = this.arena.viewport,
-			xMin = Math.floor(viewport.x / tile),
-			yMin = Math.floor(viewport.y / tile),
-			xMax = Math.ceil((viewport.x + viewport.w) / tile),
-			yMax = Math.ceil((viewport.y + viewport.h) / tile),
-			vX = viewport.x + ((this.arena.width - viewport.w) >> 1),
-			vY = viewport.y + ((this.arena.height - viewport.h) >> 1);
+			vX = viewport.x - viewport.half.w,
+			vY = viewport.y - viewport.half.h,
+			xMin = Math.floor(vX / tile),
+			yMin = Math.floor(vY / tile),
+			xMax = Math.ceil((vX + viewport.w) / tile),
+			yMax = Math.ceil((vY + viewport.h) / tile);
 
 		if (xMin < 0) xMin = 0;
 		if (yMin < 0) yMin = 0;
@@ -83,7 +86,7 @@ class Map {
 		// normal draw if debug mode is < 3
 		if (this.arena.debug.mode < 3) {
 			ctx.save();
-			ctx.translate(-viewport.x, -viewport.y);
+			// ctx.translate(viewport.half.w, viewport.half.h);
 
 			for (let y = yMin; y < yMax; y++) {
 				for (let x = xMin; x < xMax; x++) {
