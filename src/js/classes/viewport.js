@@ -15,8 +15,8 @@ class Viewport {
 
 	center() {
 		let arena = this.arena,
-			centerX = arena.player.pos.x,
-			centerY = arena.player.pos.y;
+			centerX = arena.player.body.position.x,
+			centerY = arena.player.body.position.y;
 		this.scroll(centerX, centerY);
 	}
 

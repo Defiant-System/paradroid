@@ -110,6 +110,7 @@ class Arena {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);
 
 			this.ctx.save();
+			this.ctx.translate(-this.viewport.x, -this.viewport.y);
 		    this.ctx.lineWidth = 2;
 		    this.ctx.strokeStyle = "#f00";
 			this.ctx.beginPath();

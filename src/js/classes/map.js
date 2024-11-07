@@ -31,9 +31,6 @@ class Map {
 		this.background = [];
 		this.collision = [];
 
-		// // player physics body
-		// this.arena.player.body = Matter.Bodies.circle(390, 250, 17, { frictionAir: .1 });
-
 		// physics bodies array
 		let bodies = [this.arena.player.body];
 
@@ -85,6 +82,9 @@ class Map {
 
 		// normal draw if debug mode is < 3
 		if (this.arena.debug.mode < 3) {
+			ctx.save();
+			ctx.translate(-viewport.x, -viewport.y);
+
 			for (let y = yMin; y < yMax; y++) {
 				for (let x = xMin; x < xMax; x++) {
 					let col = this.background[y][x];
@@ -103,6 +103,8 @@ class Map {
 					);
 				}
 			}
+
+			ctx.restore();
 		}
 	}
 }
