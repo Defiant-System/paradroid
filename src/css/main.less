@@ -384,6 +384,20 @@ content {
 		border-radius: inherit;
 	}
 
+	i[class^="icon-"],
+	i[class*="icon-"] {
+		position: relative;
+		display: inline-block;
+		width: 70px;
+		height: 70px;
+		background-size: contain;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+
+		&.icon-level { background-image: url(~/icons/icon-level.png); }
+		&.icon-ship { background-image: url(~/icons/icon-ship.png); }
+	}
+
 	.bar {
 		position: relative;
 		top: -19px;
