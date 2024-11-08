@@ -8,7 +8,7 @@ class Player extends Droid {
 			strength: .325,
 			radius: 100,
 		};
-		this.speed = .75;
+		this.speed = .0015;
 		this.isPlayer = true;
 
 		this.input = {
@@ -59,12 +59,12 @@ class Player extends Droid {
 		for (let key in this.input) {
 			if (this.input[key].pressed) {
 				let f = this.input[key].force;
-				force = { ...force, ...f };
+				if (f.x != 0) force.x = f.x;
+				if (f.y != 0) force.y = f.y;
 			}
 		}
-
-		force.x = this.body.mass * force.x * 0.0025;
-		force.y = this.body.mass * force.y * 0.0025;
+		force.x = this.body.mass * force.x * this.speed;
+		force.y = this.body.mass * force.y * this.speed;
 		Matter.Body.applyForce(this.body, this.body.position, force);
 
 		super.update(delta);
