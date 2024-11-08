@@ -19,8 +19,6 @@ class Arena {
 			y: Math.round(this.height / this.config.tile) / 2,
 		};
 
-		console.log( Matter );
-
 		this.debug = {
 			mode: 0,
 			elFps: window.find(".debug .fps span"),

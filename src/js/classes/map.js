@@ -61,7 +61,7 @@ class Map {
 			// console.log( action );
 			switch (action) {
 				case "recharge":
-					this.entries.push(new Recharge({ arena: this.arena, x, y }));
+					// this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;
 			}
 		});
