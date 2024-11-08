@@ -1,5 +1,5 @@
 
-<Section id="2" width="52" height="30" y=".5" x=".5">
+<Section id="2" width="52" height="30">
 	<Layer id="action">
 		<i x="8" y="8" w="2" h="2" action="door-h"/>
 		<i x="20" y="14" w="2" h="2" action="door-h"/>
