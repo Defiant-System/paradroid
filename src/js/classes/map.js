@@ -65,6 +65,9 @@ class Map {
 					let type = action.split("-")[1];
 					this.entries.push(new Door({ arena: this.arena, type, x, y }));
 					break;
+				case "exit":
+					this.entries.push(new Exit({ arena: this.arena, x, y }));
+					break;
 				case "recharge":
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;

@@ -3,8 +3,9 @@ class Player extends Droid {
 	constructor(cfg) {
 		super(cfg);
 
-		// aurora borealis
-		this.light = {
+		// "aura" borealis
+		this.aura = {
+			color: [255, 255, 255],
 			strength: .325,
 			radius: 100,
 		};
@@ -74,17 +75,16 @@ class Player extends Droid {
 		// render droid
 		super.render(ctx);
 
-		if (this.light) {
+		if (this.aura) {
 			let arena = this.arena,
 				digits = this.digits,
-				tile = arena.config.tile,
 				pX = arena.viewport.half.w,
 				pY = arena.viewport.half.h,
-				hT = tile >> 1,
-				r = this.light.radius,
+				hT = arena.config.tile >> 1,
+				r = this.aura.radius,
 				radialGradient = ctx.createRadialGradient(hT, hT, 0, hT, hT, r);
-			radialGradient.addColorStop(0, `rgba(255, 255, 255, ${this.light.strength})`);
-			radialGradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+			radialGradient.addColorStop(0, `rgba(${this.aura.color.join(",")}, ${this.aura.strength})`);
+			radialGradient.addColorStop(1, `rgba(${this.aura.color.join(",")}, 0)`);
 
 			ctx.save();
 			ctx.translate(pX-hT, pY-hT);

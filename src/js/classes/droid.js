@@ -59,6 +59,10 @@ class Droid {
 			this.frame.index++;
 			if (this.frame.index > 8) this.frame.index = 0;
 		}
+		// update tile position
+		let tile = this.arena.config.tile;
+		this.x = Math.floor(this.body.position.x / tile);
+		this.y = Math.floor(this.body.position.y / tile);
 	}
 
 	render(ctx) {let arena = this.arena,

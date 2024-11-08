@@ -3,14 +3,13 @@ class Door {
 	constructor(cfg) {
 		let { arena, type, x, y } = cfg,
 			tile = arena.config.tile,
-			pX = (x * tile) + (tile >> 1),
-			pY = (y * tile) + (tile >> 1);
+			pX = (x + .5) * tile,
+			pY = (y + .5) * tile;
 		
 		this.arena = arena;
 		this.type = type;
 		this.x = x;
 		this.y = y;
-
 		this.pos = new Point(pX, pY);
 		this.state = "close"; // open opening closing
 
@@ -18,14 +17,6 @@ class Door {
 			index: 0,
 			last: 30,
 			speed: 30,
-			stepIndex: 0,
-			step: [
-				{ s: 1, l: 0 },
-				{ s: .7, l: 10},
-				{ s: .45, l: 18 },
-				{ s: .3, l: 22 },
-				{ s: .12, l: 29 },
-			],
 		};
 
 		let bodies = [],
@@ -98,8 +89,8 @@ class Door {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			tile = arena.config.tile,
-			x = ((this.x - .5) * tile) + viewport.x,
-			y = ((this.y - .5) * tile) + viewport.y,
+			x = this.pos.x - tile + viewport.x,
+			y = this.pos.y - tile + viewport.y,
 			frame = 128 + (this.frame.index * 64),
 			args = [arena.assets["big-map"].img, frame, 256, 64, 64, 0, 0, 64, 64],
 			isVert = this.type === "v";
