@@ -3,8 +3,8 @@ class Door {
 	constructor(cfg) {
 		let { arena, type, x, y } = cfg,
 			tile = arena.config.tile,
-			pX = x * tile,
-			pY = y * tile;
+			pX = (x * tile) + (tile >> 1),
+			pY = (y * tile) + (tile >> 1);
 		
 		this.arena = arena;
 		this.type = type;
@@ -19,6 +19,25 @@ class Door {
 			last: 30,
 			speed: 30,
 		};
+
+		let bodies = [],
+			args,
+			slider;
+		// door frame "start"
+		args = (type === "h") ? [pX, pY - tile + 5, 54, 10] : [pX - tile + 5, pY, 10, 54];
+		bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
+
+		// door frame "end"
+		args = (type === "h") ? [pX, pY + tile - 5, 54, 10] : [pX + tile - 5, pY, 10, 54];
+		bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
+
+		args = (type === "h") ? [pX, pY, 24, 44] : [pX, pY, 44, 24];
+		slider = Matter.Bodies.rectangle(...args, { isStatic: true });
+		bodies.push(slider);
+
+		// console.log( slider );
+
+		Matter.Composite.add(arena.map.engine.world, bodies);
 	}
 
 	update(delta) {
