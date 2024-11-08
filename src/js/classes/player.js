@@ -35,6 +35,24 @@ class Player extends Droid {
 		});
 	}
 
+	setState(state) {
+		// console.log( state.id );
+		switch (state.id) {
+			case "exit":
+				this.light.strength = .6;
+				break;
+			case "recharge":
+				this.light.strength = .6;
+				break;
+			case "console":
+				this.light.strength = .6;
+				break;
+			case "clear":
+				this.light.strength = .325;
+				break;
+		}
+	}
+
 	update(delta) {
 		let force = { x: 0, y: 0 };
 		// check input
@@ -55,5 +73,28 @@ class Player extends Droid {
 	render(ctx) {
 		// render droid
 		super.render(ctx);
+
+		let arena = this.arena,
+			digits = this.digits,
+			tile = arena.config.tile,
+			pX = arena.viewport.half.w,
+			pY = arena.viewport.half.h;
+
+		ctx.save();
+		ctx.translate(pX-22, pY-16);
+
+		if (this.light) {
+			let lightX = (tile / 2);
+			let lightY = (tile / 2);
+
+			let radius = this.light.radius;
+			let radialGradient = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, radius);
+			radialGradient.addColorStop(0, `rgba(255, 255, 255, ${this.light.strength})`);
+			radialGradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+
+			ctx.fillStyle = radialGradient;
+			ctx.arc(lightX, lightY, radius, 0, Math.TAU);
+			ctx.fill();
+		}
 	}
 }

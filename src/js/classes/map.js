@@ -50,6 +50,22 @@ class Map {
 			bodies.push(Matter.Bodies.rectangle(bX, bY, tile, tile, { isStatic: true }));
 		});
 
+		// add item classses
+		xSection.selectNodes(`./Layer[@id="action"]/i`).map((xItem, index) => {
+			let x = +xItem.getAttribute("x"),
+				y = +xItem.getAttribute("y"),
+				w = +xItem.getAttribute("w"),
+				h = +xItem.getAttribute("h"),
+				id = xItem.getAttribute("id"),
+				action = xItem.getAttribute("action");
+			// console.log( action );
+			switch (action) {
+				case "recharge":
+					this.entries.push(new Recharge({ arena: this.arena, x, y }));
+					break;
+			}
+		});
+
 		// physics setup
 		Matter.Composite.add(this.engine.world, bodies);
 
@@ -58,7 +74,7 @@ class Map {
 	}
 
 	update(delta) {
-		
+		this.entries.map(item => item.update(delta));
 	}
 
 	render(ctx) {
@@ -78,6 +94,11 @@ class Map {
 		if (xMax > this.width) xMax = this.width;
 		if (yMax > this.height) yMax = this.height;
 
+		// draw entries - exclude droids
+		this.entries
+			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
+			.map(entry => entry.render(ctx));
+		
 		// normal draw if debug mode is < 3
 		if (this.arena.debug.mode < 3) {
 			// ctx.save();

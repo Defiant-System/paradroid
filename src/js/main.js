@@ -2,8 +2,10 @@
 @import "./classes/arena.js"
 @import "./classes/map.js"
 @import "./classes/viewport.js"
+@import "./classes/point.js"
 @import "./classes/droid.js"
 @import "./classes/player.js"
+@import "./classes/recharge.js"
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"
