@@ -63,10 +63,11 @@ class Map {
 
 	render(ctx) {
 		let assets = this.arena.assets,
-			tile = this.arena.config.tile,
 			viewport = this.arena.viewport,
-			vX = viewport.x,
-			vY = viewport.y,
+			tile = this.arena.config.tile,
+			hT = tile >> 1,
+			vX = hT - viewport.x,
+			vY = hT - viewport.y,
 			xMin = Math.floor(vX / tile),
 			yMin = Math.floor(vY / tile),
 			xMax = Math.ceil((vX + viewport.w) / tile),
@@ -79,8 +80,8 @@ class Map {
 
 		// normal draw if debug mode is < 3
 		if (this.arena.debug.mode < 3) {
-			ctx.save();
-			// ctx.translate(viewport.half.w, viewport.half.h);
+			// ctx.save();
+			// ctx.translate(vX, vY);
 
 			for (let y = yMin; y < yMax; y++) {
 				for (let x = xMin; x < xMax; x++) {
@@ -101,7 +102,7 @@ class Map {
 				}
 			}
 
-			ctx.restore();
+			// ctx.restore();
 		}
 	}
 }

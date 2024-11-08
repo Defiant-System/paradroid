@@ -14,16 +14,13 @@ class Viewport {
 
 	center() {
 		let arena = this.arena,
-			centerX = arena.player.body.position.x,
-			centerY = arena.player.body.position.y;
-		// this.scroll(centerX, centerY);
-		this.scroll(250, 250);
+			centerX = this.half.w - arena.player.body.position.x,
+			centerY = this.half.h - arena.player.body.position.y;
+		this.scroll(centerX, centerY);
 	}
 
 	scroll(x, y) {
-		let newX = x, // - this.half.w,
-			newY = y; // - this.half.h;
-		this.x = newX; // * .115;
-		this.y = newY; // * .115;
+		this.x = x;
+		this.y = y;
 	}
 }

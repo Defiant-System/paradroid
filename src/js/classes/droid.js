@@ -9,7 +9,7 @@ class Droid {
 		this.x = x || 0;
 		this.y = y || 0;
 		// radius
-		this.r = 15;
+		this.r = 17;
 		// droid physics body
 		this.body = Matter.Bodies.circle(0, 0, this.r, { frictionAir: .1 });
 
@@ -77,7 +77,7 @@ class Droid {
 		// normal draw if debug mode is < 3
 		if (arena.debug.mode < 3) {
 			ctx.save();
-			// ctx.translate(-23, -25);
+			ctx.translate(-22, -25);
 			// top + bottom caps
 			ctx.drawImage(this.sprites.bg,
 				f, 0, w, w,
