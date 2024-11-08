@@ -37,10 +37,8 @@ class Recharge {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			tile = arena.config.tile,
-			vX = viewport.x + ((this.arena.width - viewport.w) >> 1),
-			vY = viewport.y + ((this.arena.height - viewport.h) >> 1),
-			x = Math.round((this.x * tile) - vX) + .5,
-			y = Math.round((this.y * tile) - vY) + .5,
+			x = ((this.x - .5) * tile) + viewport.x,
+			y = ((this.y - .5) * tile) + viewport.y,
 			rad = (this.angle * Math.PI) / 180,
 			args = [arena.assets["big-map"].img, 0, 257, 14, 14, -7, -7, 14, 14],
 			r;

@@ -6,6 +6,7 @@
 @import "./classes/droid.js"
 @import "./classes/player.js"
 @import "./classes/recharge.js"
+@import "./classes/door.js"
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"

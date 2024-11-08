@@ -109,8 +109,9 @@ class Arena {
 
 			this.ctx.save();
 			this.ctx.translate(this.viewport.x, this.viewport.y);
-		    this.ctx.lineWidth = 2;
-		    this.ctx.strokeStyle = "#f00";
+		    this.ctx.lineWidth = 1;
+		    this.ctx.fillStyle = "#33669977";
+		    this.ctx.strokeStyle = "#113355cc";
 			this.ctx.beginPath();
 			bodies.map(body => {
 				this.ctx.moveTo(body.vertices[0].x, body.vertices[0].y);
@@ -119,6 +120,7 @@ class Arena {
 				});
 				this.ctx.lineTo(body.vertices[0].x, body.vertices[0].y);
 			});
+		    this.ctx.fill();
 		    this.ctx.stroke();
 			this.ctx.restore();
 		}
