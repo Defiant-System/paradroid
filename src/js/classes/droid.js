@@ -10,8 +10,14 @@ class Droid {
 		this.y = y || 0;
 		// radius
 		this.r = 17;
+
 		// droid physics body
-		this.body = Matter.Bodies.circle(0, 0, this.r, { frictionAir: .1 });
+		let path = window.find(`svg#droid-mask path`)[0],
+			vertexSets = Matter.Svg.pathToVertices(path, 12);
+		// this.body = Matter.Bodies.circle(0, 0, this.r, { frictionAir: .1 });
+		this.body = Matter.Bodies.fromVertices(0, 0, vertexSets, { frictionAir: .1 });
+		// prevents droid to rotate
+		Matter.Body.setInertia(this.body, Infinity);
 
 		// droid "spining" sprite
 		this.sprites = {

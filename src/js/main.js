@@ -2,14 +2,14 @@
 @import "./classes/arena.js"
 @import "./classes/map.js"
 @import "./classes/viewport.js"
-
 @import "./classes/droid.js"
 @import "./classes/player.js"
 
+@import "./ext/matter.min.js"
+@import "./ext/pathseg.js"
+@import "./ext/astar.js"
 
 @import "./modules/utils.js"
-@import "./modules/matter.min.js"
-@import "./modules/astar.js"
 @import "./modules/test.js"
 
 
