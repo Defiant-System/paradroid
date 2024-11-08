@@ -32,39 +32,21 @@ class Door {
 			args,
 			slider;
 		// door frame "start"
-		args = (type === "h") ? [pX, pY - tile + 4, 50, 8] : [pX - tile + 4, pY, 8, 50];
+		args = (type === "h") ? [pX, pY - tile + 2, 50, 4] : [pX - tile + 2, pY, 4, 50];
 		bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
 
 		// door frame "end"
-		args = (type === "h") ? [pX, pY + tile - 4, 50, 8] : [pX + tile - 4, pY, 8, 50];
+		args = (type === "h") ? [pX, pY + tile - 2, 50, 4] : [pX + tile - 2, pY, 4, 50];
 		bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
 
 		args = (type === "h") ? [pX, pY, 24, 64] : [pX, pY, 64, 24];
 		this.slider = Matter.Bodies.rectangle(...args, { isStatic: true });
 		bodies.push(this.slider);
 		// set center sliding door
-		Matter.Body.setCentre(this.slider, { x: 32, y: 0 }, true);
-
-		// console.log( slider );
-		// Matter.Body.scale(this.slider, .85, 1);
-		this.slide(2);
-
+		args = (type === "h") ? { x: 0, y: 32 } : { x: 32, y: 0 };
+		Matter.Body.setCentre(this.slider, args, true);
+		// add door to physical world
 		Matter.Composite.add(arena.map.engine.world, bodies);
-	}
-
-	slide(i) {
-		let step = this.frame.step[i],
-			scale = [1, 1];
-		
-		if (this.type === "h") {
-			scale[1] = 1 - (i / 4);
-		} else {
-			scale[0] = 1 - (i / 4);
-		}
-
-		Matter.Body.scale(this.slider, scale[0], scale[1]);
-		// save step index
-		this.frame.stepIndex = i;
 	}
 
 	update(delta) {
@@ -73,10 +55,6 @@ class Door {
 		// if closest droid is within range, open door
 		if (closest < 64 && this.state !== "open") this.state = "opening";
 		else if (closest > 64 && this.state !== "close") this.state = "closing";
-
-		if (["opening", "closing"].includes(this.state) && this.frame.index !== this.frame.stepIndex) {
-			// this.slide(this.frame.index);
-		}
 
 		switch (this.state) {
 			case "opening":
@@ -88,6 +66,11 @@ class Door {
 					if (this.frame.index >= 4) {
 						this.state = "open";
 						this.frame.index = 4;
+						// physcial world update
+						let args = [this.slider, 1, 1];
+						if (this.type === "h") args[2] = .1;
+						else args[1] = .1;
+						Matter.Body.scale(...args);
 					}
 				}
 				break;
@@ -100,6 +83,11 @@ class Door {
 					if (this.frame.index <= 0) {
 						this.state = "close";
 						this.frame.index = 0;
+						// physcial world update
+						let args = [this.slider, 1, 1];
+						if (this.type === "h") args[2] = 10;
+						else args[1] = 10;
+						Matter.Body.scale(...args);
 					}
 				}
 				break;
