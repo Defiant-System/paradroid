@@ -30,7 +30,6 @@ class Map {
 
 		// reset level map data
 		this.background = [];
-		this.collision = [];
 
 		// physics bodies array
 		let bodies = [this.arena.player.body];
@@ -42,14 +41,12 @@ class Map {
 			this.background[row].push(xTile.getAttribute("id"));
 		});
 
-		this.collision = [...Array(this.height)].map(row => ([...Array(this.width)].map(i => 0)));
+		// walls
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
 			let x = +xColl.getAttribute("x"),
-				y = +xColl.getAttribute("y");
-			this.collision[y][x] = 1;
-
-			let bX = (x * tile) - this.arena.viewport.x + hT,
-				bY = (y * tile) - this.arena.viewport.y + hT;
+				y = +xColl.getAttribute("y"),
+				bX = (x * tile), // - this.arena.viewport.x + hT,
+				bY = (y * tile); // - this.arena.viewport.y + hT;
 			bodies.push(Matter.Bodies.rectangle(bX, bY, tile, tile, { isStatic: true }));
 		});
 

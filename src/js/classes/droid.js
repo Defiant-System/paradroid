@@ -8,11 +8,10 @@ class Droid {
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
-		this.pos = { x: 0, y: 0 };
 		// radius
 		this.r = 15;
 		// droid physics body
-		this.body = Matter.Bodies.circle(this.pos.x, this.pos.y, this.r, { frictionAir: .1 });
+		this.body = Matter.Bodies.circle(0, 0, this.r, { frictionAir: .1 });
 
 		// droid "spining" sprite
 		this.sprites = {
@@ -35,17 +34,14 @@ class Droid {
 	}
 
 	spawn(x, y) {
-		let tile = this.arena.config.tile,
-			hT = tile >> 1;
+		let tile = this.arena.config.tile;
 		// tile coords
 		this.x = x;
 		this.y = y;
-		this.pos.x = x * tile;
-		this.pos.y = y * tile;
 
 		let pos = {
-			x: this.arena.viewport.half.w + this.pos.x - hT,
-			y: this.arena.viewport.half.h + this.pos.y - hT,
+			x: (this.x - .5) * tile,
+			y: (this.y - .5) * tile,
 		};
 		Matter.Body.setPosition(this.body, pos);
 	}

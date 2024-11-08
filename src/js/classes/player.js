@@ -49,14 +49,6 @@ class Player extends Droid {
 		force.y = this.body.mass * force.y * 0.0025;
 		Matter.Body.applyForce(this.body, this.body.position, force);
 
-		// let viewport = this.arena.viewport,
-		// 	size = this.arena.config.tile;
-		// this.pos.x = (this.body.position.x - viewport.x);
-		// this.pos.y = (this.body.position.y - viewport.y);
-		// this.x = Math.floor(this.pos.x / size);
-		// this.y = Math.floor(this.pos.y / size);
-		// console.log( this.x, this.y );
-
 		super.update(delta);
 	}
 

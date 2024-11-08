@@ -76,8 +76,7 @@ class Arena {
 		// change debug state
 		if (state.debug) this.debug.mode = state.debug.mode;
 
-		let mapState = { droids: [], ...state.map },
-			tile = this.config.tile;
+		let mapState = { droids: [], ...state.map };
 		// move player / "001"
 		this.player.spawn(state.player.x, state.player.y);
 		// center viewport
