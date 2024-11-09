@@ -56,6 +56,7 @@ let Test = {
 			// pause test
 			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
+			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
 		}, 100);
 
 	}

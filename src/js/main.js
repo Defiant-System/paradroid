@@ -48,6 +48,10 @@ const paradroid = {
 			case "window.focus":
 			case "window.blur":
 				break;
+			case "window.close":
+				// stop "matter.js" runner
+				Matter.Runner.stop(Self.mobile.arena.map.runner);
+				break;
 			case "window.keydown":
 			case "window.keyup":
 				name = Self.els.content.data("show");
