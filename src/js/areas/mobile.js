@@ -87,6 +87,9 @@
 				Self.els.cvs.parent().css({ background: value });
 				Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.75)", });
 				break;
+			case "set-player-droid":
+				Self.arena.player.setId(event.arg);
+				break;
 			case "set-debug-mode":
 				Self.arena.setDebug(+event.arg);
 				break;

@@ -9,7 +9,7 @@ class Player extends Droid {
 			strength: .325,
 			radius: 100,
 		};
-		this.speed = .0015;
+		// this.speed = .0015;
 		this.isPlayer = true;
 		// a little bit blur
 		this.blur = {

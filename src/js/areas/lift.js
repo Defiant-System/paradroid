@@ -27,8 +27,8 @@
 							xSection = window.bluePrint.selectSingleNode(`//Section[@id="${Self.elevator.section}"]`),
 							xExit = xSection.selectSingleNode(`./Layer[@id="action"]/*[@action="exit"][@lift="${lift.data("id")}"]`),
 							exit = {
-								x: +xExit.getAttribute("x"),
-								y: +xExit.getAttribute("y"),
+								x: +xExit.getAttribute("x") + 1,
+								y: +xExit.getAttribute("y") + 1,
 							},
 							state = { player: exit, map: { id: Self.elevator.section } };
 						APP.mobile.dispatch({ type: "go-to-section", state });

@@ -30,8 +30,9 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "14" });
+		APP.editor.dispatch({ type: "render-level", arg: "1" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="2x2"]`).trigger("click");
@@ -39,7 +40,6 @@ let Test = {
 		APP.editor.dispatch({ type: "toggle-overflow" });
 		// // APP.editor.dispatch({ type: "output-pgn" });
 		return;
-		 */
 
 		// // setTimeout(() => APP.editor.els.palette.find(`.buttons span[data-click="output-collision-pgn"]`).trigger("click"), 300);
 		// return;
@@ -47,10 +47,10 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					map: { id: 1, clear: .8 }, player: { id: "420", x: 35, y: 9, power: .75 }, debug: { mode: 0 },
+					map: { id: 1, clear: .8 }, player: { id: "001", x: 35, y: 9, power: .75 }, debug: { mode: 0 },
 					// map: { id: 11, clear: .35 }, player: { x: 5, y: 2, power: .35 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
-					// map: { id: 3, clear: .5 }, player: { x: 6, y: 6, power: .5 }, debug: { mode: 0 },
+					// map: { id: 3, clear: .5 }, player: { x: 18, y: 14, power: .5 }, debug: { mode: 0 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test

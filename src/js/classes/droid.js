@@ -4,12 +4,13 @@ class Droid {
 		let { arena, id, x, y, patrol } = cfg;
 
 		this.arena = arena;
-		this.id = id;
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
 		// radius
 		this.r = 17;
+		// set droid id
+		this.setId(id);
 
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
@@ -24,19 +25,38 @@ class Droid {
 			bg: arena.assets["droid"].img,
 			digits: arena.assets["digits"].img,
 		};
-		// paint digits on droid
-		this.digits = this.id.toString().split("").map((x, i) => {
-			return {
-				x: +x * 28,
-				l: (i * 15) + Utils.digits[this.id][i],
-			};
-		});
+
 		// used to animate droid "spin"
 		this.frame = {
 			index: 0,
 			last: 80,
 			speed: 80,
 		};
+	}
+
+	setId(id) {
+		let xDroid = window.bluePrint.selectSingleNode(`//Droid[@id="${id}"]`),
+			xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xDroid.getAttribute("weapon")}"]`);
+		// update this droid properties
+		this.weight = +xDroid.getAttribute("weight");
+		this.speed = +xDroid.getAttribute("speed") * .00025;
+		this.energy = +xDroid.getAttribute("energy");
+		this.loss = +xDroid.getAttribute("loss");
+		this.agression = +xDroid.getAttribute("agression");
+		this.weapon = {
+			id: +xWeapon.getAttribute("id"),
+			recharge: +xWeapon.getAttribute("recharge"),
+			damage: +xWeapon.getAttribute("damage"),
+		};
+		// paint digits on droid
+		this.digits = id.toString().split("").map((x, i) => {
+			return {
+				x: +x * 28,
+				l: (i * 15) + Utils.digits[id][i],
+			};
+		});
+		// save id
+		this.id = id;
 	}
 
 	spawn(cfg) {
@@ -46,7 +66,7 @@ class Droid {
 		this.x = x;
 		this.y = y;
 		// optional values
-		if (id) this.id = id;
+		if (id) this.setId(id);
 		if (power) this.power = power;
 
 		let pos = {

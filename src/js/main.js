@@ -62,6 +62,7 @@ const paradroid = {
 				Self.hud.dispatch({ type: "set-view-title" });
 				break;
 			// proxy event
+			case "set-player-droid":
 			case "set-debug-mode":
 				return Self.mobile.dispatch(event);
 			// proxy event
