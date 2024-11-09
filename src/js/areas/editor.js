@@ -88,7 +88,7 @@
 					// insert viewport cursor tiles
 					value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
 					Self.els.cursor.html(value.join(""));
-				} else if (Self.palette.tile.startsWith("a")) {
+				} else if (Self.palette.tile && Self.palette.tile.startsWith("a")) {
 					let levelEl = $(event.target),
 						grid = parseInt(levelEl.cssProp("--tile"), 10),
 						tW = +levelEl.cssProp("--w"),
@@ -105,7 +105,7 @@
 					Self.els.palette.find(`input[name="action-coord"]`).val(`${l},${t},${w},${h}`);
 					Self.els.palette.find(`input[name="action-id"]`).val(tile.data("action"));
 
-				} else if (Self.palette.tile.startsWith("c")) {
+				} else if (Self.palette.tile && Self.palette.tile.startsWith("c")) {
 					let levelEl = $(event.target),
 						grid = parseInt(levelEl.cssProp("--tile"), 10),
 						w = +levelEl.cssProp("--w"),

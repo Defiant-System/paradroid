@@ -46,11 +46,8 @@ class Map {
 			bodies.push(Matter.Bodies.rectangle(x, y, tile, tile, { isStatic: true }));
 		});
 
-		console.log( bodies[0] );
-		console.log( bodies[1] );
-
 		// add item classses
-		xSection.selectNodes(`./Layer[@id="action"]/i`).map((xItem, index) => {
+		xSection.selectNodes(`./Layer[@id="action"]/i`).map(xItem => {
 			let x = +xItem.getAttribute("x"),
 				y = +xItem.getAttribute("y"),
 				w = +xItem.getAttribute("w"),
@@ -73,9 +70,14 @@ class Map {
 				case "recharge":
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;
-				case "droid":
-					break;
 			}
+		});
+
+		// add droids
+		xSection.selectNodes(`./Layer[@id="droids"]/i`).map(xItem => {
+			let id = xItem.getAttribute("id"),
+				patrol = JSON.parse(xItem.getAttribute("patrol"));
+			this.droids.push(new Droid({ arena: this.arena, id, patrol }));
 		});
 
 		// physics setup
@@ -87,6 +89,7 @@ class Map {
 
 	update(delta) {
 		this.entries.map(item => item.update(delta));
+		this.droids.map(droid => droid.update(delta));
 	}
 
 	render(ctx) {
@@ -110,6 +113,10 @@ class Map {
 		this.entries
 			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
 			.map(entry => entry.render(ctx));
+		// now render droids on top
+		this.droids
+			.filter(droid => droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
+			.map(droid => droid.render(ctx));
 		
 		// normal draw if debug mode is < 2
 		if (this.arena.debug.mode < 2) {

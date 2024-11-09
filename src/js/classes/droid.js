@@ -32,6 +32,16 @@ class Droid {
 			last: 80,
 			speed: 80,
 		};
+
+		if (patrol) {
+			// patrol points
+			let index = patrol.findIndex(e => e[0] == x && e[1] == y),
+				target = patrol[index % patrol.length],
+				step = new Point(0, 0);
+			this.home = { index, patrol, target, step };
+			// starting position
+			this.spawn({ x: target[0], y: target[1] });
+		}
 	}
 
 	setId(id) {
@@ -73,6 +83,7 @@ class Droid {
 			x: (this.x - .5) * tile,
 			y: (this.y - .5) * tile,
 		};
+		console.log( this.id, this.body );
 		Matter.Body.setPosition(this.body, pos);
 	}
 
@@ -93,8 +104,16 @@ class Droid {
 			digits = this.digits,
 			w = arena.config.char,
 			f = this.frame.index * w,
-			pX = arena.viewport.half.w,
+			pX,
+			pY;
+
+		if (this.isPlayer) {
+			pX = arena.viewport.half.w;
 			pY = arena.viewport.half.h;
+		} else {
+			pX = this.body.position.x + arena.viewport.x;
+			pY = this.body.position.y + arena.viewport.y;
+		}
 
 		ctx.save();
 		ctx.translate(pX, pY);

@@ -41,10 +41,6 @@ class Player extends Droid {
 		});
 	}
 
-	spawn(cfg) {
-		super.spawn(cfg);
-	}
-
 	setState(state) {
 		// console.log( state.id );
 		switch (state.id) {
