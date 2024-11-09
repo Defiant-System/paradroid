@@ -25,6 +25,18 @@
 				}
 				if (value) Self.els.el.find(".view-title").html(value);
 				break;
+			case "set-level-data":
+				value = event.percentage !== undefined ? event.percentage : 1;
+				Self.els.el.find(".left .box").css({
+					"--val": `${(value * 100) | 1}%`,
+					"--c1": event.background,
+				});
+
+				value = event.power !== undefined ? event.power : 1;
+				Self.els.el.find(".right .box").css({
+					"--val": `${(value * 100) | 1}%`,
+				});
+				break;
 		}
 	}
 }

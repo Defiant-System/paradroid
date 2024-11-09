@@ -39,11 +39,15 @@ class Droid {
 		};
 	}
 
-	spawn(x, y) {
-		let tile = this.arena.config.tile;
+	spawn(cfg) {
+		let { id, x, y, power } = cfg,
+			tile = this.arena.config.tile;
 		// tile coords
 		this.x = x;
 		this.y = y;
+		// optional values
+		if (id) this.id = id;
+		if (power) this.power = power;
 
 		let pos = {
 			x: (this.x - .5) * tile,
@@ -84,8 +88,8 @@ class Droid {
 			f = (8 - this.frame.index) * w;
 		}
 
-		// normal draw if debug mode is < 3
-		if (arena.debug.mode < 3) {
+		// normal draw if debug mode is < 2
+		if (arena.debug.mode < 2) {
 			ctx.save();
 			ctx.translate(-22, -25);
 			// top + bottom caps

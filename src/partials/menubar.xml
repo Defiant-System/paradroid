@@ -16,6 +16,12 @@
 			<Menu name="Editor" click="show-view" arg="editor"/>
 		</Menu>
 		<Menu type="divider"/>
+		<Menu name="Debug Mode">
+			<Menu name="0" check-group="Debug" click="set-debug-mode" arg="0" is-checked="1"/>
+			<Menu name="1" check-group="Debug" click="set-debug-mode" arg="1"/>
+			<Menu name="2" check-group="Debug" click="set-debug-mode" arg="2"/>
+		</Menu>
+		<Menu type="divider"/>
 		<Menu name="Editor" for="editor-content">
 			<Menu name="Toggle Grid" click="toggle-grid"/>
 			<Menu type="divider"/>

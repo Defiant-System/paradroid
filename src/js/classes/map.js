@@ -16,20 +16,15 @@ class Map {
 
 	setState(state) {
 		let tile = this.arena.config.tile,
-			hT = tile >> 1,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`);
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
-		this.w = this.width * tile;
-		this.h = this.height * tile;
 
 		// reset map arrays
 		this.entries = [];
 		this.droids = [this.arena.player];
-
-		// reset level map data
-		this.background = [];
+		this.background = []; // level map data
 
 		// physics bodies array
 		let bodies = [this.arena.player.body];
@@ -43,11 +38,9 @@ class Map {
 
 		// walls
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
-			let x = +xColl.getAttribute("x"),
-				y = +xColl.getAttribute("y"),
-				bX = (x * tile), // - this.arena.viewport.x + hT,
-				bY = (y * tile); // - this.arena.viewport.y + hT;
-			bodies.push(Matter.Bodies.rectangle(bX, bY, tile, tile, { isStatic: true }));
+			let x = +xColl.getAttribute("x") * tile,
+				y = +xColl.getAttribute("y") * tile;
+			bodies.push(Matter.Bodies.rectangle(x, y, tile, tile, { isStatic: true }));
 		});
 
 		// add item classses
@@ -73,6 +66,8 @@ class Map {
 					break;
 				case "recharge":
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
+					break;
+				case "droid":
 					break;
 			}
 		});
@@ -110,8 +105,8 @@ class Map {
 			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
 			.map(entry => entry.render(ctx));
 		
-		// normal draw if debug mode is < 3
-		if (this.arena.debug.mode < 3) {
+		// normal draw if debug mode is < 2
+		if (this.arena.debug.mode < 2) {
 			// ctx.save();
 			// ctx.translate(vX, vY);
 

@@ -49,8 +49,8 @@ class Recharge {
 		ctx.fillStyle = "#ffccccaa";
 		ctx.translate(x, y);
 
-		// normal draw if debug mode is < 3
-		if (arena.debug.mode < 3) {
+		// normal draw if debug mode is < 2
+		if (arena.debug.mode < 2) {
 			// rotations
 			ctx.save();
 			ctx.translate(24, 24);

@@ -61,10 +61,13 @@ const paradroid = {
 				Self.hud.dispatch({ type: "set-view-title" });
 				break;
 			// proxy event
+			case "set-debug-mode":
+				return Self.mobile.dispatch(event);
+			// proxy event
 			default:
 				el = event.el;
 				if (!el && event.origin) el = event.origin.el;
-				if (el) {
+				if (el && el.length) {
 					let pEl = el.parents(`?div[data-area]`);
 					if (pEl.length) {
 						name = pEl.data("area");

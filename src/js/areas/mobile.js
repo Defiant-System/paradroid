@@ -62,12 +62,20 @@
 				ship.data({ "active-level": sectionEl.data("level") });
 				// level colors
 				let background = sectionEl.cssProp("--fg"),
-					filter = sectionEl.cssProp("--filter") || "";
+					filter = sectionEl.cssProp("--filter") || "",
+					percentage = 1 - event.state.map.clear,
+					power = event.state.player.power;
+
+				// adjust hud with new color
+				APP.hud.dispatch({ type: "set-level-data", background, percentage, power });
 
 				Self.els.cvs.parent().css({ background });
 				Self.els.cvs.css({ filter });
 				// change arena
 				Self.arena.setState(event.state);
+				break;
+			case "set-debug-mode":
+				Self.arena.setDebug(+event.arg);
 				break;
 		}
 	}

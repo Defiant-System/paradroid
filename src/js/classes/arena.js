@@ -69,6 +69,10 @@ class Arena {
 		this.player = new Player({ arena: this, id: "001" });
 	}
 
+	setDebug(mode) {
+		this.debug.mode = mode;
+	}
+
 	setState(state) {
 		// temporary; this prevents setting state if not completly ready
 		if (!this.map) return setTimeout(() => this.setState(state), 100);
@@ -78,7 +82,7 @@ class Arena {
 
 		let mapState = { droids: [], ...state.map };
 		// move player / "001"
-		this.player.spawn(state.player.x, state.player.y);
+		this.player.spawn(state.player);
 		// center viewport
 		this.viewport.center();
 		// set map state

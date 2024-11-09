@@ -40,7 +40,7 @@ class Console {
 			y = this.pos.y + viewport.y;
 
 		// normal draw if debug mode is < 3
-		if (arena.debug.mode < 3) {
+		if (arena.debug.mode < 2) {
 			ctx.save();
 			ctx.translate(x, y);
 

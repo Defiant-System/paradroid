@@ -29,7 +29,7 @@
 						height: 24px;
 
 						&:before {
-							height: 20px;
+							height: 24px;
 						}
 					}
 
@@ -52,6 +52,7 @@
 
 					&.empty {
 						width: 20px;
+						height: 28px;
 						transform: rotateX(90deg) rotateY(-90deg) translateX(20px) translateY(15px) translateZ(10px);
 					}
 
@@ -86,8 +87,9 @@
 			width: 200px;
 			height: 34px;
 			font-size: 22px;
-			color: rgba(#7100ac,.75);
-			text-shadow: 0 1px 0 #e186ff;
+			color: rgba(#222,.5);
+			text-shadow: 0 1px 0 rgba(#fff,.4);
+			mix-blend-mode: luminosity;
 			pointer-events: none;
 		}
 	}
