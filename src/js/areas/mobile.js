@@ -71,16 +71,21 @@
 				// canvas background color
 				Self.els.cvs.parent().css({ background });
 
-				let func = (state, filter) => {
-						// temporary; this prevents setting state if not completly ready
-						if (!Self.arena.map) return setTimeout(() => func(state, filter), 100);
+				let func = (state, cfg) => {
+						// this prevents setting state if not completly ready
+						if (!Self.arena.map) return setTimeout(() => func(state, cfg), 100);
 						// change color spectrum of level
-						Self.arena.setFilter(filter);
+						Self.arena.setFilter(cfg);
 						// change arena
-						Self.arena.setState(state);
+						Self.arena.setState(state, cfg);
 					};
 				// try setting new state
-				func(event.state, filter);
+				func(event.state, { color: background, filter });
+				break;
+			case "level-lights-off":
+				value = "#555";
+				Self.els.cvs.parent().css({ background: value });
+				Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.75)", });
 				break;
 			case "set-debug-mode":
 				Self.arena.setDebug(+event.arg);

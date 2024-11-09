@@ -18,6 +18,8 @@ class Arena {
 			x: Math.round(this.width / this.config.tile) / 2,
 			y: Math.round(this.height / this.config.tile) / 2,
 		};
+		// color palette
+		this.colors = {};
 
 		this.debug = {
 			mode: 0,
@@ -74,7 +76,12 @@ class Arena {
 		this.player = new Player({ arena: this, id: "001" });
 	}
 
-	setFilter(filter) {
+	setFilter(cfg) {
+		let { color, filter } = cfg;
+		this.colors.base = color;
+		this.colors.dark = Color.mixColors(this.colors.base, "#000000", .75).slice(0,7);
+		this.colors.light = Color.mixColors(this.colors.base, "#ffffff", .65).slice(0,7);
+
 		this.copy.cvs.attr({ width: this.assets.original.width });
 		this.copy.ctx.filter = filter;
 		this.copy.ctx.drawImage(this.assets.original, 0, 0);
@@ -96,7 +103,6 @@ class Arena {
 		this.viewport.center();
 		// set map state
 		this.map.setState(mapState);
-
 		//this.render();
 
 		// start "loop"
@@ -116,7 +122,6 @@ class Arena {
 		this.map.render(this.ctx);
 		this.player.render(this.ctx);
 
-
 		if (this.debug.mode > 0) {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);
 
@@ -128,9 +133,7 @@ class Arena {
 			this.ctx.beginPath();
 			bodies.map(body => {
 				this.ctx.moveTo(body.vertices[0].x, body.vertices[0].y);
-				body.vertices.slice(1).map(vertices => {
-					this.ctx.lineTo(vertices.x, vertices.y);
-				});
+				body.vertices.slice(1).map(v => this.ctx.lineTo(v.x, v.y));
 				this.ctx.lineTo(body.vertices[0].x, body.vertices[0].y);
 			});
 		    this.ctx.fill();

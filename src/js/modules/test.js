@@ -48,12 +48,14 @@ let Test = {
 		return setTimeout(() => {
 			let state = {
 					map: { id: 1, clear: .8 }, player: { id: "420", x: 35, y: 9, power: .75 }, debug: { mode: 0 },
-					// map: { id: 11, clear: .35 }, player: { x: 5, y: 2 }, debug: { mode: 0 },
-					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5 }, debug: { mode: 0 },
+					// map: { id: 11, clear: .35 }, player: { x: 5, y: 2, power: .35 }, debug: { mode: 0 },
+					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
+					// map: { id: 3, clear: .5 }, player: { x: 6, y: 6, power: .5 }, debug: { mode: 0 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test
 			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 1500);
+			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 		}, 300);
 
 	}

@@ -46,7 +46,7 @@ class Recharge {
 			r;
 
 		ctx.save();
-		ctx.fillStyle = "#ffccccaa";
+		ctx.fillStyle = arena.colors.light +"cc";
 		ctx.translate(x, y);
 
 		// normal draw if debug mode is < 2
