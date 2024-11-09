@@ -30,7 +30,10 @@
 								x: +xExit.getAttribute("x") + 1,
 								y: +xExit.getAttribute("y") + 1,
 							},
-							state = { player: exit, map: { id: Self.elevator.section } };
+							state = { player: exit, map: { id: +Self.elevator.section } };
+						// stop/pause loop
+						APP.mobile.arena.fpsControl.start();
+						// go to view
 						APP.mobile.dispatch({ type: "go-to-section", state });
 						break;
 					case "up":

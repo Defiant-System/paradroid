@@ -81,6 +81,8 @@ class Arena {
 		this.colors.base = color;
 		this.colors.dark = Color.mixColors(this.colors.base, "#000000", .75).slice(0,7);
 		this.colors.light = Color.mixColors(this.colors.base, "#ffffff", .65).slice(0,7);
+		// update player droids blur color
+		this.player.blur.color = Color.mixColors(this.colors.base, "#000000", .5).slice(0,7);
 
 		this.copy.cvs.attr({ width: this.assets.original.width });
 		this.copy.ctx.filter = filter;

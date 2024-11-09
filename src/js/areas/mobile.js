@@ -22,6 +22,9 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "esc":
+						// stop/pause loop
+						Self.arena.fpsControl.stop();
+						// go to view
 						APP.dispatch({ type: "show-view", arg: "lift" });
 						break;
 					case "w":

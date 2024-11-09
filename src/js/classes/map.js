@@ -46,6 +46,9 @@ class Map {
 			bodies.push(Matter.Bodies.rectangle(x, y, tile, tile, { isStatic: true }));
 		});
 
+		console.log( bodies[0] );
+		console.log( bodies[1] );
+
 		// add item classses
 		xSection.selectNodes(`./Layer[@id="action"]/i`).map((xItem, index) => {
 			let x = +xItem.getAttribute("x"),
