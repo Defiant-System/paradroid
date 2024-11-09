@@ -7,15 +7,12 @@ class Droid {
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
-		// radius
-		this.r = 17;
 		// set droid id
 		this.setId(id);
 
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
 			vertexSets = Matter.Svg.pathToVertices(path, 12);
-		// this.body = Matter.Bodies.circle(0, 0, this.r, { frictionAir: .1 });
 		this.body = Matter.Bodies.fromVertices(0, 0, vertexSets, { frictionAir: .1 });
 		// prevents droid to rotate
 		Matter.Body.setInertia(this.body, Infinity);
@@ -35,12 +32,13 @@ class Droid {
 
 		if (patrol) {
 			// patrol points
-			let index = patrol.findIndex(e => e[0] == x && e[1] == y),
-				target = patrol[index % patrol.length],
-				step = new Point(0, 0);
-			this.home = { index, patrol, target, step };
+			let index = 0,
+				target = patrol[0],
+				force = new Point(0, 0);
+			this.home = { index, patrol, target, force };
+
 			// starting position
-			this.spawn({ x: target[0], y: target[1] });
+			this.spawn({ id, x: target[0], y: target[1] });
 		}
 	}
 
@@ -75,6 +73,7 @@ class Droid {
 		// tile coords
 		this.x = x;
 		this.y = y;
+		if (id == "420") console.log( id, x, y );
 		// optional values
 		if (id) this.setId(id);
 		if (power) this.power = power;
@@ -83,8 +82,15 @@ class Droid {
 			x: (this.x - .5) * tile,
 			y: (this.y - .5) * tile,
 		};
-		console.log( this.id, this.body );
+		// console.log( this.id, this.body );
 		Matter.Body.setPosition(this.body, pos);
+	}
+
+	move(force) {
+		// if (this.id != "001") console.log(force);
+		force.x = this.body.mass * force.x * this.speed;
+		force.y = this.body.mass * force.y * this.speed;
+		Matter.Body.applyForce(this.body, this.body.position, force);
 	}
 
 	update(delta) {
@@ -94,10 +100,26 @@ class Droid {
 			this.frame.index++;
 			if (this.frame.index > 8) this.frame.index = 0;
 		}
+
+		if (!this.isPlayer) {
+			if (this.x === this.home.target[0] && this.y === this.home.target[1]) {
+				// droid reached target - change target
+				this.home.index++;
+				this.home.target = this.home.patrol[this.home.index % this.home.patrol.length];
+
+				this.home.force.x = 0;
+				this.home.force.y = 0;
+				if (this.home.target[0] !== this.x) this.home.force.x = this.home.target[0] < this.x ? -1 : 1;
+				if (this.home.target[1] !== this.y) this.home.force.y = this.home.target[1] < this.y ? -1 : 1;
+			} else {
+				this.move(this.home.force.clone());
+			}
+		}
+
 		// update tile position
 		let tile = this.arena.config.tile;
-		this.x = Math.floor(this.body.position.x / tile);
-		this.y = Math.floor(this.body.position.y / tile);
+		this.x = Math.round(this.body.position.x / tile);
+		this.y = Math.round(this.body.position.y / tile);
 	}
 
 	render(ctx) {let arena = this.arena,

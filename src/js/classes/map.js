@@ -76,8 +76,11 @@ class Map {
 		// add droids
 		xSection.selectNodes(`./Layer[@id="droids"]/i`).map(xItem => {
 			let id = xItem.getAttribute("id"),
-				patrol = JSON.parse(xItem.getAttribute("patrol"));
-			this.droids.push(new Droid({ arena: this.arena, id, patrol }));
+				patrol = JSON.parse(xItem.getAttribute("patrol")),
+				droid = new Droid({ arena: this.arena, id, patrol });
+			this.droids.push(droid);
+			// add droid body to physical world
+			bodies.push(droid.body);
 		});
 
 		// physics setup
@@ -109,22 +112,13 @@ class Map {
 		if (xMax > this.width) xMax = this.width;
 		if (yMax > this.height) yMax = this.height;
 
-		// draw entries - exclude droids
-		this.entries
-			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
-			.map(entry => entry.render(ctx));
-		// now render droids on top
-		this.droids
-			.filter(droid => droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
-			.map(droid => droid.render(ctx));
-		
 		// normal draw if debug mode is < 2
 		if (this.arena.debug.mode < 2) {
 			// ctx.save();
 			// ctx.translate(vX, vY);
 
-			for (let y = yMin; y < yMax; y++) {
-				for (let x = xMin; x < xMax; x++) {
+			for (let y=yMin; y<yMax; y++) {
+				for (let x=xMin; x<xMax; x++) {
 					let col = this.background[y][x];
 					if (!col) continue;
 
@@ -144,5 +138,14 @@ class Map {
 
 			// ctx.restore();
 		}
+		
+		// draw entries - exclude droids
+		this.entries
+			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
+			.map(entry => entry.render(ctx));
+		// now render droids on top
+		this.droids
+			.filter(droid => droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
+			.map(droid => droid.render(ctx));
 	}
 }

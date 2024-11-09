@@ -69,9 +69,7 @@ class Player extends Droid {
 				if (f.y != 0) force.y = f.y;
 			}
 		}
-		force.x = this.body.mass * force.x * this.speed;
-		force.y = this.body.mass * force.y * this.speed;
-		Matter.Body.applyForce(this.body, this.body.position, force);
+		this.move(force);
 
 		super.update(delta);
 	}

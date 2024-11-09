@@ -2,7 +2,7 @@
 <Section id="1" width="52" height="30">
 	<Layer id="droids">
 		<!-- <i id="420" patrol="[[30,11], [30,5], [33,5], [33,11]]"/> -->
-		<i id="420" patrol="[[20,7]]"/>
+		<i id="420" patrol="[[19,7], [26,7]]"/>
 	</Layer>
 	<Layer id="action">
 		<i x="16" y="6" w="2" h="2" action="door-h"/>

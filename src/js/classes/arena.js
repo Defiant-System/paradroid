@@ -113,7 +113,7 @@ class Arena {
 
 	update(delta) {
 		this.map.update(delta);
-		this.player.update(delta);
+		// this.player.update(delta);
 	}
 
 	render() {
@@ -122,7 +122,7 @@ class Arena {
 
 		this.viewport.center();
 		this.map.render(this.ctx);
-		this.player.render(this.ctx);
+		// this.player.render(this.ctx);
 
 		if (this.debug.mode > 0) {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);
