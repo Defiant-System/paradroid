@@ -11,6 +11,11 @@ class Player extends Droid {
 		};
 		this.speed = .0015;
 		this.isPlayer = true;
+		// a little bit blur
+		this.blur = {
+			color: "#00000055",
+			size: 3,
+		};
 
 		this.input = {
 			up:    { pressed: false, force: { x: 0, y: -1 } },

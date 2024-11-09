@@ -66,17 +66,21 @@
 					percentage = 1 - event.state.map.clear,
 					power = event.state.player ? event.state.player.power : undefined;
 
-				// console.log( filter );
-
 				// adjust hud with new color
 				APP.hud.dispatch({ type: "set-level-data", background, percentage, power });
-
+				// canvas background color
 				Self.els.cvs.parent().css({ background });
-				// change color spectrum of level
-				Self.arena.setFilter(filter);
-				// Self.els.cvs.css({ filter });
-				// change arena
-				Self.arena.setState(event.state);
+
+				let func = (state, filter) => {
+						// temporary; this prevents setting state if not completly ready
+						if (!Self.arena.map) return setTimeout(() => func(state, filter), 100);
+						// change color spectrum of level
+						Self.arena.setFilter(filter);
+						// change arena
+						Self.arena.setState(state);
+					};
+				// try setting new state
+				func(event.state, filter);
 				break;
 			case "set-debug-mode":
 				Self.arena.setDebug(+event.arg);

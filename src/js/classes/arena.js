@@ -50,6 +50,7 @@ class Arena {
 					if (item.id === "big-map") {
 						// save original (to be used later with level filter)
 						this.assets.original = img;
+						this.copy = Utils.createCanvas(img.width, img.height);
 					}
 					// save reference to asset
 					this.assets[item.id] = { item, img };
@@ -74,11 +75,10 @@ class Arena {
 	}
 
 	setFilter(filter) {
-		let org = this.assets.original,
-			{ cvs, ctx } = Utils.createCanvas(org.width, org.height);
-		ctx.filter = filter;
-		ctx.drawImage(org, 0, 0);
-		this.assets["big-map"].img = cvs[0];
+		this.copy.cvs.attr({ width: this.assets.original.width });
+		this.copy.ctx.filter = filter;
+		this.copy.ctx.drawImage(this.assets.original, 0, 0);
+		this.assets["big-map"].img = this.copy.cvs[0];
 	}
 
 	setDebug(mode) {
@@ -86,9 +86,6 @@ class Arena {
 	}
 
 	setState(state) {
-		// temporary; this prevents setting state if not completly ready
-		if (!this.map) return setTimeout(() => this.setState(state), 100);
-
 		// change debug state
 		if (state.debug) this.debug.mode = state.debug.mode;
 

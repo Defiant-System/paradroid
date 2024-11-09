@@ -80,7 +80,7 @@ class Droid {
 		ctx.translate(pX, pY);
 
 		if (this.blur) {
-			// droid "001"
+			// droid "player"
 			ctx.shadowColor = this.blur.color;
 			ctx.shadowBlur = this.blur.size;
 		} else {
