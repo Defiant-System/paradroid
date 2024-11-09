@@ -68,6 +68,9 @@ class Map {
 				case "exit":
 					this.entries.push(new Exit({ arena: this.arena, x, y }));
 					break;
+				case "console":
+					this.entries.push(new Console({ arena: this.arena, x, y }));
+					break;
 				case "recharge":
 					this.entries.push(new Recharge({ arena: this.arena, x, y }));
 					break;

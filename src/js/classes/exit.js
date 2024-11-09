@@ -13,8 +13,8 @@ class Exit {
 
 		// "aura" borealis
 		this.aura = {
-			color: [255, 255, 255],
-			strength: .5,
+			color: [255, 150, 255],
+			strength: 1,
 			radius: 100,
 		};
 	}

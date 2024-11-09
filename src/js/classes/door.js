@@ -98,14 +98,12 @@ class Door {
 		// frames for vertical door
 		if (isVert) args[2] = 320;
 
-		ctx.save();
-		ctx.translate(x, y);
-
 		// normal draw if debug mode is < 3
 		if (arena.debug.mode < 3) {
+			ctx.save();
+			ctx.translate(x, y);
 			ctx.drawImage(...args);
+			ctx.restore();
 		}
-
-		ctx.restore();
 	}
 }

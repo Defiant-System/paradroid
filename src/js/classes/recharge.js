@@ -3,24 +3,26 @@ class Recharge {
 	constructor(cfg) {
 		let { arena, x, y } = cfg,
 			tile = arena.config.tile,
-			pX = x * tile,
-			pY = y * tile;
+			pX = (x + .5) * tile,
+			pY = (y + .5) * tile;
 		
 		this.arena = arena;
 		this.x = x;
 		this.y = y;
-
 		this.pos = new Point(pX, pY);
 		this.angle = 0;
 		this.freq = 0;
+
+		// "aura" borealis
+		this.aura = {
+			color: [50, 255, 50],
+			strength: .35,
+			radius: 100,
+		};
 	}
 
 	update(delta) {
-		let pos = {
-				_x: this.arena.player.body.position.x,
-				_y: this.arena.player.body.position.y,
-			},
-			dist = this.pos.distance(pos);
+		let dist = this.pos.distance(this.arena.player.body.position);
 		if (dist < 32) {
 			this.active = true;
 			this.arena.player.setState({ id: "recharge" });
@@ -37,8 +39,8 @@ class Recharge {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			tile = arena.config.tile,
-			x = ((this.x - .5) * tile) + viewport.x,
-			y = ((this.y - .5) * tile) + viewport.y,
+			x = this.pos.x - tile + viewport.x,
+			y = this.pos.y - tile + viewport.y,
 			rad = (this.angle * Math.PI) / 180,
 			args = [arena.assets["big-map"].img, 0, 257, 14, 14, -7, -7, 14, 14],
 			r;
@@ -121,15 +123,31 @@ class Recharge {
 			r = Math.sin((this.freq + 0.0) * 5) + 4;
 			ctx.arc(8, 24, r, 0, Math.TAU);
 			ctx.fill();
+
+			if (this.active) {
+				let hT = tile >> 1,
+					r = this.aura.radius,
+					radialGradient = ctx.createRadialGradient(hT, hT, 0, hT, hT, r);
+				radialGradient.addColorStop(0, `rgba(${this.aura.color.join(",")}, ${this.aura.strength})`);
+				radialGradient.addColorStop(1, `rgba(${this.aura.color.join(",")}, 0)`);
+
+				ctx.save();
+				ctx.translate(hT, hT);
+				ctx.fillStyle = radialGradient;
+				ctx.arc(hT, hT, r, 0, Math.TAU);
+				ctx.fill();
+				ctx.restore();
+			}
 		}
 
 		// if debug mode on, draw extras
 		if (arena.debug.mode > 0) {
 			ctx.save();
-			ctx.fillStyle = "#00000066";
+			ctx.lineWidth = 3;
+			ctx.strokeStyle = "#00000066";
 			ctx.beginPath();
 			ctx.roundRect(5, 5, 54, 54, 8);
-			ctx.fill();
+			ctx.stroke();
 			ctx.restore();
 		}
 
