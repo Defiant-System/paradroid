@@ -38,8 +38,6 @@ class Player extends Droid {
 
 	spawn(cfg) {
 		super.spawn(cfg);
-
-		
 	}
 
 	setState(state) {

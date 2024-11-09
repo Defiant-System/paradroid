@@ -30,8 +30,7 @@
 								x: +xExit.getAttribute("x"),
 								y: +xExit.getAttribute("y"),
 							},
-							state = { "001": exit, "map": { id: Self.elevator.section } };
-						console.log( state );
+							state = { player: exit, map: { id: Self.elevator.section } };
 						APP.mobile.dispatch({ type: "go-to-section", state });
 						break;
 					case "up":

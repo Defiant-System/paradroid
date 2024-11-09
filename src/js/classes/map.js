@@ -21,6 +21,9 @@ class Map {
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
 
+		// empty physical world
+		Matter.Composite.clear(this.engine.world);
+
 		// reset map arrays
 		this.entries = [];
 		this.droids = [this.arena.player];

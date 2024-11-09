@@ -47,6 +47,10 @@ class Arena {
 					img = new Image();
 				img.src = item.src;
 				img.onload = () => {
+					if (item.id === "big-map") {
+						// save original (to be used later with level filter)
+						this.assets.original = img;
+					}
 					// save reference to asset
 					this.assets[item.id] = { item, img };
 					// are we done yet?
@@ -67,6 +71,14 @@ class Arena {
 		this.map = new Map({ arena: this });
 		// create "001"
 		this.player = new Player({ arena: this, id: "001" });
+	}
+
+	setFilter(filter) {
+		let org = this.assets.original,
+			{ cvs, ctx } = Utils.createCanvas(org.width, org.height);
+		ctx.filter = filter;
+		ctx.drawImage(org, 0, 0);
+		this.assets["big-map"].img = cvs[0];
 	}
 
 	setDebug(mode) {
