@@ -24,8 +24,9 @@ class Console {
 	update(delta) {
 		let dist = this.pos.distance(this.arena.player.body.position);
 		if (dist < 32) {
+			let info = { x: this.x, y: this.y, w: this.w, h: this.h };
+			this.arena.player.setState({ id: "console", ...info });
 			this.active = true;
-			this.arena.player.setState({ id: "console" });
 		} else if (this.active) {
 			delete this.active;
 			this.arena.player.setState({ id: "clear" });

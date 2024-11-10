@@ -14,6 +14,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.mobile,
+			Player = Self.arena.player,
 			value,
 			el;
 		// console.log(event);
@@ -28,13 +29,32 @@
 						APP.dispatch({ type: "show-view", arg: "lift" });
 						break;
 					case "w":
-					case "up": Self.arena.player.input.up.pressed = true; break;
+					case "up": Player.input.up.pressed = true; break;
 					case "s":
-					case "down": Self.arena.player.input.down.pressed = true; break;
+					case "down": Player.input.down.pressed = true; break;
 					case "a":
-					case "left": Self.arena.player.input.left.pressed = true; break;
+					case "left": Player.input.left.pressed = true; break;
 					case "d":
-					case "right": Self.arena.player.input.right.pressed = true; break;
+					case "right": Player.input.right.pressed = true; break;
+
+					case "shift":
+						console.log("challenge droids");
+						break;
+					case "space":
+						// Player.fire();
+						console.log("fire");
+						break;
+					case "return":
+						switch (Player.nextTo.id) {
+							case "exit":
+								console.log( Player.nextTo );
+								APP.dispatch({ type: "show-view", arg: "lift" });
+								break;
+							case "console":
+								APP.dispatch({ type: "show-view", arg: "console" });
+								break;
+						}
+						break;
 					case "p":
 						if (Self.arena.fpsControl._stopped) Self.arena.fpsControl.start();
 						else Self.arena.fpsControl.stop();
@@ -44,13 +64,13 @@
 			case "window.keyup":
 				switch (event.char) {
 					case "w":
-					case "up": Self.arena.player.input.up.pressed = false; break;
+					case "up": Player.input.up.pressed = false; break;
 					case "s":
-					case "down": Self.arena.player.input.down.pressed = false; break;
+					case "down": Player.input.down.pressed = false; break;
 					case "a":
-					case "left": Self.arena.player.input.left.pressed = false; break;
+					case "left": Player.input.left.pressed = false; break;
 					case "d":
-					case "right": Self.arena.player.input.right.pressed = false; break;
+					case "right": Player.input.right.pressed = false; break;
 				}
 				break;
 			// custom events
@@ -91,7 +111,7 @@
 				Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.75)", });
 				break;
 			case "set-player-droid":
-				Self.arena.player.setId(event.arg);
+				Player.setId(event.arg);
 				break;
 			case "set-debug-mode":
 				Self.arena.setDebug(+event.arg);
