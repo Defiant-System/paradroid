@@ -19,10 +19,10 @@ content {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	min-height: 0;
 	border-radius: inherit;
 	background: radial-gradient(ellipse at top center, #c1c1c1, transparent),
 				linear-gradient(180deg, #d1d1d1, #969696);
-
 
 	&[data-show="start"] {
 		> div.start-view {
@@ -77,6 +77,27 @@ content {
 			visibility: visible;
 		}
 	}
+
+
+	&.fade-out[data-show] {
+		min-height: 1px;
+		transition: min-height 300ms ease-in-out;
+
+		> div {
+			opacity: 0;
+			transition: opacity ease-in-out;
+			transition-duration: inherit;
+		}
+
+		&.fade-in {
+			min-height: 0;
+			
+			> div {
+				opacity: 1;
+			}
+		}
+	}
+
 
 	.droid {
 		position: absolute;

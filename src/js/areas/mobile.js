@@ -57,7 +57,13 @@
 								});
 								break;
 							case "console":
-								APP.dispatch({ type: "show-view", arg: "console" });
+								APP.dispatch({
+									type: "switch-to-view",
+									arg: "console",
+									done: () => {
+										console.log("callback");
+									}
+								});
 								break;
 						}
 						break;

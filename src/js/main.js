@@ -61,6 +61,16 @@ const paradroid = {
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
+			case "switch-to-view":
+				Self.els.content.cssSequence("fade-out", "transitionend", el => {
+					el.data({ show: event.arg })
+						.cssSequence("fade-in", "transitionend", el => {
+							el.removeClass("fade-out fade-in");
+							// callback
+							if (event.done) event.done();
+						});
+				});
+				break;
 			case "show-view":
 				Self.els.content.data({ show: event.arg });
 				Self.hud.dispatch({ type: "set-view-title" });

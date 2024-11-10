@@ -82,6 +82,10 @@
 				el.addClass("active");
 				// make lift section active
 				el.data({ section: event.section });
+				// save level information
+				Self.elevator.level = Self.els.el.find(`.section[data-id="${event.section}"]`).data("level");
+				Self.elevator.section = event.section;
+				Self.elevator.lift = event.lift;
 				// show lift view
 				APP.dispatch({ type: "show-view", arg: "lift" });
 				break;

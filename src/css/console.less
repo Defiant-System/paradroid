@@ -1,7 +1,42 @@
 
+content {
+	&.fade-out[data-show] {
+		// before animation
+		.console-view {
+			.menu {
+				.option {
+					opacity: 0;
+					transform: translateY(15px);
+					transition: all 200ms ease-in-out;
+				}
+			}
+		}
+
+		&.fade-in {
+			transition-duration: 500ms;
+
+			// start transition
+			.console-view {
+				.menu {
+					.option {
+						opacity: 1;
+						transform: translateY(0px);
+
+						&:nth-child(1) { transition-delay: 0ms; }
+						&:nth-child(2) { transition-delay: 100ms; }
+						&:nth-child(3) { transition-delay: 200ms; }
+						&:nth-child(4) { transition-delay: 300ms; }
+					}
+				}
+			}
+		}
+	}
+}
+
+
 .console-view {
 	display: flex;
-	padding: 21px;
+	padding: 19px 21px 21px;
 	font-family: "ParaDrew";
 	font-size: 22px;
 	color: #626262;
@@ -19,7 +54,7 @@
 			display: block;
 			width: 90px;
 			height: 90px;
-			margin: 0 0 13px;
+			margin: 0 0 21px;
 			padding: 19px 0 0;
 			border-radius: 6px;
 
