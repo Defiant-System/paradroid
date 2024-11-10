@@ -47,7 +47,7 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					map: { id: 1, clear: .15 }, player: { id: "001", x: 35, y: 9, power: .25 }, debug: { mode: 0 },
+					map: { id: 1, clear: .15 }, player: { id: "001", x: 35, y: 15, power: .25 }, debug: { mode: 0 },
 					// map: { id: 11, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
@@ -56,6 +56,7 @@ let Test = {
 			// pause test
 			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
+			setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 600);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
 		}, 100);
 

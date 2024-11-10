@@ -87,7 +87,7 @@
 				Self.elevator.section = event.section;
 				Self.elevator.lift = event.lift;
 				// show lift view
-				APP.dispatch({ type: "show-view", arg: "lift" });
+				// APP.dispatch({ type: "show-view", arg: "lift" });
 				break;
 			case "select-lift":
 				el = $(event.target);

@@ -1,5 +1,58 @@
 
 content {
+	&.fade-out[data-show] {
+		// before animation
+		.lift-view {
+			.ship {
+				.lift,
+				.deck {
+					opacity: 0;
+					transform: translateY(15px);
+					transition: all 120ms ease-in-out;
+				}
+			}
+		}
+
+		&[data-show="lift"].fade-in {
+			transition-duration: 900ms;
+
+			// start transition
+			.lift-view {
+				.ship {
+					.deck {
+						opacity: 1;
+						transform: translateY(0px);
+
+						&[data-id="1"] { transition-delay: 0ms; }
+						&[data-id="2"] { transition-delay: 50ms; }
+						&[data-id="3"] { transition-delay: 100ms; }
+						&[data-id="4"] { transition-delay: 150ms; }
+						&[data-id="5"] { transition-delay: 200ms; }
+						&[data-id="6"] { transition-delay: 250ms; }
+						&[data-id="7"] { transition-delay: 300ms; }
+						&[data-id="8"] { transition-delay: 350ms; }
+						&[data-id="9"] { transition-delay: 400ms; }
+						&[data-id="10"] { transition-delay: 450ms; }
+					}
+
+					.lift {
+						opacity: 1;
+						transform: translateY(0px);
+
+						&[data-id="1"] { transition-delay: 500ms; }
+						&[data-id="2"] { transition-delay: 550ms; }
+						&[data-id="3"] { transition-delay: 600ms; }
+						&[data-id="4"] { transition-delay: 650ms; }
+						&[data-id="5"] { transition-delay: 700ms; }
+						&[data-id="6"] { transition-delay: 750ms; }
+					}
+				}
+			}
+		}
+	}
+}
+
+content {
 	&[data-show="lift"] {
 		> div.lift-view {
 			.lift {
