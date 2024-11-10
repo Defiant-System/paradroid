@@ -1,5 +1,5 @@
 
-// paradroid.more
+// paradroid.terminated
 
 {
 	init() {
@@ -10,7 +10,7 @@
 	},
 	dispatch(event) {
 		let APP = paradroid,
-			Self = APP.more,
+			Self = APP.terminated,
 			value,
 			el;
 		// console.log(event);

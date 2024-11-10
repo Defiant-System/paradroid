@@ -10,7 +10,7 @@ background: transparent;
 @import "console";
 @import "mobile";
 @import "transfer";
-@import "more";
+@import "terminated";
 
 
 content {
@@ -63,9 +63,20 @@ content {
 		}
 	}
 
-	&[data-show="more"] {
-		> div.hud-view,
-		> div.more-view {
+	&[data-show="terminated"] {
+		> div.hud-view {
+			opacity: 1;
+			visibility: visible;
+
+			.left,
+			.right {
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+			}
+		}
+
+		> div.terminated-view {
 			opacity: 1;
 			visibility: visible;
 		}

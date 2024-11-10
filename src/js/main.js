@@ -99,7 +99,7 @@ const paradroid = {
 	lift: @import "./areas/lift.js",
 	mobile: @import "./areas/mobile.js",
 	console: @import "./areas/console.js",
-	more: @import "./areas/more.js",
+	terminated: @import "./areas/terminated.js",
 	transfer: @import "./areas/transfer.js",
 };
 
