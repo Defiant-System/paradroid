@@ -1,12 +1,13 @@
 
 class Console {
 	constructor(cfg) {
-		let { arena, x, y, w, h } = cfg,
+		let { arena, section, x, y, w, h } = cfg,
 			tile = arena.config.tile,
 			pX = (x + .5) * tile,
 			pY = (y + .5) * tile;
 		
 		this.arena = arena;
+		this.section = section;
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -25,7 +26,7 @@ class Console {
 		let dist = this.pos.distance(this.arena.player.body.position);
 		if (dist < 32) {
 			let info = { x: this.x, y: this.y, w: this.w, h: this.h };
-			this.arena.player.setState({ id: "console", ...info });
+			this.arena.player.setState({ id: "console", section: this.section, ...info });
 			this.active = true;
 		} else if (this.active) {
 			delete this.active;

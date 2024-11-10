@@ -1,4 +1,14 @@
 
+content {
+	&[data-show="lift"] {
+		> div.lift-view {
+			.lift {
+				transition: top 180ms ease-in-out;
+			}
+		}
+	}
+}
+
 .lift-view {
 	.box {
 		position: absolute;
@@ -132,7 +142,6 @@
 
 				.elevator {
 					display: block;
-					transition: top 180ms ease-in-out;
 				}
 			}
 

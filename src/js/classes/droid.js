@@ -1,9 +1,10 @@
 
 class Droid {
 	constructor(cfg) {
-		let { arena, id, x, y, patrol } = cfg;
+		let { arena, section, id, x, y, patrol } = cfg;
 
 		this.arena = arena;
+		this.section = section;
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;

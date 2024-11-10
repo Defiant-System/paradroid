@@ -16,7 +16,8 @@ class Map {
 
 	setState(state) {
 		let tile = this.arena.config.tile,
-			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`);
+			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`),
+			section = { id: xSection.getAttribute("id") };
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
@@ -54,21 +55,21 @@ class Map {
 				h = +xItem.getAttribute("h"),
 				id = xItem.getAttribute("id"),
 				action = xItem.getAttribute("action");
-			// console.log( action );
+			// console.log( section );
 			switch (action) {
 				case "door-h":
 				case "door-v":
 					let type = action.split("-")[1];
-					this.entries.push(new Door({ arena: this.arena, type, x, y }));
+					this.entries.push(new Door({ arena: this.arena, section, type, x, y }));
 					break;
 				case "exit":
-					this.entries.push(new Exit({ arena: this.arena, x, y }));
+					this.entries.push(new Exit({ arena: this.arena, section, x, y }));
 					break;
 				case "console":
-					this.entries.push(new Console({ arena: this.arena, x, y }));
+					this.entries.push(new Console({ arena: this.arena, section, x, y }));
 					break;
 				case "recharge":
-					this.entries.push(new Recharge({ arena: this.arena, x, y }));
+					this.entries.push(new Recharge({ arena: this.arena, section, x, y }));
 					break;
 			}
 		});
@@ -77,7 +78,7 @@ class Map {
 		xSection.selectNodes(`./Layer[@id="droids"]/i`).map(xItem => {
 			let id = xItem.getAttribute("id"),
 				patrol = JSON.parse(xItem.getAttribute("patrol")),
-				droid = new Droid({ arena: this.arena, id, patrol });
+				droid = new Droid({ arena: this.arena, section, id, patrol });
 			this.droids.push(droid);
 			// add droid body to physical world
 			bodies.push(droid.body);

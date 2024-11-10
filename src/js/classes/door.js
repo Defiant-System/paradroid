@@ -1,12 +1,13 @@
 
 class Door {
 	constructor(cfg) {
-		let { arena, type, x, y } = cfg,
+		let { arena, section, type, x, y } = cfg,
 			tile = arena.config.tile,
 			pX = (x + .5) * tile,
 			pY = (y + .5) * tile;
 		
 		this.arena = arena;
+		this.section = section;
 		this.type = type;
 		this.x = x;
 		this.y = y;

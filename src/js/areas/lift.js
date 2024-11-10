@@ -74,6 +74,17 @@
 				}
 				break;
 			// custom events
+			case "enter-lift":
+				Self.els.el.find(".lift.active").removeClass("active");
+				// get lift element
+				el = Self.els.el.find(`.lift[data-id="${event.lift}"]`);
+				// make lift active
+				el.addClass("active");
+				// make lift section active
+				el.data({ section: event.section });
+				// show lift view
+				APP.dispatch({ type: "show-view", arg: "lift" });
+				break;
 			case "select-lift":
 				el = $(event.target);
 				if (!el.hasClass("lift")) return;

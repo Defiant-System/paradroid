@@ -47,10 +47,10 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					// map: { id: 1, clear: .15 }, player: { id: "001", x: 32, y: 9, power: .25 }, debug: { mode: 0 },
-					map: { id: 11, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
+					map: { id: 1, clear: .15 }, player: { id: "001", x: 32, y: 9, power: .25 }, debug: { mode: 0 },
+					// map: { id: 11, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
-					// map: { id: 3, clear: .5 }, player: { x: 18, y: 14, power: .5 }, debug: { mode: 0 },
+					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 			// pause test

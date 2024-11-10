@@ -47,8 +47,14 @@
 					case "return":
 						switch (Player.nextTo.id) {
 							case "exit":
-								console.log( Player.nextTo );
-								APP.dispatch({ type: "show-view", arg: "lift" });
+								let xPath = `//Section[@id="${Player.nextTo.section.id}"]/Layer[@id="action"]/i[@x="${Player.nextTo.x}"][@y="${Player.nextTo.y}"]`,
+									xLift = window.bluePrint.selectSingleNode(xPath);
+								// console.log( xLift.getAttribute("lift") );
+								APP.lift.dispatch({
+									type: "enter-lift",
+									section: Player.nextTo.section.id,
+									lift: xLift.getAttribute("lift")
+								});
 								break;
 							case "console":
 								APP.dispatch({ type: "show-view", arg: "console" });

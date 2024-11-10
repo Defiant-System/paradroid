@@ -1,12 +1,13 @@
 
 class Exit {
 	constructor(cfg) {
-		let { arena, x, y } = cfg,
+		let { arena, section, x, y } = cfg,
 			tile = arena.config.tile,
 			pX = (x + .5) * tile,
 			pY = (y + .5) * tile;
 		
 		this.arena = arena;
+		this.section = section;
 		this.x = x;
 		this.y = y;
 		this.pos = new Point(pX, pY);
@@ -23,7 +24,7 @@ class Exit {
 		let dist = this.pos.distance(this.arena.player.body.position);
 		if (dist < 32) {
 			let info = { x: this.x, y: this.y };
-			this.arena.player.setState({ id: "exit", ...info });
+			this.arena.player.setState({ id: "exit", section: this.section, ...info });
 			this.active = true;
 		} else if (this.active) {
 			delete this.active;
