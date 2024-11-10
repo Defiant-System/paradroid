@@ -48,7 +48,6 @@ content {
 		text-align: center;
 
 		.option {
-			// background: rgba(#000,.1);
 			position: relative;
 			display: block;
 			width: 90px;
@@ -56,22 +55,12 @@ content {
 			margin: 0 0 21px;
 			padding: 19px 0 0;
 			border-radius: 6px;
-
-			&:before {
-				content: "";
-				background: #c7c7c7 radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: inherit;
-				height: inherit;
-				border-radius: inherit;
-				filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
-						drop-shadow(0 2px 0 hsl(174, 0%, 69%))
-						drop-shadow(0 3px 0 hsl(174, 0%, 67%))
-						// drop-shadow(0 4px 0 hsl(174, 0%, 65%))
-						drop-shadow(0 1px 2px rgba(#222, .35));
-			}
+			background: #c7c7c7 radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
+			filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
+					drop-shadow(0 2px 0 hsl(174, 0%, 69%))
+					drop-shadow(0 3px 0 hsl(174, 0%, 67%))
+					// drop-shadow(0 4px 0 hsl(174, 0%, 65%))
+					drop-shadow(0 1px 2px rgba(#222, .35));
 
 			&:after {
 				content: "";
@@ -84,28 +73,29 @@ content {
 				background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
 			}
 
-			&.player {
+			&.active {
+				top: 3px;
+				filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
+						drop-shadow(0 1px 1px rgba(#222, .2));
 
-			}
-			
-			&.droids {
-
-			}
-			
-			&.level {
-				.icon-level {
-					top: -9px;
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: -1px;
+					z-index: 2;
+					border-radius: inherit;
+					box-shadow: 0 0 0 5px rgba(#000,.05);
 				}
 			}
-			
-			&.ship {
-				// &:before {
-				// 	background: #66c radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
-				// }
 
-				.icon-ship {
-					top: -9px;
-				}
+			i[class^="icon-"],
+			i[class*="icon-"] {
+				top: -9px;
+
+				&.icon-droid-info { filter: drop-shadow(0 1px 0 rgba(#fff,.8)); }
 			}
 
 			span, i {
@@ -128,22 +118,6 @@ content {
 
 				b {
 					filter: invert(1) brightness(.75);
-				}
-
-				&[data-id="?"] {
-					b {
-						left: 18px;
-						background-image: none;
-
-						&:after {
-							content: "?";
-							text-shadow: none;
-							top: -4px;
-							left: 0;
-							opacity: .65;
-							font-size: 24px;
-						}
-					}
 				}
 			}
 		}
