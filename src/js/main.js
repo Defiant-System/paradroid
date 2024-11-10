@@ -63,6 +63,7 @@ const paradroid = {
 				break;
 			case "switch-to-view":
 				Self.els.content.cssSequence("fade-out", "transitionend", el => {
+					// if (event.arg === "mobile") return;
 					el.data({ show: event.arg })
 						.cssSequence("fade-in", "transitionend", el => {
 							el.removeClass("fade-out fade-in");

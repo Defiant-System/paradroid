@@ -16,8 +16,8 @@ class Console {
 
 		// "aura" borealis
 		this.aura = {
-			color: [50, 255, 255],
-			strength: .5,
+			color: [140, 140, 255],
+			strength: .75,
 			radius: 100,
 		};
 	}

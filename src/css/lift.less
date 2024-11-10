@@ -59,9 +59,26 @@ content {
 			}
 		}
 	}
-}
 
-content {
+	&.fade-out[data-show="lift"]:not(.fade-in) {
+		transition-duration: 300ms;
+
+		// start transition
+		.lift-view {
+			transition: all 300ms ease-in-out;
+
+			.ship {
+				.lift,
+				.deck {
+					opacity: 1;
+					scale: 1;
+					transform: translateY(0px);
+					transition-duration: 300ms;
+				}
+			}
+		}
+	}
+
 	&[data-show="lift"] {
 		> div.lift-view {
 			.lift {

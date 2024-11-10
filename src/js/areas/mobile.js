@@ -6,6 +6,7 @@
 		// fast references
 		this.els = {
 			content: window.find("content"),
+			droidFx: window.find(".mobile-view .droid-fx"),
 			cvs: window.find(".mobile-view canvas.game"),
 		};
 		// create arena
@@ -107,13 +108,15 @@
 				// level colors
 				let background = sectionEl.cssProp("--fg"),
 					filter = sectionEl.cssProp("--filter") || "",
-					percentage = 1 - event.state.map.clear,
+					percentage = 1 - (event.state.map.clear || 0),
 					power = event.state.player ? event.state.player.power : undefined;
 
 				// adjust hud with new color
 				APP.hud.dispatch({ type: "set-level-data", background, percentage, power });
 				// canvas background color
 				Self.els.cvs.parent().css({ background });
+				// droid-FX
+				Self.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
 
 				let func = (state, cfg) => {
 						// this prevents setting state if not completly ready

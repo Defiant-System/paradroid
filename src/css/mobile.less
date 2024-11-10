@@ -1,4 +1,24 @@
 
+content {
+	&.fade-out[data-show] {
+		// before animation
+		.mobile-view {
+			canvas.game {
+				
+			}
+		}
+
+		&[data-show="lift"].fade-in {
+			.mobile-view {
+				canvas.game {
+					
+				}
+			}
+		}
+	}
+}
+
+
 .mobile-view {
 	// background: #e07777;
 	border-radius: 5px;
@@ -41,7 +61,24 @@
 		height: 100%;
 	}
 
+	.droid-fx {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 44px;
+		height: 36px;
+		margin: -19px 0 0 -22px;
+		opacity: 0;
+		border-radius: 50%;
+		border: 5px dotted #fff;
+
+		&.fast-focus {
+			animation: fast-focus 800ms;
+		}
+	}
+
 	.debug {
+		display: none;
 		background: rgba(#000,.4);
 		position: absolute;
 		bottom: -37px;
@@ -70,4 +107,10 @@
 			}
 		}
 	}
+}
+
+@keyframes fast-focus {
+	0%   { opacity: 0; scale: 3.5; }
+	85%  { opacity: 1; scale: 1; }
+	100% { opacity: 0; scale: 2.5; }
 }

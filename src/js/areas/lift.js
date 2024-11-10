@@ -7,6 +7,7 @@
 		this.els = {
 			content: window.find("content"),
 			el: window.find(".lift-view"),
+			el: window.find(".lift-view"),
 		};
 		// elevator data
 		this.elevator = {};
@@ -33,8 +34,15 @@
 							state = { player: exit, map: { id: +Self.elevator.section } };
 						// stop/pause loop
 						APP.mobile.arena.fpsControl.start();
-						// go to view
-						APP.mobile.dispatch({ type: "go-to-section", state });
+						// smooth transition to view
+						APP.dispatch({
+							type: "switch-to-view",
+							arg: "mobile",
+							done: () => {
+								// go to view
+								APP.mobile.dispatch({ type: "go-to-section", state });
+							}
+						});
 						break;
 					case "up":
 						el = Self.els.el.find(".lift.active");

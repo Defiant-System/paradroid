@@ -27,7 +27,7 @@
 				break;
 			case "set-level-data":
 				el = Self.els.el.find(".left .box");
-				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10);
+				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10) / 100;
 				el.css({
 					"--val": `${value * 100}%`,
 					"--c1": event.background,
