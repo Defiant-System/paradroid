@@ -85,9 +85,10 @@ content {
 					left: 0;
 					right: 0;
 					bottom: -1px;
-					z-index: 2;
-					border-radius: inherit;
-					box-shadow: 0 0 0 5px rgba(#000,.05);
+					border-radius: 9px;
+					// box-shadow: 0 0 0 5px rgba(#000,.075);
+					background: rgba(#000,.075);
+					animation: opt-pulse 800ms alternate infinite;
 				}
 			}
 
@@ -126,4 +127,9 @@ content {
 	.data {
 		flex: 1;
 	}
+}
+
+@keyframes opt-pulse {
+	0% { opacity: 1; transform: scale(1); }
+	100% { opacity: 0.5; transform: scale(1.15); }
 }
