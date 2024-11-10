@@ -31,10 +31,14 @@
 					"--val": `${(value * 100) | 1}%`,
 					"--c1": event.background,
 				});
-
-				value = event.power !== undefined ? event.power : 1;
+				// update power if value is provided
+				if (event.power !== undefined) {
+					Self.dispatch({ ...event, type: "set-power" });
+				}
+				break;
+			case "set-power":
 				Self.els.el.find(".right .box").css({
-					"--val": `${(value * 100) | 1}%`,
+					"--val": `${event.power * 100}%`,
 				});
 				break;
 		}

@@ -41,20 +41,24 @@ class Player extends Droid {
 		});
 	}
 
-	setState(state) {
-		// console.log( state.id );
-		switch (state.id) {
-			case "exit":
-				// this.light.strength = .6;
-				break;
+	setState(item) {
+		let APP = paradroid;
+		// console.log( item );
+		switch (item.id) {
 			case "recharge":
-				// this.light.strength = .6;
+				if (this.power !== 1) {
+					// update player droid power / energy
+					this.power = 1;
+					// update UI
+					APP.hud.dispatch({ type: "set-power", power: this.power });
+				}
 				break;
+			case "exit":
 			case "console":
-				// this.light.strength = .6;
+				this.nextTo = item;
 				break;
 			case "clear":
-				// this.light.strength = .325;
+				delete this.nextTo;
 				break;
 		}
 	}
