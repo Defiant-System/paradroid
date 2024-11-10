@@ -26,9 +26,10 @@
 				if (value) Self.els.el.find(".view-title").html(value);
 				break;
 			case "set-level-data":
-				value = event.percentage !== undefined ? event.percentage : 1;
-				Self.els.el.find(".left .box").css({
-					"--val": `${(value * 100) | 1}%`,
+				el = Self.els.el.find(".left .box");
+				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10);
+				el.css({
+					"--val": `${value * 100}%`,
 					"--c1": event.background,
 				});
 				// update power if value is provided
