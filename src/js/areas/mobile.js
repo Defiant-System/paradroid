@@ -45,6 +45,9 @@
 						console.log("fire");
 						break;
 					case "return":
+						// don't do anything if not next to "something"
+						if (!Player.nextTo) return;
+
 						switch (Player.nextTo.id) {
 							case "exit":
 								APP.dispatch({

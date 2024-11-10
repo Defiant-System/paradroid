@@ -6,12 +6,14 @@ content {
 			.ship {
 				.deck {
 					opacity: 0;
+					scale: 0.9;
 					transform: translateY(15px);
 					transition: all 120ms ease-in-out;
 				}
 				
 				.lift {
 					opacity: 0;
+					scale: 1.15;
 					transition: all 120ms ease-in-out;
 				}
 			}
@@ -25,6 +27,7 @@ content {
 				.ship {
 					.deck {
 						opacity: 1;
+						scale: 1;
 						transform: translateY(0px);
 
 						&[data-id="1"] { transition-delay: 0ms; }
@@ -41,6 +44,7 @@ content {
 
 					.lift {
 						opacity: 1;
+						scale: 1;
 
 						&[data-id="1"] { transition-delay: 500ms; }
 						&[data-id="2"] { transition-delay: 550ms; }
@@ -48,6 +52,8 @@ content {
 						&[data-id="4"] { transition-delay: 650ms; }
 						&[data-id="5"] { transition-delay: 700ms; }
 						&[data-id="6"] { transition-delay: 750ms; }
+						&[data-id="7"] { transition-delay: 800ms; }
+						&[data-id="8"] { transition-delay: 850ms; }
 					}
 				}
 			}
