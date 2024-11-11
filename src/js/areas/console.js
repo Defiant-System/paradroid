@@ -23,6 +23,7 @@
 					index = active.index();
 				switch (event.char) {
 					case "return":
+						active.trigger("click");
 						break;
 					case "up":
 						active.removeClass("active");
@@ -41,7 +42,22 @@
 				Self.els.el.find(".option.active").removeClass("active");
 				// make lift active
 				el = $(event.target).addClass("active");
-				console.log( el.data("view") );
+				
+				switch (el.data("view")) {
+					case "player":
+						APP.dispatch({
+							type: "switch-to-view",
+							arg: "mobile",
+							done: () => {
+								// droid-FX
+								APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
+							}
+						});
+						break;
+					case "droids": break;
+					case "level": break;
+					case "ship": break;
+				}
 				break;
 		}
 	}

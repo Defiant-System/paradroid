@@ -71,7 +71,7 @@
 									type: "switch-to-view",
 									arg: "console",
 									done: () => {
-										console.log("callback");
+										// console.log("callback");
 									}
 								});
 								break;
