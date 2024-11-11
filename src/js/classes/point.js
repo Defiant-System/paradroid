@@ -24,6 +24,10 @@ class Point {
 		return this;
 	}
 
+	limit(scalar) {
+		return this.normalize().multiply(Math.min(this.magnitude(), scalar));
+	}
+
 	abs() {
 		this.x = Math.abs(this.x);
 		this.y = Math.abs(this.y);
@@ -35,19 +39,19 @@ class Point {
 	}
 
 	magnitude() {
-		return Math.sqrt(this.x * this.x + this.y * this.y);
+		var x = this.x,
+			y = this.y;
+		return Math.sqrt(x * x + y * y);
 	}
 
 	setMagnitude(n) {
 		return this.normalize().multiply(n);
 	}
 
-	normalize(thickness) { 
-		var length = Math.sqrt(this.x * this.x + this.y * this.y),
-			myInversed = 1 / length;
-		this.x *= myInversed,
-		this.y *= myInversed;
-		return this;
+	normalize() { 
+		var m = this.magnitude();
+		if (m > 0) this.divide(m);
+        return this;
 	}
 
 	add(point) {

@@ -11,6 +11,12 @@ class Droid {
 		// set droid id
 		this.setId(id);
 
+		this.position = new Point(0, 0);
+		this.velocity = new Point(0, 0);
+		this.acceleration = new Point(0, 0);
+		this.maxSpeed = 5;
+		this.maxForce = .002;
+
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
 			vertexSets = Matter.Svg.pathToVertices(path, 12);
@@ -27,8 +33,8 @@ class Droid {
 		// used to animate droid "spin"
 		this.frame = {
 			index: 0,
-			last: 80,
-			speed: 80,
+			last: 120,
+			speed: 120,
 		};
 
 		if (patrol) {
@@ -41,6 +47,32 @@ class Droid {
 			// starting position
 			this.spawn({ id, x: target[0], y: target[1] });
 		}
+	}
+
+	seek(target) {
+		let desired = target.subtract(this.position);
+		desired = desired.setMagnitude(this.maxSpeed);
+		let steer = target.subtract(this.velocity);
+		steer = steer.limit(this.maxForce);
+
+		 // console.log(steer);
+		this.move(steer);
+	}
+
+	pursue(target) {
+
+	}
+
+	evade(target) {
+
+	}
+
+	arrive(target) {
+
+	}
+
+	collide() {
+
 	}
 
 	setId(id) {
@@ -74,7 +106,6 @@ class Droid {
 		// tile coords
 		this.x = x;
 		this.y = y;
-		if (id == "420") console.log( id, x, y );
 		// optional values
 		if (id) this.setId(id);
 		if (power) this.power = power;
@@ -85,6 +116,9 @@ class Droid {
 		};
 		// console.log( this.id, this.body );
 		Matter.Body.setPosition(this.body, pos);
+		// copy physical position to "this" internal position
+		this.position.x = this.body.position.x;
+		this.position.y = this.body.position.y;
 	}
 
 	move(force) {
@@ -92,6 +126,9 @@ class Droid {
 		force.x = this.body.mass * force.x * this.speed;
 		force.y = this.body.mass * force.y * this.speed;
 		Matter.Body.applyForce(this.body, this.body.position, force);
+		// copy physical position to "this" internal position
+		this.position.x = this.body.position.x;
+		this.position.y = this.body.position.y;
 	}
 
 	update(delta) {
@@ -103,18 +140,16 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			if (this.x === this.home.target[0] && this.y === this.home.target[1]) {
-				// droid reached target - change target
-				this.home.index++;
-				this.home.target = this.home.patrol[this.home.index % this.home.patrol.length];
+			// seek player droid
+			this.seek(this.arena.player.position);
 
-				this.home.force.x = 0;
-				this.home.force.y = 0;
-				if (this.home.target[0] !== this.x) this.home.force.x = this.home.target[0] < this.x ? -1 : 1;
-				if (this.home.target[1] !== this.y) this.home.force.y = this.home.target[1] < this.y ? -1 : 1;
-			} else {
-				this.move(this.home.force.clone());
-			}
+			this.velocity = this.velocity.add(this.acceleration);
+			this.velocity = this.velocity.limit(this.maxSpeed);
+			this.position = this.position.add(this.velocity);
+			this.acceleration = this.acceleration.multiply(0);
+
+			// console.log( this.arena.player.position, this.position );
+			// Matter.Body.setPosition(this.body, this.position);
 		}
 
 		// update tile position
