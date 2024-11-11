@@ -8,6 +8,7 @@ class Droid {
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
+		this.isVisible = false;
 		// set droid id
 		this.setId(id);
 
@@ -139,6 +140,11 @@ class Droid {
 		this.position.y = this.body.position.y;
 	}
 
+	checkVisible() {
+		let player = this.arena.player,
+			walls = [];
+	}
+
 	update(delta) {
 		this.frame.last -= delta;
 		if (this.frame.last < 0) {
@@ -148,7 +154,8 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			
+			this.isVisible = this.checkVisible();
+
 			if (this.x === this.home.target[0] && this.y === this.home.target[1]) {
 				// droid reached target - change target
 				this.home.index++;

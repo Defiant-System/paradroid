@@ -65,6 +65,7 @@ class Player extends Droid {
 
 	update(delta) {
 		let force = { x: 0, y: 0 };
+		
 		// check input
 		for (let key in this.input) {
 			if (this.input[key].pressed) {
@@ -74,6 +75,7 @@ class Player extends Droid {
 			}
 		}
 		this.move(force);
+		this._moved = !(force.x === 0 && force.y === 0);
 
 		super.update(delta);
 	}

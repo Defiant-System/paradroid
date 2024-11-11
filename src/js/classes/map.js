@@ -119,9 +119,6 @@ class Map {
 
 		// normal draw if debug mode is < 2
 		if (this.arena.debug.mode < 2) {
-			// ctx.save();
-			// ctx.translate(vX, vY);
-
 			for (let y=yMin; y<yMax; y++) {
 				for (let x=xMin; x<xMax; x++) {
 					let col = this.background[y][x];
@@ -140,8 +137,19 @@ class Map {
 					);
 				}
 			}
+		}
 
-			// ctx.restore();
+		if (this.arena.player._moved) {
+			let blocks = [];
+			Matter.Composite.allBodies(this.arena.map.engine.world)
+					.map(body => {
+						let bX = Math.round(body.position.x / tile),
+							bY = Math.round(body.position.y / tile);
+						if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
+							blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
+						}
+					});
+			Raycaster.run(this.arena.player.position, blocks, ctx);
 		}
 		
 		// draw entries - exclude droids
