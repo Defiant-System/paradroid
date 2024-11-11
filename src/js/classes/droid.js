@@ -154,12 +154,12 @@ class Droid {
 			this.acceleration = this.acceleration.multiply(0);
 
 			// seek player droid
-			let force = this.evade(this.arena.player);
+			// let force = this.evade(this.arena.player);
 			// let force = this.flee(this.arena.player);
-			
+
 			// let force = this.pursue(this.arena.player);
 			// let force = this.seek(this.arena.player.position);
-			this.move(force);
+			// this.move(force);
 
 			// console.log( this.arena.player.position, this.position );
 			// Matter.Body.setPosition(this.body, this.position);
@@ -182,8 +182,8 @@ class Droid {
 			pX = arena.viewport.half.w;
 			pY = arena.viewport.half.h;
 		} else {
-			pX = this.body.position.x + arena.viewport.x;
-			pY = this.body.position.y + arena.viewport.y;
+			pX = this.position.x + arena.viewport.x;
+			pY = this.position.y + arena.viewport.y;
 		}
 
 		ctx.save();

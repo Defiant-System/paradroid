@@ -43,8 +43,12 @@ class Map {
 		// walls
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
 			let x = +xColl.getAttribute("x") * tile,
-				y = +xColl.getAttribute("y") * tile;
-			bodies.push(Matter.Bodies.rectangle(x, y, tile, tile, { isStatic: true }));
+				y = +xColl.getAttribute("y") * tile,
+				body = Matter.Bodies.rectangle(x, y, tile, tile, { isStatic: true });
+			// set friction of "walls" to zero
+			body.friction = 0;
+			// add body to bodies list
+			bodies.push(body);
 		});
 
 		// add item classses
