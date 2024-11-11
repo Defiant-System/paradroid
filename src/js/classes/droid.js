@@ -148,10 +148,24 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			this.velocity = this.velocity.add(this.acceleration);
-			this.velocity = this.velocity.limit(this.maxSpeed);
-			this.position = this.position.add(this.velocity);
-			this.acceleration = this.acceleration.multiply(0);
+			
+			if (this.x === this.home.target[0] && this.y === this.home.target[1]) {
+				// droid reached target - change target
+				this.home.index++;
+				this.home.target = this.home.patrol[this.home.index % this.home.patrol.length];
+
+				this.home.force.x = 0;
+				this.home.force.y = 0;
+				if (this.home.target[0] !== this.x) this.home.force.x = this.home.target[0] < this.x ? -1 : 1;
+				if (this.home.target[1] !== this.y) this.home.force.y = this.home.target[1] < this.y ? -1 : 1;
+			} else {
+				this.move(this.home.force.clone());
+			}
+
+			// this.velocity = this.velocity.add(this.acceleration);
+			// this.velocity = this.velocity.limit(this.maxSpeed);
+			// this.position = this.position.add(this.velocity);
+			// this.acceleration = this.acceleration.multiply(0);
 
 			// seek player droid
 			// let force = this.evade(this.arena.player);
