@@ -15,7 +15,7 @@ class Droid {
 		this.velocity = new Point(0, 0);
 		this.acceleration = new Point(0, 0);
 		this.maxSpeed = 1;
-		this.maxForce = .005;
+		this.maxForce = .0075;
 
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
@@ -54,12 +54,15 @@ class Droid {
 		desired = desired.setMagnitude(this.maxSpeed);
 		let steer = desired.subtract(this.velocity);
 		steer = steer.limit(this.maxForce);
-
 		this.move(steer);
 	}
 
-	pursue(target) {
-
+	pursue(droid) {
+		let target = droid.position.clone();
+		let prediction = droid.velocity.clone();
+		prediction.multiply(10);
+		target = target.add(prediction);
+		return this.seek(target);
 	}
 
 	evade(target) {
@@ -145,7 +148,8 @@ class Droid {
 			this.acceleration = this.acceleration.multiply(0);
 
 			// seek player droid
-			this.seek(this.arena.player.position);
+			this.pursue(this.arena.player);
+			// this.seek(this.arena.player.position);
 
 			// console.log( this.arena.player.position, this.position );
 			// Matter.Body.setPosition(this.body, this.position);
