@@ -50,6 +50,7 @@ content {
 		.option {
 			background: #c7c7c7 radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
 			position: relative;
+			top: 0;
 			display: block;
 			width: 90px;
 			height: 90px;
@@ -60,7 +61,7 @@ content {
 					drop-shadow(0 2px 0 hsl(174, 0%, 69%))
 					drop-shadow(0 3px 0 hsl(174, 0%, 67%))
 					drop-shadow(0 1px 2px rgba(#222, .35));
-			transition: top 500ms ease-in-out,
+			transition: top 250ms ease-in-out,
 						filter 100ms ease-in-out;
 
 			&:after {
@@ -108,7 +109,7 @@ content {
 				position: relative;
 				top: 3px;
 				display: inline-block;
-				filter: drop-shadow(0 1px 0 rgba(#fff,.5));
+				filter: drop-shadow(0 1px 0 rgba(#fff,.35));
 
 				&:before {
 					top: 0;
