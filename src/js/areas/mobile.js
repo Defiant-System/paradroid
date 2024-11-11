@@ -111,6 +111,8 @@
 					percentage = 1 - (event.state.map.clear || 0),
 					power = event.state.player ? event.state.player.power : undefined;
 
+				// set debug mode, if provided
+				if (event.state.debug) Self.els.content.data({ debug: event.state.debug.mode });
 				// adjust hud with new color
 				APP.hud.dispatch({ type: "set-level-data", background, percentage, power });
 				// canvas background color
@@ -138,6 +140,7 @@
 				Player.setId(event.arg);
 				break;
 			case "set-debug-mode":
+				Self.els.content.data({ debug: event.arg });
 				Self.arena.setDebug(+event.arg);
 				break;
 		}
