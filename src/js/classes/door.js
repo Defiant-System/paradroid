@@ -37,6 +37,8 @@ class Door {
 		// set center sliding door
 		args = (type === "h") ? { x: 0, y: 32 } : { x: 32, y: 0 };
 		Matter.Body.setCentre(this.slider, args, true);
+		// set friction to "zero"
+		bodies.map(b => b.friction = 0);
 		// add door to physical world
 		Matter.Composite.add(arena.map.engine.world, bodies);
 	}
