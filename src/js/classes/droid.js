@@ -50,11 +50,11 @@ class Droid {
 	}
 
 	seek(target) {
-		let desired = target.subtract(this.position);
-		desired = desired.setMagnitude(this.maxSpeed);
-		let steer = desired.subtract(this.velocity);
-		steer = steer.limit(this.maxForce);
-		this.move(steer);
+		let force = target.subtract(this.position);
+		force = force.setMagnitude(this.maxSpeed);
+		force = force.subtract(this.velocity);
+		force = force.limit(this.maxForce);
+		return force;
 	}
 
 	pursue(droid) {
@@ -65,8 +65,14 @@ class Droid {
 		return this.seek(target);
 	}
 
-	evade(target) {
+	flee(droid) {
+		return this.seek(droid.position).multiply(-1);
+	}
 
+	evade(droid) {
+		let pursuit = this.pursue(droid);
+	    pursuit = pursuit.multiply(-1);
+	    return pursuit;
 	}
 
 	arrive(target) {
@@ -148,8 +154,12 @@ class Droid {
 			this.acceleration = this.acceleration.multiply(0);
 
 			// seek player droid
-			this.pursue(this.arena.player);
-			// this.seek(this.arena.player.position);
+			let force = this.evade(this.arena.player);
+			// let force = this.flee(this.arena.player);
+			
+			// let force = this.pursue(this.arena.player);
+			// let force = this.seek(this.arena.player.position);
+			this.move(force);
 
 			// console.log( this.arena.player.position, this.position );
 			// Matter.Body.setPosition(this.body, this.position);
