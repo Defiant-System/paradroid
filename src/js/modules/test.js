@@ -38,6 +38,9 @@ let Test = {
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");
 		// // APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
 		APP.editor.dispatch({ type: "toggle-overflow" });
+
+		setTimeout(() => APP.els.content.find(`.layer-collision .c1`).get(1).trigger("click"), 500);
+
 		// // APP.editor.dispatch({ type: "output-pgn" });
 		return;
 

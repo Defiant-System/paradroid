@@ -268,6 +268,8 @@
 		&[data-show="collision"] {
 			.layer-collision {
 				display: block;
+
+				b { background-image: none; }
 			}
 
 			.cursor {
@@ -308,14 +310,14 @@
 					pointer-events: all;
 					// opacity: .4;
 
-					&.n    { cursor: ns-resize; top: -5px; left: 50%; transform: translateX(-5px); }
-					&.nw   { cursor: nesw-resize; top: -5px; right: -5px; }
+					&.n    { display: none; cursor: ns-resize; top: -5px; left: 50%; transform: translateX(-5px); }
+					&.nw   { display: none; cursor: nesw-resize; top: -5px; right: -5px; }
 					&.w    { cursor: ew-resize; top: 50%; right: -5px; transform: translateY(-5px); }
-					&.sw   { cursor: nwse-resize; bottom: -5px; right: -5px;  }
+					&.sw   { display: none; cursor: nwse-resize; bottom: -5px; right: -5px;  }
 					&.s    { cursor: ns-resize; bottom: -5px; left: 50%; transform: translateX(-5px); }
-					&.se   { cursor: nesw-resize; bottom: -5px; left: -5px; }
-					&.e    { cursor: ew-resize; top: 50%; left: -5px; transform: translateY(-5px); }
-					&.ne   { cursor: nwse-resize; top: -5px; left: -5px; }
+					&.se   { display: none; cursor: nesw-resize; bottom: -5px; left: -5px; }
+					&.e    { display: none; cursor: ew-resize; top: 50%; left: -5px; transform: translateY(-5px); }
+					&.ne   { display: none; cursor: nwse-resize; top: -5px; left: -5px; }
 				}
 			}
 		}

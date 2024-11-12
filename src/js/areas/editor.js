@@ -400,55 +400,95 @@
 	doDrag(event) {
 		let APP = paradroid,
 			Self = APP.editor,
-			Drag = Self.drag;
+			Drag = Self.drag,
+			data = {};
 		switch (event.type) {
 			case "mousedown":
+				let tgt = $(event.target);
+				if (tgt.hasClass("layer-collision") || tgt.hasClass("viewport")) {
+					Self.els.viewport.find(".layer-collision .active").removeClass("active");
+					Self.els.editBox.css({ top: "", left: "", width: "", height: "" });
+					return;
+				}
+
 				// do not drag until editbox is "active"
 				if (!Self.els.editBox.is(":visible")) return;
 
 				let doc = $(document),
-					targetEl = Self.els.viewport.find(".layer-collision .active"),
+					[a, type] = event.target.className.split(" "),
+					actEl = Self.els.viewport.find(".layer-collision .active"),
 					boxEl = Self.els.editBox,
 					offset = {
 						box: boxEl.offset(),
-						tgt: targetEl.offset(),
+						act: actEl.offset(),
 					},
 					click = {
 						x: event.clientX,
 						y: event.clientY,
 					};
 				// drag info
-				Self.drag = { doc, targetEl, boxEl, click, offset };
+				Self.drag = { doc, actEl, type, boxEl, click, offset };
+				// cover app view
+				APP.els.content.addClass("cover");
 				// bind event handlers
 				Self.drag.doc.on("mousemove mouseup", Self.doDrag);
 				break;
 			case "mousemove":
-				let top = event.clientY - Drag.click.y,
-					left = event.clientX - Drag.click.x;
-				Drag.boxEl.css({
-					top: top + Drag.offset.box.top,
-					left: left + Drag.offset.box.left,
-				});
-				Drag.targetEl.css({
-					top: top + Drag.offset.tgt.top,
-					left: left + Drag.offset.tgt.left,
-				});
+				let dY = event.clientY - Drag.click.y,
+					dX = event.clientX - Drag.click.x;
+				switch (Drag.type) {
+					case "w":
+						data.boxEl = {
+							width: Math.max(dX + Drag.offset.box.width, 20),
+						};
+						data.actEl = {
+							width: Math.max(dX + Drag.offset.box.width, 20),
+						};
+						break;
+					case "s":
+						data.boxEl = {
+							height: Math.max(dY + Drag.offset.box.height, 20),
+						};
+						data.actEl = {
+							height: Math.max(dY + Drag.offset.box.height, 20),
+						};
+						break;
+					default: // move
+						data.boxEl = {
+							top: dY + Drag.offset.box.top,
+							left: dX + Drag.offset.box.left,
+						};
+						data.actEl = {
+							top: dY + Drag.offset.box.top,
+							left: dX + Drag.offset.box.left,
+						};
+						// snap
+						data.boxEl.top -= (data.boxEl.top % 32) + 10;
+						data.actEl.top -= (data.actEl.top % 32) + 10;
+						data.boxEl.left -= (data.boxEl.left % 16) + 2;
+						data.actEl.left -= (data.actEl.left % 16) + 2;
+				}
+				Drag.boxEl.css(data.boxEl);
+				Drag.actEl.css(data.actEl);
 				break;
 			case "mouseup":
-				let data = {
-					x: parseInt(Drag.targetEl.css("left"), 10) + (Drag.targetEl.width() / 2),
-					y: parseInt(Drag.targetEl.css("top"), 10) + (Drag.targetEl.height() / 2),
+				data = {
+					x: parseInt(Drag.actEl.css("left"), 10) + (Drag.actEl.width() / 2),
+					y: parseInt(Drag.actEl.css("top"), 10) + (Drag.actEl.height() / 2),
+					w: Drag.actEl.width(),
+					h: Drag.actEl.height(),
 				};
 
-				Drag.targetEl.css({
+				Drag.actEl.css({
 					"--x": `${data.x}px`,
 					"--y": `${data.y}px`,
-					// "--w": boxEl.cssProp("--w"),
-					// "--h": boxEl.cssProp("--h"),
+					"--w": `${data.w}px`,
+					"--h": `${data.h}px`,
 				});
 				// clear drag properties
-				Drag.targetEl.css({ top: "", left: "", width: "", height: "" });
-
+				Drag.actEl.css({ top: "", left: "", width: "", height: "" });
+				// uncover app view
+				APP.els.content.removeClass("cover");
 				// unbind event handlers
 				Self.drag.doc.off("mousemove mouseup", Self.doDrag);
 				break;

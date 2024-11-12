@@ -24,6 +24,19 @@ content {
 	background: radial-gradient(ellipse at top center, #c1c1c1, transparent),
 				linear-gradient(180deg, #d1d1d1, #969696);
 
+	&.cover {
+		&:before {
+			content: "";
+			background: transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 21;
+		}
+	}
+
 	&[data-show="start"] {
 		> div.start-view {
 			opacity: 1;
