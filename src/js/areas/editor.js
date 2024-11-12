@@ -129,7 +129,7 @@
 						case targetEl.hasClass("c1"):
 							targetEl.addClass("active");
 
-							Self.els.editBox.css({
+							Self.els.editBox.removeClass("no-resize").css({
 								"--x": targetEl.cssProp("--x"),
 								"--y": targetEl.cssProp("--y"),
 								"--w": targetEl.cssProp("--w"),
@@ -139,11 +139,21 @@
 						case targetEl.hasClass("c2"):
 							targetEl.addClass("active");
 
-							Self.els.editBox.css({
+							Self.els.editBox.removeClass("no-resize").css({
 								"--x": targetEl.cssProp("--x"),
 								"--y": targetEl.cssProp("--y"),
 								"--w": "46px",
 								"--h": "46px",
+							});
+							break;
+						case targetEl.hasClass("c3"):
+							targetEl.addClass("active");
+
+							Self.els.editBox.addClass("no-resize").css({
+								"--x": targetEl.cssProp("--x"),
+								"--y": targetEl.cssProp("--y"),
+								"--w": "16px",
+								"--h": "16px",
 							});
 							break;
 						default:
@@ -153,8 +163,8 @@
 							// insert new item if selected in "palette"
 							if (Self.els.palette.find(`.tiles[data-click="select-col-tile"] .active`).length) {
 								value = [];
-								value.push(`--x: 100px;`);
-								value.push(`--y: 100px;`);
+								value.push(`--x: ${event.offsetX}px;`);
+								value.push(`--y: ${event.offsetY}px;`);
 								if (Self.palette.tile === "c1") {
 									value.push(`--w: 20px;`);
 									value.push(`--h: 20px;`);
@@ -446,6 +456,12 @@
 							x1Mod: 16, x1Add: 8,
 							y2Mod: 16, y2Add: 0,
 							x2Mod: 16, x2Add: 0,
+						},
+						c3: {
+							y1Mod: 4, y1Add: 2,
+							x1Mod: 4, x1Add: 2,
+							y2Mod: 4, y2Add: -1,
+							x2Mod: 4, x2Add: -2,
 						}
 					},
 					offset = {

@@ -24,12 +24,12 @@ class Door {
 			args,
 			slider;
 		// door frame "start"
-		args = (type === "h") ? [pX, pY - tile + 2, 50, 4] : [pX - tile + 2, pY, 4, 50];
-		bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
+		// args = (type === "h") ? [pX, pY - tile + 2, 50, 4] : [pX - tile + 2, pY, 4, 50];
+		// bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
 
-		// door frame "end"
-		args = (type === "h") ? [pX, pY + tile - 2, 50, 4] : [pX + tile - 2, pY, 4, 50];
-		bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
+		// // door frame "end"
+		// args = (type === "h") ? [pX, pY + tile - 2, 50, 4] : [pX + tile - 2, pY, 4, 50];
+		// bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
 
 		args = (type === "h") ? [pX, pY, 24, 64] : [pX, pY, 64, 24];
 		this.slider = Matter.Bodies.rectangle(...args, { isStatic: true });

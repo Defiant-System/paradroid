@@ -56,6 +56,9 @@ class Map {
 				case "c2":
 					body = Matter.Bodies.polygon(x, y, 8, 18, { isStatic: true });
 					break;
+				case "c3":
+					body = Matter.Bodies.circle(x, y, 8, { isStatic: true });
+					break;
 			}
 			// set friction of "walls" to zero
 			body.friction = 0;
