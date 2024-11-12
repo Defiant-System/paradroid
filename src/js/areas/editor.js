@@ -119,6 +119,19 @@
 						// append new item
 						if (add) levelEl.append(`<b class="${Self.palette.tile}" style="--x: ${l + sel.x};--y: ${t + sel.y};"></b>`);
 					});
+				} else if (Self.els.viewport.data("show") === "collision") {
+					
+					let targetEl = $(event.target);
+					switch (true) {
+						case targetEl.hasClass("c1"):
+							break;
+						case targetEl.hasClass("c2"):
+							break;
+						default:
+							// add item
+							console.log( "add item" );
+					}
+
 				} else {
 					let levelEl = $(event.target),
 						tiles = levelEl.find("b"),
@@ -391,6 +404,8 @@
 						Drag.moved = { top, left, };
 					}
 				// } else if (event.target.classList.contains("level")) {
+				} else if (event.target.classList.contains("layer-collision")) {
+					Self.els.cursor.css({ "--t": 0, "--l": 0, "--tx": 1, "--ty": 1 });
 				} else {
 					if (event.shiftKey) return;
 

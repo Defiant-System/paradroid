@@ -141,8 +141,7 @@ class Droid {
 	}
 
 	checkVisible() {
-		let player = this.arena.player,
-			walls = [];
+		let player = this.arena.player;
 	}
 
 	update(delta) {
@@ -220,7 +219,7 @@ class Droid {
 		}
 
 		// normal draw if debug mode is < 2
-		if (arena.debug.mode < 2) {
+		if (this.isVisible && arena.debug.mode < 2) {
 			ctx.save();
 			ctx.translate(-22, -25);
 			// top + bottom caps

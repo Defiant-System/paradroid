@@ -11,13 +11,12 @@ let Raycaster = (() => {
 		},
 		drawVisibilityTriangles(ctx) {
 			if (!this.arena) return;
-			
 			ctx.save();
 			ctx.translate(this.arena.viewport.x, this.arena.viewport.y);
 			ctx.fillStyle = '#ccc';
 			ctx.strokeStyle = '#222';
-			for(var i=0; i<this.visibility.length; i += 1) {
-				let [p1, p2] = this.visibility[i];
+			this.visibility.map(seg => {
+				let [p1, p2] = seg;
 				ctx.beginPath();
 				ctx.moveTo(this.origin.x, this.origin.y);
 				ctx.lineTo(p1.x, p1.y);
@@ -25,7 +24,7 @@ let Raycaster = (() => {
 				ctx.closePath()
 				ctx.stroke();
 				ctx.fill();
-			}
+			});
 			ctx.restore();
 		},
 		loadMap(blocks, origin) {
@@ -36,11 +35,10 @@ let Raycaster = (() => {
 			return endpoints;
 		},
 		processSegments(origin, segments) {
-			for (let i=0, sl=segments.length; i<sl; i+=1) {
-				let segment = segments[i];
-				this.calculateEndPointAngles(origin, segment);
-				setSegmentBeginning(segment);
-			}
+			segments.map(seg => {
+				this.calculateEndPointAngles(origin, seg);
+				setSegmentBeginning(seg);
+			});
 			return segments;
 		},
 		calculateEndPointAngles(origin, segment) {
@@ -51,7 +49,6 @@ let Raycaster = (() => {
 			segment.p1.angle = Math.atan2(segment.p1.y - y, segment.p1.x - x);
 			segment.p2.angle = Math.atan2(segment.p2.y - y, segment.p2.x - x);
 		},
-
 		getTrianglePoints(origin, angle1, angle2, segment) {
 			let p1 = origin;
 			let p2 = Point(origin.x + Math.cos(angle1), origin.y + Math.sin(angle1));
@@ -77,7 +74,6 @@ let Raycaster = (() => {
 
 			return [pBegin, pEnd];
 		},
-
 		calculateVisibility(origin, endpoints) {
 			let openSegments = [];
 			let output = [];
@@ -161,13 +157,12 @@ let Raycaster = (() => {
 
 	let lineIntersection = (point1, point2, point3, point4) => {
 		let s = (
-			(point4.x - point3.x) * (point1.y - point3.y) -
-			(point4.y - point3.y) * (point1.x - point3.x)
-		) / (
-			(point4.y - point3.y) * (point2.x - point1.x) -
-			(point4.x - point3.x) * (point2.y - point1.y)
-		);
-		
+				(point4.x - point3.x) * (point1.y - point3.y) -
+				(point4.y - point3.y) * (point1.x - point3.x)
+			) / (
+				(point4.y - point3.y) * (point2.x - point1.x) -
+				(point4.x - point3.x) * (point2.y - point1.y)
+			);
 		return Point(
 			point1.x + s * (point2.x - point1.x),
 			point1.y + s * (point2.y - point1.y)
@@ -185,7 +180,6 @@ let Raycaster = (() => {
 
 	let flatMap = (cb, array) => array.reduce((flatArray, item) => flatArray.concat(cb(item)), []);
 	let getSegmentEndPoints = segment => [segment.p1, segment.p2];
-
 	let setSegmentBeginning = segment => {
 			let dAngle = segment.p2.angle - segment.p1.angle;
 			if (dAngle <= -Math.PI) dAngle += Math.TAU;
@@ -197,9 +191,9 @@ let Raycaster = (() => {
 	let Point = (x, y) => ({ x, y });
 	let EndPoint = (x, y, beginsSegment, segment, angle) => ({ ...Point(x, y), beginsSegment, segment, angle });
 	let Segment = (x1, y1, x2, y2) => {
-			let p1 = EndPoint(x1, y1);
-			let p2 = EndPoint(x2, y2);
-			let segment = { p1, p2, d: 0 };
+			let p1 = EndPoint(x1, y1),
+				p2 = EndPoint(x2, y2),
+				segment = { p1, p2, d: 0 };
 			p1.segment = segment;
 			p2.segment = segment;
 			return segment;

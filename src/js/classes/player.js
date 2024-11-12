@@ -11,6 +11,7 @@ class Player extends Droid {
 		};
 		// this.speed = .0015;
 		this.isPlayer = true;
+		this.isVisible = true;
 		// a little bit blur
 		this.blur = {
 			color: "#00000055",
@@ -75,7 +76,7 @@ class Player extends Droid {
 			}
 		}
 		this.move(force);
-		this._moved = !(force.x === 0 && force.y === 0);
+		// this._moved = !(force.x === 0 && force.y === 0);
 
 		super.update(delta);
 	}

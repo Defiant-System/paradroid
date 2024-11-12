@@ -40,11 +40,23 @@ class Map {
 			this.background[row].push(xTile.getAttribute("id"));
 		});
 
+
 		// walls
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
-			let x = +xColl.getAttribute("x") * tile,
-				y = +xColl.getAttribute("y") * tile,
-				body = Matter.Bodies.rectangle(x, y, tile, tile, { isStatic: true });
+			let id = xColl.getAttribute("id"),
+				x = +xColl.getAttribute("x"),
+				y = +xColl.getAttribute("y"),
+				w = +xColl.getAttribute("w"),
+				h = +xColl.getAttribute("h"),
+				body;
+			switch (id) {
+				case "c1":
+					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true });
+					break;
+				case "c2":
+					body = Matter.Bodies.polygon(x, y, 8, 18, { isStatic: true });
+					break;
+			}
 			// set friction of "walls" to zero
 			body.friction = 0;
 			// add body to bodies list
@@ -139,19 +151,19 @@ class Map {
 			}
 		}
 
-		if (this.arena.player._moved) {
-			let blocks = [];
-			Matter.Composite.allBodies(this.arena.map.engine.world)
-					.map(body => {
-						let bX = Math.round(body.position.x / tile),
-							bY = Math.round(body.position.y / tile);
-						if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
-							blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
-						}
-					});
-			Raycaster.run(this.arena, blocks, ctx);
-		}
-		Raycaster.drawVisibilityTriangles(ctx);
+		// if (this.arena.player._moved || !Raycaster.arena) {
+		// 	let blocks = [];
+		// 	Matter.Composite.allBodies(this.arena.map.engine.world)
+		// 			.map(body => {
+		// 				let bX = Math.round(body.position.x / tile),
+		// 					bY = Math.round(body.position.y / tile);
+		// 				if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
+		// 					blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
+		// 				}
+		// 			});
+		// 	Raycaster.run(this.arena, blocks, ctx);
+		// }
+		// Raycaster.drawVisibilityTriangles(ctx);
 		
 		// draw entries - exclude droids
 		this.entries
