@@ -149,8 +149,9 @@ class Map {
 							blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
 						}
 					});
-			Raycaster.run(this.arena.player.position, blocks, ctx);
+			Raycaster.run(this.arena, blocks, ctx);
 		}
+		Raycaster.drawVisibilityTriangles(ctx);
 		
 		// draw entries - exclude droids
 		this.entries

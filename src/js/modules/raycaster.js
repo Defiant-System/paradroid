@@ -2,18 +2,24 @@
 let Raycaster = (() => {
 
 	let RC = {
-		run(origin, blocks, ctx) {
+		run(arena, blocks, ctx) {
+			let origin = arena.player.position;
 			let endpoints = this.loadMap(blocks, origin);
-			let visibility = this.calculateVisibility(origin, endpoints);
-			// console.log( endpoints );
-
+			this.visibility = this.calculateVisibility(origin, endpoints);
+			this.arena = arena;
+			this.origin = origin;
+		},
+		drawVisibilityTriangles(ctx) {
+			if (!this.arena) return;
+			
 			ctx.save();
+			ctx.translate(this.arena.viewport.x, this.arena.viewport.y);
 			ctx.fillStyle = '#ccc';
 			ctx.strokeStyle = '#222';
-			for(var i=0; i<visibility.length; i += 1) {
-				let [p1, p2] = visibility[i];
+			for(var i=0; i<this.visibility.length; i += 1) {
+				let [p1, p2] = this.visibility[i];
 				ctx.beginPath();
-				ctx.moveTo(origin.x, origin.y);
+				ctx.moveTo(this.origin.x, this.origin.y);
 				ctx.lineTo(p1.x, p1.y);
 				ctx.lineTo(p2.x, p2.y);
 				ctx.closePath()
