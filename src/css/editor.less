@@ -195,7 +195,8 @@
 
 				&.active {
 					z-index: 3;
-					box-shadow: inset 0 0 0 1px #f00, 0 0 0 1px #f00;
+					box-shadow: inset 0 0 0 1px #f00,
+								0 0 0 1px #f00;
 				}
 
 				&[data-size] {
@@ -274,6 +275,50 @@
 			}
 		}
 
+		.edit-box {
+			position: absolute;
+			top: calc( var( --y ) - calc( var( --h ) / 2 ) );
+			left: calc( var( --x ) - calc( var( --w ) / 2 ) );
+			width: var( --w );
+			height: var( --h );
+			transform: translateX(calc( var( --tile ) * .5 )) translateY(calc( var( --tile ) * .5 ));
+			display: none;
+			z-index: 5;
+
+			&[style] {
+				display: block;
+			}
+
+			.handle-box {
+				position: absolute;
+				top: -1px;
+				left: -1px;
+				right: -1px;
+				bottom: -1px;
+				box-shadow: 0 0 0 1px #5f8;
+
+				.handle {
+					position: absolute;
+					width: 9px;
+					height: 9px;
+					z-index: 2;
+					background: #fff;
+					border: 1px solid rgba(0,0,0,.85);
+					pointer-events: all;
+					// opacity: .4;
+
+					&.n    { cursor: ns-resize; top: -5px; left: 50%; transform: translateX(-5px); }
+					&.nw   { cursor: nesw-resize; top: -5px; right: -5px; }
+					&.w    { cursor: ew-resize; top: 50%; right: -5px; transform: translateY(-5px); }
+					&.sw   { cursor: nwse-resize; bottom: -5px; right: -5px;  }
+					&.s    { cursor: ns-resize; bottom: -5px; left: 50%; transform: translateX(-5px); }
+					&.se   { cursor: nesw-resize; bottom: -5px; left: -5px; }
+					&.e    { cursor: ew-resize; top: 50%; left: -5px; transform: translateY(-5px); }
+					&.ne   { cursor: nwse-resize; top: -5px; left: -5px; }
+				}
+			}
+		}
+
 		.cursor {
 			position: absolute;
 			top: calc( var( --tile ) * var( --t ) );
@@ -318,8 +363,10 @@
 				position: absolute;
 				pointer-events: all;
 
-				&:hover {
-					box-shadow: 0 0 0 2px #f00;
+				&:hover,
+				&.active {
+					box-shadow: inset 0 0 0 1px #f00,
+								0 0 0 1px #f00;
 				}
 				
 				&.c1 {

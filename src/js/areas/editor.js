@@ -8,6 +8,7 @@
 			content: window.find("content"),
 			palette: window.find(".tile-palette"),
 			viewport: window.find(".viewport"),
+			editBox: window.find(".edit-box"),
 			cursor: window.find(".cursor"),
 		};
 		// palette details
@@ -105,31 +106,55 @@
 					Self.els.palette.find(`input[name="action-coord"]`).val(`${l},${t},${w},${h}`);
 					Self.els.palette.find(`input[name="action-id"]`).val(tile.data("action"));
 
-				} else if (Self.palette.tile && Self.palette.tile.startsWith("c")) {
-					let levelEl = $(event.target),
-						grid = parseInt(levelEl.cssProp("--tile"), 10),
-						w = +levelEl.cssProp("--w"),
-						l = Math.ceil(event.offsetX / grid) - 1,
-						t = Math.ceil(event.offsetY / grid) - 1,
-						add = levelEl.find(`b.${Self.palette.tile}[style="--x: ${l};--y: ${t};"]`).length < 1;
-					// action tile
-					Self.palette.cursor.map(sel => {
-						// remove old element
-						levelEl.find(`b.${Self.palette.tile}[style="--x: ${l + sel.x};--y: ${t + sel.y};"]`).remove();
-						// append new item
-						if (add) levelEl.append(`<b class="${Self.palette.tile}" style="--x: ${l + sel.x};--y: ${t + sel.y};"></b>`);
-					});
+				// } else if (Self.palette.tile && Self.palette.tile.startsWith("c")) {
+				// 	let levelEl = $(event.target),
+				// 		grid = parseInt(levelEl.cssProp("--tile"), 10),
+				// 		w = +levelEl.cssProp("--w"),
+				// 		l = Math.ceil(event.offsetX / grid) - 1,
+				// 		t = Math.ceil(event.offsetY / grid) - 1,
+				// 		add = levelEl.find(`b.${Self.palette.tile}[style="--x: ${l};--y: ${t};"]`).length < 1;
+				// 	// action tile
+				// 	Self.palette.cursor.map(sel => {
+				// 		// remove old element
+				// 		levelEl.find(`b.${Self.palette.tile}[style="--x: ${l + sel.x};--y: ${t + sel.y};"]`).remove();
+				// 		// append new item
+				// 		if (add) levelEl.append(`<b class="${Self.palette.tile}" style="--x: ${l + sel.x};--y: ${t + sel.y};"></b>`);
+				// 	});
 				} else if (Self.els.viewport.data("show") === "collision") {
 					
 					let targetEl = $(event.target);
 					switch (true) {
 						case targetEl.hasClass("c1"):
+							targetEl.parent().find(".active").removeClass("active");
+							targetEl.addClass("active");
+
+							Self.els.editBox.css({
+								"--x": targetEl.cssProp("--x"),
+								"--y": targetEl.cssProp("--y"),
+								"--w": targetEl.cssProp("--w"),
+								"--h": targetEl.cssProp("--h"),
+							});
 							break;
 						case targetEl.hasClass("c2"):
+							targetEl.parent().find(".active").removeClass("active");
+							targetEl.addClass("active");
 							break;
 						default:
-							// add item
-							console.log( "add item" );
+							// hide edit-box
+							Self.els.editBox.attr({ "style": "" });
+
+							// insert new item if selected in "palette"
+							if (Self.palette.tile) {
+								value = [];
+								value.push(`--x: 100px;`);
+								value.push(`--y: 100px;`);
+								if (Self.palette.tile === "c1") {
+									value.push(`--w: 20px;`);
+									value.push(`--h: 20px;`);
+								}
+								// add item
+								targetEl.append(`<b class="${Self.palette.tile}" style="${value.join("")}"></b>`);
+							}
 					}
 
 				} else {
