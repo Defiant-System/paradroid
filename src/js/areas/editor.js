@@ -151,7 +151,7 @@
 							Self.els.editBox.attr({ "style": "" });
 
 							// insert new item if selected in "palette"
-							if (Self.palette.tile) {
+							if (Self.els.palette.find(`.tiles[data-click="select-col-tile"] .active`).length) {
 								value = [];
 								value.push(`--x: 100px;`);
 								value.push(`--y: 100px;`);
@@ -360,16 +360,31 @@
 					aEl.data({ action: aId });
 				}
 				break;
+			case "delete-active":
+				// remove active
+				Self.els.viewport.find(".layer-collision .active").remove();
+				// hide editbox
+				Self.els.editBox.attr({ "style": "" });
+				break;
 			case "output-collision-pgn":
 				tiles = [];
 				Self.els.viewport.find(`.layer-collision b`).map(tile => {
 					let tEl = $(tile),
-						x = tEl.cssProp("--x"),
-						y = tEl.cssProp("--y"),
-						id = tile.className ? `id="${tile.className.split(" ")[0]}"` : "";
-					tiles.push(`<i ${id} x="${x}" y="${y}"/>`);
+						x = parseInt(tEl.cssProp("--x"), 10),
+						y = parseInt(tEl.cssProp("--y"), 10),
+						w = parseInt(tEl.cssProp("--w"), 10),
+						h = parseInt(tEl.cssProp("--h"), 10),
+						id = tile.className.split(" ")[0],
+						attr = [];
+					attr.push(`x="${x}"`);
+					attr.push(`y="${y}"`);
+					if (id === "c1") {
+						attr.push(`w="${w}"`);
+						attr.push(`h="${h}"`);
+					}
+					tiles.push(`<i id="${id}" ${attr.join(" ")}/>`);
 				});
-				console.log(tiles.join(""));
+				console.log(tiles.join("\n"));
 				break;
 			case "output-action-pgn":
 				tiles = [];
@@ -404,7 +419,8 @@
 			data = {};
 		switch (event.type) {
 			case "mousedown":
-				let tgt = $(event.target);
+				let tgt = $(event.target),
+					actEl = Self.els.viewport.find(".layer-collision .active");
 				if (tgt.hasClass("layer-collision") || tgt.hasClass("viewport")) {
 					Self.els.viewport.find(".layer-collision .active").removeClass("active");
 					Self.els.editBox.css({ top: "", left: "", width: "", height: "" });
@@ -412,12 +428,26 @@
 				}
 
 				// do not drag until editbox is "active"
-				if (!Self.els.editBox.is(":visible")) return;
+				if (!Self.els.editBox.is(":visible") || !actEl.length) return;
 
 				let doc = $(document),
-					[a, type] = event.target.className.split(" "),
-					actEl = Self.els.viewport.find(".layer-collision .active"),
+					[a, resize] = event.target.className.split(" "),
 					boxEl = Self.els.editBox,
+					type = actEl.prop("className").split(" ")[0],
+					snap = {
+						c1: {
+							y1Mod: 4, y1Add: -1,
+							x1Mod: 4, x1Add: -2,
+							y2Mod: 4, y2Add: -1,
+							x2Mod: 4, x2Add: -2,
+						},
+						c2: {
+							y1Mod: 16, y1Add: 8,
+							x1Mod: 16, x1Add: 8,
+							y2Mod: 16, y2Add: 0,
+							x2Mod: 16, x2Add: 0,
+						}
+					},
 					offset = {
 						box: boxEl.offset(),
 						act: actEl.offset(),
@@ -426,8 +456,10 @@
 						x: event.clientX,
 						y: event.clientY,
 					};
+				// choose snap values
+				snap = snap[type];
 				// drag info
-				Self.drag = { doc, actEl, type, boxEl, click, offset };
+				Self.drag = { doc, actEl, type, resize, snap, boxEl, click, offset };
 				// cover app view
 				APP.els.content.addClass("cover");
 				// bind event handlers
@@ -436,22 +468,22 @@
 			case "mousemove":
 				let dY = event.clientY - Drag.click.y,
 					dX = event.clientX - Drag.click.x;
-				switch (Drag.type) {
+				switch (Drag.resize) {
 					case "w":
-						data.boxEl = {
-							width: Math.max(dX + Drag.offset.box.width, 20),
-						};
-						data.actEl = {
-							width: Math.max(dX + Drag.offset.box.width, 20),
-						};
+						data.boxEl = { width: dX + Drag.offset.box.width };
+						data.actEl = { width: dX + Drag.offset.box.width };
+						data.boxEl.width -= (data.boxEl.width % 4);
+						data.actEl.width -= (data.actEl.width % 4);
+						data.boxEl.width = Math.max(data.boxEl.width, 20);
+						data.actEl.width = Math.max(data.actEl.width, 20);
 						break;
 					case "s":
-						data.boxEl = {
-							height: Math.max(dY + Drag.offset.box.height, 20),
-						};
-						data.actEl = {
-							height: Math.max(dY + Drag.offset.box.height, 20),
-						};
+						data.boxEl = { height: dY + Drag.offset.box.height };
+						data.actEl = { height: dY + Drag.offset.box.height };
+						data.boxEl.height -= (data.boxEl.height % 4);
+						data.actEl.height -= (data.actEl.height % 4);
+						data.boxEl.height = Math.max(data.boxEl.height, 20);
+						data.actEl.height = Math.max(data.actEl.height, 20);
 						break;
 					default: // move
 						data.boxEl = {
@@ -463,10 +495,10 @@
 							left: dX + Drag.offset.box.left,
 						};
 						// snap
-						data.boxEl.top -= (data.boxEl.top % 32) + 10;
-						data.actEl.top -= (data.actEl.top % 32) + 10;
-						data.boxEl.left -= (data.boxEl.left % 16) + 2;
-						data.actEl.left -= (data.actEl.left % 16) + 2;
+						data.boxEl.top -= (data.boxEl.top % Drag.snap.y1Mod) + Drag.snap.y1Add;
+						data.boxEl.left -= (data.boxEl.left % Drag.snap.x1Mod) + Drag.snap.x1Add;
+						data.actEl.top -= (data.actEl.top % Drag.snap.y2Mod) + Drag.snap.y2Add;
+						data.actEl.left -= (data.actEl.left % Drag.snap.x2Mod) + Drag.snap.x2Add;
 				}
 				Drag.boxEl.css(data.boxEl);
 				Drag.actEl.css(data.actEl);
