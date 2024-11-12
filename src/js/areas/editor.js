@@ -123,9 +123,10 @@
 				} else if (Self.els.viewport.data("show") === "collision") {
 					
 					let targetEl = $(event.target);
+					targetEl.parent().find(".active").removeClass("active");
+					
 					switch (true) {
 						case targetEl.hasClass("c1"):
-							targetEl.parent().find(".active").removeClass("active");
 							targetEl.addClass("active");
 
 							Self.els.editBox.css({
@@ -136,8 +137,14 @@
 							});
 							break;
 						case targetEl.hasClass("c2"):
-							targetEl.parent().find(".active").removeClass("active");
 							targetEl.addClass("active");
+
+							Self.els.editBox.css({
+								"--x": targetEl.cssProp("--x"),
+								"--y": targetEl.cssProp("--y"),
+								"--w": "46px",
+								"--h": "46px",
+							});
 							break;
 						default:
 							// hide edit-box
@@ -390,16 +397,77 @@
 				break;
 		}
 	},
-	doPan(event) {
+	doDrag(event) {
 		let APP = paradroid,
 			Self = APP.editor,
 			Drag = Self.drag;
+		switch (event.type) {
+			case "mousedown":
+				// do not drag until editbox is "active"
+				if (!Self.els.editBox.is(":visible")) return;
+
+				let doc = $(document),
+					targetEl = Self.els.viewport.find(".layer-collision .active"),
+					boxEl = Self.els.editBox,
+					offset = {
+						box: boxEl.offset(),
+						tgt: targetEl.offset(),
+					},
+					click = {
+						x: event.clientX,
+						y: event.clientY,
+					};
+				// drag info
+				Self.drag = { doc, targetEl, boxEl, click, offset };
+				// bind event handlers
+				Self.drag.doc.on("mousemove mouseup", Self.doDrag);
+				break;
+			case "mousemove":
+				let top = event.clientY - Drag.click.y,
+					left = event.clientX - Drag.click.x;
+				Drag.boxEl.css({
+					top: top + Drag.offset.box.top,
+					left: left + Drag.offset.box.left,
+				});
+				Drag.targetEl.css({
+					top: top + Drag.offset.tgt.top,
+					left: left + Drag.offset.tgt.left,
+				});
+				break;
+			case "mouseup":
+				let data = {
+					x: parseInt(Drag.targetEl.css("left"), 10) + (Drag.targetEl.width() / 2),
+					y: parseInt(Drag.targetEl.css("top"), 10) + (Drag.targetEl.height() / 2),
+				};
+
+				Drag.targetEl.css({
+					"--x": `${data.x}px`,
+					"--y": `${data.y}px`,
+					// "--w": boxEl.cssProp("--w"),
+					// "--h": boxEl.cssProp("--h"),
+				});
+				// clear drag properties
+				Drag.targetEl.css({ top: "", left: "", width: "", height: "" });
+
+				// unbind event handlers
+				Self.drag.doc.off("mousemove mouseup", Self.doDrag);
+				break;
+		}
+	},
+	doPan(event) {
+		let APP = paradroid,
+			Self = APP.editor,
+			Pan = Self.pan;
 		switch (event.type) {
 			case "mousedown":
 				if (event.button != 0) return;
 
 				// prevent default behaviour
 				event.preventDefault();
+
+				if (Self.els.viewport.data("show") === "collision") {
+					return Self.doDrag(event);
+				}
 
 				let el = Self.els.viewport.find(".layer-background"),
 					offset = el.offset(".viewport"),
@@ -419,14 +487,14 @@
 				if (event.metaKey) Self.els.viewport.addClass("hide-cursor");
 				break;
 			case "mousemove":
-				if (Drag) {
-					let threshold = Drag.data.tile >> 1,
-						top = event.clientY - Drag.click.y,
-						left = event.clientX - Drag.click.x;
-					Drag.el.css({ top, left, });
+				if (Pan) {
+					let threshold = Pan.data.tile >> 1,
+						top = event.clientY - Pan.click.y,
+						left = event.clientX - Pan.click.x;
+					Pan.el.css({ top, left, });
 					// save drag details
-					if (Math.abs(Drag.data.top - top) > threshold || Math.abs(Drag.data.left - left) > threshold) {
-						Drag.moved = { top, left, };
+					if (Math.abs(Pan.data.top - top) > threshold || Math.abs(Pan.data.left - left) > threshold) {
+						Pan.moved = { top, left, };
 					}
 				// } else if (event.target.classList.contains("level")) {
 				} else if (event.target.classList.contains("layer-collision")) {
@@ -444,17 +512,17 @@
 				}
 				break;
 			case "mouseup":
-				if (Drag && Drag.moved) {
-					let y = Math.round(Drag.moved.top / Drag.data.tile),
-						x = Math.round(Drag.moved.left / Drag.data.tile);
-					Drag.el.css({ top: "", left: "", "--y": y, "--x": x });
+				if (Pan && Pan.moved) {
+					let y = Math.round(Pan.moved.top / Pan.data.tile),
+						x = Math.round(Pan.moved.left / Pan.data.tile);
+					Pan.el.css({ top: "", left: "", "--y": y, "--x": x });
 					Self.els.viewport.find(".layer-collision").css({ "--y": y, "--x": x });
 					Self.els.viewport.find(".layer-action").css({ "--y": y, "--x": x });
-				} else if (Drag) {
-					Drag.el.css({ top: "", left: "" });
+				} else if (Pan) {
+					Pan.el.css({ top: "", left: "" });
 				}
 				// reset drag data
-				delete Self.drag;
+				delete Self.pan;
 				// show cursor
 				Self.els.viewport.removeClass("hide-cursor");
 				break;

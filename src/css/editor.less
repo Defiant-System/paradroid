@@ -285,7 +285,7 @@
 			display: none;
 			z-index: 5;
 
-			&[style] {
+			&[style*="--"] {
 				display: block;
 			}
 
@@ -295,6 +295,7 @@
 				left: -1px;
 				right: -1px;
 				bottom: -1px;
+				cursor: move;
 				box-shadow: 0 0 0 1px #5f8;
 
 				.handle {
