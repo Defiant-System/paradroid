@@ -5,7 +5,7 @@ let Test = {
 
 		// return APP.dispatch({ type: "show-view", arg: "terminated" });
 		// return APP.dispatch({ type: "show-view", arg: "start" });
-		// return APP.dispatch({ type: "show-view", arg: "console" });
+		return APP.dispatch({ type: "show-view", arg: "console" });
 
 		/*
 		 * Finder algorithm
@@ -30,6 +30,7 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		APP.dispatch({ type: "show-view", arg: "editor" });
 		APP.editor.dispatch({ type: "render-level", arg: "1" });
 
@@ -45,7 +46,6 @@ let Test = {
 
 		// // setTimeout(() => APP.editor.els.palette.find(`.buttons span[data-click="output-collision-pgn"]`).trigger("click"), 300);
 		// return;
-		 */
 
 
 		return setTimeout(() => {

@@ -292,7 +292,8 @@
 				}
 				// check if level has tile nodes
 				let xSection = window.bluePrint.selectSingleNode(`//Section[@id = "${event.arg}"]`),
-					xBg = xSection.selectSingleNode(`./Layer[@id="background"]`);
+					xBg = xSection.selectSingleNode(`./Layer[@id="background"]`),
+					sectionEl = APP.lift.els.el.find(`.ship .section[data-id="${event.arg}"]`);
 				if (!xBg.selectNodes(`./i`).length) {
 					let nodes = [],
 						len = +xSection.getAttribute("height") * +xSection.getAttribute("width");
@@ -328,6 +329,8 @@
 					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
+				// prevent "see-through"
+				Self.els.viewport.find(".layer-background").css({ background: sectionEl.data("color") });
 				break;
 			case "grid-size":
 				event.el.parent().find(".active").removeClass("active");

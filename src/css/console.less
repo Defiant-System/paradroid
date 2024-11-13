@@ -35,103 +35,60 @@ content {
 
 .console-view {
 	display: flex;
-	padding: 19px 21px 21px;
-	font-family: "ParaDrew";
-	font-size: 22px;
-	color: #626262;
-	text-shadow: 0 1px 1px rgba(#fff,.85);
+	padding: 7px;
+	// font-family: "ParaDrew";
+	// font-size: 22px;
+	// color: #626262;
+	// text-shadow: 0 1px 1px rgba(#fff,.85);
+	border-radius: 6px;
+	background-image: repeating-linear-gradient(90deg, #f5f5f50d 0, #f5f5f50d 1px, transparent 1px, transparent 44px),
+						repeating-linear-gradient(0deg, #f5f5f50d 0, #f5f5f50d 1px, transparent 1px, transparent 44px),
+						repeating-linear-gradient(0deg, #f5f5f512 0, #f5f5f512 1px, transparent 1px, transparent 11px),
+						repeating-linear-gradient(90deg, #f5f5f512 0, #f5f5f512 1px, transparent 1px, transparent 11px),
+						linear-gradient(45deg, #357ad0, #357ad0);
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 7px;
+		left: 7px;
+		right: 7px;
+		bottom: 7px;
+		border-radius: 4px;
+		border: 2px solid #7caae6;
+	}
 
 	.menu {
-		// background: rgba(#000,.1);
+		position: relative;
 		width: 90px;
-		margin-right: 11px;
 		text-align: center;
+		border-right: 2px solid #7caae6;
 
 		.option {
-			background: #c7c7c7 radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
 			position: relative;
-			top: 0;
 			display: block;
 			width: 90px;
 			height: 90px;
 			margin: 0 0 21px;
 			padding: 19px 0 0;
-			border-radius: 6px;
-			filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
-					drop-shadow(0 2px 0 hsl(174, 0%, 69%))
-					drop-shadow(0 3px 0 hsl(174, 0%, 67%))
-					drop-shadow(0 1px 2px rgba(#222, .35));
-			transition: top 250ms ease-in-out,
-						filter 150ms ease-in-out;
-
-			&:after {
-				content: "";
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				height: 1px;
-				z-index: 2;
-				background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
-			}
-
-			&.active {
-				top: 3px;
-				filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
-						drop-shadow(0 1px 1px rgba(#222, .2));
-
-				&:before {
-					content: "";
-					position: absolute;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: -1px;
-					border-radius: 9px;
-					background: rgba(#000,.075);
-					animation: opt-pulse 800ms alternate infinite;
-					animation-delay: 300ms;
-				}
-			}
 
 			i[class^="icon-"],
 			i[class*="icon-"] {
-				top: -9px;
-
-				&.icon-droid-info { filter: drop-shadow(0 1px 0 rgba(#fff,.8)); }
+				filter: invert(1) brightness(1.15);
 			}
 
-			span, i {
-				pointer-events: none;
-			}
-
-			.droid {
+			span {
 				position: relative;
 				top: 3px;
 				display: inline-block;
-				filter: drop-shadow(0 1px 0 rgba(#fff,.35));
-
-				&:before {
-					top: 0;
-					left: 0;
-					animation: none;
-					filter: invert(1) brightness(.75);
-					// transform: rotate(180deg);
-				}
-
-				b {
-					filter: invert(1) brightness(.75);
-				}
+				filter: invert(1) brightness(1.15);
 			}
 		}
 	}
 
 	.data {
+		position: relative;
 		flex: 1;
 	}
 }
 
-@keyframes opt-pulse {
-	0% { opacity: 1; transform: scale(1); }
-	100% { opacity: 0.5; transform: scale(1.125); }
-}
