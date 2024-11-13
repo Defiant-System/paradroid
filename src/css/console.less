@@ -35,10 +35,7 @@ content {
 
 .console-view {
 	display: flex;
-	padding: 7px;
-	// font-family: "ParaDrew";
-	// font-size: 22px;
-	// color: #626262;
+	padding: 9px 17px 9px 9px;
 	// text-shadow: 0 1px 1px rgba(#fff,.85);
 	border-radius: 6px;
 	background-image: repeating-linear-gradient(90deg, #f5f5f50d 0, #f5f5f50d 1px, transparent 1px, transparent 44px),
@@ -46,23 +43,24 @@ content {
 						repeating-linear-gradient(0deg, #f5f5f512 0, #f5f5f512 1px, transparent 1px, transparent 11px),
 						repeating-linear-gradient(90deg, #f5f5f512 0, #f5f5f512 1px, transparent 1px, transparent 11px),
 						linear-gradient(45deg, #357ad0, #357ad0);
+	background-position: -34px -19px;
 
 	&:before {
 		content: "";
 		position: absolute;
-		top: 7px;
-		left: 7px;
-		right: 7px;
-		bottom: 7px;
-		border-radius: 4px;
-		border: 2px solid #7caae6;
+		top: 9px;
+		left: 9px;
+		right: 15px;
+		bottom: 9px;
+		// border-radius: 4px;
+		border: 2px solid #b4d5ff;
 	}
 
 	.menu {
 		position: relative;
-		width: 90px;
+		width: 83px;
 		text-align: center;
-		border-right: 2px solid #7caae6;
+		// border-right: 2px solid #7caae6;
 
 		.option {
 			position: relative;
@@ -82,6 +80,10 @@ content {
 				top: 3px;
 				display: inline-block;
 				filter: invert(1) brightness(1.15);
+
+				&:before {
+					left: 0;
+				}
 			}
 		}
 	}
@@ -89,6 +91,67 @@ content {
 	.data {
 		position: relative;
 		flex: 1;
+		font-family: "Helvetica Neue";
+
+		h2 {
+			position: absolute;
+			top: 7px;
+			right: 9px;
+			text-transform: uppercase;
+			text-align: right;
+			letter-spacing: 1px;
+			font-size: 24px;
+			font-weight: 200;
+			color: #fff;
+			text-shadow: 0 0 3px #fffa;
+		}
+
+		h5 {
+			position: absolute;
+			bottom: 0;
+			right: -4px;
+			transform: rotate(90deg);
+			transform-origin: bottom right;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-size: 11px;
+			font-weight: 200;
+			color: #fff8;
+		}
+
+		.info {
+			position: absolute;
+			bottom: 2px;
+			right: 0;
+			width: 247px;
+			height: 65px;
+			background: #357ad077;
+			border: 2px solid #b4d5ff;
+			border-bottom: 0;
+			border-right: 0;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: 24px;
+				left: 0;
+				width: 161px;
+				height: 38px;
+				border-top: 1px solid #b4d5ff;
+				border-right: 1px solid #b4d5ff;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 24px;
+				right: 0;
+				width: 83px;
+				height: 18px;
+				border-top: 1px solid #b4d5ff;
+				border-bottom: 1px solid #b4d5ff;
+			}
+		}
 	}
 }
 
