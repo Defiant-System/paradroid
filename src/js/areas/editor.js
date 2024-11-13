@@ -364,7 +364,7 @@
 				break;
 			case "duplicate-active":
 				// remove active
-				el = Self.els.viewport.find(".layer-collision .active").clone(true);
+				el = Self.els.viewport.find(".layer-collision .active").removeClass("active").clone(true);
 				Self.els.viewport.find(".layer-collision").append(el);
 				// hide editbox
 				Self.els.editBox.attr({ "style": "" });
