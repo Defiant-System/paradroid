@@ -99,11 +99,21 @@ content {
 		h2 {
 			position: absolute;
 			top: 7px;
-			right: 9px;
+			right: 43px;
 			text-align: right;
 			letter-spacing: 1px;
 			font-size: 24px;
 			text-shadow: 0 0 3px #fffa;
+
+			&:before {
+				content: "";
+				background: url(~/icons/icon-tre-kronor.png) 50% 50%/contain no-repeat;
+				position: absolute;
+				top: -3px;
+				right: -38px;
+				width: 32px;
+				height: 32px;
+			}
 		}
 
 		h5 {
