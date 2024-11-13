@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 
 @import "tiles-32.svg"
+@import "blueprint.svg"
 @import "3001.svg"
 
 	<svg id="droid-mask" viewBox="0 0 44 33" cache="keep">
