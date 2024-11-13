@@ -122,7 +122,10 @@
 				// 	});
 				} else if (Self.els.viewport.data("show") === "collision") {
 					
-					let targetEl = $(event.target);
+					let targetEl = $(event.target),
+						colEl = Self.els.viewport.find(".layer-collision"),
+						mY = parseInt(colEl.cssProp("--y")) * 32,
+						mX = parseInt(colEl.cssProp("--x")) * 32;
 					targetEl.parent().find(".active").removeClass("active");
 					
 					switch (true) {
@@ -134,6 +137,7 @@
 								"--y": targetEl.cssProp("--y"),
 								"--w": targetEl.cssProp("--w"),
 								"--h": targetEl.cssProp("--h"),
+								margin: `${mY}px 0 0 ${mX}px`,
 							});
 							break;
 						case targetEl.hasClass("c2"):
@@ -144,6 +148,7 @@
 								"--y": targetEl.cssProp("--y"),
 								"--w": "46px",
 								"--h": "46px",
+								margin: `${mY}px 0 0 ${mX}px`,
 							});
 							break;
 						case targetEl.hasClass("c3"):
@@ -154,6 +159,7 @@
 								"--y": targetEl.cssProp("--y"),
 								"--w": "17px",
 								"--h": "17px",
+								margin: `${mY}px 0 0 ${mX}px`,
 							});
 							break;
 						default:
@@ -562,7 +568,7 @@
 				// prevent default behaviour
 				event.preventDefault();
 
-				if (Self.els.viewport.data("show") === "collision") {
+				if (Self.els.viewport.data("show") === "collision" && !event.metaKey) {
 					return Self.doDrag(event);
 				}
 
@@ -579,9 +585,12 @@
 						x: event.clientX - offset.left,
 					};
 				// save drag details
-				Self.drag = { el, data, click };
+				Self.pan = { el, data, click };
 				// hide cursor
-				if (event.metaKey) Self.els.viewport.addClass("hide-cursor");
+				if (event.metaKey) {
+					Self.els.viewport.addClass("hide-cursor");
+					Self.els.editBox.addClass("hidden");
+				}
 				break;
 			case "mousemove":
 				if (Pan) {
@@ -615,6 +624,7 @@
 					Pan.el.css({ top: "", left: "", "--y": y, "--x": x });
 					Self.els.viewport.find(".layer-collision").css({ "--y": y, "--x": x });
 					Self.els.viewport.find(".layer-action").css({ "--y": y, "--x": x });
+					Self.els.editBox.css({ margin: `${y * Pan.data.tile}px 0 0 ${x * Pan.data.tile}px` });
 				} else if (Pan) {
 					Pan.el.css({ top: "", left: "" });
 				}
@@ -622,6 +632,7 @@
 				delete Self.pan;
 				// show cursor
 				Self.els.viewport.removeClass("hide-cursor");
+				Self.els.editBox.removeClass("hidden");
 				break;
 		}
 	}

@@ -295,6 +295,10 @@
 				display: block;
 			}
 
+			&.hidden {
+				display: none;
+			}
+
 			&.no-resize {
 				.handle-box {
 					transform: translateX(1px) translateY(1px);
@@ -374,8 +378,7 @@
 
 		.layer-collision {
 			display: none;
-			top: 16px;
-			left: 16px;
+			margin: 16px 0 0 16px;
 
 			b {
 				position: absolute;
