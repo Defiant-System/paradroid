@@ -77,7 +77,7 @@ const paradroid = {
 				Self.els.content.data({ show: event.arg });
 				Self.hud.dispatch({ type: "set-view-title" });
 
-				if (event.arg === "editor") {
+				if (Self.mobile.arena.map && event.arg === "editor") {
 					Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
 					setTimeout(() => {
 						Self.editor.dispatch({ type: "toggle-overflow" });
