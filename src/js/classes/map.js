@@ -62,6 +62,9 @@ class Map {
 				case "c3":
 					body = Matter.Bodies.circle(x, y, 8, { isStatic: true });
 					break;
+				case "c4":
+					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true, chamfer: { radius: 6 } });
+					break;
 			}
 			// set friction of "walls" to zero
 			body.friction = 0;

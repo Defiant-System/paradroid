@@ -106,22 +106,7 @@
 					Self.els.palette.find(`input[name="action-coord"]`).val(`${l},${t},${w},${h}`);
 					Self.els.palette.find(`input[name="action-id"]`).val(tile.data("action"));
 
-				// } else if (Self.palette.tile && Self.palette.tile.startsWith("c")) {
-				// 	let levelEl = $(event.target),
-				// 		grid = parseInt(levelEl.cssProp("--tile"), 10),
-				// 		w = +levelEl.cssProp("--w"),
-				// 		l = Math.ceil(event.offsetX / grid) - 1,
-				// 		t = Math.ceil(event.offsetY / grid) - 1,
-				// 		add = levelEl.find(`b.${Self.palette.tile}[style="--x: ${l};--y: ${t};"]`).length < 1;
-				// 	// action tile
-				// 	Self.palette.cursor.map(sel => {
-				// 		// remove old element
-				// 		levelEl.find(`b.${Self.palette.tile}[style="--x: ${l + sel.x};--y: ${t + sel.y};"]`).remove();
-				// 		// append new item
-				// 		if (add) levelEl.append(`<b class="${Self.palette.tile}" style="--x: ${l + sel.x};--y: ${t + sel.y};"></b>`);
-				// 	});
 				} else if (Self.els.viewport.data("show") === "collision") {
-					
 					let targetEl = $(event.target),
 						colEl = Self.els.viewport.find(".layer-collision"),
 						mY = parseInt(colEl.cssProp("--y")) * 32,
@@ -130,6 +115,7 @@
 					
 					switch (true) {
 						case targetEl.hasClass("c1"):
+						case targetEl.hasClass("c4"):
 							targetEl.addClass("active");
 
 							Self.els.editBox.removeClass("no-resize").css({
@@ -171,7 +157,7 @@
 								value = [];
 								value.push(`--x: ${event.offsetX}px;`);
 								value.push(`--y: ${event.offsetY}px;`);
-								if (Self.palette.tile === "c1") {
+								if (["c1", "c4"].includes(Self.palette.tile)) {
 									value.push(`--w: 20px;`);
 									value.push(`--h: 20px;`);
 								}
@@ -376,6 +362,13 @@
 					aEl.data({ action: aId });
 				}
 				break;
+			case "duplicate-active":
+				// remove active
+				el = Self.els.viewport.find(".layer-collision .active").clone(true);
+				Self.els.viewport.find(".layer-collision").append(el);
+				// hide editbox
+				Self.els.editBox.attr({ "style": "" });
+				break;
 			case "delete-active":
 				// remove active
 				Self.els.viewport.find(".layer-collision .active").remove();
@@ -394,9 +387,16 @@
 						attr = [];
 					attr.push(`x="${x}"`);
 					attr.push(`y="${y}"`);
-					if (id === "c1") {
-						attr.push(`w="${w}"`);
-						attr.push(`h="${h}"`);
+
+					switch (id) {
+						case "c1":
+						case "c4":
+							attr.push(`w="${w}"`);
+							attr.push(`h="${h}"`);
+							break;
+						case "c3":
+							// attr = [`x="${x+2}"`, `y="${y+3}"`];
+							break;
 					}
 					tiles.push(`<i id="${id}" ${attr.join(" ")}/>`);
 				});
@@ -453,6 +453,7 @@
 
 				let doc = $(document),
 					[a, resize] = event.target.className.split(" "),
+					colEl = Self.els.viewport.find(".layer-collision"),
 					boxEl = Self.els.editBox,
 					type = actEl.prop("className").split(" ")[0],
 					snap = {
@@ -469,10 +470,16 @@
 							x2Mod: 16, x2Add: 0,
 						},
 						c3: {
-							y1Mod: 2, y1Add: 2,
-							x1Mod: 2, x1Add: 2,
-							y2Mod: 2, y2Add: 0,
-							x2Mod: 2, x2Add: 0,
+							y1Mod: 2, y1Add: 1,
+							x1Mod: 2, x1Add: 1,
+							y2Mod: 2, y2Add: 1,
+							x2Mod: 2, x2Add: 1,
+						},
+						c4: {
+							y1Mod: 4, y1Add: -1,
+							x1Mod: 4, x1Add: -2,
+							y2Mod: 4, y2Add: -1,
+							x2Mod: 4, x2Add: -2,
 						}
 					},
 					offset = {
@@ -480,8 +487,8 @@
 						act: actEl.offset(),
 					},
 					click = {
-						x: event.clientX,
-						y: event.clientY,
+						x: event.clientX + (+colEl.cssProp("--x") * 32),
+						y: event.clientY + (+colEl.cssProp("--y") * 32),
 					};
 				// choose snap values
 				snap = snap[type];
@@ -537,10 +544,10 @@
 					w: Drag.actEl.width(),
 					h: Drag.actEl.height(),
 				};
-				// if (Drag.actEl.hasClass("c3")) {
-				// 	data.x -= 2;
-				// 	data.y -= 3;
-				// }
+				if (Drag.actEl.hasClass("c3")) {
+					data.x -= 2;
+					data.y -= 2;
+				}
 
 				Drag.actEl.css({
 					"--x": `${data.x}px`,
