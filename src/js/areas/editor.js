@@ -152,8 +152,8 @@
 							Self.els.editBox.addClass("no-resize").css({
 								"--x": targetEl.cssProp("--x"),
 								"--y": targetEl.cssProp("--y"),
-								"--w": "16px",
-								"--h": "16px",
+								"--w": "17px",
+								"--h": "17px",
 							});
 							break;
 						default:
@@ -431,6 +431,11 @@
 			case "mousedown":
 				let tgt = $(event.target),
 					actEl = Self.els.viewport.find(".layer-collision .active");
+				if (tgt[0] !== actEl[0] && tgt.nodeName() == "b") {
+					actEl.removeClass("active");
+					Self.els.editBox.attr({ "style": "" });
+					return;
+				}
 				if (tgt.hasClass("layer-collision") || tgt.hasClass("viewport")) {
 					Self.els.viewport.find(".layer-collision .active").removeClass("active");
 					Self.els.editBox.css({ top: "", left: "", width: "", height: "" });
@@ -458,10 +463,10 @@
 							x2Mod: 16, x2Add: 0,
 						},
 						c3: {
-							y1Mod: 4, y1Add: 2,
-							x1Mod: 4, x1Add: 2,
-							y2Mod: 4, y2Add: -1,
-							x2Mod: 4, x2Add: -2,
+							y1Mod: 2, y1Add: 2,
+							x1Mod: 2, x1Add: 2,
+							y2Mod: 2, y2Add: 0,
+							x2Mod: 2, x2Add: 0,
 						}
 					},
 					offset = {
@@ -526,6 +531,10 @@
 					w: Drag.actEl.width(),
 					h: Drag.actEl.height(),
 				};
+				// if (Drag.actEl.hasClass("c3")) {
+				// 	data.x -= 2;
+				// 	data.y -= 3;
+				// }
 
 				Drag.actEl.css({
 					"--x": `${data.x}px`,

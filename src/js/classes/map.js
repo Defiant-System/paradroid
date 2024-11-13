@@ -25,6 +25,9 @@ class Map {
 		// empty physical world
 		Matter.Composite.clear(this.engine.world);
 
+		// save reference to active map
+		this.id = state.id;
+
 		// reset map arrays
 		this.entries = [];
 		this.droids = [this.arena.player];

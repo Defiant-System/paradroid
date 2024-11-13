@@ -76,6 +76,14 @@ const paradroid = {
 			case "show-view":
 				Self.els.content.data({ show: event.arg });
 				Self.hud.dispatch({ type: "set-view-title" });
+
+				if (event.arg === "editor") {
+					Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
+					setTimeout(() => {
+						Self.editor.dispatch({ type: "toggle-overflow" });
+						Self.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
+					}, 100);
+				}
 				break;
 			// proxy event
 			case "set-player-droid":
