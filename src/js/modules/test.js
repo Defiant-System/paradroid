@@ -5,7 +5,7 @@ let Test = {
 
 		// return APP.dispatch({ type: "show-view", arg: "terminated" });
 		// return APP.dispatch({ type: "show-view", arg: "start" });
-		// return APP.dispatch({ type: "show-view", arg: "console" });
+		return APP.dispatch({ type: "show-view", arg: "console" });
 
 		/*
 		 * Finder algorithm
