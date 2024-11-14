@@ -32,7 +32,7 @@ let Test = {
 		 * EDITOR
 		 */
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "7" });
+		APP.editor.dispatch({ type: "render-level", arg: "10" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");
