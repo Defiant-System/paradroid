@@ -51,6 +51,7 @@ class Map {
 				y = +xColl.getAttribute("y"),
 				w = +xColl.getAttribute("w"),
 				h = +xColl.getAttribute("h"),
+				vertices,
 				body;
 			switch (id) {
 				case "c1":
@@ -64,6 +65,14 @@ class Map {
 					break;
 				case "c4":
 					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true, chamfer: { radius: 6 } });
+					break;
+				case "c5":
+					vertices = [{ x: 42, y: 0 }, { x: 42, y: 42 }, { x: 0, y: 42 }];
+					body = Matter.Bodies.fromVertices(x, y, vertices, { isStatic: true });
+					break;
+				case "c6":
+					vertices = [{ x: 0, y: 0 }, { x: 0, y: 42 }, { x: 42, y: 42 }];
+					body = Matter.Bodies.fromVertices(x, y, vertices, { isStatic: true });
 					break;
 			}
 			// set friction of "walls" to zero

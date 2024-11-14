@@ -31,7 +31,7 @@ let Test = {
 		/*
 		 * EDITOR
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "3" });
+		APP.editor.dispatch({ type: "render-level", arg: "6" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");
@@ -55,8 +55,9 @@ let Test = {
 					// map: { id: 11, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 1, clear: .1 }, player: { x: 23, y: 7, power: .5 }, debug: { mode: 1 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
-					map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
+					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
+					map: { id: 6, clear: .1 }, player: { x: 28, y: 8, power: .25 }, debug: { mode: 1 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
