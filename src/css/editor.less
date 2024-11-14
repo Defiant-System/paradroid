@@ -237,6 +237,38 @@
 				&.c4 {
 					border-radius: 8px;
 				}
+
+				&.c5 {
+					background: transparent;
+
+					&:after {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 0;
+						height: 0;
+						z-index: 1;
+						border-bottom: 32px solid rgba(#060,.5);
+						border-left: 32px solid transparent;
+					}
+				}
+
+				&.c6 {
+					background: transparent;
+
+					&:after {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 0;
+						height: 0;
+						z-index: 1;
+						border-bottom: 32px solid rgba(#060,.5);
+						border-right: 32px solid transparent;
+					}
+				}
 			}
 		}
 	}
@@ -433,6 +465,44 @@
 					height: var( --h );
 					border-radius: 6px;
 				}
+
+				&.c5 {
+					top: calc( var( --y ) - 27px );
+					left: calc( var( --x ) - 27px );
+					width: 42px;
+					height: 42px;
+
+					&:after {
+						content: "";
+						position: absolute;
+						top: -4px;
+						left: -4px;
+						width: 0;
+						height: 0;
+						z-index: 1;
+						border-bottom: 46px solid rgba(#060,.5);
+						border-left: 46px solid transparent;
+					}
+				}
+
+				&.c6 {
+					top: calc( var( --y ) - 27px );
+					left: calc( var( --x ) - 15px );
+					width: 42px;
+					height: 42px;
+
+					&:after {
+						content: "";
+						position: absolute;
+						top: -4px;
+						left: 0px;
+						width: 0;
+						height: 0;
+						z-index: 1;
+						border-bottom: 46px solid rgba(#060,.5);
+						border-right: 46px solid transparent;
+					}
+				}
 			}
 		}
 
@@ -472,6 +542,8 @@
 		&.c2 { background-color: rgba(#060,.5); }
 		&.c3 { background-color: rgba(#060,.5); border-radius: 50%; }
 		&.c4 { background-color: rgba(#060,.5); border-radius: 6px; }
+		&.c5 { background-color: transparent; }
+		&.c6 { background-color: transparent; }
 
 		&.a0 { background-color: transparent; }
 		&.a1 { background-color: rgba(#f72,.5); }

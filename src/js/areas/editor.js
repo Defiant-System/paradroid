@@ -148,6 +148,18 @@
 								margin: `${mY}px 0 0 ${mX}px`,
 							});
 							break;
+						case targetEl.hasClass("c5"):
+						case targetEl.hasClass("c6"):
+							targetEl.addClass("active");
+
+							Self.els.editBox.addClass("no-resize").css({
+								"--x": targetEl.cssProp("--x"),
+								"--y": targetEl.cssProp("--y"),
+								"--w": "42px",
+								"--h": "42px",
+								margin: `${mY}px 0 0 ${mX}px`,
+							});
+							break;
 						default:
 							// hide edit-box
 							Self.els.editBox.attr({ "style": "" });
@@ -405,8 +417,11 @@
 							attr.push(`w="${w}"`);
 							attr.push(`h="${h}"`);
 							break;
-						case "c3":
-							// attr = [`x="${x+2}"`, `y="${y+3}"`];
+						case "c5":
+							attr = [`x="${x+1}"`, `y="${y-1}"`];
+							break;
+						case "c6":
+							attr = [`x="${x-1}"`, `y="${y-1}"`];
 							break;
 					}
 					tiles.push(`<i id="${id}" ${attr.join(" ")}/>`);
@@ -491,6 +506,18 @@
 							x1Mod: 4, x1Add: -2,
 							y2Mod: 4, y2Add: -1,
 							x2Mod: 4, x2Add: -2,
+						},
+						c5: {
+							y1Mod: 4, y1Add: 0,
+							x1Mod: 4, x1Add: 0,
+							y2Mod: 4, y2Add: 0,
+							x2Mod: 4, x2Add: 0,
+						},
+						c6: {
+							y1Mod: 4, y1Add: 0,
+							x1Mod: 4, x1Add: 0,
+							y2Mod: 4, y2Add: 0,
+							x2Mod: 4, x2Add: 0,
 						}
 					},
 					offset = {
@@ -562,6 +589,14 @@
 				if (Drag.actEl.hasClass("c3")) {
 					data.x -= 2;
 					data.y -= 2;
+				}
+				if (Drag.actEl.hasClass("c5")) {
+					data.x += 6;
+					data.y += 6;
+				}
+				if (Drag.actEl.hasClass("c6")) {
+					data.x -= 8;
+					data.y += 6;
 				}
 
 				Drag.actEl.css({

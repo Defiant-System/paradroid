@@ -30,8 +30,9 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "6" });
+		APP.editor.dispatch({ type: "render-level", arg: "7" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");
@@ -45,7 +46,6 @@ let Test = {
 
 		// // setTimeout(() => APP.editor.els.palette.find(`.buttons span[data-click="output-collision-pgn"]`).trigger("click"), 300);
 		// return;
-		 */
 
 
 		return setTimeout(() => {
