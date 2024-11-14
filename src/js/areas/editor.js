@@ -488,10 +488,14 @@
 					offset = {
 						box: boxEl.offset(),
 						act: actEl.offset(),
+						pEl: {
+							x: (+colEl.cssProp("--x") * 32),
+							y: (+colEl.cssProp("--y") * 32),
+						}
 					},
 					click = {
-						x: event.clientX + (+colEl.cssProp("--x") * 32),
-						y: event.clientY + (+colEl.cssProp("--y") * 32),
+						x: event.clientX,
+						y: event.clientY,
 					};
 				// choose snap values
 				snap = snap[type];
@@ -524,12 +528,12 @@
 						break;
 					default: // move
 						data.boxEl = {
-							top: dY + Drag.offset.box.top,
-							left: dX + Drag.offset.box.left,
+							top: dY - Drag.offset.pEl.y + Drag.offset.box.top,
+							left: dX - Drag.offset.pEl.x + Drag.offset.box.left,
 						};
 						data.actEl = {
-							top: dY + Drag.offset.box.top,
-							left: dX + Drag.offset.box.left,
+							top: dY - Drag.offset.pEl.y + Drag.offset.box.top,
+							left: dX - Drag.offset.pEl.x + Drag.offset.box.left,
 						};
 						// snap
 						data.boxEl.top -= (data.boxEl.top % Drag.snap.y1Mod) + Drag.snap.y1Add;

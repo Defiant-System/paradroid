@@ -100,7 +100,7 @@
 
 	<svg id="icon-tre-kronor" viewBox="0 0 32 32">
 		<style type="text/css">
-			.st0{fill:#fff2;stroke:#fffa;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:10;}
+			.st0{fill:#fff;stroke:#fffa;stroke-linejoin:round;stroke-miterlimit:10;}
 		</style>
 		<path class="st0" d="M10.4,25.6c0,0,9.7,0,10.7,0c0-1.5,1.4-6.6,2-7.5c-0.6,0.6-3.1,2.5-3.1,2.5l0.7,1.5h-3.6l1.2-1.6l-2.7-3.1
 			L13,20.3l1.3,1.6h-3.6l0.9-1.6c0,0-2.5-1.9-3.2-2.5C9.2,19.4,10.4,24.2,10.4,25.6z"/>
