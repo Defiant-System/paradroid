@@ -330,7 +330,15 @@
 					append: Self.els.viewport,
 				});
 				// prevent "see-through"
-				Self.els.viewport.find(".layer-background").css({ background: sectionEl.data("color") });
+				el = Self.els.viewport.find(".layer-background");
+				Self.els.viewport.find(".level-bg").css({
+					background: sectionEl.data("color"),
+					"--x": el.cssProp("--x"),
+					"--y": el.cssProp("--y"),
+					"--w": el.cssProp("--w"),
+					"--h": el.cssProp("--h"),
+				});
+				el.css({ filter: sectionEl.data("filter") });
 				break;
 			case "grid-size":
 				event.el.parent().find(".active").removeClass("active");
@@ -636,6 +644,7 @@
 					let y = Math.round(Pan.moved.top / Pan.data.tile),
 						x = Math.round(Pan.moved.left / Pan.data.tile);
 					Pan.el.css({ top: "", left: "", "--y": y, "--x": x });
+					Self.els.viewport.find(".level-bg").css({ "--y": y, "--x": x });
 					Self.els.viewport.find(".layer-collision").css({ "--y": y, "--x": x });
 					Self.els.viewport.find(".layer-action").css({ "--y": y, "--x": x });
 					Self.els.editBox.css({ margin: `${y * Pan.data.tile}px 0 0 ${x * Pan.data.tile}px` });
