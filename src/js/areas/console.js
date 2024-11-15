@@ -11,7 +11,7 @@
 			info: window.find(".info"),
 		};
 
-		this.droids = ["123", "139", "247", "296", "598", "999"];
+		this.droids = ["123", "139", "247", "249", "296", "302", "598", "999"];
 	},
 	dispatch(event) {
 		let APP = paradroid,

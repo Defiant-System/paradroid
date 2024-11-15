@@ -37,7 +37,7 @@ content {
 	display: flex;
 	padding: 7px 17px 7px 7px;
 	border-radius: 6px;
-	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.5), transparent 115%);
+	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.75), transparent 115%);
 	--outline: #b3b3b3;
 	
 	&:before {
@@ -108,7 +108,7 @@ content {
 		position: relative;
 		z-index: 2;
 		flex: 1;
-		font-family: "Helvetica Neue";
+		font-family: "Oxanium";
 		text-transform: uppercase;
 		font-weight: 400;
 		color: #9b9b9b;
@@ -127,7 +127,7 @@ content {
 		}
 
 		.blueprint {
-			background: url(~/icons/bp-999.png) 50% 50%/contain no-repeat;
+			background: url(~/icons/bp-123.png) 50% 50%/contain no-repeat;
 			position: absolute;
 			top: 65px;
 			left: 21px;
@@ -170,7 +170,8 @@ content {
 				font-size: 11px;
 
 				&.unit {
-					font-size: 15px;
+					padding-bottom: 1px;
+					font-size: 16px;
 					font-weight: 500;
 					border-bottom: 1px solid var( --outline );
 					color: #888;
@@ -178,7 +179,7 @@ content {
 
 				&.ship {
 					position: relative;
-					padding-left: 24px;
+					padding-left: 25px;
 					font-size: 13px;
 					border-bottom: 1px solid var( --outline );
 
@@ -186,10 +187,10 @@ content {
 						content: "";
 						background: url(~/icons/icon-tre-kronor.png) 50% 50%/contain no-repeat;
 						position: absolute;
-						top: 1px;
+						top: 0;
 						left: 5px;
-						width: 16px;
-						height: 16px;
+						width: 17px;
+						height: 17px;
 						opacity: .5;
 					}
 				}
@@ -211,6 +212,7 @@ content {
 				}
 
 				&.notes {
+					text-transform: none;
 					font-size: 9px;
 					line-height: 1.35;
 					color: #888;
