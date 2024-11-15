@@ -36,7 +36,7 @@
 
 <Droid id="329" digits="1,1,1" weight="31" speed="3" energy="40" loss="2" agression="0" weapon="1" score="75">
 	<i id="type"><![CDATA[Messenger Robot]]></i>
-	<i id="notes"><![CDATA[Early type messenger robot. Large wheels impede motion on small craft.an]]></i>
+	<i id="notes"><![CDATA[Early type messenger robot. Large wheels impede motion on small craft.]]></i>
 </Droid>
 
 <Droid id="420" digits="-1,-1,-1" weight="57" speed="3" energy="60" loss="2" agression="0" weapon="1" score="100">
