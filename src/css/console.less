@@ -35,7 +35,7 @@ content {
 
 .console-view {
 	display: flex;
-	padding: 9px 17px 9px 9px;
+	padding: 7px 17px 7px 7px;
 	border-radius: 6px;
 	background-image: repeating-linear-gradient(90deg, #f5f5f50d 0, #f5f5f50d 1px, transparent 1px, transparent 44px),
 						repeating-linear-gradient(0deg, #f5f5f50d 0, #f5f5f50d 1px, transparent 1px, transparent 44px),
@@ -48,47 +48,36 @@ content {
 	&:before {
 		content: "";
 		position: absolute;
-		top: 9px;
-		left: 9px;
+		top: 5px;
+		left: 5px;
 		right: 15px;
-		bottom: 9px;
-		// border-radius: 4px;
-		border: 2px solid #b4d5ff;
+		bottom: 5px;
+		z-index: 3;
+		border-radius: 4px;
+		border: 2px solid #999;
+		pointer-events: none;
 	}
 
-	// &.white {
-	// 	background-image: repeating-linear-gradient(90deg, #a5a5a50d 0, #a5a5a50d 1px, transparent 1px, transparent 44px),
-	// 						repeating-linear-gradient(0deg, #a5a5a50d 0, #a5a5a50d 1px, transparent 1px, transparent 44px),
-	// 						repeating-linear-gradient(0deg, #a5a5a512 0, #a5a5a512 1px, transparent 1px, transparent 11px),
-	// 						repeating-linear-gradient(90deg, #a5a5a512 0, #a5a5a512 1px, transparent 1px, transparent 11px),
-	// 						// radial-gradient(ellipse at 60% 50%, rgba(#fff,.15), transparent),
-	// 						linear-gradient(45deg, #f2f2f2, #fafafa);
-		
-	// 	&:before {
-	// 		border-color: #999;
-	// 	}
-
-	// 	.menu {
-	// 		filter: invert(1) opacity(.5) grayscale(1);
-	// 	}
-
-	// 	.data {
-	// 		color: #aaa;
-
-	// 		.blueprint {
-	// 			filter: invert(1) opacity(.75) grayscale(1) brightness(3);
-	// 		}
-
-	// 		.info {
-	// 			filter: invert(1) opacity(.75) grayscale(1) brightness(3);
-	// 			color: #fff;
-	// 		}
-	// 	}
-	// }
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		background-image: repeating-linear-gradient(90deg, #9595950d 0, #9595950d 1px, transparent 1px, transparent 44px),
+							repeating-linear-gradient(0deg, #9595950d 0, #9595950d 1px, transparent 1px, transparent 44px),
+							repeating-linear-gradient(0deg, #95959512 0, #95959512 1px, transparent 1px, transparent 11px),
+							repeating-linear-gradient(90deg, #95959512 0, #95959512 1px, transparent 1px, transparent 11px);
+		background-position: -5px -24px;
+		pointer-events: none;
+	}
 
 	.menu {
 		position: relative;
-		width: 83px;
+		z-index: 2;
+		width: 91px;
 		text-align: center;
 		// border-right: 2px solid #7caae6;
 
@@ -102,14 +91,15 @@ content {
 
 			i[class^="icon-"],
 			i[class*="icon-"] {
-				filter: invert(1) brightness(1.15);
+				
 			}
 
 			span {
 				position: relative;
 				top: 3px;
 				display: inline-block;
-				filter: invert(1) brightness(1.15);
+				opacity: .35;
+				// filter: invert(1) brightness(1.15);
 
 				&:before {
 					left: 0;
@@ -121,110 +111,126 @@ content {
 
 	.data {
 		position: relative;
+		z-index: 2;
 		flex: 1;
 		font-family: "Helvetica Neue";
 		text-transform: uppercase;
-		font-weight: 200;
-		color: #fff;
-
-		h2 {
-			position: absolute;
-			top: 7px;
-			right: 43px;
-			text-align: right;
-			letter-spacing: 1px;
-			font-size: 24px;
-			text-shadow: 0 0 3px #fffa;
-
-			&:before {
-				content: "";
-				background: url(~/icons/icon-tre-kronor.png) 50% 50%/contain no-repeat;
-				position: absolute;
-				top: -3px;
-				right: -38px;
-				width: 32px;
-				height: 32px;
-			}
-		}
+		font-weight: 400;
+		color: #888;
 
 		h5 {
 			position: absolute;
 			bottom: 0;
-			right: -4px;
+			right: -3px;
 			transform: rotate(90deg);
 			transform-origin: bottom right;
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			font-size: 11px;
-			font-weight: 200;
-			color: #fff8;
+			font-weight: 400;
+			color: #999;
 		}
 
 		.blueprint {
-			background: url(~/icons/bp-999.png) 50% 50%/contain no-repeat;
-			// background-color: rgba(#000,.1);
+			background: url(~/icons/bp-598.png) 50% 50%/contain no-repeat; // 123 139 247 296 598 999
 			position: absolute;
-			top: 46px;
-			left: 51px;
+			top: 37px;
+			left: 59px;
 			width: 527px;
 			height: 318px;
 		}
 
 		.info {
 			position: absolute;
-			bottom: 2px;
+			bottom: 0;
 			right: 0;
-			width: 293px;
-			height: 65px;
-			background: #357ad077;
-			border: 2px solid #b4d5ff;
+			width: 393px;
+			height: 62px;
+			background: #ccc4;
+			border-top-left-radius: 4px;
+			border: 2px solid #aaa;
 			border-bottom: 0;
 			border-right: 0;
 
 			&:before {
 				content: "";
 				position: absolute;
-				top: 24px;
-				left: 0;
-				width: 177px;
-				height: 38px;
-				border-top: 1px solid #b4d5ff;
-				border-right: 1px solid #b4d5ff;
+				top: 22px;
+				left: 208px;
+				width: 117px;
+				height: 39px;
+				border-left: 2px solid #aaa;
+				border-right: 1px solid #aaa;
 			}
 
 			&:after {
 				content: "";
 				position: absolute;
-				top: 24px;
+				top: 21px;
 				right: 0;
-				width: 113px;
-				height: 18px;
-				border-top: 1px solid #b4d5ff;
-				border-bottom: 1px solid #b4d5ff;
+				width: 183px;
+				height: 19px;
+				border-top: 1px solid #aaa;
+				border-bottom: 1px solid #aaa;
 			}
 
-			h3 {
+			span {
 				position: absolute;
-				top: 5px;
-				left: 5px;
-				font-size: 14px;
-				font-weight: 400;
-			}
-
-			h4 {
-				position: absolute;
-				top: 29px;
-				right: 0;
-				width: 109px;
 				font-size: 11px;
-				font-weight: 200;
+
+				&.unit {
+					top: 0;
+					left: 0;
+					width: 176px;
+					height: 22px;
+					padding: 3px 4px 0;
+					font-size: 14px;
+					font-weight: 500;
+					border-bottom: 2px solid #aaa;
+				}
+
+				&.ship {
+					top: 0;
+					left: 176px;
+					height: 22px;
+					width: 213px;
+					padding: 4px 25px 0 0;
+					text-align: right;
+					font-size: 13px;
+					font-weight: 500;
+					color: #999;
+					border-bottom: 2px solid #aaa;
+
+					&:before {
+						content: "";
+						background: url(~/icons/icon-tre-kronor.png) 50% 50%/contain no-repeat;
+						position: absolute;
+						top: 1px;
+						right: 2px;
+						width: 18px;
+						height: 18px;
+						opacity: .5;
+					}
+				}
+
+				&.type {
+					top: 27px;
+					left: 214px;
+				}
 
 				&.class {
-					
+					top: 47px;
+					left: 214px;
 				}
 
 				&.weight {
+					top: 27px;
+					left: 332px;
+				}
+
+				&.speed {
 					top: 47px;
+					left: 332px;
 				}
 			}
 		}
