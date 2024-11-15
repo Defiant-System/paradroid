@@ -15,7 +15,7 @@
 </Droid>
 
 <Droid id="247" digits="1,1,0" weight="78" speed="4" energy="20" loss="2" agression="0" weapon="1" score="50">
-	<i id="title"><![CDATA[servant robot]]></i>
+	<i id="title"><![CDATA[Servant robot]]></i>
 	<i id="notes"><![CDATA[Light duty servant robot. One of the first to use the anti-grav system.]]></i>
 </Droid>
 
