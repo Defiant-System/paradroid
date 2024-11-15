@@ -8,6 +8,7 @@
 			content: window.find("content"),
 			el: window.find(".console-view"),
 			bp: window.find(".blueprint"),
+			info: window.find(".info"),
 		};
 
 		this.droids = ["123", "139", "247", "296", "598", "999"];
@@ -15,6 +16,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.console,
+			xNode,
 			value,
 			el;
 		// console.log(event);
@@ -45,6 +47,8 @@
 						if (index < 0) index = Self.droids.length-1;
 						value = Self.droids[index];
 						Self.els.bp.css({ "background-image": `url("~/icons/bp-${value}.png")` });
+						// show info for droid
+						Self.dispatch({ type: "show-droid", value });
 						break;
 					case "right":
 						value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
@@ -53,10 +57,20 @@
 						if (index > Self.droids.length-1) index = 0;
 						value = Self.droids[index];
 						Self.els.bp.css({ "background-image": `url("~/icons/bp-${value}.png")` });
+						// show info for droid
+						Self.dispatch({ type: "show-droid", value });
 						break;
 				}
 				break;
 			// custom events
+			case "show-droid":
+				xNode = window.bluePrint.selectSingleNode(`//Droid[@id="${event.value}"]`);
+				Self.els.info.find(".unit").html(`Unit ${event.value}`);
+				Self.els.info.find(".type").html(xNode.selectSingleNode(`./i[@id="type"]`).textContent);
+				Self.els.info.find(".weight").html(xNode.getAttribute("weight") +" KG");
+				Self.els.info.find(".speed").html(xNode.getAttribute("speed") +" M/S");
+				Self.els.info.find(".notes").html(xNode.selectSingleNode(`./i[@id="notes"]`).textContent);
+				break;
 			case "select-view":
 				Self.els.el.find(".option.active").removeClass("active");
 				// make lift active
