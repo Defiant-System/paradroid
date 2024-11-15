@@ -4,8 +4,7 @@ let Test = {
 		// return;
 
 		// return APP.dispatch({ type: "show-view", arg: "terminated" });
-		return APP.dispatch({ type: "show-view", arg: "start" });
-		return APP.dispatch({ type: "show-view", arg: "console" });
+		// return APP.dispatch({ type: "show-view", arg: "start" });
 
 		/*
 		 * Finder algorithm
@@ -21,6 +20,13 @@ let Test = {
 		 */
 
 		
+		/*
+		 * Console View
+		 */
+		APP.dispatch({ type: "show-view", arg: "console" });
+		APP.console.dispatch({ type: "show-droid", value: "476" });
+		return;
+
 		/*
 		 * LIFT View
 		APP.dispatch({ type: "show-view", arg: "lift" });

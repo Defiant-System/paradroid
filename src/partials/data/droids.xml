@@ -50,7 +50,7 @@
 </Droid>
 
 <Droid id="493" digits="0,0,0" weight="51" speed="4" energy="80" loss="3" agression="0" weapon="1" score="100">
-	<i id="type"><![CDATA[maintenance Robot]]></i>
+	<i id="type"><![CDATA[Maintenance Robot]]></i>
 	<i id="notes"><![CDATA[Slave maintenance droid. Standard version will carry its own toolbox.]]></i>
 </Droid>
 

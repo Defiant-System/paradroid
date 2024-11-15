@@ -11,7 +11,7 @@
 			info: window.find(".info"),
 		};
 
-		this.droids = ["123", "139", "247", "249", "296", "302", "329", "420", "598", "999"];
+		this.droids = ["123", "139", "247", "249", "296", "302", "329", "420", "476", "493", "516", "598", "999"];
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -46,7 +46,6 @@
 						index--;
 						if (index < 0) index = Self.droids.length-1;
 						value = Self.droids[index];
-						Self.els.bp.css({ "background-image": `url("~/icons/bp-${value}.png")` });
 						// show info for droid
 						Self.dispatch({ type: "show-droid", value });
 						break;
@@ -56,7 +55,6 @@
 						index++;
 						if (index > Self.droids.length-1) index = 0;
 						value = Self.droids[index];
-						Self.els.bp.css({ "background-image": `url("~/icons/bp-${value}.png")` });
 						// show info for droid
 						Self.dispatch({ type: "show-droid", value });
 						break;
@@ -65,6 +63,7 @@
 			// custom events
 			case "show-droid":
 				xNode = window.bluePrint.selectSingleNode(`//Droid[@id="${event.value}"]`);
+				Self.els.bp.css({ "background-image": `url("~/icons/bp-${event.value}.png")` });
 				Self.els.info.find(".unit").html(`Unit ${event.value}`);
 				Self.els.info.find(".type").html(xNode.selectSingleNode(`./i[@id="type"]`).textContent);
 				Self.els.info.find(".weight").html(xNode.getAttribute("weight") +" KG");
