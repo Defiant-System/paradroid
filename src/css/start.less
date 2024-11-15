@@ -246,4 +246,39 @@
 			// filter: grayscale(1) brightness(2.5);
 		}
 	}
+
+	.menu {
+		position: relative;
+		top: 31px;
+		text-align: center;
+
+		.option {
+			position: relative;
+			margin: 0 33px 0 -3px;
+			display: inline-block;
+
+			&:nth-child(1) {
+				.bar .box {
+					--c1: #f7ff61;
+				}
+			}
+
+			&:nth-child(2) {
+				.bar .box {
+					--c1: #61ff66;
+				}
+			}
+
+			.box-title {
+				position: absolute;
+				top: 10px;
+				left: 21px;
+				color: rgba(#111,.3);
+				mix-blend-mode: luminosity;
+				font-family: Paradrew;
+				font-size: 20px;
+				text-shadow: 0 1px 0 rgba(#fff,.35);
+			}
+		}
+	}
 }
