@@ -37,7 +37,7 @@ content {
 	display: flex;
 	padding: 7px 17px 7px 7px;
 	border-radius: 6px;
-	background: radial-gradient(ellipse at 60% 50%, rgba(#fff,.75), transparent 115%);
+	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.75), transparent 115%);
 	
 	&:before {
 		content: "";
@@ -110,7 +110,7 @@ content {
 		font-family: "Helvetica Neue";
 		text-transform: uppercase;
 		font-weight: 400;
-		color: #888;
+		color: #929292;
 
 		h5 {
 			position: absolute;
@@ -126,10 +126,10 @@ content {
 		}
 
 		.blueprint {
-			background: url(~/icons/bp-999.png) 50% 50%/contain no-repeat; // 123 139 247 296 598 999
+			background: url(~/icons/bp-999.png) 50% 50%/contain no-repeat;
 			position: absolute;
-			top: 37px;
-			left: 59px;
+			top: 65px;
+			left: 21px;
 			width: 527px;
 			height: 318px;
 		}
@@ -138,93 +138,81 @@ content {
 			position: absolute;
 			bottom: 0;
 			right: 0;
-			width: 393px;
-			height: 62px;
+			width: 193px;
 			background: #ccc4;
 			border-top-left-radius: 4px;
 			border: 2px solid #aaa;
 			border-bottom: 0;
 			border-right: 0;
 
-			&:before {
-				content: "";
-				position: absolute;
-				top: 22px;
-				left: 208px;
-				width: 117px;
-				height: 39px;
-				border-left: 2px solid #aaa;
-				border-right: 1px solid #aaa;
-			}
-
-			&:after {
-				content: "";
-				position: absolute;
-				top: 21px;
-				right: 0;
-				width: 183px;
-				height: 19px;
-				border-top: 1px solid #aaa;
+			div.row {
+				display: flex;
 				border-bottom: 1px solid #aaa;
+
+				span {
+					display: inline-block;
+
+					&:nth-child(1) {
+						width: 137px;
+						border-right: 1px solid #aaa;
+					}
+
+					&:nth-child(2) {
+						flex: 1;
+					}
+				}
 			}
 
 			span {
-				position: absolute;
+				display: block;
+				padding: 3px 5px 2px;
 				font-size: 11px;
 
 				&.unit {
-					top: 0;
-					left: 0;
-					width: 176px;
-					height: 22px;
-					padding: 3px 4px 0;
-					font-size: 14px;
+					font-size: 15px;
 					font-weight: 500;
-					border-bottom: 2px solid #aaa;
+					border-bottom: 1px solid #aaa;
+					color: #888;
 				}
 
 				&.ship {
-					top: 0;
-					left: 176px;
-					height: 22px;
-					width: 213px;
-					padding: 4px 25px 0 0;
-					text-align: right;
+					position: relative;
+					padding-left: 24px;
 					font-size: 13px;
-					font-weight: 500;
-					color: #999;
-					border-bottom: 2px solid #aaa;
+					border-bottom: 1px solid #aaa;
 
 					&:before {
 						content: "";
 						background: url(~/icons/icon-tre-kronor.png) 50% 50%/contain no-repeat;
 						position: absolute;
 						top: 1px;
-						right: 2px;
-						width: 18px;
-						height: 18px;
+						left: 5px;
+						width: 16px;
+						height: 16px;
 						opacity: .5;
 					}
 				}
 
 				&.type {
-					top: 27px;
-					left: 214px;
-				}
 
-				&.class {
-					top: 47px;
-					left: 214px;
 				}
 
 				&.weight {
-					top: 27px;
-					left: 332px;
+
+				}
+
+				&.class {
+
 				}
 
 				&.speed {
-					top: 47px;
-					left: 332px;
+
+				}
+
+				&.desc {
+					font-size: 9px;
+					line-height: 1.35;
+					color: #888;
 				}
 			}
 		}

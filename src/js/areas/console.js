@@ -7,7 +7,10 @@
 		this.els = {
 			content: window.find("content"),
 			el: window.find(".console-view"),
+			bp: window.find(".blueprint"),
 		};
+
+		this.droids = ["123", "139", "247", "296", "598", "999"];
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -25,15 +28,31 @@
 					case "return":
 						active.trigger("click");
 						break;
-					case "up":
-						active.removeClass("active");
-						index = Math.max(index - 1, 0);
-						options.get(index).addClass("active");
+					// case "up":
+					// 	active.removeClass("active");
+					// 	index = Math.max(index - 1, 0);
+					// 	options.get(index).addClass("active");
+					// 	break;
+					// case "down":
+					// 	active.removeClass("active");
+					// 	index = Math.min(index + 1, options.length-1);
+					// 	options.get(index).addClass("active");
+					// 	break;
+					case "left":
+						value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
+						index = Self.droids.indexOf(value);
+						index--;
+						if (index < 0) index = Self.droids.length-1;
+						value = Self.droids[index];
+						Self.els.bp.css({ "background-image": `url("~/icons/bp-${value}.png")` });
 						break;
-					case "down":
-						active.removeClass("active");
-						index = Math.min(index + 1, options.length-1);
-						options.get(index).addClass("active");
+					case "right":
+						value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
+						index = Self.droids.indexOf(value);
+						index++;
+						if (index > Self.droids.length-1) index = 0;
+						value = Self.droids[index];
+						Self.els.bp.css({ "background-image": `url("~/icons/bp-${value}.png")` });
 						break;
 				}
 				break;
