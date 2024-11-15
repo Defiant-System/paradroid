@@ -37,7 +37,8 @@ content {
 	display: flex;
 	padding: 7px 17px 7px 7px;
 	border-radius: 6px;
-	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.75), transparent 115%);
+	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.5), transparent 115%);
+	--outline: #b3b3b3;
 	
 	&:before {
 		content: "";
@@ -48,7 +49,7 @@ content {
 		bottom: 5px;
 		z-index: 3;
 		border-radius: 4px;
-		border: 2px solid #999;
+		border: 2px solid var( --outline );
 		pointer-events: none;
 	}
 
@@ -60,10 +61,10 @@ content {
 		width: 100%;
 		height: 100%;
 		z-index: 1;
-		background-image: repeating-linear-gradient(90deg, #9595950d 0, #9595950d 1px, transparent 1px, transparent 44px),
-							repeating-linear-gradient(0deg, #9595950d 0, #9595950d 1px, transparent 1px, transparent 44px),
-							repeating-linear-gradient(0deg, #95959512 0, #95959512 1px, transparent 1px, transparent 11px),
-							repeating-linear-gradient(90deg, #95959512 0, #95959512 1px, transparent 1px, transparent 11px);
+		background-image: repeating-linear-gradient(90deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 44px),
+							repeating-linear-gradient(0deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 44px),
+							repeating-linear-gradient(0deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 11px),
+							repeating-linear-gradient(90deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 11px);
 		background-position: -5px -24px;
 		pointer-events: none;
 	}
@@ -110,7 +111,7 @@ content {
 		font-family: "Helvetica Neue";
 		text-transform: uppercase;
 		font-weight: 400;
-		color: #929292;
+		color: #9b9b9b;
 
 		h5 {
 			position: absolute;
@@ -139,22 +140,22 @@ content {
 			bottom: 0;
 			right: 0;
 			width: 193px;
-			background: #ccc4;
+			background: #eee2;
 			border-top-left-radius: 4px;
-			border: 2px solid #aaa;
+			border: 2px solid var( --outline );
 			border-bottom: 0;
 			border-right: 0;
 
 			div.row {
 				display: flex;
-				border-bottom: 1px solid #aaa;
+				border-bottom: 1px solid var( --outline );
 
 				span {
 					display: inline-block;
 
 					&:nth-child(1) {
 						width: 137px;
-						border-right: 1px solid #aaa;
+						border-right: 1px solid var( --outline );
 					}
 
 					&:nth-child(2) {
@@ -171,7 +172,7 @@ content {
 				&.unit {
 					font-size: 15px;
 					font-weight: 500;
-					border-bottom: 1px solid #aaa;
+					border-bottom: 1px solid var( --outline );
 					color: #888;
 				}
 
@@ -179,7 +180,7 @@ content {
 					position: relative;
 					padding-left: 24px;
 					font-size: 13px;
-					border-bottom: 1px solid #aaa;
+					border-bottom: 1px solid var( --outline );
 
 					&:before {
 						content: "";
