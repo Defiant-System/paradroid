@@ -24,7 +24,7 @@ let Test = {
 		 * Console View
 		 */
 		APP.dispatch({ type: "show-view", arg: "console" });
-		APP.console.dispatch({ type: "show-droid", value: "476" });
+		APP.console.dispatch({ type: "show-droid", value: "598" });
 		return;
 
 		/*
