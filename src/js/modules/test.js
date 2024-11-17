@@ -22,10 +22,10 @@ let Test = {
 		
 		/*
 		 * Console View
-		 */
 		APP.dispatch({ type: "show-view", arg: "console" });
-		APP.console.dispatch({ type: "show-droid", value: "821" });
+		APP.console.dispatch({ type: "show-droid", value: "001" });
 		return;
+		 */
 
 		/*
 		 * LIFT View
@@ -37,7 +37,7 @@ let Test = {
 		/*
 		 * EDITOR
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "18" });
+		APP.editor.dispatch({ type: "render-level", arg: "1" });
 
 		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");

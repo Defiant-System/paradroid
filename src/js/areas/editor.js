@@ -126,28 +126,28 @@
 								margin: `${mY}px 0 0 ${mX}px`,
 							});
 							break;
-						case targetEl.hasClass("c2"):
-							targetEl.addClass("active");
+						// case targetEl.hasClass("c2"):
+						// 	targetEl.addClass("active");
 
-							Self.els.editBox.removeClass("no-resize").css({
-								"--x": targetEl.cssProp("--x"),
-								"--y": targetEl.cssProp("--y"),
-								"--w": "46px",
-								"--h": "46px",
-								margin: `${mY}px 0 0 ${mX}px`,
-							});
-							break;
-						case targetEl.hasClass("c3"):
-							targetEl.addClass("active");
+						// 	Self.els.editBox.removeClass("no-resize").css({
+						// 		"--x": targetEl.cssProp("--x"),
+						// 		"--y": targetEl.cssProp("--y"),
+						// 		"--w": "46px",
+						// 		"--h": "46px",
+						// 		margin: `${mY}px 0 0 ${mX}px`,
+						// 	});
+						// 	break;
+						// case targetEl.hasClass("c3"):
+						// 	targetEl.addClass("active");
 
-							Self.els.editBox.addClass("no-resize").css({
-								"--x": targetEl.cssProp("--x"),
-								"--y": targetEl.cssProp("--y"),
-								"--w": "17px",
-								"--h": "17px",
-								margin: `${mY}px 0 0 ${mX}px`,
-							});
-							break;
+						// 	Self.els.editBox.addClass("no-resize").css({
+						// 		"--x": targetEl.cssProp("--x"),
+						// 		"--y": targetEl.cssProp("--y"),
+						// 		"--w": "17px",
+						// 		"--h": "17px",
+						// 		margin: `${mY}px 0 0 ${mX}px`,
+						// 	});
+						// 	break;
 						case targetEl.hasClass("c5"):
 						case targetEl.hasClass("c6"):
 							targetEl.addClass("active");
@@ -489,18 +489,18 @@
 							y2Mod: 4, y2Add: -1,
 							x2Mod: 4, x2Add: -2,
 						},
-						c2: {
-							y1Mod: 16, y1Add: 8,
-							x1Mod: 16, x1Add: 8,
-							y2Mod: 16, y2Add: 0,
-							x2Mod: 16, x2Add: 0,
-						},
-						c3: {
-							y1Mod: 2, y1Add: 1,
-							x1Mod: 2, x1Add: 1,
-							y2Mod: 2, y2Add: 1,
-							x2Mod: 2, x2Add: 1,
-						},
+						// c2: {
+						// 	y1Mod: 16, y1Add: 8,
+						// 	x1Mod: 16, x1Add: 8,
+						// 	y2Mod: 16, y2Add: 0,
+						// 	x2Mod: 16, x2Add: 0,
+						// },
+						// c3: {
+						// 	y1Mod: 2, y1Add: 1,
+						// 	x1Mod: 2, x1Add: 1,
+						// 	y2Mod: 2, y2Add: 1,
+						// 	x2Mod: 2, x2Add: 1,
+						// },
 						c4: {
 							y1Mod: 4, y1Add: -1,
 							x1Mod: 4, x1Add: -2,

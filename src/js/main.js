@@ -14,7 +14,7 @@
 @import "./ext/pathseg.js"
 @import "./ext/astar.js"
 
-//@-import "./modules/raycaster.js"
+@import "./modules/raycaster.js"
 @import "./modules/utils.js"
 @import "./modules/color.js"
 @import "./modules/test.js"

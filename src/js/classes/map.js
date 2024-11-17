@@ -57,12 +57,12 @@ class Map {
 				case "c1":
 					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true });
 					break;
-				case "c2":
-					body = Matter.Bodies.polygon(x, y, 8, 18, { isStatic: true });
-					break;
-				case "c3":
-					body = Matter.Bodies.circle(x, y, 8, { isStatic: true });
-					break;
+				// case "c2":
+				// 	body = Matter.Bodies.polygon(x, y, 8, 18, { isStatic: true });
+				// 	break;
+				// case "c3":
+				// 	body = Matter.Bodies.circle(x, y, 8, { isStatic: true });
+				// 	break;
 				case "c4":
 					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true, chamfer: { radius: 6 } });
 					break;
@@ -169,19 +169,19 @@ class Map {
 			}
 		}
 
-		// if (this.arena.player._moved || !Raycaster.arena) {
-		// 	let blocks = [];
-		// 	Matter.Composite.allBodies(this.arena.map.engine.world)
-		// 			.map(body => {
-		// 				let bX = Math.round(body.position.x / tile),
-		// 					bY = Math.round(body.position.y / tile);
-		// 				if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
-		// 					blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
-		// 				}
-		// 			});
-		// 	Raycaster.run(this.arena, blocks, ctx);
-		// }
-		// Raycaster.drawVisibilityTriangles(ctx);
+		if (!Raycaster.arena) {
+			let blocks = [];
+			Matter.Composite.allBodies(this.arena.map.engine.world)
+					.map(body => {
+						let bX = Math.round(body.position.x / tile),
+							bY = Math.round(body.position.y / tile);
+						if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
+							blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
+						}
+					});
+			Raycaster.run(this.arena, blocks, ctx);
+		}
+		Raycaster.drawVisibilityTriangles(ctx);
 		
 		// draw entries - exclude droids
 		this.entries
