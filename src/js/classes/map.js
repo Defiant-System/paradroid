@@ -179,6 +179,7 @@ class Map {
 							blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
 						}
 					});
+			// console.log( JSON.stringify(blocks) );
 			Raycaster.run(this.arena, blocks, ctx);
 		}
 		Raycaster.drawVisibilityTriangles(ctx);

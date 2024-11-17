@@ -22,10 +22,10 @@ let Test = {
 		
 		/*
 		 * Console View
-		 */
 		APP.dispatch({ type: "show-view", arg: "console" });
 		APP.console.dispatch({ type: "show-droid", value: "999" });
 		return;
+		 */
 
 		/*
 		 * LIFT View
@@ -56,14 +56,14 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					map: { id: 1, clear: .15 }, player: { id: "001", x: 25, y: 9, power: .25 }, debug: { mode: 1 },
+					// map: { id: 1, clear: .15 }, player: { id: "001", x: 25, y: 9, power: .25 }, debug: { mode: 1 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 10, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 1, clear: .1 }, player: { x: 23, y: 7, power: .5 }, debug: { mode: 1 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
-					// map: { id: 6, clear: .1 }, player: { x: 28, y: 8, power: .25 }, debug: { mode: 1 },
+					map: { id: 19, clear: .1 }, player: { x: 6, y: 5, power: .25 }, debug: { mode: 1 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
