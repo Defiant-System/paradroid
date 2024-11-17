@@ -76,7 +76,7 @@
 
 <Droid id="615" digits="0,-2,-2" weight="29" speed="4" energy="100" loss="3" agression="30" weapon="2" score="150">
 	<i id="type"><![CDATA[Sentinel Droid]]></i>
-	<i id="notes"><![CDATA[Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these are now very rare.]]></i>
+	<i id="notes"><![CDATA[Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare.]]></i>
 </Droid>
 
 <Droid id="629" digits="0,0,0" weight="59" speed="3" energy="100" loss="3" agression="40" weapon="3" score="150">
