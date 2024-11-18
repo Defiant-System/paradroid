@@ -18,7 +18,12 @@
 		switch (event.type) {
 			// custom events
 			case "init-anim":
-				Self.els.el.addClass("view-anim");
+				Self.els.el.removeClass("no-anim").addClass("view-anim");
+				break;
+			case "toggle-music":
+			case "toggle-sound-fx":
+				value = event.el.hasClass("off");
+				event.el.toggleClass("off", value);
 				break;
 		}
 	}

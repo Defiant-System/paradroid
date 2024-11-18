@@ -22,10 +22,10 @@ let Test = {
 		
 		/*
 		 * START View
-		 */
 		APP.dispatch({ type: "show-view", arg: "start" });
 		setTimeout(() => APP.start.dispatch({ type: "init-anim" }), 400);
 		return;
+		 */
 
 
 		/*

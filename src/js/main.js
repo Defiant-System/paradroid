@@ -77,6 +77,10 @@ const paradroid = {
 				Self.els.content.data({ show: event.arg });
 				Self.hud.dispatch({ type: "set-view-title" });
 
+				if (event.arg === "start") {
+					Self.start.dispatch({ type: "init-anim" });
+				}
+
 				if (Self.mobile.arena.map && event.arg === "editor") {
 					Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
 					setTimeout(() => {
