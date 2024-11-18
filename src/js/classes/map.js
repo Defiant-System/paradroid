@@ -140,15 +140,14 @@ class Map {
 			Matter.Composite.allBodies(this.arena.map.engine.world)
 					.filter(b => !["player"].includes(b.label))
 					.map(body => {
-						console.log( body );
-						// let bX = Math.round(body.position.x / tile),
-						// 	bY = Math.round(body.position.y / tile);
-						// if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
-						// 	blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
-						// }
+						// flatten vertices
+						body.vertices.map(v => {
+							vert.push([v.x, v.y]);
+						});
 					});
 			// console.log( JSON.stringify(blocks) );
-			this.raycaster.loadMap(vert);
+			let origo = this.arena.player.position;
+			this.raycaster.loadMap(vert, origo);
 		}
 	}
 

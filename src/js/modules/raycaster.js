@@ -6,11 +6,16 @@ let Raycaster = (() => {
 	let RC = {
 			hashKeyCounter: 0,
 			init() {
-				// anything to do?
+				// 
+				this.visibility = new Visibility;
+
 				return this;
 			},
-			loadMap(vert) {
-				
+			loadMap(vert, origo) {
+				this.visibility.addVertices(vert);
+				// set origo point
+				this.visibility.setLightLocation(origo.x, origo.y);
+				this.visibility.sweep();
 			},
 			render(ctx) {
 				
@@ -143,7 +148,7 @@ let Raycaster = (() => {
 			this._iterator = null;
 			if (reservedSize > 0) this._headPool = this._tailPool = new DLLNode(null,this);
 			this.head = this.tail = null;
-			this.key = hashKeyCounter++;
+			this.key = RC.hashKeyCounter++;
 			this.reuseIterator = false;
 		}
 
