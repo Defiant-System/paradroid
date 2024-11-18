@@ -11,25 +11,34 @@ let Raycaster = (() => {
 
 				return this;
 			},
-			loadMap(vert, origo) {
-				this.visibility.addVertices(vert);
+			loadMap(area, vert, origo) {
+				this.visibility.addVertices(area, vert);
 				// set origo point
 				this.origo = origo;
 				this.visibility.setLightLocation(origo.x, origo.y);
 				this.visibility.sweep();
 			},
-			drawFloor(ctx, path, offset) {
+			drawFloor(ctx, path) {
 				ctx.save();
-				// ctx.translate(-offset.x, -offset.y);
-				ctx.strokeStyle = "blue";
+				ctx.fillStyle = "#fff6";
+				ctx.beginPath();
+				Visibility.interpretSvg(ctx, path);
+				ctx.fill();
+				ctx.restore();
+			},
+			drawWalls(ctx, path) {
+				ctx.save();
+				ctx.strokeStyle = "#f00";
+				ctx.lineWidth = 2;
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
 				ctx.stroke();
 				ctx.restore();
 			},
-			render(ctx, offset) {
+			render(ctx) {
 				let paths = Visibility.computeVisibleAreaPaths(this.origo, this.visibility.output);
-				this.drawFloor(ctx, paths.floor, offset);
+				this.drawFloor(ctx, paths.floor);
+				this.drawWalls(ctx, paths.walls);
 			}
 		};
 
@@ -529,31 +538,21 @@ let Raycaster = (() => {
 			}
 		}
 
-		loadEdgeOfMap(size, margin) {
-			this.addSegment(margin, margin, margin, size - margin);
-			this.addSegment(margin, size - margin, size - margin, size - margin);
-			this.addSegment(size - margin, size - margin, size - margin, margin);
-			this.addSegment(size - margin, margin, margin, margin);
+		loadEdgeOfMap(area) {
+			this.addSegment(area.m, area.m, area.w-area.m, area.h-area.m);
+			this.addSegment(area.m, area.m, area.m, area.h-area.m);
+			this.addSegment(area.m, area.m, area.w-area.m, area.m);
+			this.addSegment(area.m, area.h-area.m, area.w-area.m, area.h-area.m);
 		}
 
-		chopBlocks(blocks) {
-			let chopped = [];
-			blocks.map(b => {
-				chopped.push(b);
-			});
-			return chopped;
-		}
-		
-		loadMap(size, margin, blocks, walls) {
-			let chopped = this.chopBlocks(blocks);
-
+		loadMap(area, blocks, walls) {
 			this.segments.clear();
 			this.endpoints.clear();
-			this.loadEdgeOfMap(size, margin);
+			this.loadEdgeOfMap(area);
 			var _g = 0;
 
-			while(_g < chopped.length) {
-				var block = chopped[_g];
+			while(_g < blocks.length) {
+				var block = blocks[_g];
 				++_g;
 				// corners
 				let nw = [block.x, block.y];
@@ -579,16 +578,20 @@ let Raycaster = (() => {
 			}
 		}
 		
-		addVertices(vert) {
+		addVertices(area, vert) {
 			this.segments.clear();
 			this.endpoints.clear();
+			this.loadEdgeOfMap(area);
+			// console.log("start");
 
 			vert.slice(0, -1).map((v, i) => {
+				// console.log("segment", [v[0], v[1], vert[i+1][0], vert[i+1][1]]);
 				this.addSegment(v[0], v[1], vert[i+1][0], vert[i+1][1]);
 			});
 			// end to start segment
 			let i = vert.length-1;
 			this.addSegment(vert[i][0], vert[i][1], vert[0][0], vert[0][1]);
+			// console.log("segment", [vert[i][0], vert[i][1], vert[0][0], vert[0][1]]);
 
 			var $it0 = this.segments.iterator();
 			while( $it0.hasNext() ) {

@@ -132,23 +132,29 @@ class Map {
 		this.entries.map(item => item.update(delta));
 		this.droids.map(droid => droid.update(delta));
 
-		if (!this.once) {
-			this.once = true;
+		// if (!this.once) {
+		// 	this.once = true;
 
 			// visibility map
-			let vert = [];
+			let viewport = this.arena.viewport,
+				m = 10,
+				{ w, h, x, y } = viewport,
+				vert = [];
+
 			Matter.Composite.allBodies(this.arena.map.engine.world)
 					.filter(b => !["player"].includes(b.label))
 					.map(body => {
 						// flatten vertices
 						body.vertices.map(v => {
-							vert.push([v.x, v.y]);
+							let vX = v.x + x,
+								vY = v.y + y;
+							vert.push([vX, vY]);
 						});
 					});
 			// console.log( JSON.stringify(blocks) );
 			let origo = this.arena.player.position;
-			this.raycaster.loadMap(vert, origo);
-		}
+			this.raycaster.loadMap({ w, h, m }, vert, origo);
+		// }
 	}
 
 	render(ctx) {
