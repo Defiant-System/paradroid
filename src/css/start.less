@@ -17,8 +17,19 @@
 
 			.paradroid-3001 {
 				opacity: 1;
-				transition: opacity 150ms ease-out;
-				transition-delay: 3s;
+				transition: opacity 80ms 3300ms;
+			}
+		}
+
+		.menu {
+			.option {
+				opacity: 1;
+				transform: translateY(0px) translateZ(0px);
+				transition: all 350ms 3800ms;
+
+				&:nth-child(1) {
+					transition-delay: 4000ms;
+				}
 			}
 		}
 	}
@@ -271,11 +282,14 @@
 		position: relative;
 		top: 31px;
 		text-align: center;
+		perspective: 500px;
 
 		.option {
 			position: relative;
 			margin: 0 33px 0 -3px;
 			display: inline-block;
+			opacity: 0;
+			transform: translateY(50px) translateZ(100px);
 
 			&:nth-child(1) {
 				.bar {
