@@ -8,6 +8,9 @@ class Map {
 		this.entries = [];
 		this.droids = [];
 
+		// init visibility engine
+		this.raycaster = Raycaster.init();
+
 		// physics engine
 		this.engine = Matter.Engine.create({ gravity: { x: 0, y: 0, scale: 1 } });
 		// create runner
@@ -128,6 +131,25 @@ class Map {
 	update(delta) {
 		this.entries.map(item => item.update(delta));
 		this.droids.map(droid => droid.update(delta));
+
+		if (!this.once) {
+			this.once = true;
+
+			// visibility map
+			let vert = [];
+			Matter.Composite.allBodies(this.arena.map.engine.world)
+					.filter(b => !["player"].includes(b.label))
+					.map(body => {
+						console.log( body );
+						// let bX = Math.round(body.position.x / tile),
+						// 	bY = Math.round(body.position.y / tile);
+						// if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
+						// 	blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
+						// }
+					});
+			// console.log( JSON.stringify(blocks) );
+			this.raycaster.loadMap(vert);
+		}
 	}
 
 	render(ctx) {
@@ -169,21 +191,9 @@ class Map {
 			}
 		}
 
-		if (!Raycaster.arena) {
-			let blocks = [];
-			Matter.Composite.allBodies(this.arena.map.engine.world)
-					.map(body => {
-						let bX = Math.round(body.position.x / tile),
-							bY = Math.round(body.position.y / tile);
-						if (bX >= xMin-1 && bX <= xMax && bY >= yMin-1 && bY <= yMax) {
-							blocks.push(body.vertices.map(v => ({ x: v.x, y: v.y })));
-						}
-					});
-			// console.log( JSON.stringify(blocks) );
-			Raycaster.run(this.arena, blocks, ctx);
-		}
-		Raycaster.drawVisibilityTriangles(ctx);
-		
+		// visibility map
+		this.raycaster.render(ctx);
+
 		// draw entries - exclude droids
 		this.entries
 			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)

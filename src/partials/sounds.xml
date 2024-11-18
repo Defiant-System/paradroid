@@ -1,5 +1,5 @@
 <Sounds>
-	<i id="lift-enter" url="~/sounds/lift-enter.mp3"/>
+	<!-- <i id="lift-enter" url="~/sounds/lift-enter.mp3"/>
 	<i id="lift-move" url="~/sounds/lift-move.mp3"/>
-	<i id="moving" url="~/sounds/moving.mp3"/>
+	<i id="moving" url="~/sounds/moving.mp3"/> -->
 </Sounds>

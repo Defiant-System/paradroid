@@ -22,6 +22,7 @@ class Droid {
 		let path = window.find(`svg#droid-mask path`)[0],
 			vertexSets = Matter.Svg.pathToVertices(path, 12);
 		this.body = Matter.Bodies.fromVertices(0, 0, vertexSets, { frictionAir: .1 });
+		this.body.label = `droid-${id}`;
 		// prevents droid to rotate
 		Matter.Body.setInertia(this.body, Infinity);
 

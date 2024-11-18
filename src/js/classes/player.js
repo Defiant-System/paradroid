@@ -17,6 +17,8 @@ class Player extends Droid {
 			color: "#00000055",
 			size: 3,
 		};
+		// update label
+		this.body.label = `player`;
 
 		this.input = {
 			up:    { pressed: false, force: { x: 0, y: -1 } },
