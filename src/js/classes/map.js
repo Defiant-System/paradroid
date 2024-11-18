@@ -151,8 +151,14 @@ class Map {
 							vert.push([vX, vY]);
 						});
 					});
-			// console.log( JSON.stringify(blocks) );
-			let origo = this.arena.player.position;
+			// console.log( vert );
+
+			// let origo = { x: 150, y: 220 };
+			let pos = this.arena.player.position,
+				origo = {
+					x: x + pos.x,
+					y: y + pos.y,
+				};
 			this.raycaster.loadMap({ w, h, m }, vert, origo);
 		// }
 	}
@@ -197,7 +203,7 @@ class Map {
 		}
 
 		// visibility map
-		this.raycaster.render(ctx, { x: vX, y: vY });
+		this.raycaster.render(ctx);
 
 		// draw entries - exclude droids
 		this.entries

@@ -12,9 +12,9 @@ let Raycaster = (() => {
 				return this;
 			},
 			loadMap(area, vert, origo) {
-				this.visibility.addVertices(area, vert);
 				// set origo point
 				this.origo = origo;
+				this.visibility.addVertices(area, vert);
 				this.visibility.setLightLocation(origo.x, origo.y);
 				this.visibility.sweep();
 			},
@@ -539,9 +539,9 @@ let Raycaster = (() => {
 		}
 
 		loadEdgeOfMap(area) {
-			this.addSegment(area.m, area.m, area.w-area.m, area.h-area.m);
-			this.addSegment(area.m, area.m, area.m, area.h-area.m);
 			this.addSegment(area.m, area.m, area.w-area.m, area.m);
+			this.addSegment(area.m, area.m, area.m, area.h-area.m);
+			this.addSegment(area.w-area.m, area.m, area.w-area.m, area.h-area.m);
 			this.addSegment(area.m, area.h-area.m, area.w-area.m, area.h-area.m);
 		}
 
@@ -584,14 +584,16 @@ let Raycaster = (() => {
 			this.loadEdgeOfMap(area);
 			// console.log("start");
 
-			vert.slice(0, -1).map((v, i) => {
-				// console.log("segment", [v[0], v[1], vert[i+1][0], vert[i+1][1]]);
-				this.addSegment(v[0], v[1], vert[i+1][0], vert[i+1][1]);
-			});
-			// end to start segment
-			let i = vert.length-1;
-			this.addSegment(vert[i][0], vert[i][1], vert[0][0], vert[0][1]);
-			// console.log("segment", [vert[i][0], vert[i][1], vert[0][0], vert[0][1]]);
+			if (vert.length > 1) {
+				vert.slice(0, -1).map((v, i) => {
+					// console.log("segment", [v[0], v[1], vert[i+1][0], vert[i+1][1]]);
+					this.addSegment(v[0], v[1], vert[i+1][0], vert[i+1][1]);
+				});
+				// end to start segment
+				let i = vert.length-1;
+				this.addSegment(vert[i][0], vert[i][1], vert[0][0], vert[0][1]);
+				// console.log("segment", [vert[i][0], vert[i][1], vert[0][0], vert[0][1]]);
+			}
 
 			var $it0 = this.segments.iterator();
 			while( $it0.hasNext() ) {
@@ -657,8 +659,7 @@ let Raycaster = (() => {
 			return false;
 		}
 		
-		sweep(maxAngle) {
-			if (maxAngle == null) maxAngle = 999;
+		sweep(maxAngle=Math.PI) {
 			this.output = [];
 			this.intersectionsDetected = [];
 			this.endpoints.sort(Visibility._endpoint_compare, true);

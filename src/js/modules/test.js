@@ -71,7 +71,7 @@ let Test = {
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
-					map: { id: 19, clear: .1 }, player: { x: 6, y: 5, power: .25 }, debug: { mode: 1 },
+					map: { id: 19, clear: .1 }, player: { x: 6, y: 5, power: .25 }, debug: { mode: 0 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
@@ -82,7 +82,7 @@ let Test = {
 			// }, 500);
 
 			// pause test
-			setTimeout(() => APP.mobile.arena.fpsControl.stop(), 500);
+			// setTimeout(() => APP.mobile.arena.fpsControl.stop(), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
