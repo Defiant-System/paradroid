@@ -14,11 +14,22 @@ let Raycaster = (() => {
 			loadMap(vert, origo) {
 				this.visibility.addVertices(vert);
 				// set origo point
+				this.origo = origo;
 				this.visibility.setLightLocation(origo.x, origo.y);
 				this.visibility.sweep();
 			},
-			render(ctx) {
-				
+			drawFloor(ctx, path, offset) {
+				ctx.save();
+				// ctx.translate(-offset.x, -offset.y);
+				ctx.strokeStyle = "blue";
+				ctx.beginPath();
+				Visibility.interpretSvg(ctx, path);
+				ctx.stroke();
+				ctx.restore();
+			},
+			render(ctx, offset) {
+				let paths = Visibility.computeVisibleAreaPaths(this.origo, this.visibility.output);
+				this.drawFloor(ctx, paths.floor, offset);
 			}
 		};
 
@@ -505,7 +516,7 @@ let Raycaster = (() => {
 			return { floor, triangles, walls };
 		}
 
-		interpretSvg(ctx, path) {
+		static interpretSvg(ctx, path) {
 			for (let i = 0; i < path.length; i++) {
 				if (path[i] === "M") {
 					ctx.moveTo(path[i+1], path[i+2]);
@@ -569,12 +580,21 @@ let Raycaster = (() => {
 		}
 		
 		addVertices(vert) {
+			this.segments.clear();
+			this.endpoints.clear();
+
 			vert.slice(0, -1).map((v, i) => {
 				this.addSegment(v[0], v[1], vert[i+1][0], vert[i+1][1]);
 			});
 			// end to start segment
 			let i = vert.length-1;
 			this.addSegment(vert[i][0], vert[i][1], vert[0][0], vert[0][1]);
+
+			var $it0 = this.segments.iterator();
+			while( $it0.hasNext() ) {
+				var segment = $it0.next();
+				var node = this.open.head;
+			}
 		}
 		
 		addSegment(x1, y1, x2, y2) {
@@ -600,7 +620,7 @@ let Raycaster = (() => {
 			this.endpoints.append(p2);
 		}
 		
-		setLightLocation(x,y) {
+		setLightLocation(x, y) {
 			this.center.x = x;
 			this.center.y = y;
 			var $it0 = this.segments.iterator();

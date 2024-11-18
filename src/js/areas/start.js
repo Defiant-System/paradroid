@@ -6,6 +6,7 @@
 		// fast references
 		this.els = {
 			content: window.find("content"),
+			el: window.find("content .start-view"),
 		};
 	},
 	dispatch(event) {
@@ -16,7 +17,8 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
-			case "put-tile":
+			case "init-anim":
+				Self.els.el.addClass("view-anim");
 				break;
 		}
 	}

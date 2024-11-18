@@ -191,7 +191,7 @@ class Map {
 		}
 
 		// visibility map
-		this.raycaster.render(ctx);
+		this.raycaster.render(ctx, { x: vX, y: vY });
 
 		// draw entries - exclude droids
 		this.entries

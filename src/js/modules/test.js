@@ -4,7 +4,7 @@ let Test = {
 		// return;
 
 		// return APP.dispatch({ type: "show-view", arg: "terminated" });
-		// return APP.dispatch({ type: "show-view", arg: "start" });
+
 
 		/*
 		 * Finder algorithm
@@ -21,7 +21,15 @@ let Test = {
 
 		
 		/*
-		 * Console View
+		 * START View
+		 */
+		APP.dispatch({ type: "show-view", arg: "start" });
+		setTimeout(() => APP.start.dispatch({ type: "init-anim" }), 400);
+		return;
+
+
+		/*
+		 * CONSOLE View
 		APP.dispatch({ type: "show-view", arg: "console" });
 		APP.console.dispatch({ type: "show-droid", value: "999" });
 		return;
