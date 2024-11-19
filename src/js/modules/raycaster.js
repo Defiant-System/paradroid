@@ -11,10 +11,12 @@ let Raycaster = (() => {
 
 				return this;
 			},
-			loadMap(area, vert, origo) {
+			loadMap(blocks, walls, origo) {
 				// set origo point
 				this.origo = origo;
-				this.visibility.addVertices(area, vert);
+				this.visibility.clear();
+				this.visibility.addBlocks(blocks);
+				this.visibility.addVertices(walls);
 				this.visibility.setLightLocation(origo.x, origo.y);
 				this.visibility.sweep();
 			},
@@ -488,6 +490,11 @@ let Raycaster = (() => {
 			this.segments.toArray();
 		}
 
+		clear() {
+			this.segments.clear();
+			this.endpoints.clear();
+		}
+
 		static _endpoint_compare(a, b) {
 			if (a.angle > b.angle) return 1;
 			if (a.angle < b.angle) return -1;
@@ -578,21 +585,14 @@ let Raycaster = (() => {
 			}
 		}
 		
-		addVertices(area, vert) {
-			this.segments.clear();
-			this.endpoints.clear();
-			this.loadEdgeOfMap(area);
-			// console.log("start");
-
+		addVertices(vert) {
 			if (vert.length > 1) {
 				vert.slice(0, -1).map((v, i) => {
-					// console.log("segment", [v[0], v[1], vert[i+1][0], vert[i+1][1]]);
 					this.addSegment(v[0], v[1], vert[i+1][0], vert[i+1][1]);
 				});
 				// end to start segment
 				let i = vert.length-1;
 				this.addSegment(vert[i][0], vert[i][1], vert[0][0], vert[0][1]);
-				// console.log("segment", [vert[i][0], vert[i][1], vert[0][0], vert[0][1]]);
 			}
 
 			var $it0 = this.segments.iterator();
@@ -623,6 +623,26 @@ let Raycaster = (() => {
 			this.segments.append(segment);
 			this.endpoints.append(p1);
 			this.endpoints.append(p2);
+		}
+
+		addBlocks(blocks) {
+			blocks.map(b => {
+				// corners
+				let nw = [b.x, b.y];
+				let sw = [b.x, b.y + b.h];
+				let ne = [b.x + b.w, b.y];
+				let se = [b.x + b.w, b.y + b.h]
+				this.addSegment(...nw, ...ne);
+				this.addSegment(...nw, ...sw);
+				this.addSegment(...ne, ...se);
+				this.addSegment(...sw, ...se);
+			});
+
+			var $it0 = this.segments.iterator();
+			while( $it0.hasNext() ) {
+				var segment = $it0.next();
+				var node = this.open.head;
+			}
 		}
 		
 		setLightLocation(x, y) {
@@ -678,7 +698,8 @@ let Raycaster = (() => {
 					if (p.begin) {
 						var node = this.open.head;
 						// while(node != null && this._segment_in_front_of(p.segment, node.val, this.center)) {
-						while (node != null && !this._segment_in_front_of(node.val, p.segment, this.center)) {
+						// while (node != null && !this._segment_in_front_of(node.val, p.segment, this.center)) {
+						while (node != null && (!this._segment_in_front_of(node.val, p.segment, this.center) && this._segment_in_front_of(p.segment, node.val, this.center))) {
 							node = node.next;
 						}
 						if (node == null) this.open.append(p.segment);

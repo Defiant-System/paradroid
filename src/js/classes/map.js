@@ -132,35 +132,45 @@ class Map {
 		this.entries.map(item => item.update(delta));
 		this.droids.map(droid => droid.update(delta));
 
-		// if (!this.once) {
-		// 	this.once = true;
 
-			// visibility map
-			let viewport = this.arena.viewport,
-				m = 10,
-				{ w, h, x, y } = viewport,
-				vert = [];
+		// visibility map
+		let viewport = this.arena.viewport,
+			m = 0,
+			{ w, h, x, y } = viewport,
+			walls = [],
+			blocks = [];
 
-			Matter.Composite.allBodies(this.arena.map.engine.world)
-					.filter(b => !["player"].includes(b.label))
-					.map(body => {
-						// flatten vertices
-						body.vertices.map(v => {
-							let vX = v.x + x,
-								vY = v.y + y;
-							vert.push([vX, vY]);
-						});
-					});
-			// console.log( vert );
+		walls.push([x + 40, y + 40]);
+		walls.push([x + 310, y + 40]);
+		walls.push([x + 310, y + 108]);
+		walls.push([x + 562, y + 108]);
+		walls.push([x + 562, y + 180]);
+		walls.push([x + 310, y + 180]);
+		walls.push([x + 310, y + 246]);
+		walls.push([x + 40, y + 246]);
 
-			// let origo = { x: 150, y: 220 };
-			let pos = this.arena.player.position,
-				origo = {
-					x: x + pos.x,
-					y: y + pos.y,
-				};
-			this.raycaster.loadMap({ w, h, m }, vert, origo);
-		// }
+
+		blocks.push({ x: x + 80, y: y + 80, w: 50, h: 50 });
+
+
+		// Matter.Composite.allBodies(this.arena.map.engine.world)
+		// 		.filter(b => !["player"].includes(b.label))
+		// 		.map(body => {
+		// 			// flatten vertices
+		// 			body.vertices.map(v => {
+		// 				let vX = v.x + x,
+		// 					vY = v.y + y;
+		// 				// vert.push([vX, vY]);
+		// 			});
+		// 		});
+		// console.log( vert );
+
+		let pos = this.arena.player.position,
+			origo = {
+				x: x + pos.x,
+				y: y + pos.y,
+			};
+		this.raycaster.loadMap(blocks, walls, origo);
 	}
 
 	render(ctx) {

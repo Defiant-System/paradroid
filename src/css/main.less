@@ -90,6 +90,7 @@ content {
 		}
 
 		> div.terminated-view {
+			display: block;
 			opacity: 1;
 			visibility: visible;
 		}
@@ -122,6 +123,17 @@ content {
 		}
 	}
 
+	> div {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		top: 53px;
+		left: 7px;
+		right: 7px;
+		bottom: 7px;
+		border-radius: inherit;
+	}
+
 
 	.droid {
 		position: absolute;
@@ -137,31 +149,6 @@ content {
 			background-size: 405px 45px;
 			animation: droid-spin 1200ms steps(8) infinite;
 		}
-
-		// &:after {
-		// 	content: attr(data-id);
-		// 	position: absolute;
-		// 	bottom: -17px;
-		// 	left: 0;
-		// 	right: 0;
-		// 	text-align: center;
-		// 	font-size: 13px;
-		// 	color: #666;
-		// }
-
-		// &.player,
-		// &[data-id="001"] {
-		// 	&:before {
-		// 		filter: invert(1) brightness(1.5);
-		// 		transform: rotate(180deg);
-		// 	}
-
-		// 	b {
-		// 		top: 14px;
-		// 		filter: invert(1) brightness(1.5);
-		// 	}
-		// }
-
 
 		&[data-id="001"] {
 			b {
@@ -416,17 +403,6 @@ content {
 				left: 30px;
 			}
 		}
-	}
-
-	> div {
-		opacity: 0;
-		visibility: hidden;
-		position: absolute;
-		top: 53px;
-		left: 7px;
-		right: 7px;
-		bottom: 7px;
-		border-radius: inherit;
 	}
 
 	i[class^="icon-"],
