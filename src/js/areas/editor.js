@@ -323,6 +323,7 @@
 				Self.els.viewport.find(".layer-background").remove();
 				Self.els.viewport.find(".layer-collision").remove();
 				Self.els.viewport.find(".layer-action").remove();
+				Self.els.viewport.find(".layer-los").remove();
 				// render + append HTML
 				window.render({
 					template: "layer-background",
@@ -338,6 +339,12 @@
 				// render action layer
 				window.render({
 					template: "layer-action",
+					match: `//Section[@id = "${event.arg}"]`,
+					append: Self.els.viewport,
+				});
+				// render action layer
+				window.render({
+					template: "layer-los",
 					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});

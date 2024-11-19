@@ -46,8 +46,7 @@ class Map {
 			this.background[row].push(xTile.getAttribute("id"));
 		});
 
-
-		// walls
+		// walls for matter.js
 		xSection.selectNodes(`./Layer[@id="collision"]/i`).map(xColl => {
 			let id = xColl.getAttribute("id"),
 				x = +xColl.getAttribute("x"),
@@ -83,6 +82,17 @@ class Map {
 			// add body to bodies list
 			bodies.push(body);
 		});
+
+		// Line of Sight
+		let xWalls = xSection.selectSingleNode(`./Layer[@id="los"]/walls`),
+			xBlocks = xSection.selectNodes(`./Layer[@id="los"]/block`);
+		this.walls = xWalls ? JSON.parse(xWalls.getAttribute("v")) : [];
+		this.blocks = xBlocks.map(x => ({
+			x: +x.getAttribute("x"),
+			y: +x.getAttribute("y"),
+			w: +x.getAttribute("w"),
+			h: +x.getAttribute("h"),
+		}));
 
 		// add item classses
 		xSection.selectNodes(`./Layer[@id="action"]/i`).map(xItem => {

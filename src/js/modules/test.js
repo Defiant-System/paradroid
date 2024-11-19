@@ -43,10 +43,11 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		APP.dispatch({ type: "show-view", arg: "editor" });
-		APP.editor.dispatch({ type: "render-level", arg: "1" });
+		APP.editor.dispatch({ type: "render-level", arg: "19" });
 
-		APP.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
+		APP.editor.els.palette.find(`.tab-row span:nth(3)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");
 		// // APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
 		APP.editor.dispatch({ type: "toggle-overflow" });
@@ -58,7 +59,6 @@ let Test = {
 
 		// // setTimeout(() => APP.editor.els.palette.find(`.buttons span[data-click="output-collision-pgn"]`).trigger("click"), 300);
 		// return;
-		 */
 
 
 		return setTimeout(() => {
