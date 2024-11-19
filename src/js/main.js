@@ -74,11 +74,17 @@ const paradroid = {
 				});
 				break;
 			case "show-view":
+				// hide current
+				name = Self.els.content.data("show");
+				Self.els.content.find(`.${name}-view`).addClass("hidden");
+
 				Self.els.content.data({ show: event.arg });
+				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				Self.hud.dispatch({ type: "set-view-title" });
 
 				if (event.arg === "start") {
-					Self.start.dispatch({ type: "init-anim" });
+					Self.start.els.el.removeClass("no-anim view-anim");
+					setTimeout(() => Self.start.dispatch({ type: "init-anim" }), 500);
 				}
 
 				if (Self.mobile.arena.map && event.arg === "editor") {

@@ -3,6 +3,8 @@ class Arena {
 	constructor(cvs) {
 		// set dimensions of canvas
 		let { width, height } = cvs.offset();
+		width = width || +cvs.attr("width");
+		height = height || +cvs.attr("height");
 		this.width = width;
 		this.height = height;
 		this.cvs = cvs.attr({ width, height });
