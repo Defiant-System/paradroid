@@ -150,7 +150,8 @@ class Map {
 		walls.push([x + 40, y + 246]);
 
 
-		blocks.push({ x: x + 80, y: y + 80, w: 50, h: 50 });
+		blocks.push({ x: x + 50, y: y + 66, w: 58, h: 42 });
+		blocks.push({ x: x + 50, y: y + 112, w: 28, h: 62 });
 
 
 		// Matter.Composite.allBodies(this.arena.map.engine.world)

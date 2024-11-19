@@ -495,6 +495,14 @@ let Raycaster = (() => {
 			this.endpoints.clear();
 		}
 
+		close() {
+			var $it0 = this.segments.iterator();
+			while( $it0.hasNext() ) {
+				var segment = $it0.next();
+				var node = this.open.head;
+			}
+		}
+
 		static _endpoint_compare(a, b) {
 			if (a.angle > b.angle) return 1;
 			if (a.angle < b.angle) return -1;
@@ -594,12 +602,8 @@ let Raycaster = (() => {
 				let i = vert.length-1;
 				this.addSegment(vert[i][0], vert[i][1], vert[0][0], vert[0][1]);
 			}
-
-			var $it0 = this.segments.iterator();
-			while( $it0.hasNext() ) {
-				var segment = $it0.next();
-				var node = this.open.head;
-			}
+			// close "vertex loop"
+			this.close();
 		}
 		
 		addSegment(x1, y1, x2, y2) {
@@ -636,13 +640,9 @@ let Raycaster = (() => {
 				this.addSegment(...nw, ...sw);
 				this.addSegment(...ne, ...se);
 				this.addSegment(...sw, ...se);
+				// close "vertex loop"
+				this.close();
 			});
-
-			var $it0 = this.segments.iterator();
-			while( $it0.hasNext() ) {
-				var segment = $it0.next();
-				var node = this.open.head;
-			}
 		}
 		
 		setLightLocation(x, y) {
