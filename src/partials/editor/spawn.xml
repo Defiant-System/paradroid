@@ -8,7 +8,7 @@
 		<meta name="minimize"/>
 		<meta name="maximize" value="disabled"/>
 		<meta name="maximize" value="disabled"/>
-		<meta name="style" value="../../css/editor.less"/>
+		<meta name="style" value="../../css/spawn.less"/>
 		<meta name="content" value="content.htm"/>
 		<meta name="focus" value="disabled"/>
 		<meta name="state" value="forget"/>
