@@ -22,9 +22,10 @@ let Test = {
 		
 		/*
 		 * START View
-		APP.dispatch({ type: "show-view", arg: "start" });
-		return;
 		 */
+		// APP.start.els.el.removeClass("hidden").addClass("no-anim");
+		// APP.dispatch({ type: "show-view", arg: "start" });
+		// return;
 
 
 		/*
@@ -92,6 +93,7 @@ let Test = {
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
+
 		}, 100);
 
 	}

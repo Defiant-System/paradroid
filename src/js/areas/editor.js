@@ -7,7 +7,7 @@
 	},
 	dispatch(event) {
 		let APP = paradroid,
-			Self = APP.editor,
+			Spawn = event.spawn || APP.editor,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -16,7 +16,9 @@
 				break;
 			// custom events
 			case "select-editor-layer":
-				console.log(event.arg);
+				// change toolset
+				Spawn.toolset = event.arg;
+				// console.log(event.arg);
 				break;
 		}
 	}

@@ -89,13 +89,13 @@ const paradroid = {
 					setTimeout(() => Self.start.dispatch({ type: "init-anim" }), 500);
 				}
 
-				if (Self.mobile.arena.map && event.arg === "editor") {
-					Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
-					setTimeout(() => {
-						Self.editor.dispatch({ type: "toggle-overflow" });
-						Self.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
-					}, 100);
-				}
+				// if (Self.mobile.arena.map && event.arg === "editor") {
+				// 	Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
+				// 	setTimeout(() => {
+				// 		Self.editor.dispatch({ type: "toggle-overflow" });
+				// 		Self.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
+				// 	}, 100);
+				// }
 				break;
 			// proxy event
 			case "set-player-droid":

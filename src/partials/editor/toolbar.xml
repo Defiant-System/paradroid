@@ -1,0 +1,56 @@
+
+<ToolBar>
+	<ToolSet id="background" state="active">
+		<Group>
+			<Select name="Background" menu="editor-layer"></Select>
+			<Divider />
+			<Options type="grouped">
+				<Tool name="8px" click="grid-size" arg=".25"/>
+				<Tool name="32px" click="grid-size" arg="1"/>
+			</Options>
+			<Options type="grouped">
+				<Tool name="Eraser" click="cursor-eraser"/>
+				<Tool name="Overflow" click="toggle-overflow"/>
+				<Tool name="Grid" click="toggle-grid"/>
+			</Options>
+		</Group>
+	</ToolSet>
+
+	<ToolSet id="collision">
+		<Group>
+			<Select name="Background" menu="editor-layer"></Select>
+			<Divider />
+			<Options type="grouped">
+				<Tool name="Overflow" click="toggle-overflow"/>
+				<Tool name="PGN" click="output-collision-pgn"/>
+			</Options>
+			<Tool name="Duplicate" click="duplicate-active"/>
+			<Tool name="Delete" click="delete-active"/>
+		</Group>
+	</ToolSet>
+
+	<ToolSet id="action">
+		<Group>
+			<Select name="Background" menu="editor-layer"></Select>
+			<Divider />
+			<Options type="grouped">
+				<Tool name="Overflow" click="toggle-overflow"/>
+				<Tool name="PGN" click="output-collision-pgn"/>
+			</Options>
+		</Group>
+	</ToolSet>
+
+	<ToolSet id="los">
+		<Group>
+			<Select name="Background" menu="editor-layer"></Select>
+			<Divider />
+		</Group>
+	</ToolSet>
+
+	<ToolSet id="lights">
+		<Group>
+			<Select name="Background" menu="editor-layer"></Select>
+			<Divider />
+		</Group>
+	</ToolSet>
+</ToolBar>
