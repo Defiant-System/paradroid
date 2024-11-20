@@ -19,6 +19,7 @@
 		let APP = paradroid,
 			Self = APP.editor,
 			Spawn = event.spawn,
+			value,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -32,13 +33,29 @@
 			case "select-editor-layer":
 				// change toolset
 				Spawn.toolset = event.arg;
-				// console.log(event.arg);
+				// changes spawn content
+				Self.els.spawn.data({ show: event.arg });
+				// toggles layers depending on selected tab
+				Self.els.viewport.data({ show: event.arg });
 				break;
 			case "select-bg-tile":
 				el = $(event.target);
 				event.el.find(".active").removeClass("active");
 				el.addClass("active");
 				break;
+			case "toggle-overflow":
+				el = Self.els.viewport;
+				value = el.hasClass("show-overflow");
+				el.toggleClass("show-overflow", value);
+				Spawn.find(`.toolbar-tool_[data-click="toggle-overflow"]`).toggleClass("tool-active_", value);
+				return !value;
+			case "toggle-grid":
+				el = Self.els.viewport.find(".layer-background");
+				value = el.hasClass("hide-grid");
+				el.toggleClass("hide-grid", value);
+				Spawn.find(`.toolbar-tool_[data-click="toggle-grid"]`).toggleClass("tool-active_", value);
+				return !value;
+
 			case "render-level":
 				if (!event.arg) return;
 				// if active level; save modifications

@@ -8,37 +8,126 @@ content.editor {
 	min-height: 0;
 	border-radius: inherit;
 
+	&[data-show="background"] .layer-background { display: block; }
+	&[data-show="collision"] .layer-collision { display: block; }
+	&[data-show="action"] .layer-action { display: block; }
+	&[data-show="los"] .layer-los { display: block; }
+	&[data-show="light"] .layer-light { display: block; }
+
 	.layer-background {
+		display: none;
 		background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
 		background-size: 32px 32px;
+	}
 
-		.tiles {
-			position: relative;
-			display: block;
-			font-size: 0;
+	.layer-collision {
+		display: none;
+	}
 
-			&.big {
-				width: 512px;
-				height: 512px;
-				--tile-bg: url(~/icons/tiles-32.png);
-				--tile: 32px;
+	.layer-action {
+		display: none;
+	}
+
+	.layer-los {
+		display: none;
+	}
+
+	.layer-light {
+		display: none;
+	}
+
+
+	.tiles {
+		position: relative;
+		display: block;
+		font-size: 0;
+
+		&.big {
+			width: 512px;
+			height: 512px;
+			--tile-bg: url(~/icons/tiles-32.png);
+			--tile: 32px;
+		}
+
+		&.small {
+			width: 128px;
+			height: 128px;
+			--tile-bg: url(~/img/tiles-8.png);
+			--tile: 8px;
+		}
+
+		b {
+			background-color: #e07777;
+
+			&.active {
+				z-index: 3;
+				box-shadow: inset 0 0 0 1px #f00,
+							0 0 0 1px #f00;
+			}
+		}
+	}
+
+	.field {
+		margin-top: 12px;
+		height: 148px;
+		
+		.row {
+			display: flex;
+			height: 31px;
+
+			span {
+				flex: 1;
+				color: #333;
+				font-size: 13px;
+				padding: 5px 7px 0;
 			}
 
-			&.small {
-				width: 128px;
-				height: 128px;
-				--tile-bg: url(~/img/tiles-8.png);
-				--tile: 8px;
+			input {
+				width: 71%;
+				box-shadow: 0 0 0 1px rgba(#000,.1);
+
+				// &[name="action-clear"] { opacity: 0; pointer-events: none; }
+			}
+		}
+
+		.options {
+			padding-left: 29%;
+
+			div[data-click] {
+				margin: 0;
+				border-radius: 0;
+			}
+		}
+
+		.buttons {
+			margin-top: 7px;
+			padding-top: 11px;
+			border-top: 2px solid #777;
+		}
+
+		div[data-click] {
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 2px;
+			padding: 3px 7px 0;
+			height: 25px;
+			font-size: 14px;
+			white-space: nowrap;
+			background: #aaa;
+			border-radius: 7px 0;
+			border: 2px solid;
+			border-color: #eee #888 #888 #eee;
+			cursor: pointer;
+
+			&.hidden {
+				opacity: 0;
+				pointer-events: none;
 			}
 
-			b {
-				background-color: #e07777;
-
-				&.active {
-					z-index: 3;
-					box-shadow: inset 0 0 0 1px #f00,
-								0 0 0 1px #f00;
-				}
+			&:active {
+				padding-top: 4px;
+				height: 24px;
+				border-color: #888 #eee #eee #888;
 			}
 		}
 	}
