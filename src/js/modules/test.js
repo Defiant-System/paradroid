@@ -52,7 +52,7 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "editor" });
 			APP.editor.dispatch({ type: "render-level", arg: "19", spawn });
 			APP.editor.dispatch({ type: "toggle-overflow", spawn });
-			// APP.editor.dispatch({ type: "select-editor-layer", arg: "los", spawn });
+			APP.editor.dispatch({ type: "select-editor-layer", arg: "lights", spawn });
 
 			// setTimeout(() => APP.els.content.find(`.layer-los div`).get(3).trigger("click"), 500);
 

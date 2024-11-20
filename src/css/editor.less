@@ -1,5 +1,6 @@
 
 .editor-view {
+	top: 7px;
 	--y: 0;
 	--x: 0;
 
@@ -29,11 +30,11 @@
 
 	.viewport {
 		position: absolute;
-		left: 15px;
-		bottom: 15px;
+		top: 5px;
+		left: 5px;
 		overflow: hidden;
-		width: 608px;
-		height: 384px;
+		width: 736px;
+		height: 508px;
 		box-shadow: 0 0 0 2px #a22;
 		background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
 		background-size: 32px 32px;
@@ -102,12 +103,32 @@
 
 		&[data-show="lights"] {
 			.layer-background {
+				pointer-events: none;
+				
 				b { box-shadow: none; }
 			}
 
 			.layer-lights {
 				z-index: 2;
 				display: block;
+
+				.spotlight {
+					position: absolute;
+					top: calc( var( --y ) * 1px );
+					left: calc( var( --x ) * 1px );
+					width: 1px;
+					height: 1px;
+
+					&:before {
+						content: "";
+						position: absolute;
+						top: -73px;
+						left: -73px;
+						right: -73px;
+						bottom: -73px;
+						background: radial-gradient(#fff9, transparent 73%);
+					}
+				}
 			}
 		}
 

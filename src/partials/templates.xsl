@@ -100,7 +100,15 @@
 
 	<xsl:template name="layer-lights">
 		<div class="layer-lights" data-click="select-light-bulb">
-			<!-- TODO -->
+			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
+			<xsl:attribute name="style">
+				--w: <xsl:value-of select="@width" />;
+				--h: <xsl:value-of select="@height" />;
+				<xsl:if test="@x">--x: <xsl:value-of select="@x" />;</xsl:if>
+				<xsl:if test="@y">--y: <xsl:value-of select="@y" />;</xsl:if>
+			</xsl:attribute>
+			<span class="spotlight" style="--x: 160; --y: 150;"></span>
+			<span class="spotlight" style="--x: 300; --y: 150;"></span>
 		</div>
 	</xsl:template>
 
