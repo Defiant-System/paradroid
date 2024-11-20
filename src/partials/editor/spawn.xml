@@ -1,0 +1,23 @@
+<Spawn id="editor">
+	<Head>
+		<meta name="title" value="Level Editor"/>
+		<meta name="width" value="540"/>
+		<meta name="height" value="380"/>
+		<meta name="top" value="80"/>
+		<meta name="left" value="900"/>
+		<meta name="minimize"/>
+		<meta name="maximize" value="disabled"/>
+		<meta name="maximize" value="disabled"/>
+		<meta name="style" value="../../css/editor.less"/>
+		<meta name="content" value="content.htm"/>
+		<meta name="state" value="forget"/>
+
+		<ToolBar>
+			<Group>
+				<Select name="Background" menu="editor-layer"></Select>
+				<Divider />
+				<Tool name="test" click="editor.format" arg="italic"/>
+			</Group>
+		</ToolBar>
+	</Head>
+</Spawn>

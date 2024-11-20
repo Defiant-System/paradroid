@@ -42,6 +42,8 @@ const paradroid = {
 		let Self = paradroid,
 			name,
 			el;
+		// proxy editor (spawn) events
+		if (event.spawn) return Self.editor.dispatch(event);
 		// console.log(event.type);
 		switch (event.type) {
 			// system events
