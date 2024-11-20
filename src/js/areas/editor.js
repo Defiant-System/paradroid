@@ -126,28 +126,6 @@
 								margin: `${mY}px 0 0 ${mX}px`,
 							});
 							break;
-						// case targetEl.hasClass("c2"):
-						// 	targetEl.addClass("active");
-
-						// 	Self.els.editBox.removeClass("no-resize").css({
-						// 		"--x": targetEl.cssProp("--x"),
-						// 		"--y": targetEl.cssProp("--y"),
-						// 		"--w": "46px",
-						// 		"--h": "46px",
-						// 		margin: `${mY}px 0 0 ${mX}px`,
-						// 	});
-						// 	break;
-						// case targetEl.hasClass("c3"):
-						// 	targetEl.addClass("active");
-
-						// 	Self.els.editBox.addClass("no-resize").css({
-						// 		"--x": targetEl.cssProp("--x"),
-						// 		"--y": targetEl.cssProp("--y"),
-						// 		"--w": "17px",
-						// 		"--h": "17px",
-						// 		margin: `${mY}px 0 0 ${mX}px`,
-						// 	});
-						// 	break;
 						case targetEl.hasClass("c5"):
 						case targetEl.hasClass("c6"):
 							targetEl.addClass("active");
@@ -192,6 +170,12 @@
 						el.prop({ className: sel.id });
 					});
 				}
+				break;
+			case "select-los-segment":
+				el = $(event.target);
+				// update UI
+				event.el.find(".active").removeClass("active");
+				el.addClass("active");
 				break;
 			case "select-action-tile":
 				el = $(event.target);
@@ -277,6 +261,8 @@
 				el.toggleClass("hide-grid", el.hasClass("hide-grid"));
 				break;
 			case "render-level":
+				if (!event.arg) return;
+
 				// if active level; save modifications
 				if (Self.xSection) {
 					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" }),

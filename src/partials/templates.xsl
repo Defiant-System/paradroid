@@ -64,20 +64,34 @@
 		</div>
 	</xsl:template>
 
+	<xsl:template name="layer-lights">
+		<!-- TODO -->
+	</xsl:template>
+
 	<xsl:template name="layer-los">
-		<div class="layer-los">
+		<div class="layer-los" data-click="select-los-segment">
 			<!-- walls -->
-			<div class="segment" style="--x: 42; --y: 42; --w: 268;"></div>
-			<div class="segment" style="--x: 308; --y: 42; --h: 66;"></div>
-			<div class="segment" style="--x: 308; --y: 106; --w: 258;"></div>
-			<div class="segment" style="--x: 564; --y: 106; --h: 76;"></div>
-			<div class="segment" style="--x: 308; --y: 180; --w: 258;"></div>
-			<div class="segment" style="--x: 308; --y: 180; --h: 66;"></div>
-			<div class="segment" style="--x: 42; --y: 244; --w: 268;"></div>
-			<div class="segment" style="--x: 42; --y: 42; --h: 204;"></div>
-			<!-- blocks -->
-			<div class="block" style="--x: 50; --y: 66; --w: 60; --h: 44;"></div>
-			<div class="block" style="--x: 50; --y: 112; --w: 28; --h: 64;"></div>
+			<xsl:for-each select="./Layer[@id='los']/walls/*">
+				<div class="segment">
+					<xsl:attribute name="style">
+						--x: <xsl:value-of select="@x" />;
+						--y: <xsl:value-of select="@y" />;
+						<xsl:if test="@w">--w: <xsl:value-of select="@w" />;</xsl:if>
+						<xsl:if test="@h">--h: <xsl:value-of select="@h" />;</xsl:if>
+					</xsl:attribute>
+				</div>
+			</xsl:for-each>
+
+			<xsl:for-each select="./Layer[@id='los']/block">
+				<div class="block">
+					<xsl:attribute name="style">
+						--x: <xsl:value-of select="@x" />;
+						--y: <xsl:value-of select="@y" />;
+						--w: <xsl:value-of select="@w" />;
+						--h: <xsl:value-of select="@h" />;
+					</xsl:attribute>
+				</div>
+			</xsl:for-each>
 		</div>
 	</xsl:template>
 

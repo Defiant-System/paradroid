@@ -47,12 +47,12 @@ let Test = {
 		APP.dispatch({ type: "show-view", arg: "editor" });
 		APP.editor.dispatch({ type: "render-level", arg: "19" });
 
-		APP.editor.els.palette.find(`.tab-row span:nth(3)`).trigger("click");
+		APP.editor.els.palette.find(`.tab-row span:nth(4)`).trigger("click");
 		// APP.editor.els.palette.find(`.tiles[data-click="select-col-tile"] b[data-size="1x1"]`).trigger("click");
 		// // APP.editor.els.palette.find(`.buttons span[data-arg=".25"]`).trigger("click");
 		APP.editor.dispatch({ type: "toggle-overflow" });
 
-		// setTimeout(() => APP.els.content.find(`.layer-collision .c1`).get(3).trigger("click"), 500);
+		setTimeout(() => APP.els.content.find(`.layer-los div`).get(3).trigger("click"), 500);
 
 		// // APP.editor.dispatch({ type: "output-pgn" });
 		return;
