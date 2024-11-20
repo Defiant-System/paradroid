@@ -70,14 +70,21 @@
 
 	<xsl:template name="layer-los">
 		<div class="layer-los" data-click="select-los-segment">
+			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
+			<xsl:attribute name="style">
+				--w: <xsl:value-of select="@width" />;
+				--h: <xsl:value-of select="@height" />;
+				<xsl:if test="@x">--x: <xsl:value-of select="@x" />;</xsl:if>
+				<xsl:if test="@y">--y: <xsl:value-of select="@y" />;</xsl:if>
+			</xsl:attribute>
 			<!-- walls -->
 			<xsl:for-each select="./Layer[@id='los']/walls/*">
 				<div class="segment">
 					<xsl:attribute name="style">
-						--x: <xsl:value-of select="@x" />;
-						--y: <xsl:value-of select="@y" />;
-						<xsl:if test="@w">--w: <xsl:value-of select="@w" />;</xsl:if>
-						<xsl:if test="@h">--h: <xsl:value-of select="@h" />;</xsl:if>
+						--sx: <xsl:value-of select="@x" />;
+						--sy: <xsl:value-of select="@y" />;
+						<xsl:if test="@w">--sw: <xsl:value-of select="@w" />;</xsl:if>
+						<xsl:if test="@h">--sh: <xsl:value-of select="@h" />;</xsl:if>
 					</xsl:attribute>
 				</div>
 			</xsl:for-each>
@@ -85,10 +92,10 @@
 			<xsl:for-each select="./Layer[@id='los']/block">
 				<div class="block">
 					<xsl:attribute name="style">
-						--x: <xsl:value-of select="@x" />;
-						--y: <xsl:value-of select="@y" />;
-						--w: <xsl:value-of select="@w" />;
-						--h: <xsl:value-of select="@h" />;
+						--sx: <xsl:value-of select="@x" />;
+						--sy: <xsl:value-of select="@y" />;
+						--sw: <xsl:value-of select="@w" />;
+						--sh: <xsl:value-of select="@h" />;
 					</xsl:attribute>
 				</div>
 			</xsl:for-each>

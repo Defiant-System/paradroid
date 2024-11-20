@@ -344,6 +344,12 @@
 			.cursor {
 				display: none;
 			}
+
+			.edit-box {
+				top: var( --y );
+				left: var( --x );
+				margin: -3px 0 0 -3px;
+			}
 		}
 
 		.edit-box {
@@ -556,9 +562,9 @@
 
 		.layer-los {
 			display: none;
-			--w: 2;
-			--h: 2;
-			--c: #fffe;
+			--sw: 2;
+			--sh: 2;
+			--sc: #fffe;
 
 			div {
 				position: absolute;
@@ -590,19 +596,19 @@
 				}
 
 				&.segment {
-					background: var( --c );
-					top: calc( calc( var( --y ) * 1px ) + 16px );
-					left: calc( calc( var( --x ) * 1px ) + 16px );
-					width: calc( var( --w ) * 1px );
-					height: calc( var( --h ) * 1px );
+					background: var( --sc );
+					top: calc( calc( var( --sy ) * 1px ) + 16px );
+					left: calc( calc( var( --sx ) * 1px ) + 16px );
+					width: calc( var( --sw ) * 1px );
+					height: calc( var( --sh ) * 1px );
 				}
 
 				&.block {
-					box-shadow: inset 0 0 0 2px var( --c );
-					top: calc( calc( var( --y ) * 1px ) + 16px );
-					left: calc( calc( var( --x ) * 1px ) + 16px );
-					width: calc( var( --w ) * 1px );
-					height: calc( var( --h ) * 1px );
+					box-shadow: inset 0 0 0 2px var( --sc );
+					top: calc( calc( var( --sy ) * 1px ) + 16px );
+					left: calc( calc( var( --sx ) * 1px ) + 16px );
+					width: calc( var( --sw ) * 1px );
+					height: calc( var( --sh ) * 1px );
 				}
 
 				&:before {
@@ -625,7 +631,7 @@
 					left: 0;
 					right: 0;
 					bottom: 0;
-					background: var( --c );
+					background: var( --sc );
 				}
 			}
 		}

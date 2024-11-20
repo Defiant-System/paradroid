@@ -50,6 +50,9 @@
 			Self = APP.editor,
 			value,
 			tiles,
+			pEl,
+			mX,
+			mY,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -173,9 +176,18 @@
 				break;
 			case "select-los-segment":
 				el = $(event.target);
+				if (!el.hasClass("segment") && !el.hasClass("block")) return;
 				// update UI
 				event.el.find(".active").removeClass("active");
 				el.addClass("active");
+
+				value = {
+					"--x": el.cssProp("--sx") +"px",
+					"--y": el.cssProp("--sy") +"px",
+				};
+				if (el.cssProp("--sw")) value["--w"] = (+el.cssProp("--sw") + 6) +"px";
+				if (el.cssProp("--sh")) value["--h"] = (+el.cssProp("--sh") + 6) +"px";
+				Self.els.editBox.removeClass("no-resize").css(value);
 				break;
 			case "select-action-tile":
 				el = $(event.target);
