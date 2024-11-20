@@ -64,10 +64,6 @@
 		</div>
 	</xsl:template>
 
-	<xsl:template name="layer-lights">
-		<!-- TODO -->
-	</xsl:template>
-
 	<xsl:template name="layer-los">
 		<div class="layer-los" data-click="select-los-segment">
 			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
@@ -99,6 +95,12 @@
 					</xsl:attribute>
 				</div>
 			</xsl:for-each>
+		</div>
+	</xsl:template>
+
+	<xsl:template name="layer-lights">
+		<div class="layer-lights" data-click="select-light-bulb">
+			<!-- TODO -->
 		</div>
 	</xsl:template>
 

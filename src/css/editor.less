@@ -76,12 +76,6 @@
 			}
 		}
 
-		&[data-show="lights"] {
-			.layer-background {
-				b { box-shadow: none; }
-			}
-		}
-
 		&[data-show="los"] {
 			.layer-background {
 				cursor: crosshair;
@@ -103,6 +97,17 @@
 				top: var( --y );
 				left: var( --x );
 				// margin: -3px 0 0 -3px;
+			}
+		}
+
+		&[data-show="lights"] {
+			.layer-background {
+				b { box-shadow: none; }
+			}
+
+			.layer-lights {
+				z-index: 2;
+				display: block;
 			}
 		}
 
