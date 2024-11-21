@@ -144,12 +144,12 @@ content {
 					&:after {
 						content: "";
 						position: absolute;
-						top: 0;
+						top: 53px;
 						left: 81px;
 						width: 43px;
 						height: 1px;
 						background: #bbb;
-						transform: rotate(-31deg);
+						transform: rotate(29deg);
 					}
 				}
 
@@ -158,6 +158,7 @@ content {
 					top: -97px;
 					left: 120px;
 					width: 43px;
+					z-index: 2;
 					font-family: Paradrew;
 					font-size: 14px;
 					line-height: 12px;
@@ -196,6 +197,14 @@ content {
 						border-top: 0;
 						border-bottom: 0;
 
+						&[data-id="420"],
+						&[data-id="476"],
+						&[data-id="493"] {
+							&:before {
+								background: #eee;
+							}
+						}
+
 						&.active {
 							color: #666;
 							font-size: 29px;
@@ -210,6 +219,7 @@ content {
 								left: -5px;
 								right: -5px;
 								bottom: 0;
+								z-index: -1;
 								border: 1px solid #bbb;
 								border-radius: 4px;
 							}
@@ -230,7 +240,7 @@ content {
 		top: 7px;
 		left: 99px;
 		width: 630px;
-		height: 455px;
+		height: 456px;
 		z-index: 2;
 		flex: 1;
 		font-family: "Oxanium";
@@ -251,11 +261,89 @@ content {
 			color: #999;
 		}
 
+		.return-exit {
+			position: absolute;
+			top: 19px;
+			left: 117px;
+			border-radius: 4px;
+			border: 1px solid var( --outline );
+			width: 193px;
+			padding: 5px 7px 2px;
+			font-size: 11px;
+			line-height: 1.35;
+			color: #999;
+
+			&.hidden {
+				display: none;
+			}
+
+			&:before {
+				content: "";
+				background: #bbb;
+				position: absolute;
+				top: 31px;
+				left: -67px;
+				width: 147px;
+				height: 1px;
+				transform: rotate(173deg);
+			}
+
+			&:after {
+				content: "";
+				background: #b2b2b2;
+				position: absolute;
+				top: 39px;
+				left: -70px;
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+			}
+		}
+
+		.player-droid {
+			position: absolute;
+			top: 61px;
+			right: 37px;
+			border-radius: 4px;
+			border: 1px solid var( --outline );
+			width: 159px;
+			padding: 5px 7px 2px;
+			font-size: 11px;
+			line-height: 1.35;
+			color: #999;
+
+			&.hidden {
+				display: none;
+			}
+
+			&:before {
+				content: "";
+				background: #bbb;
+				position: absolute;
+				top: 70px;
+				left: -16px;
+				width: 107px;
+				height: 1px;
+				transform: rotate(143deg);
+			}
+
+			&:after {
+				content: "";
+				background: #b2b2b2;
+				position: absolute;
+				top: 101px;
+				left: -8px;
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+			}
+		}
+
 		.blueprint {
 			background: 50% 50%/contain no-repeat;
 			position: absolute;
 			top: 65px;
-			left: 21px;
+			left: 53px;
 			width: 527px;
 			height: 318px;
 		}
@@ -354,7 +442,7 @@ content {
 		top: 7px;
 		left: 99px;
 		width: 630px;
-		height: 455px;
+		height: 456px;
 	}
 
 	.view-ship {
@@ -363,7 +451,7 @@ content {
 		top: 7px;
 		left: 99px;
 		width: 630px;
-		height: 455px;
+		height: 456px;
 	}
 }
 

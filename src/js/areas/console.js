@@ -56,6 +56,8 @@
 				Self.els.el.find(`.menu .option .droid`).data({ id: value });
 				// default blueprint; set to active player droid ID
 				Self.dispatch({ type: "show-droid", value });
+				// toggle if player droid
+				// Self.els.el.find(".return-exit").removeClass("hidden");
 				break;
 			case "select-droid":
 				if (event.arg === -1) {
@@ -89,14 +91,9 @@
 				// update left side menu; second option - active droid ID
 				Self.els.el.find(`.menu .sub span.active`).removeClass("active");
 				Self.els.el.find(`.menu .sub span:contains("${event.value}")`).addClass("active");
-				break;
-			case "select-view":
-				el = Self.els.el.find(".option.active");
-				options = Self.els.el.find(".option");
-				// update UI
-				el.removeClass("active");
-				index = Math.clamp(el.index() + event.arg, 0, options.length - 1);
-				options.get(index).addClass("active");
+				// toggle if player droid
+				value = APP.mobile.arena.player.id === event.value;
+				Self.els.el.find(".player-droid").toggleClass("hidden", value);
 				break;
 			case "show-view":
 				index = Self.els.el.find(".option.active").removeClass("active").index();
@@ -116,28 +113,39 @@
 					value = APP.mobile.arena.player.id;
 					Self.dispatch({ type: "show-droid", value });
 				}
+				// toggle if player droid
+				value = index === 0;
+				Self.els.el.find(".return-exit").toggleClass("hidden", value);
 				break;
-			case "select-view1":
-				Self.els.el.find(".option.active").removeClass("active");
-				// make lift active
-				el = $(event.target).addClass("active");
+			// case "select-view":
+			// 	el = Self.els.el.find(".option.active");
+			// 	options = Self.els.el.find(".option");
+			// 	// update UI
+			// 	el.removeClass("active");
+			// 	index = Math.clamp(el.index() + event.arg, 0, options.length - 1);
+			// 	options.get(index).addClass("active");
+			// 	break;
+			// case "select-view1":
+			// 	Self.els.el.find(".option.active").removeClass("active");
+			// 	// make lift active
+			// 	el = $(event.target).addClass("active");
 				
-				switch (el.data("view")) {
-					case "player":
-						APP.dispatch({
-							type: "switch-to-view",
-							arg: "mobile",
-							done: () => {
-								// droid-FX
-								APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
-							}
-						});
-						break;
-					case "droids": break;
-					case "level": break;
-					case "ship": break;
-				}
-				break;
+			// 	switch (el.data("view")) {
+			// 		case "player":
+			// 			APP.dispatch({
+			// 				type: "switch-to-view",
+			// 				arg: "mobile",
+			// 				done: () => {
+			// 					// droid-FX
+			// 					APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
+			// 				}
+			// 			});
+			// 			break;
+			// 		case "droids": break;
+			// 		case "level": break;
+			// 		case "ship": break;
+			// 	}
+			// 	break;
 		}
 	}
 }

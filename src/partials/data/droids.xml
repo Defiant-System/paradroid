@@ -1,7 +1,7 @@
 
 <Droid id="001" digits="1,1,0" weight="27" speed="5" energy="100" loss="1" agression="0" weapon="1" score="0">
 	<i id="type"><![CDATA[Influence Device]]></i>
-	<i id="notes"><![CDATA[Robot activity influence device. This is the unit that you currently control. Prepare to board Robo-Freighter Daradroid to eliminate all rogue robots.]]></i>
+	<i id="notes"><![CDATA[Robot activity influence device. Prepare to board Robo-Freighter Daradroid to eliminate all rogue robots.]]></i>
 </Droid>
 
 <Droid id="123" digits="0,-2,-1" weight="85" speed="2" energy="20" loss="2" agression="0" weapon="1" score="25">
@@ -96,7 +96,7 @@
 
 <Droid id="751" digits="2,2,0" weight="227" speed="5" energy="150" loss="4" agression="80" weapon="2" score="175">
 	<i id="type"><![CDATA[Battle Droid]]></i>
-	<i id="notes"><![CDATA[Very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built.]]></i>
+	<i id="notes"><![CDATA[Very heavy duty battle droid. Also known as Droideka. Only a few have so far entered service. These are the most powerful battle units ever built.]]></i>
 </Droid>
 
 <Droid id="821" digits="1,2,0" weight="28" speed="6" energy="160" loss="4" agression="65" weapon="3" score="200">
