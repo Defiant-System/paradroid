@@ -47,7 +47,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.editor,
-			Spawn = event.spawn,
+			Spawn = event.spawn || Self.spawn,
 			tiles,
 			value,
 			el;

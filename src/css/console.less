@@ -71,8 +71,9 @@ content {
 
 	.menu {
 		position: relative;
-		z-index: 2;
+		z-index: 5;
 		width: 91px;
+		padding: 11px 0 0 5px;
 		text-align: center;
 		// border-right: 2px solid #7caae6;
 
@@ -82,14 +83,31 @@ content {
 			width: 90px;
 			height: 90px;
 			margin: 0 0 21px;
-			padding: 19px 0 0;
+			padding: 9px 0 0;
+
+			&.active {
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					border: 1px solid #bbb;
+					border-radius: 50%;
+				}
+
+				.sub {
+					display: block;
+				}
+			}
 
 			i[class^="icon-"],
 			i[class*="icon-"] {
 				
 			}
 
-			span {
+			span.droid {
 				position: relative;
 				top: 3px;
 				display: inline-block;
@@ -99,6 +117,93 @@ content {
 				&:before {
 					left: 0;
 					animation: none;
+				}
+			}
+
+			.sub {
+				display: none;
+			}
+
+			&[data-view="droids"] {
+				&.active {
+					&:after {
+						content: "";
+						position: absolute;
+						top: 8px;
+						left: 79px;
+						width: 45px;
+						height: 1px;
+						background: #bbb;
+						transform: rotate(-31deg);
+					}
+				}
+
+				.sub {
+					position: absolute;
+					top: -90px;
+					left: 120px;
+					width: 43px;
+					font-family: Paradrew;
+					font-size: 14px;
+					line-height: 12px;
+					text-align: center;
+					color: #888;
+
+					&:before {
+						content: "";
+						position: absolute;
+						top: -5px;
+						left: 0;
+						right: 0;
+						height: 5px;
+						border: 1px solid #bbb;
+						border-bottom: 0;
+						border-radius: 3px 3px 0 0;
+					}
+
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: -5px;
+						left: 0;
+						right: 0;
+						height: 5px;
+						border: 1px solid #bbb;
+						border-top: 0;
+						border-radius: 0 0 3px 3px;
+					}
+
+					span {
+						position: relative;
+						display: block;
+						padding: 2px 0;
+						border: 1px solid #bbb;
+						border-top: 0;
+						border-bottom: 0;
+
+						&.active {
+							color: #666;
+							font-size: 29px;
+							padding-top: 7px;
+							padding-bottom: 11px;
+							border-width: 0;
+
+							&:before {
+								content: "";
+								position: absolute;
+								top: 0;
+								left: -5px;
+								right: -5px;
+								bottom: 0;
+								border: 1px solid #bbb;
+								border-radius: 4px;
+							}
+						}
+
+						&.disabled {
+							color: #bbb;
+						}
+					}
 				}
 			}
 		}

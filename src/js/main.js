@@ -65,6 +65,7 @@ const paradroid = {
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
 			case "switch-to-view":
+				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				Self.els.content.cssSequence("fade-out", "transitionend", el => {
 					// if (event.arg === "mobile") return;
 					el.data({ show: event.arg })
@@ -89,13 +90,12 @@ const paradroid = {
 					setTimeout(() => Self.start.dispatch({ type: "init-anim" }), 500);
 				}
 
-				// if (Self.mobile.arena.map && event.arg === "editor") {
-				// 	Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
-				// 	setTimeout(() => {
-				// 		Self.editor.dispatch({ type: "toggle-overflow" });
-				// 		Self.editor.els.palette.find(`.tab-row span:nth(1)`).trigger("click");
-				// 	}, 100);
-				// }
+				if (Self.mobile.arena.map && event.arg === "editor") {
+					Self.editor.spawn = window.open("editor");
+					// default render for editor
+					Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
+					Self.editor.dispatch({ type: "toggle-overflow" });
+				}
 				break;
 			// proxy event
 			case "set-player-droid":
