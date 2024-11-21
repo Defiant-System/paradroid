@@ -85,16 +85,26 @@ const paradroid = {
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				Self.hud.dispatch({ type: "set-view-title" });
 
-				if (event.arg === "start") {
-					Self.start.els.el.removeClass("no-anim view-anim");
-					setTimeout(() => Self.start.dispatch({ type: "init-anim" }), 500);
-				}
-
-				if (Self.mobile.arena.map && event.arg === "editor") {
-					Self.editor.spawn = window.open("editor");
-					// default render for editor
-					Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
-					Self.editor.dispatch({ type: "toggle-overflow" });
+				switch (event.arg) {
+					case "start":
+						Self.start.els.el.removeClass("no-anim view-anim");
+						setTimeout(() => Self.start.dispatch({ type: "init-anim" }), 100);
+						break;
+					case "console":
+						Self.console.dispatch({ type: "init-view" });
+						break;
+					case "editor":
+						if (Self.mobile.arena.map) {
+							Self.editor.spawn = window.open("editor");
+							// default render for editor
+							Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
+							Self.editor.dispatch({ type: "toggle-overflow" });
+						}
+						break;
+					case "lift": break;
+					case "mobile": break;
+					case "terminated": break;
+					case "transfer": break;
 				}
 				break;
 			// proxy event

@@ -25,31 +25,24 @@
 		switch (event.type) {
 			// system events
 			case "window.keydown":
-				el = Self.els.el.find(".option.active");
-				options = Self.els.el.find(".option");
-				index = el.index();
 				switch (event.char) {
 					case "return":
 						el.trigger("click");
 						break;
 					case "up":
-						el.removeClass("active");
-						index = Math.max(index - 1, 0);
-						options.get(index).addClass("active");
+						Self.dispatch({ type: "show-view", arg: -1 });
 						break;
 					case "down":
-						el.removeClass("active");
-						index = Math.min(index + 1, options.length-1);
-						options.get(index).addClass("active");
+						Self.dispatch({ type: "show-view", arg: 1 });
 						break;
 					case "left":
-						options = el.find(".sub[data-step]");
+						options = Self.els.el.find(".option.active .sub[data-step]");
 						if (options.length) {
 							Self.dispatch({ type: options.data("step"), arg: -1 });
 						}
 						break;
 					case "right":
-						options = el.find(".sub[data-step]");
+						options = Self.els.el.find(".option.active .sub[data-step]");
 						if (options.length) {
 							Self.dispatch({ type: options.data("step"), arg: 1 });
 						}
@@ -98,6 +91,33 @@
 				Self.els.el.find(`.menu .sub span:contains("${event.value}")`).addClass("active");
 				break;
 			case "select-view":
+				el = Self.els.el.find(".option.active");
+				options = Self.els.el.find(".option");
+				// update UI
+				el.removeClass("active");
+				index = Math.clamp(el.index() + event.arg, 0, options.length - 1);
+				options.get(index).addClass("active");
+				break;
+			case "show-view":
+				index = Self.els.el.find(".option.active").removeClass("active").index();
+				if (event.arg == +event.arg) {
+					index += event.arg;
+					el = Self.els.el.find(`.option`).get(index);
+				} else {
+					el = Self.els.el.find(`.option[data-view="${event.arg}"]`);
+				}
+				// menu item
+				el.addClass("active");
+				// view body
+				Self.els.el.data({ view: el.data("view") });
+
+				if (el.data("view") === "player") {
+					// show user droid, if first option
+					value = APP.mobile.arena.player.id;
+					Self.dispatch({ type: "show-droid", value });
+				}
+				break;
+			case "select-view1":
 				Self.els.el.find(".option.active").removeClass("active");
 				// make lift active
 				el = $(event.target).addClass("active");

@@ -34,7 +34,7 @@ content {
 }
 
 .console-view {
-	display: flex;
+	// display: flex;
 	padding: 7px 17px 7px 7px;
 	border-radius: 6px;
 	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.9), transparent 115%);
@@ -69,10 +69,25 @@ content {
 		pointer-events: none;
 	}
 
+	&[data-view="player"],
+	&[data-view="droid"] {
+		.view-droid { display: block; }
+	}
+
+	&[data-view="level"] {
+		.view-level { display: block; }
+	}
+
+	&[data-view="ship"] {
+		.view-ship { display: block; }
+	}
+
 	.menu {
-		position: relative;
-		z-index: 5;
+		position: absolute;
+		top: 7px;
+		left: 7px;
 		width: 91px;
+		z-index: 5;
 		padding: 11px 0 0 5px;
 		text-align: center;
 		// border-right: 2px solid #7caae6;
@@ -124,7 +139,7 @@ content {
 				display: none;
 			}
 
-			&[data-view="droids"] {
+			&[data-view="droid"] {
 				&.active {
 					&:after {
 						content: "";
@@ -209,8 +224,13 @@ content {
 		}
 	}
 
-	.data {
-		position: relative;
+	.view-droid {
+		display: none;
+		position: absolute;
+		top: 7px;
+		left: 99px;
+		width: 630px;
+		height: 455px;
 		z-index: 2;
 		flex: 1;
 		font-family: "Oxanium";
@@ -326,6 +346,24 @@ content {
 				}
 			}
 		}
+	}
+
+	.view-level {
+		display: none;
+		position: absolute;
+		top: 7px;
+		left: 99px;
+		width: 630px;
+		height: 455px;
+	}
+
+	.view-ship {
+		display: none;
+		position: absolute;
+		top: 7px;
+		left: 99px;
+		width: 630px;
+		height: 455px;
 	}
 }
 
