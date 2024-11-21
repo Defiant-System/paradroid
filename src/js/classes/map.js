@@ -59,12 +59,6 @@ class Map {
 				case "c1":
 					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true });
 					break;
-				// case "c2":
-				// 	body = Matter.Bodies.polygon(x, y, 8, 18, { isStatic: true });
-				// 	break;
-				// case "c3":
-				// 	body = Matter.Bodies.circle(x, y, 8, { isStatic: true });
-				// 	break;
 				case "c4":
 					body = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true, chamfer: { radius: 6 } });
 					break;
@@ -82,6 +76,12 @@ class Map {
 			// add body to bodies list
 			bodies.push(body);
 		});
+
+		// lights
+		this.lights = xSection.selectNodes(`./Layer[@id="lights"]/*`).map(xLight => ({
+			x: +xLight.getAttribute("x"),
+			y: +xLight.getAttribute("y"),
+		}));
 
 		// Line of Sight
 		let xWalls = xSection.selectSingleNode(`./Layer[@id="los"]/walls`),
@@ -133,7 +133,6 @@ class Map {
 
 		// physics setup
 		Matter.Composite.add(this.engine.world, bodies);
-
 		// run the engine
 		Matter.Runner.run(this.runner, this.engine);
 	}
@@ -142,8 +141,7 @@ class Map {
 		this.entries.map(item => item.update(delta));
 		this.droids.map(droid => droid.update(delta));
 
-
-		// visibility map
+		// Raycaster: visibility map
 		let viewport = this.arena.viewport,
 			m = 0,
 			{ w, h, x, y } = viewport,
@@ -159,22 +157,8 @@ class Map {
 		walls.push([x + 310, y + 246]);
 		walls.push([x + 40, y + 246]);
 
-
 		blocks.push({ x: x + 50, y: y + 66, w: 58, h: 42 });
 		blocks.push({ x: x + 50, y: y + 112, w: 28, h: 62 });
-
-
-		// Matter.Composite.allBodies(this.arena.map.engine.world)
-		// 		.filter(b => !["player"].includes(b.label))
-		// 		.map(body => {
-		// 			// flatten vertices
-		// 			body.vertices.map(v => {
-		// 				let vX = v.x + x,
-		// 					vY = v.y + y;
-		// 				// vert.push([vX, vY]);
-		// 			});
-		// 		});
-		// console.log( vert );
 
 		let pos = this.arena.player.position,
 			origo = {
@@ -223,16 +207,35 @@ class Map {
 			}
 		}
 
-		// visibility map
-		this.raycaster.render(ctx);
-
 		// draw entries - exclude droids
 		this.entries
 			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
 			.map(entry => entry.render(ctx));
-		// now render droids on top
+
+		// visibility map mask
+		ctx.save();
+		this.raycaster.render(ctx, { floor: 0, walls: 0, clip: 1 });
+		// lights
+		this.lights.map(light => {
+			let lX = light.x - vX,
+				lY = light.y - vY,
+				r = 150,
+				r2 = r >> 1,
+				gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
+			gradient.addColorStop(0.0, "#fff4");
+			gradient.addColorStop(0.5, "#fff0");
+			gradient.addColorStop(1.0, "#fff0");
+			ctx.fillStyle = gradient;
+			ctx.fillRect(lX-r2, lY-r2, r, r);
+		});
+		// now render droids (with mask clip)
 		this.droids
-			.filter(droid => droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
+			.filter(droid => !droid.isPlayer && droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
 			.map(droid => droid.render(ctx));
+		// restore drawing context
+		ctx.restore();
+
+		// player droid
+		this.arena.player.render(ctx);
 	}
 }

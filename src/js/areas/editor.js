@@ -67,6 +67,11 @@
 				Self.els.spawn.data({ show: event.arg });
 				// toggles layers depending on selected tab
 				Self.els.viewport.data({ show: event.arg });
+				// correct text for selectbox
+				if (!event.origin) {
+					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="select-editor-layer"][@arg="${event.arg}"]`);
+					Spawn.find(`.toolbar-selectbox_ .selectbox-selected_`).text(xMenu.getAttribute("name"));
+				}
 				break;
 			case "select-bg-tile":
 				el = $(event.target);

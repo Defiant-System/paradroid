@@ -20,6 +20,11 @@ let Raycaster = (() => {
 				this.visibility.setLightLocation(origo.x, origo.y);
 				this.visibility.sweep();
 			},
+			clip(ctx, path) {
+				ctx.beginPath();
+				Visibility.interpretSvg(ctx, path);
+				ctx.clip();
+			},
 			drawFloor(ctx, path) {
 				ctx.save();
 				ctx.fillStyle = "#fff6";
@@ -37,10 +42,11 @@ let Raycaster = (() => {
 				ctx.stroke();
 				ctx.restore();
 			},
-			render(ctx) {
+			render(ctx, cfg={}) {
 				let paths = Visibility.computeVisibleAreaPaths(this.origo, this.visibility.output);
-				this.drawFloor(ctx, paths.floor);
-				this.drawWalls(ctx, paths.walls);
+				if (cfg.floor) this.drawFloor(ctx, paths.floor);
+				if (cfg.walls) this.drawWalls(ctx, paths.walls);
+				if (cfg.clip) this.clip(ctx, paths.floor);
 			}
 		};
 

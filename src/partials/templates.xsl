@@ -107,8 +107,14 @@
 				<xsl:if test="@x">--x: <xsl:value-of select="@x" />;</xsl:if>
 				<xsl:if test="@y">--y: <xsl:value-of select="@y" />;</xsl:if>
 			</xsl:attribute>
-			<span class="spotlight" style="--x: 160; --y: 150;"></span>
-			<span class="spotlight" style="--x: 300; --y: 150;"></span>
+			<xsl:for-each select="./Layer[@id='lights']/*">
+				<div class="spotlight">
+					<xsl:attribute name="style">
+						--x: <xsl:value-of select="@x" />;
+						--y: <xsl:value-of select="@y" />;
+					</xsl:attribute>
+				</div>
+			</xsl:for-each>
 		</div>
 	</xsl:template>
 

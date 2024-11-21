@@ -25,7 +25,7 @@
 				switch (event.char) {
 					case "esc":
 						// stop/pause loop
-						Self.arena.fpsControl.stop();
+						Self.dispatch({ type: "game-loop-pause" });
 						// go to view
 						APP.dispatch({ type: "show-view", arg: "lift" });
 						break;
@@ -78,8 +78,8 @@
 						}
 						break;
 					case "p":
-						if (Self.arena.fpsControl._stopped) Self.arena.fpsControl.start();
-						else Self.arena.fpsControl.stop();
+						if (Self.arena.fpsControl._stopped) Self.dispatch({ type: "game-loop-resume" });
+						else Self.dispatch({ type: "game-loop-pause" });
 						break;
 				}
 				break;
@@ -96,6 +96,15 @@
 				}
 				break;
 			// custom events
+			case "game-loop-pause":
+				Matter.Runner.stop(APP.mobile.arena.map.runner);
+				Self.arena.fpsControl.stop();
+				break;
+			case "game-loop-resume":
+				// run the engine
+				Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
+				Self.arena.fpsControl.start();
+				break;
 			case "restore-state":
 			case "go-to-section":
 				// set view
