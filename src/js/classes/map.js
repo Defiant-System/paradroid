@@ -215,19 +215,24 @@ class Map {
 		// visibility map mask
 		ctx.save();
 		this.raycaster.render(ctx, { floor: 0, walls: 0, clip: 1 });
-		// lights
-		this.lights.map(light => {
-			let lX = light.x - vX,
-				lY = light.y - vY,
-				r = 150,
-				r2 = r >> 1,
-				gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
-			gradient.addColorStop(0.0, "#fff4");
-			gradient.addColorStop(0.5, "#fff0");
-			gradient.addColorStop(1.0, "#fff0");
-			ctx.fillStyle = gradient;
-			ctx.fillRect(lX-r2, lY-r2, r, r);
-		});
+		if (this.arena.debug.mode < 1) {
+			// lights
+			this.lights.map(light => {
+				let lX = light.x - vX,
+					lY = light.y - vY,
+					r = 150,
+					r2 = r >> 1,
+					gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
+				gradient.addColorStop(0.0, "#fff4");
+				gradient.addColorStop(0.5, "#fff0");
+				gradient.addColorStop(1.0, "#fff0");
+				ctx.fillStyle = gradient;
+				ctx.fillRect(lX-r2, lY-r2, r, r);
+			});
+		} else {
+			ctx.fillStyle = "#fff5";
+			ctx.fillRect(0, 0, viewport.w, viewport.h);
+		}
 		// now render droids (with mask clip)
 		this.droids
 			.filter(droid => !droid.isPlayer && droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
