@@ -81,7 +81,7 @@ content {
 
 	&[data-show="lift"] {
 		> div.lift-view {
-			.lift {
+			.elevator {
 				transition: top 180ms ease-in-out;
 			}
 		}
@@ -132,92 +132,17 @@ content {
 		height: 211px;
 		margin: 49px auto 0;
 		padding: 8px 0 0 0;
-		// box-shadow: 0 0 0 1px #999;
-		// background: url(~/img/ship.png) 0 0/contain no-repeat;
-		// background-size: 100% auto;
-
-		&[data-active-level="1"] {
-			.section[data-id="5"],
-			.section[data-id="19"] { --fg: #e07777; }
-		}
-
-		&[data-active-level="2"] {
-			.section[data-id="18"],
-			.section[data-id="20"] { --fg: #e84f46; --filter: saturate(1.35) brightness(.95); }
-		}
-
-		&[data-active-level="3"] {
-			.section[data-id="3"] { --fg: #b7a01d; --filter: sepia(1) brightness(0.9) saturate(2); }
-		}
-
-		&[data-active-level="4"] {
-			.section[data-id="17"] { --fg: #378300; --filter: hue-rotate(115deg) brightness(0.95); }
-		}
-
-		&[data-active-level="5"] {
-			.section[data-id="16"] { --fg: #e07777; }
-		}
-
-		&[data-active-level="6"] {
-			.section[data-id="15"] { --fg: #b7a01d; --filter: sepia(1) brightness(0.9) saturate(2); }
-		}
-
-		&[data-active-level="7"] {
-			.section[data-id="14"] { --fg: #b94bb5; --filter: sepia(1) hue-rotate(245deg) saturate(2) brightness(0.95); }
-		}
-
-		&[data-active-level="8"] {
-			.section[data-id="13"] { --fg: #7175f9; --filter: hue-rotate(245deg) brightness(1.1); }
-		}
-
-		&[data-active-level="9"] {
-			.section[data-id="12"] { --fg: #bc6a07; --filter: hue-rotate(35deg); }
-		}
-
-		&[data-active-level="10"] {
-			.section[data-id="9"] { --fg: #009c87; --filter: sepia(.9) hue-rotate(135deg) brightness(.925); }
-		}
-
-		&[data-active-level="11"] {
-			.section[data-id="7"] { --fg: #629a39; --filter: hue-rotate(115deg) brightness(1.05); }
-		}
-
-		&[data-active-level="12"] {
-			.section[data-id="8"] { --fg: #e74f45; }
-		}
-
-		&[data-active-level="13"] {
-			.section[data-id="2"],
-			.section[data-id="11"] { --fg: #009c87; --filter: sepia(.9) hue-rotate(135deg) brightness(.925); }
-		}
-
-		&[data-active-level="14"] {
-			.section[data-id="1"],
-			.section[data-id="10"] { --fg: #e84f46; --filter: saturate(1.35) brightness(.95); }
-		}
-
-		&[data-active-level="15"] {
-			.section[data-id="4"] { --fg: #7175f9; --filter: hue-rotate(245deg) brightness(1.1); }
-		}
-
-		&[data-active-level="16"] {
-			.section[data-id="6"] { --fg: #b7a01d; --filter: sepia(1) brightness(0.9) saturate(2); }
-		}
 
 		.lift {
 			position: absolute;
 			width: 18px;
 			background: #909090;
-			// filter: grayscale(.85);
 			box-shadow: inset 0 0 0 2px #333;
 
 			&.active {
 				z-index: 2;
 				background: #7af;
 				box-shadow: inset 0 0 0 2px #228;
-				// background: linear-gradient(90deg, rgba(215, 131, 227, 0.5), transparent),
-				// 		  	conic-gradient(from -30deg at 25%, transparent 240deg, #8b42ab 0%) 0/ 0.7em,
-				// 		  	conic-gradient(from -30deg at 75%, #8b42ab 240deg, #9956b3 0%) 0/ 0.7em;
 
 				.elevator {
 					display: block;
@@ -340,19 +265,16 @@ content {
 			position: relative;
 			height: 18px;
 			margin-bottom: -2px;
-			// filter: grayscale(.35);
-			--fg: #999;
 
 			.section {
 				position: absolute;
 				top: 0;
 				height: inherit;
-				background: var( --fg );
+				background: #999;
 				box-shadow: inset 0 0 0 2px #333;
 
 				&:before {
 					content: "";
-					// content: attr(data-id);
 					background-image: radial-gradient(ellipse at top center, rgba(#fff,.2), transparent);
 					position: absolute;
 					top: 2px;

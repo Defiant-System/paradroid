@@ -1,5 +1,5 @@
 
-<Section id="10" width="12" height="18">
+<Section id="10" width="12" height="18" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="action">
 		<i x="8" y="6" w="2" h="2" action="recharge"/>
 		<i x="8" y="10" w="2" h="2" action="recharge"/>
@@ -8,14 +8,14 @@
 	</Layer>
 	<Layer id="collision">
 		<i id="c1" x="114" y="31" w="152" h="20"/>
-<i id="c1" x="112" y="511" w="148" h="20"/>
-<i id="c1" x="272" y="159" w="84" h="20"/>
-<i id="c1" x="272" y="383" w="84" h="20"/>
-<i id="c1" x="320" y="271" w="20" h="212"/>
-<i id="c1" x="32" y="273" w="20" h="472"/>
-<i id="c4" x="144" y="471" w="60" h="44"/>
-<i id="c4" x="208" y="401" w="52" h="216"/>
-<i id="c4" x="208" y="143" w="52" h="212"/>
+		<i id="c1" x="112" y="511" w="148" h="20"/>
+		<i id="c1" x="272" y="159" w="84" h="20"/>
+		<i id="c1" x="272" y="383" w="84" h="20"/>
+		<i id="c1" x="320" y="271" w="20" h="212"/>
+		<i id="c1" x="32" y="273" w="20" h="472"/>
+		<i id="c4" x="144" y="471" w="60" h="44"/>
+		<i id="c4" x="208" y="401" w="52" h="216"/>
+		<i id="c4" x="208" y="143" w="52" h="212"/>
 	</Layer>
 	<Layer id="background">
 		<i id="m0e"/><i id="m0f"/><i id="m08"/><i id="m09"/><i id="m08"/><i id="m09"/><i id="m0c"/><i id="m0d"/><i /><i /><i /><i /><i id="m1e"/><i id="m1f"/><i id="m34"/><i id="m35"/><i id="m34"/><i id="m35"/><i id="m1c"/><i id="m1d"/><i /><i /><i /><i /><i id="m0a"/><i id="m27"/><i id="m06"/><i id="m07"/><i id="m4a"/><i id="m4b"/><i id="m2a"/><i id="m0b"/><i /><i /><i /><i /><i id="m1a"/><i id="m37"/><i id="m16"/><i id="m17"/><i id="m5a"/><i id="m5b"/><i id="m3a"/><i id="m1b"/><i /><i /><i /><i /><i id="m0a"/><i id="m27"/><i id="m4a"/><i id="m4b"/><i id="m4a"/><i id="m4b"/><i id="m2a"/><i id="m2b"/><i id="m08"/><i id="m09"/><i id="m0c"/><i id="m0d"/><i id="m1a"/><i id="m37"/><i id="m5a"/><i id="m5b"/><i id="m5a"/><i id="m5b"/><i id="m3a"/><i id="m3d"/><i id="m34"/><i id="m35"/><i id="m1c"/><i id="m1d"/><i id="m0a"/><i id="m27"/><i id="m4a"/><i id="m4b"/><i id="m4a"/><i id="m4b"/><i id="m2a"/><i id="m27"/><i id="m48"/><i id="m49"/><i id="m2a"/><i id="m0b"/><i id="m1a"/><i id="m37"/><i id="m5a"/><i id="m5b"/><i id="m5a"/><i id="m5b"/><i id="m3a"/><i id="m37"/><i id="m58"/><i id="m59"/><i id="m3a"/><i id="m1b"/><i id="m0a"/><i id="m27"/><i id="m4a"/><i id="m4b"/><i id="m4a"/><i id="m4b"/><i id="m02"/><i id="m03"/><i id="m4a"/><i id="m4b"/><i id="m2a"/><i id="m0b"/><i id="m1a"/><i id="m37"/><i id="m5a"/><i id="m5b"/><i id="m5a"/><i id="m5b"/><i id="m12"/><i id="m13"/><i id="m5a"/><i id="m5b"/><i id="m3a"/><i id="m1b"/><i id="m0a"/><i id="m27"/><i id="m4a"/><i id="m4b"/><i id="m4a"/><i id="m4b"/><i id="m2a"/><i id="m27"/><i id="m48"/><i id="m49"/><i id="m2a"/><i id="m0b"/><i id="m1a"/><i id="m37"/><i id="m5a"/><i id="m5b"/><i id="m5a"/><i id="m5b"/><i id="m3a"/><i id="m37"/><i id="m58"/><i id="m59"/><i id="m3a"/><i id="m1b"/><i id="m0a"/><i id="m27"/><i id="m4a"/><i id="m4b"/><i id="m4a"/><i id="m4b"/><i id="m2a"/><i id="m2d"/><i id="m28"/><i id="m29"/><i id="m22"/><i id="m23"/><i id="m1a"/><i id="m37"/><i id="m5a"/><i id="m5b"/><i id="m5a"/><i id="m5b"/><i id="m3a"/><i id="m3b"/><i id="m18"/><i id="m19"/><i id="m32"/><i id="m33"/><i id="m0a"/><i id="m27"/><i id="m4a"/><i id="m4b"/><i id="m4c"/><i id="m4d"/><i id="m2a"/><i id="m0b"/><i /><i /><i /><i /><i id="m1a"/><i id="m37"/><i id="m5a"/><i id="m5b"/><i id="m5c"/><i id="m5d"/><i id="m3a"/><i id="m1b"/><i /><i /><i /><i /><i id="m20"/><i id="m21"/><i id="m28"/><i id="m29"/><i id="m28"/><i id="m29"/><i id="m22"/><i id="m23"/><i /><i /><i /><i /><i id="m30"/><i id="m31"/><i id="m18"/><i id="m19"/><i id="m18"/><i id="m19"/><i id="m32"/><i id="m33"/><i /><i /><i /><i />

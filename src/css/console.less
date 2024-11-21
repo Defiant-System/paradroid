@@ -61,10 +61,10 @@ content {
 		width: 100%;
 		height: 100%;
 		z-index: 1;
-		background-image: repeating-linear-gradient(90deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 44px),
-							repeating-linear-gradient(0deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 44px),
-							repeating-linear-gradient(0deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 11px),
-							repeating-linear-gradient(90deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 11px);
+		background-image: repeating-linear-gradient(90deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 60px),
+							repeating-linear-gradient(0deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 60px),
+							repeating-linear-gradient(0deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 15px),
+							repeating-linear-gradient(90deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 15px);
 		background-position: -5px -24px;
 		pointer-events: none;
 	}
@@ -146,7 +146,7 @@ content {
 						position: absolute;
 						top: 53px;
 						left: 81px;
-						width: 43px;
+						width: 49px;
 						height: 1px;
 						background: #bbb;
 						transform: rotate(29deg);
@@ -156,8 +156,8 @@ content {
 				.sub {
 					position: absolute;
 					top: -97px;
-					left: 120px;
-					width: 43px;
+					left: 126px;
+					width: 45px;
 					z-index: 2;
 					font-family: Paradrew;
 					font-size: 14px;
@@ -390,7 +390,7 @@ content {
 					color: #888;
 				}
 
-				&.ship {
+				&.vessel {
 					position: relative;
 					padding-left: 25px;
 					font-size: 13px;
@@ -452,6 +452,291 @@ content {
 		left: 99px;
 		width: 630px;
 		height: 456px;
+
+		.ship {
+			// background: rgba(#000,.1);
+			position: absolute;
+			top: 138px;
+			left: 61px;
+			width: 544px;
+			height: 181px;
+			--border: #aaa;
+
+			.lift {
+				// display: none;
+				position: absolute;
+				width: 16px;
+				background: #fff;
+				box-shadow: inset 0 0 0 1px var( --border );
+
+				.elevator {
+					display: none;
+					position: absolute;
+					top: 0;
+					left: 1px;
+					right: 1px;
+					height: 16px;
+					background: #fff;
+					border-top: 1px solid var( --border );
+					border-bottom: 1px solid var( --border );
+				}
+
+				&[data-id="1"] {
+					left: 60px;
+					top: 0;
+					height: 151px;
+
+					&[data-section="5"] .elevator { top: 0px; }
+					&[data-section="4"] .elevator { top: 16px; }
+					&[data-section="3"] .elevator { top: 32px; }
+					&[data-section="2"] .elevator { top: 128px; }
+					&[data-section="1"] .elevator { top: 144px; }
+				}
+
+				&[data-id="2"] {
+					left: 105px;
+					top: 45px;
+					height: 136px;
+
+					&[data-section="8"] .elevator { top: 32px; }
+					&[data-section="7"] .elevator { top: 80px; }
+					&[data-section="6"] .elevator { top: 128px; }
+				}
+
+				&[data-id="3"] {
+					left: 210px;
+					top: 15px;
+					height: 31px;
+
+					&[data-section="18"] .elevator { top: 0px; }
+					&[data-section="3"] .elevator { top: 16px; }
+				}
+
+				&[data-id="4"] {
+					left: 270px;
+					top: 0;
+					height: 76px;
+
+					&[data-section="19"] .elevator { top: 0px; }
+					&[data-section="18"] .elevator { top: 16px; }
+					&[data-section="17"] .elevator { top: 32px; }
+					&[data-section="16"] .elevator { top: 48px; }
+					&[data-section="15"] .elevator { top: 64px; }
+				}
+
+				&[data-id="5"] {
+					left: 285px;
+					top: 60px;
+					height: 106px;
+
+					&[data-section="15"] .elevator { top: 0px; }
+					&[data-section="8"] .elevator { top: 16px; }
+					&[data-section="7"] .elevator { top: 64px; }
+					&[data-section="9"] .elevator { top: 96px; }
+				}
+
+				&[data-id="6"] {
+					left: 330px;
+					top: 105px;
+					height: 46px;
+
+					&[data-section="12"] .elevator { top: 0px; }
+					&[data-section="11"] .elevator { top: 16px; }
+					&[data-section="10"] .elevator { top: 32px; }
+				}
+
+				&[data-id="7"] {
+					left: 390px;
+					top: 30px;
+					height: 91px;
+
+					&[data-section="17"] .elevator { top: 0px; }
+					&[data-section="16"] .elevator { top: 16px; }
+					&[data-section="15"] .elevator { top: 32px; }
+					&[data-section="14"] .elevator { top: 48px; }
+					&[data-section="13"] .elevator { top: 64px; }
+					&[data-section="12"] .elevator { top: 80px; }
+				}
+
+				&[data-id="8"] {
+					left: 420px;
+					top: 15px;
+					height: 31px;
+
+					&[data-section="20"] .elevator { top: 0px; }
+					&[data-section="17"] .elevator { top: 16px; }
+				}
+			}
+
+			.deck {
+				position: relative;
+				height: 16px;
+				margin-bottom: -1px;
+
+				.section {
+					position: absolute;
+					top: 0;
+					height: inherit;
+					background: #fff;
+					box-shadow: inset 0 0 0 1px var( --border );
+
+					&:before {
+						content: attr(data-id);
+						// background-image: radial-gradient(ellipse at top center, rgba(#fff,.2), transparent);
+						position: absolute;
+						top: 2px;
+						left: 2px;
+						right: 2px;
+						bottom: 2px;
+						border-radius: inherit;
+						font-size: 9px;
+						padding: 3px 0 0 17px;
+					}
+				}
+
+				&[data-id="1"] {
+					.section[data-id="5"] {
+						left: 60px;
+						width: 51px;
+						border-radius: 0 30px 0 0;
+						
+					}
+
+					.section[data-id="19"] {
+						left: 250px;
+						width: 54px;
+						border-radius: 0 30px 0 0;
+						
+						&:before { padding-left: 3px; }
+					}
+				}
+
+				&[data-id="2"] {
+					.section[data-id="4"] {
+						left: 60px;
+						width: 114px;
+					}
+
+					.section[data-id="18"] {
+						left: 212px;
+						width: 157px;
+					}
+
+					.section[data-id="20"] {
+						left: 420px;
+						width: 38px;
+						border-radius: 0 30px 0 0;
+					}
+				}
+
+				&[data-id="3"] {
+					.section[data-id="3"] {
+						left: 30px;
+						width: 189px;
+
+						&:before { padding-left: 3px; }
+					}
+
+					.section[data-id="17"] {
+						left: 225px;
+						width: 256px;
+
+						&:before { padding-left: 3px; }
+					}
+				}
+
+				&[data-id="4"] {
+					.section[data-id="8"] {
+						left: 105px;
+						width: 181px;
+						height: 46px;
+					}
+
+					.section[data-id="16"] {
+						left: 245px;
+						width: 266px;
+						
+						&:before { padding-left: 3px; }
+					}
+				}
+
+				&[data-id="5"] {
+					.section[data-id="15"] {
+						left: 281px;
+						width: 275px;
+					}
+				}
+
+				&[data-id="6"] {
+					.section[data-id="14"] {
+						left: 285px;
+						width: 241px;
+					}
+				}
+
+				&[data-id="7"] {
+					.section[data-id="7"] {
+						left: 105px;
+						width: 181px;
+						height: 46px;
+					}
+
+					.section[data-id="13"] {
+						left: 285px;
+						width: 211px;
+					}
+				}
+
+				&[data-id="8"] {
+					.section[data-id="12"] {
+						left: 285px;
+						width: 151px;
+					}
+				}
+
+				&[data-id="9"] {
+					.section[data-id="2"] {
+						left: 0;
+						width: 106px;
+
+						&:before { padding-left: 3px; }
+					}
+
+					.section[data-id="11"] {
+						left: 285px;
+						width: 91px;
+					}
+				}
+
+				&[data-id="10"] {
+					.section[data-id="1"] {
+						left: 0;
+						width: 106px;
+
+						&:before { padding-left: 3px; }
+					}
+
+					.section[data-id="6"] {
+						left: 105px;
+						width: 136px;
+						height: 46px;
+					}
+
+					.section[data-id="9"] {
+						left: 240px;
+						width: 56px;
+						height: 31px;
+
+						&:before { padding-left: 3px; }
+					}
+
+					.section[data-id="10"] {
+						left: 285px;
+						width: 61px;
+					}
+				}
+			}
+		}
 	}
 }
 

@@ -192,13 +192,13 @@
 				// prevent "see-through"
 				el = Self.els.viewport.find(".layer-background");
 				Self.els.viewport.find(".level-bg").css({
-					background: sectionEl.data("color"),
+					background: xSection.getAttribute("color"),
 					"--x": el.cssProp("--x"),
 					"--y": el.cssProp("--y"),
 					"--w": el.cssProp("--w"),
 					"--h": el.cssProp("--h"),
 				});
-				el.css({ filter: sectionEl.data("filter") });
+				el.css({ filter: xSection.getAttribute("filter") });
 				break;
 			case "grid-size":
 				event.el.parent().find(".active").removeClass("active");

@@ -1,7 +1,7 @@
 
-<Section id="19" width="20" height="10">
+<Section id="19" width="20" height="10" color="#e07777" filter="none">
 	<Layer id="action">
-		<i x="2" y="4" w="1" h="2" action="monitor"/>
+		<i x="2" y="4" w="1" h="2" action="console"/>
 		<i x="16" y="4" w="2" h="2" action="exit" lift="4"/>
 	</Layer>
 	<Layer id="lights">

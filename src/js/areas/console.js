@@ -27,7 +27,14 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "return":
-						el.trigger("click");
+						APP.dispatch({
+							type: "switch-to-view",
+							arg: "mobile",
+							done: () => {
+								// droid-FX
+								APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
+							}
+						});
 						break;
 					case "up":
 						Self.dispatch({ type: "show-view", arg: -1 });
@@ -57,14 +64,14 @@
 				// default blueprint; set to active player droid ID
 				Self.dispatch({ type: "show-droid", value });
 				// toggle if player droid
-				// Self.els.el.find(".return-exit").removeClass("hidden");
+				Self.els.el.find(".return-exit").addClass("hidden");
 				break;
 			case "select-droid":
 				if (event.arg === -1) {
 					value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
 					index = Self.droids.indexOf(value);
 					index--;
-					if (index < 0) index = Self.droids.length-1;
+					if (index < 0) index = 0;
 					value = Self.droids[index];
 					// show info for droid
 					Self.dispatch({ type: "show-droid", value });
@@ -72,7 +79,7 @@
 					value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
 					index = Self.droids.indexOf(value);
 					index++;
-					if (index > Self.droids.length-1) index = 0;
+					if (index > Self.droids.length-1) index = Self.droids.length-1;
 					value = Self.droids[index];
 					// show info for droid
 					Self.dispatch({ type: "show-droid", value });
@@ -113,8 +120,8 @@
 					value = APP.mobile.arena.player.id;
 					Self.dispatch({ type: "show-droid", value });
 				}
-				// toggle if player droid
-				value = index === 0;
+				// toggle if first menu option
+				value = index === 0 && event.arg !== "droid";
 				Self.els.el.find(".return-exit").toggleClass("hidden", value);
 				break;
 			// case "select-view":
