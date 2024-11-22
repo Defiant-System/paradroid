@@ -71,7 +71,8 @@
 									type: "switch-to-view",
 									arg: "console",
 									done: () => {
-										// console.log("callback");
+										// initiate console view post animation transition
+										APP.console.dispatch({ type: "init-view" });
 									}
 								});
 								break;

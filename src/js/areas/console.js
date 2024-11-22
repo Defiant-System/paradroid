@@ -17,6 +17,8 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.console,
+			xNode,
+			xWeapon,
 			options,
 			index,
 			value,
@@ -86,8 +88,8 @@
 				}
 				break;
 			case "show-droid":
-				let xNode = window.bluePrint.selectSingleNode(`//Droid[@id="${event.value}"]`),
-					xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xNode.getAttribute("weapon")}"]`);
+				xNode = window.bluePrint.selectSingleNode(`//Droid[@id="${event.value}"]`);
+				xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xNode.getAttribute("weapon")}"]`);
 				Self.els.bp.css({ "background-image": `url("~/icons/bp-${event.value}.png")` });
 				Self.els.info.find(".unit").html(`Unit ${event.value}`);
 				Self.els.info.find(".type").html(xNode.selectSingleNode(`./i[@id="type"]`).textContent);
@@ -103,56 +105,57 @@
 				Self.els.el.find(".player-droid").toggleClass("hidden", value);
 				break;
 			case "show-view":
-				index = Self.els.el.find(".option.active").removeClass("active").index();
+				options = Self.els.el.find(`.option`);
+				index = Self.els.el.find(".option.active").index();
 				if (event.arg == +event.arg) {
 					index += event.arg;
-					el = Self.els.el.find(`.option`).get(index);
+					// menu option does not exist
+					if (isNaN(index) || index < 0 || index > options.length-1) return;
+					el = options.get(index);
 				} else {
 					el = Self.els.el.find(`.option[data-view="${event.arg}"]`);
 				}
 				// menu item
+				el.parent().find(".option.active").removeClass("active");
 				el.addClass("active");
 				// view body
 				Self.els.el.data({ view: el.data("view") });
 
-				if (el.data("view") === "player") {
-					// show user droid, if first option
-					value = APP.mobile.arena.player.id;
-					Self.dispatch({ type: "show-droid", value });
-				}
 				// toggle if first menu option
 				value = index === 0 && event.arg !== "droid";
 				Self.els.el.find(".return-exit").toggleClass("hidden", value);
+
+				// view specific actions
+				switch (el.data("view")) {
+					case "player":
+						// show user droid, if first option
+						value = APP.mobile.arena.player.id;
+						Self.dispatch({ type: "show-droid", value });
+						break;
+					case "droid":
+						break;
+					case "level":
+						console.log("render minimap, position player doid on minimap");
+						break;
+					case "ship":
+						// make active floor activew visually
+						Self.dispatch({ type: "select-level", index: APP.mobile.arena.map.id });
+						break;
+				}
 				break;
-			// case "select-view":
-			// 	el = Self.els.el.find(".option.active");
-			// 	options = Self.els.el.find(".option");
-			// 	// update UI
-			// 	el.removeClass("active");
-			// 	index = Math.clamp(el.index() + event.arg, 0, options.length - 1);
-			// 	options.get(index).addClass("active");
-			// 	break;
-			// case "select-view1":
-			// 	Self.els.el.find(".option.active").removeClass("active");
-			// 	// make lift active
-			// 	el = $(event.target).addClass("active");
-				
-			// 	switch (el.data("view")) {
-			// 		case "player":
-			// 			APP.dispatch({
-			// 				type: "switch-to-view",
-			// 				arg: "mobile",
-			// 				done: () => {
-			// 					// droid-FX
-			// 					APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
-			// 				}
-			// 			});
-			// 			break;
-			// 		case "droids": break;
-			// 		case "level": break;
-			// 		case "ship": break;
-			// 	}
-			// 	break;
+			case "select-level":
+				el = Self.els.el.find(`.view-ship .section.active`);
+				index = event.index || +el.data("id") + event.arg;
+				xNode = window.bluePrint.selectSingleNode(`//Section[@id="${index}"]`);
+				if (!xNode) return;
+				el.removeClass("active");
+				Self.els.el.find(`.view-ship .section[data-id="${index}"]`)
+					.addClass("active")
+					.css({
+						"--color": xNode.getAttribute("color"),
+						"--filter": xNode.getAttribute("filter") || "none",
+					});
+				break;
 		}
 	}
 }

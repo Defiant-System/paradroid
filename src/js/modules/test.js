@@ -76,7 +76,7 @@ let Test = {
 
 			setTimeout(() => {
 				APP.dispatch({ type: "show-view", arg: "console" });
-				APP.console.dispatch({ type: "show-view", arg: "ship" });
+				APP.console.dispatch({ type: "show-view", arg: "level" });
 			}, 600);
 
 			// setTimeout(() => {
