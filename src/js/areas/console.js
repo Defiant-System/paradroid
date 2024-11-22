@@ -10,7 +10,14 @@
 			bp: window.find(".blueprint"),
 			info: window.find(".info"),
 		};
-
+		// minimap canvas
+		let cvs = this.els.el.find("canvas.minimap");
+		this.minimap = {
+			cvs,
+			ctx: cvs[0].getContext("2d"),
+			width: +cvs.attr("width"),
+			height: +cvs.attr("height"),
+		};
 		// get droid ID's from xml data
 		this.droids = window.bluePrint.selectNodes(`//Droid[@id]`).map(x => x.getAttribute("id"));
 	},
@@ -83,6 +90,9 @@
 					index++;
 					if (index > Self.droids.length-1) index = Self.droids.length-1;
 					value = Self.droids[index];
+					// check if droid is "enabled"
+					el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${value}")`);
+					if (el.hasClass("disabled")) return;
 					// show info for droid
 					Self.dispatch({ type: "show-droid", value });
 				}
@@ -133,9 +143,14 @@
 						Self.dispatch({ type: "show-droid", value });
 						break;
 					case "droid":
+						// show user droid, if first option
+						value = APP.mobile.arena.player.id;
+						el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${value}")`);
+						// droids after player droid are "disabled"
+						el.nextAll("span").addClass("disabled");
 						break;
 					case "level":
-						console.log("render minimap, position player doid on minimap");
+
 						break;
 					case "ship":
 						// make active floor activew visually
