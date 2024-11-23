@@ -41,8 +41,8 @@ class Arena {
 
 		// assets list
 		let assets = [
-				{ id: "tiny-map", width: 64, height: 32, src: "~/img/tiles-8.png" },
-				{ id: "big-map",  width: 512, height: 256, src: "~/icons/tiles-32.png" },
+				{ id: "tiny-map", width: 112, height: 112, src: "~/icons/tiles-7.png" },
+				{ id: "big-map",  width: 512, height: 512, src: "~/icons/tiles-32.png" },
 				{ id: "droid",    width: 405, height: 45, src: "~/icons/droid.png" },
 				{ id: "digits",   width: 140, height: 16, src: "~/icons/droid-digits.png" },
 			],

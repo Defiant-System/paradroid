@@ -150,7 +150,7 @@
 						el.nextAll("span").addClass("disabled");
 						break;
 					case "level":
-
+						Self.drawMinimap(APP.mobile.arena.map.id);
 						break;
 					case "ship":
 						// make active floor activew visually
@@ -172,5 +172,37 @@
 					});
 				break;
 		}
+	},
+	drawMinimap(id) {
+		let APP = paradroid,
+			assets = APP.mobile.arena.assets,
+			{ cvs, ctx, width, height } = this.minimap,
+			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`),
+			sWidth = +xSection.getAttribute("width"),
+			sHeight = +xSection.getAttribute("height"),
+			oX = 89,
+			oY = 44,
+			background = [],
+			tile = 7;
+
+		ctx.save();
+		ctx.translate(oX, oY);
+		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, c) => {
+			if (!xTile.getAttribute("id")) return;
+			let col = c % sWidth,
+				row = Math.floor(c / sWidth),
+				[a, t, l] = xTile.getAttribute("id").split("").map(i => parseInt(i, 16)),
+				oX = l * tile,
+				oY = t * tile,
+				tX = col * tile,
+				tY = row * tile;
+
+			ctx.drawImage(
+				assets["tiny-map"].img,
+				oX, oY, tile, tile,
+				tX, tY, tile, tile
+			);
+		});
+		ctx.restore();
 	}
 }
