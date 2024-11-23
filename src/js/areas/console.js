@@ -185,10 +185,12 @@
 			oY = (height - (sHeight * tile)) >> 1,
 			background = [];
 		// minor tweak - aligns mininmap to grid
-		oX -= oX % 14;
-		oY -= oY % 14;
+		oX -= (oX % 15) - 15;
+		oY -= (oY % 15) + 1;
 		// clear canvas
 		cvs.attr({ width });
+		// update level info on parent element
+		cvs.parent().data({ level: id });
 
 		ctx.save();
 		ctx.translate(oX, oY);
