@@ -120,9 +120,9 @@
 	<svg id="icon-droid-info" viewBox="0 0 70 70">
 		<style type="text/css">
 			.st0{fill:none;stroke:#888a;stroke-miterlimit:10;}
-			.st1{fill:none;stroke:#3338;stroke-width:0.5;stroke-miterlimit:10;}
-			.st2{fill:none;stroke:#3338;stroke-width:0.25;stroke-miterlimit:10;}
-			.st3{fill:#3338;stroke:#3338;stroke-width:0.5;stroke-miterlimit:10;}
+			.st1{fill:none;stroke:#4446;stroke-width:0.5;stroke-miterlimit:10;}
+			.st2{fill:none;stroke:#4446;stroke-width:0.25;stroke-miterlimit:10;}
+			.st3{fill:#4446;stroke:#4446;stroke-width:0.5;stroke-miterlimit:10;}
 		</style>
 		<path class="st0" d="M46.1,41.6c0,0,0-0.1,0-0.2c0-0.2,0.1-0.6-0.2-0.9l-0.1-0.1c-1.9-2.1-2.4-3-2.5-3.4c-0.2-0.9-0.6-2.5-2.4-3.2
 			c5.1-2.3,8.7-7.5,8.7-13.5c0-8.2-6.6-14.8-14.8-14.8S20,12.1,20,20.3c0,5.8,3.3,10.8,8.2,13.2c0,0,0,0.1-0.1,0.1L27.9,34
