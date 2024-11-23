@@ -12,6 +12,7 @@
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"
+@import "./ext/regl.js"
 @import "./ext/astar.js"
 
 @import "./modules/raycaster.js"
