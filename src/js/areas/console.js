@@ -180,10 +180,15 @@
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`),
 			sWidth = +xSection.getAttribute("width"),
 			sHeight = +xSection.getAttribute("height"),
-			oX = 89,
-			oY = 44,
-			background = [],
-			tile = 7;
+			tile = 7,
+			oX = (width - (sWidth * tile)) >> 1,
+			oY = (height - (sHeight * tile)) >> 1,
+			background = [];
+		// minor tweak - aligns mininmap to grid
+		oX -= oX % 14;
+		oY -= oY % 14;
+		// clear canvas
+		cvs.attr({ width });
 
 		ctx.save();
 		ctx.translate(oX, oY);
