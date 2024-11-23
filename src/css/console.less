@@ -441,7 +441,7 @@ content {
 		.player {
 			position: absolute;
 			top: 163px;
-			left: 135px;
+			left: 235px;
 			width: 4px;
 			height: 4px;
 			background: #f00;
@@ -462,17 +462,74 @@ content {
 		}
 
 		canvas.minimap {
-			// background: rgba(#000,.1);
 			position: absolute;
 			top: 75px;
 			left: 42px;
 		}
 
-		ul.v-ruler {
-			background: #bbba;
+		ul {
+			background: #d2d2d2;
+			color: #c2c2c2;
 			position: absolute;
-			width: 1px;
 			list-style: none;
+			text-align: center;
+			font-size: 10px;
+
+			li {
+				display: none;
+				position: absolute;
+
+				&:before { position: absolute; }
+				&:nth-child(1):before { content: "α"; }
+				&:nth-child(2):before { content: "β"; }
+				&:nth-child(3):before { content: "δ"; }
+				&:nth-child(4):before { content: "Ω"; }
+				&:nth-child(5):before { content: "φ"; }
+				&:nth-child(6):before { content: "λ"; }
+				&:nth-child(7):before { content: "θ"; }
+				&:nth-child(8):before { content: "η"; }
+				&:nth-child(9):before { content: "ψ"; }
+			}
+		}
+
+		ul.h-ruler {
+			height: 1px;
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: -2.5px;
+				left: -5px;
+				width: 0;
+				height: 0;
+				border-top: 3px solid transparent;
+				border-bottom: 3px solid transparent;
+				border-right: 11px solid #ccc;
+			}
+
+			&:after {
+				left: auto;
+				right: -5px;
+				border-right: 0;
+				border-left: 11px solid #ccc;
+			}
+
+			li {
+				top: -3px;
+				left: 0;
+				height: 7px;
+				border-right: 1px solid #ccc;
+
+				&:before {
+					top: -9px;
+					margin-left: -3px;
+				}
+			}
+		}
+
+		ul.v-ruler {
+			width: 1px;
 
 			&:before,
 			&:after {
@@ -484,84 +541,237 @@ content {
 				height: 0;
 				border-left: 3px solid transparent;
 				border-right: 3px solid transparent;
-				border-bottom: 11px solid #bababa;
+				border-bottom: 11px solid #ccc;
 			}
 
 			&:after {
 				top: auto;
 				bottom: -10px;
 				border-bottom: 0;
-				border-top: 11px solid #bababa;
+				border-top: 11px solid #ccc;
 			}
 
 			li {
-				display: none;
-				position: absolute;
 				left: -3px;
 				top: 0;
 				width: 7px;
-				border-top: 1px solid #bbbe;
-				border-bottom: 1px solid #bbbe;
+				border-bottom: 1px solid #ccc;
+
+				&:before {
+					left: -9px;
+					height: inherit;
+					align-content: center;
+				}
 			}
 		}
 
-		ul.h-ruler {
-			background: #bbba;
-			position: absolute;
-			height: 1px;
-			list-style: none;
 
-			&:before,
-			&:after {
-				content: "";
-				position: absolute;
-				top: -2.5px;
-				left: -10px;
-				width: 0;
-				height: 0;
-				border-top: 3px solid transparent;
-				border-bottom: 3px solid transparent;
-				border-right: 11px solid #bababa;
+		&[data-level="1"] {
+			ul.h-ruler {
+				top: 89px;
+				left: 152px;
+				width: 355px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 113px; }
+					&:nth-child(2) { display: block; left: 115px; width: 142px; }
+					&:nth-child(3) { display: block; left: 257px; width: 97px; border: 0; }
+				}
 			}
 
-			&:after {
-				left: auto;
-				right: -10px;
-				border-right: 0;
-				border-left: 11px solid #bababa;
+			ul.v-ruler {
+				top: 129px;
+				left: 117px;
+				height: 190px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 66px; }
+					&:nth-child(2) { display: block; top: 67px; height: 57px; }
+					&:nth-child(3) { display: block; top: 124px; height: 71px; border: 0; }
+				}
+			}
+		}
+
+		&[data-level="2"] {
+			ul.h-ruler {
+				top: 89px;
+				left: 152px;
+				width: 355px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 56px; }
+					&:nth-child(2) { display: block; left: 57px; width: 212px; }
+					&:nth-child(3) { display: block; left: 266px; width: 86px; border: 0; }
+				}
 			}
 
-			li {
-				display: none;
-				position: absolute;
-				top: -3px;
-				left: 0;
-				height: 7px;
-				border-left: 1px solid #bbbe;
-				border-right: 1px solid #bbbe;
+			ul.v-ruler {
+				top: 129px;
+				left: 117px;
+				height: 190px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 66px; }
+					&:nth-child(2) { display: block; top: 67px; height: 57px; }
+					&:nth-child(3) { display: block; top: 124px; height: 71px; border: 0; }
+				}
+			}
+		}
+
+		&[data-level="3"] {
+			ul.h-ruler {
+				top: 89px;
+				left: 107px;
+				width: 467px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 55px; }
+					&:nth-child(2) { display: block; left: 55px; width: 114px; }
+					&:nth-child(3) { display: block; left: 168px; width: 156px; }
+					&:nth-child(4) { display: block; left: 323px; width: 76px; }
+					&:nth-child(5) { display: block; left: 398px; width: 67px; border: 0; }
+				}
+			}
+
+			ul.v-ruler {
+				top: 128px;
+				left: 72px;
+				height: 192px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 67px; }
+					&:nth-child(2) { display: block; top: 70px; height: 58px; }
+					&:nth-child(3) { display: block; top: 125px; height: 69px; border: 0; }
+				}
+			}
+		}
+
+		&[data-level="4"] {
+			ul.h-ruler {
+				top: 149px;
+				left: 182px;
+				width: 297px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 291px; border: 0; }
+				}
+			}
+
+			ul.v-ruler {
+				top: 189px;
+				left: 147px;
+				height: 48px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 42px; border: 0; }
+				}
+			}
+		}
+
+		&[data-level="5"] {
+			ul.h-ruler {
+				top: 164px;
+				left: 300px;
+				width: 75px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 70px; border: 0; }
+				}
+			}
+
+			ul.v-ruler {
+				top: 203px;
+				left: 267px;
+				height: 22px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 17px; border: 0; }
+				}
+			}
+		}
+
+		&[data-level="6"] {
+			ul.h-ruler {
+				top: 74px;
+				left: 151px;
+				width: 355px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 45px; }
+					&:nth-child(2) { display: block; left: 48px; width: 40px; }
+					&:nth-child(3) { display: block; left: 88px; width: 40px; }
+					&:nth-child(4) { display: block; left: 128px; width: 87px; }
+					&:nth-child(5) { display: block; left: 213px; width: 33px; }
+					&:nth-child(6) { display: block; left: 246px; width: 78px; }
+					&:nth-child(7) { display: block; left: 324px; width: 29px; border: 0; }
+				}
+			}
+
+			ul.v-ruler {
+				top: 115px;
+				left: 117px;
+				height: 203px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 36px; }
+					&:nth-child(2) { display: block; top: 39px; height: 126px; }
+					&:nth-child(3) { display: block; top: 163px; height: 44px; border: 0; }
+				}
 			}
 		}
 
 		&[data-level="7"] {
-			ul.v-ruler {
-				top: 115px;
-				left: 73px;
-				height: 202px;
+			ul.h-ruler {
+				top: 74px;
+				left: 107px;
+				width: 465px;
 
 				li {
-					&:nth-child(1) { display: block; top: 39px; height: 28px; }
+					&:nth-child(1) { display: block; left: 3px; width: 39px; }
+					&:nth-child(2) { display: block; left: 39px; width: 61px; }
+					&:nth-child(3) { display: block; left: 100px; width: 98px; }
+					&:nth-child(4) { display: block; left: 198px; width: 110px; }
+					&:nth-child(5) { display: block; left: 308px; width: 110px; }
+					&:nth-child(6) { display: block; left: 418px; width: 43px; border: 0; }
 				}
 			}
 
-			ul.h-ruler {
-				top: 74px;
-				left: 112px;
-				width: 455px;
+			ul.v-ruler {
+				top: 115px;
+				left: 73px;
+				height: 203px;
 
 				li {
-					&:nth-child(1) { display: block; left: 40px; width: 55px; }
-					// &:nth-child(2) { display: block; left: 110px; width: 88px; }
-					// &:nth-child(3) { display: block; left: 209px; width: 88px; }
+					&:nth-child(1) { display: block; top: 3px; height: 63px; }
+					&:nth-child(2) { display: block; top: 66px; height: 140px; border: 0; }
+				}
+			}
+		}
+
+		&[data-level="8"] {
+			ul.h-ruler {
+				top: 74px;
+				left: 107px;
+				width: 465px;
+
+				li {
+					&:nth-child(1) { display: block; left: 3px; width: 29px; }
+					&:nth-child(2) { display: block; left: 32px; width: 39px; }
+					&:nth-child(3) { display: block; left: 70px; width: 129px; }
+					&:nth-child(4) { display: block; left: 198px; width: 196px; }
+					&:nth-child(5) { display: block; left: 393px; width: 73px; border: 0;  }
+				}
+			}
+
+			ul.v-ruler {
+				top: 115px;
+				left: 73px;
+				height: 203px;
+
+				li {
+					&:nth-child(1) { display: block; top: 3px; height: 38px; }
+					&:nth-child(2) { display: block; top: 37px; height: 32px; }
+					&:nth-child(3) { display: block; top: 66px; height: 140px; border: 0; }
 				}
 			}
 		}
