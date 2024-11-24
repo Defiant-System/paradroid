@@ -1,5 +1,8 @@
 
 <Section id="19" width="20" height="10" color="#e07777" filter="none">
+	<Layer id="droids">
+		<i id="123" patrol="[[5,3], [9,3]]"/>
+	</Layer>
 	<Layer id="action">
 		<i x="2" y="4" w="1" h="2" action="console"/>
 		<i x="16" y="4" w="2" h="2" action="exit" lift="4"/>

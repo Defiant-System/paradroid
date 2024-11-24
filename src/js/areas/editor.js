@@ -5,7 +5,7 @@
 	init() {
 		// fast references
 		this.els = {
-			content: window.find("content"),
+			// content: window.find("content"),
 			viewport: window.find(".viewport"),
 			editBox: window.find(".edit-box"),
 			cursor: window.find(".cursor"),
@@ -50,16 +50,73 @@
 			Spawn = event.spawn || Self.spawn,
 			tiles,
 			value,
+			margin, mX, mY,
+			x, y, w, h,
+			grid,
+			tileEl,
 			el;
 		// console.log(event);
 		switch (event.type) {
 			case "spawn.open":
 				// fast references
 				Self.els.spawn = Spawn.find("content.editor");
+				Self.els.content = Spawn.find("content.editor");
 				break;
 			case "spawn.close":
 				break;
 			// custom events
+			case "put-tile":
+				el = $(event.target);
+				value = el.parents(".viewport").data("show");
+				return Self.dispatch({ ...event, type: `put-${value}-tile` });
+
+			case "put-bg-tile":
+				break;
+			case "put-collision-tile":
+				event.el.find(".active").removeClass("active");
+				el = $(event.target);
+
+				mY = parseInt(event.el.cssProp("--y")) * 32,
+				mX = parseInt(event.el.cssProp("--x")) * 32;
+				margin = `${mY}px 0 0 ${mX}px`;
+
+				if (["c1", "c4", "c5", "c6"].includes(el.prop("className").split(" ")[0])) {
+					el.addClass("active");
+					x = parseInt(el.cssProp("--x"), 10);
+					y = parseInt(el.cssProp("--y"), 10);
+					w = parseInt(el.cssProp("--w"), 10);
+					h = parseInt(el.cssProp("--h"), 10);
+					// focus on active element
+					Self.els.editBox.css({ "--x": `${x}px`, "--y": `${y}px`, "--w": `${w}px`, "--h": `${h}px`, margin });
+				} else if (Self.palette.tile && Self.palette.tile.startsWith("c")) {
+					x = x || event.offsetX;
+	 				y = y || event.offsetY;
+					w = ["c1", "c4"].includes(Self.palette.tile) ? 20 : 42;
+					h = ["c1", "c4"].includes(Self.palette.tile) ? 20 : 42;
+					// append new entry
+					value = [];
+					value.push(`--x: ${x}px;`);
+					value.push(`--y: ${y}px;`);
+					value.push(`--w: ${w}px;`);
+					value.push(`--h: ${h}px;`);
+					event.el.append(`<b class="${Self.palette.tile}" style="${value.join("")}"></b>`);
+				}
+				break;
+			case "put-action-tile":
+				grid = Self.els.viewport.hasClass("big-tiles") ? 32 : 8;
+				w = +event.el.cssProp("--w");
+				x = Math.ceil(event.offsetX / grid) - 1;
+				y = Math.ceil(event.offsetY / grid) - 1;
+				value = `--x: ${x};--y: ${y};--w: ${Self.palette.cursor[0].w};--h: ${Self.palette.cursor[0].h};`;
+				tileEl = event.el.find(`b.a1[style="${value}"]`);
+
+				// append new entry
+				if (tileEl.length < 1) tileEl = event.el.append(`<b class="a1" style="${value}"></b>`);
+				
+				Self.els.content.find(`input[name="action-coord"]`).val(`${x},${y},${Self.palette.cursor[0].w},${Self.palette.cursor[0].h}`);
+				Self.els.content.find(`input[name="action-id"]`).val(tileEl.data("action"));
+				break;
+
 			case "select-editor-layer":
 				// change toolset
 				Spawn.toolset = event.arg;
@@ -99,6 +156,49 @@
 				// reset palette cursor
 				delete Self.palette.cursorOrigo;
 				break;
+
+			case "select-col-tile":
+				el = $(event.target);
+				Self.palette.tile = el.prop("class").split(" ")[0];
+				// update UI
+				Self.els.content.find(".layer-collision .tiles .active").removeClass("active");
+				el.addClass("active");
+				// empty palette cursor / eraser
+				Self.palette.cursorOrigo = { x: 0, y: 0 };
+				Self.palette.cursor = [];
+				// apply cursor
+				if (el.data("size")) {
+					let [cX, cY] = el.data("size").split("x").map(i => +i);
+					for (let y=0; y<cY; y++) {
+						for (let x=0; x<cX; x++) {
+							Self.palette.cursor.push({ x, y, id: Self.palette.tile });
+						}
+					}
+				}
+				// update viewport cursor
+				value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
+				Self.els.cursor.html(value);
+				break;
+
+			case "select-action-tile":
+				el = $(event.target);
+				Self.palette.tile = el.prop("class").split(" ")[0];
+				// update UI
+				Self.els.content.find(".layer-action .tiles .active").removeClass("active");
+				el.addClass("active");
+
+				let [cX, cY] = [0, 0],
+					[cW, cH] = el.data("size") ? el.data("size").split("x").map(i => +i) : [1, 1];
+
+				// empty palette cursor / eraser
+				Self.palette.cursorOrigo = { x: 0, y: 0 };
+				Self.palette.cursor = [{ x: cX, y: cY, w: cW, h: cH }];
+
+				// update viewport cursor
+				value = `<b class="a1" style="--x: ${cX}; --y: ${cY}; --w: ${cW}; --h: ${cH};"></b>`;
+				Self.els.cursor.html(value);
+				break;
+
 			case "toggle-overflow":
 				el = Self.els.viewport;
 				value = el.hasClass("show-overflow");
@@ -233,14 +333,14 @@
 					aEl.data({ action: aId });
 				}
 				break;
-			case "duplicate-active":
+			case "col-duplicate-active":
 				// remove active
 				el = Self.els.viewport.find(".layer-collision .active").removeClass("active").clone(true);
 				Self.els.viewport.find(".layer-collision").append(el);
 				// hide editbox
 				Self.els.editBox.attr({ "style": "" });
 				break;
-			case "delete-active":
+			case "col-delete-active":
 				// remove active
 				Self.els.viewport.find(".layer-collision .active").remove();
 				// hide editbox
@@ -302,6 +402,61 @@
 				break;
 		}
 	},
+	dragEditbox(event) {
+		let APP = paradroid,
+			Self = APP.editor,
+			Drag = Self.drag,
+			data = {};
+		switch (event.type) {
+			case "mousedown":
+				let doc = $(document),
+					boxEl = Self.els.editBox,
+					colEl = Self.els.viewport.find(".layer-collision"),
+					actEl = colEl.find(".active"),
+					[a, resize] = event.target.className.split(" "),
+					offset = {
+						box: boxEl.offset(),
+						act: actEl.offset(),
+						pEl: {
+							x: (+colEl.cssProp("--x") * 32),
+							y: (+colEl.cssProp("--y") * 32),
+						}
+					},
+					click = {
+						x: event.clientX,
+						y: event.clientY,
+					};
+				// drag info
+				Self.drag = { doc, actEl, resize, boxEl, click, offset };
+				console.log( Self.drag );
+				// cover app view
+				APP.els.content.addClass("cover");
+				// bind event handlers
+				Self.drag.doc.on("mousemove mouseup", Self.dragEditbox);
+				break;
+			case "mousemove":
+				let dY = event.clientY - Drag.click.y,
+					dX = event.clientX - Drag.click.x;
+				switch (Drag.resize) {
+					case "w": break;
+					case "s": break;
+					default:
+						data.css = {
+							top: dY - Drag.offset.pEl.y + Drag.offset.box.top,
+							left: dX - Drag.offset.pEl.x + Drag.offset.box.left,
+						};
+				}
+				Drag.boxEl.css(data.css);
+				Drag.actEl.css(data.css);
+				break;
+			case "mouseup":
+				// uncover app view
+				APP.els.content.removeClass("cover");
+				// unbind event handlers
+				Self.drag.doc.off("mousemove mouseup", Self.dragEditbox);
+				break;
+		}
+	},
 	doPan(event) {
 		let APP = paradroid,
 			Self = APP.editor,
@@ -311,6 +466,9 @@
 				if (event.button != 0) return;
 				// prevent default behaviour
 				event.preventDefault();
+
+				// dispatch if event is is intended for others
+				if (event.target.className.startsWith("c")) return Self.dragEditbox(event);
 
 				let el = Self.els.viewport.find(".layer-background"),
 					offset = el.offset(".viewport"),

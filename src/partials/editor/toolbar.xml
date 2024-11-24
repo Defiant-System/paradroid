@@ -24,8 +24,8 @@
 				<Tool name="Overflow" click="toggle-overflow"/>
 				<Tool name="PGN" click="output-collision-pgn"/>
 			</Options>
-			<Tool name="Duplicate" click="duplicate-active"/>
-			<Tool name="Delete" click="delete-active"/>
+			<Tool name="Duplicate" click="col-duplicate-active"/>
+			<Tool name="Delete" click="col-delete-active"/>
 		</Group>
 	</ToolSet>
 
@@ -35,7 +35,7 @@
 			<Divider />
 			<Options type="grouped">
 				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-collision-pgn"/>
+				<Tool name="PGN" click="output-action-pgn"/>
 			</Options>
 		</Group>
 	</ToolSet>
@@ -44,6 +44,7 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
+			<Tool name="PGN" click="output-los-pgn"/>
 		</Group>
 	</ToolSet>
 
@@ -51,6 +52,7 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
+			<Tool name="PGN" click="output-lights-pgn"/>
 		</Group>
 	</ToolSet>
 </ToolBar>
