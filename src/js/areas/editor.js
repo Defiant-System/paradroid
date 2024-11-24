@@ -68,6 +68,27 @@
 			case "put-tile":
 				el = $(event.target);
 				value = el.parents(".viewport").data("show");
+				if (event.shiftKey) {
+					let tiles = event.el.find("b"),
+						grid = Self.els.viewport.parent().hasClass("big-tiles") ? 32 : 8,
+						x = Math.ceil(event.offsetX / grid) - 1,
+						y = Math.ceil(event.offsetY / grid) - 1,
+						w = +event.el.cssProp("--w"),
+						id = tiles.get((y * w) + x).prop("class").split(" ")[0];
+					// build custom palette cursor
+					if (!Self.palette.cursorOrigo) {
+						Self.palette.cursorOrigo = { x, y, id };
+						Self.palette.cursor = [];
+					}
+					// adjust position relative to origo
+					x -= Self.palette.cursorOrigo.x;
+					y -= Self.palette.cursorOrigo.y;
+					Self.palette.cursor.push({ x, y, id });
+					// insert viewport cursor tiles
+					value = Self.palette.cursor.map(c => `<b class="${c.id}" style="--x: ${c.x}; --y: ${c.y};"></b>`);
+					Self.els.cursor.html(value.join(""));
+					return;
+				}
 				return Self.dispatch({ ...event, type: `put-${value}-tile` });
 
 			case "put-background-tile":
