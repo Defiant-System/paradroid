@@ -70,7 +70,18 @@
 				value = el.parents(".viewport").data("show");
 				return Self.dispatch({ ...event, type: `put-${value}-tile` });
 
-			case "put-bg-tile":
+			case "put-background-tile":
+				tiles = event.el.find("b");
+				grid = Self.els.viewport.parent().hasClass("big-tiles") ? 32 : 8;
+				w = +event.el.cssProp("--w");
+				x = Math.ceil(event.offsetX / grid) - 1;
+				y = Math.ceil(event.offsetY / grid) - 1;
+				// apply palette cursor;
+				Self.palette.cursor.map(sel => {
+					let index = ((y + sel.y) * w) + (x + sel.x),
+						el = tiles.get(index);
+					el.prop({ className: sel.id });
+				});
 				break;
 			case "put-collision-tile":
 				event.el.find(".active").removeClass("active");
@@ -139,6 +150,9 @@
 				el = $(event.target);
 				event.el.find(".active").removeClass("active");
 				el.addClass("active");
+				// selected "tile"
+				Self.palette.tile = el.prop("class").split(" ")[0];
+				
 				// grouped tiles
 				if (Self.groups[Self.palette.tile]) {
 					Self.palette.cursorOrigo = { x: 0, y: 0 };
@@ -149,9 +163,9 @@
 					return;
 				}
 				// update UI
-				Self.els.palette.find(".tiles .active").removeClass("active");
+				Self.els.content.find(".tiles .active").removeClass("active");
 				if (Self.palette.tile) {
-					Self.els.palette.find(`.${Self.palette.tile}`).addClass("active");
+					Self.els.content.find(`.${Self.palette.tile}`).addClass("active");
 				}
 				// empty palette cursor / eraser
 				Self.palette.cursor = [{ x: 0, y: 0, id: Self.palette.tile }];
@@ -496,6 +510,20 @@
 				break;
 		}
 	},
+	doSegment(event) {
+		let APP = paradroid,
+			Self = APP.editor,
+			Segment = Self.segment,
+			data = {};
+		switch (event.type) {
+			case "mousedown":
+				break;
+			case "mousemove":
+				break;
+			case "mouseup":
+				break;
+		}
+	},
 	doPan(event) {
 		let APP = paradroid,
 			Self = APP.editor,
@@ -507,7 +535,8 @@
 				event.preventDefault();
 
 				// dispatch if event is is intended for others
-				if (Self.els.viewport.data("show") === "collision") return Self.dragEditbox(event);
+				if (Self.els.viewport.data("show") === "collision" && !event.metaKey) return Self.dragEditbox(event);
+				if (Self.els.viewport.data("show") === "los" && !event.metaKey) return Self.doSegment(event);
 
 				let el = Self.els.viewport.find(".layer-background"),
 					offset = el.offset(".viewport"),
