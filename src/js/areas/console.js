@@ -142,6 +142,8 @@
 				// toggle if first menu option
 				value = index === 0 && event.arg !== "droid";
 				Self.els.el.find(".return-exit").toggleClass("hidden", value);
+				// reset ship view
+				Self.els.el.find(".view-ship").removeClass("fade-in show-active-floor");
 
 				// view specific actions
 				switch (el.data("view")) {
@@ -161,10 +163,15 @@
 						Self.drawMinimap(APP.mobile.arena.map.id);
 						break;
 					case "ship":
-						// indicate level user is on
-						Self.els.el.find(".view-ship").data({ player: APP.mobile.arena.map.id });
-						// make active floor active visually
-						Self.dispatch({ type: "select-level", index: APP.mobile.arena.map.id });
+						setTimeout(() => {
+							// indicate level user is on
+							Self.els.el.find(".view-ship").cssSequence("fade-in", "transitionend", el => {
+								el.data({ player: APP.mobile.arena.map.id });
+								el.addClass("show-active-floor");
+							})
+							// make active floor active visually
+							Self.dispatch({ type: "select-level", index: APP.mobile.arena.map.id });
+						}, 10);
 						break;
 				}
 				break;
@@ -176,9 +183,13 @@
 				// temp
 				// Self.els.el.find(".view-ship").data({ player: index });
 
+				// previous "active"
 				el.removeClass("active");
-				Self.els.el.find(`.view-ship .section[data-id="${index}"]`)
-					.addClass("active")
+				el.parent().removeClass("active");
+				// new "active"
+				el = Self.els.el.find(`.view-ship .section[data-id="${index}"]`);
+				el.parent().addClass("active");
+				el.addClass("active")
 					.css({
 						"--color": xNode.getAttribute("color"),
 						"--filter": xNode.getAttribute("filter") || "none",
