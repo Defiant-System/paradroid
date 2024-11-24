@@ -100,15 +100,20 @@
 					value.push(`--w: ${w}px;`);
 					value.push(`--h: ${h}px;`);
 					event.el.append(`<b class="${Self.palette.tile}" style="${value.join("")}"></b>`);
+				} else {
+					Self.els.editBox.attr({ style: "" });
+					Self.els.viewport.find(".active").removeClass("active");
 				}
 				break;
 			case "put-action-tile":
-				grid = Self.els.viewport.hasClass("big-tiles") ? 32 : 8;
+				grid = Self.els.viewport.parent().hasClass("big-tiles") ? 32 : 8;
 				w = +event.el.cssProp("--w");
 				x = Math.ceil(event.offsetX / grid) - 1;
 				y = Math.ceil(event.offsetY / grid) - 1;
 				value = `--x: ${x};--y: ${y};--w: ${Self.palette.cursor[0].w};--h: ${Self.palette.cursor[0].h};`;
 				tileEl = event.el.find(`b.a1[style="${value}"]`);
+				
+				if (!Self.palette.tile) return;
 
 				// append new entry
 				if (tileEl.length < 1) tileEl = event.el.append(`<b class="a1" style="${value}"></b>`);
@@ -185,6 +190,13 @@
 				Self.palette.tile = el.prop("class").split(" ")[0];
 				// update UI
 				Self.els.content.find(".layer-action .tiles .active").removeClass("active");
+
+				if (!Self.palette.tile.startsWith("a")) {
+					delete Self.palette.tile;
+					Self.els.cursor.html("");
+					return;
+				}
+
 				el.addClass("active");
 
 				let [cX, cY] = [0, 0],
@@ -308,14 +320,14 @@
 				break;
 			case "set-action-id":
 				value = event.el.data("arg");
-				Self.els.palette.find(`input[name="action-id"]`).val(value);
+				Self.els.content.find(`input[name="action-id"]`).val(value);
 				// update node
 				Self.dispatch({ type: "update-action-tiles" });
 				break;
 			case "update-action-tiles":
 			case "clear-action-tiles":
-				let aId = Self.els.palette.find(`input[name="action-id"]`).val(),
-					[aX, aY, aW, aH] = Self.els.palette.find(`input[name="action-coord"]`).val().split(",").map(i => +i),
+				let aId = Self.els.content.find(`input[name="action-id"]`).val(),
+					[aX, aY, aW, aH] = Self.els.content.find(`input[name="action-coord"]`).val().split(",").map(i => +i),
 					aEl = Self.els.viewport.find(`.layer-action b.a1[style="--x: ${aX};--y: ${aY};--w: ${aW};--h: ${aH};"]`),
 					xNode = Self.xSection.selectSingleNode(`./Layer[@id="action"]/i[@x="${aX}"][@y="${aY}"][@w="${aW}"][@h="${aH}"]`);
 				
@@ -410,10 +422,13 @@
 		switch (event.type) {
 			case "mousedown":
 				let doc = $(document),
+					tgt = $(event.target),
 					boxEl = Self.els.editBox,
 					colEl = Self.els.viewport.find(".layer-collision"),
-					actEl = colEl.find(".active"),
-					[a, resize] = event.target.className.split(" "),
+					actEl = colEl.find(".active");
+				if (!actEl.length || tgt[0] === colEl[0]) return;
+
+				let [a, resize] = event.target.className.split(" "),
 					offset = {
 						box: boxEl.offset(),
 						act: actEl.offset(),
@@ -428,7 +443,8 @@
 					};
 				// drag info
 				Self.drag = { doc, actEl, resize, boxEl, click, offset };
-				console.log( Self.drag );
+				// auto-trigger mousemove event
+				Self.dispatch({ type: "mousemove", clientX: event.clientX, clientY: event.clientY });
 				// cover app view
 				APP.els.content.addClass("cover");
 				// bind event handlers
@@ -437,19 +453,42 @@
 			case "mousemove":
 				let dY = event.clientY - Drag.click.y,
 					dX = event.clientX - Drag.click.x;
+				
+				data.css = {
+					top: Drag.offset.act.top,
+					left: Drag.offset.act.left,
+					width: Drag.offset.act.width,
+					height: Drag.offset.act.height,
+				};
+
 				switch (Drag.resize) {
-					case "w": break;
-					case "s": break;
+					case "w":
+						break;
+					case "s":
+						data.css.height += dY;
+						data.css.height -= (data.css.height % 2);
+						break;
 					default:
-						data.css = {
-							top: dY - Drag.offset.pEl.y + Drag.offset.box.top,
-							left: dX - Drag.offset.pEl.x + Drag.offset.box.left,
-						};
+						data.css.top = dY - Drag.offset.pEl.y + Drag.offset.box.top;
+						data.css.left = dX - Drag.offset.pEl.x + Drag.offset.box.left;
 				}
+				// snap
+				data.css.top -= (data.css.top % 2);
+				data.css.left -= (data.css.left % 2);
+				// UI update
 				Drag.boxEl.css(data.css);
 				Drag.actEl.css(data.css);
+				// save values in drag object
+				Drag.data = data;
 				break;
 			case "mouseup":
+				data["--x"] = `${Drag.data.css.left + (Drag.data.css.width / 2)}px`;
+				data["--y"] = `${Drag.data.css.top + (Drag.data.css.height / 2)}px`;
+				data["--w"] = `${Drag.data.css.width}px`;
+				data["--h"] = `${Drag.data.css.height}px`;
+
+				Drag.actEl.attr({ style: "" }).css(data);
+				// Drag.boxEl.css({ "--x": "", "--y": "", "--w": "", "--h": "" });
 				// uncover app view
 				APP.els.content.removeClass("cover");
 				// unbind event handlers
@@ -468,7 +507,7 @@
 				event.preventDefault();
 
 				// dispatch if event is is intended for others
-				if (event.target.className.startsWith("c")) return Self.dragEditbox(event);
+				if (Self.els.viewport.data("show") === "collision") return Self.dragEditbox(event);
 
 				let el = Self.els.viewport.find(".layer-background"),
 					offset = el.offset(".viewport"),
