@@ -440,12 +440,15 @@ content {
 
 		.player {
 			position: absolute;
-			top: 163px;
-			left: 235px;
+			// top: 163px;
+			// left: 235px;
 			width: 4px;
 			height: 4px;
 			background: #f00;
 			border-radius: 50%;
+			margin: 75px 0 0 42px;
+			top: calc( calc( var( --pY ) * 7px ) + var( --oY ) );
+			left: calc( calc( var( --pX ) * 7px ) + var( --oX ) );
 
 			&:before {
 				content: "";

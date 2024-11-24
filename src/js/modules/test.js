@@ -74,10 +74,10 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			setTimeout(() => {
-				APP.dispatch({ type: "show-view", arg: "console" });
-				APP.console.dispatch({ type: "show-view", arg: "level" });
-			}, 600);
+			// setTimeout(() => {
+			// 	APP.dispatch({ type: "show-view", arg: "console" });
+			// 	APP.console.dispatch({ type: "show-view", arg: "level" });
+			// }, 600);
 
 			// setTimeout(() => {
 			// 	APP.els.content.find(".mobile-view .droid-fx").cssSequence("fast-focus", "animationend", el => {

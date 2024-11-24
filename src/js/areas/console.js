@@ -40,6 +40,8 @@
 							type: "switch-to-view",
 							arg: "mobile",
 							done: () => {
+								// reset console - "default" to first view
+								Self.dispatch({ type: "show-view", arg: "player" });
 								// droid-FX
 								APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
 							}
@@ -176,6 +178,7 @@
 	drawMinimap(id) {
 		let APP = paradroid,
 			assets = APP.mobile.arena.assets,
+			player = APP.mobile.arena.player,
 			{ cvs, ctx, width, height } = this.minimap,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`),
 			sWidth = +xSection.getAttribute("width"),
@@ -184,13 +187,15 @@
 			oX = (width - (sWidth * tile)) >> 1,
 			oY = (height - (sHeight * tile)) >> 1,
 			background = [];
+
 		// minor tweak - aligns mininmap to grid
 		oX -= (oX % 15) - 15;
 		oY -= (oY % 15) + 1;
 		// clear canvas
 		cvs.attr({ width });
 		// update level info on parent element
-		cvs.parent().data({ level: id });
+		cvs.parent().data({ level: id })
+			.css({ "--pX": player.x, "--pY": player.y, "--oX": `${oX}px`, "--oY": `${oY}px`, });
 
 		ctx.save();
 		ctx.translate(oX, oY);
