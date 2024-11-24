@@ -36,6 +36,9 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "return":
+						// resume game loop
+						APP.mobile.dispatch({ type: "game-loop-resume" });
+						// view animation
 						APP.dispatch({
 							type: "switch-to-view",
 							arg: "mobile",
@@ -69,6 +72,9 @@
 				break;
 			// custom events
 			case "init-view":
+				// stop/pause loop
+				APP.mobile.dispatch({ type: "game-loop-pause" });
+				// prepare console view
 				value = APP.mobile.arena.player.id;
 				// update left side menu; first option icon
 				Self.els.el.find(`.menu .option .droid`).data({ id: value });
@@ -155,7 +161,9 @@
 						Self.drawMinimap(APP.mobile.arena.map.id);
 						break;
 					case "ship":
-						// make active floor activew visually
+						// indicate level user is on
+						Self.els.el.find(".view-ship").data({ player: APP.mobile.arena.map.id });
+						// make active floor active visually
 						Self.dispatch({ type: "select-level", index: APP.mobile.arena.map.id });
 						break;
 				}
@@ -165,6 +173,9 @@
 				index = event.index || +el.data("id") + event.arg;
 				xNode = window.bluePrint.selectSingleNode(`//Section[@id="${index}"]`);
 				if (!xNode) return;
+				// temp
+				// Self.els.el.find(".view-ship").data({ player: index });
+
 				el.removeClass("active");
 				Self.els.el.find(`.view-ship .section[data-id="${index}"]`)
 					.addClass("active")

@@ -24,8 +24,6 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "esc":
-						// stop/pause loop
-						Self.dispatch({ type: "game-loop-pause" });
 						// go to view
 						APP.dispatch({ type: "show-view", arg: "lift" });
 						break;
@@ -71,6 +69,8 @@
 									type: "switch-to-view",
 									arg: "console",
 									done: () => {
+										// pause game loop
+										Self.dispatch({ type: "game-loop-pause" });
 										// initiate console view post animation transition
 										APP.console.dispatch({ type: "init-view" });
 									}
