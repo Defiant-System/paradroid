@@ -160,38 +160,50 @@
 					case "refine":
 						break;
 					case "add":
-						if (el.hasClass("segment") && !el.parent().find(".segment.new").length) {
-							let seg = {
-									g: el.data("group"),
-									w: +el.cssProp("--sw"),
-									h: +el.cssProp("--sh"),
-									x: +el.cssProp("--sx"),
-									y: +el.cssProp("--sy"),
-								},
-								d = seg.w > 2 ? "h" : "w",
-								add = {};
-							if (seg.w > 2) {
-								seg.x -= 2;
-								seg.h = 0;
+						if (!el.parent().find(".segment.new").length) {
+							if (el.hasClass("segment")) {
+								let seg = {
+										g: el.data("group"),
+										w: +el.cssProp("--sw"),
+										h: +el.cssProp("--sh"),
+										x: +el.cssProp("--sx"),
+										y: +el.cssProp("--sy"),
+									},
+									d = seg.w > 2 ? "h" : "w",
+									add = {};
+								if (seg.w > 2) {
+									seg.x -= 2;
+									seg.h = 0;
+								}
+								if (seg.h > 2) {
+									seg.w = 0;
+									seg.y -= 2;
+								}
+								add["x"] = seg.x + seg.w;
+								add["y"] = seg.y + seg.h;
+								add[d] = 4;
+								
+								if (event.offsetX < 5 && event.offsetY < 5) {
+									add["x"] = seg.x + 2;
+									add["y"] = seg.y + 2;
+								}
+								// append new segment
+								value = `<div class="segment new" data-group="${seg.g}" style="--sx: ${add.x};--sy: ${add.y};--s${d}: ${add[d]};"></div>`;
+								el = el.parent().append(value);
+								// activate mouse events
+								el.trigger("mousedown");
+							} else {
+								let add = {
+										g: Math.max(0, ...el.find(".segment").map(e => +e.getAttribute("data-group"))) + 1,
+										x: event.offsetX - 16,
+										y: event.offsetY - 16,
+										w: 4
+									};
+								value = `<div class="segment new" data-type="start" data-group="${add.g}" style="--sx: ${add.x};--sy: ${add.y};--sw: ${add.w};"></div>`;
+								el = el.append(value);
+								// activate mouse events
+								el.trigger("mousedown");
 							}
-							if (seg.h > 2) {
-								seg.w = 0;
-								seg.y -= 2;
-							}
-							add["x"] = seg.x + seg.w;
-							add["y"] = seg.y + seg.h;
-							add[d] = 4;
-							
-							if (event.offsetX < 5 && event.offsetY < 5) {
-								add["x"] = seg.x + 2;
-								add["y"] = seg.y + 2;
-							}
-
-							// append new segment
-							value = `<div class="segment new" data-group="${seg.g}" style="--sx: ${add.x};--sy: ${add.y};--s${d}: ${add[d]};"></div>`;
-							el = el.parent().append(value);
-							// activate mouse events
-							el.trigger("mousedown");
 						}
 						break;
 					case "delete":
@@ -201,19 +213,6 @@
 						}
 						break;
 				}
-
-				// if (el.hasClass("segment")) {
-				// 	el.addClass("active");
-				// 	x = parseInt(el.cssProp("--sx"), 10) - 3;
-				// 	y = parseInt(el.cssProp("--sy"), 10) - 3;
-				// 	w = 8; // parseInt(el.cssProp("--w"), 10);
-				// 	h = parseInt(el.cssProp("--sh"), 10) + 6;
-				// 	// focus on active element
-				// 	Self.els.editBox.css({ "--x": `${x}px`, "--y": `${y}px`, "--w": `${w}px`, "--h": `${h}px` });
-				// } else {
-				// 	// reset edit box
-				// 	Self.els.editBox.attr({ style: "" });
-				// }
 				break;
 
 			case "select-editor-layer":
@@ -443,7 +442,6 @@
 				}
 				break;
 
-			case "los-refine-segment":
 			case "los-add-segment":
 			case "los-delete-segment":
 				Self.palette.cursor = event.type.split("-")[1];
@@ -649,6 +647,12 @@
 					// UI class for parent element
 					el.parent().addClass("new-added");
 				} else if (Segment) {
+					let g = Segment.el.data("group"),
+						siblings = Segment.el.parent().find(`.segment[data-group="${g}"]`),
+						first = siblings.get(0);
+					if (siblings.length > 1 && Segment.el.cssProp("--sx") == first.cssProp("--sx") && Segment.el.cssProp("--sy") == first.cssProp("--sy")) {
+						Segment.el.data({ type: "end" });
+					}
 					// reset parent element
 					Segment.el.parent().removeClass("new-added");
 					// end segment
