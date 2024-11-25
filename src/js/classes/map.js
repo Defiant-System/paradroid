@@ -114,7 +114,7 @@ class Map {
 			});
 			if (vertices) this.walls.push(vertices);
 		});
-		// console.log( this.walls[0] );
+		console.log( this.walls[0] );
 
 		// add item classses
 		xSection.selectNodes(`./Layer[@id="action"]/i`).map(xItem => {

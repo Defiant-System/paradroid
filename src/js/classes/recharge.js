@@ -143,7 +143,7 @@ class Recharge {
 		}
 
 		// if debug mode on, draw extras
-		if (arena.debug.mode > 0) {
+		if (arena.debug.mode >= 1) {
 			ctx.save();
 			ctx.lineWidth = 3;
 			ctx.strokeStyle = "#00000066";

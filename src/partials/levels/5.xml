@@ -7,6 +7,12 @@
 		<!-- no lights in this level -->
 	</Layer>
 	<Layer id="los">
+		<walls>
+			<i d="1" x="40" y="40" w="272"/>
+			<i d="2" x="310" y="40" h="80"/>
+			<i d="3" x="40" y="118" w="272"/>
+			<i d="0" x="40" y="40" h="80"/>
+		</walls>
 	</Layer>
 	<Layer id="action">
 		<i x="2" y="2" w="2" h="2" action="exit" lift="1"/>
