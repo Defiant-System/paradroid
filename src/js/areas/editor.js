@@ -445,7 +445,24 @@
 
 			case "output-los-pgn":
 				tiles = [];
-				console.log(tiles.join("\n"));
+				Self.els.viewport.find(".layer-los .segment").map(seg => {
+					let el = $(seg),
+						x = el.cssProp("--sx"),
+						y = el.cssProp("--sy"),
+						w = el.cssProp("--sw"),
+						h = el.cssProp("--sh"),
+						d = w > 2 ? "w" : "h",
+						g = +el.data("group"),
+						group = tiles[g-1];
+					// first make groups
+					if (!group || group.constructor !== Array) {
+						tiles[g-1] = [];
+						group = tiles[g-1];
+					}
+					group.push(`<i x="${x}" y="${y}" ${d}="${w > 2 ? w : h}"/>`);
+				});
+				value = tiles.map(g => `<walls>\n\t${g.join("\n\t")}\n</walls>`);
+				console.log( value.join("\n") );
 				break;
 
 			case "col-duplicate-active":
