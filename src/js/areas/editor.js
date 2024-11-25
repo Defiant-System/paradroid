@@ -180,7 +180,13 @@
 							}
 							add["x"] = seg.x + seg.w;
 							add["y"] = seg.y + seg.h;
-							add[d] = 1;
+							add[d] = 4;
+							
+							if (event.offsetX < 5 && event.offsetY < 5) {
+								add["x"] = seg.x + 2;
+								add["y"] = seg.y + 2;
+							}
+
 							// append new segment
 							value = `<div class="segment new" data-group="${seg.g}" style="--sx: ${add.x};--sy: ${add.y};--s${d}: ${add[d]};"></div>`;
 							el = el.parent().append(value);
@@ -629,9 +635,17 @@
 						click = {
 							x: -event.layerX,
 							y: -event.layerY,
+						},
+						seg = {
+							w: +el.cssProp("--sw"),
+							h: +el.cssProp("--sh"),
+							x: +el.cssProp("--sx"),
+							y: +el.cssProp("--sy"),
+							d: +el.cssProp("--sw") > 2 ? "w" : "h",
 						};
+
 					// new segment object
-					Self.segment = { el, offset, click };
+					Self.segment = { el, offset, click, seg };
 					// UI class for parent element
 					el.parent().addClass("new-added");
 				} else if (Segment) {
@@ -645,12 +659,29 @@
 				break;
 			case "mousemove":
 				if (Segment) {
-					let dy = event.clientY - Segment.click.y;
+					let dx = event.clientX - Segment.click.x,
+						dy = event.clientY - Segment.click.y,
+						dv = `--s${Segment.seg.d}`;
 					// snap
+					dx -= dx % 2;
 					dy -= dy % 2;
 
-					data.css = { "--sh": dy };
-					Segment.el.css(data.css);
+					if (Segment.seg.d === "w") {
+						if (dx > 0) data[dv] = dx;
+						else {
+							data["--sx"] = Segment.seg.x + dx;
+							data["--sw"] = dx * -1;
+						}
+					} else {
+						if (dy > 0) data[dv] = dy;
+						else {
+							data["--sy"] = Segment.seg.y + dy;
+							data["--sh"] = dy * -1;
+						}
+					}
+
+					// UI update
+					Segment.el.css(data);
 				}
 				break;
 			case "mouseup":
