@@ -398,9 +398,9 @@
 				}
 				break;
 
-			case "los-duplicate-active":
+			case "los-add-segment":
+				break;
 			case "los-delete-active":
-				console.log(event);
 				break;
 			case "output-los-pgn":
 				tiles = [];
