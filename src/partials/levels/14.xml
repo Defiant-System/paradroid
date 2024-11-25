@@ -1,5 +1,13 @@
 
 <Section id="14" width="64" height="26" color="#b94bb5" filter="sepia(1) hue-rotate(245deg) saturate(2) brightness(0.95)">
+	<Layer id="droids">
+		<!-- no droids in this level -->
+	</Layer>
+	<Layer id="lights">
+		<!-- no lights in this level -->
+	</Layer>
+	<Layer id="los">
+	</Layer>
 	<Layer id="action">
 		<i x="14" y="12" w="2" h="2" action="recharge"/>
 		<i x="16" y="4" w="2" h="2" action="recharge"/>

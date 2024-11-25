@@ -4,6 +4,11 @@
 		<!-- <i id="420" patrol="[[30,11], [30,5], [33,5], [33,11]]"/> -->
 		<!-- <i id="123" patrol="[[21,3], [28,3]]"/> -->
 	</Layer>
+	<Layer id="lights">
+		<!-- no lights in this level -->
+	</Layer>
+	<Layer id="los">
+	</Layer>
 	<Layer id="action">
 		<i x="16" y="6" w="2" h="2" action="door-h"/>
 		<i x="28" y="6" w="2" h="2" action="door-h"/>

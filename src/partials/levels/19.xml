@@ -3,10 +3,6 @@
 	<Layer id="droids">
 		<i id="123" patrol="[[5,3], [9,3]]"/>
 	</Layer>
-	<Layer id="action">
-		<i x="2" y="4" w="1" h="2" action="console"/>
-		<i x="16" y="4" w="2" h="2" action="exit" lift="4"/>
-	</Layer>
 	<Layer id="lights">
 		<i x="160" y="160"/>
 		<i x="300" y="160"/>
@@ -34,6 +30,10 @@
 			<i d="3" x="50" y="174" w="30"/>
 			<i d="0" x="50" y="112" h="64"/>
 		</walls>
+	</Layer>
+	<Layer id="action">
+		<i x="2" y="4" w="1" h="2" action="console"/>
+		<i x="16" y="4" w="2" h="2" action="exit" lift="4"/>
 	</Layer>
 	<Layer id="collision">
 		<i id="c4" x="80" y="87" w="60" h="44"/>

@@ -1,5 +1,13 @@
 
 <Section id="18" width="64" height="18" color="#e84f46" filter="saturate(1.35) brightness(.95)">
+	<Layer id="droids">
+		<!-- no droids in this level -->
+	</Layer>
+	<Layer id="lights">
+		<!-- no lights in this level -->
+	</Layer>
+	<Layer id="los">
+	</Layer>
 	<Layer id="action">
 		<i x="18" y="8" w="2" h="2" action="exit" lift="3"/>
 		<i x="44" y="8" w="2" h="2" action="exit" lift="4"/>

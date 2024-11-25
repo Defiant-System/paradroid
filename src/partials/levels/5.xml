@@ -1,5 +1,13 @@
 
 <Section id="5" width="12" height="6" color="#e07777" filter="none">
+	<Layer id="droids">
+		<!-- no droids in this level -->
+	</Layer>
+	<Layer id="lights">
+		<!-- no lights in this level -->
+	</Layer>
+	<Layer id="los">
+	</Layer>
 	<Layer id="action">
 		<i x="2" y="2" w="2" h="2" action="exit" lift="1"/>
 	</Layer>
