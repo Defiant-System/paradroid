@@ -199,6 +199,9 @@
 										y: event.offsetY - 16,
 										w: 4
 									};
+								// use even numbers
+								add.x -= add.x % 2;
+								add.y -= add.y % 2;
 								value = `<div class="segment new" data-type="start" data-group="${add.g}" style="--sx: ${add.x};--sy: ${add.y};--sw: ${add.w};"></div>`;
 								el = el.append(value);
 								// activate mouse events
@@ -470,11 +473,13 @@
 					if (prev) {
 						switch (true) {
 							case el.data("type") === "end": d = 0; break; // up
+							case t === "h" && y + h - prev.y <= 2: d = 0; break; // up
 							case t === "h" && prev.w > 2: d = 2; break; // down
-							case t === "w" && x + w === prev.x + 2: d = 3; break; // right
+							case t === "w" && x + w - prev.x <= 2: d = 3; break; // right
 							default: d = 1; // left
 						}
-						if (t === "w") console.log( t, d, x + w, prev.x + 2 );
+						// if (t === "h") console.log( t, d, y, h, prev.y );
+						// if (t === "w") console.log( t, d, x + w, prev.x + 2 );
 					}
 					prev = { x, y, w, h, t };
 					group.push(`<i d="${d}" x="${x}" y="${y}" ${t}="${w > 2 ? w : h}"/>`);
@@ -655,7 +660,6 @@
 							y: +el.cssProp("--sy"),
 							d: +el.cssProp("--sw") > 2 ? "w" : "h",
 						};
-
 					// new segment object
 					Self.segment = { el, offset, click, seg };
 					// UI class for parent element

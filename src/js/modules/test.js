@@ -46,11 +46,12 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		return setTimeout(() => {
 			let spawn = window.open("editor");
 
 			APP.dispatch({ type: "show-view", arg: "editor" });
-			APP.editor.dispatch({ type: "render-level", arg: "10", spawn });
+			APP.editor.dispatch({ type: "render-level", arg: "11", spawn });
 			APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			APP.editor.dispatch({ type: "select-editor-layer", arg: "los", spawn });
 
@@ -65,7 +66,6 @@ let Test = {
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
-		 */
 
 
 		return setTimeout(() => {
@@ -73,7 +73,7 @@ let Test = {
 					// map: { id: 19, clear: .15 }, player: { id: "001", x: 12, y: 5, power: .25 }, debug: { mode: .5 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 10, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
-					map: { id: 10, clear: .1 }, player: { x: 6, y: 4, power: .5 }, debug: { mode: .5 },
+					map: { id: 11, clear: .1 }, player: { x: 6, y: 4, power: .5 }, debug: { mode: .5 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
