@@ -80,6 +80,7 @@
 					<div class="segment">
 						<xsl:attribute name="data-group"><xsl:value-of select="$pos" /></xsl:attribute>
 						<xsl:if test="position() = 1"><xsl:attribute name="data-type">start</xsl:attribute></xsl:if>
+						<xsl:if test="position() > 1 and @x = ../*[position() = 1]/@x and @y = ../*[position() = 1]/@y"><xsl:attribute name="data-type">end</xsl:attribute></xsl:if>
 						<xsl:attribute name="style">
 							--sx: <xsl:value-of select="@x" />;
 							--sy: <xsl:value-of select="@y" />;

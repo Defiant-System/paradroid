@@ -58,7 +58,10 @@ let Test = {
 			// setTimeout(() => spawn.find(`.layer-background b.m06`).trigger("click"), 500);
 			// setTimeout(() => window.find(`.layer-collision b.c4`).get(2).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.tiles b[data-size="2x2"]`).trigger("click"), 500);
-			setTimeout(() => APP.els.content.find(`.layer-los div`).get(3).trigger("click"), 500);
+
+			setTimeout(() => spawn.find(`.toolbar-tool_[data-click="los-add-segment"]`).trigger("click"), 500);
+			// setTimeout(() => APP.els.content.find(`.layer-los div`).get(3).trigger("click"), 500);
+			// setTimeout(() => console.log( APP.els.content.find(`.layer-los .segment`).get(3)[] ), 500);
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);

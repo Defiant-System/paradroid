@@ -154,21 +154,60 @@
 				Self.els.content.find(`input[name="action-id"]`).val(tileEl.data("action"));
 				break;
 			case "put-los-tile":
-				event.el.find(".active").removeClass("active");
 				el = $(event.target);
 
-				if (el.hasClass("segment")) {
-					el.addClass("active");
-					x = parseInt(el.cssProp("--sx"), 10) - 3;
-					y = parseInt(el.cssProp("--sy"), 10) - 3;
-					w = 8; // parseInt(el.cssProp("--w"), 10);
-					h = parseInt(el.cssProp("--sh"), 10) + 6;
-					// focus on active element
-					Self.els.editBox.css({ "--x": `${x}px`, "--y": `${y}px`, "--w": `${w}px`, "--h": `${h}px` });
-				} else {
-					// reset edit box
-					Self.els.editBox.attr({ style: "" });
+				switch (Self.palette.cursor) {
+					case "refine":
+						break;
+					case "add":
+						if (el.hasClass("segment") && !el.parent().find(".segment.new").length) {
+							let seg = {
+									g: el.data("group"),
+									w: +el.cssProp("--sw"),
+									h: +el.cssProp("--sh"),
+									x: +el.cssProp("--sx"),
+									y: +el.cssProp("--sy"),
+								},
+								d = seg.w > 2 ? "h" : "w",
+								add = {};
+							if (seg.w > 2) {
+								seg.x -= 2;
+								seg.h = 0;
+							}
+							if (seg.h > 2) {
+								seg.w = 0;
+								seg.y -= 2;
+							}
+							add["x"] = seg.x + seg.w;
+							add["y"] = seg.y + seg.h;
+							add[d] = 1;
+							// append new segment
+							value = `<div class="segment new" data-group="${seg.g}" style="--sx: ${add.x};--sy: ${add.y};--s${d}: ${add[d]};"></div>`;
+							el = el.parent().append(value);
+							// activate mouse events
+							el.trigger("mousedown");
+						}
+						break;
+					case "delete":
+						if (el.hasClass("segment")) {
+							el.nextAll(`.segment[data-group="${el.data("group")}"]`).remove();
+							el.remove();
+						}
+						break;
 				}
+
+				// if (el.hasClass("segment")) {
+				// 	el.addClass("active");
+				// 	x = parseInt(el.cssProp("--sx"), 10) - 3;
+				// 	y = parseInt(el.cssProp("--sy"), 10) - 3;
+				// 	w = 8; // parseInt(el.cssProp("--w"), 10);
+				// 	h = parseInt(el.cssProp("--sh"), 10) + 6;
+				// 	// focus on active element
+				// 	Self.els.editBox.css({ "--x": `${x}px`, "--y": `${y}px`, "--w": `${w}px`, "--h": `${h}px` });
+				// } else {
+				// 	// reset edit box
+				// 	Self.els.editBox.attr({ style: "" });
+				// }
 				break;
 
 			case "select-editor-layer":
@@ -398,10 +437,12 @@
 				}
 				break;
 
+			case "los-refine-segment":
 			case "los-add-segment":
-				break;
-			case "los-delete-active":
-				break;
+			case "los-delete-segment":
+				Self.palette.cursor = event.type.split("-")[1];
+				return true;
+
 			case "output-los-pgn":
 				tiles = [];
 				console.log(tiles.join("\n"));
@@ -565,8 +606,35 @@
 			data = {};
 		switch (event.type) {
 			case "mousedown":
+				let el = $(event.target);
+				if (el.hasClass("new") && !Segment) {
+					let offset = el.offset(),
+						click = {
+							x: -event.layerX,
+							y: -event.layerY,
+						};
+					// new segment object
+					Self.segment = { el, offset, click };
+					// UI class for parent element
+					el.parent().addClass("new-added");
+				} else if (Segment) {
+					// reset parent element
+					Segment.el.parent().removeClass("new-added");
+					// end segment
+					delete Self.segment;
+					// reset new segment
+					setTimeout(() => Segment.el.removeClass("new"), 200);
+				}
 				break;
 			case "mousemove":
+				if (Segment) {
+					let dy = event.clientY - Segment.click.y;
+					// snap
+					dy -= dy % 2;
+
+					data.css = { "--sh": dy };
+					Segment.el.css(data.css);
+				}
 				break;
 			case "mouseup":
 				break;
@@ -616,7 +684,8 @@
 					if (Math.abs(Pan.data.top - top) > threshold || Math.abs(Pan.data.left - left) > threshold) {
 						Pan.moved = { top, left, };
 					}
-				// } else if (event.target.classList.contains("level")) {
+				} else if (event.target.classList.contains("layer-los")) {
+					return Self.doSegment(event);
 				} else if (event.target.classList.contains("layer-collision")) {
 					Self.els.cursor.css({ "--t": 0, "--l": 0, "--tx": 1, "--ty": 1 });
 				} else {

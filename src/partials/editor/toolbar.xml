@@ -44,8 +44,11 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
-			<Tool name="Add" click="los-add-segment"/>
-			<Tool name="Delete" click="los-delete-active"/>
+			<Options>
+				<Tool name="Refine" click="los-refine-segment"/>
+				<Tool name="Add" click="los-add-segment"/>
+				<Tool name="Delete" click="los-delete-segment"/>
+			</Options>
 			<Tool name="PGN" click="output-los-pgn"/>
 		</Group>
 	</ToolSet>
