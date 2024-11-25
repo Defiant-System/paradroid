@@ -65,7 +65,7 @@
 	</xsl:template>
 
 	<xsl:template name="layer-los">
-		<div class="layer-los" data-click="select-los-segment">
+		<div class="layer-los" data-click="put-tile">
 			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
 			<xsl:attribute name="style">
 				--w: <xsl:value-of select="@width" />;
@@ -74,26 +74,19 @@
 				<xsl:if test="@y">--y: <xsl:value-of select="@y" />;</xsl:if>
 			</xsl:attribute>
 			<!-- walls -->
-			<xsl:for-each select="./Layer[@id='los']/walls/*">
-				<div class="segment">
-					<xsl:attribute name="style">
-						--sx: <xsl:value-of select="@x" />;
-						--sy: <xsl:value-of select="@y" />;
-						<xsl:if test="@w">--sw: <xsl:value-of select="@w" />;</xsl:if>
-						<xsl:if test="@h">--sh: <xsl:value-of select="@h" />;</xsl:if>
-					</xsl:attribute>
-				</div>
-			</xsl:for-each>
-
-			<xsl:for-each select="./Layer[@id='los']/block">
-				<div class="block">
-					<xsl:attribute name="style">
-						--sx: <xsl:value-of select="@x" />;
-						--sy: <xsl:value-of select="@y" />;
-						--sw: <xsl:value-of select="@w" />;
-						--sh: <xsl:value-of select="@h" />;
-					</xsl:attribute>
-				</div>
+			<xsl:for-each select="./Layer[@id='los']/walls">
+				<xsl:variable name="pos" select="position()"/>
+				<xsl:for-each select="./*">
+					<div class="segment">
+						<xsl:attribute name="data-group"><xsl:value-of select="$pos" /></xsl:attribute>
+						<xsl:attribute name="style">
+							--sx: <xsl:value-of select="@x" />;
+							--sy: <xsl:value-of select="@y" />;
+							<xsl:if test="@w">--sw: <xsl:value-of select="@w" />;</xsl:if>
+							<xsl:if test="@h">--sh: <xsl:value-of select="@h" />;</xsl:if>
+						</xsl:attribute>
+					</div>
+				</xsl:for-each>
 			</xsl:for-each>
 		</div>
 	</xsl:template>

@@ -53,12 +53,12 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "editor" });
 			APP.editor.dispatch({ type: "render-level", arg: "19", spawn });
 			APP.editor.dispatch({ type: "toggle-overflow", spawn });
-			APP.editor.dispatch({ type: "select-editor-layer", arg: "collision", spawn });
+			APP.editor.dispatch({ type: "select-editor-layer", arg: "los", spawn });
 
-			setTimeout(() => window.find(`.layer-collision b.c4`).get(2).trigger("click"), 500);
-
+			// setTimeout(() => spawn.find(`.layer-background b.m06`).trigger("click"), 500);
+			// setTimeout(() => window.find(`.layer-collision b.c4`).get(2).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.tiles b[data-size="2x2"]`).trigger("click"), 500);
-			// setTimeout(() => APP.els.content.find(`.layer-los div`).get(3).trigger("click"), 500);
+			setTimeout(() => APP.els.content.find(`.layer-los div`).get(3).trigger("click"), 500);
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);

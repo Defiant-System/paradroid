@@ -44,6 +44,8 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
+			<Tool name="Duplicate" click="los-duplicate-active"/>
+			<Tool name="Delete" click="los-delete-active"/>
 			<Tool name="PGN" click="output-los-pgn"/>
 		</Group>
 	</ToolSet>

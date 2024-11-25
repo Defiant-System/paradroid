@@ -153,6 +153,23 @@
 				Self.els.content.find(`input[name="action-coord"]`).val(`${x},${y},${Self.palette.cursor[0].w},${Self.palette.cursor[0].h}`);
 				Self.els.content.find(`input[name="action-id"]`).val(tileEl.data("action"));
 				break;
+			case "put-los-tile":
+				event.el.find(".active").removeClass("active");
+				el = $(event.target);
+
+				if (el.hasClass("segment")) {
+					el.addClass("active");
+					x = parseInt(el.cssProp("--sx"), 10) - 3;
+					y = parseInt(el.cssProp("--sy"), 10) - 3;
+					w = 8; // parseInt(el.cssProp("--w"), 10);
+					h = parseInt(el.cssProp("--sh"), 10) + 6;
+					// focus on active element
+					Self.els.editBox.css({ "--x": `${x}px`, "--y": `${y}px`, "--w": `${w}px`, "--h": `${h}px` });
+				} else {
+					// reset edit box
+					Self.els.editBox.attr({ style: "" });
+				}
+				break;
 
 			case "select-editor-layer":
 				// change toolset
@@ -380,6 +397,16 @@
 					aEl.data({ action: aId });
 				}
 				break;
+
+			case "los-duplicate-active":
+			case "los-delete-active":
+				console.log(event);
+				break;
+			case "output-los-pgn":
+				tiles = [];
+				console.log(tiles.join("\n"));
+				break;
+
 			case "col-duplicate-active":
 				// remove active
 				el = Self.els.viewport.find(".layer-collision .active").removeClass("active").clone(true);
