@@ -449,6 +449,7 @@
 
 			case "output-los-pgn":
 				tiles = [];
+				let prev;
 				Self.els.viewport.find(".layer-los .segment").map(seg => {
 					let el = $(seg),
 						x = el.cssProp("--sx"),
@@ -463,6 +464,7 @@
 						tiles[g-1] = [];
 						group = tiles[g-1];
 					}
+					prev = { x, y, w, h };
 					group.push(`<i x="${x}" y="${y}" ${d}="${w > 2 ? w : h}"/>`);
 				});
 				value = tiles.map(g => `<walls>\n\t${g.join("\n\t")}\n</walls>`);

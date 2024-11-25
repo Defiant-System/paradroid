@@ -46,7 +46,6 @@ let Test = {
 
 		/*
 		 * EDITOR
-		 */
 		return setTimeout(() => {
 			let spawn = window.open("editor");
 
@@ -65,11 +64,12 @@ let Test = {
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
+		 */
 
 
 		return setTimeout(() => {
 			let state = {
-					map: { id: 19, clear: .15 }, player: { id: "001", x: 14, y: 5, power: .25 }, debug: { mode: 0 },
+					map: { id: 19, clear: .15 }, player: { id: "001", x: 12, y: 5, power: .25 }, debug: { mode: .5 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 10, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 1, clear: .1 }, player: { x: 23, y: 7, power: .5 }, debug: { mode: 1 },
@@ -92,7 +92,7 @@ let Test = {
 			// }, 500);
 
 			// pause test
-			// setTimeout(() => APP.mobile.dispatch({ type: "game-loop-pause" }), 1500);
+			// setTimeout(() => APP.mobile.dispatch({ type: "game-loop-pause" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);

@@ -11,12 +11,11 @@ let Raycaster = (() => {
 
 				return this;
 			},
-			loadMap(blocks, walls, origo) {
+			loadMap(walls, origo) {
 				// set origo point
 				this.origo = origo;
 				this.visibility.clear();
-				this.visibility.addBlocks(blocks);
-				this.visibility.addVertices(walls);
+				walls.map(verts => this.visibility.addVertices(verts));
 				this.visibility.setLightLocation(origo.x, origo.y);
 				this.visibility.sweep();
 			},
@@ -33,12 +32,26 @@ let Raycaster = (() => {
 				ctx.fill();
 				ctx.restore();
 			},
-			drawWalls(ctx, path) {
+			drawVisibleWalls(ctx, path) {
 				ctx.save();
 				ctx.strokeStyle = "#f00";
 				ctx.lineWidth = 2;
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
+				ctx.stroke();
+				ctx.restore();
+			},
+			drawWalls(ctx, path) {
+				ctx.save();
+				ctx.strokeStyle = "#fff";
+				ctx.lineWidth = 2;
+				ctx.beginPath();
+				let it0 = this.visibility.segments.iterator();
+				while(it0.hasNext()) {
+					let seg = it0.next();
+					ctx.moveTo(seg.p1.x, seg.p1.y);
+					ctx.lineTo(seg.p2.x, seg.p2.y);
+				}
 				ctx.stroke();
 				ctx.restore();
 			},
@@ -530,7 +543,7 @@ let Raycaster = (() => {
 			let floor = [];
 			let triangles = [];
 			let walls = [];
-			for (let i = 0; i < output.length; i += 2) {
+			for (let i=0; i<output.length; i+=2) {
 				let p1 = output[i];
 				let p2 = output[i+1];
 				if (isNaN(p1.x) || isNaN(p1.y) || isNaN(p2.x) || isNaN(p2.y)) {
@@ -559,45 +572,45 @@ let Raycaster = (() => {
 			}
 		}
 
-		loadEdgeOfMap(area) {
-			this.addSegment(area.m, area.m, area.w-area.m, area.m);
-			this.addSegment(area.m, area.m, area.m, area.h-area.m);
-			this.addSegment(area.w-area.m, area.m, area.w-area.m, area.h-area.m);
-			this.addSegment(area.m, area.h-area.m, area.w-area.m, area.h-area.m);
-		}
+		// loadEdgeOfMap(area) {
+		// 	this.addSegment(area.m, area.m, area.w-area.m, area.m);
+		// 	this.addSegment(area.m, area.m, area.m, area.h-area.m);
+		// 	this.addSegment(area.w-area.m, area.m, area.w-area.m, area.h-area.m);
+		// 	this.addSegment(area.m, area.h-area.m, area.w-area.m, area.h-area.m);
+		// }
 
-		loadMap(area, blocks, walls) {
-			this.segments.clear();
-			this.endpoints.clear();
-			this.loadEdgeOfMap(area);
-			var _g = 0;
+		// loadMap(area, blocks, walls) {
+		// 	this.segments.clear();
+		// 	this.endpoints.clear();
+		// 	this.loadEdgeOfMap(area);
+		// 	var _g = 0;
 
-			while(_g < blocks.length) {
-				var block = blocks[_g];
-				++_g;
-				// corners
-				let nw = [block.x, block.y];
-				let sw = [block.x, block.y + block.h];
-				let ne = [block.x + block.w, block.y];
-				let se = [block.x + block.w, block.y + block.h]
-				this.addSegment(...nw, ...ne);
-				this.addSegment(...nw, ...sw);
-				this.addSegment(...ne, ...se);
-				this.addSegment(...sw, ...se);
-			}
-			var _g1 = 0;
-			while(_g1 < walls.length) {
-				var wall = walls[_g1];
-				++_g1;
-				this.addSegment(wall.p1.x, wall.p1.y, wall.p2.x, wall.p2.y);
-			}
+		// 	while(_g < blocks.length) {
+		// 		var block = blocks[_g];
+		// 		++_g;
+		// 		// corners
+		// 		let nw = [block.x, block.y];
+		// 		let sw = [block.x, block.y + block.h];
+		// 		let ne = [block.x + block.w, block.y];
+		// 		let se = [block.x + block.w, block.y + block.h]
+		// 		this.addSegment(...nw, ...ne);
+		// 		this.addSegment(...nw, ...sw);
+		// 		this.addSegment(...ne, ...se);
+		// 		this.addSegment(...sw, ...se);
+		// 	}
+		// 	var _g1 = 0;
+		// 	while(_g1 < walls.length) {
+		// 		var wall = walls[_g1];
+		// 		++_g1;
+		// 		this.addSegment(wall.p1.x, wall.p1.y, wall.p2.x, wall.p2.y);
+		// 	}
 
-			var $it0 = this.segments.iterator();
-			while( $it0.hasNext() ) {
-				var segment = $it0.next();
-				var node = this.open.head;
-			}
-		}
+		// 	var $it0 = this.segments.iterator();
+		// 	while( $it0.hasNext() ) {
+		// 		var segment = $it0.next();
+		// 		var node = this.open.head;
+		// 	}
+		// }
 		
 		addVertices(vert) {
 			if (vert.length > 1) {
@@ -635,21 +648,21 @@ let Raycaster = (() => {
 			this.endpoints.append(p2);
 		}
 
-		addBlocks(blocks) {
-			blocks.map(b => {
-				// corners
-				let nw = [b.x, b.y];
-				let sw = [b.x, b.y + b.h];
-				let ne = [b.x + b.w, b.y];
-				let se = [b.x + b.w, b.y + b.h]
-				this.addSegment(...nw, ...ne);
-				this.addSegment(...nw, ...sw);
-				this.addSegment(...ne, ...se);
-				this.addSegment(...sw, ...se);
-				// close "vertex loop"
-				this.close();
-			});
-		}
+		// addBlocks(blocks) {
+		// 	blocks.map(b => {
+		// 		// corners
+		// 		let nw = [b.x, b.y];
+		// 		let sw = [b.x, b.y + b.h];
+		// 		let ne = [b.x + b.w, b.y];
+		// 		let se = [b.x + b.w, b.y + b.h]
+		// 		this.addSegment(...nw, ...ne);
+		// 		this.addSegment(...nw, ...sw);
+		// 		this.addSegment(...ne, ...se);
+		// 		this.addSegment(...sw, ...se);
+		// 		// close "vertex loop"
+		// 		this.close();
+		// 	});
+		// }
 		
 		setLightLocation(x, y) {
 			this.center.x = x;

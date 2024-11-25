@@ -126,7 +126,7 @@ class Arena {
 		this.map.render(this.ctx);
 		// this.player.render(this.ctx);
 
-		if (this.debug.mode > 0) {
+		if (this.debug.mode >= 1) {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);
 
 			this.ctx.save();

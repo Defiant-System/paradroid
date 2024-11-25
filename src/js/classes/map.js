@@ -84,15 +84,25 @@ class Map {
 		}));
 
 		// Line of Sight
-		let xWalls = xSection.selectSingleNode(`./Layer[@id="los"]/walls`),
-			xBlocks = xSection.selectNodes(`./Layer[@id="los"]/block`);
-		this.walls = xWalls ? JSON.parse(xWalls.getAttribute("v")) : [];
-		this.blocks = xBlocks.map(x => ({
-			x: +x.getAttribute("x"),
-			y: +x.getAttribute("y"),
-			w: +x.getAttribute("w"),
-			h: +x.getAttribute("h"),
-		}));
+		this.walls = [];
+		xSection.selectNodes(`./Layer[@id="los"]/walls`).map(xWall => {
+			let vertices = [];
+			xWall.selectNodes("./i").map(xSeg => {
+				let vx = +xSeg.getAttribute("x"),
+					vy = +xSeg.getAttribute("y"),
+					vw = +xSeg.getAttribute("w"),
+					vh = +xSeg.getAttribute("h");
+				switch (xSeg.getAttribute("d")) {
+					case "0": vy += vh - 2; break; // up
+					case "1": break;               // left
+					case "2": break;               // down
+					case "3": vx += vw - 2;break;  // right
+				}
+				vertices.push([vx, vy]);
+			});
+			if (vertices) this.walls.push(vertices);
+		});
+		// console.log( this.walls );
 
 		// add item classses
 		xSection.selectNodes(`./Layer[@id="action"]/i`).map(xItem => {
@@ -145,33 +155,26 @@ class Map {
 		let viewport = this.arena.viewport,
 			m = 0,
 			{ w, h, x, y } = viewport,
-			walls = [],
-			blocks = [];
-
-		walls.push([x + 40, y + 40]);
-		walls.push([x + 310, y + 40]);
-		walls.push([x + 310, y + 108]);
-		walls.push([x + 562, y + 108]);
-		walls.push([x + 562, y + 180]);
-		walls.push([x + 310, y + 180]);
-		walls.push([x + 310, y + 246]);
-		walls.push([x + 40, y + 246]);
-
-		blocks.push({ x: x + 50, y: y + 66, w: 58, h: 42 });
-		blocks.push({ x: x + 50, y: y + 112, w: 28, h: 62 });
+			walls = [];
+		this.walls.map(verts => {
+			let wall = [];
+			verts.map(v => wall.push([x + v[0], y + v[1]]));
+			if (wall.length) walls.push(wall);
+		});
 
 		let pos = this.arena.player.position,
 			origo = {
 				x: x + pos.x,
 				y: y + pos.y,
 			};
-		this.raycaster.loadMap(blocks, walls, origo);
+		this.raycaster.loadMap(walls, origo);
 	}
 
 	render(ctx) {
 		let assets = this.arena.assets,
 			viewport = this.arena.viewport,
 			tile = this.arena.config.tile,
+			debug = this.arena.debug.mode,
 			hT = tile >> 1,
 			vX = hT - viewport.x,
 			vY = hT - viewport.y,
@@ -186,7 +189,7 @@ class Map {
 		if (yMax > this.height) yMax = this.height;
 
 		// normal draw if debug mode is < 2
-		if (this.arena.debug.mode < 2) {
+		if (debug < 2) {
 			for (let y=yMin; y<yMax; y++) {
 				for (let x=xMin; x<xMax; x++) {
 					let col = this.background[y][x];
@@ -212,10 +215,15 @@ class Map {
 			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
 			.map(entry => entry.render(ctx));
 
+		// raycaster options
+		let floor = debug >= 1 ? 1 : 0,
+			walls = debug == .5 ? 1 : 0,
+			clip = debug == 0 ? 1 : 0;
+
 		// visibility map mask
 		ctx.save();
-		this.raycaster.render(ctx, { floor: 0, walls: 0, clip: 1 });
-		if (this.arena.debug.mode < 1) {
+		this.raycaster.render(ctx, { floor, walls, clip });
+		if (debug < 1) {
 			// lights
 			this.lights.map(light => {
 				let lX = light.x - vX,
@@ -229,9 +237,6 @@ class Map {
 				ctx.fillStyle = gradient;
 				ctx.fillRect(lX-r2, lY-r2, r, r);
 			});
-		} else {
-			ctx.fillStyle = "#fff5";
-			ctx.fillRect(0, 0, viewport.w, viewport.h);
 		}
 		// now render droids (with mask clip)
 		this.droids
