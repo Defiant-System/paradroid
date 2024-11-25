@@ -83,11 +83,18 @@ class Map {
 			y: +xLight.getAttribute("y"),
 		}));
 
+		// raycaster options
+		this.rcConf = {
+				floor: this.arena.debug.mode >= 1 ? 1 : 0,
+				walls: this.arena.debug.mode == .5 ? 1 : 0,
+				clip: this.arena.debug.mode == 0 ? 1 : 0,
+			};
+
 		// Line of Sight
 		this.walls = [];
 		xSection.selectNodes(`./Layer[@id="los"]/walls`).map(xWall => {
 			let vertices = [];
-			xWall.selectNodes("./i").map(xSeg => {
+			xWall.selectNodes("./i").map((xSeg, i) => {
 				let vx = +xSeg.getAttribute("x"),
 					vy = +xSeg.getAttribute("y"),
 					vw = +xSeg.getAttribute("w"),
@@ -102,7 +109,7 @@ class Map {
 			});
 			if (vertices) this.walls.push(vertices);
 		});
-		// console.log( this.walls );
+		console.log( this.walls[0] );
 
 		// add item classses
 		xSection.selectNodes(`./Layer[@id="action"]/i`).map(xItem => {
@@ -215,14 +222,9 @@ class Map {
 			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
 			.map(entry => entry.render(ctx));
 
-		// raycaster options
-		let floor = debug >= 1 ? 1 : 0,
-			walls = debug == .5 ? 1 : 0,
-			clip = debug == 0 ? 1 : 0;
-
 		// visibility map mask
 		ctx.save();
-		this.raycaster.render(ctx, { floor, walls, clip });
+		this.raycaster.render(ctx, this.rcConf);
 		if (debug < 1) {
 			// lights
 			this.lights.map(light => {

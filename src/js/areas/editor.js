@@ -452,20 +452,32 @@
 				let prev;
 				Self.els.viewport.find(".layer-los .segment").map(seg => {
 					let el = $(seg),
-						x = el.cssProp("--sx"),
-						y = el.cssProp("--sy"),
-						w = el.cssProp("--sw"),
-						h = el.cssProp("--sh"),
-						d = w > 2 ? "w" : "h",
+						x = +el.cssProp("--sx"),
+						y = +el.cssProp("--sy"),
+						w = +el.cssProp("--sw"),
+						h = +el.cssProp("--sh"),
+						t = w > 2 ? "w" : "h",
+						d = 1,
 						g = +el.data("group"),
 						group = tiles[g-1];
+					// reset prev when "new" group
+					if (el.data("type") === "start") prev = undefined;
 					// first make groups
 					if (!group || group.constructor !== Array) {
 						tiles[g-1] = [];
 						group = tiles[g-1];
 					}
-					prev = { x, y, w, h };
-					group.push(`<i x="${x}" y="${y}" ${d}="${w > 2 ? w : h}"/>`);
+					if (prev) {
+						switch (true) {
+							case el.data("type") === "end": d = 0; break; // up
+							case t === "h" && prev.w > 2: d = 2; break; // down
+							case t === "w" && x + w === prev.x + 2: d = 3; break; // right
+							default: d = 1; // left
+						}
+						if (t === "w") console.log( t, d, x + w, prev.x + 2 );
+					}
+					prev = { x, y, w, h, t };
+					group.push(`<i d="${d}" x="${x}" y="${y}" ${t}="${w > 2 ? w : h}"/>`);
 				});
 				value = tiles.map(g => `<walls>\n\t${g.join("\n\t")}\n</walls>`);
 				console.log( value.join("\n") );
@@ -676,7 +688,7 @@
 						if (dx > 0) data[dv] = dx;
 						else {
 							data["--sx"] = Segment.seg.x + dx;
-							data["--sw"] = dx * -1;
+							data["--sw"] = (dx - 2) * -1;
 						}
 					} else {
 						if (dy > 0) data[dv] = dy;
