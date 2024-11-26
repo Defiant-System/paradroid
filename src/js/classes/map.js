@@ -182,7 +182,10 @@ class Map {
 		});
 
 		this.entries.filter(i => i.name === "door").map(item => {
-			walls.push(item.vertices);
+			let wall = [];
+			item.vertices.map(v => wall.push([x + v[0], y + v[1]]))
+			// console.log(item.name);
+			if (wall.length) walls.push(wall);
 		});
 
 		let pos = this.arena.player.position,

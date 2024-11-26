@@ -37,11 +37,13 @@ class Door {
 	}
 
 	get vertices() {
-		let v = [];
-		v.push([300, 210]);
-		v.push([320, 210]);
-		v.push([320, 258]);
-		v.push([300, 258]);
+		let v = [],
+			s = 18 - ((4 - this.frame.index) * 11);
+		// sliding door
+		v.push([this.pos.x - 11, this.pos.y + s]);
+		v.push([this.pos.x + 11, this.pos.y + s]);
+		v.push([this.pos.x + 11, this.pos.y + 24]);
+		v.push([this.pos.x - 11, this.pos.y + 24]);
 		return v;
 	}
 

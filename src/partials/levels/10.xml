@@ -2,6 +2,7 @@
 <Section id="10" width="12" height="18" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="droids">
 		<!-- no droids in this level -->
+		<!-- <i id="123" patrol="[[4,9]]"/> -->
 	</Layer>
 	<Layer id="lights">
 		<!-- no lights in this level -->
