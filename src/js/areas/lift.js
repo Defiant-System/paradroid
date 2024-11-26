@@ -15,6 +15,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.lift,
+			xSection,
 			sections,
 			index,
 			el;
@@ -24,8 +25,10 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "return":
+						// section node
+						xSection = window.bluePrint.selectSingleNode(`//Section[@id="${Self.elevator.section}"]`);
+						// info about level
 						let lift = Self.els.el.find(".lift.active"),
-							xSection = window.bluePrint.selectSingleNode(`//Section[@id="${Self.elevator.section}"]`),
 							xExit = xSection.selectSingleNode(`./Layer[@id="action"]/*[@action="exit"][@lift="${lift.data("id")}"]`),
 							exit = {
 								x: +xExit.getAttribute("x") + 1,
@@ -110,8 +113,16 @@
 				el = Self.els.el.find(`.lift[data-id="${event.lift}"]`);
 				el.data({ section: event.section });
 
+				// section node
+				xSection = window.bluePrint.selectSingleNode(`//Section[@id="${event.section}"]`);
+
 				el = Self.els.el.find(`.section[data-id="${event.section}"]`);
-				Self.els.el.find(`.ship`).data({ "active-level": el.data("level") });
+				Self.els.el.find(`.ship`)
+					.data({ "active-level": el.data("level") })
+					.css({
+						"--color": xSection.getAttribute("color"),
+						"--filter": xSection.getAttribute("filter"),
+					});
 				// save level information
 				Self.elevator.level = el.data("level");
 				Self.elevator.section = event.section;

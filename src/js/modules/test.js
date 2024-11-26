@@ -38,10 +38,10 @@ let Test = {
 
 		/*
 		 * LIFT View
+		 */
 		APP.dispatch({ type: "show-view", arg: "lift" });
 		APP.lift.els.el.find(".lift").get(0).trigger("click");
 		return;
-		 */
 
 
 		/*
@@ -81,10 +81,10 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			setTimeout(() => {
-				APP.dispatch({ type: "show-view", arg: "console" });
-				APP.console.dispatch({ type: "show-view", arg: "ship" });
-			}, 600);
+			// setTimeout(() => {
+			// 	APP.dispatch({ type: "show-view", arg: "console" });
+			// 	APP.console.dispatch({ type: "show-view", arg: "ship" });
+			// }, 600);
 
 			// setTimeout(() => {
 			// 	APP.els.content.find(".mobile-view .droid-fx").cssSequence("fast-focus", "animationend", el => {
