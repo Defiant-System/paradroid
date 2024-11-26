@@ -103,8 +103,8 @@ class Door {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			tile = arena.config.tile,
-			x = this.pos.x - tile + viewport.x,
-			y = this.pos.y - tile + viewport.y,
+			x = Math.floor(this.pos.x - tile + viewport.x),
+			y = Math.floor(this.pos.y - tile + viewport.y),
 			frame = 128 + (this.frame.index * 64),
 			args = [arena.assets["big-map"].img, frame, 256, 64, 64, 0, 0, 64, 64],
 			isVert = this.type === "v";
