@@ -93,28 +93,23 @@ class Map {
 		// Line of Sight
 		this.walls = [];
 		xSection.selectNodes(`./Layer[@id="los"]/walls`).map(xWall => {
-			let vertices = [],
-				vx, vy, vw, vh;
+			let vertices = [];
 			xWall.selectNodes("./i").map((xSeg, i) => {
-				if (i === 0) {
-					vx = +xSeg.getAttribute("x");
-					vy = +xSeg.getAttribute("y");
-					vertices.push([vx, vy]);
-				}
-				vw = +xSeg.getAttribute("w");
-				vh = +xSeg.getAttribute("h");
-				
+				let vx = +xSeg.getAttribute("x"),
+					vy = +xSeg.getAttribute("y"),
+					vw = +xSeg.getAttribute("w"),
+					vh = +xSeg.getAttribute("h");
 				switch (xSeg.getAttribute("d")) {
-					case "0": vy -= vh; break;  // up
-					case "1": vx += vw; break;  // left
-					case "2": vy += vh; break;  // down
-					case "3": vx -= vw; break;  // right
+					case "0": break;  // up
+					case "1": vx += vw - 2; break;  // left
+					case "2": vy += vh - 2; break;  // down
+					case "3": break;  // right
 				}
 				vertices.push([vx, vy]);
 			});
 			if (vertices) this.walls.push(vertices);
 		});
-		console.log( this.walls[0] );
+		// console.log( this.walls[0] );
 
 		// add item classses
 		xSection.selectNodes(`./Layer[@id="action"]/i`).map(xItem => {

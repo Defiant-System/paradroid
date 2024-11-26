@@ -99,6 +99,7 @@ class Player extends Droid {
 			radialGradient.addColorStop(1, `rgba(${this.aura.color.join(",")}, 0)`);
 
 			ctx.save();
+			ctx.globalCompositeOperation = "hue";
 			ctx.translate(pX-hT, pY-hT);
 			ctx.fillStyle = radialGradient;
 			ctx.arc(hT, hT, r, 0, Math.TAU);

@@ -155,6 +155,7 @@
 				break;
 			case "put-los-tile":
 				el = $(event.target);
+				if (event.metaKey) return;
 
 				switch (Self.palette.cursor) {
 					case "refine":
@@ -478,8 +479,6 @@
 							case t === "w" && x + w - prev.x <= 2: d = 3; break; // right
 							default: d = 1; // left
 						}
-						// if (t === "h") console.log( t, d, y, h, prev.y );
-						// if (t === "w") console.log( t, d, x + w, prev.x + 2 );
 					}
 					prev = { x, y, w, h, t };
 					group.push(`<i d="${d}" x="${x}" y="${y}" ${t}="${w > 2 ? w : h}"/>`);
@@ -773,11 +772,10 @@
 			case "mouseup":
 				if (Pan && Pan.moved) {
 					let y = Math.round(Pan.moved.top / Pan.data.tile),
-						x = Math.round(Pan.moved.left / Pan.data.tile);
+						x = Math.round(Pan.moved.left / Pan.data.tile),
+						layers = [".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-light"];
 					Pan.el.css({ top: "", left: "", "--y": y, "--x": x });
-					Self.els.viewport.find(".level-bg").css({ "--y": y, "--x": x });
-					Self.els.viewport.find(".layer-collision").css({ "--y": y, "--x": x });
-					Self.els.viewport.find(".layer-action").css({ "--y": y, "--x": x });
+					Self.els.viewport.find(layers.join(",")).css({ "--y": y, "--x": x });
 					Self.els.editBox.css({ margin: `${y * Pan.data.tile}px 0 0 ${x * Pan.data.tile}px` });
 				} else if (Pan) {
 					Pan.el.css({ top: "", left: "" });
