@@ -93,8 +93,9 @@ class Map {
 		// Line of Sight
 		this.walls = [];
 		xSection.selectNodes(`./Layer[@id="los"]/walls`).map(xWall => {
-			let vertices = [];
-			xWall.selectNodes("./i").map((xSeg, i) => {
+			let vertices = [],
+				xSegments = xWall.selectNodes("./i");
+			xSegments.map((xSeg, i) => {
 				let vx = +xSeg.getAttribute("x"),
 					vy = +xSeg.getAttribute("y"),
 					vw = +xSeg.getAttribute("w"),
@@ -105,9 +106,16 @@ class Map {
 					case "2": vy += vh - 2; break;  // down
 					case "3": break;  // right
 					case ".5": // -45deg
-						vx = 236;
-						vy = 179;
+						vx = +xSegments[i+1].getAttribute("x");
+						vy = +xSegments[i+1].getAttribute("y");
 						break;
+					case "1.5": // 45deg
+						vx = +xSegments[i+1].getAttribute("x");
+						vy = +xSegments[i+1].getAttribute("y");
+						break;
+				}
+				if (xSeg.getAttribute("d") === "3" && xSegments[i-1].getAttribute("d") === "1.5") {
+					vy += vh;
 				}
 				vertices.push([vx, vy]);
 			});
