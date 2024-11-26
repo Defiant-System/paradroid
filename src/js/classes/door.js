@@ -40,10 +40,17 @@ class Door {
 		let v = [],
 			s = 18 - ((4 - this.frame.index) * 11);
 		// sliding door
-		v.push([this.pos.x - 11, this.pos.y + s]);
-		v.push([this.pos.x + 11, this.pos.y + s]);
-		v.push([this.pos.x + 11, this.pos.y + 24]);
-		v.push([this.pos.x - 11, this.pos.y + 24]);
+		if (this.type === "h") {
+			v.push([this.pos.x - 11, this.pos.y + s]);
+			v.push([this.pos.x + 11, this.pos.y + s]);
+			v.push([this.pos.x + 11, this.pos.y + 24]);
+			v.push([this.pos.x - 11, this.pos.y + 24]);
+		} else {
+			v.push([this.pos.x + s, this.pos.y - 11]);
+			v.push([this.pos.x + 24, this.pos.y - 11]);
+			v.push([this.pos.x + 24, this.pos.y + 10]);
+			v.push([this.pos.x + s, this.pos.y + 10]);
+		}
 		return v;
 	}
 
