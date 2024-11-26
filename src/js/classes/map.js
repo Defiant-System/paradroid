@@ -181,6 +181,10 @@ class Map {
 			if (wall.length) walls.push(wall);
 		});
 
+		this.entries.filter(i => i.name === "door").map(item => {
+			walls.push(item.vertices);
+		});
+
 		let pos = this.arena.player.position,
 			origo = {
 				x: x + pos.x,

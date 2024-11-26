@@ -6,6 +6,7 @@ class Door {
 			pX = (x + .5) * tile,
 			pY = (y + .5) * tile;
 		
+		this.name = "door";
 		this.arena = arena;
 		this.section = section;
 		this.type = type;
@@ -23,14 +24,6 @@ class Door {
 		let bodies = [],
 			args,
 			slider;
-		// door frame "start"
-		// args = (type === "h") ? [pX, pY - tile + 2, 50, 4] : [pX - tile + 2, pY, 4, 50];
-		// bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
-
-		// // door frame "end"
-		// args = (type === "h") ? [pX, pY + tile - 2, 50, 4] : [pX + tile - 2, pY, 4, 50];
-		// bodies.push(Matter.Bodies.rectangle(...args, { isStatic: true }));
-
 		args = (type === "h") ? [pX, pY, 24, 64] : [pX, pY, 64, 24];
 		this.slider = Matter.Bodies.rectangle(...args, { isStatic: true });
 		bodies.push(this.slider);
@@ -41,6 +34,15 @@ class Door {
 		bodies.map(b => b.friction = 0);
 		// add door to physical world
 		Matter.Composite.add(arena.map.engine.world, bodies);
+	}
+
+	get vertices() {
+		let v = [];
+		v.push([300, 210]);
+		v.push([320, 210]);
+		v.push([320, 258]);
+		v.push([300, 258]);
+		return v;
 	}
 
 	update(delta) {
