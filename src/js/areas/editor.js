@@ -691,7 +691,8 @@
 						if (dx > 0) data[dv] = dx;
 						else {
 							data["--sx"] = Segment.seg.x + dx;
-							data["--sw"] = (dx - 2) * -1;
+							// if (+Segment.el.prevAll(".segment").get(0).cssProp("--sy") >= Segment.seg.y) dx -= 2;
+							data["--sw"] = dx * -1;
 						}
 					} else {
 						if (dy > 0) data[dv] = dy;

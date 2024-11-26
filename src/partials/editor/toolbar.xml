@@ -48,7 +48,10 @@
 				<Tool name="Add" click="los-add-segment"/>
 				<Tool name="Delete" click="los-delete-segment"/>
 			</Options>
-			<Tool name="PGN" click="output-los-pgn"/>
+			<Options type="grouped">
+				<Tool name="Overflow" click="toggle-overflow"/>
+				<Tool name="PGN" click="output-los-pgn"/>
+			</Options>
 		</Group>
 	</ToolSet>
 
