@@ -86,6 +86,7 @@
 							--sy: <xsl:value-of select="@y" />;
 							<xsl:if test="@w">--sw: <xsl:value-of select="@w" />;</xsl:if>
 							<xsl:if test="@h">--sh: <xsl:value-of select="@h" />;</xsl:if>
+							<xsl:if test="@d = '.5' or @d = '1.5'">--sa: <xsl:value-of select="@d" />;</xsl:if>
 						</xsl:attribute>
 					</div>
 				</xsl:for-each>

@@ -104,6 +104,10 @@ class Map {
 					case "1": vx += vw - 2; break;  // left
 					case "2": vy += vh - 2; break;  // down
 					case "3": break;  // right
+					case ".5": // -45deg
+						vx = 236;
+						vy = 179;
+						break;
 				}
 				vertices.push([vx, vy]);
 			});

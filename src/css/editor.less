@@ -407,6 +407,16 @@
 					width: calc( var( --sw ) * 1px );
 					height: calc( var( --sh ) * 1px );
 
+					&[style*="--sa: .5;"] {
+						transform: rotate(-45deg);
+						transform-origin: 0 0;
+					}
+
+					&[style*="--sa: 1.5;"] {
+						transform: rotate(45deg);
+						transform-origin: 0 0;
+					}
+
 					&[data-type="start"] {
 						z-index: 2;
 
