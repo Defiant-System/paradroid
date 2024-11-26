@@ -144,6 +144,7 @@
 				Self.els.el.find(".return-exit").toggleClass("hidden", value);
 				// reset ship view
 				Self.els.el.find(".view-ship").removeClass("fade-in show-active-floor");
+				Self.els.el.find(".view-ship .player-section").addClass("hidden");
 
 				// view specific actions
 				switch (el.data("view")) {
@@ -168,6 +169,8 @@
 							Self.els.el.find(".view-ship").cssSequence("fade-in", "transitionend", el => {
 								el.data({ player: APP.mobile.arena.map.id });
 								el.addClass("show-active-floor");
+								// line to player section
+								Self.els.el.find(".view-ship .player-section").removeClass("hidden");
 							})
 							// make active floor active visually
 							Self.dispatch({ type: "select-level", index: APP.mobile.arena.map.id });
