@@ -89,7 +89,7 @@ const paradroid = {
 				switch (event.arg) {
 					case "start":
 						Self.start.els.el.removeClass("no-anim view-anim");
-						setTimeout(() => Self.start.dispatch({ type: "init-anim" }), 100);
+						setTimeout(() => Self.start.dispatch({ ...event, type: "init-anim" }), 100);
 						break;
 					case "console":
 						Self.console.dispatch({ type: "init-view" });

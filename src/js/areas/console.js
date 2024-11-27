@@ -45,6 +45,8 @@
 							done: () => {
 								// reset console - "default" to first view
 								Self.dispatch({ type: "show-view", arg: "player" });
+								// reset info boxes
+								Self.els.el.find(".view-ship .player-section, .return-exit").addClass("hidden");
 								// droid-FX
 								APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
 							}

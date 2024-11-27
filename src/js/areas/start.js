@@ -18,9 +18,18 @@
 		switch (event.type) {
 			// custom events
 			case "init-anim":
-				Self.els.el.removeClass("no-anim").addClass("view-anim");
+				value = event.anim === "none" ? "no-anim" : "view-anim";
+				Self.els.el.removeClass("no-anim").addClass(value);
 				break;
 			case "toggle-music":
+				value = event.el.hasClass("off");
+				
+				// play/pause chiptune
+				if (value) window.audio.play("cydonian");
+				else window.audio.stop("cydonian");
+
+				event.el.toggleClass("off", value);
+				break;
 			case "toggle-sound-fx":
 				value = event.el.hasClass("off");
 				event.el.toggleClass("off", value);

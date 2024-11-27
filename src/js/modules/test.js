@@ -22,10 +22,10 @@ let Test = {
 		
 		/*
 		 * START View
+		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
+		setTimeout(() => APP.start.els.el.find(`.option:nth-child(1) .box-title`).trigger("click"), 600);
+		return;
 		 */
-		// APP.start.els.el.removeClass("hidden").addClass("no-anim");
-		// APP.dispatch({ type: "show-view", arg: "start" });
-		// return;
 
 
 		/*
@@ -38,10 +38,10 @@ let Test = {
 
 		/*
 		 * LIFT View
-		 */
 		APP.dispatch({ type: "show-view", arg: "lift" });
 		APP.lift.els.el.find(".lift").get(0).trigger("click");
 		return;
+		 */
 
 
 		/*
@@ -71,7 +71,7 @@ let Test = {
 		return setTimeout(() => {
 			let state = {
 					// map: { id: 10, clear: .15 }, player: { id: "711", x: 9, y: 9, power: .35 }, debug: { mode: 0 },
-					map: { id: 11, clear: .1 }, player: { x: 6, y: 7, power: .5 }, debug: { mode: 0 },
+					map: { id: 12, clear: .1 }, player: { x: 6, y: 7, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 10, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
@@ -81,10 +81,10 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			// setTimeout(() => {
-			// 	APP.dispatch({ type: "show-view", arg: "console" });
-			// 	APP.console.dispatch({ type: "show-view", arg: "ship" });
-			// }, 600);
+			setTimeout(() => {
+				APP.dispatch({ type: "show-view", arg: "console" });
+				APP.console.dispatch({ type: "show-view", arg: "ship" });
+			}, 600);
 
 			// setTimeout(() => {
 			// 	APP.els.content.find(".mobile-view .droid-fx").cssSequence("fast-focus", "animationend", el => {

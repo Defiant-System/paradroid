@@ -69,18 +69,18 @@
 						break;
 					// temp for dev purposes
 					case "left":
-						el = Self.els.el.find(".lift.active");
-						index = +el.data("id");
-						Self.els.el.find(`.lift[data-id="${index-1}"]`).trigger("click");
-						// play sound fx
-						window.audio.play("lift-enter");
+						if (event.shiftKey) {
+							el = Self.els.el.find(".lift.active");
+							index = +el.data("id") - 1;
+							Self.dispatch({ type: "select-lift", el: Self.els.el.find(`.lift[data-id="${index}"]`) });
+						}
 						break;
 					case "right":
-						el = Self.els.el.find(".lift.active");
-						index = +el.data("id");
-						Self.els.el.find(`.lift[data-id="${index+1}"]`).trigger("click");
-						// play sound fx
-						window.audio.play("lift-enter");
+						if (event.shiftKey) {
+							el = Self.els.el.find(".lift.active");
+							index = +el.data("id") + 1;
+							Self.dispatch({ type: "select-lift", el: Self.els.el.find(`.lift[data-id="${index}"]`) });
+						}
 						break;
 				}
 				break;
@@ -101,12 +101,11 @@
 				// APP.dispatch({ type: "show-view", arg: "lift" });
 				break;
 			case "select-lift":
-				el = $(event.target);
-				if (!el.hasClass("lift")) return;
+				if (!event.el.hasClass("lift")) return;
 				Self.els.el.find(".lift.active").removeClass("active");
-				el.addClass("active");
+				event.el.addClass("active");
 				// select level
-				Self.dispatch({ type: "select-level", lift: el.data("id"), section: el.data("section") });
+				Self.dispatch({ type: "select-level", lift: event.el.data("id"), section: event.el.data("section") });
 				break;
 			case "select-level":
 				// get lift
