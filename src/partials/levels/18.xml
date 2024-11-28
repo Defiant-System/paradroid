@@ -4,9 +4,9 @@
 		<!-- no droids in this level -->
 	</Layer>
 	<Layer id="lights">
-		<i x="128" y="94" r=".5"/>
+		<i x="128" y="94" r="0.5"/>
 		<i x="290" y="94" r="1"/>
-		<i x="450" y="94" r=".25"/>
+		<i x="450" y="94" r="0.25"/>
 	</Layer>
 	<Layer id="los">
 		<walls>

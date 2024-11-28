@@ -95,7 +95,7 @@
 	</xsl:template>
 
 	<xsl:template name="layer-lights">
-		<div class="layer-lights hide-helpers" data-click="put-light-bulb">
+		<div class="layer-lights hide-helpers" data-click="put-tile">
 			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
 			<xsl:attribute name="style">
 				--w: <xsl:value-of select="@width" />;
@@ -105,7 +105,7 @@
 			</xsl:attribute>
 			<xsl:for-each select="./Layer[@id='lights']/*">
 				<div class="spotlight">
-					<xsl:if test="position() = 1"><xsl:attribute name="class">spotlight active</xsl:attribute></xsl:if>
+					<!-- <xsl:if test="position() = 1"><xsl:attribute name="class">spotlight active</xsl:attribute></xsl:if> -->
 					<xsl:attribute name="style">
 						--x: <xsl:value-of select="@x" />;
 						--y: <xsl:value-of select="@y" />;

@@ -59,8 +59,9 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
+			<Tool name="Delete" click="lights-delete"/>
 			<Options type="grouped">
-				<Tool name="Helpers" click="toggle-lights-helpers" state="active"/>
+				<Tool name="Helpers" click="toggle-lights-helpers"/>
 				<Tool name="Overflow" click="toggle-overflow"/>
 				<Tool name="PGN" click="output-lights-pgn"/>
 			</Options>

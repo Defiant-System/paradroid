@@ -218,7 +218,14 @@
 						break;
 				}
 				break;
-			case "put-light-bulb":
+			case "put-lights-tile":
+				el = $(event.target);
+				el.find(".active").removeClass("active");
+				if (el.hasClass("layer-lights") && Self.light) {
+					// insert new light bulb
+					value = `<div class="spotlight" style="--x: ${event.offsetX}; --y: ${event.offsetY}; --r: 1;"></div>`;
+					el.append(value);
+				}
 				break;
 
 			case "select-editor-layer":
@@ -453,15 +460,25 @@
 				Self.palette.cursor = event.type.split("-")[1];
 				return true;
 
+			case "lights-delete":
+				Self.els.viewport.find(".layer-lights .active").remove();
+				break;
 			case "toggle-lights-helpers":
 				value = Self.els.viewport.find(".layer-lights").hasClass("hide-helpers");
 				Self.els.viewport.find(".layer-lights").toggleClass("hide-helpers", value);
-				return !value;
-
+				return value;
 			case "output-lights-pgn":
 				value = [];
+				Self.els.viewport.find(".layer-lights .spotlight").map(light => {
+					let el = $(light),
+						x = +el.cssProp("--x"),
+						y = +el.cssProp("--y"),
+						r = +el.cssProp("--r");
+					value.push(`<i x="${x}" y="${y}" r="${r}"/>`);
+				});
 				console.log( value.join("\n") );
 				break;
+
 			case "output-los-pgn":
 				tiles = [];
 				let prev;
@@ -723,14 +740,57 @@
 	doLight(event) {
 		let APP = paradroid,
 			Self = APP.editor,
-			Light = Self.light,
-			data = {};
+			Light = Self.light;
 		switch (event.type) {
 			case "mousedown":
+				let tgt = $(event.target);
+				if (tgt.hasClass("layer-lights")) return;
+				tgt.parents(".layer-lights").find(".active").removeClass("active");
+
+				let doc = $(document),
+					el = tgt.parents("?.spotlight").addClass("active"),
+					type = tgt.hasClass("handle") ? "resize" : "move",
+					offset = {
+						x: +el.cssProp("--x"),
+						y: +el.cssProp("--y"),
+						r: +el.cssProp("--r") * 60,
+					},
+					click = {
+						x: event.clientX,
+						y: event.clientY,
+					};
+				// drag light info
+				Self.light = { doc, el, type, click, offset };
+
+				// cover app view
+				APP.els.content.addClass("cover");
+				// bind event handlers
+				Self.light.doc.on("mousemove mouseup", Self.doLight);
 				break;
 			case "mousemove":
+				let dY = event.clientY - Light.click.y,
+					dX = event.clientX - Light.click.x,
+					data = {};
+				switch (Light.type) {
+					case "move":
+						data["--y"] = dY + Light.offset.y;
+						data["--x"] = dX + Light.offset.x;
+						break;
+					case "resize":
+						let r = dX + Light.offset.r
+						data["--r"] = +(Math.min(Math.max(r, 10), 60) / 60).toFixed(2);
+						break;
+				}
+				// UI update
+				Light.el.css(data);
 				break;
 			case "mouseup":
+				// uncover app view
+				APP.els.content.removeClass("cover");
+				// unbind event handlers
+				Self.light.doc.off("mousemove mouseup", Self.doLight);
+				// reset "light" object
+				delete Self.light;
 				break;
 		}
 	},
@@ -745,8 +805,13 @@
 				event.preventDefault();
 
 				// dispatch if event is is intended for others
-				if (Self.els.viewport.data("show") === "collision" && !event.metaKey) return Self.dragEditbox(event);
-				if (Self.els.viewport.data("show") === "los" && !event.metaKey) return Self.doSegment(event);
+				if (!event.metaKey) {
+					switch (Self.els.viewport.data("show")) {
+						case "collision": return Self.dragEditbox(event);
+						case "lights": return Self.doLight(event);
+						case "los": return Self.doSegment(event);
+					}
+				}
 
 				let el = Self.els.viewport.find(".layer-background"),
 					offset = el.offset(".viewport"),
@@ -781,7 +846,7 @@
 				} else if (event.target.classList.contains("layer-los")) {
 					return Self.doSegment(event);
 				} else if (event.target.classList.contains("layer-lights")) {
-					return Self.doLight(event);
+					return; // Self.doLight(event);
 				} else if (event.target.classList.contains("layer-collision")) {
 					Self.els.cursor.css({ "--t": 0, "--l": 0, "--tx": 1, "--ty": 1 });
 				} else {
