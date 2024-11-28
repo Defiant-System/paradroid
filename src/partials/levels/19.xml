@@ -4,8 +4,8 @@
 		<!-- <i id="123" patrol="[[5,3], [9,3]]"/> -->
 	</Layer>
 	<Layer id="lights">
-		<i x="160" y="160"/>
-		<i x="300" y="160"/>
+		<i x="160" y="160" r="1"/>
+		<i x="300" y="160" r="1"/>
 	</Layer>
 	<Layer id="los">
 		<walls>

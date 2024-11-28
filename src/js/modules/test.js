@@ -71,7 +71,7 @@ let Test = {
 		return setTimeout(() => {
 			let state = {
 					// map: { id: 10, clear: .15 }, player: { id: "711", x: 9, y: 9, power: .35 }, debug: { mode: 0 },
-					map: { id: 19, clear: .1 }, player: { x: 6, y: 7, power: .5 }, debug: { mode: 0 },
+					map: { id: 18, clear: .1 }, player: { x: 4, y: 3, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 10, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },

@@ -218,6 +218,8 @@
 						break;
 				}
 				break;
+			case "put-light-bulb":
+				break;
 
 			case "select-editor-layer":
 				// change toolset
@@ -451,6 +453,15 @@
 				Self.palette.cursor = event.type.split("-")[1];
 				return true;
 
+			case "toggle-lights-helpers":
+				value = Self.els.viewport.find(".layer-lights").hasClass("hide-helpers");
+				Self.els.viewport.find(".layer-lights").toggleClass("hide-helpers", value);
+				return !value;
+
+			case "output-lights-pgn":
+				value = [];
+				console.log( value.join("\n") );
+				break;
 			case "output-los-pgn":
 				tiles = [];
 				let prev;
@@ -709,6 +720,20 @@
 				break;
 		}
 	},
+	doLight(event) {
+		let APP = paradroid,
+			Self = APP.editor,
+			Light = Self.light,
+			data = {};
+		switch (event.type) {
+			case "mousedown":
+				break;
+			case "mousemove":
+				break;
+			case "mouseup":
+				break;
+		}
+	},
 	doPan(event) {
 		let APP = paradroid,
 			Self = APP.editor,
@@ -755,6 +780,8 @@
 					}
 				} else if (event.target.classList.contains("layer-los")) {
 					return Self.doSegment(event);
+				} else if (event.target.classList.contains("layer-lights")) {
+					return Self.doLight(event);
 				} else if (event.target.classList.contains("layer-collision")) {
 					Self.els.cursor.css({ "--t": 0, "--l": 0, "--tx": 1, "--ty": 1 });
 				} else {

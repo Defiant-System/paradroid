@@ -59,7 +59,11 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
-			<Tool name="PGN" click="output-lights-pgn"/>
+			<Options type="grouped">
+				<Tool name="Helpers" click="toggle-lights-helpers" state="active"/>
+				<Tool name="Overflow" click="toggle-overflow"/>
+				<Tool name="PGN" click="output-lights-pgn"/>
+			</Options>
 		</Group>
 	</ToolSet>
 </ToolBar>
