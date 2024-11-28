@@ -5,7 +5,10 @@
 		<!-- <i id="123" patrol="[[4,9]]"/> -->
 	</Layer>
 	<Layer id="lights">
-		<!-- no lights in this level -->
+		<i x="130" y="147" r="1"/>
+<i x="127" y="419" r="1"/>
+<i x="127" y="288" r="1"/>
+<i x="286" y="288" r="0.73"/>
 	</Layer>
 	<Layer id="los">
 		<walls>
