@@ -220,10 +220,10 @@
 				break;
 			case "put-lights-tile":
 				el = $(event.target);
-				el.find(".active").removeClass("active");
-				if (el.hasClass("layer-lights") && Self.light) {
+				if (el.find(".active").length) el.find(".active").removeClass("active");
+				else if (el.hasClass("layer-lights") && !Self.light && !event.metaKey) {
 					// insert new light bulb
-					value = `<div class="spotlight" style="--x: ${event.offsetX}; --y: ${event.offsetY}; --r: 1;"></div>`;
+					value = `<div class="spotlight" style="--x: ${event.offsetX}; --y: ${event.offsetY}; --r: 1;"><span class="handle"></span></div>`;
 					el.append(value);
 				}
 				break;
@@ -865,7 +865,7 @@
 				if (Pan && Pan.moved) {
 					let y = Math.round(Pan.moved.top / Pan.data.tile),
 						x = Math.round(Pan.moved.left / Pan.data.tile),
-						layers = [".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-light"];
+						layers = [".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights"];
 					Pan.el.css({ top: "", left: "", "--y": y, "--x": x });
 					Self.els.viewport.find(layers.join(",")).css({ "--y": y, "--x": x });
 					Self.els.editBox.css({ margin: `${y * Pan.data.tile}px 0 0 ${x * Pan.data.tile}px` });

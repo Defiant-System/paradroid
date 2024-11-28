@@ -5,7 +5,8 @@
 	</Layer>
 	<Layer id="lights">
 		<i x="160" y="160" r="1"/>
-		<i x="300" y="160" r="1"/>
+		<i x="318" y="160" r="0.75"/>
+		<i x="461" y="162" r="0.68"/>
 	</Layer>
 	<Layer id="los">
 		<walls>
