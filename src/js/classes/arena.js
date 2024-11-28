@@ -25,7 +25,6 @@ class Arena {
 
 		this.debug = {
 			mode: 0,
-			elFps: window.find(".debug .fps span"),
 			elCoords: window.find(".debug .coords span"),
 		};
 
@@ -118,13 +117,39 @@ class Arena {
 		// this.player.update(delta);
 	}
 
+	drawFps(ctx) {
+		let fps = this.fpsControl ? this.fpsControl._log : [];
+		ctx.save();
+		ctx.translate(this.width - 109, 0);
+		// draw box
+		ctx.fillStyle = "rgba(0,200,100,0.5)";
+		ctx.fillRect(5, 5, 100, 40);
+		ctx.fillStyle = "rgba(80,255,80,0.5)";
+		ctx.fillRect(7, 7, 96, 11);
+		ctx.fillStyle = "rgba(255,255,255,0.6)";
+		// loop log
+		for (let i=0; i<96; i++) {
+			let bar = fps[i];
+			if (!bar) break;
+			let p = bar/90;
+			if (p > 1) p = 1;
+			ctx.fillRect(102 - i, 43, 1, -24 * p);
+		}
+		// write fps
+		ctx.fillStyle = "#000";
+		ctx.font = "9px Arial";
+		ctx.textAlign = "left";
+		ctx.fillText('FPS: '+ fps[0], 8, 17);
+		// restore state
+		ctx.restore();
+	}
+
 	render() {
 		// clear canvas
 		this.cvs.attr({ width: this.width });
 
 		this.viewport.center();
 		this.map.render(this.ctx);
-		// this.player.render(this.ctx);
 
 		if (this.debug.mode >= 1) {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);
@@ -146,7 +171,7 @@ class Arena {
 		}
 
 		// for debug row at bottom
-		this.debug.elFps.html(this.fpsControl._fps);
 		this.debug.elCoords.html(`${this.player.x}, ${this.player.y}`);
+		this.drawFps(this.ctx);
 	}
 }

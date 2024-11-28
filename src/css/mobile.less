@@ -29,6 +29,7 @@ content {
 .mobile-view {
 	// background: #e07777;
 	border-radius: 5px;
+	z-index: 2;
 
 	&:before {
 		content: "";
@@ -106,7 +107,7 @@ content {
 		background: rgba(#000,.4);
 		position: absolute;
 		top: 5px;
-		right: 5px;
+		left: 5px;
 		color: #ccc;
 		padding: 3px 0;
 		border-radius: 4px;
@@ -117,9 +118,7 @@ content {
 			position: relative;
 			display: inline-block;
 			margin: 0 7px;
-
-			&.fps { width: 50px; }
-			&.coords { width: 80px; }
+			width: 80px;
 
 			span {
 				position: absolute;

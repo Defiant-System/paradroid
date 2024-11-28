@@ -49,12 +49,15 @@ const paradroid = {
 		switch (event.type) {
 			// system events
 			case "window.init":
-			case "window.focus":
-			case "window.blur":
 				break;
+			case "window.focus":
+				// resume "matter.js" runner
+				Self.mobile.dispatch({ type: "game-loop-resume" });
+				break;
+			case "window.blur":
 			case "window.close":
 				// stop "matter.js" runner
-				Matter.Runner.stop(Self.mobile.arena.map.runner);
+				Self.mobile.dispatch({ type: "game-loop-pause" });
 				break;
 			case "window.keydown":
 			case "window.keyup":

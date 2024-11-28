@@ -98,13 +98,17 @@
 				break;
 			// custom events
 			case "game-loop-pause":
-				Matter.Runner.stop(APP.mobile.arena.map.runner);
-				Self.arena.fpsControl.stop();
+				if (Self.arena.map) {
+					Matter.Runner.stop(APP.mobile.arena.map.runner);
+					Self.arena.fpsControl.stop();
+				}
 				break;
 			case "game-loop-resume":
-				// run the engine
-				Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
-				Self.arena.fpsControl.start();
+				if (Self.arena.map) {
+					// run the engine
+					Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
+					Self.arena.fpsControl.start();
+				}
 				break;
 			case "restore-state":
 			case "go-to-section":
