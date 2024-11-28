@@ -252,9 +252,9 @@ class Map {
 					r = 150,
 					r2 = r >> 1,
 					gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
-				gradient.addColorStop(0.0, "#fff4");
-				gradient.addColorStop(0.5, "#fff0");
-				gradient.addColorStop(1.0, "#fff0");
+				gradient.addColorStop(0.0, "#ff04");
+				gradient.addColorStop(0.5, "#ff00");
+				gradient.addColorStop(1.0, "#ff00");
 				ctx.fillStyle = gradient;
 				ctx.fillRect(lX-r2, lY-r2, r, r);
 			});

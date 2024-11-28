@@ -111,22 +111,24 @@
 			.layer-lights {
 				z-index: 2;
 				display: block;
+				mix-blend-mode: plus-lighter;
 
 				.spotlight {
 					position: absolute;
 					top: calc( var( --y ) * 1px );
 					left: calc( var( --x ) * 1px );
-					width: 1px;
-					height: 1px;
+					width: 120px;
+					height: 120px;
+					transform: translateX(-60px) translateY(-60px);
 
 					&:before {
 						content: "";
 						position: absolute;
-						top: -73px;
-						left: -73px;
-						right: -73px;
-						bottom: -73px;
-						background: radial-gradient(#fff9, transparent 73%);
+						top: -13px;
+						left: -13px;
+						right: -13px;
+						bottom: -13px;
+						background: radial-gradient(#fff3, transparent 73%);
 					}
 				}
 			}
