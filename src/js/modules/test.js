@@ -46,7 +46,6 @@ let Test = {
 
 		/*
 		 * EDITOR
-		 */
 		return setTimeout(() => {
 			let spawn = window.open("editor");
 
@@ -66,6 +65,7 @@ let Test = {
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
+		 */
 
 
 		return setTimeout(() => {
