@@ -35,8 +35,8 @@
 								y: +xExit.getAttribute("y") + 1,
 							},
 							state = { player: exit, map: { id: +Self.elevator.section } };
-						// stop/pause loop
-						APP.mobile.arena.fpsControl.start();
+						// pause game loop
+						// APP.mobile.dispatch({ type: "game-loop-resume" });
 						// smooth transition to view
 						APP.dispatch({
 							type: "switch-to-view",

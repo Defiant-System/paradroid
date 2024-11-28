@@ -109,7 +109,7 @@ class Arena {
 		//this.render();
 
 		// start "loop"
-		this.fpsControl.start();
+		// this.fpsControl.start();
 	}
 
 	update(delta) {

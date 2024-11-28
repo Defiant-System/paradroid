@@ -49,6 +49,9 @@
 
 						switch (Player.nextTo.id) {
 							case "exit":
+								// pause game loop
+								Self.dispatch({ type: "game-loop-pause" });
+								// animate / switch to view
 								APP.dispatch({
 									type: "switch-to-view",
 									arg: "lift",
@@ -98,13 +101,13 @@
 				break;
 			// custom events
 			case "game-loop-pause":
-				if (Self.arena.map) {
+				if (Self.arena.map && !Self.arena.fpsControl._stopped) {
 					Matter.Runner.stop(APP.mobile.arena.map.runner);
 					Self.arena.fpsControl.stop();
 				}
 				break;
 			case "game-loop-resume":
-				if (Self.arena.map) {
+				if (Self.arena.map && Self.arena.fpsControl._stopped) {
 					// run the engine
 					Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
 					Self.arena.fpsControl.start();
@@ -142,6 +145,8 @@
 						Self.arena.setFilter(cfg);
 						// change arena
 						Self.arena.setState(state, cfg);
+						// start / resume game loop
+						Self.dispatch({ type: "game-loop-resume" });
 					};
 				// try setting new state
 				func(event.state, { color: background, filter });

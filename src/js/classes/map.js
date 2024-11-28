@@ -163,7 +163,7 @@ class Map {
 		// physics setup
 		Matter.Composite.add(this.engine.world, bodies);
 		// run the engine
-		Matter.Runner.run(this.runner, this.engine);
+		// Matter.Runner.run(this.runner, this.engine);
 	}
 
 	update(delta) {
