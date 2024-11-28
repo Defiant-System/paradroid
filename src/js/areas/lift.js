@@ -7,7 +7,6 @@
 		this.els = {
 			content: window.find("content"),
 			el: window.find(".lift-view"),
-			el: window.find(".lift-view"),
 		};
 		// elevator data
 		this.elevator = {};
@@ -109,8 +108,9 @@
 				break;
 			case "select-level":
 				// get lift
+				Self.els.el.find(".lift.active").removeClass("active");
 				el = Self.els.el.find(`.lift[data-id="${event.lift}"]`);
-				el.data({ section: event.section });
+				el.addClass("active").data({ section: event.section });
 
 				// section node
 				xSection = window.bluePrint.selectSingleNode(`//Section[@id="${event.section}"]`);

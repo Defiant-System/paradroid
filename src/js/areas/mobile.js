@@ -16,6 +16,7 @@
 		let APP = paradroid,
 			Self = APP.mobile,
 			Player = Self.arena.player,
+			xSection,
 			value,
 			el;
 		// console.log(event);
@@ -49,6 +50,15 @@
 
 						switch (Player.nextTo.id) {
 							case "exit":
+								let xPath = `//Section[@id="${Player.nextTo.section.id}"]/Layer[@id="action"]/i[@x="${Player.nextTo.x}"][@y="${Player.nextTo.y}"]`,
+									xLift = window.bluePrint.selectSingleNode(xPath);
+								// make sure to select correct lift & section
+								APP.lift.dispatch({
+									type: "select-level",
+									lift: xLift.getAttribute("lift"),
+									section: Player.nextTo.section.id
+								});
+
 								// pause game loop
 								Self.dispatch({ type: "game-loop-pause" });
 								// animate / switch to view
@@ -56,13 +66,10 @@
 									type: "switch-to-view",
 									arg: "lift",
 									done: () => {
-										let xPath = `//Section[@id="${Player.nextTo.section.id}"]/Layer[@id="action"]/i[@x="${Player.nextTo.x}"][@y="${Player.nextTo.y}"]`,
-											xLift = window.bluePrint.selectSingleNode(xPath);
-										// console.log( xLift.getAttribute("lift") );
 										APP.lift.dispatch({
 											type: "enter-lift",
 											section: Player.nextTo.section.id,
-											lift: xLift.getAttribute("lift")
+											lift: xLift.getAttribute("lift"),
 										});
 									}
 								});
@@ -119,8 +126,8 @@
 				APP.dispatch({ type: "show-view", arg: "mobile" });
 
 				let ship = APP.lift.els.el.find(`.ship`),
-					sectionEl = ship.find(`.section[data-id="${event.state.map.id}"]`),
-					xSection = window.bluePrint.selectSingleNode(`//Section[@id="${event.state.map.id}"]`);
+					sectionEl = ship.find(`.section[data-id="${event.state.map.id}"]`);
+				xSection = window.bluePrint.selectSingleNode(`//Section[@id="${event.state.map.id}"]`);
 				// set ship active level attribute
 				ship.data({ "active-level": sectionEl.data("level") });
 				// level colors
