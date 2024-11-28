@@ -59,6 +59,7 @@
 		<Group>
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
+			<Tool name="Duplicate" click="lights-duplicate"/>
 			<Tool name="Delete" click="lights-delete"/>
 			<Options type="grouped">
 				<Tool name="Helpers" click="toggle-lights-helpers"/>

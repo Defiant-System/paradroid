@@ -460,6 +460,10 @@
 				Self.palette.cursor = event.type.split("-")[1];
 				return true;
 
+			case "lights-duplicate":
+				el = Self.els.viewport.find(".layer-lights .active").clone(true);
+				Self.els.viewport.find(".layer-lights").append(el);
+				break;
 			case "lights-delete":
 				Self.els.viewport.find(".layer-lights .active").remove();
 				break;

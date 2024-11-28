@@ -46,11 +46,12 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		return setTimeout(() => {
 			let spawn = window.open("editor");
 
 			APP.dispatch({ type: "show-view", arg: "editor" });
-			APP.editor.dispatch({ type: "render-level", arg: 18, spawn });
+			APP.editor.dispatch({ type: "render-level", arg: 16, spawn });
 			APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			APP.editor.dispatch({ type: "select-editor-layer", arg: "lights", spawn });
 
@@ -65,13 +66,12 @@ let Test = {
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
-		 */
 
 
 		return setTimeout(() => {
 			let state = {
 					// map: { id: 10, clear: .15 }, player: { id: "711", x: 9, y: 9, power: .35 }, debug: { mode: 0 },
-					map: { id: 18, clear: .1 }, player: { x: 4, y: 3, power: .5 }, debug: { mode: 0 },
+					map: { id: 16, clear: .1 }, player: { x: 4, y: 3, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 10, clear: .35 }, player: { x: 5, y: 3, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
