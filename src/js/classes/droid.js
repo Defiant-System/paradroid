@@ -170,7 +170,6 @@ class Droid {
 		this.fire.reload -= delta;
 		if (this.fire.shooting && this.fire.reload < 0) {
 			this.fire.reload = this.fire.coolDown - this.fire.reload;
-			console.log("shoot");
 			this.shoot();
 		}
 

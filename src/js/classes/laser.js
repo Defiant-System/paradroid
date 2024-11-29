@@ -12,21 +12,22 @@ class Laser {
 				x: 48,
 				y: 48,
 			};
-		let speed = .0025,
+		let speed = .015,
 			vX = Math.cos(angle) * speed,
  			vY = Math.sin(angle) * speed;
 		this.force = new Point(vX, vY);
 		
 		this.position = owner.position.clone();
-		this.position.x += Math.cos(angle) * 28;
-		this.position.y += Math.sin(angle) * 28;
+		this.position.x += Math.cos(angle) * 30;
+		this.position.y += Math.sin(angle) * 30;
 
-
-		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 3, { density: 0.1, frictionAir: .006 });
+		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 3, { density: 0.1, frictionAir: .006, friction: 0 });
 		this.body.label = `fire-${this.bullet}`;
 
 		// add to map entries
 		this.arena.map.addItem(this);
+
+		this.update(16);
 	}
 
 	update(delta) {

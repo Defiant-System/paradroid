@@ -15,6 +15,12 @@ class Door {
 		this.pos = new Point(pX, pY);
 		this.state = "close"; // open opening closing
 
+		let args = (type === "h") ? [pX, pY, 24, 64] : [pX, pY, 64, 24];
+		this.body = Matter.Bodies.rectangle(...args, { isStatic: true, friction: 0 });
+		this.isAdded = true;
+		// add door to physical world
+		Matter.Composite.add(arena.map.engine.world, this.body);
+
 		this.frame = {
 			index: 0,
 			last: 30,
@@ -41,7 +47,8 @@ class Door {
 	}
 
 	update(delta) {
-		let dist = this.arena.map.droids.map(droid => this.pos.distance(droid.body.position));
+		let arena = this.arena;
+		let dist = arena.map.droids.map(droid => this.pos.distance(droid.body.position));
 		let closest = Math.min(...dist);
 		// if closest droid is within range, open door
 		if (closest < 64 && this.state !== "open") this.state = "opening";
@@ -57,6 +64,9 @@ class Door {
 					if (this.frame.index >= 4) {
 						this.state = "open";
 						this.frame.index = 4;
+
+						delete this.isAdded;
+						Matter.Composite.remove(arena.map.engine.world, this.body);
 					}
 				}
 				break;
@@ -69,6 +79,10 @@ class Door {
 					if (this.frame.index <= 0) {
 						this.state = "close";
 						this.frame.index = 0;
+						if (!this.isAdded) {
+							this.isAdded = true;
+							Matter.Composite.add(arena.map.engine.world, this.body);
+						}
 					}
 				}
 				break;
