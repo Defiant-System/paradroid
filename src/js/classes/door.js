@@ -21,19 +21,19 @@ class Door {
 			speed: 30,
 		};
 
-		let bodies = [],
-			args,
-			slider;
-		args = (type === "h") ? [pX, pY, 24, 64] : [pX, pY, 64, 24];
-		this.slider = Matter.Bodies.rectangle(...args, { isStatic: true });
-		bodies.push(this.slider);
-		// set center sliding door
-		args = (type === "h") ? { x: 0, y: 32 } : { x: 32, y: 0 };
-		Matter.Body.setCentre(this.slider, args, true);
-		// set friction to "zero"
-		bodies.map(b => b.friction = 0);
-		// add door to physical world
-		Matter.Composite.add(arena.map.engine.world, bodies);
+		// let bodies = [],
+		// 	args,
+		// 	slider;
+		// args = (type === "h") ? [pX, pY, 24, 64] : [pX, pY, 64, 24];
+		// this.slider = Matter.Bodies.rectangle(...args, { isStatic: true });
+		// bodies.push(this.slider);
+		// // set center sliding door
+		// args = (type === "h") ? { x: 0, y: 32 } : { x: 32, y: 0 };
+		// Matter.Body.setCentre(this.slider, args, true);
+		// // set friction to "zero"
+		// bodies.map(b => b.friction = 0);
+		// // add door to physical world
+		// Matter.Composite.add(arena.map.engine.world, bodies);
 	}
 
 	get vertices() {
@@ -72,10 +72,10 @@ class Door {
 						this.state = "open";
 						this.frame.index = 4;
 						// physcial world update
-						let args = [this.slider, 1, 1];
-						if (this.type === "h") args[2] = .1;
-						else args[1] = .1;
-						Matter.Body.scale(...args);
+						// let args = [this.slider, 1, 1];
+						// if (this.type === "h") args[2] = .1;
+						// else args[1] = .1;
+						// Matter.Body.scale(...args);
 					}
 				}
 				break;
@@ -89,10 +89,10 @@ class Door {
 						this.state = "close";
 						this.frame.index = 0;
 						// physcial world update
-						let args = [this.slider, 1, 1];
-						if (this.type === "h") args[2] = 10;
-						else args[1] = 10;
-						Matter.Body.scale(...args);
+						// let args = [this.slider, 1, 1];
+						// if (this.type === "h") args[2] = 1;
+						// else args[1] = 1;
+						// Matter.Body.scale(...args);
 					}
 				}
 				break;

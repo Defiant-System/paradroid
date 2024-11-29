@@ -25,8 +25,10 @@
 			case "window.keydown":
 				switch (event.char) {
 					case "esc":
-						// go to view
-						APP.dispatch({ type: "show-view", arg: "lift" });
+						// go to view lift (for dev purpose)
+						if (event.shiftKey) {
+							APP.dispatch({ type: "show-view", arg: "lift" });
+						}
 						break;
 					case "w":
 					case "up": Player.input.up.pressed = true; break;
