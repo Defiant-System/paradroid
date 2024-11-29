@@ -4,7 +4,7 @@ class Laser {
 		let { arena, owner, x, y, angle } = cfg;
 
 		this.arena = arena;
-		this.id = Math.random();
+		this.bullet = Math.random();
 		this.x = x;
 		this.y = y;
 		this.angle = angle + Math.PI / 2;
@@ -12,7 +12,7 @@ class Laser {
 				x: 48,
 				y: 48,
 			};
-		let speed = .0005,
+		let speed = .0025,
 			vX = Math.cos(angle) * speed,
  			vY = Math.sin(angle) * speed;
 		this.force = new Point(vX, vY);
@@ -23,7 +23,7 @@ class Laser {
 
 
 		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 3, { density: 0.1, frictionAir: .006 });
-		this.body.label = `fire-${this.id}`;
+		this.body.label = `fire-${this.bullet}`;
 
 		// add to map entries
 		this.arena.map.addItem(this);

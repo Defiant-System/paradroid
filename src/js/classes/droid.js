@@ -20,7 +20,7 @@ class Droid {
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
 			vertexSets = Matter.Svg.pathToVertices(path, 12);
-		this.body = Matter.Bodies.fromVertices(0, 0, vertexSets, { frictionAir: .1 });
+		this.body = Matter.Bodies.fromVertices(0, 0, vertexSets, { density: .9, frictionAir: .06 });
 		this.body.label = `droid-${id}`;
 		// prevents droid to rotate
 		Matter.Body.setInertia(this.body, Infinity);
@@ -34,7 +34,7 @@ class Droid {
 		this.fire = {
 			shooting: false,
 			reload: 0,
-			speed: 400,
+			coolDown: 300,
 		};
 
 		// used to animate droid "spin"
@@ -169,7 +169,8 @@ class Droid {
 
 		this.fire.reload -= delta;
 		if (this.fire.shooting && this.fire.reload < 0) {
-			this.fire.reload = this.fire.speed - this.fire.reload;
+			this.fire.reload = this.fire.coolDown - this.fire.reload;
+			console.log("shoot");
 			this.shoot();
 		}
 

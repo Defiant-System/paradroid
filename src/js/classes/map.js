@@ -18,9 +18,9 @@ class Map {
 		// event handler
 		Matter.Events.on(this.engine, "collisionStart", event => {
 			let body = event.pairs[0].bodyB,
-				[a, id] = body.label.split("-");
+				[a, bullet] = body.label.split("-");
 			if (a === "fire") {
-				let index = this.entries.findIndex(e => e.id == +id);
+				let index = this.entries.findIndex(e => e.bullet == +bullet);
 				this.entries.splice(index, 1);
 				Matter.Composite.remove(this.engine.world, body);
 			}
