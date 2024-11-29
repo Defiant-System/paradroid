@@ -15,6 +15,16 @@ class Map {
 		this.engine = Matter.Engine.create({ gravity: { x: 0, y: 0, scale: 1 } });
 		// create runner
 		this.runner = Matter.Runner.create();
+		// event handler
+		Matter.Events.on(this.engine, "collisionStart", event => {
+			let body = event.pairs[0].bodyB,
+				[a, id] = body.label.split("-");
+			if (a === "fire") {
+				let index = this.entries.findIndex(e => e.id == +id);
+				this.entries.splice(index, 1);
+				Matter.Composite.remove(this.engine.world, body);
+			}
+		});
 	}
 
 	setState(state) {
@@ -167,6 +177,13 @@ class Map {
 		Matter.Composite.add(this.engine.world, bodies);
 		// run the engine
 		// Matter.Runner.run(this.runner, this.engine);
+	}
+
+	addItem(item) {
+		// add entity to entries list
+		this.entries.push(item);
+		// add item body to physical world
+		Matter.Composite.add(this.engine.world, item.body);
 	}
 
 	update(delta) {

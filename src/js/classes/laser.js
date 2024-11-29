@@ -4,6 +4,7 @@ class Laser {
 		let { arena, owner, x, y, angle } = cfg;
 
 		this.arena = arena;
+		this.id = Math.random();
 		this.x = x;
 		this.y = y;
 		this.angle = angle + Math.PI / 2;
@@ -11,19 +12,35 @@ class Laser {
 				x: 48,
 				y: 48,
 			};
-		let speed = 5,
+		let speed = .0005,
 			vX = Math.cos(angle) * speed,
  			vY = Math.sin(angle) * speed;
-		this.velocity = new Point(vX, vY);
+		this.force = new Point(vX, vY);
+		
 		this.position = owner.position.clone();
+		this.position.x += Math.cos(angle) * 28;
+		this.position.y += Math.sin(angle) * 28;
+
+
+		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 3, { density: 0.1, frictionAir: .006 });
+		this.body.label = `fire-${this.id}`;
 
 		// add to map entries
-		this.arena.map.entries.push(this);
+		this.arena.map.addItem(this);
 	}
 
 	update(delta) {
-		let speed = this.velocity.setMagnitude(delta/16);
-		this.position = this.position.add(speed);
+		let force = this.force;
+		// force.x = this.body.mass * force.x * this.speed;
+		// force.y = this.body.mass * force.y * this.speed;
+		Matter.Body.applyForce(this.body, this.body.position, force);
+		// copy physical position to "this" internal position
+		this.position.x = this.body.position.x;
+		this.position.y = this.body.position.y;
+
+		// let speed = this.force.setMagnitude(delta/16);
+		// this.position = this.position.add(speed);
+		
 		// update tile position
 		let tile = this.arena.config.tile;
 		this.x = Math.round(this.position.x / tile);

@@ -34,7 +34,7 @@ class Droid {
 		this.fire = {
 			shooting: false,
 			reload: 0,
-			speed: 200,
+			speed: 400,
 		};
 
 		// used to animate droid "spin"
@@ -169,7 +169,7 @@ class Droid {
 
 		this.fire.reload -= delta;
 		if (this.fire.shooting && this.fire.reload < 0) {
-			this.fire.reload = (this.fire.reload + this.fire.speed) % this.fire.speed;
+			this.fire.reload = this.fire.speed - this.fire.reload;
 			this.shoot();
 		}
 
