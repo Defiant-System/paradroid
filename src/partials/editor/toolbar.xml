@@ -68,4 +68,16 @@
 			</Options>
 		</Group>
 	</ToolSet>
+
+	<ToolSet id="droids">
+		<Group>
+			<Select name="Droids" menu="editor-layer"></Select>
+			<Divider />
+			<Tool name="Delete" click="lights-delete"/>
+			<Options type="grouped">
+				<Tool name="Overflow" click="toggle-overflow"/>
+				<Tool name="PGN" click="output-lights-pgn"/>
+			</Options>
+		</Group>
+	</ToolSet>
 </ToolBar>

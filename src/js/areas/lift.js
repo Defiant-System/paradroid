@@ -122,6 +122,12 @@
 						"--color": xSection.getAttribute("color"),
 						"--filter": xSection.getAttribute("filter"),
 					});
+				// update hud details about level
+				APP.hud.dispatch({
+					type: "set-level-data",
+					background: xSection.getAttribute("color"),
+					percentage: Utils.random(.1, 1) // TODO
+				});
 				// save level information
 				Self.elevator.level = el.data("level");
 				Self.elevator.section = event.section;

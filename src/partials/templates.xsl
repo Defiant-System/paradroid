@@ -117,4 +117,10 @@
 		</div>
 	</xsl:template>
 
+	<xsl:template name="layer-droids">
+		<div class="layer-droids" data-click="put-tile">
+			
+		</div>
+	</xsl:template>
+
 </xsl:stylesheet>

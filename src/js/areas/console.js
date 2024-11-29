@@ -147,6 +147,12 @@
 				// reset ship view
 				Self.els.el.find(".view-ship").removeClass("fade-in show-active-floor");
 				Self.els.el.find(".view-ship .player-section").addClass("hidden");
+				// reset hud details to current level
+				APP.hud.dispatch({
+					type: "set-level-data",
+					background: APP.mobile.arena.colors.base,
+					percentage: Utils.random(.1, 1) // TODO
+				});
 
 				// view specific actions
 				switch (el.data("view")) {
@@ -199,6 +205,12 @@
 						"--color": xNode.getAttribute("color"),
 						"--filter": xNode.getAttribute("filter") || "none",
 					});
+				// update hud details about level
+				APP.hud.dispatch({
+					type: "set-level-data",
+					background: xNode.getAttribute("color"),
+					percentage: Utils.random(.1, 1) // TODO
+				});
 				break;
 		}
 	},

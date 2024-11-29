@@ -66,6 +66,7 @@
 				<Menu name="Action" click="select-editor-layer" check-group="editor-layer" arg="action"/>
 				<Menu name="LOS" click="select-editor-layer" check-group="editor-layer" arg="los"/>
 				<Menu name="Lights" click="select-editor-layer" check-group="editor-layer" arg="lights"/>
+				<Menu name="Droids" click="select-editor-layer" check-group="editor-layer" arg="droids"/>
 			</Menu>
 			<Menu name="Section&#8230;">
 				<Menu name="1" check-group="game-level" click="render-level" arg="1" is-checked="1"/>

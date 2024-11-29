@@ -378,7 +378,7 @@
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
 				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
-				let layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights"];
+				let layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).remove();
 				// render + append HTML
 				window.render({
@@ -407,6 +407,12 @@
 				// render lights layer
 				window.render({
 					template: "layer-lights",
+					match: `//Section[@id = "${event.arg}"]`,
+					append: Self.els.viewport,
+				});
+				// render droids layer
+				window.render({
+					template: "layer-droids",
 					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
@@ -869,7 +875,7 @@
 				if (Pan && Pan.moved) {
 					let y = Math.round(Pan.moved.top / Pan.data.tile),
 						x = Math.round(Pan.moved.left / Pan.data.tile),
-						layers = [".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights"];
+						layers = [".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 					Pan.el.css({ top: "", left: "", "--y": y, "--x": x });
 					Self.els.viewport.find(layers.join(",")).css({ "--y": y, "--x": x });
 					Self.els.editBox.css({ margin: `${y * Pan.data.tile}px 0 0 ${x * Pan.data.tile}px` });

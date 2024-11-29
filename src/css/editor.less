@@ -101,6 +101,21 @@
 			}
 		}
 
+		&[data-show="droids"] {
+			.layer-background {
+				b { box-shadow: none; }
+			}
+
+			.layer-droids {
+				z-index: 2;
+				display: block;
+			}
+
+			.cursor {
+				// display: none;
+			}
+		}
+
 		&[data-show="lights"] {
 			.layer-background {
 				pointer-events: none;
