@@ -185,7 +185,8 @@ class Droid {
 		this.y = Math.round(this.body.position.y / tile);
 	}
 
-	render(ctx) {let arena = this.arena,
+	render(ctx) {
+		let arena = this.arena,
 			digits = this.digits,
 			w = arena.config.char,
 			f = this.frame.index * w,
@@ -207,6 +208,20 @@ class Droid {
 			// droid "player"
 			ctx.shadowColor = this.blur.color;
 			ctx.shadowBlur = this.blur.size;
+
+			if (this.aura) {
+				let aura = this.aura,
+					gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, aura.radius);
+				gradient.addColorStop(0, `rgba(${aura.color.join(",")}, ${aura.strength})`);
+				gradient.addColorStop(1, `rgba(${aura.color.join(",")}, 0)`);
+
+				ctx.save();
+				ctx.beginPath();
+				ctx.fillStyle = gradient;
+				ctx.arc(0, 0, aura.radius, 0, Math.TAU);
+				ctx.fill();
+				ctx.restore();
+			}
 		} else {
 			// other droids
 			f = (8 - this.frame.index) * w;

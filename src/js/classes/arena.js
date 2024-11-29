@@ -122,11 +122,11 @@ class Arena {
 		ctx.save();
 		ctx.translate(this.width - 109, 0);
 		// draw box
-		ctx.fillStyle = "rgba(0,200,100,0.5)";
+		ctx.fillStyle = "#0005";
 		ctx.fillRect(5, 5, 100, 40);
-		ctx.fillStyle = "rgba(80,255,80,0.5)";
+		ctx.fillStyle = "#fff4";
 		ctx.fillRect(7, 7, 96, 11);
-		ctx.fillStyle = "rgba(255,255,255,0.6)";
+		ctx.fillStyle = "#fff6";
 		// loop log
 		for (let i=0; i<96; i++) {
 			let bar = fps[i];
@@ -136,7 +136,7 @@ class Arena {
 			ctx.fillRect(102 - i, 43, 1, -24 * p);
 		}
 		// write fps
-		ctx.fillStyle = "#000";
+		ctx.fillStyle = "#fff";
 		ctx.font = "9px Arial";
 		ctx.textAlign = "left";
 		ctx.fillText('FPS: '+ fps[0], 8, 17);

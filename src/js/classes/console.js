@@ -16,8 +16,8 @@ class Console {
 
 		// "aura" borealis
 		this.aura = {
-			color: [140, 140, 255],
-			strength: .75,
+			color: [255, 200, 50],
+			strength: .65,
 			radius: 100,
 		};
 	}
@@ -48,15 +48,17 @@ class Console {
 
 			if (this.active) {
 				let hT = tile >> 1,
-					r = this.aura.radius,
-					radialGradient = ctx.createRadialGradient(hT, hT, 0, hT, hT, r);
-				radialGradient.addColorStop(0, `rgba(${this.aura.color.join(",")}, ${this.aura.strength})`);
-				radialGradient.addColorStop(1, `rgba(${this.aura.color.join(",")}, 0)`);
+					aura = this.aura,
+					radialGradient = ctx.createRadialGradient(hT, hT, 0, hT, hT, aura.radius);
+				radialGradient.addColorStop(0, `rgba(${aura.color.join(",")}, ${aura.strength})`);
+				radialGradient.addColorStop(1, `rgba(${aura.color.join(",")}, 0)`);
 
 				ctx.save();
+				ctx.globalCompositeOperation = "hue";
 				ctx.translate(-hT, -hT);
+				ctx.beginPath();
 				ctx.fillStyle = radialGradient;
-				ctx.arc(hT, hT, r, 0, Math.TAU);
+				ctx.arc(hT, hT, aura.radius, 0, Math.TAU);
 				ctx.fill();
 				ctx.restore();
 			}

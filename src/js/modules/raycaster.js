@@ -23,12 +23,14 @@ let Raycaster = (() => {
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
 				ctx.clip();
+				ctx.closePath();
 			},
 			drawFloor(ctx, path) {
 				ctx.save();
 				ctx.fillStyle = "#fff6";
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
+				ctx.closePath();
 				ctx.fill();
 				ctx.restore();
 			},
@@ -39,6 +41,7 @@ let Raycaster = (() => {
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
 				ctx.stroke();
+				ctx.closePath();
 				ctx.restore();
 			},
 			drawWalls(ctx, path) {
@@ -53,6 +56,7 @@ let Raycaster = (() => {
 					ctx.lineTo(seg.p2.x, seg.p2.y);
 				}
 				ctx.stroke();
+				ctx.closePath();
 				ctx.restore();
 			},
 			render(ctx, cfg={}) {

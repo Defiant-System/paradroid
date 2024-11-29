@@ -14,7 +14,7 @@ class Exit {
 
 		// "aura" borealis
 		this.aura = {
-			color: [255, 150, 255],
+			color: [255, 100, 255],
 			strength: 1,
 			radius: 100,
 		};
@@ -39,15 +39,17 @@ class Exit {
 				x = this.pos.x + viewport.x,
 				y = this.pos.y + viewport.y,
 				hT = arena.config.tile >> 1,
-				r = this.aura.radius,
-				radialGradient = ctx.createRadialGradient(hT, hT, 0, hT, hT, r);
-			radialGradient.addColorStop(0, `rgba(${this.aura.color.join(",")}, ${this.aura.strength})`);
-			radialGradient.addColorStop(1, `rgba(${this.aura.color.join(",")}, 0)`);
+				aura = this.aura,
+				radialGradient = ctx.createRadialGradient(hT, hT, 0, hT, hT, aura.radius);
+			radialGradient.addColorStop(0, `rgba(${aura.color.join(",")}, ${aura.strength})`);
+			radialGradient.addColorStop(1, `rgba(${aura.color.join(",")}, 0)`);
 
 			ctx.save();
+			ctx.globalCompositeOperation = "hard-light";
 			ctx.translate(x-hT, y-hT);
+			ctx.beginPath();
 			ctx.fillStyle = radialGradient;
-			ctx.arc(hT, hT, r, 0, Math.TAU);
+			ctx.arc(hT, hT, aura.radius, 0, Math.TAU);
 			ctx.fill();
 			ctx.restore();
 		}
