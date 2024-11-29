@@ -79,8 +79,11 @@ class Map {
 
 		// lights
 		this.lights = xSection.selectNodes(`./Layer[@id="lights"]/*`).map(xLight => ({
+			tX: +xLight.getAttribute("x") / tile,
+			tY: +xLight.getAttribute("y") / tile,
 			x: +xLight.getAttribute("x"),
 			y: +xLight.getAttribute("y"),
+			r: +xLight.getAttribute("r"),
 		}));
 
 		// raycaster options
@@ -246,18 +249,20 @@ class Map {
 		this.raycaster.render(ctx, this.rcConf);
 		if (debug < 1) {
 			// lights
-			this.lights.map(light => {
-				let lX = light.x - vX,
-					lY = light.y - vY,
-					r = 150,
-					r2 = r >> 1,
-					gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
-				gradient.addColorStop(0.0, "#fff3");
-				gradient.addColorStop(0.5, "#fff0");
-				gradient.addColorStop(1.0, "#fff0");
-				ctx.fillStyle = gradient;
-				ctx.fillRect(lX-r2, lY-r2, r, r);
-			});
+			this.lights
+				.filter(light => light.tX >= xMin-1 && light.tX <= xMax && light.tY >= yMin-1 && light.tY <= yMax)
+				.map(light => {
+					let lX = light.x - vX,
+						lY = light.y - vY,
+						r = 120 * light.r,
+						r2 = r >> 1,
+						gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
+					gradient.addColorStop(0.0, "#fff3");
+					gradient.addColorStop(0.5, "#fff0");
+					gradient.addColorStop(1.0, "#fff0");
+					ctx.fillStyle = gradient;
+					ctx.fillRect(lX-r2, lY-r2, r, r);
+				});
 		}
 		// now render droids (with mask clip)
 		this.droids
