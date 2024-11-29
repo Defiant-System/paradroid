@@ -40,11 +40,10 @@
 					case "right": Player.input.right.pressed = true; break;
 
 					case "shift":
-						console.log("challenge droids");
+						Player.setState({ mode: "transfer" });
 						break;
 					case "space":
-						// Player.fire();
-						console.log("fire");
+						Player.fire();
 						break;
 					case "return":
 						// don't do anything if not next to "something"

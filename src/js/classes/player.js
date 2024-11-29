@@ -63,6 +63,9 @@ class Player extends Droid {
 			case "clear":
 				delete this.nextTo;
 				break;
+			case "transfer":
+				console.log( item );
+				break;
 		}
 	}
 

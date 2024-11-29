@@ -50,6 +50,16 @@ class Droid {
 		}
 	}
 
+	fire() {
+		new Laser({
+			owner: this,
+			arena: this.arena,
+			x: this.x,
+			y: this.y,
+			rad: Math.PI/2,
+		})
+	}
+
 	seek(target) {
 		let force = target.subtract(this.position);
 		force = force.setMagnitude(this.maxSpeed);
