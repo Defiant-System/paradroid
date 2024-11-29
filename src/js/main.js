@@ -9,7 +9,9 @@
 @import "./classes/door.js"
 @import "./classes/exit.js"
 @import "./classes/console.js"
+
 @import "./classes/laser.js"
+@import "./classes/plasma.js"
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"

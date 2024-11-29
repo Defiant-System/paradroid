@@ -66,7 +66,8 @@ class Droid {
 
 	shoot() {
 		let angle = this.dir || Math.PI / 4;
-		new Laser({ owner: this, arena: this.arena, x: this.x, y: this.y, angle });
+		new Plasma({ owner: this, arena: this.arena, x: this.x, y: this.y });
+		// new Laser({ owner: this, arena: this.arena, x: this.x, y: this.y, angle });
 	}
 
 	seek(target) {
