@@ -33,8 +33,8 @@ class Droid {
 
 		this.fire = {
 			shooting: false,
-			reload: 0,
-			coolDown: 300,
+			lastShot: Date.now(),
+			coolDown: 150,
 		};
 
 		// used to animate droid "spin"
@@ -167,9 +167,9 @@ class Droid {
 			if (this.frame.index > 8) this.frame.index = 0;
 		}
 
-		this.fire.reload -= delta;
-		if (this.fire.shooting && this.fire.reload < 0) {
-			this.fire.reload = this.fire.coolDown - this.fire.reload;
+		let now = Date.now();
+		if (this.fire.shooting && now - this.fire.lastShot > this.fire.coolDown) {
+			this.fire.lastShot = now;
 			this.shoot();
 		}
 
