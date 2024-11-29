@@ -31,6 +31,12 @@ class Droid {
 			digits: arena.assets["digits"].img,
 		};
 
+		this.fire = {
+			shooting: false,
+			reload: 0,
+			speed: 200,
+		};
+
 		// used to animate droid "spin"
 		this.frame = {
 			index: 0,
@@ -50,14 +56,18 @@ class Droid {
 		}
 	}
 
-	fire() {
-		new Laser({
-			owner: this,
-			arena: this.arena,
-			x: this.x,
-			y: this.y,
-			rad: Math.PI/2,
-		})
+	setDirection(x, y) {
+		let viewport = this.arena.viewport,
+			px = x + viewport.x,
+			py = y + viewport.y,
+			pos = new Point(px, py);
+		console.log( x, this.x, viewport.x );
+		this.dir = this.position.direction(pos);
+	}
+
+	shoot() {
+		let angle = this.dir || Math.PI / 4;
+		new Laser({ owner: this, arena: this.arena, x: this.x, y: this.y, angle });
 	}
 
 	seek(target) {
@@ -156,6 +166,12 @@ class Droid {
 			this.frame.last = (this.frame.last + this.frame.speed) % this.frame.speed;
 			this.frame.index++;
 			if (this.frame.index > 8) this.frame.index = 0;
+		}
+
+		this.fire.reload -= delta;
+		if (this.fire.shooting && this.fire.reload < 0) {
+			this.fire.reload = (this.fire.reload + this.fire.speed) % this.fire.speed;
+			this.shoot();
 		}
 
 		if (!this.isPlayer) {

@@ -11,6 +11,8 @@
 		};
 		// create arena
 		this.arena = new Arena(this.els.cvs);
+		// bind event handlers
+		this.els.cvs.on("mousedown", this.doFire);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -43,7 +45,7 @@
 						Player.setState({ mode: "transfer" });
 						break;
 					case "space":
-						Player.fire();
+						// Player.fire();
 						break;
 					case "return":
 						// don't do anything if not next to "something"
@@ -170,6 +172,42 @@
 			case "set-debug-mode":
 				Self.els.content.data({ debug: event.arg });
 				Self.arena.setDebug(+event.arg);
+				break;
+		}
+	},
+	doFire(event) {
+		let APP = paradroid,
+			Self = APP.mobile,
+			Fire = Self.fire;
+		// Player.fire();
+		switch (event.type) {
+			case "mousedown":
+				// prevent default event
+				event.preventDefault();
+
+				let doc = $(document),
+					el = $(event.target),
+					player = Self.arena.player;
+				// shooting flag
+				player.fire.shooting = true;
+				// reference to object
+				Self.fire = { el, doc, player };
+
+				// cover app window
+				APP.els.content.addClass("cover");
+				// bind event handlers
+				Self.fire.doc.on("mousemove mouseup", Self.doFire);
+				break;
+			case "mousemove":
+				Fire.player.setDirection(event.offsetX, event.offsetY);
+				break;
+			case "mouseup":
+				// shooting flag
+				Fire.player.fire.shooting = false;
+				// cover app window
+				APP.els.content.removeClass("cover");
+				// bind event handlers
+				Self.fire.doc.off("mousemove mouseup", Self.doFire);
 				break;
 		}
 	}
