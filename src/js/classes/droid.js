@@ -58,10 +58,9 @@ class Droid {
 
 	setDirection(x, y) {
 		let viewport = this.arena.viewport,
-			px = x + viewport.x,
-			py = y + viewport.y,
+			px = x + this.position.x,
+			py = y + this.position.y,
 			pos = new Point(px, py);
-		console.log( x, this.x, viewport.x );
 		this.dir = this.position.direction(pos);
 	}
 

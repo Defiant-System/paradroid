@@ -187,11 +187,18 @@
 
 				let doc = $(document),
 					el = $(event.target),
-					player = Self.arena.player;
+					player = Self.arena.player,
+					click = {
+						x: event.clientX - event.offsetX + (el.width() >> 1),
+						y: event.clientY - event.offsetY + (el.height() >> 1),
+					};
 				// shooting flag
 				player.fire.shooting = true;
 				// reference to object
-				Self.fire = { el, doc, player };
+				Self.fire = { el, doc, player, click };
+
+				// auto trigger "mousemove"
+				Self.doFire({ type: "mousemove", clientX: event.clientX, clientY: event.clientY });
 
 				// cover app window
 				APP.els.content.addClass("cover");
@@ -199,7 +206,9 @@
 				Self.fire.doc.on("mousemove mouseup", Self.doFire);
 				break;
 			case "mousemove":
-				Fire.player.setDirection(event.offsetX, event.offsetY);
+				let x = event.clientX - Fire.click.x,
+					y = event.clientY - Fire.click.y;
+				Fire.player.setDirection(x, y);
 				break;
 			case "mouseup":
 				// shooting flag
