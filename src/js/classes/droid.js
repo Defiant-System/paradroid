@@ -8,6 +8,22 @@ class Droid {
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
+		// droid "spining" sprite
+		this.sprites = {
+			bg: arena.assets["droid"].img,
+			digits: arena.assets["digits"].img,
+		};
+		// droid fire details
+		this.fire = {
+			shooting: false,
+			lastShot: Date.now(),
+		};
+		// used to animate droid "spin"
+		this.frame = {
+			index: 0,
+			last: 120,
+			speed: 120,
+		};
 		// set droid id
 		this.setId(id);
 
@@ -24,28 +40,6 @@ class Droid {
 		this.body.label = `droid-${id}`;
 		// prevents droid to rotate
 		Matter.Body.setInertia(this.body, Infinity);
-
-		// droid "spining" sprite
-		this.sprites = {
-			bg: arena.assets["droid"].img,
-			digits: arena.assets["digits"].img,
-		};
-
-		this.fire = {
-			shooting: false,
-			lastShot: Date.now(),
-			coolDown: 200,
-			type: "laser",
-			// coolDown: 1000,
-			// type: "plasma",
-		};
-
-		// used to animate droid "spin"
-		this.frame = {
-			index: 0,
-			last: 120,
-			speed: 120,
-		};
 
 		if (patrol) {
 			// patrol points
@@ -68,18 +62,12 @@ class Droid {
 	}
 
 	shoot() {
-		let cfg = {
-				owner: this,
-				arena: this.arena,
-				x: this.x,
-				y: this.y,
-				angle: this.dir || Math.PI / 4,
-				type: this.fire.type,
-			};
-		switch (this.fire.type) {
-			case "laser": new Laser(cfg); break;
-			case "plasma": new Plasma(cfg); break;
-		}
+		new this.fire.class({
+			owner: this,
+			arena: this.arena,
+			angle: this.dir || Math.PI / 4,
+			type: this.fire.name,
+		});
 	}
 
 	seek(target) {
@@ -125,11 +113,19 @@ class Droid {
 		this.energy = +xDroid.getAttribute("energy");
 		this.loss = +xDroid.getAttribute("loss");
 		this.agression = +xDroid.getAttribute("agression");
-		this.weapon = {
-			id: +xWeapon.getAttribute("id"),
-			recharge: +xWeapon.getAttribute("recharge"),
-			damage: +xWeapon.getAttribute("damage"),
-		};
+		// list of weapon class objects
+		let classes = {
+				laser: Laser,
+				phaser: Phaser,
+				plasma: Plasma,
+				disruptor: Disruptor,
+				exterminator: Exterminator,
+				sonic: Sonic,
+			};
+		this.fire.name = xWeapon.getAttribute("name");
+		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
+		this.fire.class = classes[this.fire.name];
+
 		// paint digits on droid
 		this.digits = id.toString().split("").map((x, i) => {
 			return {

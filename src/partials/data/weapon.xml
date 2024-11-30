@@ -1,30 +1,30 @@
 
-<Weapon id="1" recharge="0.95" damage="25">
-	<i id="name"><![CDATA[Small Double Laser]]></i>
+<Weapon id="1" name="laser" coolDown="150" damage="25">
+	<i id="title"><![CDATA[Small Double Laser]]></i>
 	<i id="notes"><![CDATA[This is the influencers small double shot.]]></i>
 </Weapon>
 
-<Weapon id="2" recharge="1.2" damage="40">
-	<i id="name"><![CDATA[Standard Laser]]></i>
+<Weapon id="2" name="phaser" coolDown="200" damage="40">
+	<i id="title"><![CDATA[Standard Laser]]></i>
 	<i id="notes"><![CDATA[This is the 476 standard shot.]]></i>
 </Weapon>
 
-<Weapon id="3" recharge="1.4" damage="55">
-	<i id="name"><![CDATA[Military Grade Plasma]]></i>
+<Weapon id="3" name="plasma" coolDown="1000" damage="55">
+	<i id="title"><![CDATA[Military Grade Plasma]]></i>
 	<i id="notes"><![CDATA[This is the double 821 military shot.]]></i>
 </Weapon>
 
-<Weapon id="4" recharge="1.0" damage="40">
-	<i id="name"><![CDATA[Disruptor]]></i>
+<Weapon id="4" name="disruptor" coolDown="1000" damage="40">
+	<i id="title"><![CDATA[Disruptor]]></i>
 	<i id="notes"><![CDATA[This is the disruptor, the 742 and 711 use.]]></i>
 </Weapon>
 
-<Weapon id="5" recharge="3.0" damage="80">
-	<i id="name"><![CDATA[Exterminator]]></i>
+<Weapon id="5" name="exterminator" coolDown="2000" damage="80">
+	<i id="title"><![CDATA[Exterminator]]></i>
 	<i id="notes"><![CDATA[This is the exterminator, the 883 uses.]]></i>
 </Weapon>
 
-<Weapon id="6" recharge="1.4" damage="40">
-	<i id="name"><![CDATA[Laser Rifle]]></i>
+<Weapon id="6" name="sonic" coolDown="1400" damage="40">
+	<i id="title"><![CDATA[Laser Rifle]]></i>
 	<i id="notes"><![CDATA[This is the laser rifle of the 614.]]></i>
 </Weapon>

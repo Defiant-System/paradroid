@@ -9,10 +9,14 @@
 @import "./classes/door.js"
 @import "./classes/exit.js"
 @import "./classes/console.js"
-
-@import "./classes/laser.js"
-@import "./classes/plasma.js"
 @import "./classes/sparks.js"
+
+@import "./classes/fire-laser.js"
+@import "./classes/fire-phaser.js"
+@import "./classes/fire-plasma.js"
+@import "./classes/fire-disruptor.js"
+@import "./classes/fire-exterminator.js"
+@import "./classes/fire-sonic.js"
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"

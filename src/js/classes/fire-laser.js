@@ -1,13 +1,11 @@
 
 class Laser {
 	constructor(cfg) {
-		let { arena, owner, type, x, y, angle, speed } = cfg;
+		let { arena, owner, type, angle, speed } = cfg;
 
 		this.arena = arena;
 		this.bullet = Math.random();
 		this.type = type;
-		this.x = x;
-		this.y = y;
 		this.angle = angle + Math.PI / 2;
 
 		this.asset = arena.assets[this.type];

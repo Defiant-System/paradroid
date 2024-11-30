@@ -10,7 +10,7 @@ class Plasma {
 			let angle = a * Math.PI / 180,
 				x = owner.position.x,
 				y = owner.position.y;
-			new Laser({ arena, owner, x, y, angle, speed: .005, type: "plasma" });
+			new Laser({ arena, owner, angle, speed: .005, type: "plasma" });
 			a += inc;
 		});
 	}

@@ -114,7 +114,7 @@
 				Self.els.info.find(".unit").html(`Unit ${event.value}`);
 				Self.els.info.find(".type").html(xNode.selectSingleNode(`./i[@id="type"]`).textContent);
 				Self.els.info.find(".weight").html(xNode.getAttribute("weight") +" KG");
-				Self.els.info.find(".weapon").html(xWeapon.selectSingleNode(`./i[@id="name"]`).textContent);
+				Self.els.info.find(".weapon").html(xWeapon.selectSingleNode(`./i[@id="title"]`).textContent);
 				Self.els.info.find(".speed").html(xNode.getAttribute("speed") +" M/S");
 				Self.els.info.find(".notes").html(xNode.selectSingleNode(`./i[@id="notes"]`).textContent);
 				// update left side menu; second option - active droid ID
