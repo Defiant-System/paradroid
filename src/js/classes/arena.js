@@ -45,6 +45,7 @@ class Arena {
 				{ id: "laser",    width: 96, height: 96, src: "~/icons/laser.png" },
 				{ id: "phaser",   width: 96, height: 96, src: "~/icons/phaser.png" },
 				{ id: "plasma",   width: 64, height: 64, src: "~/icons/plasma.png" },
+				{ id: "sonic",    width: 96, height: 96, src: "~/icons/sonic.png" },
 				{ id: "droid",    width: 405, height: 45, src: "~/icons/droid.png" },
 				{ id: "digits",   width: 140, height: 16, src: "~/icons/droid-digits.png" },
 			],

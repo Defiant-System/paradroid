@@ -24,7 +24,7 @@
 	<i id="notes"><![CDATA[This is the exterminator, the 883 uses.]]></i>
 </Weapon>
 
-<Weapon id="sonic" coolDown="1400" damage="40">
+<Weapon id="sonic" coolDown="500" damage="40">
 	<i id="title"><![CDATA[Laser Rifle]]></i>
 	<i id="notes"><![CDATA[This is the laser rifle of the 614.]]></i>
 </Weapon>
