@@ -44,6 +44,7 @@ class Arena {
 				{ id: "big-map",  width: 512, height: 512, src: "~/icons/tiles-32.png" },
 				{ id: "laser",    width: 96, height: 96, src: "~/icons/laser.png" },
 				{ id: "plasma",   width: 64, height: 64, src: "~/icons/plasma.png" },
+				{ id: "particle", width: 96, height: 96, src: "~/icons/particle.png" },
 				{ id: "droid",    width: 405, height: 45, src: "~/icons/droid.png" },
 				{ id: "digits",   width: 140, height: 16, src: "~/icons/droid-digits.png" },
 			],

@@ -145,7 +145,7 @@
 		<circle class="st0" cx="32" cy="32" r="5"/>
 	</svg>
 
-	<svg id="explosion" viewBox="0 0 96 96" size="keep">
+	<svg id="particle" viewBox="0 0 96 96" size="keep">
 		<style type="text/css">
 			.st0{fill:url(#SVGID_1_);}
 			.st1{fill:url(#SVGID_2_);}

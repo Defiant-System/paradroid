@@ -35,7 +35,7 @@ class Laser {
 	}
 
 	update(delta) {
-		let force = this.force;
+		let force = this.force.setMagnitude(delta/16);
 		// force.x = this.body.mass * force.x * this.speed;
 		// force.y = this.body.mass * force.y * this.speed;
 		Matter.Body.applyForce(this.body, this.body.position, force);
