@@ -132,6 +132,53 @@
 		<circle class="st3" cx="48" cy="48" r="24"/>
 	</svg>
 
+	<svg id="phaser" viewBox="0 0 96 96" size="keep">
+		<style type="text/css">
+			.st0{fill:url(#SVGID_1_);}
+			.st1{fill:url(#SVGID_2_);}
+			.st2{fill:url(#SVGID_3_);}
+			.st3{fill:#fff;}
+			.st4{fill:url(#SVGID_4_);}
+			.st5{fill:url(#SVGID_5_);}
+			.st6{fill:url(#SVGID_6_);}
+		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="42" y1="50" x2="42" y2="2" gradientTransform="matrix(1 0 0 -1 0 98)">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="2.546109e-02" style="stop-color:#00AEEF;stop-opacity:0.97"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st0" d="M43.5,48c0,0.8-0.7,47.5-1.5,47.5S40.5,48.8,40.5,48s0.7-1.5,1.5-1.5S43.5,47.2,43.5,48z"/>
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="42" y1="50" x2="42" y2="2" gradientTransform="matrix(1 0 0 -1 0 98)">
+			<stop  offset="0" style="stop-color:#00AEEF"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st1" d="M42.5,48c0,0.8-0.2,47.5-0.5,47.5S41.5,48.8,41.5,48s0.2-1.5,0.5-1.5S42.5,47.2,42.5,48z"/>
+		<radialGradient id="SVGID_3_" cx="42" cy="50" r="23.6614" gradientTransform="matrix(1 0 0 -1 0 98)" gradientUnits="userSpaceOnUse">
+			<stop  offset="0" style="stop-color:#00AEEF;stop-opacity:0.4"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</radialGradient>
+		<circle class="st2" cx="42" cy="48" r="24"/>
+		<path class="st3" d="M42.1,56.1h-0.1c-0.8,0-1.4-0.6-1.4-1.4V43.9c0-0.8,0.6-1.4,1.4-1.4h0.1c0.8,0,1.4,0.6,1.4,1.4v10.8
+			C43.5,55.4,42.9,56.1,42.1,56.1z"/>
+		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="54" y1="50" x2="54" y2="2" gradientTransform="matrix(1 0 0 -1 0 98)">
+			<stop  offset="0" style="stop-color:#00AEEF"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st4" d="M55.5,48c0,0.8-0.7,47.5-1.5,47.5S52.5,48.8,52.5,48s0.7-1.5,1.5-1.5S55.5,47.2,55.5,48z"/>
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="54" y1="50" x2="54" y2="2" gradientTransform="matrix(1 0 0 -1 0 98)">
+			<stop  offset="0" style="stop-color:#00AEEF"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st5" d="M54.5,48c0,0.8-0.2,47.5-0.5,47.5S53.5,48.8,53.5,48s0.2-1.5,0.5-1.5S54.5,47.2,54.5,48z"/>
+		<radialGradient id="SVGID_6_" cx="54" cy="50" r="23.6614" gradientTransform="matrix(1 0 0 -1 0 98)" gradientUnits="userSpaceOnUse">
+			<stop  offset="0" style="stop-color:#00AEEF;stop-opacity:0.4"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</radialGradient>
+		<circle class="st6" cx="54" cy="48" r="24"/>
+		<path class="st3" d="M54.1,56.1h-0.1c-0.8,0-1.4-0.6-1.4-1.4V43.9c0-0.8,0.6-1.4,1.4-1.4h0.1c0.8,0,1.4,0.6,1.4,1.4v10.8
+			C55.5,55.4,54.9,56.1,54.1,56.1z"/>
+	</svg>
+
 	<svg id="plasma" viewBox="0 0 64 64" size="keep">
 		<style type="text/css">
 			.st0{fill:url(#SVGID_1_);}

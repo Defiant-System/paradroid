@@ -122,7 +122,7 @@ class Droid {
 				exterminator: Exterminator,
 				sonic: Sonic,
 			};
-		this.fire.name = xWeapon.getAttribute("name");
+		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 		this.fire.class = classes[this.fire.name];
 

@@ -1,14 +1,15 @@
 
-class Phaser {
+class Phaser extends Laser {
 	constructor(cfg) {
-		let { arena, owner } = cfg;
-	}
+		super(cfg);
 
-	update(delta) {
-		// nothing to do
-	}
+		let { arena, owner, type, angle, speed } = cfg;
 
-	render(ctx) {
-		// nothing to do
+		this.type = "phaser";
+		this.asset = arena.assets[this.type];
+		this.offset = {
+				x: this.asset.img.width >> 1,
+				y: this.asset.img.height >> 1,
+			};
 	}
 }

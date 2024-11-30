@@ -31,13 +31,6 @@ class Sparks {
 			});
 		}
 
-		// particle "asset"
-		this.asset = arena.assets.particle;
-		this.offset = {
-				x: this.asset.img.width >> 1,
-				y: this.asset.img.height >> 1,
-			};
-
 		// add entity to entries list
 		this.arena.map.entries.push(this);
 	}
