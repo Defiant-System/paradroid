@@ -17,13 +17,20 @@ class Map {
 		this.runner = Matter.Runner.create();
 		// event handler
 		Matter.Events.on(this.engine, "collisionStart", event => {
-			let body = event.pairs[0].bodyB,
-				[a, bullet] = body.label.split("-");
-			if (a === "fire") {
-				let index = this.entries.findIndex(e => e.bullet == +bullet);
-				this.entries.splice(index, 1);
-				Matter.Composite.remove(this.engine.world, body);
-			}
+			event.pairs.map(pair => {
+				let [a1, b1] = pair.bodyA.label.split("-"),
+					[a2, b2] = pair.bodyB.label.split("-");
+				if (a1 === "fire") {
+					let index = this.entries.findIndex(e => e.bullet == +b1);
+					this.entries.splice(index, 1);
+					Matter.Composite.remove(this.engine.world, pair.bodyA);
+				}
+				if (a2 === "fire") {
+					let index = this.entries.findIndex(e => e.bullet == +b2);
+					this.entries.splice(index, 1);
+					Matter.Composite.remove(this.engine.world, pair.bodyB);
+				}
+			});
 		});
 	}
 

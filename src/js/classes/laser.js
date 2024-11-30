@@ -1,23 +1,24 @@
 
 class Laser {
 	constructor(cfg) {
-		let { arena, owner, x, y, angle } = cfg;
+		let { arena, owner, type, x, y, angle, speed } = cfg;
 
 		this.arena = arena;
 		this.bullet = Math.random();
+		this.type = type;
 		this.x = x;
 		this.y = y;
 		this.angle = angle + Math.PI / 2;
 
-		this.asset = arena.assets.laser;
+		this.asset = arena.assets[this.type];
 		this.offset = {
-				x: this.asset.width >> 1,
-				y: this.asset.height >> 1,
+				x: this.asset.img.width >> 1,
+				y: this.asset.img.height >> 1,
 			};
 		
-		let speed = .015,
-			vX = Math.cos(angle) * speed,
- 			vY = Math.sin(angle) * speed;
+		this.speed = speed || .015;
+		let vX = Math.cos(angle) * this.speed,
+ 			vY = Math.sin(angle) * this.speed;
 		this.force = new Point(vX, vY);
 		
 		this.position = owner.position.clone();

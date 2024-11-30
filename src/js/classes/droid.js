@@ -34,7 +34,10 @@ class Droid {
 		this.fire = {
 			shooting: false,
 			lastShot: Date.now(),
-			coolDown: 150,
+			coolDown: 200,
+			type: "laser",
+			// coolDown: 1000,
+			// type: "plasma",
 		};
 
 		// used to animate droid "spin"
@@ -65,9 +68,18 @@ class Droid {
 	}
 
 	shoot() {
-		let angle = this.dir || Math.PI / 4;
-		new Plasma({ owner: this, arena: this.arena, x: this.x, y: this.y });
-		// new Laser({ owner: this, arena: this.arena, x: this.x, y: this.y, angle });
+		let cfg = {
+				owner: this,
+				arena: this.arena,
+				x: this.x,
+				y: this.y,
+				angle: this.dir || Math.PI / 4,
+				type: this.fire.type,
+			};
+		switch (this.fire.type) {
+			case "laser": new Laser(cfg); break;
+			case "plasma": new Plasma(cfg); break;
+		}
 	}
 
 	seek(target) {
