@@ -16,7 +16,7 @@ class Laser {
 				y: this.asset.img.height >> 1,
 			};
 		
-		this.speed = speed || .015;
+		this.speed = speed || .005;
 		let vX = Math.cos(angle) * this.speed,
  			vY = Math.sin(angle) * this.speed;
 		this.force = new Point(vX, vY);

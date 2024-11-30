@@ -17,17 +17,28 @@ class Map {
 		this.runner = Matter.Runner.create();
 		// event handler
 		Matter.Events.on(this.engine, "collisionStart", event => {
+			// console.log( event );
 			event.pairs.map(pair => {
 				let [a1, b1] = pair.bodyA.label.split("-"),
 					[a2, b2] = pair.bodyB.label.split("-");
 				if (a1 === "fire") {
 					let index = this.entries.findIndex(e => e.bullet == +b1);
-					this.entries.splice(index, 1);
+					if (index > -1) {
+						let entry = this.entries.splice(index, 1)[0],
+							{ arena, owner } = entry,
+							{ x, y } = pair.collision.supports[0];
+						new Particle({ arena, owner, x, y });
+					}
 					Matter.Composite.remove(this.engine.world, pair.bodyA);
 				}
 				if (a2 === "fire") {
 					let index = this.entries.findIndex(e => e.bullet == +b2);
-					this.entries.splice(index, 1);
+					if (index > -1) {
+						let entry = this.entries.splice(index, 1)[0],
+							{ arena, owner } = entry,
+							{ x, y } = pair.collision.supports[0];
+						new Particle({ arena, owner, x, y });
+					}
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
 				}
 			});

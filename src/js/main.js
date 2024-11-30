@@ -12,6 +12,7 @@
 
 @import "./classes/laser.js"
 @import "./classes/plasma.js"
+@import "./classes/particle.js"
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"
