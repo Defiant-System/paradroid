@@ -4,6 +4,7 @@ class Laser {
 		let { arena, owner, type, angle, speed } = cfg;
 
 		this.arena = arena;
+		this.owner = owner;
 		this.bullet = Math.random();
 		this.type = type;
 		this.angle = angle + Math.PI / 2;
@@ -34,16 +35,12 @@ class Laser {
 
 	update(delta) {
 		let force = this.force.setMagnitude(delta/16);
-		// force.x = this.body.mass * force.x * this.speed;
-		// force.y = this.body.mass * force.y * this.speed;
 		Matter.Body.applyForce(this.body, this.body.position, force);
+
 		// copy physical position to "this" internal position
 		this.position.x = this.body.position.x;
 		this.position.y = this.body.position.y;
 
-		// let speed = this.force.setMagnitude(delta/16);
-		// this.position = this.position.add(speed);
-		
 		// update tile position
 		let tile = this.arena.config.tile;
 		this.x = Math.round(this.position.x / tile);
