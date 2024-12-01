@@ -89,6 +89,11 @@
 	<i id="notes"><![CDATA[Heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military.]]><![CDATA[]]></i>
 </Droid>
 
+<Droid id="737" digits="2,0,0" weight="102" speed="5" energy="110" loss="4" agression="30" weapon="phaser" score="125">
+	<i id="type"><![CDATA[Sentinel Droid]]></i>
+	<i id="notes"><![CDATA[This droid identifies itself as non-binary, disregarding its PC ancestry. Droid 737 is not allowed to fly the ship due to the historical association of the modelnumber.]]><![CDATA[]]></i>
+</Droid>
+
 <Droid id="742" digits="1,0,0" weight="140" speed="4" energy="130" loss="4" agression="60" weapon="disruptor" score="175">
 	<i id="type"><![CDATA[Battle Droid]]></i>
 	<i id="notes"><![CDATA[This version is the one mainly used by the Military.]]></i>

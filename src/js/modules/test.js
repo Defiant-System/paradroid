@@ -30,9 +30,9 @@ let Test = {
 
 		/*
 		 * CONSOLE View
+		APP.mobile.arena = { player: { id: 598 } };
 		APP.dispatch({ type: "show-view", arg: "console" });
-		setTimeout(() => APP.console.dispatch({ type: "init-view" }), 600);
-		// APP.console.dispatch({ type: "show-droid", value: "999" });
+		// setTimeout(() => APP.console.dispatch({ type: "init-view", id: "598" }), 600);
 		return;
 		 */
 
