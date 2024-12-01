@@ -1,11 +1,11 @@
 
 <Weapon id="laser" coolDown="150" damage="25">
-	<i id="title"><![CDATA[Small Double Laser]]></i>
-	<i id="notes"><![CDATA[This is the influencers small double shot.]]></i>
+	<i id="title"><![CDATA[Small Laser]]></i>
+	<i id="notes"><![CDATA[This is the influencers laser shot.]]></i>
 </Weapon>
 
 <Weapon id="phaser" coolDown="200" damage="40">
-	<i id="title"><![CDATA[Standard Laser]]></i>
+	<i id="title"><![CDATA[Double Phaser]]></i>
 	<i id="notes"><![CDATA[This is the 476 standard shot.]]></i>
 </Weapon>
 
@@ -25,6 +25,6 @@
 </Weapon>
 
 <Weapon id="sonic" coolDown="500" damage="40">
-	<i id="title"><![CDATA[Laser Rifle]]></i>
-	<i id="notes"><![CDATA[This is the laser rifle of the 614.]]></i>
+	<i id="title"><![CDATA[Sonic Rifle]]></i>
+	<i id="notes"><![CDATA[This is the sonic rifle of the 614.]]></i>
 </Weapon>

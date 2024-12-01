@@ -5,7 +5,6 @@ class Sparks {
 
 		this.arena = arena
 		this.owner = owner
-
 		this.parts = [];
 		this.gravity = 1.65;
 		this.alpha = 1;
