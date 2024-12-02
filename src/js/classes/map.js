@@ -71,11 +71,13 @@ class Map {
 		[...Array(this.height)].map(row => this.background.push([]));
 		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
 			let row = Math.floor(col / this.width),
-				tile = xTile.getAttribute("id");
+				tile = xTile.getAttribute("id"),
+				arg = [];
 			if (tile) {
 				let [a, t, l] = tile.split("");
-				this.background[row].push([a, parseInt(t, 16), parseInt(l, 16)]);
+				arg = [a, parseInt(t, 16), parseInt(l, 16)];
 			}
+			this.background[row].push(arg);
 		});
 
 		// walls for matter.js
