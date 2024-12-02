@@ -42,13 +42,13 @@ class Arena {
 		let assets = [
 				{ id: "tiny-map", width: 112, height: 112, src: "~/icons/tiles-7.png" },
 				{ id: "big-map",  width: 512, height: 512, src: "~/icons/tiles-32.png" },
-				{ id: "laser",    width: 96, height: 96, src: "~/icons/laser.png" },
-				{ id: "phaser",   width: 96, height: 96, src: "~/icons/phaser.png" },
-				{ id: "plasma",   width: 64, height: 64, src: "~/icons/plasma.png" },
-				{ id: "sonic",    width: 96, height: 96, src: "~/icons/sonic.png" },
-				{ id: "missile",  width: 40, height: 48, src: "~/icons/missile.png" },
 				{ id: "droid",    width: 405, height: 45, src: "~/icons/droid.png" },
 				{ id: "digits",   width: 140, height: 16, src: "~/icons/droid-digits.png" },
+				{ id: "laser",    width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/laser.png" },
+				{ id: "phaser",   width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/phaser.png" },
+				{ id: "plasma",   width: 10, height: 10, oX: 5, oY: 5, src: "~/icons/plasma.png" },
+				{ id: "sonic",    width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/sonic.png" },
+				{ id: "missile",  width: 40, height: 48, oX: 20, oY: 2, src: "~/icons/missile.png" },
 			],
 			loadAssets = () => {
 				let item = assets.pop(),
@@ -111,42 +111,10 @@ class Arena {
 		this.viewport.center();
 		// set map state
 		this.map.setState(mapState);
-		//this.render();
-
-		// start "loop"
-		// this.fpsControl.start();
 	}
 
 	update(delta) {
 		this.map.update(delta);
-		// this.player.update(delta);
-	}
-
-	drawFps(ctx) {
-		let fps = this.fpsControl ? this.fpsControl._log : [];
-		ctx.save();
-		ctx.translate(this.width - 109, 0);
-		// draw box
-		ctx.fillStyle = "#0005";
-		ctx.fillRect(5, 5, 100, 40);
-		ctx.fillStyle = "#fff4";
-		ctx.fillRect(7, 7, 96, 11);
-		ctx.fillStyle = "#fff6";
-		// loop log
-		for (let i=0; i<96; i++) {
-			let bar = fps[i];
-			if (!bar) break;
-			let p = bar/90;
-			if (p > 1) p = 1;
-			ctx.fillRect(102 - i, 43, 1, -24 * p);
-		}
-		// write fps
-		ctx.fillStyle = "#fff";
-		ctx.font = "9px Arial";
-		ctx.textAlign = "left";
-		ctx.fillText('FPS: '+ fps[0], 8, 17);
-		// restore state
-		ctx.restore();
 	}
 
 	render() {
@@ -183,5 +151,32 @@ class Arena {
 			this.player._x = this.player.x;
 			this.player._y = this.player.y;
 		}
+	}
+
+	drawFps(ctx) {
+		let fps = this.fpsControl ? this.fpsControl._log : [];
+		ctx.save();
+		ctx.translate(this.width - 109, 0);
+		// draw box
+		ctx.fillStyle = "#0005";
+		ctx.fillRect(5, 5, 100, 40);
+		ctx.fillStyle = "#fff4";
+		ctx.fillRect(7, 7, 96, 11);
+		ctx.fillStyle = "#fff6";
+		// loop log
+		for (let i=0; i<96; i++) {
+			let bar = fps[i];
+			if (!bar) break;
+			let p = bar/90;
+			if (p > 1) p = 1;
+			ctx.fillRect(102 - i, 43, 1, -24 * p);
+		}
+		// write fps
+		ctx.fillStyle = "#fff";
+		ctx.font = "9px Arial";
+		ctx.textAlign = "left";
+		ctx.fillText('FPS: '+ fps[0], 8, 17);
+		// restore state
+		ctx.restore();
 	}
 }

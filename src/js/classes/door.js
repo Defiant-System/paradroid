@@ -64,7 +64,6 @@ class Door {
 					if (this.frame.index >= 4) {
 						this.state = "open";
 						this.frame.index = 4;
-
 						delete this.isAdded;
 						Matter.Composite.remove(arena.map.engine.world, this.body);
 					}

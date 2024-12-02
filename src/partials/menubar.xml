@@ -26,7 +26,7 @@
 		</Menu>
 		<Menu type="divider"/>
 		<Menu name="Player Droid&#8230;">
-			<Menu name="001" check-group="player-droid" click="set-player-droid" arg="001" is-checked="1"/>
+			<Menu name="001 (L)" check-group="player-droid" click="set-player-droid" arg="001" is-checked="1"/>
 			<Menu name="123" check-group="player-droid" click="set-player-droid" arg="123"/>
 			<Menu name="139" check-group="player-droid" click="set-player-droid" arg="139"/>
 			<Menu name="247" check-group="player-droid" click="set-player-droid" arg="247"/>
@@ -35,20 +35,20 @@
 			<Menu name="302" check-group="player-droid" click="set-player-droid" arg="302"/>
 			<Menu name="329" check-group="player-droid" click="set-player-droid" arg="329"/>
 			<Menu name="420" check-group="player-droid" click="set-player-droid" arg="420"/>
-			<Menu name="476" check-group="player-droid" click="set-player-droid" arg="476"/>
+			<Menu name="476 (Ph)" check-group="player-droid" click="set-player-droid" arg="476"/>
 			<Menu name="493" check-group="player-droid" click="set-player-droid" arg="493"/>
 			<Menu name="516" check-group="player-droid" click="set-player-droid" arg="516"/>
 			<Menu name="571" check-group="player-droid" click="set-player-droid" arg="571"/>
 			<Menu name="598" check-group="player-droid" click="set-player-droid" arg="598"/>
-			<Menu name="614" check-group="player-droid" click="set-player-droid" arg="614"/>
+			<Menu name="614 (S)" check-group="player-droid" click="set-player-droid" arg="614"/>
 			<Menu name="615" check-group="player-droid" click="set-player-droid" arg="615"/>
 			<Menu name="629" check-group="player-droid" click="set-player-droid" arg="629"/>
-			<Menu name="711" check-group="player-droid" click="set-player-droid" arg="711"/>
+			<Menu name="711 (D)" check-group="player-droid" click="set-player-droid" arg="711"/>
 			<Menu name="742" check-group="player-droid" click="set-player-droid" arg="742"/>
 			<Menu name="751" check-group="player-droid" click="set-player-droid" arg="751"/>
-			<Menu name="821" check-group="player-droid" click="set-player-droid" arg="821"/>
+			<Menu name="821 (Pl)" check-group="player-droid" click="set-player-droid" arg="821"/>
 			<Menu name="834" check-group="player-droid" click="set-player-droid" arg="834"/>
-			<Menu name="883" check-group="player-droid" click="set-player-droid" arg="883"/>
+			<Menu name="883 (X)" check-group="player-droid" click="set-player-droid" arg="883"/>
 			<Menu name="999" check-group="player-droid" click="set-player-droid" arg="999"/>
 		</Menu>
 		<Menu name="Debug Mode">

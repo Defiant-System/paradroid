@@ -61,8 +61,8 @@ class Sparks {
 		let arena = this.arena,
 			viewport = arena.viewport;
 		ctx.save();
-		ctx.lineWidth = 2;
-		ctx.strokeStyle = "#fff8";
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = "#fff9";
 		ctx.globalAlpha = this.alpha;
 		this.parts.map(p => {
 			let x1 = p.pos.x + viewport.x,

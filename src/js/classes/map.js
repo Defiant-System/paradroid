@@ -70,8 +70,12 @@ class Map {
 		// add rows
 		[...Array(this.height)].map(row => this.background.push([]));
 		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
-			let row = Math.floor(col / this.width);
-			this.background[row].push(xTile.getAttribute("id"));
+			let row = Math.floor(col / this.width),
+				tile = xTile.getAttribute("id");
+			if (tile) {
+				let [a, t, l] = tile.split("");
+				this.background[row].push([a, parseInt(t, 16), parseInt(l, 16)]);
+			}
 		});
 
 		// walls for matter.js
@@ -259,7 +263,7 @@ class Map {
 					let col = this.background[y][x];
 					if (!col) continue;
 
-					let [a, t, l] = col.split("").map(i => parseInt(i, 16)),
+					let [a, t, l] = col,
 						oX = Math.floor(l * tile),
 						oY = Math.floor(t * tile),
 						tX = Math.floor((x * tile) - vX),

@@ -7,14 +7,10 @@ class Sonic extends Laser {
 
 		this.type = "sonic";
 		this.asset = arena.assets[this.type];
-		this.offset = {
-				x: this.asset.img.width >> 1,
-				y: this.asset.img.height >> 1,
-			};
-		this.freq = 0;
+		this.width = 5;
 		this.trail = [];
 
-		this.speed = speed || .015;
+		this.speed = speed || .0000075;
 		let vX = Math.cos(angle) * this.speed,
  			vY = Math.sin(angle) * this.speed;
 		this.force = new Point(vX, vY);
@@ -22,17 +18,17 @@ class Sonic extends Laser {
 
 	update(delta) {
 		super.update(delta);
-		this.freq += .25;
+		if (this.width < 60) this.width += 4;
 
 		if (this.trail) {
 			// prepend position to trail
-			let w = (Math.sin(this.freq) * (this.asset.img.width / 1.5)) + 10,
+			let w = this.width,
 				oX = w >> 1,
 				x = this.position.x,
 				y = this.position.y;
 			this.trail.unshift({ x, y, w, oX });
 			// trim trail log
-			this.trail.splice(11, 11);
+			this.trail.splice(9, 9);
 		}
 	}
 

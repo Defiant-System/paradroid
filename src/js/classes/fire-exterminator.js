@@ -3,7 +3,7 @@ class Exterminator {
 	constructor(cfg) {
 		let { arena, owner } = cfg;
 
-		let target = { x: 150, y: 150 },
+		let target = arena.player.target,
 			missiles = 6,
 			inc = 360 / missiles,
 			a = 0;

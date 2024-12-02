@@ -8,7 +8,7 @@ class Plasma {
 			a = 0;
 		[...Array(bullets)].map((e, i) => {
 			let angle = a * Math.PI / 180;
-			new Laser({ arena, owner, angle, speed: .005, type: "plasma" });
+			new Laser({ arena, owner, angle, speed: .00005, type: "plasma" });
 			a += inc;
 		});
 	}

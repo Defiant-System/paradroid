@@ -8,14 +8,9 @@ class Laser {
 		this.bullet = Math.random();
 		this.type = type;
 		this.angle = angle + Math.PI / 2;
-
 		this.asset = arena.assets[this.type];
-		this.offset = {
-				x: this.asset.img.width >> 1,
-				y: this.asset.img.height >> 1,
-			};
 		
-		this.speed = speed || .005;
+		this.speed = speed || .00005;
 		let vX = Math.cos(angle) * this.speed,
  			vY = Math.sin(angle) * this.speed;
 		this.force = new Point(vX, vY);
@@ -24,7 +19,7 @@ class Laser {
 		this.position.x += Math.cos(angle) * 30;
 		this.position.y += Math.sin(angle) * 30;
 
-		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 3, { density: 0.1, frictionAir: .006, friction: 0 });
+		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 1.5, { frictionAir: .006 });
 		this.body.label = `fire-${this.bullet}`;
 
 		// add to map entries
@@ -56,7 +51,7 @@ class Laser {
 		ctx.save();
 		ctx.translate(x, y);
 		ctx.rotate(this.angle);
-		ctx.drawImage(this.asset.img, -this.offset.x, -this.offset.y);
+		ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
 		ctx.restore();
 	}
 }
