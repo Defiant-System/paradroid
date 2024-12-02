@@ -40,9 +40,6 @@
 			"m6a": [{ x: 0, y: 0, id: "m6a" }, { x: 1, y: 0, id: "m6b" }, { x: 0, y: 1, id: "m7a" }, { x: 1, y: 1, id: "m7b" }],
 			"m6c": [{ x: 0, y: 0, id: "m6c" }, { x: 1, y: 0, id: "m6d" }, { x: 0, y: 1, id: "m7c" }, { x: 1, y: 1, id: "m7d" }],
 		};
-
-		// pan viewport events
-		this.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -61,6 +58,9 @@
 				// fast references
 				Self.els.spawn = Spawn.find("content.editor");
 				Self.els.content = Spawn.find("content.editor");
+
+				// pan viewport events
+				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 				break;
 			case "spawn.close":
 				break;

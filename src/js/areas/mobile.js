@@ -12,7 +12,7 @@
 		// create arena
 		this.arena = new Arena(this.els.cvs);
 		// bind event handlers
-		this.els.cvs.on("mousedown", this.doFire);
+		// this.els.cvs.on("mousedown", this.doFire);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -119,7 +119,7 @@
 			case "game-loop-resume":
 				if (Self.arena.map && Self.arena.fpsControl._stopped) {
 					// run the engine
-					Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
+					// Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
 					Self.arena.fpsControl.start();
 				}
 				break;

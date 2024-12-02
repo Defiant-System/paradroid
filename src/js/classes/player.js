@@ -4,11 +4,11 @@ class Player extends Droid {
 		super(cfg);
 
 		// "aura" borealis
-		this.aura = {
-			color: [255, 255, 255],
-			strength: .5,
-			radius: 100,
-		};
+		// this.aura = {
+		// 	color: [255, 255, 255],
+		// 	strength: .5,
+		// 	radius: 100,
+		// };
 		// this.speed = .0015;
 		this.isPlayer = true;
 		this.isVisible = true;
@@ -81,13 +81,7 @@ class Player extends Droid {
 			}
 		}
 		this.move(force);
-		// this._moved = !(force.x === 0 && force.y === 0);
 
 		super.update(delta);
-	}
-
-	render(ctx) {
-		// render droid
-		super.render(ctx);
 	}
 }

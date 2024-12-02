@@ -73,10 +73,10 @@ let Test = {
 					// map: { id: 14, clear: .15 }, player: { id: "711", x: 20, y: 16, power: .35 }, debug: { mode: 0 },
 					// map: { id: 16, clear: .1 }, player: { id: "711", x: 17, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
-					// map: { id: 7, clear: .35 }, player: { id: 883, x: 20, y: 20, power: .35 }, debug: { mode: 0 },
+					map: { id: 7, clear: .35 }, player: { id: 302, x: 20, y: 20, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
-					map: { id: 17, clear: .1 }, player: { x: 23, y: 5, power: .25 }, debug: { mode: 0 },
+					// map: { id: 4, clear: .1 }, player: { x: 33, y: 5, power: .25 }, debug: { mode: 0 },
 					// map: { id: 17, clear: .1 }, player: { id: "711", x: 32, y: 22, power: .25 }, debug: { mode: 0 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
@@ -100,7 +100,7 @@ let Test = {
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
 
-		}, 100);
+		}, 300);
 
 	}
 };
