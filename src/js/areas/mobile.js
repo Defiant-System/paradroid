@@ -12,7 +12,7 @@
 		// create arena
 		this.arena = new Arena(this.els.cvs);
 		// bind event handlers
-		// this.els.cvs.on("mousedown", this.doFire);
+		this.els.cvs.on("mousedown", this.doFire);
 	},
 	dispatch(event) {
 		let APP = paradroid,

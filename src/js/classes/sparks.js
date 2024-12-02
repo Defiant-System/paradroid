@@ -60,20 +60,22 @@ class Sparks {
 	render(ctx) {
 		let arena = this.arena,
 			viewport = arena.viewport;
-		ctx.save();
-		ctx.lineWidth = 3;
-		ctx.strokeStyle = "#fff9";
-		ctx.globalAlpha = this.alpha;
-		this.parts.map(p => {
-			let x1 = p.pos.x + viewport.x,
-				y1 = p.pos.y + viewport.y,
-				x2 = p.x2 + viewport.x,
-				y2 = p.y2 + viewport.y;
-			ctx.beginPath();
-			ctx.moveTo(x1, y1);
-			ctx.lineTo(x2, y2);
-			ctx.stroke();
-		});
-		ctx.restore();
+		if (arena.debug.mode < 2) {
+			ctx.save();
+			ctx.lineWidth = 3;
+			ctx.strokeStyle = "#fff9";
+			ctx.globalAlpha = this.alpha;
+			this.parts.map(p => {
+				let x1 = p.pos.x + viewport.x,
+					y1 = p.pos.y + viewport.y,
+					x2 = p.x2 + viewport.x,
+					y2 = p.y2 + viewport.y;
+				ctx.beginPath();
+				ctx.moveTo(x1, y1);
+				ctx.lineTo(x2, y2);
+				ctx.stroke();
+			});
+			ctx.restore();
+		}
 	}
 }

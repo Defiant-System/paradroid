@@ -81,6 +81,7 @@ class Player extends Droid {
 			}
 		}
 		this.move(force);
+		// this._moved = !(force.x === 0 && force.y === 0);
 
 		super.update(delta);
 	}

@@ -108,7 +108,7 @@ class Droid {
 			xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xDroid.getAttribute("weapon")}"]`);
 		// update this droid properties
 		this.weight = +xDroid.getAttribute("weight");
-		this.speed = +xDroid.getAttribute("speed") * .00025;
+		this.speed = +xDroid.getAttribute("speed") * .00015;
 		this.energy = +xDroid.getAttribute("energy");
 		this.loss = +xDroid.getAttribute("loss");
 		this.agression = +xDroid.getAttribute("agression");

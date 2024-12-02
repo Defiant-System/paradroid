@@ -48,10 +48,12 @@ class Laser {
 			x = this.position.x + viewport.x,
 			y = this.position.y + viewport.y;
 
-		ctx.save();
-		ctx.translate(x, y);
-		ctx.rotate(this.angle);
-		ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
-		ctx.restore();
+		if (arena.debug.mode < 2) {
+			ctx.save();
+			ctx.translate(x, y);
+			ctx.rotate(this.angle);
+			ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
+			ctx.restore();
+		}
 	}
 }

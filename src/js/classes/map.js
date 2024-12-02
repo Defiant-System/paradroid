@@ -306,9 +306,9 @@ class Map {
 				});
 		}
 		// now render droids (with mask clip)
-		this.droids
-			.filter(droid => !droid.isPlayer && droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
-			.map(droid => droid.render(ctx));
+		// this.droids
+		// 	.filter(droid => !droid.isPlayer && droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
+		// 	.map(droid => droid.render(ctx));
 		// restore drawing context
 		ctx.restore();
 

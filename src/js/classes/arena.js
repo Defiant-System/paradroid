@@ -176,7 +176,7 @@ class Arena {
 		ctx.fillStyle = "#fff";
 		ctx.font = "9px Arial";
 		ctx.textAlign = "left";
-		ctx.fillText('FPS: '+ fps[0], 8, 17);
+		ctx.fillText('FPS: '+ fps[0], 8, 16);
 		// restore state
 		ctx.restore();
 	}
