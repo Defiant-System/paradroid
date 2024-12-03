@@ -22,7 +22,7 @@ class Missile {
 		this.target = new Point(target.x, target.y);
 	    this.acceleration = new Point(0, 0);
 	    this.maxspeed = .25;
-	    this.maxforce = .05;
+	    this.maxforce = .15;
 
 		// add to map entries
 		this.arena.map.addItem(this);
@@ -51,6 +51,12 @@ class Missile {
 			return this.destroy();
 		} else if (this.position.distance(this.owner.position) < 55) {
 			this.position = this.position.add(this.velocity);
+			this.acceleration = this.velocity.clone().setMagnitude(10);
+
+			// if (!this._test) {
+			// 	this._test = true;
+			// 	setTimeout(() => this.target.y -= 250, 400);
+			// }
 		} else {
 			this.seek();
 			// Update velocity & Limit speed
@@ -79,7 +85,8 @@ class Missile {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			x = this.position.x + viewport.x,
-			y = this.position.y + viewport.y;
+			y = this.position.y + viewport.y,
+			s = 9;
 
 		ctx.save();
 		ctx.translate(x, y);
@@ -87,17 +94,19 @@ class Missile {
 		ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
 		ctx.restore();
 
-		ctx.save();
-		ctx.lineWidth = 3;
-		ctx.strokeStyle = "#fff9";
-		ctx.beginPath();
-		ctx.moveTo(this.trail[0].x + viewport.x, this.trail[0].y + viewport.y);
-		this.trail.slice(1).map(p => {
-				let x2 = p.x + viewport.x,
-					y2 = p.y + viewport.y;
-				ctx.lineTo(x2, y2);
-			});
-		ctx.stroke();
-		ctx.restore();
+		if (this.trail.length > 10) {
+			ctx.save();
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = "#fff9";
+			ctx.beginPath();
+			ctx.moveTo(this.trail[s].x + viewport.x, this.trail[s].y + viewport.y);
+			this.trail.slice(s).map(p => {
+					let x2 = p.x + viewport.x,
+						y2 = p.y + viewport.y;
+					ctx.lineTo(x2, y2);
+				});
+			ctx.stroke();
+			ctx.restore();
+		}
 	}
 }
