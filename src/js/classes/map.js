@@ -207,7 +207,7 @@ class Map {
 		// add entity to entries list
 		this.entries.push(item);
 		// add item body to physical world
-		Matter.Composite.add(this.engine.world, item.body);
+		if (item.body) Matter.Composite.add(this.engine.world, item.body);
 	}
 
 	update(delta) {

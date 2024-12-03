@@ -8,22 +8,21 @@ class Missile {
 		this.angle = angle + Math.PI / 2;
 		this.asset = arena.assets.missile;
 		this.bullet = Math.random();
+		this.trail = [];
 
 		this.position = owner.position.clone();
-		this.position.x += Math.cos(angle) * 30;
-		this.position.y += Math.sin(angle) * 30;
-		this.target = new Point(target.x, target.y);
+		this.position.x += Math.cos(angle) * 28;
+		this.position.y += Math.sin(angle) * 28;
 
-		let speed = .00000075,
+		let speed = 2,
 			vX = Math.cos(angle) * speed,
  			vY = Math.sin(angle) * speed;
 		this.velocity = new Point(vX, vY);
-	    this.acceleration = new Point(0, 0);
-	    this.maxspeed = .00015;
-	    this.maxforce = .00025;
 
-		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 2, { frictionAir: .006 });
-		this.body.label = `fire-${this.bullet}`;
+		this.target = new Point(target.x, target.y);
+	    this.acceleration = new Point(0, 0);
+	    this.maxspeed = .25;
+	    this.maxforce = .05;
 
 		// add to map entries
 		this.arena.map.addItem(this);
@@ -34,44 +33,42 @@ class Missile {
 			owner = this.owner,
 			index = arena.map.entries.indexOf(this);
 		arena.map.entries.splice(index, 1);
-		// remove from physical world
-		Matter.Composite.remove(arena.map.engine.world, this.body);
 		// sparks at kill zone
 		new Sparks({ arena, owner, x: this.position.x, y: this.position.y });
 	}
 
 	seek() {
-		let target = this.target;
-		let desired = this.position.subtract(this.target);
+		let desired = this.target.subtract(this.position);
 		desired = desired.setMagnitude(this.maxspeed);
-		let steer = this.velocity.subtract(desired);
-	    steer = steer.limit(this.maxforce);
-	    this.applyForce(steer);
-	}
-
-	applyForce(force) {
-		this.acceleration = this.acceleration.add(force);
-		Matter.Body.applyForce(this.body, this.body.position, this.acceleration);
-
-		// copy physical position to "this" internal position
-		this.position.x = this.body.position.x;
-		this.position.y = this.body.position.y;
+		let steer = desired.subtract(this.velocity);
+		steer = steer.limit(this.maxforce);
+		// We could add mass here if we want A = F / M
+		this.acceleration = this.acceleration.add(steer);
 	}
 
 	update(delta) {
 		if (this.position.distance(this.target) < 15) {
 			return this.destroy();
-		} else if (this.position.distance(this.owner.position) < 35) {
-			this.applyForce(this.velocity);
+		} else if (this.position.distance(this.owner.position) < 55) {
+			this.position = this.position.add(this.velocity);
 		} else {
 			this.seek();
-			this.velocity = this.velocity.add(this.acceleration);
-			this.velocity = this.velocity.limit(this.maxspeed);
+			// Update velocity & Limit speed
+			this.velocity = this.velocity.add(this.acceleration).limit(this.maxspeed);
 			this.position = this.position.add(this.velocity);
-			this.acceleration = this.acceleration.multiply(0);
+			// Reset accelerationelertion to 0 each cycle
+			this.acceleration = this.acceleration.multiply(0.75);
 			this.angle = this.velocity.direction() + Math.PI/2;
 		}
 
+		// add trail
+		this.trail.unshift({
+			x: this.position.x,
+			y: this.position.y,
+		});
+		// trim trail log
+		this.trail.splice(29, 9);
+		
 		// update tile position
 		let tile = this.arena.config.tile;
 		this.x = Math.round(this.position.x / tile);
@@ -88,6 +85,19 @@ class Missile {
 		ctx.translate(x, y);
 		ctx.rotate(this.angle);
 		ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
+		ctx.restore();
+
+		ctx.save();
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = "#fff9";
+		ctx.beginPath();
+		ctx.moveTo(this.trail[0].x + viewport.x, this.trail[0].y + viewport.y);
+		this.trail.slice(1).map(p => {
+				let x2 = p.x + viewport.x,
+					y2 = p.y + viewport.y;
+				ctx.lineTo(x2, y2);
+			});
+		ctx.stroke();
 		ctx.restore();
 	}
 }
