@@ -12,17 +12,15 @@ class Missile {
 		this.position = owner.position.clone();
 		this.position.x += Math.cos(angle) * 30;
 		this.position.y += Math.sin(angle) * 30;
-
 		this.target = new Point(target.x, target.y);
 
-		let speed = .0000025,
+		let speed = .00000075,
 			vX = Math.cos(angle) * speed,
  			vY = Math.sin(angle) * speed;
 		this.velocity = new Point(vX, vY);
 	    this.acceleration = new Point(0, 0);
-
-	    this.maxspeed = .001;
-	    this.maxforce = .000025;
+	    this.maxspeed = .00015;
+	    this.maxforce = .00025;
 
 		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 2, { frictionAir: .006 });
 		this.body.label = `fire-${this.bullet}`;
@@ -44,9 +42,9 @@ class Missile {
 
 	seek() {
 		let target = this.target;
-		let desired = target.subtract(this.position);
+		let desired = this.position.subtract(this.target);
 		desired = desired.setMagnitude(this.maxspeed);
-		let steer = desired.subtract(this.velocity);
+		let steer = this.velocity.subtract(desired);
 	    steer = steer.limit(this.maxforce);
 	    this.applyForce(steer);
 	}
@@ -54,8 +52,6 @@ class Missile {
 	applyForce(force) {
 		this.acceleration = this.acceleration.add(force);
 		Matter.Body.applyForce(this.body, this.body.position, this.acceleration);
-
-		this.angle = this.velocity.direction();
 
 		// copy physical position to "this" internal position
 		this.position.x = this.body.position.x;
@@ -65,15 +61,15 @@ class Missile {
 	update(delta) {
 		if (this.position.distance(this.target) < 15) {
 			return this.destroy();
-		} else if (this.position.distance(this.owner.position) < 40) {
-			let force = this.velocity.setMagnitude(.5);
-			this.applyForce(force);
+		} else if (this.position.distance(this.owner.position) < 35) {
+			this.applyForce(this.velocity);
 		} else {
 			this.seek();
-			this.velocity = this.velocity.add(this.acceleration).limit(this.maxspeed);
+			this.velocity = this.velocity.add(this.acceleration);
+			this.velocity = this.velocity.limit(this.maxspeed);
 			this.position = this.position.add(this.velocity);
 			this.acceleration = this.acceleration.multiply(0);
-			// this.angle = this.target.subtract(this.position).direction();
+			this.angle = this.velocity.direction() + Math.PI/2;
 		}
 
 		// update tile position

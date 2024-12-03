@@ -4,7 +4,7 @@ class Exterminator {
 		let { arena, owner } = cfg;
 
 		let target = arena.player.target,
-			missiles = 6,
+			missiles = 7,
 			inc = 360 / missiles,
 			a = 0;
 		[...Array(missiles)].map(m => {
