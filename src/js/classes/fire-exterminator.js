@@ -5,10 +5,11 @@ class Exterminator {
 
 		let target = arena.player.target,
 			missiles = 7,
-			inc = 360 / missiles,
-			a = 0;
+			inc = (Math.TAU * .8) / missiles,
+			a = arena.player.dir + (Math.TAU * .65);
+		// console.log( arena.player.dir );
 		[...Array(missiles)].map(m => {
-			let angle = a * Math.PI / 180;
+			let angle = a;
 			new Missile({ arena, owner, target, angle });
 			a += inc;
 		});
