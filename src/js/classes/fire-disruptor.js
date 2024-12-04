@@ -106,19 +106,19 @@ class Disruptor {
 		ctx.restore();
 		
 		if (this.children) {
-			ctx.save();
-			// ctx.globalCompositeOperation = "screen";
-			ctx.fillStyle   = "#fff";
-			// start dot
-			ctx.beginPath();
-			ctx.arc(this.origin.x, this.origin.y, 4, 0, Math.TAU);
-			ctx.fill();
+			// ctx.save();
+			// // ctx.globalCompositeOperation = "screen";
+			// ctx.fillStyle   = "#fff";
+			// // start dot
+			// ctx.beginPath();
+			// ctx.arc(this.origin.x, this.origin.y, 4, 0, Math.TAU);
+			// ctx.fill();
 
-			// end dot
-			ctx.beginPath();
-			ctx.arc(this.target.x, this.target.y, 4, 0, Math.TAU);
-			ctx.fill();
-			ctx.restore();
+			// // end dot
+			// ctx.beginPath();
+			// ctx.arc(this.target.x, this.target.y, 4, 0, Math.TAU);
+			// ctx.fill();
+			// ctx.restore();
 
 			// Draw children
 			this.children.map(child => child.render(ctx));

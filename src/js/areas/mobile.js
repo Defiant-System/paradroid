@@ -164,7 +164,7 @@
 			case "level-lights-off":
 				value = "#555";
 				Self.els.cvs.parent().css({ background: value });
-				Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.75)", });
+				Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.75)" });
 				break;
 			case "set-player-droid":
 				Player.setId(event.arg);

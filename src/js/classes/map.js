@@ -215,9 +215,9 @@ class Map {
 		this.droids.map(droid => droid.update(delta));
 
 		// Raycaster: visibility map
-		let viewport = this.arena.viewport,
+		let arena = this.arena,
 			m = 0,
-			{ w, h, x, y } = viewport,
+			{ w, h, x, y } = arena.viewport,
 			walls = [];
 		this.walls.map(verts => {
 			let wall = [];
@@ -232,7 +232,10 @@ class Map {
 			if (wall.length) walls.push(wall);
 		});
 
-		let pos = this.arena.player.position,
+		// turn on "floor lights", if base color is "gray"
+		this.rcConf.floor = arena.colors.base === "#555";
+
+		let pos = arena.player.position,
 			origo = {
 				x: x + pos.x,
 				y: y + pos.y,

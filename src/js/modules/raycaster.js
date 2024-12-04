@@ -27,7 +27,7 @@ let Raycaster = (() => {
 			},
 			drawFloor(ctx, path) {
 				ctx.save();
-				ctx.fillStyle = "#fff6";
+				ctx.fillStyle = "#fff1";
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
 				ctx.closePath();
