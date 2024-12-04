@@ -56,7 +56,7 @@ class Point {
 
 	normalize() { 
 		var m = this.magnitude();
-		if (m > 0) this.divide(m);
+		if (m > 0) return this.divide(m);
         return this;
 	}
 

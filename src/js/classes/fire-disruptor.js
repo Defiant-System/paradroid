@@ -2,7 +2,9 @@
 class Disruptor {
 	constructor(cfg) {
 		let { arena, owner, lineWidth, amplitude } = cfg,
-			target = arena.player.target;
+			vPoint = { x: arena.viewport.x, y: arena.viewport.y },
+			origin = arena.player.position.clone().add(vPoint),
+			target = arena.player.target.clone().add(vPoint);
 
 		this.arena = arena;
 		this.owner = owner;
@@ -11,12 +13,11 @@ class Disruptor {
 		this.speed = 0.04;
 		this.lineWidth = lineWidth || 5;
 		this.amplitude = amplitude || 0.65;
-		// this.start = owner.position.clone();
-		// this.end = new Point(target.x, target.y);
-		this.start = new Point(100, 100);
-		this.end = new Point(300, 300);
+		this.origin = origin;
+		this.target = target;
+		// this.origin = new Point(100, 100);
+		// this.end = new Point(300, 300);
 		this.points = [];
-		this.off = 0;
 		this.ttl = 50;
 		this.children = [];
 		this.simplexNoise = new SimplexNoise;
@@ -47,14 +48,14 @@ class Disruptor {
 			_cos = Math.cos,
 			_pi = Math.PI,
 			isChild = this.lineWidth < 5,
-			length = this.start.distance(this.end),
+			length = this.origin.distance(this.target),
 			step = Math.max(length / 2, 25),
-			normal = this.end.clone().subtract(this.start).normalize().scale(length / step),
+			normal = this.target.clone().subtract(this.origin).normalize().scale(length / step),
 			radian = normal.direction(),
 			sinv   = _sin(radian),
 			cosv   = _cos(radian),
 			points = this.points = [],
-			off    = this.off += Utils.random(this.speed, this.speed * 0.1),
+			off    = Utils.random(this.speed, this.speed * 0.1),
 			waveWidth = (isChild ? length * 1.5 : length) * this.amplitude;
 
 		// count down ttl (Time To Live)
@@ -72,11 +73,11 @@ class Disruptor {
 				bx = sinv * bv,
 				by = cosv * bv,
 				m = _sin((_pi * (i / (len - 1)))),
-				x = this.start.x + normal.x * i + (ax - bx) * m,
-				y = this.start.y + normal.y * i - (ay - by) * m;
+				x = this.origin.x + normal.x * i + (ax - bx) * m,
+				y = this.origin.y + normal.y * i - (ay - by) * m;
 			points.push(new Point(x, y));
 		}
-		points.push(this.end.clone());
+		points.push(this.target.clone());
 
 		this.children.map(child => child.update(delta));
 	}
@@ -89,14 +90,13 @@ class Disruptor {
 		ctx.save();
 		ctx.globalCompositeOperation = "screen";
 		ctx.fillStyle   = "#1155";
-		// ctx.shadowColor = "#ddf";
-		// ctx.shadowBlur  = 23;
+		ctx.shadowColor = "#ddf";
+		ctx.shadowBlur  = 23;
 		ctx.beginPath();
-
 		points.map((point, i) => {
 			let d = len > 1 ? point.distance(points[i === len - 1 ? i - 1 : i + 1]) : 0;
 			ctx.moveTo(point.x + d, point.y);
-			ctx.arc(point.x, point.y, d, 0, Math.TAU, false);
+			ctx.arc(point.x, point.y, d, 0, Math.TAU);
 		});
 		ctx.fill();
 		ctx.restore();
@@ -117,12 +117,12 @@ class Disruptor {
 			ctx.fillStyle   = "#fff";
 			// start dot
 			ctx.beginPath();
-			ctx.arc(this.start.x, this.start.y, 4, 0, Math.TAU);
+			ctx.arc(this.origin.x, this.origin.y, 4, 0, Math.TAU);
 			ctx.fill();
 
 			// end dot
 			ctx.beginPath();
-			ctx.arc(this.end.x, this.end.y, 4, 0, Math.TAU);
+			ctx.arc(this.target.x, this.target.y, 4, 0, Math.TAU);
 			ctx.fill();
 			ctx.restore();
 		}

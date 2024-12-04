@@ -1,6 +1,11 @@
 
 let Test = {
 	init(APP) {
+		// let pos = new Point(100, 100),
+		// 	vel = new Point(10, 0);
+
+		// console.log( pos.clone().subtract(vel).normalize() );
+
 		// return;
 
 		// return APP.dispatch({ type: "show-view", arg: "terminated" });
