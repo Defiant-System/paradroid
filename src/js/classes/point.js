@@ -48,6 +48,12 @@ class Point {
 		return this.normalize().multiply(n);
 	}
 
+	scale(s) {
+		this.x *= s;
+		this.y *= s;
+        return this;
+	}
+
 	normalize() { 
 		var m = this.magnitude();
 		if (m > 0) this.divide(m);

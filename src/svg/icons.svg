@@ -1,5 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 
+@import "tiles-32.svg"
+@import "tiles-7.svg"
+@import "3001.svg"
+
+@import "bp/001.svg"
+@import "bp/123.svg"
+@import "bp/139.svg"
+@import "bp/247.svg"
+@import "bp/249.svg"
+@import "bp/296.svg"
+@import "bp/302.svg"
+@import "bp/329.svg"
+@import "bp/420.svg"
+@import "bp/476.svg"
+@import "bp/493.svg"
+@import "bp/516.svg"
+@import "bp/571.svg"
+@import "bp/598.svg"
+@import "bp/614.svg"
+@import "bp/615.svg"
+@import "bp/629.svg"
+@import "bp/711.svg"
+@import "bp/737.svg"
+@import "bp/742.svg"
+@import "bp/751.svg"
+@import "bp/821.svg"
+@import "bp/834.svg"
+@import "bp/883.svg"
+@import "bp/999.svg"
+
 	<svg id="droid-mask" viewBox="0 0 44 33" cache="keep">
 		<path d="M43.7,13.8C42,6,32.9,0,22,0C11.1,0,2.1,5.9,0.3,13.7v5.5C2.1,27.1,11.1,33,22,33c10.9,0,20-6,21.7-13.8V13.8z"/>
 	</svg>
@@ -168,8 +198,17 @@
 
 	<svg id="missile" viewBox="0 0 40 40" size="keep">
 		<style type="text/css">
-			.st0{fill:#fff;}
+			.st0{fill:#fff;filter:url(#defapp-filter-1);}
 		</style>
+		<filter filterUnits="objectBoundingBox" id="defapp-filter-1">
+			<feOffset dx="0" dy="0" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
+			<feGaussianBlur stdDeviation=".25" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
+			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
+			<feMerge>
+				<feMergeNode in="defappShadowMatrixOuter1"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
 		<path class="st0" d="M19.8,16.1h-0.5c0,0-0.5,1.3-0.6,1.4s-1.2,0.1-1.4,0s-0.8-3.7-0.8-3.7s0.7-0.9,1.2-1.5c0-0.3-0.4-2.5-0.4-4.8
 			s1.1-7.2,2.5-7.2s2.5,4.9,2.5,7.2S22,12,21.9,12.3c0.5,0.6,1.2,1.5,1.2,1.5s-0.6,3.6-0.8,3.7s-1.2,0.1-1.4,0
 			c-0.1-0.1-0.6-1.4-0.6-1.4L19.8,16.1z"/>

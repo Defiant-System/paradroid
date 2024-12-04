@@ -24,6 +24,9 @@ class Missile {
 	    this.maxspeed = .25;
 	    this.maxforce = .15;
 
+		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 2, { frictionAir: .006 });
+		this.body.label = `fire-${this.bullet}`;
+
 		// add to map entries
 		this.arena.map.addItem(this);
 	}
@@ -35,6 +38,8 @@ class Missile {
 		arena.map.entries.splice(index, 1);
 		// sparks at kill zone
 		new Sparks({ arena, owner, x: this.position.x, y: this.position.y });
+		// remove from physical world
+		Matter.Composite.remove(arena.map.engine.world, this.body);
 	}
 
 	seek() {
@@ -51,12 +56,7 @@ class Missile {
 			return this.destroy();
 		} else if (this.position.distance(this.owner.position) < 55) {
 			this.position = this.position.add(this.velocity);
-			this.acceleration = this.velocity.clone().setMagnitude(10);
-
-			// if (!this._test) {
-			// 	this._test = true;
-			// 	setTimeout(() => this.target.y -= 250, 400);
-			// }
+			this.acceleration = this.velocity.clone().setMagnitude(15);
 		} else {
 			this.seek();
 			// Update velocity & Limit speed
@@ -73,7 +73,7 @@ class Missile {
 			y: this.position.y,
 		});
 		// trim trail log
-		this.trail.splice(29, 9);
+		this.trail.splice(21, 9);
 		
 		// update tile position
 		let tile = this.arena.config.tile;
@@ -85,8 +85,7 @@ class Missile {
 		let arena = this.arena,
 			viewport = arena.viewport,
 			x = this.position.x + viewport.x,
-			y = this.position.y + viewport.y,
-			s = 9;
+			y = this.position.y + viewport.y;
 
 		ctx.save();
 		ctx.translate(x, y);
@@ -95,17 +94,21 @@ class Missile {
 		ctx.restore();
 
 		if (this.trail.length > 10) {
+			let s = 7,
+				r = this.trail.slice(s);
 			ctx.save();
 			ctx.lineWidth = 2;
-			ctx.strokeStyle = "#fff9";
-			ctx.beginPath();
-			ctx.moveTo(this.trail[s].x + viewport.x, this.trail[s].y + viewport.y);
-			this.trail.slice(s).map(p => {
-					let x2 = p.x + viewport.x,
-						y2 = p.y + viewport.y;
+			r.slice(0,-1).map((p,i) => {
+					let x1 = p.x + viewport.x,
+						y1 = p.y + viewport.y,
+						x2 = r[i+1].x + viewport.x,
+						y2 = r[i+1].y + viewport.y;
+					ctx.strokeStyle = `#fff${(14-i).toString(16)}`;
+					ctx.beginPath();
+					ctx.moveTo(x1, y1);
 					ctx.lineTo(x2, y2);
+					ctx.stroke();
 				});
-			ctx.stroke();
 			ctx.restore();
 		}
 	}

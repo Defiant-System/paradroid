@@ -314,5 +314,10 @@ class Map {
 
 		// player droid
 		this.arena.player.render(ctx);
+
+		// now render fx layer
+		this.entries
+			.filter(entry => entry._fx)
+			.map(entry => entry.render(ctx));
 	}
 }

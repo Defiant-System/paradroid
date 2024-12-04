@@ -11,6 +11,7 @@
 @import "./classes/console.js"
 @import "./classes/sparks.js"
 @import "./classes/missile.js"
+@import "./classes/simplexnoise.js"
 
 @import "./classes/fire-laser.js"
 @import "./classes/fire-phaser.js"
