@@ -182,6 +182,7 @@
 		// Player.fire();
 		switch (event.type) {
 			case "mousedown":
+				if (event.button !== 0) return;
 				// prevent default event
 				event.preventDefault();
 

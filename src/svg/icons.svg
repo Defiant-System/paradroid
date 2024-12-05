@@ -182,25 +182,32 @@
 
 	<svg id="plasma" viewBox="0 0 10 10" size="keep">
 		<style type="text/css">
-			.st0{fill:#fff;}
+			.st0{fill:#fff;filter:url(#dropshadow-1);}
 		</style>
+		<filter filterUnits="objectBoundingBox" id="dropshadow-1">
+			<feOffset dx="0" dy="0" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
+			<feGaussianBlur stdDeviation=".25" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
+			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
+			<feMerge>
+				<feMergeNode in="defappShadowMatrixOuter1"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
 		<circle class="st0" cx="5" cy="5" r="3.5"/>
 	</svg>
 
 	<svg id="sonic" viewBox="0 0 96 96" size="keep">
 		<style type="text/css">
-			.st0{opacity:0.5;fill:none;stroke:#00AEEF;stroke-width:11;stroke-miterlimit:10;}
-			.st1{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;}
+			.st0{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;}
 		</style>
 		<ellipse class="st0" cx="48" cy="48" rx="37" ry="20"/>
-		<ellipse class="st1" cx="48" cy="48" rx="37" ry="20"/>
 	</svg>
 
 	<svg id="missile" viewBox="0 0 40 40" size="keep">
 		<style type="text/css">
-			.st0{fill:#fff;filter:url(#defapp-filter-1);}
+			.st0{fill:#fff;filter:url(#dropshadow-1);}
 		</style>
-		<filter filterUnits="objectBoundingBox" id="defapp-filter-1">
+		<filter filterUnits="objectBoundingBox" id="dropshadow-1">
 			<feOffset dx="0" dy="0" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
 			<feGaussianBlur stdDeviation=".25" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
 			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>

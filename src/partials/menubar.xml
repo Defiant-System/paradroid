@@ -16,15 +16,7 @@
 			<Menu name="Editor" click="show-view" arg="editor"/>
 		</Menu>
 		<Menu type="divider"/>
-		<Menu name="Music&#8230;">
-			<Menu name="Mech8" click="play-song" arg="mech8"/>
-			<Menu name="Cydonian Sky" click="play-song" arg="cydonian"/>
-			<Menu name="Return of the Ninja" click="play-song" arg="ninja"/>
-			<Menu name="Turican II" click="play-song" arg="turican"/>
-			<Menu type="divider"/>
-			<Menu name="Stop Song" click="stop-song" arg="turican"/>
-		</Menu>
-		<Menu type="divider"/>
+		<Menu name="Turn Off Lights" click="turn-off-lights"/>
 		<Menu name="Player Droid&#8230;">
 			<Menu name="001 (L)" check-group="player-droid" click="set-player-droid" arg="001" is-checked="1"/>
 			<Menu name="123" check-group="player-droid" click="set-player-droid" arg="123"/>
@@ -55,6 +47,14 @@
 			<Menu name="0" check-group="debug" click="set-debug-mode" arg="0" is-checked="1"/>
 			<Menu name="1" check-group="debug" click="set-debug-mode" arg="1"/>
 			<Menu name="2" check-group="debug" click="set-debug-mode" arg="2"/>
+		</Menu>
+		<Menu name="Music&#8230;">
+			<Menu name="Mech8" click="play-song" arg="mech8"/>
+			<Menu name="Cydonian Sky" click="play-song" arg="cydonian"/>
+			<Menu name="Return of the Ninja" click="play-song" arg="ninja"/>
+			<Menu name="Turican II" click="play-song" arg="turican"/>
+			<Menu type="divider"/>
+			<Menu name="Stop Song" click="stop-song" arg="turican"/>
 		</Menu>
 		<Menu type="divider"/>
 		<Menu name="Editor" for="editor-content">

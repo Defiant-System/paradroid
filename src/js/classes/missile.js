@@ -43,10 +43,8 @@ class Missile {
 	}
 
 	seek() {
-		let desired = this.target.subtract(this.position);
-		desired = desired.setMagnitude(this.maxspeed);
-		let steer = desired.subtract(this.velocity);
-		steer = steer.limit(this.maxforce);
+		let desired = this.target.subtract(this.position).setMagnitude(this.maxspeed);
+		let steer = desired.subtract(this.velocity).limit(this.maxforce);
 		// We could add mass here if we want A = F / M
 		this.acceleration = this.acceleration.add(steer);
 	}
@@ -66,6 +64,8 @@ class Missile {
 			this.acceleration = this.acceleration.multiply(0.75);
 			this.angle = this.velocity.direction() + Math.PI/2;
 		}
+		// transfer body position to physical world
+		Matter.Body.setPosition(this.body, this.position);
 
 		// add trail
 		this.trail.unshift({

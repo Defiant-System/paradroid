@@ -39,10 +39,11 @@ class Sonic extends Laser {
 		if (this.trail.length) {
 			this.trail
 				.filter((r, i) => [0, 3, 5, 7, 9].includes(i))
-				.map(ring => {
+				.map((ring, i) => {
 					let x = ring.x + viewport.x,
 						y = ring.y + viewport.y;
 					ctx.save();
+					ctx.globalAlpha = 1-(i/5);
 					ctx.translate(x, y);
 					ctx.rotate(this.angle);
 					ctx.drawImage(this.asset.img, -ring.oX, -ring.oX, ring.w, ring.w);

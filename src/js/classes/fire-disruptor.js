@@ -1,16 +1,16 @@
 
 class Disruptor {
 	constructor(cfg) {
-		let { arena, owner, lineWidth, amplitude } = cfg,
+		let { arena, owner, color, lineWidth, amplitude } = cfg,
 			vPoint = { x: arena.viewport.x, y: arena.viewport.y },
 			origin = arena.player.position.clone().add(vPoint),
 			target = arena.player.target.clone().add(vPoint);
 
 		this.arena = arena;
 		this.owner = owner;
-		this._fx = true;
-		this.color = `#fff`;
+		this._fx = true; // map renders this last
 		this.speed = 0.04;
+		this.color = color || "#fff";
 		this.lineWidth = lineWidth || 4;
 		this.amplitude = amplitude || 0.65;
 		this.origin = origin;
@@ -18,12 +18,16 @@ class Disruptor {
 		// this.origin = new Point(100, 100);
 		// this.end = new Point(300, 300);
 		this.points = [];
-		this.ttl = 12;
+		this.ttl = 21;
 		this.simplexNoise = new SimplexNoise;
+
+		let angle = origin.direction(target);
+		this.origin.x += Math.cos(angle) * 23;
+		this.origin.y += Math.sin(angle) * 23;
 
 		if (this.lineWidth === 4) {
 			// thinner child lines
-			this.children = [...Array(2)].map(i => new Disruptor({ arena, owner, lineWidth: 2, amplitude: 0.65 }));
+			this.children = [...Array(2)].map(i => new Disruptor({ arena, owner, color: "#fff8", lineWidth: 2, amplitude: 0.75 }));
 			// add to map entries
 			this.arena.map.addItem(this);
 		}

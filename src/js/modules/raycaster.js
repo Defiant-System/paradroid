@@ -28,6 +28,7 @@ let Raycaster = (() => {
 			drawFloor(ctx, path) {
 				ctx.save();
 				ctx.fillStyle = "#fff1";
+				// ctx.globalCompositeOperation = "soft-light";
 				ctx.beginPath();
 				Visibility.interpretSvg(ctx, path);
 				ctx.closePath();

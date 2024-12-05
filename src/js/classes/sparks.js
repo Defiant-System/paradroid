@@ -62,7 +62,7 @@ class Sparks {
 			viewport = arena.viewport;
 		if (arena.debug.mode < 2) {
 			ctx.save();
-			ctx.lineWidth = 3;
+			ctx.lineWidth = 2;
 			ctx.strokeStyle = "#fff9";
 			// ctx.globalAlpha = this.alpha;
 			this.parts.map(p => {
