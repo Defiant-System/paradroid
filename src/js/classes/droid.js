@@ -8,6 +8,7 @@ class Droid {
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
+		this._freeze = false;
 		// droid "spining" sprite
 		this.sprites = {
 			bg: arena.assets["droid"].img,
@@ -51,6 +52,17 @@ class Droid {
 			// starting position
 			this.spawn({ id, x: target[0], y: target[1] });
 		}
+	}
+
+	get freeze() {
+		return this._freeze;
+	}
+
+	set freeze(v) {
+		// physically freeze droid
+		Matter.Sleeping.set(this.body, v);
+		// internal value
+		this._freeze = v;
 	}
 
 	setDirection(x, y) {
@@ -110,10 +122,7 @@ class Droid {
 				droids.map(droid => {
 					let collisions = Matter.Query.ray(bodies, origin, droid.position);
 					// if nothing is in the way, disruptor
-					if (collisions.length === 2) {
-						let target = droid.position.add({ x: cfg.arena.viewport.x, y: cfg.arena.viewport.y });
-						new Electric({ ...cfg, target });
-					}
+					if (collisions.length === 2) new Electric({ ...cfg, droid });
 				});
 				break;
 		}
@@ -199,7 +208,7 @@ class Droid {
 	}
 
 	move(force) {
-		// if (this.id != "001") console.log(force);
+		// if (this.id != "711") console.log("move");
 		force.x = this.body.mass * force.x * this.speed;
 		force.y = this.body.mass * force.y * this.speed;
 		Matter.Body.applyForce(this.body, this.body.position, force);
@@ -209,6 +218,9 @@ class Droid {
 	}
 
 	update(delta) {
+		// dont move
+		if (this._freeze) return;
+
 		this.frame.last -= delta;
 		if (this.frame.last < 0) {
 			this.frame.last = (this.frame.last + this.frame.speed) % this.frame.speed;

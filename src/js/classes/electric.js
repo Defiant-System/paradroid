@@ -1,30 +1,28 @@
 
 class Electric {
 	constructor(cfg) {
-		let { arena, owner, color, lineWidth, target, amplitude } = cfg,
+		let { arena, owner, color, lineWidth, droid, amplitude } = cfg,
 			vPoint = { x: arena.viewport.x, y: arena.viewport.y },
-			origin = arena.player.position.clone().add(vPoint);
+			origin = arena.player.position.clone().add(vPoint),
+			target = droid.position.add({ x: arena.viewport.x, y: arena.viewport.y });
 		
 		this.arena = arena;
 		this.owner = owner;
 		this._fx = true; // map renders this last
-		this.speed = 0.04;
+		this.speed = 0.2;
 		this.color = color || "#fff";
-		this.lineWidth = lineWidth || 4;
-		this.amplitude = amplitude || 0.65;
-		this.origin = origin;
-		this.target = target;
+		this.lineWidth = lineWidth || 3;
+		this.amplitude = amplitude || 0.7;
+		this.origin = origin.moveTowards(target, 23);
+		this.target = target.moveTowards(origin, 23);
+		this.droid = droid;
 		this.points = [];
 		this.ttl = 12;
 		this.simplexNoise = new SimplexNoise;
 
-		let angle = origin.direction(target);
-		this.origin.x += Math.cos(angle) * 23;
-		this.origin.y += Math.sin(angle) * 23;
-
-		if (this.lineWidth === 4) {
+		if (this.lineWidth === 3) {
 			// thinner child lines
-			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: "#fff8", lineWidth: 2, amplitude: 0.75 }));
+			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: "#fff8", lineWidth: 2, amplitude: 0.8 }));
 			// add to map entries
 			this.arena.map.addItem(this);
 		}
@@ -72,12 +70,17 @@ class Electric {
 		}
 		points.push(this.target.clone());
 
+		// freeze droid while being "zapped"
+		this.droid.freeze = true;
+
 		// count down ttl (Time To Live)
 		if (this.children) {
 			this.children.map(child => child.update(delta));
 			if (this.ttl-- <= 0) {
 				let index = arena.map.entries.indexOf(this);
 				arena.map.entries.splice(index, 1);
+				// unfreeze droid
+				this.droid.freeze = false;
 			}
 		}
 	}
