@@ -1,5 +1,5 @@
 
-class Laser {
+class Fire {
 	constructor(cfg) {
 		let { arena, owner, type, angle, speed } = cfg;
 

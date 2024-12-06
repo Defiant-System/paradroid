@@ -61,12 +61,62 @@ class Droid {
 	}
 
 	shoot() {
-		new this.fire.class({
-			owner: this,
-			arena: this.arena,
-			angle: this.dir || Math.PI / 4,
-			type: this.fire.name,
-		});
+		let cfg = {
+				owner: this,
+				arena: this.arena,
+				target: this.target,
+				angle: this.dir || Math.PI / 4,
+				type: this.fire.name,
+			},
+			count,
+			inc,
+			a;
+		// weapons and implementations
+		switch (this.fire.name) {
+			case "laser":
+			case "phaser":
+				new Fire(cfg);
+				break;
+			case "sonic":
+				new Sonic(cfg);
+				break;
+			case "plasma":
+				count = 16;
+				inc = 360 / count;
+				a = 0;
+				[...Array(count)].map(e => {
+					new Fire({ ...cfg, angle: a * Math.PI / 180 });
+					a += inc;
+				});
+				break;
+			case "exterminator":
+				count = 7;
+				inc = (Math.TAU * .8) / count;
+				a = this.dir + (Math.TAU * .65);
+				// launch missiles
+				[...Array(count)].map(m => {
+					new Missile({ ...cfg, angle: a });
+					a += inc;
+				});
+				break;
+			case "disruptor":
+				let droids = cfg.arena.map.droids.filter(d => !d.isPlayer),
+					bodies = Matter.Composite.allBodies(cfg.arena.map.engine.world),
+					origin = {
+						x: -(cfg.arena.viewport.x - cfg.arena.viewport.half.w),
+						y: -(cfg.arena.viewport.y - cfg.arena.viewport.half.h),
+					};
+				// loop droids and disrupt those in view
+				droids.map(droid => {
+					let collisions = Matter.Query.ray(bodies, origin, droid.position);
+					// if nothing is in the way, disruptor
+					if (collisions.length === 2) {
+						let target = droid.position.add({ x: cfg.arena.viewport.x, y: cfg.arena.viewport.y });
+						new Electric({ ...cfg, target });
+					}
+				});
+				break;
+		}
 	}
 
 	seek(target) {
@@ -112,18 +162,9 @@ class Droid {
 		this.energy = +xDroid.getAttribute("energy");
 		this.loss = +xDroid.getAttribute("loss");
 		this.agression = +xDroid.getAttribute("agression");
-		// list of weapon class objects
-		let classes = {
-				laser: Laser,
-				phaser: Phaser,
-				plasma: Plasma,
-				disruptor: Disruptor,
-				exterminator: Exterminator,
-				sonic: Sonic,
-			};
+		
 		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
-		this.fire.class = classes[this.fire.name];
 
 		// paint digits on droid
 		this.digits = id.toString().split("").map((x, i) => {

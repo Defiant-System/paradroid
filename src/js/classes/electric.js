@@ -5,8 +5,6 @@ class Electric {
 			vPoint = { x: arena.viewport.x, y: arena.viewport.y },
 			origin = arena.player.position.clone().add(vPoint);
 		
-		if (!target) target = arena.player.target.clone().add(vPoint);
-
 		this.arena = arena;
 		this.owner = owner;
 		this._fx = true; // map renders this last
@@ -26,7 +24,7 @@ class Electric {
 
 		if (this.lineWidth === 4) {
 			// thinner child lines
-			this.children = [...Array(2)].map(i => new Disruptor({ arena, owner, color: "#fff8", lineWidth: 2, amplitude: 0.75 }));
+			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: "#fff8", lineWidth: 2, amplitude: 0.75 }));
 			// add to map entries
 			this.arena.map.addItem(this);
 		}

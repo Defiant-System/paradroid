@@ -1,5 +1,5 @@
 
-class Sonic extends Laser {
+class Sonic extends Fire {
 	constructor(cfg) {
 		super(cfg);
 

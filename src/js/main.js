@@ -9,17 +9,13 @@
 @import "./classes/door.js"
 @import "./classes/exit.js"
 @import "./classes/console.js"
+
 @import "./classes/sparks.js"
 @import "./classes/missile.js"
 @import "./classes/electric.js"
 @import "./classes/simplexnoise.js"
-
-@import "./classes/fire-laser.js"
-@import "./classes/fire-phaser.js"
-@import "./classes/fire-plasma.js"
-@import "./classes/fire-disruptor.js"
-@import "./classes/fire-exterminator.js"
-@import "./classes/fire-sonic.js"
+@import "./classes/fire.js"
+@import "./classes/sonic.js"
 
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"
