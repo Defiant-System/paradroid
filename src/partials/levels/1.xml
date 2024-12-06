@@ -2,7 +2,7 @@
 <Section id="1" width="52" height="30" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="droids">
 		<!-- <i id="420" patrol="[[30,11], [30,5], [33,5], [33,11]]"/> -->
-		<i id="123" patrol="[[21,3], [28,3]]"/>
+		<!-- <i id="123" patrol="[[21,3], [28,3]]"/> -->
 		<i id="420" patrol="[[26,8]]"/>
 	</Layer>
 	<Layer id="lights">

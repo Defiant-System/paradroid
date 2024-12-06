@@ -120,9 +120,10 @@ class Droid {
 					};
 				// loop droids and disrupt those in view
 				droids.map(droid => {
-					let collisions = Matter.Query.ray(bodies, origin, droid.position);
+					let collisions = Matter.Query.ray(bodies, origin, droid.position),
+						color = this.isPlayer ? "#fff" : "#000";
 					// if nothing is in the way, disruptor
-					if (collisions.length === 2) new Electric({ ...cfg, droid });
+					if (collisions.length === 2) new Electric({ ...cfg, droid, color });
 				});
 				break;
 		}

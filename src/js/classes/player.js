@@ -12,13 +12,15 @@ class Player extends Droid {
 		// this.speed = .0015;
 		this.isPlayer = true;
 		this.isVisible = true;
+		// for electric gloria
+		this.simplexNoise = new SimplexNoise;
 		// a little bit blur
 		this.blur = {
 			color: "#00000055",
 			size: 3,
 		};
 		// update label
-		this.body.label = `player`;
+		this.body.label = "player";
 
 		this.input = {
 			up:    { pressed: false, force: { x: 0, y: -1 } },
@@ -69,10 +71,21 @@ class Player extends Droid {
 		}
 	}
 
+	noise(v) {
+		let amp = 1,
+			sum = 0,
+			f = 1;
+		for (let i=0; i<6; ++i) {
+			amp *= 0.5;
+			sum += amp * (this.simplexNoise.noise2D(v * f, 0) + 1) * 0.5;
+			f *= 2;
+		}
+		return sum;
+	}
+
 	update(delta) {
 		let force = { x: 0, y: 0 };
-		
-		// check input
+		// USER input
 		for (let key in this.input) {
 			if (this.input[key].pressed) {
 				let f = this.input[key].force;
@@ -81,8 +94,11 @@ class Player extends Droid {
 			}
 		}
 		this.move(force);
-		// this._moved = !(force.x === 0 && force.y === 0);
 
 		super.update(delta);
+	}
+
+	render(ctx) {
+		super.render(ctx);
 	}
 }

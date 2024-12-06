@@ -11,7 +11,7 @@ class Electric {
 		this._fx = true; // map renders this last
 		this.speed = 0.2;
 		this.color = color || "#fff";
-		this.lineWidth = lineWidth || 3;
+		this.lineWidth = lineWidth || 2;
 		this.amplitude = amplitude || 0.7;
 		this.origin = origin.moveTowards(target, 23);
 		this.target = target.moveTowards(origin, 23);
@@ -20,9 +20,9 @@ class Electric {
 		this.ttl = 12;
 		this.simplexNoise = new SimplexNoise;
 
-		if (this.lineWidth === 3) {
+		if (this.lineWidth === 2) {
 			// thinner child lines
-			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: "#fff8", lineWidth: 2, amplitude: 0.8 }));
+			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: `${color}9`, lineWidth: 1, amplitude: 0.8 }));
 			// add to map entries
 			this.arena.map.addItem(this);
 		}
@@ -66,7 +66,7 @@ class Electric {
 				m = _sin((_pi * (i / (len - 1)))),
 				x = this.origin.x + normal.x * i + (ax - bx) * m,
 				y = this.origin.y + normal.y * i - (ay - by) * m;
-			points.push(new Point(x, y));
+			points.push({ x, y });
 		}
 		points.push(this.target.clone());
 
@@ -90,7 +90,7 @@ class Electric {
 			len = points.length;
 		// electric
 		ctx.save();
-		ctx.lineWidth = Utils.random(this.lineWidth, 0.5);
+		ctx.lineWidth = this.lineWidth;
 		ctx.strokeStyle = this.color;
 		ctx.beginPath();
 		points.map((point, i) => ctx[i === 0 ? "moveTo" : "lineTo"](point.x, point.y));
