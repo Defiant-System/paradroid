@@ -53,6 +53,9 @@ class Map {
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
 
+		// set player droid section
+		this.arena.player.section = section;
+
 		// empty physical world
 		Matter.Composite.clear(this.engine.world);
 

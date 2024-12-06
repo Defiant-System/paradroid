@@ -46,7 +46,8 @@ class Disruptor {
 	}
 
 	update(delta) {
-		let _sin = Math.sin,
+		let arena = this.arena,
+			_sin = Math.sin,
 			_cos = Math.cos,
 			_pi = Math.PI,
 			length = this.origin.distance(this.target),
@@ -58,6 +59,22 @@ class Disruptor {
 			points = this.points = [],
 			off    = Utils.random(this.speed, this.speed * 0.1),
 			waveWidth = (!this.children ? length * 1.5 : length) * this.amplitude;
+
+		let droids = arena.map.droids.filter(d => !d.isPlayer),
+			bodies = Matter.Composite.allBodies(arena.map.engine.world),
+			startPoint = {
+				x: this.origin.x - arena.viewport.x,
+				y: this.origin.y - arena.viewport.y,
+			};
+		
+		droids.map(droid => {
+			let endPoint = {
+					x: droid.position.x,
+					y: droid.position.y,
+				},
+				collisions = Matter.Query.ray(bodies, startPoint, endPoint);
+			if (collisions.length === 1) console.log( droid.id );
+		});
 		
 		for (let i=0, len=step; i<len; i++) {
 			let n = i / 60,
@@ -78,8 +95,8 @@ class Disruptor {
 		if (this.children) {
 			this.children.map(child => child.update(delta));
 			if (this.ttl-- <= 0) {
-				let index = this.arena.map.entries.indexOf(this);
-				this.arena.map.entries.splice(index, 1);
+				let index = arena.map.entries.indexOf(this);
+				arena.map.entries.splice(index, 1);
 			}
 		}
 	}
