@@ -342,7 +342,7 @@ content {
 			height: 318px;
 
 			&.shifting {
-				background-image: none;
+				background-size: 0 0;
 
 				canvas.shifter {
 					opacity: 1;
@@ -350,11 +350,13 @@ content {
 			}
 
 			canvas.shifter {
-				opacity: 0;
-				// background: #fdd7;
+				// opacity: 0;
+				// background: #f007;
 				position: absolute;
 				top: 0;
 				left: 104px;
+				// filter: invert(1);
+				// mix-blend-mode: lighten;
 			}
 		}
 

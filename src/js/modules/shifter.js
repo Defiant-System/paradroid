@@ -4,7 +4,7 @@ let Shifter = (() => {
 	
 	let DOTS = 50e3, // 100k-200k seems reasonable
 		shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
-			alpha: 0.15,
+			alpha: 0.175,
 			speed: 3.5,
 			spread: 0.2,
 			chromaticblur: 0.005,
@@ -12,7 +12,7 @@ let Shifter = (() => {
 		shape = [],
 		jitter = Array.from({ length: DOTS }, () => Math.random()),
 		tick = 0,
-		step = 0,
+		total = 73,
 		draw,
 		regl;
 
@@ -33,24 +33,23 @@ let Shifter = (() => {
 			// image storage
 			this.bank = {};
 			// load images
-			await this.loadImage(`~/icons/bp-${cfg.from}.png`);
 			await this.loadImage(`~/icons/bp-${cfg.to}.png`);
+			await this.loadImage(`~/icons/bp-${cfg.from}.png`);
 			// prepare regl anim
 			draw = this.prepareRegl();
 
 			this.start();
 		},
 		start() {
-			step = tick >= 73 ? -1 : 1;
+			tick = 0;
 			// start anim
 			let loop = regl.frame(() => {
-				tick += step;
-				
-				if (tick > 73 || tick < 0) {
+				if (tick++ > 27) {
 					loop.cancel();
-					regl.clear({color: [0, 0, 0, 1], depth: 1});
+					regl.clear({color: [0, 0, 0, 0], depth: 1});
 					return this.done()
 				}
+				// loop.cancel();
 
 				this.redraw();
 			});
@@ -64,16 +63,14 @@ let Shifter = (() => {
 						num = Object.keys(this.bank).length,
 						len = DOTS * 2,
 						data = [],
-						x = 322,
-						y = 78,
-						w = 510,
-						h = 510,
-						rX = 1-((700-w)/w),
-						rY = 1-((700-h)/h);
+						x = -208,
+						y = 0,
+						w = img.height,
+						h = img.height;
 					cvs.width = w;
 					cvs.height = h;
 					// draw image
-					ctx.translate(-x, -y);
+					ctx.translate(x, y);
 					ctx.drawImage(img, 0, 0);
 
 					let imageData = ctx.getImageData(0, 0, w, h),
@@ -83,8 +80,8 @@ let Shifter = (() => {
 					for (let i=0, il=pixels.length; i<il; i+=4) {
 						if (pixels[i+3] <= 192) continue;
 						let k = i/4,
-							pX = ((k % w) / (w*rX)) - rX,
-							pY = .75 - ((k / h) / (h*rY));
+							pX = ((k % w) / (w * .5)) - 1,
+							pY = 1 - ((k / h) / (h * .5));
 						data[j++] = pX;
 						data[j++] = pY;
 					}
@@ -96,7 +93,7 @@ let Shifter = (() => {
 					shape[num]({ data });
 
 					// save reference
-					this.bank[url] = { cvs, ctx };
+					this.bank[url] = 1;
 					// done
 					resolve();
 				};
@@ -104,7 +101,7 @@ let Shifter = (() => {
 			});
 		},
 		redraw(a,b,c) {
-			regl.clear({color: [0, 0, 0, 0], depth: 1});
+			regl.clear({color: [0, 0, 0, 0], depth: 0});
 			// Chromatic blur: draw blue, cyan, green, orange, red versions of each point,
 			// and have them added together using blending so they'll be white if they're
 			// all present. The sums of R, G, B should be roughly equal to get white.
@@ -132,15 +129,15 @@ let Shifter = (() => {
 					attribute float a_jitter;
 					attribute vec2 a_position1, a_position2;
 					void main () {
-						float phase = 0.75 * (1.0 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
+						float phase = (.125 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
 						phase = smoothstep(0.1, 0.9, phase);
-						gl_PointSize = 1.15;
+						gl_PointSize = 1.5;
 						gl_Position = vec4(mix(a_position1, a_position2, phase), 0, 1);
 					}`,
 
 				// additive — we want to draw many points in the same place and have them add together
 				depth: { enable: false, },
-				blend: { enable: true, func: { src: 'one', dst: 'one' }, },
+				blend: { enable: true, func: { src: "one", dst: "one" }, },
 				attributes: {
 					a_jitter: jitter,
 					a_position1: shape[0],
@@ -152,14 +149,13 @@ let Shifter = (() => {
 					// to be 0-1 or 1-20
 					u_alpha: () => shaderConfig.alpha,
 					u_speed: () => shaderConfig.speed,
-					u_spread: () => Math.PI * 2 * shaderConfig.spread,
-					u_color: regl.prop('u_color'),
-					u_chromaticblur: regl.prop('u_chromaticblur'),
-					u_tick: () => tick / 1e2,
-					// u_time: context => context.time,
+					u_spread: () => Math.TAU * shaderConfig.spread,
+					u_chromaticblur: regl.prop("u_chromaticblur"),
+					u_color: regl.prop("u_color"),
+					u_tick: () => tick / total,
 				},
 				count: DOTS,
-				primitive: 'points',
+				primitive: "points",
 			});
 		}
 	};
