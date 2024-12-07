@@ -88,10 +88,12 @@ let Test = {
 
 			// setTimeout(() => APP.mobile.arena.player.fire(), 600);
 
-			// setTimeout(() => {
-			// 	APP.dispatch({ type: "show-view", arg: "console" });
-			// 	APP.console.dispatch({ type: "show-view", arg: "ship" });
-			// }, 600);
+			setTimeout(() => {
+				APP.dispatch({ type: "show-view", arg: "console" });
+				APP.console.dispatch({ type: "show-view", arg: "droid" });
+
+				setTimeout(() => APP.console.dispatch({ type: "window.keydown", char: "right" }), 300);
+			}, 300);
 
 			// setTimeout(() => {
 			// 	APP.els.content.find(".mobile-view .droid-fx").cssSequence("fast-focus", "animationend", el => {

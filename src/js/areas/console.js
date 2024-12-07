@@ -18,6 +18,13 @@
 			width: +cvs.attr("width"),
 			height: +cvs.attr("height"),
 		};
+		// initiate shifter
+		cvs = this.els.el.find("canvas.shifter");
+		Shifter.init({
+			cvs: cvs[0],
+			width: +cvs.attr("width"),
+			height: +cvs.attr("height"),
+		});
 		// get droid ID's from xml data
 		this.droids = window.bluePrint.selectNodes(`//Droid[@id]`).map(x => x.getAttribute("id"));
 	},
@@ -86,26 +93,27 @@
 				Self.els.el.find(".return-exit").addClass("hidden");
 				break;
 			case "select-droid":
+				options = {};
 				if (event.arg === -1) {
-					value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
-					index = Self.droids.indexOf(value);
+					options.from = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
+					index = Self.droids.indexOf(options.from);
 					index--;
 					if (index < 0) index = 0;
-					value = Self.droids[index];
-					// show info for droid
-					Self.dispatch({ type: "show-droid", value });
+					options.to = Self.droids[index];
 				} else {
-					value = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
-					index = Self.droids.indexOf(value);
+					options.from = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
+					index = Self.droids.indexOf(options.from);
 					index++;
 					if (index > Self.droids.length-1) index = Self.droids.length-1;
-					value = Self.droids[index];
+					options.to = Self.droids[index];
 					// check if droid is "enabled"
-					el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${value}")`);
+					el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${options.to}")`);
 					if (el.hasClass("disabled")) return;
-					// show info for droid
-					Self.dispatch({ type: "show-droid", value });
 				}
+				Shifter.shift({ ...options, done() {
+					// show info for droid
+					Self.dispatch({ type: "show-droid", value: options.to });
+				} });
 				break;
 			case "show-droid":
 				xNode = window.bluePrint.selectSingleNode(`//Droid[@id="${event.value}"]`);
@@ -166,7 +174,8 @@
 						value = APP.mobile.arena.player.id;
 						el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${value}")`);
 						// droids after player droid are "disabled"
-						el.nextAll("span").addClass("disabled");
+						// temp: hbi
+						// el.nextAll("span").addClass("disabled");
 						break;
 					case "level":
 						Self.drawMinimap(APP.mobile.arena.map.id);

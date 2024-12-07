@@ -84,8 +84,36 @@ class Player extends Droid {
 	}
 
 	update(delta) {
-		let force = { x: 0, y: 0 };
+		// let dx = this.arena.viewport.half.w,
+		// 	dy = this.arena.viewport.half.h - 1,
+		// 	r = 25,
+		// 	len = 8,
+		// 	a = 0,
+		// 	inc = 360 / len,
+		// 	points = this.points = [],
+		// 	off = Utils.random(.2, 0.02),
+		// 	waveWidth = 50;
+
+		// for (let i=0; i<len; i++) {
+		// 	let angle = a * Math.PI / 180,
+		// 		cosv = Math.cos(angle),
+		// 		sinv = Math.sin(angle),
+		// 		n = i / waveWidth,
+		// 		av = waveWidth * this.noise(n - off, 0),
+		// 		ax = sinv * av,
+		// 		ay = cosv * av,
+		// 		bv = waveWidth * this.noise(n + off, 0),
+		// 		bx = sinv * bv,
+		// 		by = cosv * bv,
+		// 		x = dx + cosv * r + (ax - bx),
+		// 		y = dy + sinv * r - (ay - by);
+		// 	points.push({ x, y });
+		// 	a += inc;
+		// }
+		// points.push(points[0]);
+
 		// USER input
+		let force = { x: 0, y: 0 };
 		for (let key in this.input) {
 			if (this.input[key].pressed) {
 				let f = this.input[key].force;
@@ -100,5 +128,17 @@ class Player extends Droid {
 
 	render(ctx) {
 		super.render(ctx);
+
+		let points = this.points || [],
+			len = points.length;
+		// electric
+		ctx.save();
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "#fff";
+		ctx.beginPath();
+		points.map((point, i) => ctx[i === 0 ? "moveTo" : "lineTo"](point.x, point.y));
+		//ctx.closePath();
+		ctx.stroke();
+		ctx.restore();
 	}
 }

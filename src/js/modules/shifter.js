@@ -1,54 +1,60 @@
 
-// window.onload = () => Site.init();
-
-let Transition = (() => {
+let Shifter = (() => {
 	"use strict";
 	
-	let $ = id => document.getElementById(id);
-
-	let NUM_POINTS = 100e3; // 100k-200k seems reasonable
-	let shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
+	let DOTS = 50e3, // 100k-200k seems reasonable
+		shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
 			alpha: 0.15,
 			speed: 3.5,
 			spread: 0.2,
 			chromaticblur: 0.005,
-		};
+		},
+		shape = [],
+		jitter = Array.from({ length: DOTS }, () => Math.random()),
+		tick = 0,
+		step = 0,
+		draw,
+		regl;
 
-	let draw;
-	let regl = createREGL({ canvas: $("scene") });
-	let shape = [
-			regl.buffer(NUM_POINTS),
-			regl.buffer(NUM_POINTS)
-		];
-	let jitter = Array.from({ length: NUM_POINTS }, () => Math.random());
-	let tick = 0,
-		step = 0;
-
-	let Site = {
-		async init() {
+	let Shifter = {
+		init(cfg) {
+			// prepare Regl
+			regl = createREGL({ canvas: cfg.cvs });
+			shape.push(regl.buffer(DOTS));
+			shape.push(regl.buffer(DOTS));
+			// save config
+			this.width = cfg.width;
+			this.height = cfg.height;
+		},
+		async shift(cfg) {
+			// callback
+			this.done = cfg.done;
 			// image storage
 			this.bank = {};
 			// load images
-			await this.loadImage("img/bp-711.png");
-			await this.loadImage("img/bp-751.png");
-			// await this.loadImage("img/bp-883.png");
+			await this.loadImage(`~/icons/bp-${cfg.to}.png`);
+			await this.loadImage(`~/icons/bp-${cfg.from}.png`);
 			// prepare regl anim
 			draw = this.prepareRegl();
 
-			setTimeout(() => this.start(), 300);
+			this.start();
 		},
 		start() {
-			// tick = 0;
 			step = tick >= 73 ? -1 : 1;
 			// start anim
 			let loop = regl.frame(() => {
 				tick += step;
 				
-				if (tick > 73 || tick < 0) {
-					loop.cancel();
-					// regl.clear({color: [0, 0, 0, 1], depth: 1});
-					return;
-				}
+				// if (tick > 73 || tick < 0) {
+				// 	loop.cancel();
+				// 	// regl.clear({color: [0, 0, 0, 1], depth: 1});
+				// 	this.done();
+				// 	return;
+				// }
+				
+				console.log(tick, step);
+				loop.cancel();
+
 				this.redraw();
 			});
 		},
@@ -59,7 +65,7 @@ let Transition = (() => {
 					let cvs = document.createElement("canvas"),
 						ctx = cvs.getContext("2d"),
 						num = Object.keys(this.bank).length,
-						len = NUM_POINTS * 2,
+						len = DOTS * 2,
 						data = [],
 						x = 270,
 						y = 50,
@@ -155,12 +161,12 @@ let Transition = (() => {
 					u_tick: () => tick / 1e2,
 					// u_time: context => context.time,
 				},
-				count: NUM_POINTS,
+				count: DOTS,
 				primitive: 'points',
 			});
 		}
 	};
 
-	return Site;
+	return Shifter;
 
 })();

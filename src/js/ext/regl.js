@@ -1,5 +1,5 @@
 
-let Regl = (function () {
+let createREGL = (function () {
 'use strict';
 
 var isTypedArray = function (x) {
