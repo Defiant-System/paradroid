@@ -4,15 +4,15 @@ let Shifter = (() => {
 	
 	let DOTS = 50e3, // 100k-200k seems reasonable
 		shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
-			alpha: 0.175,
-			speed: 3.5,
-			spread: 0.2,
-			chromaticblur: 0.005,
+			alpha: 0.2,
+			speed: 4.5,
+			spread: 0.1,
+			chromaticblur: 0.0025,
 		},
 		shape = [],
 		jitter = Array.from({ length: DOTS }, () => Math.random()),
 		tick = 0,
-		total = 73,
+		total = 100,
 		draw,
 		regl;
 
@@ -42,11 +42,12 @@ let Shifter = (() => {
 		},
 		start() {
 			tick = 0;
+			// reset regl canvas
+			regl.clear({color: [0, 0, 0, 0], depth: 1});
 			// start anim
 			let loop = regl.frame(() => {
-				if (tick++ > 27) {
+				if (tick++ > 35) {
 					loop.cancel();
-					regl.clear({color: [0, 0, 0, 0], depth: 1});
 					return this.done()
 				}
 				// loop.cancel();
@@ -79,7 +80,8 @@ let Shifter = (() => {
 						xtra = 0;
 					for (let i=0, il=pixels.length; i<il; i+=4) {
 						if (pixels[i+3] <= 192) continue;
-						let k = i/4,
+						let avg = (pixels[i+0] + pixels[i+1] + pixels[i+2]) / 3,
+							k = i/4,
 							pX = ((k % w) / (w * .5)) - 1,
 							pY = 1 - ((k / h) / (h * .5));
 						data[j++] = pX;
@@ -106,11 +108,11 @@ let Shifter = (() => {
 			// and have them added together using blending so they'll be white if they're
 			// all present. The sums of R, G, B should be roughly equal to get white.
 			let chromaticblur = 0.1 * shaderConfig.chromaticblur;
-			draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 0 });
-			draw({ u_color: [0.2, 0.2, 0.2], u_chromaticblur: 1 * chromaticblur });
-			draw({ u_color: [0.3, 0.3, 0.3], u_chromaticblur: 2 * chromaticblur });
-			// draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 3 * chromaticblur });
-			// draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 4 * chromaticblur });
+			draw({ u_color: [0.9, 0.9, 0.9], u_chromaticblur: 0 });
+			draw({ u_color: [0.8, 0.8, 0.8], u_chromaticblur: 1 * chromaticblur });
+			draw({ u_color: [0.7, 0.7, 0.7], u_chromaticblur: 2 * chromaticblur });
+			draw({ u_color: [0.9, 0.9, 0.9], u_chromaticblur: 3 * chromaticblur });
+			draw({ u_color: [0.9, 0.9, 0.9], u_chromaticblur: 4 * chromaticblur });
 		},
 		prepareRegl() {
 			/* Here's the GLSL shader magic — it's just a linear interpolation between the two positions */
@@ -131,7 +133,7 @@ let Shifter = (() => {
 					void main () {
 						float phase = (.125 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
 						phase = smoothstep(0.1, 0.9, phase);
-						gl_PointSize = 1.5;
+						gl_PointSize = 1.15;
 						gl_Position = vec4(mix(a_position1, a_position2, phase), 0, 1);
 					}`,
 
