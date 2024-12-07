@@ -341,7 +341,16 @@ content {
 			width: 527px;
 			height: 318px;
 
+			&.shifting {
+				background-image: none;
+
+				canvas.shifter {
+					opacity: 1;
+				}
+			}
+
 			canvas.shifter {
+				opacity: 0;
 				// background: #fdd7;
 				position: absolute;
 				top: 0;

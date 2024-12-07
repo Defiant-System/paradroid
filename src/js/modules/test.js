@@ -92,7 +92,7 @@ let Test = {
 				APP.dispatch({ type: "show-view", arg: "console" });
 				APP.console.dispatch({ type: "show-view", arg: "droid" });
 
-				setTimeout(() => APP.console.dispatch({ type: "window.keydown", char: "right" }), 300);
+				// setTimeout(() => APP.console.dispatch({ type: "window.keydown", char: "right" }), 300);
 			}, 300);
 
 			// setTimeout(() => {

@@ -20,11 +20,7 @@
 		};
 		// initiate shifter
 		cvs = this.els.el.find("canvas.shifter");
-		Shifter.init({
-			cvs: cvs[0],
-			width: +cvs.attr("width"),
-			height: +cvs.attr("height"),
-		});
+		Shifter.init({ cvs });
 		// get droid ID's from xml data
 		this.droids = window.bluePrint.selectNodes(`//Droid[@id]`).map(x => x.getAttribute("id"));
 	},
@@ -110,7 +106,12 @@
 					el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${options.to}")`);
 					if (el.hasClass("disabled")) return;
 				}
+				// hides background image and shows shifter canvas
+				Self.els.bp.addClass("shifting");
+				// trigger shifter
 				Shifter.shift({ ...options, done() {
+					// remove class "shifting"
+					Self.els.bp.removeClass("shifting");
 					// show info for droid
 					Self.dispatch({ type: "show-droid", value: options.to });
 				} });

@@ -19,12 +19,13 @@ let Shifter = (() => {
 	let Shifter = {
 		init(cfg) {
 			// prepare Regl
-			regl = createREGL({ canvas: cfg.cvs });
+			regl = createREGL({ canvas: cfg.cvs[0] });
 			shape.push(regl.buffer(DOTS));
 			shape.push(regl.buffer(DOTS));
 			// save config
-			this.width = cfg.width;
-			this.height = cfg.height;
+			this.cvs = cfg.cvs;
+			this.width = +cfg.cvs.attr("width");
+			this.height = +cfg.cvs.attr("height");
 		},
 		async shift(cfg) {
 			// callback
@@ -32,8 +33,8 @@ let Shifter = (() => {
 			// image storage
 			this.bank = {};
 			// load images
-			await this.loadImage(`~/icons/bp-${cfg.to}.png`);
 			await this.loadImage(`~/icons/bp-${cfg.from}.png`);
+			await this.loadImage(`~/icons/bp-${cfg.to}.png`);
 			// prepare regl anim
 			draw = this.prepareRegl();
 
@@ -45,15 +46,11 @@ let Shifter = (() => {
 			let loop = regl.frame(() => {
 				tick += step;
 				
-				// if (tick > 73 || tick < 0) {
-				// 	loop.cancel();
-				// 	// regl.clear({color: [0, 0, 0, 1], depth: 1});
-				// 	this.done();
-				// 	return;
-				// }
-				
-				console.log(tick, step);
-				loop.cancel();
+				if (tick > 73 || tick < 0) {
+					loop.cancel();
+					regl.clear({color: [0, 0, 0, 1], depth: 1});
+					return this.done()
+				}
 
 				this.redraw();
 			});
@@ -67,10 +64,10 @@ let Shifter = (() => {
 						num = Object.keys(this.bank).length,
 						len = DOTS * 2,
 						data = [],
-						x = 270,
-						y = 50,
-						w = 530,
-						h = 530,
+						x = 322,
+						y = 78,
+						w = 510,
+						h = 510,
 						rX = 1-((700-w)/w),
 						rY = 1-((700-h)/h);
 					cvs.width = w;
@@ -135,7 +132,7 @@ let Shifter = (() => {
 					attribute float a_jitter;
 					attribute vec2 a_position1, a_position2;
 					void main () {
-						float phase = 0.5 * (1.0 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
+						float phase = 0.75 * (1.0 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
 						phase = smoothstep(0.1, 0.9, phase);
 						gl_PointSize = 1.15;
 						gl_Position = vec4(mix(a_position1, a_position2, phase), 0, 1);
