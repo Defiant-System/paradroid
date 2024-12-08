@@ -49,13 +49,29 @@
 			height: 292px;
 
 			.conn {
-				fill: #8ed8eb66;
+				fill: #2292f9;
 				scale: 2;
+				transform: translate(0px, 5px);
 			}
 
 			.switch {
 				fill: none;
-				stroke: #8ed8eb66;
+				stroke: #2292f9;
+				stroke-width: 2.5;
+			}
+
+			.void {
+				fill: #2292f9;
+				stroke: #2292f9;
+				stroke-width: 2.5;
+			}
+
+			.socket {
+				fill: #2292f9;
+			}
+
+			.line {
+				stroke: #2292f9;
 				stroke-width: 2.5;
 			}
 		}
@@ -211,7 +227,7 @@
 					box-shadow: 0 -1px 0 rgba(#111,.15),
 								inset 0px 6px 0px 0px rgba(#50a,.15),
 								inset 0 0 1px rgba(#408,.95),
-								0 0 2px rgba(#c5f,.75),
+								0 0 2px #9c0fd877,
 								0 0 7px rgba(#b4f,.5);
 				}
 
@@ -230,24 +246,12 @@
 				left: -4px;
 				right: 42px;
 
-				> div {
-					left: auto;
-					right: -3px;
+				svg {
+					left: -11px;
 
-					&:first-child {
-						left: auto;
-						right: -4px;
-					}
-
-					&:before {
-						left: auto;
-						right: -3px;
-						transform: rotate(180deg);
-					}
-
-					&:after {
-						left: -3px;
-						right: 32px;
+					.conn {
+						// transform: translate(139px, 21px) rotate(180deg);
+						transform: translate(139px, 0px) rotate(180deg);
 					}
 				}
 			}
@@ -302,14 +306,45 @@
 					background: url(~/icons/cpu-circuit.png) 50% 50%/contain no-repeat;
 				}
 
+				&[data-winner="deadlock"] {
+					
+				}
+
+				&[data-winner="yellow"] {
+					.led {
+						background: #f90;
+						box-shadow: inset 0px 6px 0px 0px rgba(#a50,.15),
+									inset 0 0 1px rgba(#940,.95),
+									0 0 3px #fb3,
+									0 0 17px rgba(#f90,.85);
+					}
+				}
+
+				&[data-winner="purple"] {
+					.led {
+						background: #b4f;
+						box-shadow: inset 0px 6px 0px 0px rgba(#50a,.15),
+									inset 0 0 1px rgba(#408,.95),
+									0 0 3px #9c0fd8,
+									0 0 17px rgba(#b4f,.85);
+
+						&:before {
+							opacity: .4;
+						}
+
+						&:after {
+							opacity: .75;
+						}
+					}
+				}
+
 				.led {
 					position: relative;
-					top: 3px;
+					top: 5px;
 					left: 8px;
 					width: 74px;
 					height: 41px;
 					background: #f90;
-					// margin-bottom: 2px;
 					border-radius: 5px;
 					box-shadow: inset 0px 6px 0px 0px rgba(#a50,.15),
 								inset 0 0 1px rgba(#940,.95),
@@ -459,34 +494,8 @@
 						box-shadow: 0 -1px 0 rgba(#111,.15),
 									inset 0px 5px 0px 0px rgba(#50a,.15),
 									inset 0 0 1px rgba(#408,.95),
-									0 0 2px rgba(#c5f,.75),
+									0 0 2px #9c0fd877,
 									0 0 7px rgba(#b4f,.5);
-					}
-
-					b {
-						position: absolute;
-						top: 6px;
-						bottom: 4px;
-						left: -18px;
-						width: 11px;
-						box-shadow: none;
-						background: #8ed8eb66;
-						border-radius: 3px 0 0 3px;
-						// box-shadow: inset 0 1px 0 rgba(#fff,.1),
-						// 			0 1px 0 rgba(#000,.1);
-					}
-
-					i {
-						position: absolute;
-						top: 5px;
-						bottom: 5px;
-						right: -18px;
-						width: 11px;
-						box-shadow: none;
-						background: #8ed8eb66;
-						border-radius: 0 3px 3px 0;
-						// box-shadow: inset 0 1px 0 rgba(#fff,.1),
-						// 			0 1px 0 rgba(#000,.1);
 					}
 				}
 			}
