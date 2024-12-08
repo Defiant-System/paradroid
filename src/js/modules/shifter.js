@@ -5,14 +5,14 @@ let Shifter = (() => {
 	let DOTS = 50e3, // 100k-200k seems reasonable
 		shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
 			alpha: 0.2,
-			speed: 4.5,
+			speed: 5,
 			spread: 0.1,
 			chromaticblur: 0.0025,
 		},
 		shape = [],
 		jitter = Array.from({ length: DOTS }, () => Math.random()),
 		tick = 0,
-		total = 100,
+		total = 135,
 		draw,
 		regl;
 
@@ -46,7 +46,7 @@ let Shifter = (() => {
 			regl.clear({color: [0, 0, 0, 0], depth: 1});
 			// start anim
 			let loop = regl.frame(() => {
-				if (tick++ > 35) {
+				if (tick++ > 40) {
 					loop.cancel();
 					return this.done()
 				}
@@ -133,7 +133,7 @@ let Shifter = (() => {
 					void main () {
 						float phase = (.125 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
 						phase = smoothstep(0.1, 0.9, phase);
-						gl_PointSize = 1.15;
+						gl_PointSize = .85;
 						gl_Position = vec4(mix(a_position1, a_position2, phase), 0, 1);
 					}`,
 

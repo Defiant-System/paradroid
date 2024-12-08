@@ -117,9 +117,8 @@
 				}
 				break;
 			case "game-loop-resume":
-				if (Self.arena.map && Self.arena.fpsControl._stopped) {
+				if (Self.arena.map && Self.arena.fpsControl._stopped && Self.arena.map.walls) {
 					// run the engine
-					// Matter.Runner.run(Self.arena.map.runner, Self.arena.map.engine);
 					Self.arena.fpsControl.start();
 				}
 				break;

@@ -5,19 +5,47 @@
 	border-radius: 5px;
 
 	.droid {
-		top: 68px;
+		top: -37px;
+		left: 50%;
+		margin-left: -22px;
+		filter: drop-shadow(0 1px 1px #0005);
 
-		&.left { left: 160px; }
-		&.right { left: 540px; }
+		&:before {
+			animation: none;
+		}
+
+		&.player {
+			filter: invert(1) brightness(1.25) drop-shadow(0 1px 1px #0004);
+		}
 	}
 
 	.board {
 		position: absolute;
-		top: 105px;
+		top: 89px;
 		left: 30px;
 		right: 30px;
-		bottom: 31px;
+		// bottom: 31px;
 		display: flex;
+
+		svg {
+			// background: #0001;
+			position: absolute;
+			top: -22px;
+			left: 0;
+			width: 277px;
+			height: 292px;
+
+			.conn {
+				fill: #8ed8eb66;
+				scale: 2;
+			}
+
+			.switch {
+				fill: none;
+				stroke: #8ed8eb66;
+				stroke-width: 2.5;
+			}
+		}
 
 		.left,
 		.right {
@@ -380,7 +408,7 @@
 				top: -4px;
 				left: 15px;
 				flex: 1;
-				padding: 9px 7px 0;
+				padding: 9px 7px;
 				width: 60px;
 
 				div {

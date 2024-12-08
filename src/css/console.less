@@ -295,6 +295,7 @@ content {
 		}
 
 		.player-droid {
+				display: none;
 			position: absolute;
 			top: 61px;
 			right: 37px;
@@ -351,7 +352,7 @@ content {
 				background: 50% 50%/contain no-repeat;
 				background-image: inherit;
 				opacity: 1;
-				transition: opacity 120ms;
+				transition: opacity 150ms ease-in-out;
 			}
 
 			&.shifting {
@@ -365,13 +366,12 @@ content {
 			}
 
 			canvas.shifter {
-				// background: #f007;
 				opacity: 0;
 				position: absolute;
 				top: 0;
 				left: 104px;
 				filter: invert(1) opacity(.35);
-				transition: opacity 120ms;
+				transition: opacity 150ms ease-in-out;
 			}
 		}
 
@@ -431,7 +431,7 @@ content {
 						left: 5px;
 						width: 17px;
 						height: 17px;
-						opacity: .5;
+						opacity: .65;
 					}
 				}
 
