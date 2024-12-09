@@ -7,7 +7,45 @@
 				<g>
 					<xsl:attribute name="transform">translate(33, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
 					<circle class="switch" cx="-5" cy="0" r="5"/>
-					<line class="line" x1="0" y1="0" x2="234" y2="0"/>
+					<xsl:choose>
+						<xsl:when test="@group = 'short-1'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<circle class="void" cx="45" cy="0" r="5"/>
+						</xsl:when>
+						<xsl:when test="@group = 'split-1'">
+							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+							<rect class="chip" x="38" y="-7" width="14" height="14"/>
+							<polyline class="line" points="52,-2 60,-2 85,-22, 233,-22" />
+							<polyline class="line" points="52,2 60,2 85,22, 233,22" />
+							<polygon class="gpu" points="128,-7 138,-7 138,7 123,7 123,-2"/>
+							<line class="line" x1="138" y1="0" x2="233" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'split-2'">
+							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+							<rect class="chip" x="38" y="-5" width="14" height="14"/>
+							<line class="line" x1="52" y1="0" x2="233" y2="0"/>
+							<polyline class="line" points="52,4 60,4 85,22, 144,22 233,22" />
+						</xsl:when>
+						<xsl:when test="@group = 'split-3'">
+							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+							<rect class="chip" x="38" y="-9" width="14" height="14"/>
+							<line class="line" x1="52" y1="0" x2="233" y2="0"/>
+							<polyline class="line" points="52,-4 60,-4 85,-22, 144,-22 233,-22" />
+						</xsl:when>
+						<xsl:when test="@group = 'switch-1'">
+							<polyline class="line" points="0,0 80,0 105,-22, 164,-22 233,-22" />
+							<circle class="void" cx="138" cy="0" r="5"/>
+							<line class="line" x1="142" y1="0" x2="233" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'switch-2'">
+							<polyline class="line" points="0,0 80,0 105,22, 164,22 233,22" />
+							<circle class="void" cx="138" cy="0" r="5"/>
+							<line class="line" x1="142" y1="0" x2="233" y2="0"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<line class="line" x1="0" y1="0" x2="234" y2="0"/>
+						</xsl:otherwise>
+					</xsl:choose>
 					<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
 				</g>
 			</xsl:for-each>

@@ -1,9 +1,9 @@
 
 <Data>
 	<CircuitBoard>
-		<i row="1" />
-		<i row="2" />
-		<i row="3" />
+		<i row="1" group="short-1" />
+		<i row="2" group="join-1" />
+		<i row="3" group="short-1" />
 		<i row="4" />
 		<i row="5" />
 		<i row="6" />
@@ -11,6 +11,7 @@
 		<i row="8" />
 		<i row="9" />
 		<i row="10" />
+
 		<i row="11" />
 		<i row="12" />
 	</CircuitBoard>

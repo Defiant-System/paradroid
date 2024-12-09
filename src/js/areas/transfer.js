@@ -25,11 +25,11 @@
 					match: `//CircuitBoard`,
 					target: Self.els.cbLeft,
 				});
-				window.render({
-					template: "circuit-board-right",
-					match: `//CircuitBoard`,
-					target: Self.els.cbRight,
-				});
+				// window.render({
+				// 	template: "circuit-board-right",
+				// 	match: `//CircuitBoard`,
+				// 	target: Self.els.cbRight,
+				// });
 				break;
 		}
 	}

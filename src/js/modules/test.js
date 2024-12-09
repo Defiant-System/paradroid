@@ -35,7 +35,7 @@ let Test = {
 		 * TRANSFER View
 		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		// setTimeout(() => APP.transfer.dispatch({ type: "render-circuit-board" }), 100);
+		setTimeout(() => APP.transfer.dispatch({ type: "render-circuit-board" }), 100);
 		return;
 
 
