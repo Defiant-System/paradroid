@@ -48,6 +48,38 @@
 			width: 277px;
 			height: 292px;
 
+			g {
+				filter: drop-shadow(0 1px 0 #0001);
+
+				&.on {
+					.switch {
+						stroke: #fc5;
+					}
+
+					.line {
+						stroke: #fc5;
+						filter: drop-shadow(0 0 5px #fc5)
+								drop-shadow(0 0 9px #fc5);
+					}
+
+					.socket {
+						fill: #fc5;
+					}
+
+					.charge {
+						fill: url(#yellow-charge);
+						mix-blend-mode: plus-lighter;
+						filter: blur(2px) drop-shadow(0 0 5px #fc5);
+					}
+				}
+
+				&.off {
+					ellipse.charge {
+						display: none;
+					}
+				}
+			}
+
 			.conn {
 				fill: #2292f9;
 				scale: 2;
@@ -66,22 +98,18 @@
 				stroke-width: 2.5;
 			}
 
+			.chip {
+				fill: #2292f9;
+			}
+
 			.socket {
 				fill: #2292f9;
 			}
 
 			.line {
+				fill: none;
 				stroke: #2292f9;
 				stroke-width: 2.5;
-
-				&.on {
-					
-				}
-			}
-
-			.charge {
-				fill: url(#charge);
-				mix-blend-mode: plus-lighter;
 			}
 		}
 
@@ -258,9 +286,32 @@
 				svg {
 					left: -11px;
 
+					g {
+						&.on {
+							.switch {
+								stroke: #cc73ff;
+							}
+
+							.line {
+								stroke: #cc73ff;
+								filter: drop-shadow(0 0 5px #e4b4ff)
+										drop-shadow(0 0 9px #e4b4ff);
+							}
+
+							.socket {
+								fill: #cc73ff;
+							}
+
+							.charge {
+								fill: url(#purple-charge);
+								// mix-blend-mode: plus-lighter;
+								filter: blur(2px) drop-shadow(0 0 5px #e4b4ff);
+							}
+						}
+					}
+
 					.conn {
 						transform: translate(139px, 21px) rotate(180deg);
-						// transform: translate(139px, 0px) rotate(180deg);
 					}
 				}
 			}
@@ -316,7 +367,17 @@
 				}
 
 				&[data-winner="deadlock"] {
-					
+					.led {
+						background: #2bb;
+						box-shadow: inset 0px 6px 0px 0px rgba(#066,.15),
+									inset 0 0 1px rgba(#188,.95),
+									0 0 3px #1aa,
+									0 0 17px rgba(#199,.85);
+
+						&:before {
+							opacity: .4;
+						}
+					}
 				}
 
 				&[data-winner="yellow"] {

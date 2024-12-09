@@ -35,7 +35,7 @@ let Test = {
 		 * TRANSFER View
 		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(1) .box-title`).trigger("click"), 600);
+		// setTimeout(() => APP.transfer.dispatch({ type: "render-circuit-board" }), 100);
 		return;
 
 

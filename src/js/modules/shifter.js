@@ -7,7 +7,7 @@ let Shifter = (() => {
 			alpha: 0.2,
 			speed: 5,
 			spread: 0.1,
-			chromaticblur: 0.0025,
+			chromaticblur: 0.005,
 		},
 		shape = [],
 		jitter = Array.from({ length: DOTS }, () => Math.random()),
@@ -103,16 +103,16 @@ let Shifter = (() => {
 			});
 		},
 		redraw(a,b,c) {
-			regl.clear({color: [0, 0, 0, 0], depth: 0});
+			regl.clear({color: [0, 0, 0, 0], depth: 1});
 			// Chromatic blur: draw blue, cyan, green, orange, red versions of each point,
 			// and have them added together using blending so they'll be white if they're
 			// all present. The sums of R, G, B should be roughly equal to get white.
 			let chromaticblur = 0.1 * shaderConfig.chromaticblur;
-			draw({ u_color: [0.9, 0.9, 0.9], u_chromaticblur: 0 });
-			draw({ u_color: [0.8, 0.8, 0.8], u_chromaticblur: 1 * chromaticblur });
-			draw({ u_color: [0.7, 0.7, 0.7], u_chromaticblur: 2 * chromaticblur });
-			draw({ u_color: [0.9, 0.9, 0.9], u_chromaticblur: 3 * chromaticblur });
-			draw({ u_color: [0.9, 0.9, 0.9], u_chromaticblur: 4 * chromaticblur });
+			draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 0 });
+			draw({ u_color: [0.2, 0.2, 0.2], u_chromaticblur: 1 * chromaticblur });
+			draw({ u_color: [0.3, 0.3, 0.3], u_chromaticblur: 2 * chromaticblur });
+			draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 3 * chromaticblur });
+			// draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 4 * chromaticblur });
 		},
 		prepareRegl() {
 			/* Here's the GLSL shader magic — it's just a linear interpolation between the two positions */
@@ -122,7 +122,7 @@ let Shifter = (() => {
 					uniform vec3 u_color;
 					uniform float u_alpha;
 					void main () {
-						gl_FragColor = vec4(u_color * u_alpha, u_alpha);
+						gl_FragColor = vec4(u_color, u_alpha);
 					}`,
 				
 				vert: `

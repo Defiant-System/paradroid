@@ -1,5 +1,33 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+	<xsl:template name="circuit-board-left">
+		<svg viewBox="0 0 277 292">
+			<xsl:for-each select="./*">
+				<xsl:variable name="pos" select="position()"/>
+				<g>
+					<xsl:attribute name="transform">translate(33, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
+					<circle class="switch" cx="-5" cy="0" r="5"/>
+					<line class="line" x1="0" y1="0" x2="234" y2="0"/>
+					<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+				</g>
+			</xsl:for-each>
+		</svg>
+	</xsl:template>
+
+	<xsl:template name="circuit-board-right">
+		<svg viewBox="0 0 277 292">
+			<xsl:for-each select="./*">
+				<xsl:variable name="pos" select="position()"/>
+				<g>
+					<xsl:attribute name="transform">translate(-3, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
+					<rect class="socket" x="0" y="-5" width="13" height="9" rx="3"/>
+					<line class="line" x1="13" y1="0" x2="247" y2="0"/>
+					<circle class="switch" cx="253" cy="0" r="5"/>
+				</g>
+			</xsl:for-each>
+		</svg>
+	</xsl:template>
+
 	<xsl:template name="layer-background">
 		<div class="layer-background" data-click="put-tile">
 			<xsl:attribute name="data-level"><xsl:value-of select="@id" /></xsl:attribute>
