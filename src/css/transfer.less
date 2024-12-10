@@ -95,7 +95,9 @@
 			g {
 				filter: drop-shadow(0 1px 0 #0001);
 				--color: #2292f9;
+				--length: -64;
 
+				.joint,
 				.disconnected {
 					--filter: none;
 					--color: #2292f9;
@@ -105,16 +107,21 @@
 					--filter: url(#line);
 					--color: #fa0;
 
-					.charge {
+					.stream {
 						display: block;
-						filter: url(#line);
-						fill: url(#yellow-charge);
-						// mix-blend-mode: plus-lighter;
+						fill: none;
+						stroke: #fea5;
+						stroke-dashoffset: 0;
+						stroke-dasharray: 6,16;
+						stroke-width: 2;
+						stroke-linecap: round;
+						filter: url(#stream);
+						animation: yellow-stream 3s infinite linear;
 					}
 				}
 			}
 
-			.charge {
+			.stream {
 				display: none;
 			}
 
@@ -251,8 +258,7 @@
 						width: 11px;
 						height: 12px;
 						margin-bottom: 7px;
-						background: url(~/icons/switch-conn.png) 0% 50% no-repeat;
-						background-size: auto 100%;
+						background: #2292f9;
 					}
 				}
 			}
@@ -290,18 +296,6 @@
 						height: 0;
 						// border: 1px solid #8ed8eb66;
 					}
-
-					&.active {
-						&:before {
-							background-image: url(~/icons/switch-conn.png);
-						}
-
-						&:first-child:before {
-							background-image: url(~/icons/conn.png);
-						}
-					}
-
-
 
 					&:first-child {
 						position: absolute;
@@ -357,11 +351,14 @@
 					left: -11px;
 
 					g {
-						&.on {
-							--color: #c766ff;
+						--length: -64;
 
-							.charge {
-								fill: url(#purple-charge);
+						&.on {
+							--color: #b761e8;
+
+							.stream {
+								stroke: #ebf6;
+								animation-name: purple-stream;
 							}
 						}
 					}
@@ -627,4 +624,12 @@
 			}
 		}
 	}
+}
+
+@keyframes yellow-stream {
+	to { stroke-dashoffset: var( --length ); }
+}
+
+@keyframes purple-stream {
+	from { stroke-dashoffset: var( --length ); }
 }
