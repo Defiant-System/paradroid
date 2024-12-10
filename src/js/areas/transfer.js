@@ -14,6 +14,7 @@
 		let APP = paradroid,
 			Self = APP.transfer,
 			value,
+			row,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -30,6 +31,11 @@
 				// 	match: `//CircuitBoard`,
 				// 	target: Self.els.cbRight,
 				// });
+				break;
+			case "toggle-io-row":
+				el = $(event.target);
+				row = el.parent().parent().find(`svg g:nth(${el.index()})`);
+				row.toggleClass("on", row.hasClass("on"));
 				break;
 		}
 	}
