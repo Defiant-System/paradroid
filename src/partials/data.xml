@@ -3,7 +3,7 @@
 	<CircuitBoard>
 		<i row="1" group="repeater-1" />
 		<i row="2" />
-		<i row="3" group="repeater-2" />
+		<i row="3" />
 		<i row="4" />
 		<i row="5" />
 		<i row="6" />
