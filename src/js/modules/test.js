@@ -37,7 +37,7 @@ let Test = {
 		APP.dispatch({ type: "show-view", arg: "transfer" });
 		// setTimeout(() => APP.transfer.dispatch({ type: "render-circuit-board" }), 100);
 		setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(3)`).trigger("click"), 100);
-		setTimeout(() => APP.transfer.els.cbRight.find(`.toggler div:nth-child(2)`).trigger("click"), 100);
+		setTimeout(() => APP.transfer.els.cbRight.find(`.toggler div:nth-child(5)`).trigger("click"), 100);
 		return;
 
 
