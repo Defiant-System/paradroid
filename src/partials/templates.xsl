@@ -13,13 +13,40 @@
 							<circle class="void" cx="45" cy="0" r="5"/>
 						</xsl:when>
 						<xsl:when test="@group = 'short-2'">
-							<!-- short on socket side -->
+							<circle class="void" cx="185" cy="0" r="5"/>
+							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'short-3'">
+							<polygon class="stopper" points="37,0 48,-5 52,-5 52,5 48,5"/>
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'short-4'">
+							<polygon class="stopper" points="178,-5 183,-5 192,0 183,5 178,5"/>
+							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
+						</xsl:when>
+
+						<xsl:when test="@group = 'short-5'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<circle class="void" cx="45" cy="0" r="5"/>
+							<circle class="void" cx="185" cy="0" r="5"/>
+							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'short-6'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<polygon class="stopper" points="37,0 48,-5 52,-5 52,5 48,5"/>
+							<polygon class="stopper" points="178,-5 183,-5 192,0 183,5 178,5"/>
+							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
 						</xsl:when>
 
 						<xsl:when test="@group = 'repeater-1'">
-							<line class="line" x1="0" y1="0" x2="168" y2="0"/>
-							<polygon class="gpu" points="168,-7 173,-7 185,0 173,7 168,7"/>
-							<line class="line" x1="183" y1="0" x2="234" y2="0"/>
+							<line class="line" x1="0" y1="0" x2="158" y2="0"/>
+							<polygon class="repeater" points="158,-7 163,-7 175,0 163,7 158,7"/>
+							<line class="line" x1="173" y1="0" x2="234" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'repeater-2'">
+							<line class="line" x1="0" y1="0" x2="58" y2="0"/>
+							<polygon class="repeater" points="58,-7 63,-7 75,0 63,7 58,7"/>
+							<line class="line" x1="73" y1="0" x2="234" y2="0"/>
 						</xsl:when>
 
 						<xsl:when test="@group = 'join-1'">

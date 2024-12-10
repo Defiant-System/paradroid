@@ -2,14 +2,14 @@
 <Data>
 	<CircuitBoard>
 		<i row="1" group="repeater-1" />
-		<i row="2" />
+		<i row="2" group="repeater-2" />
 		<i row="3" />
 		<i row="4" />
 		<i row="5" />
 		<i row="6" />
-		<i row="7" />
-		<i row="8" />
-		<i row="9" />
+		<i row="7" group="short-5" />
+		<i row="8" group="split-join" />
+		<i row="9" group="short-6" />
 		<i row="10" />
 		<i row="11" />
 		<i row="12" />
