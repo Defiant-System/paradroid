@@ -12,6 +12,44 @@
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
 							<circle class="void" cx="45" cy="0" r="5"/>
 						</xsl:when>
+						<xsl:when test="@group = 'short-2'">
+							<!-- short on socket side -->
+						</xsl:when>
+
+						<xsl:when test="@group = 'repeater-1'">
+							<line class="line" x1="0" y1="0" x2="168" y2="0"/>
+							<polygon class="gpu" points="168,-7 173,-7 185,0 173,7 168,7"/>
+							<line class="line" x1="183" y1="0" x2="234" y2="0"/>
+						</xsl:when>
+
+						<xsl:when test="@group = 'join-1'">
+							<line class="line" x1="0" y1="0" x2="105" y2="0"/>
+							<circle class="diode" cx="105" cy="0" r="5"/>
+							<polyline class="line" points="0,-22 144,-22 169,-2, 178,-2" />
+							<polyline class="line" points="0,22 144,22 169,2, 178,2" />
+							<rect class="chip" x="178" y="-7" width="14" height="14"/>
+							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'join-2'">
+							<polyline class="line" points="0,-22 144,-22 170,-4 179,-4" />
+							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
+							<rect class="chip" x="178" y="-9" width="14" height="14"/>
+							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'join-3'">
+							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
+							<polyline class="line" points="0,22 144,22 170,4 179,4" />
+							<rect class="chip" x="178" y="-5" width="14" height="14"/>
+							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
+						</xsl:when>
+						<xsl:when test="@group = 'split-join'">
+							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+							<rect class="chip" x="38" y="-7" width="14" height="14"/>
+							<polyline class="line" points="52,-2 60,-2 85,-22, 144,-22, 169,-2, 178,-2" />
+							<polyline class="line" points="52,2 60,2 85,22, 144,22, 169,2, 178,2" />
+							<rect class="chip" x="178" y="-7" width="14" height="14"/>
+							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
+						</xsl:when>
 						<xsl:when test="@group = 'split-1'">
 							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
