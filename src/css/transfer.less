@@ -17,6 +17,17 @@
 		mix-blend-mode: soft-light;
 	}
 
+	&:after {
+		content: "";
+		position: absolute;
+		top: 1px;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent 5%, rgba(#fff,.4), transparent 95%);
+		pointer-events: none;
+	}
+
 	.droid {
 		top: -37px;
 		left: 50%;
@@ -50,26 +61,20 @@
 
 			g {
 				filter: drop-shadow(0 1px 0 #0001);
+				--color: #2292f9;
+
+				.disconnected {
+					--filter: none;
+					--color: #2292f9;
+				}
 
 				&.on {
-					.switch {
-						stroke: #fc5;
-					}
-
-					.line {
-						stroke: #fc5;
-						filter: drop-shadow(0 0 5px #fc5)
-								drop-shadow(0 0 9px #fc5);
-					}
-
-					.socket {
-						fill: #fc5;
-					}
+					--filter: url(#neon);
+					--color: #fa0;
 
 					.charge {
 						fill: url(#yellow-charge);
 						mix-blend-mode: plus-lighter;
-						filter: blur(2px) drop-shadow(0 0 5px #fc5);
 					}
 				}
 
@@ -81,52 +86,62 @@
 			}
 
 			.conn {
-				fill: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
 				scale: 2;
 				transform: translate(0px, 5px);
 			}
 
 			.switch {
+				filter: var( --filter );
 				fill: none;
-				stroke: #2292f9;
+				stroke: var( --color );
 				stroke-width: 2.5;
 			}
 
 			.diode {
-				fill: #2292f9;
-				stroke: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
+				stroke: var( --color );
 				stroke-width: 2.5;
 			}
 
 			.void {
+				filter: var( --filter );
 				fill: none;
-				stroke: #2292f9;
+				stroke: var( --color );
 				stroke-width: 2.5;
 			}
 
 			.repeater {
-				fill: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
 			}
 
 			.gpu {
-				fill: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
 			}
 
 			.stopper {
-				fill: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
 			}
 
 			.chip {
-				fill: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
 			}
 
 			.socket {
-				fill: #2292f9;
+				filter: var( --filter );
+				fill: var( --color );
 			}
 
 			.line {
+				filter: var( --filter );
 				fill: none;
-				stroke: #2292f9;
+				stroke: var( --color );
 				stroke-width: 2.5;
 			}
 		}
@@ -306,24 +321,11 @@
 
 					g {
 						&.on {
-							.switch {
-								stroke: #cc73ff;
-							}
-
-							.line {
-								stroke: #cc73ff;
-								filter: drop-shadow(0 0 5px #e4b4ff)
-										drop-shadow(0 0 9px #e4b4ff);
-							}
-
-							.socket {
-								fill: #cc73ff;
-							}
+							--color: #c766ff;
 
 							.charge {
 								fill: url(#purple-charge);
-								// mix-blend-mode: plus-lighter;
-								filter: blur(2px) drop-shadow(0 0 5px #e4b4ff);
+								mix-blend-mode: plus-lighter;
 							}
 						}
 					}
