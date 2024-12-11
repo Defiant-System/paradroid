@@ -73,15 +73,34 @@
 						<!-- split group 3 END -->
 
 						<!-- split group 4 START -->
+						<xsl:when test="@row = '4-split-6-1'">
+							<polyline class="line" points="0,0 143,0 168,20 178,20" />
+							<line class="line joint" x1="192" y1="22" x2="234" y2="22"/>
+							<polyline class="line stream" points="0,0 143,0 168,20 178,20" />
+							<line class="line joint stream" x1="192" y1="22" x2="234" y2="22"/>
+							<rect class="chip joint" x="178" y="15" width="14" height="14"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket joint" x="233" y="17" width="13" height="9" rx="3"/>
+						</xsl:when>
 						<xsl:when test="@row = '4-split-6-4'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
-							<polyline class="line" points="52,-2 60,-2 85,-22 233,-22" />
-							<polyline class="line" points="52,2 60,2 85,22 233,22" />
+							<polyline class="line" points="52,-2 60,-2 85,-22 143,-22 168,-42 178,-42" />
+							<polyline class="line" points="52,2 60,2 85,22 143,22" />
+							<polyline class="line" points="157,20 167,20 192,0 234,0" />
+							<polyline class="line" points="157,24 167,24 192,44 234,44" />
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<polyline class="line stream" points="52,-2 60,-2 85,-22 143,-22 168,-42 178,-42" />
+							<polyline class="line stream" points="52,2 60,2 85,22 143,22" />
+							<polyline class="line stream" points="157,20 167,20 192,0 234,0" />
+							<polyline class="line stream" points="157,24 167,24 192,44 234,44" />
 							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
-							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
+							<rect class="chip" x="143" y="15" width="14" height="14"/>
+							<rect class="socket disconnected" x="233" y="-27" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="17" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="39" width="13" height="9" rx="3"/>
 						</xsl:when>
 						<!-- split group 4 END -->
 

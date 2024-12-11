@@ -40,8 +40,9 @@ let Test = {
 			let svg = APP.transfer.els.cbLeft.find("svg");
 			APP.transfer.dispatch({ type: "mirror-schema", svg });
 		}, 100);
-		// setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(4)`).trigger("click"), 150);
-		// setTimeout(() => APP.transfer.els.cbRight.find(`.toggler div:nth-child(4)`).trigger("click"), 100);
+		setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(3)`).trigger("click"), 150);
+		setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(6)`).trigger("click"), 150);
+		// setTimeout(() => APP.transfer.els.cbRight.find(`.toggler div:nth-child(6)`).trigger("click"), 100);
 		return;
 
 
