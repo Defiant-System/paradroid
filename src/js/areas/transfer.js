@@ -60,25 +60,29 @@
 							break;
 						case "polyline":
 							points = item.getAttribute("points").split(" ").map(p => p.split(",").map(i => +i)).reverse();
-							points.map((p,i) => {
-								p[0] = mirror(p[0]);
-							});
+							points.map((p,i) => { p[0] = mirror(p[0]) });
 							// console.log("12,-22 162,-22 187,-2 195,-2");
 							// console.log(points.join(" "));
 							item.setAttribute("points", points.join(" "));
 							break;
 						case "circle":
-							if (name === "switch") item.setAttribute("cx", 253);
-							else if (name === "void") item.setAttribute("cx", 202);
+							val = [+item.getAttribute("cx")];
+							item.setAttribute("cx", mirror(val[0]));
+							// if (name === "switch") item.setAttribute("cx", 253);
+							// else if (name === "void") item.setAttribute("cx", 202);
 							break;
 						case "rect":
-							if (name === "socket") item.setAttribute("x", 0);
-							else if (name === "chip") item.setAttribute("x", 195);
+							val = [+item.getAttribute("x") + 14];
+							item.setAttribute("x", mirror(val[0]));
+							// if (name === "socket") item.setAttribute("x", 0);
+							// else if (name === "chip") item.setAttribute("x", 195);
 							break;
 						case "polygon":
 							if (name === "gpu") {
-								points = [[85,-7], [95,-7], [100,-2], [100,7], [85,7]];
-								item.setAttribute("points", points);
+								points = item.getAttribute("points").split(" ").map(p => p.split(",").map(i => +i)).reverse();
+								points.map((p,i) => { p[0] = mirror(p[0]) });
+								// points = [[85,-7], [95,-7], [100,-2], [100,7], [85,7]];
+								item.setAttribute("points", points.join(" "));
 							}
 							break;
 					}
