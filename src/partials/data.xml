@@ -1,19 +1,45 @@
 
 <Data>
 	<CircuitBoard>
-		<i row="1" group="repeater-1" />
-		<i row="2" group="repeater-2" />
-		<i row="3" />
-		<i row="4" />
-		<i row="5" />
-		<i row="6" />
-		<i row="7" group="short-5" />
-		<i row="8" group="split-join" />
-		<i row="9" group="short-6" />
-		<i row="10" />
-		<i row="11" />
-		<i row="12" />
+		<i />
+		<i />
+		<i />
+		<i row="3-stump" />
+		<i row="1-stump" />
+		<i row="4-split-6-4" />
+		<i row="1-stump" />
+		<i row="3-stump" />
+		<i />
+		<i />
+		<i />
+		<i />
 	</CircuitBoard>
+
+	<!--
+		<i row="1-join-3-1" />
+		<i row="1-join-3-2" />
+		<i row="1-join-3-3" />
+
+		<i row="2-join-2-1" />
+		<i row="2-join-2-2" />
+
+		<i row="3-join-2-1" />
+		<i row="3-join-2-2" />
+
+		<i row="1-stump" />
+		<i row="1-split-3-2" />
+		<i row="1-stump" />
+
+		<i row="2-split-2-1" />
+		<i row="1-stump" />
+
+		<i row="1-stump" />
+		<i row="3-split-2-2" />
+
+		<i row="2-stump" />
+		<i row="1-split-join-3-2" />
+		<i row="2-stump" />
+	-->
 
 @import "data/weapon.xml"
 @import "data/droids.xml"

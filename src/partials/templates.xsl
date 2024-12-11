@@ -7,131 +7,172 @@
 				<g>
 					<xsl:attribute name="transform">translate(33, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
 					<xsl:choose>
-						<xsl:when test="@group = 'short-1'">
+						<xsl:when test="@row = '1-stump'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<circle class="void" cx="45" cy="0" r="5"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:when>
-						<xsl:when test="@group = 'short-2'">
-							<circle class="void" cx="185" cy="0" r="5"/>
-							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'short-3'">
-							<polygon class="stopper" points="37,0 48,-5 52,-5 52,5 48,5"/>
-							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'short-4'">
-							<polygon class="stopper" points="178,-5 183,-5 192,0 183,5 178,5"/>
-							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'short-5'">
+						<xsl:when test="@row = '2-stump'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
-							<line class="line disconnected" x1="190" y1="0" x2="234" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<circle class="void" cx="45" cy="0" r="5"/>
-							<circle class="void disconnected" cx="185" cy="0" r="5"/>
 							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:when>
-						<xsl:when test="@group = 'short-6'">
+						<xsl:when test="@row = '3-stump'">
+							<line class="line" x1="0" y1="0" x2="90" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="90" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<circle class="void" cx="95" cy="0" r="5"/>
+						</xsl:when>
+						<!-- split group 1 START -->
+						<xsl:when test="@row = '1-split-3-2'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
-							<polygon class="stopper" points="37,0 48,-5 52,-5 52,5 48,5"/>
-							<polygon class="stopper" points="178,-5 183,-5 192,0 183,5 178,5"/>
-							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'repeater-1'">
-							<line class="line" x1="0" y1="0" x2="158" y2="0"/>
-							<polygon class="repeater" points="158,-7 163,-7 175,0 163,7 158,7"/>
-							<line class="line" x1="173" y1="0" x2="234" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'repeater-2'">
-							<line class="line" x1="0" y1="0" x2="58" y2="0"/>
-							<polygon class="repeater" points="58,-7 63,-7 75,0 63,7 58,7"/>
-							<line class="line" x1="73" y1="0" x2="234" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'join-1'">
-							<line class="line" x1="0" y1="0" x2="105" y2="0"/>
-							<circle class="diode" cx="105" cy="0" r="5"/>
-							<polyline class="line" points="0,-22 144,-22 169,-2, 178,-2" />
-							<polyline class="line" points="0,22 144,22 169,2, 178,2" />
-							<rect class="chip" x="178" y="-7" width="14" height="14"/>
-							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'join-2'">
-							<polyline class="line" points="0,-22 144,-22 170,-4 179,-4" />
-							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
-							<rect class="chip" x="178" y="-9" width="14" height="14"/>
-							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'join-3'">
-							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
-							<polyline class="line" points="0,22 144,22 170,4 179,4" />
-							<rect class="chip" x="178" y="-5" width="14" height="14"/>
-							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'split-join'">
-							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+							<polyline class="line" points="52,-2 60,-2 85,-22 233,-22" />
+							<polyline class="line" points="52,2 60,2 85,22 233,22" />
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<polyline class="line stream" points="52,-2 60,-2 85,-22 233,-22" />
+							<polyline class="line stream" points="52,2 60,2 85,22 233,22" />
+							<line class="line disconnected" x1="138" y1="0" x2="233" y2="0"/>
+							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
-							<polyline class="line" points="52,-2 60,-2 85,-22, 144,-22, 169,-2, 178,-2" />
-							<polyline class="line" points="52,2 60,2 85,22, 144,22, 169,2, 178,2" />
-							<rect class="chip" x="178" y="-7" width="14" height="14"/>
-							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
 						</xsl:when>
-						<xsl:when test="@group = 'split-1'">
-							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
-							<rect class="chip" x="38" y="-7" width="14" height="14"/>
-							<polyline class="line" points="52,-2 60,-2 85,-22, 233,-22" />
-							<polyline class="line" points="52,2 60,2 85,22, 233,22" />
-							<polygon class="gpu" points="128,-7 138,-7 138,7 123,7 123,-2"/>
-							<line class="line" x1="138" y1="0" x2="233" y2="0"/>
-						</xsl:when>
-						<xsl:when test="@group = 'split-2'">
-							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+						<!-- split group 1 END -->
+						<!-- split group 2 START -->
+						<xsl:when test="@row = '2-split-2-1'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line" x1="52" y1="0" x2="233" y2="0"/>
+							<polyline class="line" points="52,4 60,4 85,22 144,22 233,22" />
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line stream" x1="52" y1="0" x2="233" y2="0"/>
+							<polyline class="line stream" points="52,4 60,4 85,22 144,22 233,22" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<rect class="chip" x="38" y="-5" width="14" height="14"/>
-							<line class="line" x1="52" y1="0" x2="233" y2="0"/>
-							<polyline class="line" points="52,4 60,4 85,22, 144,22 233,22" />
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
 						</xsl:when>
-						<xsl:when test="@group = 'split-3'">
-							<line class="line" x1="0" y1="0" x2="38" y2="0"/>
+						<!-- split group 2 END -->
+						<!-- split group 3 START -->
+						<xsl:when test="@row = '3-split-2-2'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line" x1="52" y1="0" x2="233" y2="0"/>
+							<polyline class="line" points="52,-4 60,-4 85,-22 144,-22 233,-22" />
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line stream" x1="52" y1="0" x2="233" y2="0"/>
+							<polyline class="line stream" points="52,-4 60,-4 85,-22 144,-22 233,-22" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<rect class="chip" x="38" y="-9" width="14" height="14"/>
-							<line class="line" x1="52" y1="0" x2="233" y2="0"/>
-							<polyline class="line" points="52,-4 60,-4 85,-22, 144,-22 233,-22" />
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
 						</xsl:when>
-						<xsl:when test="@group = 'switch-1'">
-							<polyline class="line" points="0,0 80,0 105,-22, 164,-22 233,-22" />
-							<circle class="void" cx="138" cy="0" r="5"/>
-							<line class="line" x1="142" y1="0" x2="233" y2="0"/>
+						<!-- split group 3 END -->
+
+						<!-- split group 4 START -->
+						<xsl:when test="@row = '4-split-6-4'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<polyline class="line" points="52,-2 60,-2 85,-22 233,-22" />
+							<polyline class="line" points="52,2 60,2 85,22 233,22" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="chip" x="38" y="-7" width="14" height="14"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
 						</xsl:when>
-						<xsl:when test="@group = 'switch-2'">
-							<polyline class="line" points="0,0 80,0 105,22, 164,22 233,22" />
-							<circle class="void" cx="138" cy="0" r="5"/>
-							<line class="line" x1="142" y1="0" x2="233" y2="0"/>
+						<!-- split group 4 END -->
+
+						<!-- split join group 1 START -->
+						<xsl:when test="@row = '1-split-join-3-2'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<polyline class="line" points="52,-2 60,-2 85,-22 144,-22 169,-2 178,-2" />
+							<polyline class="line" points="52,2 60,2 85,22 144,22 169,2 178,2" />
+							<line class="line" x1="192" y1="0" x2="233" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<polyline class="line stream" points="52,-2 60,-2 85,-22 144,-22 169,-2 178,-2" />
+							<polyline class="line stream" points="52,2 60,2 85,22 144,22 169,2 178,2" />
+							<line class="line stream" x1="192" y1="0" x2="233" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="chip" x="38" y="-7" width="14" height="14"/>
+							<rect class="chip" x="178" y="-7" width="14" height="14"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:when>
+						<!-- split join group 1 END -->
+
+						<!-- join group 1 START -->
+						<xsl:when test="@row = '1-join-3-1'">
+							<polyline class="line" points="0,0 144,0 169,20 178,20" />
+							<polyline class="line stream" points="0,0 144,0 169,20 178,20" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<xsl:when test="@row = '1-join-3-2'">
+							<line class="line" x1="0" y1="0" x2="105" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="105" y2="0"/>
+							<line class="line joint" x1="192" y1="0" x2="233" y2="0"/>
+							<line class="line joint stream" x1="0" y1="0" x2="105" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<circle class="diode" cx="105" cy="0" r="5"/>
+							<rect class="chip joint" x="178" y="-7" width="14" height="14"/>
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<xsl:when test="@row = '1-join-3-3'">
+							<polyline class="line" points="0,0 144,0 169,-20 178,-20" />
+							<polyline class="line stream" points="0,0 144,0 169,-20 178,-20" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<!-- join group 1 END -->
+						<!-- join group 2 START -->
+						<xsl:when test="@row = '2-join-2-1'">
+							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
+							<line class="line joint" x1="192" y1="0" x2="233" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="178" y2="0"/>
+							<line class="line joint stream" x1="192" y1="0" x2="233" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="chip joint" x="178" y="-5" width="14" height="14"/>
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<xsl:when test="@row = '2-join-2-2'">
+							<polyline class="line" points="0,0 144,0 169,-18 178,-18" />
+							<polyline class="line stream" points="0,0 144,0 169,-18 178,-18" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<!-- join group 2 END -->
+						<!-- join group 3 START -->
+						<xsl:when test="@row = '3-join-2-1'">
+							<polyline class="line" points="0,0 144,0 169,18 178,18" />
+							<polyline class="line stream" points="0,0 144,0 169,18 178,18" />
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<xsl:when test="@row = '3-join-2-2'">
+							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
+							<line class="line joint" x1="192" y1="0" x2="233" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="178" y2="0"/>
+							<line class="line joint stream" x1="192" y1="0" x2="233" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="chip joint" x="178" y="-9" width="14" height="14"/>
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<!-- join group 3 END -->
+
 						<xsl:otherwise>
 							<line class="line" x1="0" y1="0" x2="234" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
 							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:otherwise>
 					</xsl:choose>
-					<circle class="switch" cx="-5" cy="0" r="5"/>
 				</g>
 			</xsl:for-each>
 		</svg>
 	</xsl:template>
 
-	<xsl:template name="circuit-board-right">
-		<svg viewBox="0 0 277 292">
-			<xsl:for-each select="./*">
-				<xsl:variable name="pos" select="position()"/>
-				<g>
-					<xsl:attribute name="transform">translate(-3, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
-					<rect class="socket" x="0" y="-5" width="13" height="9" rx="3"/>
-					<line class="line" x1="13" y1="0" x2="247" y2="0"/>
-					<circle class="switch" cx="253" cy="0" r="5"/>
-				</g>
-			</xsl:for-each>
-		</svg>
-	</xsl:template>
 
 	<xsl:template name="layer-background">
 		<div class="layer-background" data-click="put-tile">
