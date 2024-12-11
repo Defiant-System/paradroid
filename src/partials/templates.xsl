@@ -6,11 +6,12 @@
 				<xsl:variable name="pos" select="position()"/>
 				<g>
 					<xsl:attribute name="transform">translate(33, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
-					<circle class="switch" cx="-5" cy="0" r="5"/>
 					<xsl:choose>
 						<xsl:when test="@group = 'short-1'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
 							<circle class="void" cx="45" cy="0" r="5"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:when>
 						<xsl:when test="@group = 'short-2'">
 							<circle class="void" cx="185" cy="0" r="5"/>
@@ -26,9 +27,11 @@
 						</xsl:when>
 						<xsl:when test="@group = 'short-5'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line disconnected" x1="190" y1="0" x2="234" y2="0"/>
 							<circle class="void" cx="45" cy="0" r="5"/>
-							<circle class="void" cx="185" cy="0" r="5"/>
-							<line class="line" x1="190" y1="0" x2="234" y2="0"/>
+							<circle class="void disconnected" cx="185" cy="0" r="5"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:when>
 						<xsl:when test="@group = 'short-6'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
@@ -106,9 +109,11 @@
 						</xsl:when>
 						<xsl:otherwise>
 							<line class="line" x1="0" y1="0" x2="234" y2="0"/>
+							<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
 						</xsl:otherwise>
 					</xsl:choose>
-					<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+					<circle class="switch" cx="-5" cy="0" r="5"/>
 				</g>
 			</xsl:for-each>
 		</svg>

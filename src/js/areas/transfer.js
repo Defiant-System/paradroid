@@ -20,16 +20,17 @@
 		switch (event.type) {
 			// custom events
 			case "render-circuit-board":
+				Self.els.cbLeft.find("svg").remove();
 				// render circuit board HTML
 				window.render({
 					template: "circuit-board-left",
 					match: `//CircuitBoard`,
-					target: Self.els.cbLeft,
+					append: Self.els.cbLeft,
 				});
 				// window.render({
 				// 	template: "circuit-board-right",
 				// 	match: `//CircuitBoard`,
-				// 	target: Self.els.cbRight,
+				// 	append: Self.els.cbRight,
 				// });
 				break;
 			case "toggle-io-row":

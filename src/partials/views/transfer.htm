@@ -2,6 +2,40 @@
 <!-- transfer view -->
 <div class="transfer-view hidden" data-area="transfer" data-name="Transfer">
 
+	<!-- circuit board filters -->
+	<svg viewBox="0 0 277 292">
+		<defs>
+			<filter id="line" filterUnits="userSpaceOnUse">
+				<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
+				<feGaussianBlur in="dilated" stdDeviation="4" result="blur1"/>
+				<feComposite in="blur1" in2="SourceGraphic" operator="lighter" result="blur"/>
+				<feColorMatrix in="SourceGraphic"
+								result="white"
+								type="matrix"
+								values="0 0 0 1 0
+										0 0 0 1 0
+										0 0 0 1 0
+										0 0 0 1 0" />
+				<feComposite in="blur" in2="white" operator="over" result="blur"/>
+			</filter>
+
+			<filter id="stream" filterUnits="userSpaceOnUse">
+				<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
+				<feGaussianBlur in="dilated" stdDeviation="1" result="blur1"/>
+				<feGaussianBlur in="dilated" stdDeviation="1" result="blur2"/>
+				<feComposite in="blur1" in2="blur2" operator="lighter" result="blur"/>
+				<feColorMatrix in="SourceGraphic"
+								result="white"
+								type="matrix"
+								values="0 0 0 1 0
+										0 0 0 1 0
+										0 0 0 1 0
+										0 0 0 1 0" />
+				<feComposite in="blur" in2="white" operator="over" result="blur"/>
+			</filter>
+		</defs>
+	</svg>
+
 	<div class="board">
 		<div class="left">
 			<!-- droid -->
@@ -33,43 +67,11 @@
 				</span>
 
 				<svg viewBox="0 0 277 292">
-					<defs>
-						<filter id="line" filterUnits="userSpaceOnUse">
-							<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
-							<feGaussianBlur in="dilated" stdDeviation="4" result="blur1"/>
-							<feComposite in="blur1" in2="SourceGraphic" operator="lighter" result="blur"/>
-							<feColorMatrix in="SourceGraphic"
-											result="white"
-											type="matrix"
-											values="0 0 0 1 0
-													0 0 0 1 0
-													0 0 0 1 0
-													0 0 0 1 0" />
-							<feComposite in="blur" in2="white" operator="over" result="blur"/>
-						</filter>
-
-						<filter id="stream" filterUnits="userSpaceOnUse">
-							<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
-							<feGaussianBlur in="dilated" stdDeviation="1" result="blur1"/>
-							<feGaussianBlur in="dilated" stdDeviation="1" result="blur2"/>
-							<feComposite in="blur1" in2="blur2" operator="lighter" result="blur"/>
-							<feColorMatrix in="SourceGraphic"
-											result="white"
-											type="matrix"
-											values="0 0 0 1 0
-													0 0 0 1 0
-													0 0 0 1 0
-													0 0 0 1 0" />
-							<feComposite in="blur" in2="white" operator="over" result="blur"/>
-						</filter>
-					</defs>
-
 					<g transform="translate(33, 36)">
 						<line class="line" x1="0" y1="0" x2="234" y2="0"/>
+						<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>
 						<circle class="switch" cx="-5" cy="0" r="5"/>
 						<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
-						
-						<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>
 					</g>
 
 					<g transform="translate(33, 58)">
@@ -256,10 +258,9 @@
 
 					<g transform="translate(-3, 36)">
 						<line class="line" x1="207" y1="0" x2="247" y2="0"/>
+						<line class="line stream" x1="207" y1="0" x2="247" y2="0"/>
 						<circle class="switch" cx="253" cy="0" r="5"/>
 						<circle class="void" cx="202" cy="0" r="5"/>
-
-						<line class="line stream" x1="207" y1="0" x2="247" y2="0"/>
 					</g>
 
 					<g transform="translate(-3, 58)">
@@ -297,10 +298,9 @@
 
 					<g transform="translate(-3, 124)">
 						<line class="line" x1="13" y1="0" x2="247" y2="0"/>
+						<line class="line stream" x1="13" y1="0" x2="247" y2="0"/>
 						<rect class="socket" x="0" y="-5" width="13" height="9" rx="3"/>
 						<circle class="switch" cx="253" cy="0" r="5"/>
-
-						<line class="line stream" x1="13" y1="0" x2="247" y2="0"/>
 					</g>
 
 					<g transform="translate(-3, 146)">
