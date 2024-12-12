@@ -105,6 +105,27 @@
 							<rect class="socket" x="233" y="39" width="13" height="9" rx="3"/>
 						</xsl:when>
 						<!-- split group 4 END -->
+						
+						<!-- split group 5 START -->
+						<xsl:when test="@row = '4-split-repeater-3-2'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line" x1="181" y1="-22" x2="233" y2="-22"/>
+							<polyline class="line" points="52,-2 60,-2 85,-22 164,-22" />
+							<polyline class="line" points="52,2 60,2 85,22 233,22" />
+							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line stream" x1="181" y1="-22" x2="233" y2="-22"/>
+							<polyline class="line stream" points="52,-2 60,-2 85,-22 164,-22" />
+							<polyline class="line stream" points="52,2 60,2 85,22 233,22" />
+							<polygon class="repeater" points="164,-29 169,-29 181,-22 169,-15 164,-15"/>
+							<line class="line disconnected" x1="138" y1="0" x2="233" y2="0"/>
+							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="chip" x="38" y="-7" width="14" height="14"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<!-- split group 5 END -->
 
 						<!-- split join group 1 START -->
 						<xsl:when test="@row = '1-split-join-3-2'">
