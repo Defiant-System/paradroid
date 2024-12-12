@@ -29,11 +29,17 @@
 					append: Self.els.cbLeft,
 				});
 
+				// Self.els.cbLeft.find(".stream").map(item => {
+				// 	item.setAttribute("style", `--length: -${item.getTotalLength() * .5};`);
+				// });
+
 				// window.render({
 				// 	template: "circuit-board-right",
 				// 	match: `//CircuitBoard`,
 				// 	append: Self.els.cbRight,
 				// });
+				break;
+			case "set-line-length":
 				break;
 			case "mirror-schema":
 				// delete "old" schema
@@ -58,32 +64,19 @@
 							item.setAttribute("x1", mirror(val[1]));
 							item.setAttribute("x2", mirror(val[0]));
 							break;
-						case "polyline":
-							points = item.getAttribute("points").split(" ").map(p => p.split(",").map(i => +i)).reverse();
-							points.map((p,i) => { p[0] = mirror(p[0]) });
-							// console.log("12,-22 162,-22 187,-2 195,-2");
-							// console.log(points.join(" "));
-							item.setAttribute("points", points.join(" "));
-							break;
 						case "circle":
 							val = [+item.getAttribute("cx")];
 							item.setAttribute("cx", mirror(val[0]));
-							// if (name === "switch") item.setAttribute("cx", 253);
-							// else if (name === "void") item.setAttribute("cx", 202);
 							break;
 						case "rect":
 							val = [+item.getAttribute("x") + 14];
 							item.setAttribute("x", mirror(val[0]));
-							// if (name === "socket") item.setAttribute("x", 0);
-							// else if (name === "chip") item.setAttribute("x", 195);
 							break;
+						case "polyline":
 						case "polygon":
-							if (name === "gpu") {
-								points = item.getAttribute("points").split(" ").map(p => p.split(",").map(i => +i)).reverse();
-								points.map((p,i) => { p[0] = mirror(p[0]) });
-								// points = [[85,-7], [95,-7], [100,-2], [100,7], [85,7]];
-								item.setAttribute("points", points.join(" "));
-							}
+							points = item.getAttribute("points").split(" ").map(p => p.split(",").map(i => +i)).reverse();
+							points.map((p,i) => { p[0] = mirror(p[0]) });
+							item.setAttribute("points", points.join(" "));
 							break;
 					}
 				});

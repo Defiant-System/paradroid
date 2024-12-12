@@ -180,6 +180,30 @@
 						</xsl:when>
 						<!-- join group 3 END -->
 
+						<!-- repeater group 1 START -->
+						<xsl:when test="@row = '1-repeater'">
+							<line class="line" x1="0" y1="0" x2="144" y2="0"/>
+							<line class="line" x1="159" y1="0" x2="234" y2="0"/>
+							<line class="line stream l66" x1="0" y1="0" x2="144" y2="0"/>
+							<line class="line stream l65" x1="159" y1="0" x2="234" y2="0"/>
+							<polygon class="repeater" points="144,-7 149,-7 161,0 149,7 144,7"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<!-- repeater group 1 END -->
+
+						<!-- repeater group 2 START -->
+						<xsl:when test="@row = '2-repeater'">
+							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line" x1="54" y1="0" x2="234" y2="0"/>
+							<line class="line stream l65" x1="0" y1="0" x2="40" y2="0"/>
+							<line class="line stream l66" x1="54" y1="0" x2="234" y2="0"/>
+							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7"/>
+							<circle class="switch" cx="-5" cy="0" r="5"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+						</xsl:when>
+						<!-- repeater group 2 END -->
+
 						<xsl:otherwise>
 							<line class="line" x1="0" y1="0" x2="234" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>
