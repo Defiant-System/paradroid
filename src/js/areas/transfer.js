@@ -26,25 +26,33 @@
 				switch (event.char) {
 					case "w":
 					case "up":
-						available = el.find("> div:not(.active)").map(el => $(el).index()+1);
-						index = available[available.indexOf(index) - 1];
-						if (index) el.data({ active: index });
+						if (index > 0) {
+							available = el.find("> div:not(.active)").map(el => $(el).index()+1);
+							index = available[available.indexOf(index) - 1];
+							if (index) el.data({ active: index });
+						}
 						break;
 					case "d":
 					case "down":
-						available = el.find("> div:not(.active)").map(el => $(el).index()+1);
-						index = available[available.indexOf(index) + 1];
-						if (index) el.data({ active: index });
+						if (index > 0) {
+							available = el.find("> div:not(.active)").map(el => $(el).index()+1);
+							index = available[available.indexOf(index) + 1];
+							if (index) el.data({ active: index });
+						}
 						break;
 					case "space":
 					case "return":
-						if (index > 1) {
+						let ammo = el.parent().parent().find(".ammo"),
+							left = +ammo.data("left");
+						if (index > 1 && left > -1) {
 							// light up active line
 							el.find(`> div:nth-child(${index})`).addClass("active");
 							// light up SVG group
 							el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
+							// reduce ammo count
+							ammo.data({ left: left - 1 });
 							// reset active
-							el.data({ active: 1 });
+							el.data({ active: left > 0 ? 1 : 0 });
 						}
 						break;
 				}

@@ -41,8 +41,8 @@ let Test = {
 			APP.transfer.dispatch({ type: "mirror-schema", svg });
 		}, 100);
 
-		setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(2)`).trigger("click"), 150);
-		setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(13)`).trigger("click"), 150);
+		// setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(2)`).trigger("click"), 150);
+		// setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(13)`).trigger("click"), 150);
 		
 		// setTimeout(() => APP.transfer.els.cbRight.find(`.toggler div:nth-child(2)`).trigger("click"), 100);
 		// setTimeout(() => APP.transfer.els.cbRight.find(`.toggler div:nth-child(3)`).trigger("click"), 100);
