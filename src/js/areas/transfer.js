@@ -13,6 +13,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.transfer,
+			available,
 			index,
 			row,
 			el;
@@ -25,11 +26,15 @@
 				switch (event.char) {
 					case "w":
 					case "up":
-						el.data({ active: Math.max(index - 1, 1) });
+						available = el.find("> div:not(.active)").map(el => $(el).index()+1);
+						index = available[available.indexOf(index) - 1];
+						if (index) el.data({ active: index });
 						break;
 					case "d":
 					case "down":
-						el.data({ active: Math.min(index + 1, el.find("> div").length) });
+						available = el.find("> div:not(.active)").map(el => $(el).index()+1);
+						index = available[available.indexOf(index) + 1];
+						if (index) el.data({ active: index });
 						break;
 					case "space":
 					case "return":
@@ -116,7 +121,7 @@
 				break;
 			case "toggle-io-row":
 				el = $(event.target);
-				row = el.parent().parent().find(`svg g:nth(${el.index()})`);
+				row = el.parent().parent().find(`svg g:nth(${el.index()-1})`);
 				el.toggleClass("active", row.hasClass("on"));
 				row.toggleClass("on", row.hasClass("on"));
 				break;
