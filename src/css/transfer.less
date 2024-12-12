@@ -91,6 +91,8 @@
 			left: 0;
 			width: 277px;
 			height: 292px;
+			--yellow: #fa0;
+			--purple: #b761e8;
 
 			g {
 				filter: drop-shadow(0 1px 0 #0001);
@@ -105,12 +107,9 @@
 
 				&.on {
 					--filter: url(#line);
-					--color: #fa0;
+					--color: var( --yellow );
 
-					polyline {
-						--length: -66;
-					}
-
+					polyline { --length: -66; }
 					.l66 { --length: -66; }
 					.l65 { --length: -65; }
 
@@ -124,7 +123,16 @@
 						stroke-linecap: round;
 						filter: url(#stream);
 						animation: yellow-stream 3s infinite linear;
+
+						&.purple { stroke: #fae8; }
 					}
+
+					.repeater {
+						stroke: var( --color );
+					}
+
+					.yellow { --color: var( --yellow ); }
+					.purple { --color: var( --purple ); }
 				}
 			}
 
@@ -163,6 +171,12 @@
 			.repeater {
 				filter: var( --filter );
 				fill: var( --color );
+				stroke: #2292f9;
+				stroke-width: 1.5;
+				stroke-linejoin: round;
+
+				&.yellow { --color: var( --yellow ); }
+				&.purple { --color: var( --purple ); }
 			}
 
 			.gpu {
@@ -190,6 +204,7 @@
 				fill: none;
 				stroke: var( --color );
 				stroke-width: 2.5;
+				// stroke-linejoin: round;
 			}
 		}
 
@@ -361,15 +376,15 @@
 						--length: -67;
 
 						&.on {
-							--color: #b761e8;
+							--color: var( --purple );
 
-							polyline {
-								--length: -65;
-							}
+							polyline { --length: -65; }
 
 							.stream {
 								stroke: #fae8;
 								animation-name: purple-stream;
+
+								&.yellow { stroke: #fea5; }
 							}
 						}
 					}
@@ -509,7 +524,7 @@
 
 				b {
 					position: absolute;
-					background: #8ed8eb66;
+					background: #369fff;
 					box-shadow: none;
 
 					&[data-i="1"] {

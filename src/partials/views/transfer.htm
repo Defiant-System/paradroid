@@ -22,7 +22,7 @@
 			<filter id="stream" filterUnits="userSpaceOnUse">
 				<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
 				<feGaussianBlur in="dilated" stdDeviation="1" result="blur1"/>
-				<feGaussianBlur in="dilated" stdDeviation="1" result="blur2"/>
+				<feGaussianBlur in="dilated" stdDeviation="2" result="blur2"/>
 				<feComposite in="blur1" in2="blur2" operator="lighter" result="blur"/>
 				<feColorMatrix in="SourceGraphic"
 								result="white"

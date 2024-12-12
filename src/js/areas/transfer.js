@@ -46,6 +46,12 @@
 				Self.els.cbRight.find("svg").remove();
 				// clone and loop children
 				el = event.svg.clone(true);
+				el.find(".purple, .yellow").map(item => {
+					let str = item.className.baseVal;
+					if (str.includes("yellow")) str = str.replace(/yellow/, "purple");
+					else if (str.includes("purple")) str = str.replace(/purple/, "yellow");
+					item.setAttribute("class", str);
+				});
 				el.find("g, line, circle, rect, polyline, polygon").map(item => {
 					let mirror = i => {
 							let r = (118 - i) + 129;
