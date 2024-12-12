@@ -5,7 +5,7 @@
 	init() {
 		// fast references
 		this.els = {
-			content: window.find("content"),
+			board: window.find(".board"),
 			cbLeft: window.find(".board .left .io"),
 			cbRight: window.find(".board .right .io"),
 		};
@@ -13,11 +13,37 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.transfer,
-			value,
+			index,
 			row,
 			el;
 		// console.log(event);
 		switch (event.type) {
+			// system events
+			case "window.keydown":
+				el = Self.els.board.find(".droid.player").parent().find(".io .toggler");
+				index = +el.data("active");
+				switch (event.char) {
+					case "w":
+					case "up":
+						el.data({ active: Math.max(index - 1, 1) });
+						break;
+					case "d":
+					case "down":
+						el.data({ active: Math.min(index + 1, el.find("> div").length) });
+						break;
+					case "space":
+					case "return":
+						if (index > 1) {
+							// light up active line
+							el.find(`> div:nth-child(${index})`).addClass("active");
+							// light up SVG group
+							el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
+							// reset active
+							el.data({ active: 1 });
+						}
+						break;
+				}
+				break;
 			// custom events
 			case "render-circuit-board":
 				// delete "old" schema
