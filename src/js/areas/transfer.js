@@ -91,6 +91,7 @@
 			case "toggle-io-row":
 				el = $(event.target);
 				row = el.parent().parent().find(`svg g:nth(${el.index()})`);
+				el.toggleClass("active", row.hasClass("on"));
 				row.toggleClass("on", row.hasClass("on"));
 				break;
 		}

@@ -52,7 +52,7 @@
 		display: flex;
 
 		.toggler {
-			background: #0001;
+			// background: #0001;
 			position: relative;
 			top: 7px;
 			left: 21px;
@@ -66,8 +66,42 @@
 				width: 14px;
 				height: 14px;
 				border-radius: 50%;
-				// background: #f003;
 				cursor: pointer;
+
+				&:hover,
+				&.active {
+					&:before,
+					&:after {
+						display: block;
+					}
+				}
+
+				&.active {
+					filter: hue-rotate(190deg) saturate(2) brightness(1.5) drop-shadow(0 0 3px #fff5);
+				}
+
+				&:before {
+					content: "";
+					display: none;
+					background: url(~/icons/toggler.png) 100% 50%/contain no-repeat;
+					position: absolute;
+					top: -1px;
+					left: -21px;
+					width: 38px;
+					height: 16px;
+				}
+
+				&:after {
+					content: "";
+					display: none;
+					position: absolute;
+					top: 2px;
+					left: -21px;
+					height: 10px;
+					width: 13px;
+					background: #2292f9;
+					border-radius: 0 9px 9px 0;
+				}
 
 				&:nth-child(1) { top: 0px; }
 				&:nth-child(2) { top: 22px; }
@@ -147,11 +181,11 @@
 				transform: translate(0px, 5px);
 			}
 
-			.switch {
+			.start {
 				filter: var( --filter );
-				fill: none;
-				stroke: var( --color );
-				stroke-width: 2.5;
+				fill: var( --color );
+				// stroke: var( --color );
+				// stroke-width: 2.5;
 			}
 
 			.diode {
@@ -273,14 +307,25 @@
 					// background: rgba(#000,.1);
 					position: absolute;
 					top: 13px;
-					left: -19px;
+					left: -29px;
 
 					> div {
 						position: relative;
 						width: 11px;
-						height: 12px;
-						margin-bottom: 7px;
+						height: 10px;
+						margin-bottom: 11px;
 						background: #2292f9;
+						border-radius: 0 3px 3px 0;
+
+						&:before {
+							content: "";
+							background: url(~/icons/toggler.png) 100% 50%/contain no-repeat;
+							position: absolute;
+							top: -1px;
+							left: -1px;
+							width: 27px;
+							height: 12px;
+						}
 					}
 				}
 			}
@@ -290,55 +335,26 @@
 				top: 55px;
 				left: 36px;
 				right: -4px;
-
-				> div {
-					position: relative;
-					left: 3px;
-					height: 19px;
-					margin-bottom: 3px;
-
-					&:before {
-						content: "";
-						position: absolute;
-						top: 8px;
-						left: -3px;
-						width: 34px;
-						height: 12px;
-						background: url(~/icons/switch.png) 50% 50%/contain no-repeat;
-						// border-radius: 50%;
-						// border: 2px solid #8ed8eb66;
-					}
-
-					&:after {
-						content: "";
-						position: absolute;
-						top: 13px;
-						left: 31px;
-						right: 3px;
-						height: 0;
-						// border: 1px solid #8ed8eb66;
-					}
-
-					&:first-child {
-						position: absolute;
-						top: -23px;
-						left: 3px;
-
-						&:before {
-							background-image: none;
-						}
-
-						&:after {
-							display: none;
-						}
-					}
-				}
 			}
 		}
 		
 		.right {
 			.toggler {
-				left: 232px;
+				left: 234px;
+
+				> div {
+					// background: #f003;
+					transform: rotate(180deg);
+					left: -3px;
+
+					&:after {
+						width: 12px;
+					}
+
+					&.active {
+						filter: hue-rotate(55deg) saturate(1.5) brightness(1.15) drop-shadow(0 0 3px #fff5);
+					}
+				}
 			}
 
 			.side {
@@ -356,7 +372,7 @@
 
 				.ammo {
 					left: auto;
-					right: -19px;
+					right: -29px;
 
 					> div {
 						transform: rotate(180deg);

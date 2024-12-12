@@ -3,13 +3,16 @@
 	<CircuitBoard>
 		<i />
 		<i />
-		<i />
-		<i />
-		<i row="1-stump" />
-		<i row="4-split-repeater-3-2" />
-		<i row="1-stump" />
-		<i />
-		<i />
+
+		<i row="1-join-3-1" />
+		<i row="1-join-3-2" />
+		<i row="1-join-3-3" />
+
+		<i row="2-join-2-1" />
+		<i row="2-join-2-2" />
+
+		<i row="3-join-2-1" />
+		<i row="3-join-2-2" />
 		<i />
 		<i />
 		<i />
@@ -52,12 +55,16 @@
 		<i row="1-stump" />
 
 		<i row="1-stump" />
-		<i row="4-split-repeater-3-2" />
+		<i row="5-split-repeater-3-2" />
+		<i row="1-stump" />
+
+		<i row="1-stump" />
+		<i row="6-split-repeater-3-2" />
 		<i row="1-stump" />
 
 		<i row="1-repeater" />
-		<i row="2-repeater" />
-		<i row="3-repeater" />
+		<i row="2-repeater" color="purple" />
+		<i row="3-repeater" color="purple" />
 		<i row="4-repeater" />
 	-->
 
