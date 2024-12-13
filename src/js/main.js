@@ -17,6 +17,8 @@
 @import "./classes/fire.js"
 @import "./classes/sonic.js"
 
+@import "./classes/hacker-ai.js"
+
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"
 @import "./ext/regl.js"

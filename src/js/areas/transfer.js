@@ -15,6 +15,8 @@
 			Self = APP.transfer,
 			available,
 			index,
+			ammo,
+			left,
 			row,
 			el;
 		// console.log(event);
@@ -42,49 +44,47 @@
 						break;
 					case "space":
 					case "return":
-						let ammo = el.parent().parent().find(".ammo"),
-							left = +ammo.data("left");
-						if (index > 1 && left > -1) {
-							// light up active line
-							el.find(`> div:nth-child(${index})`).addClass("active");
-							// light up SVG group
-							el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
-							// reduce ammo count
-							ammo.data({ left: left - 1 });
-							// reset active
-							el.data({ active: left > 0 ? 1 : 0 });
-						}
+						Self.dispatch({ type: "toggle-io-row", el, index });
 						break;
 				}
 				break;
 			// custom events
-			case "render-circuit-board":
+			case "toggle-io-row":
+				el = event.el;
+				index = event.index;
+				ammo = el.parent().parent().find(".ammo");
+				left = +ammo.data("left");
+				if (index > 1 && left > -1) {
+					// light up active line
+					el.find(`> div:nth-child(${index})`).addClass("active");
+					// light up SVG group
+					el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
+					// reduce ammo count
+					ammo.data({ left: left - 1 });
+					// reset active
+					el.data({ active: left > 0 ? 1 : 0 });
+				}
+				break;
+			case "new-hacking-game":
 				// delete "old" schema
 				Self.els.cbLeft.find("svg").remove();
 				// render circuit board HTML
 				window.render({
 					template: "circuit-board-left",
-					match: `//CircuitBoard`,
+					match: `//CircuitBoard[@id="left"]`,
 					append: Self.els.cbLeft,
 				});
-
-				// Self.els.cbLeft.find(".stream").map(item => {
-				// 	item.setAttribute("style", `--length: -${item.getTotalLength() * .5};`);
-				// });
-
-				// window.render({
-				// 	template: "circuit-board-right",
-				// 	match: `//CircuitBoard`,
-				// 	append: Self.els.cbRight,
-				// });
-				break;
-			case "set-line-length":
-				break;
-			case "mirror-schema":
 				// delete "old" schema
 				Self.els.cbRight.find("svg").remove();
+				// render circuit board HTML
+				window.render({
+					template: "circuit-board-left",
+					match: `//CircuitBoard[@id="right"]`,
+					append: Self.els.cbRight,
+				});
+				// mirror right circuit schema
+				el = Self.els.cbRight.find("svg");
 				// clone and loop children
-				el = event.svg.clone(true);
 				el.find(".purple, .yellow").map(item => {
 					let str = item.className.baseVal;
 					if (str.includes("yellow")) str = str.replace(/yellow/, "purple");
@@ -125,13 +125,10 @@
 							break;
 					}
 				});
-				Self.els.cbRight.append(el);
-				break;
-			case "toggle-io-row":
-				el = $(event.target);
-				row = el.parent().parent().find(`svg g:nth(${el.index()-1})`);
-				el.toggleClass("active", row.hasClass("on"));
-				row.toggleClass("on", row.hasClass("on"));
+				// create opponent AI
+				el = Self.els.board.find(".droid:not(.player)");
+				// create opponent AI
+				Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 				break;
 		}
 	}

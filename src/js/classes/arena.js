@@ -32,7 +32,7 @@ class Arena {
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
 			fps: 60,
-			callback(time=0, delta=0) {
+			callback(time, delta) {
 				Matter.Runner.tick(Self.map.runner, Self.map.engine);
 				Self.update(delta);
 				Self.render();

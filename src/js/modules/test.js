@@ -35,11 +35,7 @@ let Test = {
 		 * TRANSFER View
 		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		setTimeout(() => APP.transfer.dispatch({ type: "render-circuit-board" }), 50);
-		setTimeout(() => {
-			let svg = APP.transfer.els.cbLeft.find("svg");
-			APP.transfer.dispatch({ type: "mirror-schema", svg });
-		}, 100);
+		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 
 		// setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(2)`).trigger("click"), 150);
 		// setTimeout(() => APP.transfer.els.cbLeft.find(`.toggler div:nth-child(13)`).trigger("click"), 150);
