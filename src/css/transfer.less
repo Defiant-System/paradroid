@@ -28,6 +28,15 @@
 		pointer-events: none;
 	}
 
+	.filters {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+	}
+
 	.droid {
 		top: -37px;
 		left: 50%;
@@ -48,8 +57,8 @@
 		top: 89px;
 		left: 30px;
 		right: 30px;
-		// bottom: 31px;
 		display: flex;
+		// opacity: 0;
 
 		.toggler {
 			// background: #0001;
@@ -138,7 +147,7 @@
 			left: 0;
 			width: 277px;
 			height: 292px;
-			--yellow: #fa0;
+			--yellow: #ea4;
 			--purple: #b761e8;
 
 			g {
@@ -729,12 +738,12 @@
 					}
 
 					&.yellow {
-						background: #fb4;
+						background: #ea4;
 						box-shadow: 0 -1px 0 rgba(#111,.15),
 									inset 0px 5px 0px 0px rgba(#a50,.15),
 									inset 0 0 1px rgba(#940,.95),
 									0 0 2px #fb3,
-									0 0 7px rgba(#fb4,.5);
+									0 0 7px rgba(#ea4,.75);
 					}
 					
 					&.purple {

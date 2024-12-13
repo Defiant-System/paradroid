@@ -72,7 +72,15 @@
 					group.find(`[sub="rep"]`).addClass("on");
 
 					// update IO leds
-					Self.els.ioLeds.find(`> div:nth-child(${index-1})`).removeClass("purple yellow").addClass(ammo.data("color"));
+					group.find(".socket[data-pos]").map(elem => {
+						let socket = $(elem);
+						if (socket.hasClass("on")) {
+							let index = socket.data("pos"),
+								color = socket.cssProp("--color") === socket.cssProp("--yellow") ? "yellow" : "purple";
+							Self.els.ioLeds.find(`> div:nth-child(${index})`).removeClass("purple yellow").addClass(color);
+						}
+					});
+
 					// update CPU led
 					Self.dispatch({ type: "update-winning-cpu" });
 					// reduce ammo count
@@ -100,6 +108,7 @@
 					match: `//CircuitBoard[@id="left"]`,
 					append: Self.els.cbLeft,
 				});
+
 				// delete "old" schema
 				Self.els.cbRight.find("svg").remove();
 				// render circuit board HTML

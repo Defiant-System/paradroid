@@ -8,7 +8,7 @@
 					<xsl:attribute name="transform">translate(33, <xsl:value-of select="14 + ($pos * 22)" />)</xsl:attribute>
 					<xsl:choose>
 						<xsl:when test="@row = 'empty'"></xsl:when>
-
+						<!-- stumps START -->
 						<xsl:when test="@row = '1-stump'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
@@ -20,7 +20,9 @@
 							<line class="line stream" x1="0" y1="0" x2="40" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<circle class="void" cx="45" cy="0" r="5"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '3-stump'">
 							<line class="line" x1="0" y1="0" x2="90" y2="0"/>
@@ -28,6 +30,7 @@
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<circle class="void" cx="95" cy="0" r="5"/>
 						</xsl:when>
+						<!-- stumps END -->
 						<!-- split group 1 START -->
 						<xsl:when test="@row = '1-split-3-2'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
@@ -40,9 +43,15 @@
 							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
-							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 1 END -->
 						<!-- split group 2 START -->
@@ -55,8 +64,12 @@
 							<polyline class="line stream l66" points="52,4 60,4 85,22 144,22 233,22" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-5" width="14" height="14"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 2 END -->
 						<!-- split group 3 START -->
@@ -69,8 +82,12 @@
 							<polyline class="line stream l66" points="52,-4 60,-4 85,-22 144,-22 233,-22" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-9" width="14" height="14"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 3 END -->
 
@@ -82,8 +99,12 @@
 							<line class="line joint stream" x1="192" y1="22" x2="234" y2="22"/>
 							<rect class="chip joint" x="178" y="15" width="14" height="14"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket joint" x="233" y="17" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket joint" x="233" y="17" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 
 						<xsl:when test="@row = '4-split-6-4'">
@@ -100,10 +121,18 @@
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
 							<rect class="chip" x="143" y="15" width="14" height="14"/>
-							<rect class="socket disconnected" x="233" y="-27" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket disconnected" x="233" y="17" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="39" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-27" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket disconnected" x="233" y="17" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="39" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 2"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 4 END -->
 						
@@ -122,9 +151,15 @@
 							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
-							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3" sub="rep"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="17" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3" sub="rep">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 5 END -->
 						
@@ -143,9 +178,15 @@
 							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
-							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket purple" x="233" y="17" width="13" height="9" rx="3" sub="rep"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket purple" x="233" y="17" width="13" height="9" rx="3" sub="rep">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 6 END -->
 
@@ -162,9 +203,15 @@
 							<rect class="chip" x="105" y="-7" width="14" height="14" sub="rep"/>
 							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3" sub="rep"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
-							<rect class="socket" x="233" y="17" width="13" height="9" rx="3" sub="rep"/>
+							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3" sub="rep">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</rect>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket" x="233" y="17" width="13" height="9" rx="3" sub="rep">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split group 7 END -->
 
@@ -181,7 +228,9 @@
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip" x="38" y="-7" width="14" height="14"/>
 							<rect class="chip" x="178" y="-7" width="14" height="14"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- split join group 1 END -->
 
@@ -190,7 +239,9 @@
 							<polyline class="line" points="0,0 144,0 169,20 178,20" />
 							<polyline class="line stream l66" points="0,0 144,0 169,20 178,20" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '1-join-3-2'">
 							<line class="line" x1="0" y1="0" x2="105" y2="0"/>
@@ -200,13 +251,17 @@
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<circle class="diode" cx="105" cy="0" r="5"/>
 							<rect class="chip joint" x="178" y="-7" width="14" height="14"/>
-							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '1-join-3-3'">
 							<polyline class="line" points="0,0 144,0 169,-20 178,-20" />
 							<polyline class="line stream l66" points="0,0 144,0 169,-20 178,-20" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- join group 1 END -->
 						<!-- join group 2 START -->
@@ -217,13 +272,17 @@
 							<line class="line joint stream" x1="192" y1="0" x2="233" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip joint" x="178" y="-5" width="14" height="14"/>
-							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '2-join-2-2'">
 							<polyline class="line" points="0,0 144,0 169,-18 178,-18" />
 							<polyline class="line stream l66" points="0,0 144,0 169,-18 178,-18" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- join group 2 END -->
 						<!-- join group 3 START -->
@@ -231,7 +290,9 @@
 							<polyline class="line" points="0,0 144,0 169,18 178,18" />
 							<polyline class="line stream l66" points="0,0 144,0 169,18 178,18" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '3-join-2-2'">
 							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
@@ -240,7 +301,9 @@
 							<line class="line joint stream" x1="192" y1="0" x2="233" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip joint" x="178" y="-9" width="14" height="14"/>
-							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- join group 3 END -->
 
@@ -252,7 +315,9 @@
 							<line class="line stream l65" x1="159" y1="0" x2="234" y2="0" sub="rep"/>
 							<polygon class="repeater" points="144,-7 149,-7 161,0 149,7 144,7" sub="rep"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3" sub="rep"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3" sub="rep">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '2-repeater'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
@@ -261,7 +326,9 @@
 							<line class="line stream purple l66" x1="54" y1="0" x2="234" y2="0" sub="rep"/>
 							<polygon class="repeater purple" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket purple" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket purple" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '3-repeater'">
 							<line class="line" x1="0" y1="0" x2="144" y2="0"/>
@@ -270,7 +337,9 @@
 							<line class="line stream l65 purple" x1="159" y1="0" x2="234" y2="0" sub="rep"/>
 							<polygon class="repeater purple" points="144,-7 149,-7 161,0 149,7 144,7" sub="rep"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket purple" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket purple" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '4-repeater'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
@@ -279,7 +348,9 @@
 							<line class="line stream l66" x1="54" y1="0" x2="234" y2="0" sub="rep"/>
 							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:when>
 						<!-- repeaters END -->
 
@@ -287,7 +358,9 @@
 							<line class="line" x1="0" y1="0" x2="234" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
-							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3"/>
+							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
 						</xsl:otherwise>
 					</xsl:choose>
 				</g>

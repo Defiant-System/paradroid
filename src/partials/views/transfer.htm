@@ -3,38 +3,40 @@
 <div class="transfer-view hidden" data-area="transfer" data-name="Transfer">
 
 	<!-- circuit board filters -->
-	<svg viewBox="0 0 277 584">
-		<defs>
-			<filter id="line" filterUnits="userSpaceOnUse">
-				<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
-				<feGaussianBlur in="dilated" stdDeviation="4" result="blur1"/>
-				<feComposite in="blur1" in2="SourceGraphic" operator="lighter" result="blur"/>
-				<feColorMatrix in="SourceGraphic"
-								result="white"
-								type="matrix"
-								values="0 0 0 1 0
-										0 0 0 1 0
-										0 0 0 1 0
-										0 0 0 1 0" />
-				<feComposite in="blur" in2="white" operator="over" result="blur"/>
-			</filter>
+	<div class="filters">
+		<svg viewBox="0 0 277 584">
+			<defs>
+				<filter id="line" filterUnits="userSpaceOnUse">
+					<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
+					<feGaussianBlur in="dilated" stdDeviation="4" result="blur1"/>
+					<feComposite in="blur1" in2="SourceGraphic" operator="lighter" result="blur"/>
+					<feColorMatrix in="SourceGraphic"
+									result="white"
+									type="matrix"
+									values="0 0 0 1 0
+											0 0 0 1 0
+											0 0 0 1 0
+											0 0 0 1 0" />
+					<feComposite in="blur" in2="white" operator="over" result="blur"/>
+				</filter>
 
-			<filter id="stream" filterUnits="userSpaceOnUse">
-				<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
-				<feGaussianBlur in="dilated" stdDeviation="1" result="blur1"/>
-				<feGaussianBlur in="dilated" stdDeviation="2" result="blur2"/>
-				<feComposite in="blur1" in2="blur2" operator="lighter" result="blur"/>
-				<feColorMatrix in="SourceGraphic"
-								result="white"
-								type="matrix"
-								values="0 0 0 1 0
-										0 0 0 1 0
-										0 0 0 1 0
-										0 0 0 1 0" />
-				<feComposite in="blur" in2="white" operator="over" result="blur"/>
-			</filter>
-		</defs>
-	</svg>
+				<filter id="stream" filterUnits="userSpaceOnUse">
+					<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
+					<feGaussianBlur in="dilated" stdDeviation="1" result="blur1"/>
+					<feGaussianBlur in="dilated" stdDeviation="2" result="blur2"/>
+					<feComposite in="blur1" in2="blur2" operator="lighter" result="blur"/>
+					<feColorMatrix in="SourceGraphic"
+									result="white"
+									type="matrix"
+									values="0 0 0 1 0
+											0 0 0 1 0
+											0 0 0 1 0
+											0 0 0 1 0" />
+					<feComposite in="blur" in2="white" operator="over" result="blur"/>
+				</filter>
+			</defs>
+		</svg>
+	</div>
 
 	<div class="board">
 		<div class="left">
