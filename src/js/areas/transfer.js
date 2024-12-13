@@ -18,6 +18,7 @@
 			available,
 			index,
 			ammo,
+			group,
 			left,
 			right,
 			winner,
@@ -64,10 +65,12 @@
 						// reset switch start
 						el.removeClass("active");
 						// turn off SVG group
-						event.el.parent().find(`svg g:nth-child(${index-1})`).removeClass("on");
+						group.removeClass("on");
 					});
 					// light up SVG group
-					el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
+					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
+					group.find(`[sub="rep"]`).addClass("on");
+
 					// update IO leds
 					Self.els.ioLeds.find(`> div:nth-child(${index-1})`).removeClass("purple yellow").addClass(ammo.data("color"));
 					// update CPU led
@@ -149,7 +152,7 @@
 					}
 				});
 				// temp disable
-				// return;
+				return;
 				// create opponent AI
 				el = Self.els.board.find(".droid:not(.player)");
 				// create opponent AI

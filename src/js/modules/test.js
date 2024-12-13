@@ -38,7 +38,9 @@ let Test = {
 		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 150);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 12 }), 150);
 		return;
 
 
