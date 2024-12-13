@@ -94,7 +94,7 @@
 						<!-- split group 4 START -->
 						<xsl:when test="@row = '4-split-6-1'">
 							<polyline class="line" points="0,0 143,0 168,20 178,20" />
-							<line class="line joint" x1="192" y1="22" x2="234" y2="22"/>
+							<line class="line joint" x1="192" y1="22" x2="234" y2="22" join="i1"/>
 							<polyline class="line stream l66" points="0,0 143,0 168,20 178,20" />
 							<line class="line joint stream" x1="192" y1="22" x2="234" y2="22"/>
 							<rect class="chip joint" x="178" y="15" width="14" height="14"/>
@@ -102,13 +102,13 @@
 							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
 							</rect>
-							<rect class="socket joint" x="233" y="17" width="13" height="9" rx="3">
+							<rect class="socket joint" x="233" y="17" width="13" height="9" rx="3" sub="soc">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
 							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '4-split-6-4'">
 							<line class="line" x1="0" y1="0" x2="40" y2="0"/>
-							<polyline class="line" points="52,-2 60,-2 85,-22 143,-22 168,-42 178,-42" />
+							<polyline class="line" points="52,-2 60,-2 85,-22 143,-22 168,-42 178,-42" join="i2" prev="2"/>
 							<polyline class="line" points="52,2 60,2 85,22 143,22" />
 							<polyline class="line" points="157,20 167,20 192,0 234,0" />
 							<polyline class="line" points="157,24 167,24 192,44 234,44" />
