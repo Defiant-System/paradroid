@@ -20,12 +20,20 @@ class HackerAI {
 		// this.fpsControl.start();
 	}
 
+	setOrder(arr) {
+		this.order = arr;
+	}
+
 	chooseConn() {
-		let available = this.pEl.find(".io .toggler > div:not(.active)").map(el => $(el).index()+1);
-		// remove first / entry position
-		available = available.slice(1);
-		// set target
-		this.target = available[Utils.randomInt(0, available.length)];
+		if (this.order) {
+			this.target = this.order.shift();
+		} else {
+			let available = this.pEl.find(".io .toggler > div:not(.active)").map(el => $(el).index()+1);
+			// remove first / entry position
+			available = available.slice(1);
+			// set target
+			this.target = available[Utils.randomInt(0, available.length)];
+		}
 	}
 
 	gotoConn() {

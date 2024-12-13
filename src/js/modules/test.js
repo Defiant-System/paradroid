@@ -40,7 +40,11 @@ let Test = {
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 150);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 12 }), 150);
+
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 8 }), 1200);
+
+		setTimeout(() => APP.transfer.AI.setOrder([2]), 200);
 		return;
 
 

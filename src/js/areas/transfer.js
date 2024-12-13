@@ -69,7 +69,7 @@
 					});
 					// light up SVG group
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
-					group.find(`[sub="rep"]`).addClass("on");
+					group.find(`[sub="rep"], [sub="soc"]`).addClass("on");
 
 					// update IO leds
 					group.find(".socket[data-pos]").map(elem => {
@@ -77,6 +77,9 @@
 						if (socket.hasClass("on")) {
 							let index = socket.data("pos"),
 								color = socket.cssProp("--color") === socket.cssProp("--yellow") ? "yellow" : "purple";
+							// if (ammo.parents(".right").length) {
+							// 	console.log(socket, color);
+							// }
 							Self.els.ioLeds.find(`> div:nth-child(${index})`).removeClass("purple yellow").addClass(color);
 						}
 					});
@@ -161,7 +164,7 @@
 					}
 				});
 				// temp disable
-				return;
+				// return;
 				// create opponent AI
 				el = Self.els.board.find(".droid:not(.player)");
 				// create opponent AI
