@@ -41,7 +41,8 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 150);
 
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 7 }), 1100);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 5 }), 1100);
 		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 8 }), 1200);
 
 		setTimeout(() => APP.transfer.AI.setOrder([2]), 200);

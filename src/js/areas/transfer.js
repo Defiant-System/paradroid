@@ -71,19 +71,26 @@
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
 					group.find(`[sub="rep"], [sub="soc"]`).addClass("on");
 
-					// update IO leds
-					group.find(".socket[data-pos]").map(elem => {
-						let socket = $(elem);
-						if (socket.hasClass("on")) {
-							let index = socket.data("pos"),
-								color = socket.cssProp("--color") === socket.cssProp("--yellow") ? "yellow" : "purple";
-							// if (ammo.parents(".right").length) {
-							// 	console.log(socket, color);
-							// }
-							Self.els.ioLeds.find(`> div:nth-child(${index})`).removeClass("purple yellow").addClass(color);
+					// join 1
+					group.find("[join]").map(elem => {
+						let line = $(elem),
+							input = line.attr("join"),
+							jLine = input === "i1" ? group : (input === "i2" ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
+							chip = jLine.find(".chip.joint");
+						// handles join special scenario
+						if (input === "i3") input = "i2";
+						// add to chip inputs
+						chip.addClass(input);
+						// enable joint line
+						if (chip.hasClass("i1") && chip.hasClass("i2")) {
+							jLine.find(".joint").removeClass("joint");
+							jLine.addClass("joint-on");
+							// toggle IO led
+							if (input === "i2") Self.dispatch({ type: "toggle-io-led", group: jLine });
 						}
 					});
-
+					// toggle IO led
+					Self.dispatch({ type: "toggle-io-led", group });
 					// update CPU led
 					Self.dispatch({ type: "update-winning-cpu" });
 					// reduce ammo count
@@ -91,6 +98,17 @@
 					// reset active
 					el.data({ active: left > 0 ? 1 : 0 });
 				}
+				break;
+			case "toggle-io-led":
+				// update IO leds
+				event.group.find(".socket[data-pos]").map(elem => {
+					let socket = $(elem);
+					if (socket.hasClass("on")) {
+						let index = socket.data("pos"),
+							color = socket.cssProp("--color") === socket.cssProp("--yellow") ? "yellow" : "purple";
+						Self.els.ioLeds.find(`> div:nth-child(${index})`).removeClass("purple yellow").addClass(color);
+					}
+				});
 				break;
 			case "update-winning-cpu":
 				left = Self.els.ioLeds.find(".yellow").length;

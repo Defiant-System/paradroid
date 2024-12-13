@@ -239,29 +239,29 @@
 						</xsl:when>
 						<!-- split join group 1 END -->
 
-						<!-- join group 1 START -->
+						<!-- [C] join group 1 START -->
 						<xsl:when test="@row = '1-join-3-1'">
-							<polyline class="line" points="0,0 144,0 169,20 178,20" />
+							<polyline class="line" points="0,0 144,0 169,20 178,20" join="i1"/>
+							<line class="line joint" x1="192" y1="22" x2="233" y2="22"/>
 							<polyline class="line stream l66" points="0,0 144,0 169,20 178,20" />
+							<line class="line joint stream" x1="192" y1="22" x2="233" y2="22"/>
+							<rect class="chip joint" x="178" y="15" width="14" height="14"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
+							</rect>
+							<rect class="socket joint" x="233" y="17" width="13" height="9" rx="3" sub="soc">
+								<xsl:attribute name="data-pos"><xsl:value-of select="$pos + 1"/></xsl:attribute>
 							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '1-join-3-2'">
 							<line class="line" x1="0" y1="0" x2="105" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="105" y2="0"/>
-							<line class="line joint" x1="192" y1="0" x2="233" y2="0"/>
-							<line class="line joint stream" x1="0" y1="0" x2="105" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<circle class="diode" cx="105" cy="0" r="5"/>
-							<rect class="chip joint" x="178" y="-7" width="14" height="14"/>
-							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3">
-								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
-							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '1-join-3-3'">
-							<polyline class="line" points="0,0 144,0 169,-20 178,-20" />
+							<polyline class="line" points="0,0 144,0 169,-20 178,-20" join="i2" prev="1"/>
 							<polyline class="line stream l66" points="0,0 144,0 169,-20 178,-20" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
@@ -269,20 +269,20 @@
 							</rect>
 						</xsl:when>
 						<!-- join group 1 END -->
-						<!-- join group 2 START -->
+						<!-- [C] join group 2 START -->
 						<xsl:when test="@row = '2-join-2-1'">
-							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
+							<line class="line" x1="0" y1="0" x2="178" y2="0" join="i1"/>
 							<line class="line joint" x1="192" y1="0" x2="233" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="178" y2="0"/>
 							<line class="line joint stream" x1="192" y1="0" x2="233" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip joint" x="178" y="-5" width="14" height="14"/>
-							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3">
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3" sub="soc">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
 							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '2-join-2-2'">
-							<polyline class="line" points="0,0 144,0 169,-18 178,-18" />
+							<polyline class="line" points="0,0 144,0 169,-18 178,-18" join="i2" prev="0"/>
 							<polyline class="line stream l66" points="0,0 144,0 169,-18 178,-18" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
@@ -290,9 +290,9 @@
 							</rect>
 						</xsl:when>
 						<!-- join group 2 END -->
-						<!-- join group 3 START -->
+						<!-- [C] join group 3 START -->
 						<xsl:when test="@row = '3-join-2-1'">
-							<polyline class="line" points="0,0 144,0 169,18 178,18" />
+							<polyline class="line" points="0,0 144,0 169,18 178,18" join="i3" next="0"/>
 							<polyline class="line stream l66" points="0,0 144,0 169,18 178,18" />
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket disconnected" x="233" y="-5" width="13" height="9" rx="3">
@@ -300,13 +300,13 @@
 							</rect>
 						</xsl:when>
 						<xsl:when test="@row = '3-join-2-2'">
-							<line class="line" x1="0" y1="0" x2="178" y2="0"/>
+							<line class="line" x1="0" y1="0" x2="178" y2="0" join="i1"/>
 							<line class="line joint" x1="192" y1="0" x2="233" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="178" y2="0"/>
 							<line class="line joint stream" x1="192" y1="0" x2="233" y2="0"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="chip joint" x="178" y="-9" width="14" height="14"/>
-							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3">
+							<rect class="socket joint" x="233" y="-5" width="13" height="9" rx="3" sub="soc">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
 							</rect>
 						</xsl:when>
