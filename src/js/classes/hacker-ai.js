@@ -12,12 +12,12 @@ class HackerAI {
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
 			fps: 6,
+			autoplay: true,
 			callback(time, delta) {
 				Self.tick();
 			}
 		});
-
-		this.fpsControl.start();
+		// this.fpsControl.start();
 	}
 
 	chooseConn() {

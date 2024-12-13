@@ -2,30 +2,30 @@
 <Data>
 	<CircuitBoard id="left">
 		<i />
-		<i row="1-join-3-1" />
-		<i row="1-join-3-2" />
-		<i row="1-join-3-3" />
 		<i />
-		<i row="2-join-2-1" />
-		<i row="2-join-2-2" />
 		<i />
-		<i row="3-join-2-1" />
-		<i row="3-join-2-2" />
+		<i />
+		<i />
+		<i />
+		<i />
+		<i />
+		<i />
+		<i />
 		<i />
 		<i />
 	</CircuitBoard>
 
 	<CircuitBoard id="right">
 		<i />
-		<i row="1-join-3-1" />
-		<i row="1-join-3-2" />
-		<i row="1-join-3-3" />
 		<i />
-		<i row="2-join-2-1" />
-		<i row="2-join-2-2" />
 		<i />
-		<i row="3-join-2-1" />
-		<i row="3-join-2-2" />
+		<i />
+		<i />
+		<i />
+		<i />
+		<i />
+		<i />
+		<i />
 		<i />
 		<i />
 	</CircuitBoard>

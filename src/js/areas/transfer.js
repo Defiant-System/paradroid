@@ -6,6 +6,8 @@
 		// fast references
 		this.els = {
 			board: window.find(".board"),
+			cpu: window.find(".center .cpu"),
+			ioLeds: window.find(".board .io-leds"),
 			cbLeft: window.find(".board .left .io"),
 			cbRight: window.find(".board .right .io"),
 		};
@@ -17,6 +19,8 @@
 			index,
 			ammo,
 			left,
+			right,
+			winner,
 			row,
 			el;
 		// console.log(event);
@@ -56,14 +60,33 @@
 				left = +ammo.data("left");
 				if (index > 1 && left > -1) {
 					// light up active line
-					el.find(`> div:nth-child(${index})`).addClass("active");
+					el.find(`> div:nth-child(${index})`).cssSequence("active", "transitionend", el => {
+						// reset switch start
+						el.removeClass("active");
+						// turn off SVG group
+						event.el.parent().find(`svg g:nth-child(${index-1})`).removeClass("on");
+					});
 					// light up SVG group
 					el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
+					// update IO leds
+					Self.els.ioLeds.find(`> div:nth-child(${index-1})`).removeClass("purple yellow").addClass(ammo.data("color"));
+					// update CPU led
+					Self.dispatch({ type: "update-winning-cpu" });
 					// reduce ammo count
 					ammo.data({ left: left - 1 });
 					// reset active
 					el.data({ active: left > 0 ? 1 : 0 });
 				}
+				break;
+			case "update-winning-cpu":
+				left = Self.els.ioLeds.find(".yellow").length;
+				right = Self.els.ioLeds.find(".purple").length;
+				switch (true) {
+					case (left === right): winner = "deadlock"; break;
+					case (left > right): winner = "yellow"; break;
+					case (left < right): winner = "purple"; break;
+				}
+				Self.els.cpu.data({ winner });
 				break;
 			case "new-hacking-game":
 				// delete "old" schema
@@ -125,6 +148,8 @@
 							break;
 					}
 				});
+				// temp disable
+				// return;
 				// create opponent AI
 				el = Self.els.board.find(".droid:not(.player)");
 				// create opponent AI
