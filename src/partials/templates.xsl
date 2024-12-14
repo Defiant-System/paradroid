@@ -91,7 +91,7 @@
 						</xsl:when>
 						<!-- split group 3 END -->
 
-						<!-- split group 4 START -->
+						<!-- [C] split group 4 START -->
 						<xsl:when test="@row = '4-split-6-1'">
 							<polyline class="line" points="0,0 143,0 168,20 178,20" />
 							<line class="line joint" x1="192" y1="22" x2="234" y2="22" join="i1"/>
@@ -359,7 +359,7 @@
 						</xsl:when>
 						<!-- repeaters END -->
 
-						<!-- [C] -->
+						<!-- [C] simple line -->
 						<xsl:otherwise>
 							<line class="line" x1="0" y1="0" x2="234" y2="0"/>
 							<line class="line stream" x1="0" y1="0" x2="234" y2="0"/>

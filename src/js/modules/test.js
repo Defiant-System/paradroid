@@ -33,7 +33,6 @@ let Test = {
 		
 		/*
 		 * TRANSFER View
-		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
 		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 
@@ -47,6 +46,7 @@ let Test = {
 
 		setTimeout(() => APP.transfer.AI.setOrder([2]), 200);
 		return;
+		 */
 
 
 		/*
