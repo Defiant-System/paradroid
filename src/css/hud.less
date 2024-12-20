@@ -15,6 +15,39 @@
 	.left {
 		position: relative;
 		flex: 1;
+		min-height: 0px;
+
+		&.reset {
+			.bar .box {
+				--power-dur: 20ms;
+			}
+		}
+
+		&.timer {
+			--timer: 9s;
+			min-height: 1px;
+			transition: min-height var( --timer ) linear;
+
+			.bar .box {
+				--val: 100%;
+				--power-dur: var( --timer );
+			}
+		}
+
+		&.choose-color {
+			.bar .box {
+				--val: 0%;
+			}
+
+			.view-title {
+				font-size: 0;
+
+				&:before {
+					content: "Color ?";
+					font-size: 22px;
+				}
+			}
+		}
 
 		.bar {
 			top: -15px;
@@ -98,6 +131,11 @@
 		position: relative;
 		// flex: 1;
 		width: 210px;
+
+		&.hidden {
+			opacity: 0;
+			visibility: hidden;
+		}
 
 		.bar {
 			top: -17px;

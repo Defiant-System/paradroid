@@ -33,20 +33,20 @@ let Test = {
 		
 		/*
 		 * TRANSFER View
+		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
+		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 550);
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 150);
 
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 7 }), 1100);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 9 }), 1000);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 9 }), 1000);
 
-		setTimeout(() => APP.transfer.AI.setOrder([2]), 200);
+		// setTimeout(() => APP.transfer.AI.setOrder([2]), 200);
 		return;
-		 */
 
 
 		/*

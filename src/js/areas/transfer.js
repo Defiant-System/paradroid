@@ -9,7 +9,9 @@
 			cpu: window.find(".center .cpu"),
 			ioLeds: window.find(".board .io-leds"),
 			cbLeft: window.find(".board .left .io"),
+			droidLeft: window.find(".board .left .droid"),
 			cbRight: window.find(".board .right .io"),
+			droidRight: window.find(".board .right .droid"),
 		};
 	},
 	dispatch(event) {
@@ -49,7 +51,26 @@
 						break;
 					case "space":
 					case "return":
-						Self.dispatch({ type: "toggle-io-row", el, index });
+						if (Self.chooseColor) Self.dispatch({ type: "start-hacking" });
+						else Self.dispatch({ type: "toggle-io-row", el, index });
+						break;
+					case "a":
+					case "left":
+						if (Self.chooseColor) {
+							let player = APP.mobile.arena.player.id,
+								opponent = APP.mobile.arena.player.opponent;
+							Self.els.droidLeft.data({ id: player }).addClass("player");
+							Self.els.droidRight.data({ id: opponent }).removeClass("player");
+						}
+						break;
+					case "d":
+					case "right":
+						if (Self.chooseColor) {
+							let player = APP.mobile.arena.player.id,
+								opponent = APP.mobile.arena.player.opponent;
+							Self.els.droidLeft.data({ id: opponent }).removeClass("player");
+							Self.els.droidRight.data({ id: player }).addClass("player");
+						}
 						break;
 				}
 				break;
@@ -181,8 +202,23 @@
 							break;
 					}
 				});
+				// choose color flag
+				Self.chooseColor = true;
+				// start timer
+				let callback = () => Self.dispatch({ type: "start-hacking" });
+				APP.hud.dispatch({ type: "choose-color", callback });
+				break;
+			case "start-hacking":
+				// reset hud box
+				APP.hud.dispatch({ type: "reset-choose-color" });
+				// start hacking game
+				delete Self.chooseColor;
+
+				console.log("start");
+
 				// temp disable
-				// return;
+				return;
+
 				// create opponent AI
 				el = Self.els.board.find(".droid:not(.player)");
 				// create opponent AI

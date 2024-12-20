@@ -7,6 +7,8 @@
 		this.els = {
 			content: window.find("content"),
 			el: window.find(".hud-view"),
+			barLeft: window.find(".left"),
+			barRight: window.find(".right"),
 		};
 	},
 	dispatch(event) {
@@ -41,6 +43,18 @@
 				Self.els.el.find(".right .box").css({
 					"--val": `${event.power * 100}%`,
 				});
+				break;
+			case "choose-color":
+				Self.els.barRight.addClass("hidden");
+				Self.els.barLeft
+					.addClass("choose-color")
+					.cssSequence("timer", "transitionend", el => event.callback());
+				break;
+			case "reset-choose-color":
+				// reset hud
+				Self.els.barRight.removeClass("hidden");
+				Self.els.barLeft.removeClass("choose-color timer")
+					.cssSequence("reset", "transitionend", el => el.removeClass("reset"));
 				break;
 		}
 	}

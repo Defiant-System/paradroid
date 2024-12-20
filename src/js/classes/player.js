@@ -21,6 +21,8 @@ class Player extends Droid {
 		};
 		// update label
 		this.body.label = "player";
+		// temp
+		this.opponent = "249";
 
 		this.input = {
 			up:    { pressed: false, force: { x: 0, y: -1 } },
