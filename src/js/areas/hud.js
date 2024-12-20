@@ -48,12 +48,18 @@
 				Self.els.barRight.addClass("hidden");
 				Self.els.barLeft
 					.addClass("choose-color")
-					.cssSequence("timer", "transitionend", el => event.callback());
+					.cssSequence("color-timer", "transitionend", el => event.callback());
+				break;
+			case "hacking-progress":
+				Self.els.barRight.addClass("hidden");
+				Self.els.barLeft
+					.addClass("choose-color")
+					.cssSequence("hack-timer", "transitionend", el => event.callback());
 				break;
 			case "reset-choose-color":
 				// reset hud
 				Self.els.barRight.removeClass("hidden");
-				Self.els.barLeft.removeClass("choose-color timer")
+				Self.els.barLeft.removeClass("choose-color color-timer hack-timer")
 					.cssSequence("reset", "transitionend", el => el.removeClass("reset"));
 				break;
 		}
