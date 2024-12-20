@@ -28,7 +28,7 @@
 		pointer-events: none;
 	}
 
-	&.finished {
+	&.success {
 		.finish {
 			display: block;
 		}
@@ -39,7 +39,7 @@
 	}
 
 	.finish {
-		// display: none;
+		display: none;
 		position: absolute;
 		top: 23px;
 		left: 0;
@@ -49,6 +49,32 @@
 		text-shadow: 0 1px 1px rgba(#000,.25);
 		text-align: center;
 		font-family: "ParaDrew";
+
+		&[data-id="001"] { span.droid-id:before { content: "001"; } .blueprint { background-image: url(~/icons/bp-001.png); } }
+		&[data-id="123"] { span.droid-id:before { content: "123"; } .blueprint { background-image: url(~/icons/bp-123.png); } }
+		&[data-id="139"] { span.droid-id:before { content: "139"; } .blueprint { background-image: url(~/icons/bp-139.png); } }
+		&[data-id="247"] { span.droid-id:before { content: "247"; } .blueprint { background-image: url(~/icons/bp-247.png); } }
+		&[data-id="249"] { span.droid-id:before { content: "249"; } .blueprint { background-image: url(~/icons/bp-249.png); } }
+		&[data-id="296"] { span.droid-id:before { content: "296"; } .blueprint { background-image: url(~/icons/bp-296.png); } }
+		&[data-id="302"] { span.droid-id:before { content: "302"; } .blueprint { background-image: url(~/icons/bp-302.png); } }
+		&[data-id="329"] { span.droid-id:before { content: "329"; } .blueprint { background-image: url(~/icons/bp-329.png); } }
+		&[data-id="420"] { span.droid-id:before { content: "420"; } .blueprint { background-image: url(~/icons/bp-420.png); } }
+		&[data-id="476"] { span.droid-id:before { content: "476"; } .blueprint { background-image: url(~/icons/bp-476.png); } }
+		&[data-id="493"] { span.droid-id:before { content: "493"; } .blueprint { background-image: url(~/icons/bp-493.png); } }
+		&[data-id="516"] { span.droid-id:before { content: "516"; } .blueprint { background-image: url(~/icons/bp-516.png); } }
+		&[data-id="571"] { span.droid-id:before { content: "571"; } .blueprint { background-image: url(~/icons/bp-571.png); } }
+		&[data-id="598"] { span.droid-id:before { content: "598"; } .blueprint { background-image: url(~/icons/bp-598.png); } }
+		&[data-id="614"] { span.droid-id:before { content: "614"; } .blueprint { background-image: url(~/icons/bp-614.png); } }
+		&[data-id="615"] { span.droid-id:before { content: "615"; } .blueprint { background-image: url(~/icons/bp-615.png); } }
+		&[data-id="629"] { span.droid-id:before { content: "629"; } .blueprint { background-image: url(~/icons/bp-629.png); } }
+		&[data-id="711"] { span.droid-id:before { content: "711"; } .blueprint { background-image: url(~/icons/bp-711.png); } }
+		&[data-id="737"] { span.droid-id:before { content: "737"; } .blueprint { background-image: url(~/icons/bp-737.png); } }
+		&[data-id="742"] { span.droid-id:before { content: "742"; } .blueprint { background-image: url(~/icons/bp-742.png); } }
+		&[data-id="751"] { span.droid-id:before { content: "751"; } .blueprint { background-image: url(~/icons/bp-751.png); } }
+		&[data-id="821"] { span.droid-id:before { content: "821"; } .blueprint { background-image: url(~/icons/bp-821.png); } }
+		&[data-id="834"] { span.droid-id:before { content: "834"; } .blueprint { background-image: url(~/icons/bp-834.png); } }
+		&[data-id="883"] { span.droid-id:before { content: "883"; } .blueprint { background-image: url(~/icons/bp-883.png); } }
+		&[data-id="999"] { span.droid-id:before { content: "999"; } .blueprint { background-image: url(~/icons/bp-999.png); } }
 
 		h2 {
 			font-size: 53px;
@@ -85,32 +111,6 @@
 				mix-blend-mode: soft-light;
 				z-index: 1;
 			}
-
-			&[data-id="001"] { background-image: url(~/icons/bp-001.png); }
-			&[data-id="123"] { background-image: url(~/icons/bp-123.png); }
-			&[data-id="139"] { background-image: url(~/icons/bp-139.png); }
-			&[data-id="247"] { background-image: url(~/icons/bp-247.png); }
-			&[data-id="249"] { background-image: url(~/icons/bp-249.png); }
-			&[data-id="296"] { background-image: url(~/icons/bp-296.png); }
-			&[data-id="302"] { background-image: url(~/icons/bp-302.png); }
-			&[data-id="329"] { background-image: url(~/icons/bp-329.png); }
-			&[data-id="420"] { background-image: url(~/icons/bp-420.png); }
-			&[data-id="476"] { background-image: url(~/icons/bp-476.png); }
-			&[data-id="493"] { background-image: url(~/icons/bp-493.png); }
-			&[data-id="516"] { background-image: url(~/icons/bp-516.png); }
-			&[data-id="571"] { background-image: url(~/icons/bp-571.png); }
-			&[data-id="598"] { background-image: url(~/icons/bp-598.png); }
-			&[data-id="614"] { background-image: url(~/icons/bp-614.png); }
-			&[data-id="615"] { background-image: url(~/icons/bp-615.png); }
-			&[data-id="629"] { background-image: url(~/icons/bp-629.png); }
-			&[data-id="711"] { background-image: url(~/icons/bp-711.png); }
-			&[data-id="737"] { background-image: url(~/icons/bp-737.png); }
-			&[data-id="742"] { background-image: url(~/icons/bp-742.png); }
-			&[data-id="751"] { background-image: url(~/icons/bp-751.png); }
-			&[data-id="821"] { background-image: url(~/icons/bp-821.png); }
-			&[data-id="834"] { background-image: url(~/icons/bp-834.png); }
-			&[data-id="883"] { background-image: url(~/icons/bp-883.png); }
-			&[data-id="999"] { background-image: url(~/icons/bp-999.png); }
 		}
 	}
 

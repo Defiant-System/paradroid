@@ -5,6 +5,7 @@
 	init() {
 		// fast references
 		this.els = {
+			el: window.find(".transfer-view"),
 			board: window.find(".board"),
 			cpu: window.find(".center .cpu"),
 			ioLeds: window.find(".board .io-leds"),
@@ -17,6 +18,7 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.transfer,
+			callback,
 			available,
 			index,
 			ammo,
@@ -25,6 +27,7 @@
 			right,
 			winner,
 			row,
+			value,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -202,27 +205,33 @@
 							break;
 					}
 				});
+
 				// choose color flag
 				Self.chooseColor = true;
 				// start timer
-				let callback = () => Self.dispatch({ type: "start-hacking" });
+				callback = () => Self.dispatch({ type: "start-hacking" });
 				APP.hud.dispatch({ type: "choose-color", callback });
 				break;
 			case "start-hacking":
 				// reset hud box
-				APP.hud.dispatch({ type: "reset-choose-color" });
+				callback = () => Self.dispatch({ type: "finish-hacking" });
+				APP.hud.dispatch({ type: "hacking-progress", callback });
 				// start hacking game
 				delete Self.chooseColor;
 
-				console.log("start");
-
-				// temp disable
-				return;
+				// console.log("start");
+				// // temp disable
+				// return;
 
 				// create opponent AI
 				el = Self.els.board.find(".droid:not(.player)");
 				// create opponent AI
 				Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+				break;
+			case "finish-hacking":
+				Self.els.el.addClass("success");
+				value = Self.els.board.find(".droid:not(.player)").data("id");
+				Self.els.el.find(".finish").data({ id: value });
 				break;
 		}
 	}

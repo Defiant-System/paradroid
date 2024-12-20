@@ -23,7 +23,18 @@
 			}
 		}
 
-		&.timer {
+		&.hack-timer {
+			--timer: 20s;
+			min-height: 1px;
+			transition: min-height var( --timer ) linear;
+
+			.bar .box {
+				--val: 100%;
+				--power-dur: var( --timer );
+			}
+		}
+
+		&.color-timer {
 			--timer: 9s;
 			min-height: 1px;
 			transition: min-height var( --timer ) linear;
