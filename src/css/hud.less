@@ -18,13 +18,16 @@
 		min-height: 0px;
 
 		&.reset {
+			--timer: 60ms;
+			transition: min-height var( --timer ) linear;
+
 			.bar .box {
-				--power-dur: 20ms;
+				--power-dur: var( --timer );
 			}
 		}
 
 		&.hack-timer {
-			--timer: 20s;
+			--timer: 15s;
 			min-height: 1px;
 			transition: min-height var( --timer ) linear;
 
@@ -33,6 +36,13 @@
 				--power-dur: var( --timer );
 			}
 		}
+
+		&.hacking-game {
+			.bar .box {
+				--val: 0%;
+			}
+		}
+
 
 		&.color-timer {
 			--timer: 9s;

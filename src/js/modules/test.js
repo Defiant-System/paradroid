@@ -35,7 +35,8 @@ let Test = {
 		 * TRANSFER View
 		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 550);
+		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 250);
+		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);

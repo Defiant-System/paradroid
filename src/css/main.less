@@ -432,6 +432,7 @@ content {
 		perspective: 400px;
 		perspective-origin: 50% 50%;
 		backface-visibility: visible;
+		pointer-events: none;
 		--power-dur: 300ms;
 
 		.box {
@@ -440,6 +441,7 @@ content {
 			transition: all var( --power-dur ) linear;
 			transform: rotateX(75deg) rotateY(0deg);
 			transform-style: preserve-3d;
+			pointer-events: all;
 			--val: 100%;
 			--c1: color-mix(in lab, #a800ff, #00c9c8 var( --val ) ); // green
 			--c2: color-mix(in lab, var( --c1 ) 60%, transparent 100% );

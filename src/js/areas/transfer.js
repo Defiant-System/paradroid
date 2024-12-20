@@ -38,7 +38,7 @@
 				switch (event.char) {
 					case "w":
 					case "up":
-						if (index > 0) {
+						if (!Self.chooseColor && index > 0) {
 							available = el.find("> div:not(.active)").map(el => $(el).index()+1);
 							index = available[available.indexOf(index) - 1];
 							if (index) el.data({ active: index });
@@ -46,7 +46,7 @@
 						break;
 					case "d":
 					case "down":
-						if (index > 0) {
+						if (!Self.chooseColor && index > 0) {
 							available = el.find("> div:not(.active)").map(el => $(el).index()+1);
 							index = available[available.indexOf(index) + 1];
 							if (index) el.data({ active: index });
@@ -213,25 +213,27 @@
 				APP.hud.dispatch({ type: "choose-color", callback });
 				break;
 			case "start-hacking":
-				// reset hud box
-				callback = () => Self.dispatch({ type: "finish-hacking" });
-				APP.hud.dispatch({ type: "hacking-progress", callback });
 				// start hacking game
 				delete Self.chooseColor;
+				// reset hud box
+				callback = () => {
+					// start hacking game
+					callback = () => Self.dispatch({ type: "finish-hacking" });
+					APP.hud.dispatch({ type: "hacking-progress", callback });
 
-				// console.log("start");
-				// // temp disable
-				// return;
-
-				// create opponent AI
-				el = Self.els.board.find(".droid:not(.player)");
-				// create opponent AI
-				Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+					// create opponent AI
+					el = Self.els.board.find(".droid:not(.player)");
+					Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+				};
+				APP.hud.dispatch({ type: "reset-choose-color", callback });
 				break;
 			case "finish-hacking":
-				Self.els.el.addClass("success");
-				value = Self.els.board.find(".droid:not(.player)").data("id");
-				Self.els.el.find(".finish").data({ id: value });
+				callback = () => {
+					Self.els.el.addClass("success");
+					value = Self.els.board.find(".droid:not(.player)").data("id");
+					Self.els.el.find(".finish").data({ id: value });
+				};
+				APP.hud.dispatch({ type: "reset-choose-color", callback });
 				break;
 		}
 	}
