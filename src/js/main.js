@@ -131,6 +131,8 @@ const paradroid = {
 				Self.mobile.dispatch({ type: "level-lights-off" });
 				break;
 			// proxy event
+			case "generate-schemas":
+				return Self.transfer.dispatch(event);
 			case "set-player-droid":
 			case "set-debug-mode":
 				return Self.mobile.dispatch(event);

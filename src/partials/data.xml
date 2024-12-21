@@ -30,55 +30,88 @@
 		<i />
 	</CircuitBoard>
 
-	<!--
-		<i row="4-split-6-1" />
-		<i row="3-stump" />
-		<i row="1-stump" />
-		<i row="4-split-6-4" />
-		<i row="1-stump" />
-		<i row="3-stump" />
+	<Groups>
+		<Set size="6">
+			<i row="4-split-6-1"/>
+			<i row="3-stump"/>
+			<i row="1-stump"/>
+			<i row="4-split-6-4"/>
+			<i row="1-stump"/>
+			<i row="3-stump"/>
+		</Set>
 
-		<i row="1-join-3-1" />
-		<i row="1-join-3-2" />
-		<i row="1-join-3-3" />
+		<Set size="3">
+			<i row="1-join-3-1"/>
+			<i row="1-join-3-2"/>
+			<i row="1-join-3-3"/>
+		</Set>
 
-		<i row="2-join-2-1" />
-		<i row="2-join-2-2" />
+		<Set size="2">
+			<i row="2-join-2-1"/>
+			<i row="2-join-2-2"/>
+		</Set>
 
-		<i row="3-join-2-1" />
-		<i row="3-join-2-2" />
+		<Set size="2">
+			<i row="3-join-2-1"/>
+			<i row="3-join-2-2"/>
+		</Set>
 
-		<i row="2-split-2-1" />
-		<i row="1-stump" />
+		<Set size="2">
+			<i row="2-split-2-1"/>
+			<i row="1-stump"/>
+		</Set>
 
-		<i row="1-stump" />
-		<i row="3-split-2-2" />
+		<Set size="2">
+			<i row="1-stump"/>
+			<i row="3-split-2-2"/>
+		</Set>
 
-		<i row="1-stump" />
-		<i row="1-split-join-3-2" />
-		<i row="1-stump" />
+		<Set size="3">
+			<i row="1-stump"/>
+			<i row="1-split-join-3-2"/>
+			<i row="1-stump"/>
+		</Set>
 
-		<i row="1-stump" />
-		<i row="1-split-3-2" />
-		<i row="1-stump" />
+		<Set size="3">
+			<i row="1-stump"/>
+			<i row="1-split-3-2"/>
+			<i row="1-stump"/>
+		</Set>
 
-		<i row="1-stump" />
-		<i row="5-split-repeater-3-2" />
-		<i row="1-stump" />
+		<Set size="3">
+			<i row="1-stump"/>
+			<i row="5-split-repeater-3-2"/>
+			<i row="1-stump"/>
+		</Set>
 
-		<i row="1-stump" />
-		<i row="6-split-repeater-3-2" />
-		<i row="1-stump" />
+		<Set size="3">
+			<i row="1-stump"/>
+			<i row="6-split-repeater-3-2"/>
+			<i row="1-stump"/>
+		</Set>
 
-		<i row="1-stump"/>
-		<i row="7-repeater-split-3-2" />
-		<i row="1-stump"/
+		<Set size="3">
+			<i row="1-stump"/>
+			<i row="7-repeater-split-3-2"/>
+			<i row="1-stump"/>
+		</Set>
 
-		<i row="1-repeater" />
-		<i row="2-repeater" color="purple" />
-		<i row="3-repeater" color="purple" />
-		<i row="4-repeater" />
-	-->
+		<Set size="1">
+			<i row="1-repeater"/>
+		</Set>
+		
+		<Set size="1">
+			<i row="2-repeater" color="purple"/>
+		</Set>
+		
+		<Set size="1">
+			<i row="3-repeater" color="purple"/>
+		</Set>
+
+		<Set size="1">
+			<i row="4-repeater"/>
+		</Set>
+	</Groups>
 
 @import "data/weapon.xml"
 @import "data/droids.xml"

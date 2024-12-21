@@ -35,7 +35,8 @@ let Test = {
 		 * TRANSFER View
 		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 250);
+		setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
+		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);

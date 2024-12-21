@@ -144,6 +144,42 @@
 				}
 				Self.els.cpu.data({ winner });
 				break;
+			case "generate-schemas":
+				// reset blueprint
+				window.bluePrint.selectNodes(`//CircuitBoard/i`).map(x => {
+					x.removeAttribute("row");
+					x.removeAttribute("color");
+				});
+
+				let groups = [[""]],
+					schema = [];
+				// populate groups sets
+				window.bluePrint.selectNodes(`//Groups/Set`).map(xSet => {
+					let group = [];
+					xSet.selectNodes(`./*[@row]`).map(xRow => group.push(xRow.getAttribute("row")));
+					groups.push(group);
+				});
+				
+				while (available = 12 - schema.length) {
+					let selection = groups.filter(a => a.length <= available);
+					let rndSet = selection[Utils.randomInt(0, selection.length)];
+					schema.push(...rndSet);
+				}
+				// apply randomized schema set to xml nodes
+				let xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="left"]/i`);
+				schema.map((r, i) => {
+					xBoard[i].setAttribute("row", r);
+				});
+
+				// delete "old" schema
+				Self.els.cbLeft.find("svg").remove();
+				// render circuit board HTML
+				window.render({
+					template: "circuit-board-left",
+					match: `//CircuitBoard[@id="left"]`,
+					append: Self.els.cbLeft,
+				});
+				break;
 			case "new-hacking-game":
 				// delete "old" schema
 				Self.els.cbLeft.find("svg").remove();
