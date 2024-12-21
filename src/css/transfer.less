@@ -41,7 +41,7 @@
 	.finish {
 		display: none;
 		position: absolute;
-		top: 23px;
+		top: 37px;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -77,11 +77,11 @@
 		&[data-id="999"] { span.droid-id:before { content: "999"; } .blueprint { background-image: url(~/icons/bp-999.png); } }
 
 		h2 {
-			font-size: 53px;
+			font-size: 43px;
 		}
 
 		h3 {
-			font-size: 37px;
+			font-size: 29px;
 		}
 
 		.blueprint {
@@ -579,6 +579,15 @@
 								animation-name: purple-stream;
 
 								&.yellow { stroke: #fea5; }
+							}
+						}
+
+						.on[sub="rep"] {
+							--color: var( --purple );
+							animation-name: purple-stream;
+
+							&.stream:not(.joint) {
+								stroke: #fae8;
 							}
 						}
 					}

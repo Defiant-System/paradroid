@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:template name="circuit-board-left">
+	<xsl:template name="circuit-board">
 		<svg viewBox="0 0 277 292">
 			<xsl:for-each select="./*">
 				<xsl:variable name="pos" select="position()"/>

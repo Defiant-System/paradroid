@@ -35,9 +35,12 @@ let Test = {
 		 * TRANSFER View
 		 */
 		APP.dispatch({ type: "show-view", arg: "transfer" });
-		setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
+		setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
+		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
+
+		// setTimeout(() => APP.transfer.chooseColor = true, 150);
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
@@ -47,7 +50,12 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 9 }), 1000);
 
-		// setTimeout(() => APP.transfer.AI.setOrder([2]), 200);
+		setTimeout(() => {
+			let el = APP.transfer.els.board.find(".droid:not(.player)"),
+				owner = APP.transfer;
+			APP.transfer.AI = new HackerAI({ el, id: el.data("id"), owner });
+			APP.transfer.AI.setOrder([2, 6]);
+		}, 1000);
 		return;
 
 

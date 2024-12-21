@@ -1,34 +1,33 @@
 
 <Data>
 	<CircuitBoard id="left">
-		<i />
-		<i />
-		<i />
-		<i />
-		<i row="4-split-6-1" />
-		<i row="3-stump" />
-		<i row="1-stump" />
-		<i row="4-split-6-4" />
-		<i row="1-stump" />
-		<i row="3-stump" />
-		<i />
-		<i />
-	</CircuitBoard>
-
-	<CircuitBoard id="right">
-		<i />
-		<i />
-		<i />
-		<i />
-		<i />
-		<i row="2-join-2-1" />
-		<i row="2-join-2-2" />
-		<i />
-		<i />
-		<i />
-		<i />
-		<i />
-	</CircuitBoard>
+    <i row="2-split-2-1"/>
+    <i row="1-stump"/>
+    <i row="2-join-2-1"/>
+    <i row="2-join-2-2"/>
+    <i row="1-stump"/>
+    <i row="5-split-repeater-3-2"/>
+    <i row="1-stump"/>
+    <i row="1-repeater"/>
+    <i row="4-repeater"/>
+    <i/>
+    <i/>
+    <i/>
+</CircuitBoard>
+<CircuitBoard id="right">
+    <i row="4-repeater"/>
+    <i row="2-join-2-1"/>
+    <i row="2-join-2-2"/>
+    <i row="1-stump"/>
+    <i row="6-split-repeater-3-2"/>
+    <i row="1-stump"/>
+    <i row="2-join-2-1"/>
+    <i row="2-join-2-2"/>
+    <i row="purple"/>
+    <i row="1-join-3-1"/>
+    <i row="1-join-3-2"/>
+    <i row="1-join-3-3"/>
+</CircuitBoard>
 
 	<Groups>
 		<Set size="6">

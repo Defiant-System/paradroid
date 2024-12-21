@@ -147,7 +147,6 @@
 			case "generate-schemas":
 				let side = event.side || "left",
 					isLeft = side === "left",
-					pEl = isLeft ? Self.els.cbLeft : Self.els.cbRight,
 					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
 				xBoard.map(x => {
@@ -174,26 +173,37 @@
 				}
 				// apply randomized schema set to xml nodes
 				schema.map((r, i) => {
-					xBoard[i].setAttribute("row", r.id);
+					if (r.id) xBoard[i].setAttribute("row", r.id);
 					if (r.color) xBoard[i].setAttribute("row", r.color);
-				});
-
-				// delete "old" schema
-				pEl.find("svg").remove();
-				// render circuit board HTML
-				window.render({
-					template: "circuit-board-left",
-					match: `//CircuitBoard[@id="${side}"]`,
-					append: pEl,
 				});
 
 				if (isLeft) {
 					// render right side as well
 					Self.dispatch({ ...event, side: "right" });
-					Self.dispatch({ type: "mirror-schema" });
+					Self.dispatch({ type: "render-schemas" });
+					// for debug / dev
+					value = [];
+					window.bluePrint.selectNodes(`//CircuitBoard`).map(x => value.push(x.xml));
+					console.log(value.join("\n"));
 				}
 				break;
-			case "mirror-schema":
+			case "render-schemas":
+				// delete "old" schema
+				Self.els.cbLeft.find("svg").remove();
+				// render circuit board HTML
+				window.render({
+					template: "circuit-board",
+					match: `//CircuitBoard[@id="left"]`,
+					append: Self.els.cbLeft,
+				});
+				// delete "old" schema
+				Self.els.cbRight.find("svg").remove();
+				// render circuit board HTML
+				window.render({
+					template: "circuit-board",
+					match: `//CircuitBoard[@id="right"]`,
+					append: Self.els.cbRight,
+				});
 				// mirror right circuit schema
 				el = Self.els.cbRight.find("svg");
 				// clone and loop children
@@ -239,26 +249,8 @@
 				});
 				break;
 			case "new-hacking-game":
-				// delete "old" schema
-				Self.els.cbLeft.find("svg").remove();
-				// render circuit board HTML
-				window.render({
-					template: "circuit-board-left",
-					match: `//CircuitBoard[@id="left"]`,
-					append: Self.els.cbLeft,
-				});
-
-				// delete "old" schema
-				Self.els.cbRight.find("svg").remove();
-				// render circuit board HTML
-				window.render({
-					template: "circuit-board-left",
-					match: `//CircuitBoard[@id="right"]`,
-					append: Self.els.cbRight,
-				});
-				// mirror right side of the board
-				Self.dispatch({ type: "mirror-schema" });
-
+				// generate circuit board
+				Self.dispatch({ type: "generate-schemas" });
 				// choose color flag
 				Self.chooseColor = true;
 				// start timer

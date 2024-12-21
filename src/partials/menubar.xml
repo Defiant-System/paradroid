@@ -56,7 +56,10 @@
 			<Menu type="divider"/>
 			<Menu name="Stop Song" click="stop-song" arg="turican"/>
 		</Menu>
-		<Menu name="Generate Circuit Board" click="generate-schemas"/>
+		<Menu name="Transfer&#8230;">
+			<Menu name="New Transfer Game" click="new-hacking-game"/>
+			<Menu name="Generate Circuit Board" click="generate-schemas"/>
+		</Menu>
 		<Menu type="divider"/>
 		<Menu name="Editor" for="editor-content">
 			<Menu name="Toggle Grid" click="toggle-grid"/>
