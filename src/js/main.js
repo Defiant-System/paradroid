@@ -10,6 +10,7 @@
 @import "./classes/exit.js"
 @import "./classes/console.js"
 
+@import "./classes/explosion.js"
 @import "./classes/sparks.js"
 @import "./classes/missile.js"
 @import "./classes/electric.js"
