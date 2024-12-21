@@ -52,9 +52,10 @@ let Test = {
 
 		setTimeout(() => {
 			let el = APP.transfer.els.board.find(".droid:not(.player)"),
-				owner = APP.transfer;
-			APP.transfer.AI = new HackerAI({ el, id: el.data("id"), owner });
-			APP.transfer.AI.setOrder([2, 6]);
+				owner = APP.transfer,
+				order = [2, 6];
+			APP.transfer.AI = new HackerAI({ el, id: el.data("id"), owner, order });
+			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
 

@@ -149,19 +149,15 @@
 					isLeft = side === "left",
 					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
-				xBoard.map(x => {
-					x.removeAttribute("row");
-					x.removeAttribute("color");
-				});
+				xBoard.map(x => x.removeAttribute("row"));
 				// populate groups sets
 				let groups = [[""]],
 					schema = [];
 				window.bluePrint.selectNodes(`//Groups/Set`).map(xSet => {
 					let group = [];
 					xSet.selectNodes(`./*[@row]`).map(xRow => {
-						let row = { id: xRow.getAttribute("row") };
-						if (xRow.getAttribute("color")) row.color = xRow.getAttribute("color");
-						group.push(row)
+						let id = xRow.getAttribute("row");
+						group.push({ id })
 					});
 					groups.push(group);
 				});
@@ -174,7 +170,6 @@
 				// apply randomized schema set to xml nodes
 				schema.map((r, i) => {
 					if (r.id) xBoard[i].setAttribute("row", r.id);
-					if (r.color) xBoard[i].setAttribute("row", r.color);
 				});
 
 				if (isLeft) {

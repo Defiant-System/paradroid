@@ -130,11 +130,15 @@
 		filter: drop-shadow(0 1px 1px #0005);
 
 		&:before {
-			animation: none;
+			// animation: none;
 		}
 
 		&.player {
 			filter: invert(1) brightness(1.25) drop-shadow(0 1px 1px #0004);
+
+			&:before {
+				animation: player-spin 1200ms steps(8) infinite;;
+			}
 		}
 	}
 
@@ -578,7 +582,9 @@
 								stroke: #fae8;
 								animation-name: purple-stream;
 
-								&.yellow { stroke: #fea5; }
+								&.yellow {
+									stroke: #fea5;
+								}
 							}
 						}
 
@@ -588,7 +594,12 @@
 
 							&.stream:not(.joint) {
 								stroke: #fae8;
+
+								&.yellow { stroke: #fea5; }
 							}
+							&.repeater { stroke: var( --color ); }
+							&.yellow { --color: var( --yellow ); }
+							&.purple { --color: var( --purple ); }
 						}
 					}
 
@@ -864,3 +875,9 @@
 @keyframes purple-stream {
 	from { stroke-dashoffset: var( --length ); }
 }
+
+@keyframes player-spin {
+	0%   { background-position: 0px 0px; }
+	100% { background-position: -360px 0px; }
+}
+

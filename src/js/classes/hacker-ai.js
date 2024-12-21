@@ -1,11 +1,12 @@
 
 class HackerAI {
 	constructor(cfg) {
-		let { id, el, owner } = cfg;
+		let { id, el, owner, order } = cfg;
 
 		this.id = id;
 		this.el = el;
 		this.owner = owner;
+		this.order = order || [];
 		this.pEl = el.parent();
 
 		// create FPS controller
