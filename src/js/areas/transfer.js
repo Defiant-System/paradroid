@@ -145,59 +145,55 @@
 				Self.els.cpu.data({ winner });
 				break;
 			case "generate-schemas":
+				let side = event.side || "left",
+					isLeft = side === "left",
+					pEl = isLeft ? Self.els.cbLeft : Self.els.cbRight,
+					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
-				window.bluePrint.selectNodes(`//CircuitBoard/i`).map(x => {
+				xBoard.map(x => {
 					x.removeAttribute("row");
 					x.removeAttribute("color");
 				});
-
+				// populate groups sets
 				let groups = [[""]],
 					schema = [];
-				// populate groups sets
 				window.bluePrint.selectNodes(`//Groups/Set`).map(xSet => {
 					let group = [];
-					xSet.selectNodes(`./*[@row]`).map(xRow => group.push(xRow.getAttribute("row")));
+					xSet.selectNodes(`./*[@row]`).map(xRow => {
+						let row = { id: xRow.getAttribute("row") };
+						if (xRow.getAttribute("color")) row.color = xRow.getAttribute("color");
+						group.push(row)
+					});
 					groups.push(group);
 				});
-				
+				// populate new schema set
 				while (available = 12 - schema.length) {
 					let selection = groups.filter(a => a.length <= available);
 					let rndSet = selection[Utils.randomInt(0, selection.length)];
 					schema.push(...rndSet);
 				}
 				// apply randomized schema set to xml nodes
-				let xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="left"]/i`);
 				schema.map((r, i) => {
-					xBoard[i].setAttribute("row", r);
+					xBoard[i].setAttribute("row", r.id);
+					if (r.color) xBoard[i].setAttribute("row", r.color);
 				});
 
 				// delete "old" schema
-				Self.els.cbLeft.find("svg").remove();
+				pEl.find("svg").remove();
 				// render circuit board HTML
 				window.render({
 					template: "circuit-board-left",
-					match: `//CircuitBoard[@id="left"]`,
-					append: Self.els.cbLeft,
+					match: `//CircuitBoard[@id="${side}"]`,
+					append: pEl,
 				});
+
+				if (isLeft) {
+					// render right side as well
+					Self.dispatch({ ...event, side: "right" });
+					Self.dispatch({ type: "mirror-schema" });
+				}
 				break;
-			case "new-hacking-game":
-				// delete "old" schema
-				Self.els.cbLeft.find("svg").remove();
-				// render circuit board HTML
-				window.render({
-					template: "circuit-board-left",
-					match: `//CircuitBoard[@id="left"]`,
-					append: Self.els.cbLeft,
-				});
-
-				// delete "old" schema
-				Self.els.cbRight.find("svg").remove();
-				// render circuit board HTML
-				window.render({
-					template: "circuit-board-left",
-					match: `//CircuitBoard[@id="right"]`,
-					append: Self.els.cbRight,
-				});
+			case "mirror-schema":
 				// mirror right circuit schema
 				el = Self.els.cbRight.find("svg");
 				// clone and loop children
@@ -241,6 +237,27 @@
 							break;
 					}
 				});
+				break;
+			case "new-hacking-game":
+				// delete "old" schema
+				Self.els.cbLeft.find("svg").remove();
+				// render circuit board HTML
+				window.render({
+					template: "circuit-board-left",
+					match: `//CircuitBoard[@id="left"]`,
+					append: Self.els.cbLeft,
+				});
+
+				// delete "old" schema
+				Self.els.cbRight.find("svg").remove();
+				// render circuit board HTML
+				window.render({
+					template: "circuit-board-left",
+					match: `//CircuitBoard[@id="right"]`,
+					append: Self.els.cbRight,
+				});
+				// mirror right side of the board
+				Self.dispatch({ type: "mirror-schema" });
 
 				// choose color flag
 				Self.chooseColor = true;
