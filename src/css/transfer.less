@@ -130,14 +130,15 @@
 		filter: drop-shadow(0 1px 1px #0005);
 
 		&:before {
-			// animation: none;
+			// animation-duration: 2s;
 		}
 
 		&.player {
 			filter: invert(1) brightness(1.25) drop-shadow(0 1px 1px #0004);
 
 			&:before {
-				animation: player-spin 1200ms steps(8) infinite;;
+				// animation: player-spin 2s steps(8) infinite;;
+				animation-direction: reverse;
 			}
 		}
 	}
@@ -876,8 +877,8 @@
 	from { stroke-dashoffset: var( --length ); }
 }
 
-@keyframes player-spin {
-	0%   { background-position: 0px 0px; }
-	100% { background-position: -360px 0px; }
-}
+// @keyframes player-spin {
+// 	0%   { background-position: 0px 0px; }
+// 	100% { background-position: -360px 0px; }
+// }
 

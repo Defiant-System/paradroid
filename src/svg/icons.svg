@@ -3,6 +3,7 @@
 @import "tiles-32.svg"
 @import "tiles-7.svg"
 @import "3001.svg"
+@import "explosion.svg"
 @import "circuit-board.svg"
 
 @import "bp/001.svg"
