@@ -27,7 +27,7 @@ class Map {
 						let entry = this.entries.splice(index, 1)[0],
 							{ arena, owner } = entry,
 							{ x, y } = pair.collision.supports[0];
-						new Explosion({ arena, owner, x, y });
+						new Sparks({ arena, owner, x, y });
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyA);
 				}
@@ -37,7 +37,7 @@ class Map {
 						let entry = this.entries.splice(index, 1)[0],
 							{ arena, owner } = entry,
 							{ x, y } = pair.collision.supports[0];
-						new Explosion({ arena, owner, x, y });
+						new Sparks({ arena, owner, x, y });
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
 				}

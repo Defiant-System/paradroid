@@ -155,14 +155,6 @@ class Droid {
 	    return pursuit;
 	}
 
-	arrive(target) {
-
-	}
-
-	collide() {
-
-	}
-
 	setId(id) {
 		let xDroid = window.bluePrint.selectSingleNode(`//Droid[@id="${id}"]`),
 			xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xDroid.getAttribute("weapon")}"]`);
@@ -268,8 +260,8 @@ class Droid {
 
 		// update tile position
 		let tile = this.arena.config.tile;
-		this.x = Math.round(this.body.position.x / tile);
-		this.y = Math.round(this.body.position.y / tile);
+		this.x = Math.ceil(this.body.position.x / tile);
+		this.y = Math.ceil(this.body.position.y / tile);
 	}
 
 	render(ctx) {

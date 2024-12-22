@@ -19,7 +19,8 @@ class Fire {
 		this.position.x += Math.cos(angle) * 30;
 		this.position.y += Math.sin(angle) * 30;
 
-		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 1.5, { frictionAir: .006 });
+		let opt = { frictionAir: 0, friction: 0, inertia: Infinity, mass: 0 };
+		this.body = Matter.Bodies.circle(this.position.x, this.position.y, 1.5, opt);
 		this.body.label = `fire-${this.bullet}`;
 
 		// add to map entries
@@ -29,7 +30,7 @@ class Fire {
 	}
 
 	update(delta) {
-		let force = this.force.setMagnitude(delta/16);
+		let force = this.force.setMagnitude(delta/48);
 		Matter.Body.applyForce(this.body, this.body.position, force);
 
 		// copy physical position to "this" internal position
