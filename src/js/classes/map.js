@@ -64,15 +64,35 @@ class Map {
 
 		// reset map arrays
 		this.entries = [];
+		this.grid = [];
 		this.droids = [this.arena.player];
 		this.background = []; // level map data
 
 		// physics bodies array
-		let bodies = [this.arena.player.body];
+		let bodies = [this.arena.player.body],
+			backgrounds = xSection.selectNodes(`./Layer[@id="background"]/i`),
+			gap = [
+				"m00", "m01", "m02", "m03", "m04", "m05", "m06", "m07",
+				"m10", "m11", "m12", "m13", "m14", "m15", "m16", "m17",
+				"m42", "m43", "m45", "m46", "m48", "m49", "m4a", "m4b",
+				"m50", "m51", "m55", "m56", "m58", "m59", "m5a", "m5b",
+				"m60", "m61", "m62", "m63", "m64", "m67", "m6c", "m6d",
+				"m6e", "m6f", "m70", "m71", "m72", "m73", "m7c", "m7d",
+				"m7e", "m7f"
+			];
+
+		// grid for astar algorithm
+		[...Array(this.height)].map(row => this.grid.push([]));
+		backgrounds.map((xTile, col) => {
+			let row = Math.floor(col / this.width),
+				cell = gap.includes(xTile.getAttribute("id")) ? 1 : 0;
+			this.grid[row].push(cell);
+		});
+		// console.log( this.grid.join("\n") );
 
 		// add rows
 		[...Array(this.height)].map(row => this.background.push([]));
-		xSection.selectNodes(`./Layer[@id="background"]/i`).map((xTile, col) => {
+		backgrounds.map((xTile, col) => {
 			let row = Math.floor(col / this.width),
 				tile = xTile.getAttribute("id"),
 				arg = [];

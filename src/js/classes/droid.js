@@ -72,6 +72,15 @@ class Droid {
 		this.dir = this.position.direction(this.target);
 	}
 
+	setPath() {
+		let target = { x: 9, y: 8 };
+		let graph = new Finder.Graph(this.arena.map.grid);
+		let start = graph.grid[this.x][this.y];
+		let end = graph.grid[target.x][target.y];
+		let result = Finder.astar.search(graph, start, end);
+		console.log( result );
+	}
+
 	shoot() {
 		let cfg = {
 				owner: this,

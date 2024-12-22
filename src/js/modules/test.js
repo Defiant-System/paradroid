@@ -113,6 +113,7 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
+			setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);
 			// setTimeout(() => APP.mobile.arena.player.fire(), 600);
 
 			// setTimeout(() => {
@@ -129,7 +130,7 @@ let Test = {
 			// }, 500);
 
 			// pause test
-			// setTimeout(() => APP.mobile.dispatch({ type: "game-loop-pause" }), 500);
+			setTimeout(() => APP.mobile.dispatch({ type: "game-loop-pause" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
