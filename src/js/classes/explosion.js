@@ -12,6 +12,8 @@ class Explosion {
 			speed: 30,
 		};
 		
+		this.angle = 0;
+
 		// update tile position
 		let position = new Point(x, y),
 			tile = this.arena.config.tile;
@@ -24,6 +26,7 @@ class Explosion {
 	}
 
 	update(delta) {
+		this.angle += .5;
 		this.frame.last -= delta;
 		if (this.frame.last < 0) {
 			this.frame.last = (this.frame.last + this.frame.speed) % this.frame.speed;
@@ -40,15 +43,16 @@ class Explosion {
 			viewport = arena.viewport,
 			w = 64,
 			f = this.frame.index * w,
-			pX = this.position.x + arena.viewport.x - 32,
-			pY = this.position.y + arena.viewport.y - 32;
+			pX = this.position.x + arena.viewport.x,
+			pY = this.position.y + arena.viewport.y;
 		
 		ctx.save();
 		ctx.translate(pX, pY);
-		ctx.globalCompositeOperation = "lighter";
+		ctx.rotate((this.angle * Math.PI) / 180);
+		// ctx.globalCompositeOperation = "lighter";
 		ctx.drawImage(this.sprite,
 				f, 0, w, w,
-				0, 0, w, w
+				-32, -32, w, w
 			);
 		ctx.restore();
 	}
