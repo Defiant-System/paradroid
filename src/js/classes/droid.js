@@ -27,6 +27,7 @@ class Droid {
 		};
 		// set droid id
 		this.setId(id);
+		this._path = [];
 
 		this.position = new Point(0, 0);
 		this.velocity = new Point(0, 0);
@@ -44,10 +45,9 @@ class Droid {
 
 		if (patrol) {
 			// patrol points
-			let index = 0,
-				target = patrol[0],
+			let target = patrol[Utils.randomInt(0, patrol.length)],
 				force = new Point(0, 0);
-			this.home = { index, patrol, target, force };
+			this.home = { patrol, target, force };
 
 			// starting position
 			this.spawn({ id, x: target[0], y: target[1] });
@@ -73,12 +73,24 @@ class Droid {
 	}
 
 	setPath() {
-		let target = { x: 9, y: 8 };
-		let graph = new Finder.Graph(this.arena.map.grid);
-		let start = graph.grid[this.x][this.y];
-		let end = graph.grid[target.x][target.y];
-		let result = Finder.astar.search(graph, start, end);
-		console.log( result );
+		let tile = this.arena.config.tile,
+			hT = tile >> 1,
+			patrol = this.home.patrol.filter(p => p.join() != [this.x, this.y].join()),
+			target = patrol[Utils.randomInt(0, patrol.length)],
+			graph = new Finder.Graph(this.arena.map.grid),
+			start = graph.grid[this.y][this.x],
+			end = graph.grid[target[1]][target[0]],
+			result = Finder.astar.search(graph, start, end);
+		
+		this._path = [];
+		result.map(p => {
+			this._path.push([p.y * tile, p.x * tile]);
+		});
+		console.log( this._path.join("\n") );
+		// console.log( result );
+		// console.log( this._path );
+		// console.log( this.x, this.y );
+		// console.log( target[0], target[1] );
 	}
 
 	shoot() {
@@ -189,14 +201,13 @@ class Droid {
 	}
 
 	spawn(cfg) {
-		let { id, x, y, power } = cfg,
+		let { id, x, y, patrol } = cfg,
 			tile = this.arena.config.tile;
 		// tile coords
 		this.x = x;
 		this.y = y;
-		// optional values
+		// optional values ()
 		if (id) this.setId(id);
-		if (power) this.power = power;
 
 		let pos = {
 			x: (this.x - .5) * tile,
@@ -237,34 +248,7 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			if (this.x === this.home.target[0] && this.y === this.home.target[1]) {
-				// droid reached target - change target
-				this.home.index++;
-				this.home.target = this.home.patrol[this.home.index % this.home.patrol.length];
-
-				this.home.force.x = 0;
-				this.home.force.y = 0;
-				if (this.home.target[0] !== this.x) this.home.force.x = this.home.target[0] < this.x ? -1 : 1;
-				if (this.home.target[1] !== this.y) this.home.force.y = this.home.target[1] < this.y ? -1 : 1;
-			} else {
-				this.move(this.home.force.clone());
-			}
-
-			// this.velocity = this.velocity.add(this.acceleration);
-			// this.velocity = this.velocity.limit(this.maxSpeed);
-			// this.position = this.position.add(this.velocity);
-			// this.acceleration = this.acceleration.multiply(0);
-
-			// seek player droid
-			// let force = this.evade(this.arena.player);
-			// let force = this.flee(this.arena.player);
-
-			// let force = this.pursue(this.arena.player);
-			// let force = this.seek(this.arena.player.position);
-			// this.move(force);
-
-			// console.log( this.arena.player.position, this.position );
-			// Matter.Body.setPosition(this.body, this.position);
+			
 		}
 
 		// update tile position
@@ -287,6 +271,19 @@ class Droid {
 		} else {
 			pX = this.position.x + arena.viewport.x;
 			pY = this.position.y + arena.viewport.y;
+		}
+
+		if (!this.isPlayer) {
+			// temp draw path
+			ctx.save();
+			ctx.translate(arena.viewport.x, arena.viewport.y);
+			ctx.strokeStyle = "#fff";
+			ctx.lineWidth = 3;
+			ctx.beginPath();
+			ctx.moveTo(...this._path[0]);
+			this._path.slice(1).map(p => ctx.lineTo(...p));
+		    ctx.stroke();
+			ctx.restore();
 		}
 
 		ctx.save();

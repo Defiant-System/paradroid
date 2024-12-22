@@ -215,7 +215,10 @@ class Map {
 			let id = xItem.getAttribute("id"),
 				patrol = JSON.parse(xItem.getAttribute("patrol")),
 				droid = new Droid({ arena: this.arena, section, id, patrol });
+			// add droid to map droid list
 			this.droids.push(droid);
+			// plot droid patrol path
+			droid.setPath();
 			// add droid body to physical world
 			bodies.push(droid.body);
 		});
@@ -331,12 +334,12 @@ class Map {
 					ctx.fillRect(lX-r2, lY-r2, r, r);
 				});
 		}
+		ctx.restore();
 		// now render droids (with mask clip)
 		this.droids
 			.filter(droid => !droid.isPlayer && droid.x >= xMin-1 && droid.x <= xMax && droid.y >= yMin-1 && droid.y <= yMax)
 			.map(droid => droid.render(ctx));
 		// restore drawing context
-		ctx.restore();
 
 		// player droid
 		this.arena.player.render(ctx);

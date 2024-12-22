@@ -113,7 +113,7 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);
+			// setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);
 			// setTimeout(() => APP.mobile.arena.player.fire(), 600);
 
 			// setTimeout(() => {
