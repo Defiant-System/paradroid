@@ -45,7 +45,7 @@ class Droid {
 
 		if (patrol) {
 			// patrol points
-			let target = patrol[Utils.randomInt(0, patrol.length)],
+			let target = patrol[1], // patrol[Utils.randomInt(0, patrol.length)],
 				force = new Point(0, 0);
 			this.home = { patrol, target, force };
 
@@ -82,11 +82,15 @@ class Droid {
 			end = graph.grid[target[1]][target[0]],
 			result = Finder.astar.search(graph, start, end);
 		
-		this._path = [];
-		result.map(p => {
-			this._path.push([p.y * tile, p.x * tile]);
+		this._path = [[this.x, this.y], ...result.map(p => [p.y, p.x])];
+		// console.log( this._path.join("\n") );
+
+		// scale path tiles
+		this._path.map(p => {
+			p[0] = (p[0] * tile);
+			p[1] = (p[1] * tile);
 		});
-		console.log( this._path.join("\n") );
+
 		// console.log( result );
 		// console.log( this._path );
 		// console.log( this.x, this.y );
