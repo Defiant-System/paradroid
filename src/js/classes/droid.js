@@ -45,12 +45,13 @@ class Droid {
 
 		if (patrol) {
 			// patrol points
-			let target = patrol[1], // patrol[Utils.randomInt(0, patrol.length)],
+			let [x, y] = patrol[0], // patrol[Utils.randomInt(0, patrol.length)],
+				target = new Point(x, y),
 				force = new Point(0, 0);
 			this.home = { patrol, target, force };
 
 			// starting position
-			this.spawn({ id, x: target[0], y: target[1] });
+			this.spawn({ id, x, y });
 		}
 	}
 
@@ -73,23 +74,16 @@ class Droid {
 	}
 
 	setPath() {
-		let tile = this.arena.config.tile,
-			hT = tile >> 1,
-			patrol = this.home.patrol.filter(p => p.join() != [this.x, this.y].join()),
+		let patrol = this.home.patrol.filter(p => p.join() != [this.x, this.y].join()),
 			target = patrol[Utils.randomInt(0, patrol.length)],
 			graph = new Finder.Graph(this.arena.map.grid),
 			start = graph.grid[this.y][this.x],
 			end = graph.grid[target[1]][target[0]],
 			result = Finder.astar.search(graph, start, end);
 		
-		this._path = [[this.x, this.y], ...result.map(p => [p.y, p.x])];
+		this._path = result.map(p => [p.y, p.x]);
+		// this._path = [[this.x, this.y], ...result.map(p => [p.y, p.x])];
 		// console.log( this._path.join("\n") );
-
-		// scale path tiles
-		this._path.map(p => {
-			p[0] = (p[0] * tile);
-			p[1] = (p[1] * tile);
-		});
 
 		// console.log( result );
 		// console.log( this._path );
@@ -252,7 +246,16 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			
+			let pos = new Point(this.x, this.y);
+			if (!this._path.length) this.setPath();
+
+			if (this.home.target.distance(pos) == 0) {
+				let [x1, y1] = this._path.shift();
+				this.home.target = new Point(x1, y1);
+				this.home.force = this.home.target.subtract(pos);
+			} else {
+				this.move(this.home.force.clone());
+			}
 		}
 
 		// update tile position
@@ -277,15 +280,27 @@ class Droid {
 			pY = this.position.y + arena.viewport.y;
 		}
 
-		if (!this.isPlayer) {
+		if (!this.isPlayer && this._path.length) {
+			let tile = this.arena.config.tile,
+				hT = tile >> 1,
+				tX = (this._path[0][0] * tile) - hT,
+				tY = (this._path[0][1] * tile) - hT;
+			// this._path.map(p => {
+			// 	p[0] = (p[0] * tile) - hT;
+			// 	p[1] = (p[1] * tile) - hT;
+			// });
 			// temp draw path
 			ctx.save();
 			ctx.translate(arena.viewport.x, arena.viewport.y);
 			ctx.strokeStyle = "#fff";
 			ctx.lineWidth = 3;
 			ctx.beginPath();
-			ctx.moveTo(...this._path[0]);
-			this._path.slice(1).map(p => ctx.lineTo(...p));
+			ctx.moveTo(tX, tY);
+			this._path.slice(1).map(p => {
+				let x = (p[0] * tile) - hT,
+					y = (p[1] * tile) - hT;
+				ctx.lineTo(x, y);
+			});
 		    ctx.stroke();
 			ctx.restore();
 		}
