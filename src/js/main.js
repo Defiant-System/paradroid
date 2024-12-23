@@ -119,7 +119,16 @@ const paradroid = {
 					case "lift": break;
 					case "mobile": break;
 					case "terminated": break;
-					case "transfer": break;
+					case "transfer":
+						// view animation
+						Self.dispatch({
+							type: "switch-to-view",
+							arg: "transfer",
+							done: () => {
+								console.log("done");
+							}
+						});
+						break;
 				}
 				break;
 			case "play-song":

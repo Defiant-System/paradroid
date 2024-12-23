@@ -26,11 +26,23 @@ let Test = {
 		/*
 		 * START View
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
-		setTimeout(() => APP.start.els.el.find(`.option:nth-child(1) .box-title`).trigger("click"), 600);
+		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(1) .box-title`).trigger("click"), 600);
 		return;
 		 */
 
 		
+		setTimeout(() => {
+			// view animation
+			APP.dispatch({
+				type: "switch-to-view",
+				arg: "transfer",
+				done: () => {
+					console.log("done");
+				}
+			});
+		}, 100);
+		return;
+
 		/*
 		 * TRANSFER View
 		APP.dispatch({ type: "show-view", arg: "transfer" });
@@ -40,6 +52,8 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
 
 		// setTimeout(() => APP.transfer.chooseColor = true, 150);
+		return;
+		 */
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);
@@ -57,7 +71,6 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
-		 */
 
 
 		/*

@@ -48,7 +48,7 @@ class Droid {
 			let [x, y] = patrol[0], // patrol[Utils.randomInt(0, patrol.length)],
 				target = new Point(x, y),
 				force = new Point(0, 0);
-			this.home = { patrol, target, force };
+			this.home = { patrol, target, force, dist: 0 };
 
 			// starting position
 			this.spawn({ id, x, y });
@@ -79,6 +79,7 @@ class Droid {
 			graph = new Finder.Graph(this.arena.map.grid),
 			start = graph.grid[this.y][this.x],
 			end = graph.grid[target[1]][target[0]],
+			// opt = { heuristic: Finder.astar.heuristics.diagonal },
 			result = Finder.astar.search(graph, start, end);
 		
 		this._path = result.map(p => [p.y, p.x]);
@@ -228,6 +229,10 @@ class Droid {
 		this.position.y = this.body.position.y;
 	}
 
+	isStuck() {
+		// Math.abs(this.home.distance - distance) < .05
+	}
+
 	update(delta) {
 		// dont move
 		if (this._freeze) return;
@@ -246,10 +251,13 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			let pos = new Point(this.x, this.y);
-			if (!this._path.length) this.setPath();
+			let pos = new Point(this.x, this.y),
+				distance = this.home.target.distance(pos);
 
-			if (this.home.target.distance(pos) == 0) {
+			if (!this._path.length || this.isStuck()) this.setPath();
+			this.home.distance = distance;
+
+			if (distance == 0) {
 				let [x1, y1] = this._path.shift();
 				this.home.target = new Point(x1, y1);
 				this.home.force = this.home.target.subtract(pos);
