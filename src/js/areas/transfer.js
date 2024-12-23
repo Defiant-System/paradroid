@@ -78,6 +78,9 @@
 				}
 				break;
 			// custom events
+			case "init-view":
+				Self.dispatch({ type: "render-schemas" });
+				break;
 			case "toggle-io-row":
 				el = event.el;
 				index = event.index;
