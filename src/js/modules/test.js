@@ -31,16 +31,8 @@ let Test = {
 		 */
 
 		
-		setTimeout(() => {
-			// view animation
-			APP.dispatch({
-				type: "switch-to-view",
-				arg: "transfer",
-				done: () => {
-					console.log("done");
-				}
-			});
-		}, 100);
+		// view animation
+		setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "transfer" }), 100);
 		return;
 
 		/*

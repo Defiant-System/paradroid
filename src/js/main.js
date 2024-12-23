@@ -116,17 +116,14 @@ const paradroid = {
 							Self.editor.dispatch({ type: "toggle-overflow" });
 						}
 						break;
-					case "lift": break;
-					case "mobile": break;
-					case "terminated": break;
+					case "lift":
+					case "mobile":
+					case "terminated":
 					case "transfer":
 						// view animation
 						Self.dispatch({
 							type: "switch-to-view",
-							arg: "transfer",
-							done: () => {
-								console.log("done");
-							}
+							arg: event.arg
 						});
 						break;
 				}
