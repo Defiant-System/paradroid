@@ -11,12 +11,18 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.terminated,
-			value,
 			el;
 		// console.log(event);
 		switch (event.type) {
 			// custom events
-			case "put-tile":
+			case "window.keydown":
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// animate / switch to view
+					APP.dispatch({ type: "show-view", arg: "start" });
+				});
 				break;
 		}
 	}
