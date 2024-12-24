@@ -1,6 +1,63 @@
 
+content {
+	&.fade-out[data-show] {
+		// before animation
+		.terminated-view {
+			.above,
+			.below {
+				opacity: 0;
+				scale: 0;
+				transition: all	250ms ease-in-out;
+				transition-delay: 450ms;
+			}
+
+			.below {
+				transition-delay: 600ms;
+			}
+
+			.errors {
+				opacity: 0;
+				scale: 0;
+				transition: all	500ms ease-in-out;
+			}
+		}
+
+		&[data-show="terminated"].fade-in {
+			transition-delay: 900ms;
+
+			.terminated-view {
+				.above,
+				.below,
+				.errors {
+					opacity: 1;
+					scale: 1;
+				}
+			}
+		}
+	}
+}
+
+
 .terminated-view {
-	--bg: #030;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #bbb linear-gradient(0deg, rgba(#fff,.1), transparent);
+
+	// &:before {
+	// 	content: "";
+	// 	background: url(~/icons/circuit-board.png) 50% 50%/cover no-repeat;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	left: 0;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	opacity: .125;
+	// 	border-radius: inherit;
+	// 	filter: grayscale(1);
+	// 	mix-blend-mode: plus-lighter;
+	// }
 
 	h2 {
 		position: absolute;
@@ -24,12 +81,12 @@
 	}
 
 	.screen {
-		// background: var( --bg ) radial-gradient(ellipse at top center, rgba(#fff,.125), transparent);
+		// background: #030 radial-gradient(ellipse at top center, rgba(#fff,.125), transparent);
 		position: absolute;
-		top: 0;
+		top: 53px;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: calc( 100% - 53px );
 		border-radius: 4px;
 		// box-shadow: inset 0 2px 0 rgba(#fff,.35);
 

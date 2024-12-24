@@ -799,6 +799,13 @@ content {
 					}
 				}
 
+				&[data-winner="flicker"] {
+					.led {
+						animation: led-flicker 300ms infinite;
+						animation-duration: 500ms;
+					}
+				}
+
 				&[data-winner="yellow"] {
 					.led {
 						background: #f90;
@@ -986,7 +993,7 @@ content {
 					}
 
 					&.flicker {
-
+						animation: led-flicker 300ms infinite;
 					}
 				}
 			}
@@ -1002,8 +1009,20 @@ content {
 	from { stroke-dashoffset: var( --length ); }
 }
 
-// @keyframes player-spin {
-// 	0%   { background-position: 0px 0px; }
-// 	100% { background-position: -360px 0px; }
-// }
+@keyframes led-flicker {
+	0%   {
+		background: #ea4;
+		box-shadow: 0 -1px 0 rgba(#111,.15),
+					inset 0px 5px 0px 0px rgba(#a50,.15),
+					inset 0 0 1px rgba(#940,.95),
+					0 0 2px #fb3;
+	}
+	50% {
+		background: #b4f;
+		box-shadow: 0 -1px 0 rgba(#111,.15),
+					inset 0px 5px 0px 0px rgba(#50a,.15),
+					inset 0 0 1px rgba(#408,.95),
+					0 0 2px #9c0fd877;
+	}
+}
 

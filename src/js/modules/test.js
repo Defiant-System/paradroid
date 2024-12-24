@@ -32,8 +32,9 @@ let Test = {
 
 		
 		// view animation
-		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "lift" }), 100);
-		// return;
+		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "transfer" }), 100);
+		setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "terminated" }), 100);
+		return;
 
 		/*
 		 * TRANSFER View
@@ -44,6 +45,8 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
 
+		// setTimeout(() => APP.transfer.els.ioLeds.find("div").get(0).addClass("flicker"), 250);
+		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
 		// setTimeout(() => APP.transfer.chooseColor = true, 150);
 		return;
 
