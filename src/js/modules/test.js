@@ -32,12 +32,13 @@ let Test = {
 
 		
 		// view animation
-		setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "transfer" }), 100);
-		return;
+		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "lift" }), 100);
+		// return;
 
 		/*
 		 * TRANSFER View
-		APP.dispatch({ type: "show-view", arg: "transfer" });
+		 */
+		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
 		setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
@@ -45,7 +46,6 @@ let Test = {
 
 		// setTimeout(() => APP.transfer.chooseColor = true, 150);
 		return;
-		 */
 
 		let el = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 3 }), 150);

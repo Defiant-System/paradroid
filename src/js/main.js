@@ -89,6 +89,8 @@ const paradroid = {
 					el.data({ show: event.arg })
 						.cssSequence("fade-in", "transitionend", el => {
 							el.removeClass("fade-out fade-in");
+							// remove "no-anim" flag
+							Self.els.content.removeAttr("data-anim");
 							// callback
 							if (event.done) event.done();
 						});
@@ -99,7 +101,7 @@ const paradroid = {
 				name = Self.els.content.data("show");
 				Self.els.content.find(`.${name}-view`).addClass("hidden");
 
-				Self.els.content.data({ show: event.arg });
+				Self.els.content.data({ show: event.arg, anim: event.anim });
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				Self.hud.dispatch({ type: "set-view-title" });
 

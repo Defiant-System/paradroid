@@ -113,11 +113,32 @@ content {
 			transition-duration: inherit;
 		}
 
+		&[data-show="mobile"],
+		&[data-show="lift"],
+		&[data-show="transfer"],
+		&[data-show="console"],
+		&[data-show="editor"] {
+			> div.hud-view { opacity: 1; }
+		}
+
 		&.fade-in {
 			min-height: 0;
-			
+
 			> div {
 				opacity: 1;
+			}
+		}
+	}
+
+	&[data-anim="none"] {
+		&.fade-out[data-show] {
+			&[data-show="mobile"].fade-in,
+			&[data-show="lift"].fade-in,
+			&[data-show="transfer"].fade-in,
+			&[data-show="console"].fade-in,
+			&[data-show="editor"].fade-in {
+				transition-duration: 10ms;
+				transition-delay: 10ms;
 			}
 		}
 	}
