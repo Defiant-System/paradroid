@@ -236,9 +236,9 @@ class Map {
 		if (item.body) Matter.Composite.add(this.engine.world, item.body);
 	}
 
-	update(delta) {
-		this.entries.map(item => item.update(delta));
-		this.droids.map(droid => droid.update(delta));
+	update(delta, time) {
+		this.entries.map(item => item.update(delta, time));
+		this.droids.map(droid => droid.update(delta, time));
 
 		// Raycaster: visibility map
 		let arena = this.arena,

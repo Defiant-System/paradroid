@@ -34,7 +34,7 @@ class Arena {
 			fps: 60,
 			callback(time, delta) {
 				Matter.Runner.tick(Self.map.runner, Self.map.engine);
-				Self.update(delta);
+				Self.update(delta, time);
 				Self.render();
 			}
 		});
@@ -115,8 +115,8 @@ class Arena {
 		this.map.setState(mapState);
 	}
 
-	update(delta) {
-		this.map.update(delta);
+	update(delta, time) {
+		this.map.update(delta, time);
 	}
 
 	render() {

@@ -18,6 +18,9 @@ class Player extends Droid {
 				{ speed: 0.0015, rotateAngle: Math.PI * 1/3 },
 				{ speed: 0.0015, rotateAngle: Math.PI * -1/3 },
 			];
+		// ellipse radius
+		this.rX = 28;
+		this.rY = 25;
 		// a little bit blur
 		this.blur = {
 			color: "#00000055",
@@ -77,7 +80,7 @@ class Player extends Droid {
 		}
 	}
 
-	update(delta) {
+	update(delta, time) {
 		// USER input
 		let force = { x: 0, y: 0 };
 		for (let key in this.input) {
@@ -89,6 +92,13 @@ class Player extends Droid {
 		}
 		this.move(force);
 
+		this.satellites.map(sat => {
+			// Calculate circle position based on time
+			sat.currentAngle = (time * sat.speed) + sat.rotateAngle;
+			sat.x = this.rX * Math.cos(sat.currentAngle);
+			sat.y = this.rY * Math.sin(sat.currentAngle);
+		});
+
 		super.update(delta);
 	}
 
@@ -97,28 +107,23 @@ class Player extends Droid {
 
 		let arena = this.arena,
 			cX = arena.viewport.half.w,
-			cY = arena.viewport.half.h - 1,
-			rX = 28,
-			rY = 25;
+			cY = arena.viewport.half.h - 1;
 
 		ctx.save();
 		ctx.translate(cX, cY);
 		ctx.fillStyle = "#fff";
 		// Draw the satellite
-		// ctx.lineWidth = 2;
-		// ctx.strokeStyle = "#ddd9";
-		// ctx.beginPath();
-		// ctx.ellipse(0, 0, rX, rY, 0, 0, Math.TAU);
-		// ctx.stroke();
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "#ddd9";
 
 		this.satellites.map(sat => {
-			// Calculate circle position based on time
-			let currentAngle = (Date.now() * sat.speed) + sat.rotateAngle;
-			let satX = rX * Math.cos(currentAngle);
-			let satY = rY * Math.sin(currentAngle);
+			// trail line
+			ctx.beginPath();
+			ctx.ellipse(0, 0, this.rX, this.rY, 0, sat.currentAngle - .35, sat.currentAngle);
+			ctx.stroke();
 			// Draw the rotating satellite
 			ctx.beginPath();
-			ctx.arc(satX, satY, 3, 0, Math.TAU);
+			ctx.arc(sat.x, sat.y, 3, 0, Math.TAU);
 			ctx.fill();
 		});
 		ctx.restore();
