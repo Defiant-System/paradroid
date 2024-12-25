@@ -92,7 +92,11 @@
 						// reset switch start
 						el.removeClass("active");
 						// turn off SVG group
-						group.removeClass("on");
+						group.removeClass("on joint-on");
+						// console.log(group);
+						group.find(".chip").removeClass("i1 i2 i3").addClass("joint");
+						group.find(`.socket.on`).removeClass("on").addClass("joint");
+						group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
 					});
 					// light up SVG group
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
@@ -113,7 +117,9 @@
 							jLine.find(".joint").removeClass("joint");
 							jLine.addClass("joint-on");
 							// toggle IO led
-							if (input === "i2") Self.dispatch({ type: "toggle-io-led", group: jLine });
+							if (input === "i2") {
+								Self.dispatch({ type: "toggle-io-led", group: jLine });
+							}
 						}
 					});
 					// toggle IO led
@@ -132,8 +138,11 @@
 					let socket = $(elem);
 					if (socket.hasClass("on")) {
 						let index = socket.data("pos"),
-							color = socket.cssProp("--color") === socket.cssProp("--yellow") ? "yellow" : "purple";
-						Self.els.ioLeds.find(`> div:nth-child(${index})`).removeClass("purple yellow").addClass(color);
+							ledEl = Self.els.ioLeds.find(`> div:nth-child(${index})`),
+							color = "";
+						if (socket.cssProp("--color") === socket.cssProp("--yellow")) color = "yellow";
+						if (socket.cssProp("--color") === socket.cssProp("--purple")) color = "purple";
+						if (color) ledEl.removeClass("purple yellow").addClass(color);
 					}
 				});
 				break;

@@ -273,6 +273,7 @@ content {
 		right: 30px;
 		display: flex;
 		// opacity: 0;
+		--stream-dur: 6s;
 
 		.toggler {
 			// background: #0001;
@@ -312,7 +313,7 @@ content {
 					opacity: 1;
 					filter: hue-rotate(190deg) saturate(2) brightness(1.5) drop-shadow(0 0 3px #fff6);
 					min-height: 1px;
-					transition-duration: 5s;
+					transition-duration: var( --stream-dur );
 				}
 
 				&:before {
