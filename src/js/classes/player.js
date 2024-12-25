@@ -12,15 +12,19 @@ class Player extends Droid {
 		// this.speed = .0015;
 		this.isPlayer = true;
 		this.isVisible = true;
+		this.transfer = {
+			value: 0,
+		};
 		// satellites
 		this.satellite = {
 			// ellipse radius
-			rX: 28,
-			rY: 25,
+			vel: new Point(0, 0),
+			rX: 20,
+			rY: 17,
 			list: [
-				{ vel: new Point(0, 0), speed: 0.0015, rotateAngle: Math.PI },
-				{ vel: new Point(0, 0), speed: 0.0015, rotateAngle: Math.PI * 1/3 },
-				{ vel: new Point(0, 0), speed: 0.0015, rotateAngle: Math.PI * -1/3 },
+				{ speed: 0.0015, rotateAngle: Math.PI },
+				{ speed: 0.0015, rotateAngle: Math.PI * 1/3 },
+				{ speed: 0.0015, rotateAngle: Math.PI * -1/3 },
 			]
 		};
 		// a little bit blur
@@ -77,7 +81,7 @@ class Player extends Droid {
 				delete this.nextTo;
 				break;
 			case "transfer":
-				console.log( item );
+				this.transfer.pressed = item.pressed;
 				break;
 		}
 	}
@@ -94,24 +98,36 @@ class Player extends Droid {
 		for (let key in this.input) {
 			if (this.input[key].pressed) {
 				let f = this.input[key].force;
+				if (!f) return;
 				if (f.x != 0) force.x = f.x;
 				if (f.y != 0) force.y = f.y;
 			}
 		}
 		this.move(force);
 
-		let satellite = this.satellite;
-		let dir = satellite.center.subtract(this.position);
-		dir = dir.normalize().multiply(1.85);
-		satellite.center = satellite.center.subtract(dir);
-		satellite.sub = dir;
+		// transfer mode (satellite radius)
+		if (this.transfer.pressed) {
+			this.transfer.value += .1;
+			if (this.transfer.value > 1) this.transfer.value = 1;
+		} else if (this.transfer.value > 0) {
+			this.transfer.value -= .1;
+			if (this.transfer.value < 0) this.transfer.value = 0;
+		}
 
-		satellite.list.map(sat => {
-			// Calculate circle position based on time
-			sat.currentAngle = (time * sat.speed) + sat.rotateAngle;
-			sat.x = satellite.sub.x + (satellite.rX * Math.cos(sat.currentAngle));
-			sat.y = satellite.sub.y + (satellite.rY * Math.sin(sat.currentAngle));
-		});
+		if (this.transfer.value > 0) {
+			let satellite = this.satellite,
+				dir = satellite.center.subtract(this.position),
+				val = this.transfer.value * 8;
+			dir = dir.normalize().multiply(1.85);
+			satellite.center = satellite.center.subtract(dir);
+			satellite.vel = dir;
+			// calculate satellite positions
+			satellite.list.map(sat => {
+				sat.currentAngle = (time * sat.speed) + sat.rotateAngle;
+				sat.x = satellite.vel.x + ((satellite.rX + val) * Math.cos(sat.currentAngle));
+				sat.y = satellite.vel.y + ((satellite.rY + val) * Math.sin(sat.currentAngle));
+			});
+		}
 
 		super.update(delta);
 	}
@@ -119,29 +135,37 @@ class Player extends Droid {
 	render(ctx) {
 		super.render(ctx);
 
-		let arena = this.arena,
-			satellite = this.satellite,
-			cX = arena.viewport.half.w,
-			cY = arena.viewport.half.h - 1;
-
-		// Draw the satellite
-		ctx.save();
-		ctx.translate(cX, cY);
-		ctx.lineWidth = 2;
-		ctx.strokeStyle = "#fff";
-		// three strokes
-		satellite.list.map(sat => {
-			// mist
+		if (this.transfer.value > 0) {
+			let arena = this.arena,
+				satellite = this.satellite,
+				val = this.transfer.value * 8,
+				cX = arena.viewport.half.w,
+				cY = arena.viewport.half.h - 1;
+			// Draw the satellite
 			ctx.save();
-			ctx.translate(sat.x, sat.y);
-			ctx.rotate(sat.currentAngle);
-			ctx.drawImage(arena.assets.mist.img, -7, -15, 14, 30);
+			ctx.translate(cX, cY);
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = "#fff";
+			// three strokes
+			satellite.list.map(sat => {
+				// mist
+				ctx.save();
+				ctx.translate(sat.x, sat.y);
+				ctx.rotate(sat.currentAngle);
+				ctx.drawImage(arena.assets.mist.img, -7, -15, 14, 30);
+				ctx.restore();
+				// line
+				ctx.beginPath();
+				ctx.ellipse(satellite.vel.x,
+					satellite.vel.y,
+					satellite.rX + val,
+					satellite.rY + val,
+					0,
+					sat.currentAngle - .5,
+					sat.currentAngle + .5);
+				ctx.stroke();
+			});
 			ctx.restore();
-			// line
-			ctx.beginPath();
-			ctx.ellipse(satellite.sub.x, satellite.sub.y, satellite.rX, satellite.rY, 0, sat.currentAngle - .5, sat.currentAngle + .5);
-			ctx.stroke();
-		});
-		ctx.restore();
+		}
 	}
 }

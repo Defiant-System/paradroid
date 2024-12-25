@@ -148,7 +148,7 @@ class Arena {
 
 		// for debug info
 		this.drawFps(this.ctx);
-		if (this.player.x !== this.player._x && this.player.y !== this.player._y) {
+		if (this.player.x !== this.player._x || this.player.y !== this.player._y) {
 			// do not update DOM if not needed
 			this.debug.elCoords.html(`${this.player.x}, ${this.player.y}`);
 			this.player._x = this.player.x;

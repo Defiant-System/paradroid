@@ -42,7 +42,7 @@
 					case "right": Player.input.right.pressed = true; break;
 
 					case "shift":
-						Player.setState({ mode: "transfer" });
+						Player.setState({ id: "transfer", pressed: true });
 						break;
 					case "space":
 						// Player.fire();
@@ -107,6 +107,9 @@
 					case "left": Player.input.left.pressed = false; break;
 					case "d":
 					case "right": Player.input.right.pressed = false; break;
+					case "shift":
+						Player.setState({ id: "transfer", pressed: false });
+						break;
 				}
 				break;
 			// custom events
