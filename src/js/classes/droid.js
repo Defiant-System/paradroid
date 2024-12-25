@@ -251,16 +251,19 @@ class Droid {
 		}
 
 		if (!this.isPlayer) {
-			let pos = new Point(this.x, this.y),
-				distance = this.home.target.distance(pos);
-
+			let tile = this.arena.config.tile,
+				hT = tile >> 1,
+				target = this.home.target.multiply(tile).subtract({ x: hT, y: hT }),
+				distance = target.distance(this.position);
+			
 			if (!this._path.length || this.isStuck()) this.setPath();
 			this.home.distance = distance;
 
-			if (distance == 0) {
+			if (distance <= hT) {
+				// if (this.x === this._path[0][0] && this.y === this._path[0][1]) this._path.shift();
 				let [x1, y1] = this._path.shift();
 				this.home.target = new Point(x1, y1);
-				this.home.force = this.home.target.subtract(pos);
+				this.home.force = this.home.target.subtract({ x: this.x, y: this.y }).norm();
 			} else {
 				this.move(this.home.force.clone());
 			}

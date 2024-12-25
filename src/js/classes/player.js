@@ -12,8 +12,12 @@ class Player extends Droid {
 		// this.speed = .0015;
 		this.isPlayer = true;
 		this.isVisible = true;
-		// for electric gloria
-		this.simplexNoise = new SimplexNoise;
+		// satellites
+		this.satellites = [
+				{ speed: 0.0015, rotateAngle: Math.PI },
+				{ speed: 0.0015, rotateAngle: Math.PI * 1/3 },
+				{ speed: 0.0015, rotateAngle: Math.PI * -1/3 },
+			];
 		// a little bit blur
 		this.blur = {
 			color: "#00000055",
@@ -73,47 +77,7 @@ class Player extends Droid {
 		}
 	}
 
-	noise(v) {
-		let amp = 1,
-			sum = 0,
-			f = 1;
-		for (let i=0; i<6; ++i) {
-			amp *= 0.5;
-			sum += amp * (this.simplexNoise.noise2D(v * f, 0) + 1) * 0.5;
-			f *= 2;
-		}
-		return sum;
-	}
-
 	update(delta) {
-		// let dx = this.arena.viewport.half.w,
-		// 	dy = this.arena.viewport.half.h - 1,
-		// 	r = 25,
-		// 	len = 8,
-		// 	a = 0,
-		// 	inc = 360 / len,
-		// 	points = this.points = [],
-		// 	off = Utils.random(.2, 0.02),
-		// 	waveWidth = 50;
-
-		// for (let i=0; i<len; i++) {
-		// 	let angle = a * Math.PI / 180,
-		// 		cosv = Math.cos(angle),
-		// 		sinv = Math.sin(angle),
-		// 		n = i / waveWidth,
-		// 		av = waveWidth * this.noise(n - off, 0),
-		// 		ax = sinv * av,
-		// 		ay = cosv * av,
-		// 		bv = waveWidth * this.noise(n + off, 0),
-		// 		bx = sinv * bv,
-		// 		by = cosv * bv,
-		// 		x = dx + cosv * r + (ax - bx),
-		// 		y = dy + sinv * r - (ay - by);
-		// 	points.push({ x, y });
-		// 	a += inc;
-		// }
-		// points.push(points[0]);
-
 		// USER input
 		let force = { x: 0, y: 0 };
 		for (let key in this.input) {
@@ -131,16 +95,32 @@ class Player extends Droid {
 	render(ctx) {
 		super.render(ctx);
 
-		let points = this.points || [],
-			len = points.length;
-		// electric
+		let arena = this.arena,
+			cX = arena.viewport.half.w,
+			cY = arena.viewport.half.h - 1,
+			rX = 28,
+			rY = 25;
+
 		ctx.save();
-		ctx.lineWidth = 2;
-		ctx.strokeStyle = "#fff";
-		ctx.beginPath();
-		points.map((point, i) => ctx[i === 0 ? "moveTo" : "lineTo"](point.x, point.y));
-		//ctx.closePath();
-		ctx.stroke();
+		ctx.translate(cX, cY);
+		ctx.fillStyle = "#fff";
+		// Draw the satellite
+		// ctx.lineWidth = 2;
+		// ctx.strokeStyle = "#ddd9";
+		// ctx.beginPath();
+		// ctx.ellipse(0, 0, rX, rY, 0, 0, Math.TAU);
+		// ctx.stroke();
+
+		this.satellites.map(sat => {
+			// Calculate circle position based on time
+			let currentAngle = (Date.now() * sat.speed) + sat.rotateAngle;
+			let satX = rX * Math.cos(currentAngle);
+			let satY = rY * Math.sin(currentAngle);
+			// Draw the rotating satellite
+			ctx.beginPath();
+			ctx.arc(satX, satY, 3, 0, Math.TAU);
+			ctx.fill();
+		});
 		ctx.restore();
 	}
 }

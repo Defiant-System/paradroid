@@ -33,12 +33,11 @@ let Test = {
 		
 		// view animation
 		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "transfer" }), 100);
-		setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "terminated" }), 100);
-		return;
+		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "terminated" }), 100);
+		// return;
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
 		setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
@@ -66,6 +65,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
