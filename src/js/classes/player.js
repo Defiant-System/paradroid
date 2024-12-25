@@ -13,14 +13,16 @@ class Player extends Droid {
 		this.isPlayer = true;
 		this.isVisible = true;
 		// satellites
-		this.satellites = [
-				{ speed: 0.0015, rotateAngle: Math.PI },
-				{ speed: 0.0015, rotateAngle: Math.PI * 1/3 },
-				{ speed: 0.0015, rotateAngle: Math.PI * -1/3 },
-			];
-		// ellipse radius
-		this.rX = 28;
-		this.rY = 25;
+		this.satellite = {
+			// ellipse radius
+			rX: 28,
+			rY: 25,
+			list: [
+				{ vel: new Point(0, 0), speed: 0.0015, rotateAngle: Math.PI },
+				{ vel: new Point(0, 0), speed: 0.0015, rotateAngle: Math.PI * 1/3 },
+				{ vel: new Point(0, 0), speed: 0.0015, rotateAngle: Math.PI * -1/3 },
+			]
+		};
 		// a little bit blur
 		this.blur = {
 			color: "#00000055",
@@ -80,6 +82,12 @@ class Player extends Droid {
 		}
 	}
 
+	spawn(cfg) {
+		super.spawn(cfg);
+		// satellite center
+		this.satellite.center = this.position.clone();
+	}
+
 	update(delta, time) {
 		// USER input
 		let force = { x: 0, y: 0 };
@@ -92,11 +100,17 @@ class Player extends Droid {
 		}
 		this.move(force);
 
-		this.satellites.map(sat => {
+		let satellite = this.satellite;
+		let dir = satellite.center.subtract(this.position);
+		dir = dir.normalize().multiply(1.85);
+		satellite.center = satellite.center.subtract(dir);
+		satellite.sub = dir;
+
+		satellite.list.map(sat => {
 			// Calculate circle position based on time
 			sat.currentAngle = (time * sat.speed) + sat.rotateAngle;
-			sat.x = this.rX * Math.cos(sat.currentAngle);
-			sat.y = this.rY * Math.sin(sat.currentAngle);
+			sat.x = satellite.sub.x + (satellite.rX * Math.cos(sat.currentAngle));
+			sat.y = satellite.sub.y + (satellite.rY * Math.sin(sat.currentAngle));
 		});
 
 		super.update(delta);
@@ -106,25 +120,27 @@ class Player extends Droid {
 		super.render(ctx);
 
 		let arena = this.arena,
+			satellite = this.satellite,
 			cX = arena.viewport.half.w,
 			cY = arena.viewport.half.h - 1;
 
+		// Draw the satellite
 		ctx.save();
 		ctx.translate(cX, cY);
-		ctx.fillStyle = "#fff";
-		// Draw the satellite
 		ctx.lineWidth = 2;
-		ctx.strokeStyle = "#ddd9";
-
-		this.satellites.map(sat => {
-			// trail line
+		ctx.strokeStyle = "#fff";
+		// three strokes
+		satellite.list.map(sat => {
+			// mist
+			ctx.save();
+			ctx.translate(sat.x, sat.y);
+			ctx.rotate(sat.currentAngle);
+			ctx.drawImage(arena.assets.mist.img, -7, -15, 14, 30);
+			ctx.restore();
+			// line
 			ctx.beginPath();
-			ctx.ellipse(0, 0, this.rX, this.rY, 0, sat.currentAngle - .35, sat.currentAngle);
+			ctx.ellipse(satellite.sub.x, satellite.sub.y, satellite.rX, satellite.rY, 0, sat.currentAngle - .5, sat.currentAngle + .5);
 			ctx.stroke();
-			// Draw the rotating satellite
-			ctx.beginPath();
-			ctx.arc(sat.x, sat.y, 3, 0, Math.TAU);
-			ctx.fill();
 		});
 		ctx.restore();
 	}
