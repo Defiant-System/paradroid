@@ -88,8 +88,6 @@ class Player extends Droid {
 
 	spawn(cfg) {
 		super.spawn(cfg);
-		// satellite center
-		this.satellite.center = this.position.clone();
 	}
 
 	update(delta, time) {
@@ -107,6 +105,10 @@ class Player extends Droid {
 
 		// transfer mode (satellite radius)
 		if (this.transfer.pressed) {
+			if (this.transfer.value === 0) {
+				// reset sattelite cener
+				this.satellite.center = this.position.clone();
+			}
 			this.transfer.value += .1;
 			if (this.transfer.value > 1) this.transfer.value = 1;
 		} else if (this.transfer.value > 0) {
