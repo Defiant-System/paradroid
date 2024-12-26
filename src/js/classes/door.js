@@ -95,7 +95,7 @@ class Door {
 			x = Math.floor(this.pos.x - tile + viewport.x),
 			y = Math.floor(this.pos.y - tile + viewport.y),
 			frame = 128 + (this.frame.index * 64),
-			args = [arena.assets["big-map"].img, frame, 256, 64, 64, 0, 0, 64, 64],
+			args = [arena.bgAsset.img, frame, 256, 64, 64, 0, 0, 64, 64],
 			isVert = this.type === "v";
 
 		// frames for vertical door

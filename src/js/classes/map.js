@@ -270,8 +270,7 @@ class Map {
 	}
 
 	render(ctx) {
-		let assets = this.arena.assets,
-			viewport = this.arena.viewport,
+		let viewport = this.arena.viewport,
 			tile = this.arena.config.tile,
 			debug = this.arena.debug.mode,
 			hT = tile >> 1,
@@ -301,7 +300,7 @@ class Map {
 						tY = Math.floor((y * tile) - vY);
 
 					ctx.drawImage(
-						assets["big-map"].img,
+						this.arena.bgAsset.img,
 						oX, oY, tile, tile,
 						tX, tY, tile, tile
 					);

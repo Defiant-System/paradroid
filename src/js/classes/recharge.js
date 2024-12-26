@@ -44,11 +44,12 @@ class Recharge {
 			x = this.pos.x - tile + viewport.x,
 			y = this.pos.y - tile + viewport.y,
 			rad = (this.angle * Math.PI) / 180,
-			args = [arena.assets["big-map"].img, 0, 257, 14, 14, -7, -7, 14, 14],
+			args = [arena.bgAsset.img, 0, 257, 14, 14, -7, -7, 14, 14],
 			r;
 
 		ctx.save();
-		ctx.fillStyle = arena.colors.light +"cc";
+		ctx.fillStyle = "#fff3";
+		// ctx.fillStyle = arena.colors.light +"cc";
 		ctx.translate(x, y);
 
 		// normal draw if debug mode is < 2

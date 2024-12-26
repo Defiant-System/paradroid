@@ -62,6 +62,17 @@ class Arena {
 						// save original (to be used later with level filter)
 						this.assets.original = img;
 						this.copy = Utils.createCanvas(img.width, img.height);
+
+						// dark version for "lights out"
+						let dark = Utils.createCanvas(img.width, img.height);
+						dark.ctx.save();
+						dark.ctx.filter = "grayscale(1) brightness(0.75) contrast(0.9)";
+						dark.ctx.drawImage(img, 0, 0);
+						dark.ctx.restore();
+						dark.ctx.globalCompositeOperation = "source-atop";
+						dark.ctx.fillStyle = "#33a";
+						dark.ctx.fillRect(100, 100, 300, 300);
+						this.assets["dark-map"] = { item, img: dark.cvs[0] };
 					}
 					// save reference to asset
 					this.assets[item.id] = { item, img };
@@ -112,6 +123,12 @@ class Arena {
 		this.player.spawn(state.player);
 		// center viewport
 		this.viewport.center();
+		// if level is cleared, turn off lights
+		this.bgAsset = this.assets["big-map"];
+		if (mapState.clear === 1) {
+			this.bgAsset = this.assets["dark-map"];
+			this.cvs.parent().css({ background: "#555" });
+		}
 		// set map state
 		this.map.setState(mapState);
 	}

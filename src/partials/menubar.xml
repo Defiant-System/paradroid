@@ -16,7 +16,7 @@
 			<Menu name="Editor" click="show-view" arg="editor"/>
 		</Menu>
 		<Menu type="divider"/>
-		<Menu name="Turn Off Lights" click="turn-off-lights"/>
+		<Menu name="Toggle Lights" click="toggle-lights"/>
 		<Menu name="Player Droid&#8230;">
 			<Menu name="001 (L)" check-group="player-droid" click="set-player-droid" arg="001" is-checked="1"/>
 			<Menu name="123" check-group="player-droid" click="set-player-droid" arg="123"/>

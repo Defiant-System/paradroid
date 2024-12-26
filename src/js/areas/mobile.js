@@ -8,6 +8,7 @@
 			content: window.find("content"),
 			droidFx: window.find(".mobile-view .droid-fx"),
 			cvs: window.find(".mobile-view canvas.game"),
+			el: window.find(".mobile-view"),
 		};
 		// create arena
 		this.arena = new Arena(this.els.cvs);
@@ -146,7 +147,7 @@
 				// adjust hud with new color
 				APP.hud.dispatch({ type: "set-level-data", background, percentage, power });
 				// canvas background color
-				Self.els.cvs.parent().css({ background });
+				Self.els.el.css({ background });
 				// droid-FX
 				Self.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
 
@@ -161,13 +162,16 @@
 						Self.dispatch({ type: "game-loop-resume" });
 					};
 				// try setting new state
-				func(event.state, { color: background, filter });
+				func(event.state, { color: background, filter, percentage });
 				break;
-			case "level-lights-off":
-				value = "#555";
-				Self.els.cvs.parent().css({ background: value });
-				Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.75)" });
+			case "toggle-lights":
+				
 				break;
+			// case "level-lights-off":
+			// 	value = "#555";
+			// 	Self.els.el.css({ background: value });
+			// 	Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.95)" });
+			// 	break;
 			case "set-player-droid":
 				Player.setId(event.arg);
 				break;

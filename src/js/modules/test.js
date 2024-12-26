@@ -38,7 +38,6 @@ let Test = {
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
 		setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
@@ -66,6 +65,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
@@ -113,7 +113,7 @@ let Test = {
 					// map: { id: 14, clear: .15 }, player: { id: "711", x: 20, y: 16, power: .35 }, debug: { mode: 0 },
 					// map: { id: 16, clear: .1 }, player: { id: "711", x: 17, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
-					map: { id: 1, clear: .85 }, player: { id: "001", x: 21, y: 7, power: .35 }, debug: { mode: 0 },
+					map: { id: 1, clear: 1 }, player: { id: "001", x: 27, y: 7, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 11, clear: .1 }, player: { x: 3, y: 10, power: .85 }, debug: { mode: 0 },
@@ -121,6 +121,7 @@ let Test = {
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 
+			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 800);
 			// setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);
 			// setTimeout(() => APP.mobile.arena.player.fire(), 600);
 

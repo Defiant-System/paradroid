@@ -139,10 +139,9 @@ const paradroid = {
 			case "stop-song":
 				window.audio.stop(event.arg);
 				break;
-			case "turn-off-lights":
-				Self.mobile.dispatch({ type: "level-lights-off" });
-				break;
 			// proxy event
+			case "toggle-lights":
+				return Self.mobile.dispatch(event);
 			case "generate-schemas":
 				return Self.transfer.dispatch(event);
 			case "set-player-droid":
