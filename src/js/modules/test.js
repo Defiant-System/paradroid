@@ -113,7 +113,7 @@ let Test = {
 					// map: { id: 14, clear: .15 }, player: { id: "711", x: 20, y: 16, power: .35 }, debug: { mode: 0 },
 					// map: { id: 16, clear: .1 }, player: { id: "711", x: 17, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
-					map: { id: 1, clear: 1 }, player: { id: "001", x: 27, y: 7, power: .35 }, debug: { mode: 0 },
+					map: { id: 6, clear: 1 }, player: { id: "001", x: 33, y: 9, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 11, clear: .1 }, player: { x: 3, y: 10, power: .85 }, debug: { mode: 0 },

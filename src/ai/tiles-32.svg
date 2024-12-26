@@ -104,6 +104,7 @@
 	.st98{fill:url(#SVGID_88_);}
 	.st99{fill:url(#SVGID_89_);}
 	.st100{fill:url(#SVGID_90_);}
+	.st101{fill:none;stroke:#ABFFEC;stroke-width:2;stroke-miterlimit:10;}
 </style>
 <g id="blue-4_copy" class="st0">
 	<path class="st1" d="M64,122H16.2C10.6,122,6,117.5,6,111.9V64l58.1-0.1 M64,122v-4"/>
@@ -727,6 +728,16 @@
 	<polyline class="st65" points="144,223 129,223 129,193 159,193 159,208 	"/>
 	<polyline class="st65" points="176,161 191,161 191,191 161,191 161,176 	"/>
 	<polyline class="st65" points="223,176 223,191 193,191 193,161 208,161 	"/>
+	<polyline class="st65" points="161,208 161,193 176,193 	"/>
+	<polyline class="st65" points="208,193 223,193 223,208 	"/>
+	<polyline class="st65" points="240,225 255,225 255,240 	"/>
+	<polyline class="st65" points="129,240 129,225 144,225 	"/>
+	<g>
+		<polyline class="st65" points="80,222.9 65,222.9 65,192.9 95,192.9 95,207.9 		"/>
+		<polyline class="st65" points="97,207.9 97,192.9 127,192.9 127,222.9 112,222.9 		"/>
+		<polyline class="st65" points="95,239.9 95,254.9 65,254.9 65,224.9 80,224.9 		"/>
+		<polyline class="st65" points="112,224.9 127,224.9 127,254.9 97,254.9 97,239.9 		"/>
+	</g>
 	
 		<linearGradient id="SVGID_62_" gradientUnits="userSpaceOnUse" x1="88.8006" y1="669.2322" x2="103.4968" y2="628.8544" gradientTransform="matrix(1 0 0 -1 0 823.8898)">
 		<stop  offset="0" style="stop-color:#FFB9B9"/>
@@ -871,10 +882,6 @@
 	</linearGradient>
 	<path class="st81" d="M238.5,182.7v-1.4c0-0.4,0.4-0.8,0.8-0.8h1.4c0.4,0,0.8,0.4,0.8,0.8v1.4c0,0.4-0.4,0.8-0.8,0.8h-1.4
 		C238.9,183.5,238.5,183.1,238.5,182.7z"/>
-	<polyline class="st65" points="161,208 161,193 176,193 	"/>
-	<polyline class="st65" points="208,193 223,193 223,208 	"/>
-	<polyline class="st65" points="240,225 255,225 255,240 	"/>
-	<polyline class="st65" points="129,240 129,225 144,225 	"/>
 	<path class="st6" d="M448,182h3.3c1.5,0,2.7-1.2,2.7-2.7V176h4v3.3c0,3.7-3,6.7-6.7,6.7H448V182z"/>
 	<path class="st6" d="M464,170h-3.3c-1.5,0-2.7,1.2-2.7,2.7v3.3h-4v-3.3c0-3.7,3-6.7,6.7-6.7h3.3V170z"/>
 	
@@ -1091,11 +1098,13 @@
 	</linearGradient>
 	<path class="st100" d="M443.7,339.4v4h-3.1l-7,8.1l7.1,8h3v3.9h-3.9c-0.6,0-1.1-0.2-1.5-0.7l-8.8-9.9c-0.7-0.7-0.7-1.9,0-2.6
 		l8.7-10.1c0.4-0.4,0.9-0.7,1.5-0.7H443.7z"/>
-	<g>
-		<polyline class="st65" points="80,222.9 65,222.9 65,192.9 95,192.9 95,207.9 		"/>
-		<polyline class="st65" points="97,207.9 97,192.9 127,192.9 127,222.9 112,222.9 		"/>
-		<polyline class="st65" points="95,239.9 95,254.9 65,254.9 65,224.9 80,224.9 		"/>
-		<polyline class="st65" points="112,224.9 127,224.9 127,254.9 97,254.9 97,239.9 		"/>
-	</g>
+</g>
+<g id="Layer_3">
+	<polyline class="st101" points="48,319 33,319 33,289 63,289 63,304 	"/>
+	<polyline class="st101" points="65,304 65,289 95,289 95,319 80,319 	"/>
+	<polyline class="st101" points="63,336 63,351 33,351 33,321 48,321 	"/>
+	<polyline class="st101" points="80,321 95,321 95,351 65,351 65,336 	"/>
+	<polyline class="st101" points="97,304 97,289 112,289 	"/>
+	<polyline class="st101" points="31,303 31,289 16,289 	"/>
 </g>
 </svg>

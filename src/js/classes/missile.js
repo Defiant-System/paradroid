@@ -9,6 +9,8 @@ class Missile {
 		this.asset = arena.assets.missile;
 		this.bullet = Math.random();
 		this.trail = [];
+		// this ensures this to be rendered on top
+		this._fx = true;
 
 		this.position = owner.position.clone();
 		this.position.x += Math.cos(angle) * 28;

@@ -10,6 +10,8 @@ class Sparks {
 		this.alpha = 1;
 		this.trailLen = 5;
 		this.decay = Utils.random(.02, .035);
+		// this ensures this to be rendered on top
+		this._fx = true;
 		
 		// update tile position
 		let position = new Point(x, y),

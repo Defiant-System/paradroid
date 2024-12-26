@@ -9,6 +9,8 @@ class Fire {
 		this.type = type;
 		this.angle = angle + Math.PI / 2;
 		this.asset = arena.assets[this.type];
+		// this ensures this to be rendered on top
+		this._fx = true;
 		
 		this.speed = speed || .00005;
 		let vX = Math.cos(angle) * this.speed,

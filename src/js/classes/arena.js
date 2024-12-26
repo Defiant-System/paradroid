@@ -10,6 +10,28 @@ class Arena {
 		this.cvs = cvs.attr({ width, height });
 		this.ctx = cvs[0].getContext("2d", { willReadFrequently: true });
 
+		let led = Utils.createCanvas(width, height);
+		this.led = {
+			...led,
+			floor: false,
+			tileMap: [
+				[32, 288, 32, 32],
+				[64, 288, 32, 32],
+				[32, 320, 32, 32],
+				[64, 320, 32, 32],
+				[96, 288, 16, 16],
+				[0, 288, 16, 16]
+			],
+			tiles: [
+				"m42", "m46", "m4a", "m60", "m62", "m64",
+				"m43", "m45", "m4b", "m61", "m63", "m67",
+				"m50", "m56", "m5a", "m70", "m72", "",
+				"m51", "m55", "m5b", "m71", "m73", "",
+				"m65", "m74", "", "", "", "",
+				"m66", "m77", "", "", "", "",
+			],
+		};
+
 		// config
 		this.config = {
 			tile: 32,
@@ -66,12 +88,11 @@ class Arena {
 						// dark version for "lights out"
 						let dark = Utils.createCanvas(img.width, img.height);
 						dark.ctx.save();
-						dark.ctx.filter = "grayscale(1) brightness(0.75) contrast(0.9)";
+						dark.ctx.filter = "grayscale(1) brightness(0.7) contrast(0.8)";
 						dark.ctx.drawImage(img, 0, 0);
 						dark.ctx.restore();
-						dark.ctx.globalCompositeOperation = "source-atop";
-						dark.ctx.fillStyle = "#33a";
-						dark.ctx.fillRect(100, 100, 300, 300);
+						dark.ctx.filter = "";
+						dark.ctx.drawImage(img, 10, 283, 108, 108, 10, 283, 108, 108);
 						this.assets["dark-map"] = { item, img: dark.cvs[0] };
 					}
 					// save reference to asset
@@ -125,7 +146,9 @@ class Arena {
 		this.viewport.center();
 		// if level is cleared, turn off lights
 		this.bgAsset = this.assets["big-map"];
+		this.led.floor = false;
 		if (mapState.clear === 1) {
+			this.led.floor = true;
 			this.bgAsset = this.assets["dark-map"];
 			this.cvs.parent().css({ background: "#555" });
 		}
@@ -140,6 +163,7 @@ class Arena {
 	render() {
 		// clear canvas
 		this.cvs.attr({ width: this.width });
+		this.led.cvs.attr({ width: this.width });
 
 		this.viewport.center();
 		this.map.render(this.ctx);

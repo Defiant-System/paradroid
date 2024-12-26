@@ -66,6 +66,7 @@ class Map {
 		this.entries = [];
 		this.grid = [];
 		this.droids = [this.arena.player];
+		this.tiles = []; // level map tiles
 		this.background = []; // level map data
 
 		// physics bodies array
@@ -91,7 +92,10 @@ class Map {
 		// console.log( this.grid.join("\n") );
 
 		// add rows
-		[...Array(this.height)].map(row => this.background.push([]));
+		[...Array(this.height)].map(row => {
+			this.tiles.push([]);
+			this.background.push([]);
+		});
 		backgrounds.map((xTile, col) => {
 			let row = Math.floor(col / this.width),
 				tile = xTile.getAttribute("id"),
@@ -100,6 +104,7 @@ class Map {
 				let [a, t, l] = tile.split("");
 				arg = [a, parseInt(t, 16), parseInt(l, 16)];
 			}
+			this.tiles[row].push(tile);
 			this.background[row].push(arg);
 		});
 
@@ -270,9 +275,10 @@ class Map {
 	}
 
 	render(ctx) {
-		let viewport = this.arena.viewport,
-			tile = this.arena.config.tile,
-			debug = this.arena.debug.mode,
+		let arena = this.arena,
+			viewport = arena.viewport,
+			tile = arena.config.tile,
+			debug = arena.debug.mode,
 			hT = tile >> 1,
 			vX = hT - viewport.x,
 			vY = hT - viewport.y,
@@ -290,7 +296,8 @@ class Map {
 		if (debug < 2) {
 			for (let y=yMin; y<yMax; y++) {
 				for (let x=xMin; x<xMax; x++) {
-					let col = this.background[y][x];
+					let col = this.background[y][x],
+						bgt = this.tiles[y][x];
 					if (!col) continue;
 
 					let [a, t, l] = col,
@@ -300,38 +307,59 @@ class Map {
 						tY = Math.floor((y * tile) - vY);
 
 					ctx.drawImage(
-						this.arena.bgAsset.img,
+						arena.bgAsset.img,
 						oX, oY, tile, tile,
 						tX, tY, tile, tile
 					);
+					if (arena.led.floor) {
+						let ledIndex = arena.led.tiles.indexOf(bgt);
+						if (ledIndex > -1) {
+							let [lx, ly, lw, lh] = arena.led.tileMap[Math.floor(ledIndex/6)];
+							arena.led.ctx.drawImage(
+								arena.bgAsset.img,
+								lx, ly, lw, lh,
+								tX, tY, lw, lh
+							);
+						}
+					}
 				}
 			}
 		}
 
 		// draw entries - exclude droids
 		this.entries
-			.filter(entry => !entry.id && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
+			.filter(entry => !entry.id && !entry._fx && entry.x >= xMin-1 && entry.x <= xMax && entry.y >= yMin-1 && entry.y <= yMax)
 			.map(entry => entry.render(ctx));
 
 		// visibility map mask
 		ctx.save();
 		this.raycaster.render(ctx, this.rcConf);
 		if (debug < 1) {
-			// lights
-			this.lights
-				.filter(light => light.tX >= xMin-1 && light.tX <= xMax && light.tY >= yMin-1 && light.tY <= yMax)
-				.map(light => {
-					let lX = light.x - vX,
-						lY = light.y - vY,
-						r = 120 * light.r,
-						r2 = r >> 1,
-						gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
-					gradient.addColorStop(0.0, "#fff3");
-					gradient.addColorStop(0.5, "#fff0");
-					gradient.addColorStop(1.0, "#fff0");
-					ctx.fillStyle = gradient;
-					ctx.fillRect(lX-r2, lY-r2, r, r);
-				});
+			if (arena.led.floor) {
+				ctx.save();
+				ctx.drawImage(arena.led.cvs[0], 0, 0);
+				ctx.filter = "blur(6px)";
+				ctx.drawImage(arena.led.cvs[0], 0, 0);
+				ctx.globalCompositeOperation = "lighter";
+				ctx.drawImage(arena.led.cvs[0], 0, 0);
+				ctx.restore();
+			} else {
+				// lights
+				this.lights
+					.filter(light => light.tX >= xMin-1 && light.tX <= xMax && light.tY >= yMin-1 && light.tY <= yMax)
+					.map(light => {
+						let lX = light.x - vX,
+							lY = light.y - vY,
+							r = 120 * light.r,
+							r2 = r >> 1,
+							gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
+						gradient.addColorStop(0.0, "#fff3");
+						gradient.addColorStop(0.5, "#fff0");
+						gradient.addColorStop(1.0, "#fff0");
+						ctx.fillStyle = gradient;
+						ctx.fillRect(lX-r2, lY-r2, r, r);
+					});
+			}
 		}
 		// now render droids (with mask clip)
 		this.droids
@@ -341,7 +369,7 @@ class Map {
 		ctx.restore();
 
 		// player droid
-		this.arena.player.render(ctx);
+		arena.player.render(ctx);
 
 		// now render fx layer
 		this.entries

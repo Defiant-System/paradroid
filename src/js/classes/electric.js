@@ -19,6 +19,8 @@ class Electric {
 		this.points = [];
 		this.ttl = 12;
 		this.simplexNoise = new SimplexNoise;
+		// this ensures this to be rendered on top
+		this._fx = true;
 
 		if (this.lineWidth === 2) {
 			// thinner child lines
