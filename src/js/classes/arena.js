@@ -131,6 +131,17 @@ class Arena {
 		this.assets["big-map"].img = this.copy.cvs[0];
 	}
 
+	setLights(mapState) {
+		// if level is cleared, turn off lights
+		this.bgAsset = this.assets["big-map"];
+		this.led.floor = false;
+		if (mapState.clear === 1) {
+			this.led.floor = true;
+			this.bgAsset = this.assets["dark-map"];
+			this.cvs.parent().css({ background: "#555" });
+		}
+	}
+
 	setDebug(mode) {
 		this.debug.mode = mode;
 	}
@@ -144,14 +155,8 @@ class Arena {
 		this.player.spawn(state.player);
 		// center viewport
 		this.viewport.center();
-		// if level is cleared, turn off lights
-		this.bgAsset = this.assets["big-map"];
-		this.led.floor = false;
-		if (mapState.clear === 1) {
-			this.led.floor = true;
-			this.bgAsset = this.assets["dark-map"];
-			this.cvs.parent().css({ background: "#555" });
-		}
+		// light or dark?
+		this.setLights(mapState);
 		// set map state
 		this.map.setState(mapState);
 	}

@@ -165,13 +165,19 @@
 				func(event.state, { color: background, filter, percentage });
 				break;
 			case "toggle-lights":
-				
+				value = !!Self.arena.led.floor ? 0 : 1;
+				Self.arena.setLights({ clear: value });
+				// restore bg color + filter
+				if (!value) {
+					// update arena base background color
+					Self.els.el.css({ background: Self.arena.colors.base });
+					// set level colors
+					Self.arena.setFilter({
+						color: Self.arena.colors.base,
+						filter: Self.arena.copy.ctx.filter,
+					});
+				}
 				break;
-			// case "level-lights-off":
-			// 	value = "#555";
-			// 	Self.els.el.css({ background: value });
-			// 	Self.arena.setFilter({ color: value, filter: "grayscale(1) brightness(0.7) contrast(0.95)" });
-			// 	break;
 			case "set-player-droid":
 				Player.setId(event.arg);
 				break;
