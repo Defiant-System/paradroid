@@ -43,11 +43,11 @@
 					case "right": Player.input.right.pressed = true; break;
 
 					case "shift":
-						Player.setState({ id: "transfer", pressed: true });
+						Player.setState({ id: "transfer", active: true });
 						break;
-					case "space":
-						// Player.fire();
-						break;
+					// case "space":
+					// 	Player.setState({ id: "fire", active: true });
+					// 	break;
 					case "return":
 						// don't do anything if not next to "something"
 						if (!Player.nextTo) return;
@@ -111,6 +111,9 @@
 					case "shift":
 						Player.setState({ id: "transfer", pressed: false });
 						break;
+					// case "space":
+					// 	Player.setState({ id: "fire", pressed: false });
+					// 	break;
 				}
 				break;
 			// custom events
@@ -212,7 +215,6 @@
 
 				// auto trigger "mousemove"
 				Self.doFire({ type: "mousemove", clientX: event.clientX, clientY: event.clientY });
-
 				// cover app window
 				APP.els.content.addClass("cover");
 				// bind event handlers

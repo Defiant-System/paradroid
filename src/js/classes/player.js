@@ -19,8 +19,8 @@ class Player extends Droid {
 		this.electric = {
 			active: true,
 			index: 0,
-			last: 20,
-			speed: 20,
+			last: 25,
+			speed: 25,
 			angle: 0,
 			asset: this.arena.assets["electric"].img,
 		};
@@ -90,7 +90,7 @@ class Player extends Droid {
 				delete this.nextTo;
 				break;
 			case "transfer":
-				this.transfer.pressed = item.pressed;
+				this.transfer.active = item.active;
 				break;
 		}
 	}
@@ -124,7 +124,7 @@ class Player extends Droid {
 
 
 		// transfer mode (satellite radius)
-		if (this.transfer.pressed) {
+		if (this.transfer.active) {
 			if (this.transfer.value === 0) {
 				// reset sattelite cener
 				this.satellite.center = this.position.clone();

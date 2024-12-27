@@ -11,8 +11,8 @@ class Electric {
 		this._fx = true; // map renders this last
 		this.speed = 0.2;
 		this.color = color || "#fff";
-		this.lineWidth = lineWidth || 2;
-		this.amplitude = amplitude || 0.7;
+		this.lineWidth = lineWidth || 2.5;
+		this.amplitude = amplitude || 0.85;
 		this.origin = origin.moveTowards(target, 23);
 		this.target = target.moveTowards(origin, 23);
 		this.droid = droid;
@@ -22,9 +22,9 @@ class Electric {
 		// this ensures this to be rendered on top
 		this._fx = true;
 
-		if (this.lineWidth === 2) {
+		if (this.lineWidth !== 1) {
 			// thinner child lines
-			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: `${color}9`, lineWidth: 1, amplitude: 0.8 }));
+			this.children = [...Array(2)].map(i => new Electric({ ...cfg, color: `${color}9`, lineWidth: 1, amplitude: 0.95 }));
 			// add to map entries
 			this.arena.map.addItem(this);
 		}

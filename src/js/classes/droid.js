@@ -371,17 +371,17 @@ class Droid {
 			ctx.restore();
 		}
 
-		if (this.electric && this.electric.active) {
+		if (this.fire.name === "disruptor" && this.fire.shooting) {
 			let w = 90,
 				f = w * this.electric.index;
 			ctx.save();
 			ctx.rotate(this.electric.angle);
-			ctx.translate(-45, -45);
+			ctx.translate(-35, -35);
 			ctx.shadowBlur = 0;
 			// top + bottom caps
 			ctx.drawImage(this.electric.asset,
 				f, 0, w, w,
-				0, 0, w, w
+				0, 0, 70, 70
 			);
 			ctx.restore();
 		}
