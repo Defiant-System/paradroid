@@ -15,6 +15,15 @@ class Player extends Droid {
 		this.transfer = {
 			value: 0,
 		};
+		// electric gloria
+		this.electric = {
+			active: true,
+			index: 0,
+			last: 20,
+			speed: 20,
+			angle: 0,
+			asset: this.arena.assets["electric"].img,
+		};
 		// satellites
 		this.satellite = {
 			// ellipse radius
@@ -102,6 +111,17 @@ class Player extends Droid {
 			}
 		}
 		this.move(force);
+
+
+		// electric gloria
+		this.electric.last -= delta;
+		if (this.electric.last < 0) {
+			this.electric.last = (this.electric.last + this.electric.speed) % this.electric.speed;
+			this.electric.angle -= .015;
+			this.electric.index++;
+			if (this.electric.index > 29) this.electric.index = 0;
+		}
+
 
 		// transfer mode (satellite radius)
 		if (this.transfer.pressed) {
