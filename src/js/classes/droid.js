@@ -233,6 +233,10 @@ class Droid {
 		// Math.abs(this.home.distance - distance) < .05
 	}
 
+	collision() {
+		
+	}
+
 	update(delta) {
 		// dont move
 		if (this._freeze) return;

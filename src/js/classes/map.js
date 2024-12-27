@@ -337,10 +337,10 @@ class Map {
 		if (debug < 1) {
 			if (arena.led.floor) {
 				ctx.save();
-				ctx.drawImage(arena.led.cvs[0], 0, 0);
-				ctx.filter = "blur(6px)";
-				ctx.drawImage(arena.led.cvs[0], 0, 0);
 				ctx.globalCompositeOperation = "lighter";
+				ctx.filter = "blur(7px)";
+				ctx.drawImage(arena.led.cvs[0], 0, 0);
+				ctx.filter = "opacity(.65)";
 				ctx.drawImage(arena.led.cvs[0], 0, 0);
 				ctx.restore();
 			} else {

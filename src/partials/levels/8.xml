@@ -1,5 +1,5 @@
 
-<Section id="8" width="68" height="32" color="#e74f45" filter="none">
+<Section id="8" width="68" height="32" color="#be02ff" filter="hue-rotate(325deg) contrast(0.8)">
 	<Layer id="droids">
 		<!-- no droids in this level -->
 	</Layer>
