@@ -32,12 +32,13 @@
 			background: #b1b1b1;
 			box-shadow: inset 0px 6px 0px 0px #4848481a,
 						inset 0 0 1px #818181,
-						0 0 3px #080808;
+						0 0 2px #080808;
 			position: relative;
 			display: inline-block;
 			width: 67px;
 			height: 370px;
-			overflow: hidden;
+			vertical-align: top;
+			// overflow: hidden;
 			padding: 13px 17px;
 			margin: 0 11px 0 0;
 			border-radius: 7px;
@@ -71,16 +72,38 @@
 				margin-right: 0;
 			}
 
+			&:nth-child(2) .icon {
+				background: url(~/icons/bp-001.png) 50% 100% no-repeat;
+				background-size: auto 220px;
+				background-position: 50% -73px;
+			}
+
+			&:nth-child(3) .icon {
+				background: url(~/icons/icon-droid-info.png) 50% 100% no-repeat;
+				background-size: 152% auto;
+			}
+
+			&:nth-child(5) .icon {
+				background: url(~/icons/gamepad.png) 50% 100% no-repeat;
+				background-size: 50px auto;
+			}
+
 			&.active {
-			background: #b4f;
-			box-shadow: inset 0px 6px 0px 0px rgba(#50a,.15),
-						inset 0 0 1px rgba(#408,.95),
-						0 0 3px #9c0fd8;
+				background: #b4f;
+				box-shadow: inset 0px 6px 0px 0px rgba(#50a,.15),
+							inset 0 0 1px rgba(#408,.95),
+							0 0 3px #9c0fd8;
 				width: 382px;
 				cursor: default;
 
 				h2 {
+					color: #fff;
+					text-shadow: 0 1px 0 #1113;
 					transform: rotate(0deg);
+				}
+
+				.icon {
+					opacity: 0;
 				}
 
 				.text {
@@ -90,7 +113,28 @@
 				}
 			}
 
+			.outline {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				pointer-events: none;
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: -2px;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, transparent 5%, #fff9, transparent 95%);
+				}
+			}
+
 			h2 {
+				color: #999;
+				text-shadow: 1px 0 0 #fff9;
 				position: relative;
 				pointer-events: none;
 				transform: rotate(90deg);
@@ -100,9 +144,20 @@
 				transition: transform 400ms ease-in-out;
 			}
 
+			.icon {
+				background: #0001;
+				position: absolute;
+				bottom: 7px;
+				left: 7px;
+				width: 53px;
+				height: 79px;
+				opacity: 1;
+				pointer-events: none;
+				transition: opacity 300ms ease-in-out;
+			}
+
 			.text {
 				// background: #0001;
-				pointer-events: none;
 				position: relative;
 				top: 30px;
 				opacity: 0;
@@ -111,6 +166,7 @@
 				line-height: 1.35;
 				text-shadow: 0 1px 1px #0003;
 				width: 350px;
+				pointer-events: none;
 				transition: opacity 300ms ease-in-out,
 							top 300ms ease-in-out;
 			}
