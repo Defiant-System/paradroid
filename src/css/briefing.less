@@ -14,45 +14,108 @@
 		text-shadow: 0 1px 0 rgba(#fff,.35);
 	}
 
-	.health-bar {
+	.cube-track {
 		position: relative;
-		top: 0px;
-		left: 50px;
-		transform-style: preserve-3d;
+		top: 10px;
+		left: 40px;
+	}
+
+	.bg {
+		position: relative;
+		// z-index: 2;
+
+		.outline {
+			position: absolute;
+			top: -4px;
+			left: -5px;
+			height: 109px;
+			width: 38px;
+			background: url(~/icons/bar-bg.png) no-repeat;
+			background-size: 100% auto;
+			filter: drop-shadow(0 0 2px #fff);
+
+			&:nth-child(2) {
+				left: 37px;
+			}
+
+			&:nth-child(3) {
+				left: 80px;
+			}
+		}
+	}
+
+	.bars {
+		position: absolute;
+		top: 0;
+		left: 0;
 		perspective: 2000px;
+		transform-style: preserve-3d;
+		transform: rotateX(-30deg) rotateY(-45deg);
 
 		.box {
-			background: linear-gradient(45deg, #fdbedb 50%, #fdcbe4 50%);
 			position: absolute;
-			top: 20px;
-			left: 40px;
-			width: 20px;
-			height: 20px;
+			top: 0;
+			left: 0;
 			transform-style: preserve-3d;
-			transform: rotateX(-45deg) rotateZ(50deg) rotateY(14deg);
+			transform: rotateY(-90deg) rotateX(90deg) translate3d(0, -20px, 0);
+			--c1: #fdbedb;
+			--c2: #fdcbe4;
+			--c3: #ff64ad;
+			--c4: #fd86bf;
 
-			&:before,
-			&:after {
-				content: "";
+			&:nth-child(2) {
+				top: -25px;
+				left: 60px;
+				--c1: #d1f4bd;
+				--c2: #d9f5cc;
+				--c3: #92e563;
+				--c4: #a8eb84;
+			}
+
+			&:nth-child(3) {
+				top: -49px;
+				left: 120px;
+				--c1: #c5d0fe;
+				--c2: #d3d9fd;
+				--c3: #7190fc;
+				--c4: #90a8fd;
+			}
+
+			.faces {
+				background: linear-gradient(-45deg, var(--c1) 50%, var(--c2) 50%);
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: inherit;
-				height: inherit;
-			}
+				top: 50%;
+				left: 50%;
+				width: 20px;
+				height: 20px;
+				transform-style: preserve-3d;
+				transform: translate(-50%, -50%);
 
-			&:before {
-				background: #ff64ad;
-				height: 120px;
-				transform: rotateX(85deg) translateX(-19px) translateY(18px);
-				transform-origin: 0 0;
-			}
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					width: inherit;
+					height: inherit;
+				}
 
-			&:after {
-				background: #fd86bf;
-				height: 120px;
-				transform: rotateX(85deg) rotateY(90deg) translateZ(-19px) translateY(18px);
-				transform-origin: 100% 0;
+				&:before {
+					background: var(--c3);
+					left: 100%;
+					bottom: 0;
+					transform: rotateY(90deg);
+					transform-origin: 0 50%;
+					width: 100px;
+				}
+
+				&:after {
+					background: var(--c4);
+					left: 0;
+					bottom: 100%;
+					transform: rotateX(90deg);
+					transform-origin: 0 100%;
+					height: 100px;
+				}
 			}
 		}
 	}
