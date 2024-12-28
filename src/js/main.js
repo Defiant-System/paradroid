@@ -166,7 +166,6 @@ const paradroid = {
 	},
 	start: @import "./areas/start.js",
 	briefing: @import "./areas/briefing.js",
-	controls: @import "./areas/controls.js",
 	editor: @import "./areas/editor.js",
 	hud: @import "./areas/hud.js",
 	lift: @import "./areas/lift.js",

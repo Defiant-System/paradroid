@@ -5,12 +5,95 @@
 	right: 0;
 	bottom: 0;
 
-	.layout {
-		padding: 13px 23px;
-		color: rgba(#222,.5);
-		font-family: Paradrew;
-		font-size: 20px;
-		line-height: 1.25;
-		text-shadow: 0 1px 0 rgba(#fff,.35);
+	&:before {
+		content: "";
+		background: url(~/icons/circuit-board.png) 50% 50%/cover no-repeat;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: .15;
+		border-radius: inherit;
+		filter: grayscale(1);
+		mix-blend-mode: plus-lighter;
+	}
+
+	.carousel {
+		// background: #0001;
+		position: absolute;
+		top: 31px;
+		left: 28px;
+		width: 694px;
+		height: 370px;
+		font-size: 0;
+
+		.page {
+			background: #0002;
+			position: relative;
+			display: inline-block;
+			width: 67px;
+			height: 370px;
+			overflow: hidden;
+			padding: 13px 17px;
+			margin: 0 11px 0 0;
+			border-radius: 3px;
+			color: rgba(#fff,.75);
+			font-family: Paradrew;
+			transition: width 500ms ease-in-out;
+			cursor: pointer;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&.active {
+				width: 382px;
+				cursor: default;
+
+				h2 {
+					transform: rotate(0deg);
+				}
+
+				.text {
+					// display: block;
+					opacity: 1;
+					top: 10px;
+					transition-delay: 400ms;
+				}
+			}
+
+			h2 {
+				position: relative;
+				pointer-events: none;
+				transform: rotate(90deg);
+				transform-origin: 9px 15px;
+				font-size: 26px;
+				white-space: nowrap;
+				transition: transform 500ms ease-in-out;
+				// animation: rotation 500ms ease-in-out alternate infinite;
+			}
+
+			.text {
+				// background: #0001;
+				// display: none;
+				pointer-events: none;
+				position: relative;
+				top: 30px;
+				opacity: 0;
+				font-family: "Oxanium";
+				font-size: 13px;
+				line-height: 1.35;
+				width: 350px;
+				transition: opacity 300ms ease-in-out,
+							top 300ms ease-in-out;
+			}
+		}
 	}
 }
+
+@keyframes rotation {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(90deg); }
+}
+

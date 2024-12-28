@@ -15,7 +15,9 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
-			case "window.keydown":
+			case "select-page":
+				event.el.find(".active").removeClass("active");
+				el = $(event.target).addClass("active");
 				break;
 		}
 	}
