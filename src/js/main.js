@@ -9,6 +9,7 @@
 @import "./classes/door.js"
 @import "./classes/exit.js"
 @import "./classes/console.js"
+@import "./classes/hacker-ai.js"
 
 @import "./classes/explosion.js"
 @import "./classes/sparks.js"
@@ -18,21 +19,24 @@
 @import "./classes/fire.js"
 @import "./classes/sonic.js"
 
-@import "./classes/hacker-ai.js"
-
 @import "./ext/matter.min.js"
 @import "./ext/pathseg.js"
-@import "./ext/regl.js"
-@import "./ext/astar.js"
 
-@import "./modules/raycaster.js"
-@import "./modules/shifter.js"
 @import "./modules/utils.js"
-@import "./modules/color.js"
 @import "./modules/test.js"
 
 
+// import libs
+const {
+	createREGL,
+	Finder,
+	Shifter,
+	Raycaster,
+	Color,
+} = await window.fetch("~/js/bundle.js");
+
 const Matter = window.Matter;
+
 
 const paradroid = {
 	init() {
@@ -161,6 +165,8 @@ const paradroid = {
 		}
 	},
 	start: @import "./areas/start.js",
+	briefing: @import "./areas/briefing.js",
+	controls: @import "./areas/controls.js",
 	editor: @import "./areas/editor.js",
 	hud: @import "./areas/hud.js",
 	lift: @import "./areas/lift.js",

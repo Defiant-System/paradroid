@@ -1,4 +1,7 @@
 <Application>
+	<Build>
+		<task action="skip" source="src/js/bundle.js" destination="public/js/bundle.js"/>
+	</Build>
 	<Head>
 		<meta name="id" value="paradroid"/>
 		<meta name="title" value="Paradroid 3001" version="1.2"/>

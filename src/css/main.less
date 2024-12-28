@@ -5,6 +5,8 @@ background: transparent;
 
 @import "editor";
 @import "start";
+@import "briefing";
+@import "controls";
 @import "hud";
 @import "lift";
 @import "console";
@@ -39,6 +41,13 @@ content {
 
 	&[data-show="start"] {
 		> div.start-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&[data-show="briefing"] {
+		> div.briefing-view {
 			opacity: 1;
 			visibility: visible;
 		}

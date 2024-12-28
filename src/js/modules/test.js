@@ -31,6 +31,13 @@ let Test = {
 		 */
 
 		
+		/*
+		 * BRIEFING View
+		 */
+		APP.dispatch({ type: "show-view", arg: "briefing" });
+		return;
+
+		
 		// view animation
 		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "transfer" }), 100);
 		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "terminated" }), 100);
