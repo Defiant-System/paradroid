@@ -8,7 +8,6 @@
 			content: window.find("content"),
 			el: window.find(".hud-view"),
 			barLeft: window.find(".left"),
-			barRight: window.find(".right"),
 		};
 	},
 	dispatch(event) {
@@ -45,7 +44,6 @@
 				});
 				break;
 			case "choose-color":
-				Self.els.barRight.addClass("hidden");
 				Self.els.barLeft
 					.addClass("choose-color")
 					.cssSequence("color-timer", "transitionend", el => {
@@ -53,7 +51,6 @@
 					});
 				break;
 			case "hacking-progress":
-				// Self.els.barRight.addClass("hidden");
 				Self.els.barLeft
 					.removeClass("choose-color color-timer")
 					.addClass("hacking-game")
@@ -63,7 +60,6 @@
 				break;
 			case "reset-choose-color":
 				// reset hud
-				Self.els.barRight.removeClass("hidden");
 				Self.els.barLeft
 					.removeClass("choose-color color-timer hacking-game hack-timer")
 					.cssSequence("reset", "transitionend", el => {

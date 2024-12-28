@@ -77,10 +77,6 @@
 				&:nth-child(3) {
 					transition-delay: 4200ms;
 				}
-
-				&:nth-child(4) {
-					transition-delay: 4300ms;
-				}
 			}
 		}
 	}
@@ -347,13 +343,21 @@
 			pointer-events: none;
 
 			.bar {
+				width: 119px;
+
 				.box .back:before {
 					box-shadow: -3px -5px 7px var(--c1);
 				}
 
+				&[data-click="toggle-music"],
+				&[data-click="toggle-sound-fx"] {
+					width: 129px;
+				}
+					
+
 				&.off {
 					.box {
-						--val: 78%;
+						--val: 72%;
 					}
 
 					.box-title {
@@ -390,6 +394,10 @@
 					.box-title {
 						top: 23px;
 						transform: rotateZ(-1deg);
+
+						&:after {
+							top: 3px;
+						}
 					}
 				}
 			}
@@ -397,12 +405,14 @@
 			&:nth-child(2) {
 				.bar {
 					.box {
-						--c1: #61ff66;
+						--c1: #ff73ea;
 						transform: rotateX(79deg) rotateZ(3deg);
 					}
 
 					.box-title {
 						transform: rotateZ(1deg);
+						padding-left: 0;
+						text-align: center;
 					}
 				}
 			}
@@ -410,25 +420,37 @@
 			&:nth-child(3) {
 				.bar {
 					.box {
-						--c1: #e18cff;
+						--c1: #61ff66;
 						transform: rotateX(79deg) rotateZ(6deg);
 					}
 
 					.box-title {
 						transform: rotateZ(1deg);
+
+						&:after {
+							top: 1px;
+						}
 					}
 				}
 			}
 
 			&:nth-child(4) {
 				.bar {
+					top: -29px;
+					width: 129px;
+
 					.box {
-						--c1: #ff8e3d;
-						transform: rotateX(79deg) rotateZ(-6deg);
+						--c1: #62ffdb;
+						transform: rotateX(79deg) rotateZ(1deg) translateY(60px);
 					}
 
 					.box-title {
-						transform: rotateZ(-1deg);
+						transform: rotateZ(0deg);
+						text-align: center;
+						padding: 15px 0 0;
+						text-transform: uppercase;
+						letter-spacing: -.5px;
+						font-size: 19px;
 					}
 				}
 			}

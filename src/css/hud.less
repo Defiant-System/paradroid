@@ -71,10 +71,11 @@
 		}
 
 		.bar {
-			top: -15px;
+			top: -12px;
+			left: 17px;
 
 			.box {
-				transform: rotateX(80deg) rotateY(0deg);
+				transform: rotateX(80deg) rotateY(0deg) translateY(-20px);
 				--c1: #d242ed;
 
 				> div {
@@ -136,7 +137,7 @@
 		.view-title {
 			padding: 5px 0 0 9px;
 			position: absolute;
-			top: 3px;
+			top: 2px;
 			left: 13px;
 			width: 200px;
 			height: 34px;
@@ -156,28 +157,6 @@
 		&.hidden {
 			opacity: 0;
 			visibility: hidden;
-		}
-
-		.bar {
-			top: -17px;
-
-			.box {
-				--power-dur: 800ms;
-			}
-		}
-
-		.cube-title {
-			padding: 5px 0 0 9px;
-			position: absolute;
-			top: 9px;
-			left: 15px;
-			width: 200px;
-			height: 34px;
-			font-size: 16px;
-			color: rgba(#222,.5);
-			text-shadow: 0 1px 0 rgba(#fff,.3);
-			mix-blend-mode: luminosity;
-			pointer-events: none;
 		}
 	}
 
