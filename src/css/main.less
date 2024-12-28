@@ -584,6 +584,62 @@ content {
 			}
 		}
 	}
+
+	.progress {
+		position: absolute;
+		bottom: 13px;
+		left: 15px;
+		height: 79px;
+		--val: 100%;
+
+		.track {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 82px;
+			width: 28px;
+			background: url(~/icons/prog-bar-bg.png) no-repeat;
+			background-size: 100% auto;
+			filter: drop-shadow(0 0 2px #fff);
+
+			&:nth-child(1) {
+				left: 0;
+
+				.bar {
+					filter: none;
+				}
+			}
+
+			&:nth-child(2) {
+				left: 33px;
+
+				.bar {
+					filter: hue-rotate(135deg);
+				}
+			}
+
+			&:nth-child(3) {
+				left: 66px;
+
+				.bar {
+					filter: hue-rotate(225deg);
+				}
+			}
+
+			.bar {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 82px;
+				width: 28px;
+				background: url(~/icons/prog-bar.png) no-repeat;
+				background-size: 100% auto;
+				background-position: 50% calc( var( --val ) * 62px );
+				mix-blend-mode: color;
+				clip-path: polygon(100% 0, 100% 70px, 50% 79px, 0 70px, 0 0);
+			}
+		}
+	}
 }
 
 

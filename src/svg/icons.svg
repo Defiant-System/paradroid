@@ -37,12 +37,50 @@
 		<path d="M43.7,13.8C42,6,32.9,0,22,0C11.1,0,2.1,5.9,0.3,13.7v5.5C2.1,27.1,11.1,33,22,33c10.9,0,20-6,21.7-13.8V13.8z"/>
 	</svg>
 
-	<svg id="bar-bg" viewBox="0 0 38 109">
+	<svg id="prog-bar-bg" viewBox="0 0 28 82">
 		<style type="text/css">
-			.st0{fill:#0008;}
+			.st0{fill:none;stroke:#0009;stroke-width:3;stroke-miterlimit:10;}
+			.st1{fill:url(#SVGID_1_);}
+			.st2{fill:#B0B0B0;}
+			.st3{fill:#C1C1C1;}
+			.st4{fill:none;stroke:#777;stroke-width:0.25;stroke-miterlimit:10;}
+			.st5{fill:none;stroke:#fff;stroke-width:0.25;stroke-miterlimit:10;}
 		</style>
-		<path class="st0" d="M19,3.7L32.6,11v86.2L19,105.4L5,98.1V11L19,3.7 M19-0.8l-1.9,1l-14,7.3L1,8.6V11v87.1v2.4l2.2,1.1l14,7.3l2,1l1.9-1.2
-		l13.6-8.2l1.9-1.2v-2.3V11V8.6l-2.1-1.1L20.9,0.2L19-0.8L19-0.8z"/>
+		<polygon class="st0" points="13.9,1.7 26.5,9.2 26.5,72.4 13.9,80.4 1.5,72.7 1.5,9.4 "/>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="2.9" y1="10.2" x2="24.9972" y2="10.2">
+			<stop  offset="0.5" style="stop-color:#DFDFDF"/>
+			<stop  offset="0.5" style="stop-color:#E2E2E2"/>
+		</linearGradient>
+		<polygon class="st1" points="13.9,3.5 25,10.1 13.9,16.9 2.9,10.3 "/>
+		<polygon class="st2" points="2.9,10.3 3,71.9 13.8,78.7 13.9,16.9 "/>
+		<polygon class="st3" points="25,10.1 13.9,16.9 13.8,78.7 25,71.5 "/>
+		<g id="_x32_5">
+			<polyline class="st4" points="2.9,57.3 13.9,63.9 25,57.1 	"/>
+			<polyline class="st5" points="2.9,57.6 13.9,64.2 25,57.4 	"/>
+		</g>
+		<g id="_x35_0">
+			<polyline class="st4" points="2.9,42.3 13.9,48.9 25,42.1 	"/>
+			<polyline class="st5" points="2.9,42.6 13.9,49.2 25,42.4 	"/>
+		</g>
+		<g id="_x37_5">
+			<polyline class="st4" points="2.9,26.3 13.9,32.9 25,26.1 	"/>
+			<polyline class="st5" points="2.9,26.6 13.9,33.2 25,26.4 	"/>
+		</g>
+	</svg>
+
+	<svg id="prog-bar" viewBox="0 0 28 82">
+		<style type="text/css">
+			.st0{fill:url(#SVGID_1_);}
+			.st1{fill:#ff64ad;}
+			.st2{fill:#fd86bf;}
+		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="2.9" y1="10.2" x2="24.9972" y2="10.2">
+			<stop  offset="0.5" style="stop-color:#fdbedb"/>
+			<stop  offset="0.5" style="stop-color:#fdcbe4"/>
+		</linearGradient>
+		<polygon class="st0" points="13.9,3.5 25,10.1 13.9,16.9 2.9,10.3 "/>
+		<polygon class="st1" points="2.9,10.3 3,71.9 13.8,78.7 13.9,16.9 "/>
+		<polygon class="st2" points="25,10.1 13.9,16.9 13.8,78.7 25,71.5 "/>
 	</svg>
 
 	<svg id="logo-p" viewBox="0 0 94 68">
