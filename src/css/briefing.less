@@ -30,7 +30,7 @@
 
 		.page {
 			background: #b1b1b1;
-			box-shadow: inset 0px 6px 0px 0px #4848481a,
+			box-shadow: inset 0 9px 0 #4848481a,
 						inset 0 0 1px #818181,
 						0 0 2px #080808;
 			position: relative;
@@ -40,8 +40,8 @@
 			vertical-align: top;
 			// overflow: hidden;
 			padding: 13px 17px;
-			margin: 0 11px 0 0;
-			border-radius: 7px;
+			margin: 0 7px 0 0;
+			border-radius: 2px;
 			color: #fff;
 			font-family: Paradrew;
 			transition: all 400ms ease-in-out;
@@ -68,14 +68,25 @@
 				background: linear-gradient(90deg, transparent 5%, #fff7, transparent 95%);
 			}
 
+			&:first-child {
+				border-top-left-radius: 7px;
+				border-bottom-left-radius: 7px;
+			}
+
 			&:last-child {
 				margin-right: 0;
+				border-top-right-radius: 7px;
+				border-bottom-right-radius: 7px;
+			}
+
+			&:nth-child(1) .icon {
+				background: url(~/icons/icon-thumb.png) 50% 17px no-repeat;
+				background-size: 41px auto;
 			}
 
 			&:nth-child(2) .icon {
-				background: url(~/icons/bp-001.png) 50% 100% no-repeat;
+				background: url(~/icons/bp-001.png) 50% -73px no-repeat;
 				background-size: auto 220px;
-				background-position: 50% -73px;
 			}
 
 			&:nth-child(3) .icon {
@@ -83,17 +94,22 @@
 				background-size: 152% auto;
 			}
 
+			&:nth-child(4) .icon {
+				background: url(~/icons/icon-ship.png) 50% 17px no-repeat;
+				background-size: 50px auto;
+			}
+
 			&:nth-child(5) .icon {
-				background: url(~/icons/gamepad.png) 50% 100% no-repeat;
+				background: url(~/icons/gamepad.png) 50% 17px no-repeat;
 				background-size: 50px auto;
 			}
 
 			&.active {
 				background: #b4f;
-				box-shadow: inset 0px 6px 0px 0px rgba(#50a,.15),
+				box-shadow: inset 0 9px 0 rgba(#50a,.15),
 							inset 0 0 1px rgba(#408,.95),
 							0 0 3px #9c0fd8;
-				width: 382px;
+				width: 398px;
 				cursor: default;
 
 				h2 {
