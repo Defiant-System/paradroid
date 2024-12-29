@@ -16,8 +16,10 @@
 		switch (event.type) {
 			// custom events
 			case "select-page":
+				el = $(event.target);
+				if (!el.hasClass("page") || el.hasClass("active")) return;
 				event.el.find(".active").removeClass("active");
-				el = $(event.target).addClass("active");
+				el.addClass("active");
 				break;
 		}
 	}
