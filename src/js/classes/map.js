@@ -103,7 +103,7 @@ class Map {
 			this.grid[row].push(...group[0]);
 			this.grid[row+1].push(...group[1]);
 		});
-		console.log( "\n"+ this.grid.join("\n") );
+		// console.log( "\n"+ this.grid.join("\n") );
 
 		// add rows
 		[...Array(this.height)].map(row => {

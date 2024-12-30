@@ -45,10 +45,14 @@ class Droid {
 
 		if (patrol) {
 			// patrol points
-			let [x, y] = patrol[0], // patrol[Utils.randomInt(0, patrol.length)],
+			let tile = this.arena.config.tile,
+				hT = tile >> 1,
+				[x, y] = patrol[Utils.randomInt(0, patrol.length)],
 				target = new Point(x, y),
 				force = new Point(0, 0);
+			target = target.multiply(tile).subtract({ x: hT, y: hT });
 			this.home = { patrol, target, force, dist: 0 };
+			// console.log( this.x, this.y, target );
 
 			// starting position
 			this.spawn({ id, x, y });
@@ -77,22 +81,16 @@ class Droid {
 	}
 
 	setPath() {
-		let patrol = this.home.patrol.filter(p => p.join() != [this.x, this.y].join()),
+		let hT = this.arena.config.tile >> 1,
+			patrol = this.home.patrol.filter(p => p.join() != [this.x, this.y].join()),
 			target = patrol[Utils.randomInt(0, patrol.length)],
 			graph = new Finder.Graph(this.arena.map.grid),
-			start = graph.grid[this.y][this.x],
-			end = graph.grid[target[1]][target[0]],
-			// opt = { heuristic: Finder.astar.heuristics.diagonal },
+			start = graph.grid[this.y*2][this.x*2],
+			end = graph.grid[target[1]*2][target[0]*2],
 			result = Finder.astar.search(graph, start, end);
 		
-		this._path = result.map(p => [p.y, p.x]);
-		// this._path = [[this.x, this.y], ...result.map(p => [p.y, p.x])];
+		this._path = result.map(p => [p.y/2, p.x/2]);
 		// console.log( this._path.join("\n") );
-
-		// console.log( result );
-		// console.log( this._path );
-		// console.log( this.x, this.y );
-		// console.log( target[0], target[1] );
 	}
 
 	shoot() {
@@ -212,9 +210,9 @@ class Droid {
 		if (id) this.setId(id);
 
 		let pos = {
-			x: (this.x - .5) * tile,
-			y: (this.y - .5) * tile,
-		};
+				x: (this.x - .5) * tile,
+				y: (this.y - .5) * tile,
+			};
 		// console.log( this.id, this.body );
 		Matter.Body.setPosition(this.body, pos);
 		// copy physical position to "this" internal position
@@ -251,26 +249,29 @@ class Droid {
 			if (this.frame.index > 8) this.frame.index = 0;
 		}
 
-		let now = Date.now();
+		let tile = this.arena.config.tile,
+			now = Date.now();
 		if (this.fire.shooting && now - this.fire.lastShot > this.fire.coolDown) {
 			this.fire.lastShot = now;
 			this.shoot();
 		}
 
 		if (!this.isPlayer && this.home.patrol.length > 1) {
-			let tile = this.arena.config.tile,
-				hT = tile >> 1,
-				target = this.home.target.multiply(tile).subtract({ x: hT, y: hT }),
-				distance = target.distance(this.position);
+			let hT = tile >> 1,
+				pos = this.position.clone(),
+				target = this.home.target,
+				distance = target.distance(pos);
+			// console.log( pos, target, distance );
+			// console.log( target, this.position );
 			
 			if (!this._path.length || this.isStuck()) this.setPath();
 			this.home.distance = distance;
+			this.home.force = this.home.target.subtract(pos).norm();
 
-			if (distance <= hT) {
-				// if (this.x === this._path[0][0] && this.y === this._path[0][1]) this._path.shift();
-				let [x1, y1] = this._path.shift();
-				this.home.target = new Point(x1, y1);
-				this.home.force = this.home.target.subtract({ x: this.x, y: this.y }).norm();
+			if (distance <= 1) {
+				let [x1, y1] = this._path.shift(),
+					target = new Point(x1, y1);
+				this.home.target = target.multiply(tile).subtract({ x: hT, y: hT });
 			} else {
 				this.move(this.home.force.clone());
 			}
@@ -280,7 +281,6 @@ class Droid {
 		Matter.Body.setPosition(this.body, this.position);
 
 		// update tile position
-		let tile = this.arena.config.tile;
 		this.x = Math.ceil(this.body.position.x / tile);
 		this.y = Math.ceil(this.body.position.y / tile);
 	}
@@ -302,10 +302,9 @@ class Droid {
 		}
 
 		if (!this.isPlayer && this._path.length) {
-			let tile = this.arena.config.tile,
-				hT = tile >> 1,
-				tX = (this._path[0][0] * tile) - hT,
-				tY = (this._path[0][1] * tile) - hT;
+			let hT = this.arena.config.tile >> 1,
+				tX = (this._path[0][0] * hT) - hT,
+				tY = (this._path[0][1] * hT) - hT;
 			// this._path.map(p => {
 			// 	p[0] = (p[0] * tile) - hT;
 			// 	p[1] = (p[1] * tile) - hT;
@@ -318,8 +317,8 @@ class Droid {
 			ctx.beginPath();
 			ctx.moveTo(tX, tY);
 			this._path.slice(1).map(p => {
-				let x = (p[0] * tile) - hT,
-					y = (p[1] * tile) - hT;
+				let x = (p[0] * hT) - hT,
+					y = (p[1] * hT) - hT;
 				ctx.lineTo(x, y);
 			});
 		    ctx.stroke();
