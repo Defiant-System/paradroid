@@ -72,6 +72,16 @@ class Map {
 		// physics bodies array
 		let bodies = [this.arena.player.body],
 			backgrounds = xSection.selectNodes(`./Layer[@id="background"]/i`),
+			doors = {
+				"m02": [[1,1],[0,0]],
+				"m03": [[1,1],[0,0]],
+				"m04": [[1,0],[1,0]],
+				"m05": [[0,1],[0,1]],
+				"m12": [[0,0],[1,1]],
+				"m13": [[0,0],[1,1]],
+				"m14": [[1,0],[1,0]],
+				"m15": [[0,1],[0,1]],
+			},
 			gap = [
 				"m00", "m01", "m02", "m03", "m04", "m05", "m06", "m07",
 				"m10", "m11", "m12", "m13", "m14", "m15", "m16", "m17",
@@ -83,13 +93,17 @@ class Map {
 			];
 
 		// grid for astar algorithm
-		[...Array(this.height)].map(row => this.grid.push([]));
+		let w2 = this.width * 2,
+			h2 = this.height * 2;
+		[...Array(h2)].map(row => this.grid.push([]));
 		backgrounds.map((xTile, col) => {
-			let row = Math.floor(col / this.width),
-				cell = gap.includes(xTile.getAttribute("id")) ? 1 : 0;
-			this.grid[row].push(cell);
+			let id = xTile.getAttribute("id"),
+				row = Math.floor(col / this.width) * 2,
+				group = doors[id] || gap.includes(id) ? [[1,1],[1,1]] : [[0,0],[0,0]];
+			this.grid[row].push(...group[0]);
+			this.grid[row+1].push(...group[1]);
 		});
-		// console.log( this.grid.join("\n") );
+		console.log( "\n"+ this.grid.join("\n") );
 
 		// add rows
 		[...Array(this.height)].map(row => {
@@ -222,8 +236,6 @@ class Map {
 				droid = new Droid({ arena: this.arena, section, id, patrol });
 			// add droid to map droid list
 			this.droids.push(droid);
-			// plot droid patrol path
-			droid.setPath();
 			// add droid body to physical world
 			bodies.push(droid.body);
 		});

@@ -33,9 +33,9 @@ let Test = {
 		
 		/*
 		 * BRIEFING View
-		 */
 		APP.dispatch({ type: "show-view", arg: "briefing" });
 		return;
+		 */
 
 		
 		// view animation
@@ -121,11 +121,11 @@ let Test = {
 					// map: { id: 16, clear: .1 }, player: { id: "711", x: 17, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .25 }, player: { id: "302", x: 35, y: 15, power: .35 }, debug: { mode: 0 },
 					// map: { id: 6, clear: .1 }, player: { id: "001", x: 33, y: 28, power: .35 }, debug: { mode: 0 },
-					map: { id: 1, clear: .1 }, player: { id: "001", x: 25, y: 9, power: .35 }, debug: { mode: 0 },
+					// map: { id: 1, clear: .1 }, player: { id: "001", x: 25, y: 9, power: .35 }, debug: { mode: 0 },
 					// map: { id: 2, clear: .1 }, player: { x: 35, y: 14, power: .5 }, debug: { mode: 1 },
 					// map: { id: 3, clear: .5 }, player: { x: 19, y: 15, power: .5 }, debug: { mode: 0 },
 					// map: { id: 11, clear: .1 }, player: { x: 3, y: 10, power: .85 }, debug: { mode: 0 },
-					// map: { id: 17, clear: .1 }, player: { id: "711", x: 32, y: 22, power: .25 }, debug: { mode: 0 },
+					map: { id: 5, clear: .1 }, player: { id: "001", x: 4, y: 3, power: .25 }, debug: { mode: 0 },
 				};
 			APP.mobile.dispatch({ type: "restore-state", state });
 

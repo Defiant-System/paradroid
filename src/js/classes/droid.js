@@ -52,6 +52,9 @@ class Droid {
 
 			// starting position
 			this.spawn({ id, x, y });
+
+			// plot droid patrol path
+			if (patrol.length > 1) this.setPath();
 		}
 	}
 
@@ -254,7 +257,7 @@ class Droid {
 			this.shoot();
 		}
 
-		if (!this.isPlayer) {
+		if (!this.isPlayer && this.home.patrol.length > 1) {
 			let tile = this.arena.config.tile,
 				hT = tile >> 1,
 				target = this.home.target.multiply(tile).subtract({ x: hT, y: hT }),
@@ -272,6 +275,9 @@ class Droid {
 				this.move(this.home.force.clone());
 			}
 		}
+
+		// console.log( this.id, this.body );
+		Matter.Body.setPosition(this.body, this.position);
 
 		// update tile position
 		let tile = this.arena.config.tile;
