@@ -264,14 +264,14 @@ class Droid {
 			// console.log( pos, target, distance );
 			// console.log( target, this.position );
 			
-			if (!this._path.length || this.isStuck()) this.setPath();
 			this.home.distance = distance;
 			this.home.force = this.home.target.subtract(pos).norm();
 
-			if (distance <= 1) {
+			if (distance <= hT) {
+				if (!this._path.length || this.isStuck()) this.setPath();
 				let [x1, y1] = this._path.shift(),
 					target = new Point(x1, y1);
-				this.home.target = target.multiply(tile).subtract({ x: hT, y: hT });
+				this.home.target = target.multiply(tile);//.subtract({ x: hT, y: hT });
 			} else {
 				this.move(this.home.force.clone());
 			}
@@ -302,25 +302,20 @@ class Droid {
 		}
 
 		if (!this.isPlayer && this._path.length) {
-			let hT = this.arena.config.tile >> 1,
-				tX = (this._path[0][0] * hT) - hT,
-				tY = (this._path[0][1] * hT) - hT;
-			// this._path.map(p => {
-			// 	p[0] = (p[0] * tile) - hT;
-			// 	p[1] = (p[1] * tile) - hT;
-			// });
+			let tile = this.arena.config.tile,
+				hT = tile >> 1,
+				path = this._path.map(p => {
+					return [(p[0] * tile),
+					 		(p[1] * tile)];
+				});
 			// temp draw path
 			ctx.save();
 			ctx.translate(arena.viewport.x, arena.viewport.y);
 			ctx.strokeStyle = "#fff";
 			ctx.lineWidth = 3;
 			ctx.beginPath();
-			ctx.moveTo(tX, tY);
-			this._path.slice(1).map(p => {
-				let x = (p[0] * hT) - hT,
-					y = (p[1] * hT) - hT;
-				ctx.lineTo(x, y);
-			});
+			ctx.moveTo(path[0], path[1]);
+			path.slice(1).map(p => ctx.lineTo(p[0], p[1]));
 		    ctx.stroke();
 			ctx.restore();
 		}
