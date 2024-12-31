@@ -494,18 +494,23 @@
 
 	<xsl:template name="layer-droids">
 		<div class="layer-droids" data-click="put-tile">
-			
+			<xsl:for-each select="./Layer[@id='droids']/*">
+			<span class="droid">
+				<xsl:attribute name="data-id"><xsl:value-of select="@id" /></xsl:attribute>
+				<xsl:attribute name="style">--x: <xsl:value-of select="@homeX" />; --y: <xsl:value-of select="@homeY" />;</xsl:attribute>
+				<b></b>
+			</span>
+			</xsl:for-each>
 		</div>
 	</xsl:template>
 
 	<xsl:template name="droids-list">
 		<xsl:for-each select="./*">
 			<div class="row">
+				<!-- <xsl:if test="position() = 2"><xsl:attribute name="class">row active</xsl:attribute></xsl:if> -->
 				<span>#<xsl:value-of select="@nr" /></span>
 				<span><xsl:value-of select="@id" /></span>
-				<span>
-					<input type="text" placeholder="[[x1,y1], [x2,y2], ...]" />
-				</span>
+				<span><xsl:value-of select="@patrol" /></span>
 			</div>
 		</xsl:for-each>
 	</xsl:template>

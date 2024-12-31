@@ -153,10 +153,10 @@ content.editor {
 		.buttons {
 			margin-top: 7px;
 			padding-top: 11px;
-			border-top: 2px solid #777;
+			border-top: 2px solid #aaa;
 		}
 
-		div[data-click] {
+		div[data-click]:not(.list) {
 			display: inline-block;
 			vertical-align: top;
 			margin: 0 2px;
@@ -206,12 +206,17 @@ content.editor {
 				height: 28px;
 				border-bottom: 1px solid #0002;
 
+				&.active {
+					background: #ccc;
+				}
+
 				span {
 					padding: 8px;
 					flex: initial;
+					pointer-events: none;
 
-					&:nth-child(1) { width: 31px; }
-					&:nth-child(2) { width: 47px; }
+					&:nth-child(1) { width: 29px; color: #999; }
+					&:nth-child(2) { width: 31px; font-weight: 700; }
 					&:nth-child(3) { flex: 1; }
 
 					input {
@@ -227,7 +232,7 @@ content.editor {
 		.buttons {
 			margin-top: 7px;
 			padding-top: 11px;
-			border-top: 2px solid #777;
+			border-top: 2px solid #aaa;
 			height: 53px;
 		}
 	}

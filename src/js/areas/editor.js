@@ -45,6 +45,7 @@
 		let APP = paradroid,
 			Self = APP.editor,
 			Spawn = event.spawn || Self.spawn,
+			layers,
 			tiles,
 			value,
 			margin, mX, mY,
@@ -374,11 +375,18 @@
 				}
 				// save reference to current
 				Self.xSection = xSection;
+				// pre-process home positions of droids
+				xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xDroid => {
+					let path = JSON.parse(xDroid.getAttribute("patrol")),
+						[x,y] = path[0];
+					xDroid.setAttribute("homeX", x);
+					xDroid.setAttribute("homeY", y);
+				});;
 				// update menu
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
 				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
-				let layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
+				layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).remove();
 				// render + append HTML
 				window.render({
@@ -529,6 +537,24 @@
 				});
 				value = tiles.map(g => `<walls>\n\t${g.join("\n\t")}\n</walls>`);
 				console.log( value.join("\n") );
+				break;
+
+			case "show-droid-patrol":
+				el = $(event.target);
+				if (!el.hasClass("row")) return;
+				event.el.find(".active").removeClass("active");
+				el.addClass("active");
+
+				value = el.find("span").get(2).html();
+				if (!value) return;
+				value = JSON.parse(value);
+				[x, y] = value[0].map(i => +i);
+				layers = [".layer-background", ".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
+				Self.els.viewport.find(layers.join(",")).css({ "--y": 7-y, "--x": 11-x });
+				break;
+			case "update-droid-patrol":
+			case "reset-droid-patrol":
+				console.log(event);
 				break;
 
 			case "col-duplicate-active":

@@ -81,8 +81,11 @@ class Droid {
 	}
 
 	setPath() {
-		let hT = this.arena.config.tile >> 1,
-			patrol = this.home.patrol.filter(p => p.join() != [this.x, this.y].join()),
+		let tile = this.arena.config.tile,
+			patrol = this.home.patrol.filter(p => {
+				let dist = this.position.distance({ x: p[0]*tile, y: p[1]*tile });
+				return dist > tile;
+			}),
 			target = patrol[Utils.randomInt(0, patrol.length)],
 			graph = new Finder.Graph(this.arena.map.grid),
 			start = graph.grid[this.y*2][this.x*2],
@@ -269,7 +272,7 @@ class Droid {
 			// if (rng === 0) this.setPath();
 
 			// apply movement force
-			this.home.force = this.home.target.subtract(pos).norm();
+			this.home.force = this.home.target.subtract(pos).norm().multiply(.5);
 
 			if (distance <= hT) {
 				if (!this._path.length) this.setPath();

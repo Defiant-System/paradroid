@@ -109,6 +109,18 @@
 			.layer-droids {
 				z-index: 2;
 				display: block;
+
+				span.droid {
+					position: absolute;
+					top: calc( var( --tile ) * var( --y ) );
+					left: calc( var( --tile ) * var( --x ) );
+					width: calc( var( --tile ) * var( --w ) );
+					height: calc( var( --tile ) * var( --h ) );
+
+					&:before {
+						animation: none;
+					}
+				}
 			}
 
 			.cursor {
@@ -277,7 +289,8 @@
 		.layer-action,
 		.layer-collision,
 		.layer-lights,
-		.layer-los {
+		.layer-los,
+		.layer-droids {
 			position: absolute;
 			top: calc( var( --tile ) * var( --y ) );
 			left: calc( var( --tile ) * var( --x ) );
