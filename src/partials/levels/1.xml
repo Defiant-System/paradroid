@@ -2,8 +2,16 @@
 <Section id="1" width="52" height="30" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="droids">
 		<!-- <i id="420" patrol="[[30,11], [30,5], [33,5], [33,11]]"/> -->
-		<i id="123" patrol="[[22,5], [27,5]]"/>
+		<!-- <i id="123" patrol="[[22,5], [27,5]]"/> -->
 		<!-- <i id="420" patrol="[[21,5]]"/> -->
+
+		<i nr="1" id="476" patrol=""/>
+		<i nr="2" id="476" patrol=""/>
+		<i nr="3" id="493" patrol=""/>
+		<i nr="4" id="516" patrol=""/>
+		<i nr="5" id="598" patrol=""/>
+		<i nr="6" id="598" patrol=""/>
+		<i nr="7" id="614" patrol=""/>
 	</Layer>
 	<Layer id="lights">
 		<i x="175" y="227" r="1"/>

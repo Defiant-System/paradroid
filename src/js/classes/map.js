@@ -338,9 +338,9 @@ class Map {
 				}
 			}
 
-			// if (debug >= 1) {
+			if (debug >= 1) {
 				ctx.save();
-				ctx.fillStyle = "#0002";
+				ctx.fillStyle = "#6f62";
 				for (let y=yMin; y<yMax; y++) {
 					for (let x=xMin; x<xMax; x++) {
 						let tY = (y * 2) + 0;
@@ -374,7 +374,7 @@ class Map {
 					}
 				}
 				ctx.restore();
-			// }
+			}
 		}
 
 		// draw entries - exclude droids
@@ -401,10 +401,10 @@ class Map {
 					.map(light => {
 						let lX = light.x - vX,
 							lY = light.y - vY,
-							r = 120 * light.r,
+							r = 130 * light.r,
 							r2 = r >> 1,
 							gradient = ctx.createRadialGradient(lX, lY, 0, lX, lY, r);
-						gradient.addColorStop(0.0, "#fff3");
+						gradient.addColorStop(0.0, "#fff4");
 						gradient.addColorStop(0.5, "#fff0");
 						gradient.addColorStop(1.0, "#fff0");
 						ctx.fillStyle = gradient;

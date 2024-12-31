@@ -261,12 +261,13 @@ class Droid {
 			// console.log( target, this.position );
 			
 			// keep track of movement - if stuck re-calculate path
-			this.home.log.unshift(distance);
-			this.home.log.splice(10, 1);
-			let rngMin = Math.min(...this.home.log),
-				rngMax = Math.max(...this.home.log),
-				rng = Math.abs(rngMax - rngMin);
+			// this.home.log.unshift(distance);
+			// this.home.log.splice(10, 1);
+			// let rngMin = Math.min(...this.home.log),
+			// 	rngMax = Math.max(...this.home.log),
+			// 	rng = Math.abs(rngMax - rngMin);
 			// if (rng === 0) this.setPath();
+
 			// apply movement force
 			this.home.force = this.home.target.subtract(pos).norm();
 
@@ -304,8 +305,8 @@ class Droid {
 			pY = this.position.y + arena.viewport.y;
 		}
 
-		// arena.debug.mode > 0 && 
-		if (!this.isPlayer && this._path.length) {
+		// draw path of droid
+		if (arena.debug.mode > 0 && !this.isPlayer && this._path.length) {
 			let tile = this.arena.config.tile,
 				hT = tile >> 1,
 				path = this._path.map(p => {

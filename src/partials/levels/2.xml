@@ -1,7 +1,13 @@
 
 <Section id="2" width="52" height="30" color="#009c87" filter="sepia(.9) hue-rotate(135deg) brightness(.925)">
 	<Layer id="droids">
-		<!-- no droids in this level -->
+		<i nr="1" id="420" patrol=""/>
+		<i nr="2" id="420" patrol=""/>
+		<i nr="3" id="476" patrol=""/>
+		<i nr="4" id="476" patrol=""/>
+		<i nr="5" id="493" patrol=""/>
+		<i nr="6" id="493" patrol=""/>
+		<i nr="7" id="493" patrol=""/>
 	</Layer>
 	<Layer id="lights">
 		<i x="159" y="225" r="1"/>
