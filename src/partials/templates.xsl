@@ -498,4 +498,16 @@
 		</div>
 	</xsl:template>
 
+	<xsl:template name="droids-list">
+		<xsl:for-each select="./*">
+			<div class="row">
+				<span>#<xsl:value-of select="@nr" /></span>
+				<span><xsl:value-of select="@id" /></span>
+				<span>
+					<input type="text" placeholder="[[x1,y1], [x2,y2], ...]" />
+				</span>
+			</div>
+		</xsl:for-each>
+	</xsl:template>
+
 </xsl:stylesheet>

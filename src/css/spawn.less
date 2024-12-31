@@ -14,6 +14,7 @@ content.editor {
 	&[data-show="action"] .layer-action { display: block; }
 	&[data-show="los"] .layer-los { display: block; }
 	&[data-show="light"] .layer-light { display: block; }
+	&[data-show="droids"] .layer-droids { display: block; }
 
 	.layer-background {
 		display: none;
@@ -21,19 +22,11 @@ content.editor {
 		background-size: 32px 32px;
 	}
 
-	.layer-collision {
-		display: none;
-	}
-
-	.layer-action {
-		display: none;
-	}
-
-	.layer-los {
-		display: none;
-	}
-
-	.layer-light {
+	.layer-collision,
+	.layer-action,
+	.layer-los,
+	.layer-light,
+	.layer-droids {
 		display: none;
 	}
 
@@ -187,6 +180,55 @@ content.editor {
 				height: 24px;
 				border-color: #888 #eee #eee #888;
 			}
+		}
+	}
+
+	.layer-droids {
+		position: relative;
+		height: 73%;
+
+		.droid-patrol {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			padding: 7px;
+		}
+
+		.list {
+			flex: 1;
+			border: 1px solid #0002;
+
+			.row {
+				height: 28px;
+				border-bottom: 1px solid #0002;
+
+				span {
+					padding: 8px;
+					flex: initial;
+
+					&:nth-child(1) { width: 31px; }
+					&:nth-child(2) { width: 47px; }
+					&:nth-child(3) { flex: 1; }
+
+					input {
+						background: transparent;
+						box-shadow: none;
+						top: -6px;
+						width: 100%;
+					}
+				}
+			}
+		}
+
+		.buttons {
+			margin-top: 7px;
+			padding-top: 11px;
+			border-top: 2px solid #777;
+			height: 53px;
 		}
 	}
 

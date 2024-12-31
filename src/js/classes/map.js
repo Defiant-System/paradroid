@@ -231,7 +231,7 @@ class Map {
 		});
 
 		// add droids
-		xSection.selectNodes(`./Layer[@id="droids"]/i`).map(xItem => {
+		xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xItem => {
 			let id = xItem.getAttribute("id"),
 				patrol = JSON.parse(xItem.getAttribute("patrol")),
 				droid = new Droid({ arena: this.arena, section, id, patrol });

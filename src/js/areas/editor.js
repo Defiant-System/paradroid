@@ -416,6 +416,12 @@
 					match: `//Section[@id = "${event.arg}"]`,
 					append: Self.els.viewport,
 				});
+				// render droids list in spawn
+				window.render({
+					template: "droids-list",
+					match: `//Section[@id = "${event.arg}"]/Layer[@id="droids"]`,
+					target: Self.els.content.find(`.droid-patrol .list`),
+				});
 				// prevent "see-through"
 				el = Self.els.viewport.find(".layer-background");
 				Self.els.viewport.find(".level-bg").css({
