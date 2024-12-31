@@ -73,14 +73,14 @@ class Map {
 		let bodies = [this.arena.player.body],
 			backgrounds = xSection.selectNodes(`./Layer[@id="background"]/i`),
 			doors = {
-				"m02": [[0,0],[1,1]],
-				"m03": [[0,0],[1,1]],
-				"m04": [[0,1],[0,1]],
-				"m05": [[1,0],[1,0]],
-				"m12": [[1,1],[0,0]],
-				"m13": [[1,1],[0,0]],
-				"m14": [[0,1],[0,1]],
-				"m15": [[1,0],[1,0]],
+				"m02": [[0,0],[2,2]],
+				"m03": [[0,0],[2,2]],
+				"m04": [[0,2],[0,2]],
+				"m05": [[2,0],[2,0]],
+				"m12": [[2,2],[0,0]],
+				"m13": [[2,2],[0,0]],
+				"m14": [[0,2],[0,2]],
+				"m15": [[2,0],[2,0]],
 			},
 			gap = [
 				"m00", "m01", "m02", "m03", "m04", "m05", "m06", "m07",
@@ -99,7 +99,8 @@ class Map {
 		backgrounds.map((xTile, col) => {
 			let id = xTile.getAttribute("id"),
 				row = Math.floor(col / this.width) * 2,
-				group = doors[id] || gap.includes(id) ? [[1,1],[1,1]] : [[0,0],[0,0]];
+				group = !!doors[id] ? doors[id] : gap.includes(id) ? [[2,2],[2,2]] : [[0,0],[0,0]];
+			// if (id === "m02") console.log( group );
 			this.grid[row].push(...group[0]);
 			this.grid[row+1].push(...group[1]);
 		});
@@ -336,6 +337,44 @@ class Map {
 					}
 				}
 			}
+
+			// if (debug >= 1) {
+				ctx.save();
+				ctx.fillStyle = "#0002";
+				for (let y=yMin; y<yMax; y++) {
+					for (let x=xMin; x<xMax; x++) {
+						let tY = (y * 2) + 0;
+						let tX = (x * 2) + 0;
+						if (this.grid[tY][tX] > 0) {
+							let gX = (tX * hT) - vX;
+							let gY = (tY * hT) - vY;
+							ctx.fillRect(gX, gY, hT, hT);
+						}
+						tY = (y * 2) + 0;
+						tX = (x * 2) + 1;
+						if (this.grid[tY][tX] > 0) {
+							let gX = (tX * hT) - vX;
+							let gY = (tY * hT) - vY;
+							ctx.fillRect(gX, gY, hT, hT);
+						}
+						tY = (y * 2) + 1;
+						tX = (x * 2) + 0;
+						if (this.grid[tY][tX] > 0) {
+							let gX = (tX * hT) - vX;
+							let gY = (tY * hT) - vY;
+							ctx.fillRect(gX, gY, hT, hT);
+						}
+						tY = (y * 2) + 1;
+						tX = (x * 2) + 1;
+						if (this.grid[tY][tX] > 0) {
+							let gX = (tX * hT) - vX;
+							let gY = (tY * hT) - vY;
+							ctx.fillRect(gX, gY, hT, hT);
+						}
+					}
+				}
+				ctx.restore();
+			// }
 		}
 
 		// draw entries - exclude droids

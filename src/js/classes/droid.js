@@ -51,7 +51,7 @@ class Droid {
 				target = new Point(x, y),
 				force = new Point(0, 0);
 			target = target.multiply(tile).subtract({ x: hT, y: hT });
-			this.home = { patrol, target, force, dist: 0 };
+			this.home = { patrol, target, force, log: [] };
 			// console.log( this.x, this.y, target );
 
 			// starting position
@@ -230,10 +230,6 @@ class Droid {
 		this.position.y = this.body.position.y;
 	}
 
-	isStuck() {
-		// Math.abs(this.home.distance - distance) < .05
-	}
-
 	collision() {
 		
 	}
@@ -264,14 +260,21 @@ class Droid {
 			// console.log( pos, target, distance );
 			// console.log( target, this.position );
 			
-			this.home.distance = distance;
+			// keep track of movement - if stuck re-calculate path
+			this.home.log.unshift(distance);
+			this.home.log.splice(10, 1);
+			let rngMin = Math.min(...this.home.log),
+				rngMax = Math.max(...this.home.log),
+				rng = Math.abs(rngMax - rngMin);
+			// if (rng === 0) this.setPath();
+			// apply movement force
 			this.home.force = this.home.target.subtract(pos).norm();
 
 			if (distance <= hT) {
-				if (!this._path.length || this.isStuck()) this.setPath();
+				if (!this._path.length) this.setPath();
 				let [x1, y1] = this._path.shift(),
 					target = new Point(x1, y1);
-				this.home.target = target.multiply(tile);//.subtract({ x: hT, y: hT });
+				this.home.target = target.multiply(tile);
 			} else {
 				this.move(this.home.force.clone());
 			}
@@ -301,6 +304,7 @@ class Droid {
 			pY = this.position.y + arena.viewport.y;
 		}
 
+		// arena.debug.mode > 0 && 
 		if (!this.isPlayer && this._path.length) {
 			let tile = this.arena.config.tile,
 				hT = tile >> 1,

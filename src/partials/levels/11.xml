@@ -1,9 +1,10 @@
 
 <Section id="11" width="20" height="18" color="#009c87" filter="sepia(.9) hue-rotate(135deg) brightness(.925)">
 	<Layer id="droids">
-		<!-- <i id="123" patrol="[[5,7], [9,7], [13,7]]"/> -->
-		<!-- <i id="123" patrol="[[5,7], [13,7]]"/> -->
-		<i id="123" patrol="[[5,7], [5,3]]"/>
+		<i id="123" patrol="[[5,7], [6,3], [13,7]]"/>
+		<!-- <i id="123" patrol="[[13,7], [7,7]]"/> -->
+		<!-- <i id="123" patrol="[[13,10], [7,10]]"/> -->
+		<!-- <i id="123" patrol="[[5,7], [5,3]]"/> -->
 	</Layer>
 	<Layer id="lights">
 		<i x="480" y="287" r="1"/>
