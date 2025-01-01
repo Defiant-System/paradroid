@@ -126,6 +126,7 @@ class Droid {
 				target: this.target,
 				angle: this.dir || Math.PI / 4,
 				type: this.fire.name,
+				damage: this.fire.damage,
 			},
 			count,
 			inc,
@@ -170,7 +171,11 @@ class Droid {
 					let collisions = Matter.Query.ray(bodies, origin, droid.position),
 						color = this.isPlayer ? "#fff" : "#000";
 					// if nothing is in the way, disruptor
-					if (collisions.length === 2) new Electric({ ...cfg, droid, color });
+					if (collisions.length === 2) {
+						new Electric({ ...cfg, droid, color });
+						// deal damage to droid
+						cfg.arena.map.damageDroid(droid.body, cfg.damage);
+					}
 				});
 				break;
 		}
