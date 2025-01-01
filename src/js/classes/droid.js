@@ -77,12 +77,25 @@ class Droid {
 	dealDamage(v) {
 		this.health -= v;
 		if (this.health <= 0) {
-			// remove this droid from map
-			let index = this.arena.map.droids.indexOf(this);
-			this.arena.map.droids.splice(index, 1);
+			// kill this droid
+			this.kill();
 			// inset explosion animation
 			new Explosion({ arena: this.arena, x: this.position.x, y: this.position.y });
+
+			if (this.arena.map.droids.length === 1 && this.arena.map.droids[0].isPlayer) {
+				// all droids killed - turn off lights
+				paradroid.mobile.dispatch({ type: "toggle-lights", complete: 1 });
+				// this.arena.setLights({ clear: 1 });
+			}
 		}
+	}
+
+	kill() {
+		// remove this droid from map
+		let index = this.arena.map.droids.indexOf(this);
+		this.arena.map.droids.splice(index, 1);
+		// remove droid from physical world
+		Matter.Composite.remove(this.arena.map.engine.world, this.body);
 	}
 
 	setDirection(x, y) {

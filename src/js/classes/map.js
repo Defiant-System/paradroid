@@ -52,6 +52,13 @@ class Map {
 		if (droid.length) droid[0].dealDamage(value);
  	}
 
+	addItem(item) {
+		// add entity to entries list
+		this.entries.push(item);
+		// add item body to physical world
+		if (item.body) Matter.Composite.add(this.engine.world, item.body);
+	}
+
 	setState(state) {
 		let tile = this.arena.config.tile,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`),
@@ -252,13 +259,6 @@ class Map {
 		Matter.Composite.add(this.engine.world, bodies);
 		// run the engine
 		// Matter.Runner.run(this.runner, this.engine);
-	}
-
-	addItem(item) {
-		// add entity to entries list
-		this.entries.push(item);
-		// add item body to physical world
-		if (item.body) Matter.Composite.add(this.engine.world, item.body);
 	}
 
 	update(delta, time) {

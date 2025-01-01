@@ -20,6 +20,7 @@
 			Self = APP.mobile,
 			Player = Self.arena.player,
 			xSection,
+			name,
 			value,
 			el;
 		// console.log(event);
@@ -169,17 +170,25 @@
 				break;
 			case "toggle-lights":
 				value = !!Self.arena.led.floor ? 0 : 1;
-				Self.arena.setLights({ clear: value });
-				// restore bg color + filter
-				if (!value) {
-					// update arena base background color
-					Self.els.el.css({ background: Self.arena.colors.base });
-					// set level colors
-					Self.arena.setFilter({
-						color: Self.arena.colors.base,
-						filter: Self.arena.copy.ctx.filter,
-					});
-				}
+				if (event.complete) value = event.complete;
+				name = value ? "lights-off" : "lights-on";
+				console.log( value, name );
+				Self.els.el.cssSequence(name, "transitionend", el => {
+					// reset element
+					el.removeClass("lights-off lights-on");
+					// switch asset map / turn on "floor led lights"
+					Self.arena.setLights({ clear: value });
+					// restore bg color + filter
+					if (!value) {
+						// update arena base background color
+						Self.els.el.css({ background: Self.arena.colors.base });
+						// set level colors
+						Self.arena.setFilter({
+							color: Self.arena.colors.base,
+							filter: Self.arena.copy.ctx.filter,
+						});
+					}
+				});
 				break;
 			case "set-player-droid":
 				Player.setId(event.arg);

@@ -30,6 +30,8 @@ content {
 	// background: #e07777;
 	border-radius: 5px;
 	z-index: 2;
+	min-height: 0px;
+	transition: min-height 1ms ease-in-out;
 
 	&:before {
 		content: "";
@@ -60,7 +62,31 @@ content {
 		pointer-events: none;
 	}
 
+	&.lights-on {
+		min-height: 1px;
+
+		canvas.game {
+			background: transparent;
+			filter: none;
+		}
+	}
+
+	&.lights-off {
+		min-height: 1px;
+		transition-duration: 500ms;
+		transition-delay: 400ms;
+
+		canvas.game {
+			background: #555;
+			filter: grayscale(1) contrast(0.8) brightness(0.95);
+			transition: background 500ms ease-in-out,
+						filter 500ms ease-in-out;
+			transition-delay: 400ms;
+		}
+	}
+
 	canvas.game {
+		background: #5550;
 		border-radius: inherit;
 		position: relative;
 		top: 0;
