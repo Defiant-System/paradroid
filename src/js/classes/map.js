@@ -30,6 +30,7 @@ class Map {
 						new Sparks({ arena, owner, x, y });
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyA);
+					if (a2 === "droid") this.damageDroid(pair.bodyB, 20);
 				}
 				if (a2 === "fire") {
 					let index = this.entries.findIndex(e => e.bullet == +b2);
@@ -40,10 +41,16 @@ class Map {
 						new Sparks({ arena, owner, x, y });
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
+					if (a1 === "droid") this.damageDroid(pair.bodyA, 20);
 				}
 			});
 		});
 	}
+
+	damageDroid(body, value) {
+		let droid = this.droids.filter(item => item.body === body);
+		if (droid.length) droid[0].dealDamage(value);
+ 	}
 
 	setState(state) {
 		let tile = this.arena.config.tile,

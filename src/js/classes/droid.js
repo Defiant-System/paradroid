@@ -34,6 +34,7 @@ class Droid {
 		this.acceleration = new Point(0, 0);
 		this.maxSpeed = 1;
 		this.maxForce = .0075;
+		this.health = 100;
 
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
@@ -71,6 +72,17 @@ class Droid {
 		Matter.Sleeping.set(this.body, v);
 		// internal value
 		this._freeze = v;
+	}
+
+	dealDamage(v) {
+		this.health -= v;
+		if (this.health <= 0) {
+			// remove this droid from map
+			let index = this.arena.map.droids.indexOf(this);
+			this.arena.map.droids.splice(index, 1);
+			// inset explosion animation
+			new Explosion({ arena: this.arena, x: this.position.x, y: this.position.y });
+		}
 	}
 
 	setDirection(x, y) {

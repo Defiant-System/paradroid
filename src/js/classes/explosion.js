@@ -1,10 +1,9 @@
 
 class Explosion {
 	constructor(cfg) {
-		let { arena, owner, x, y } = cfg;
+		let { arena, x, y } = cfg;
 
-		this.arena = arena
-		this.owner = owner
+		this.arena = arena;
 		this.sprite = arena.assets["explosion"].img;
 		this.frame = {
 			index: 0,
