@@ -110,6 +110,7 @@
 				z-index: 2;
 				display: block;
 
+				span.patrol-point,
 				span.droid {
 					position: absolute;
 					top: calc( var( --tile ) * var( --y ) );
@@ -119,6 +120,19 @@
 
 					&:before {
 						animation: none;
+					}
+				}
+
+				span.patrol-point {
+					&:after {
+						content: "";
+						background: #fffc;
+						position: absolute;
+						top: -10px;
+						left: -10px;
+						width: 20px;
+						height: 20px;
+						border-radius: 50%;
 					}
 				}
 			}

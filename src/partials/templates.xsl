@@ -494,12 +494,27 @@
 
 	<xsl:template name="layer-droids">
 		<div class="layer-droids" data-click="put-tile">
-			<xsl:for-each select="./Layer[@id='droids']/*">
-			<span class="droid">
-				<xsl:attribute name="data-id"><xsl:value-of select="@id" /></xsl:attribute>
-				<xsl:attribute name="style">--x: <xsl:value-of select="@homeX" />; --y: <xsl:value-of select="@homeY" />;</xsl:attribute>
-				<b></b>
-			</span>
+			<xsl:for-each select="./Layer[@id='droids']/*[@patrol != '']">
+			<div class="patrol-group">
+				<xsl:for-each select="./*">
+				<xsl:choose>
+					<xsl:when test="position() = 1">
+						<span class="droid">
+							<xsl:attribute name="data-nr"><xsl:value-of select="../@nr" /></xsl:attribute>
+							<xsl:attribute name="data-id"><xsl:value-of select="../@id" /></xsl:attribute>
+							<xsl:attribute name="style">--x: <xsl:value-of select="@x" />; --y: <xsl:value-of select="@y" />;</xsl:attribute>
+							<b></b>
+						</span>
+					</xsl:when>
+					<xsl:otherwise>
+						<span class="patrol-point">
+							<xsl:attribute name="data-nr"><xsl:value-of select="../@nr" /></xsl:attribute>
+							<xsl:attribute name="style">--x: <xsl:value-of select="@x" />; --y: <xsl:value-of select="@y" />;</xsl:attribute>
+						</span>
+					</xsl:otherwise>
+				</xsl:choose>
+				</xsl:for-each>
+			</div>
 			</xsl:for-each>
 		</div>
 	</xsl:template>

@@ -376,12 +376,12 @@
 				// save reference to current
 				Self.xSection = xSection;
 				// pre-process home positions of droids
-				xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xDroid => {
-					let path = JSON.parse(xDroid.getAttribute("patrol")),
-						[x,y] = path[0];
-					xDroid.setAttribute("homeX", x);
-					xDroid.setAttribute("homeY", y);
-				});;
+				xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xPatrol => {
+					JSON.parse(xPatrol.getAttribute("patrol")).map(p => {
+						let xP = $.nodeFromString(`<i x="${p[0]}" y="${p[1]}"/>`);
+						xPatrol.appendChild(xP);
+					});
+				});
 				// update menu
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
 				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
@@ -547,8 +547,10 @@
 
 				value = el.find("span").get(2).html();
 				if (!value) return;
+
 				value = JSON.parse(value);
 				[x, y] = value[0].map(i => +i);
+
 				layers = [".layer-background", ".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).css({ "--y": 7-y, "--x": 11-x });
 				break;

@@ -13,6 +13,20 @@ let Utils = {
 	},
 	randomInt(min, max) {
 		return this.random(min, max) | 0;
+	},
+	sortPointsCW(arr) {
+		// Get the center (mean value) using reduce
+		let center = arr.reduce((acc, { x, y }) => {
+				acc.x += x / arr.length;
+				acc.y += y / arr.length;
+				return acc;
+			}, { x: 0, y: 0 }),
+			// Add an angle property to each point using tan(angle) = y/x
+			angles = arr.map(({ x, y }) => {
+				return { x, y, angle: Math.atan2(y - center.y, x - center.x) * 180 / Math.PI };
+			});
+		// Sort your points by angle
+		return angles.sort((a, b) => a.angle - b.angle);
 	}
 };
 
