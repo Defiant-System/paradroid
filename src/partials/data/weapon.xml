@@ -9,22 +9,22 @@
 	<i id="notes"><![CDATA[This is the 476 standard shot.]]></i>
 </Weapon>
 
-<Weapon id="plasma" coolDown="700" damage="55">
+<Weapon id="plasma" coolDown="700" damage="15">
 	<i id="title"><![CDATA[Military Grade Plasma]]></i>
 	<i id="notes"><![CDATA[This is the double 821 military shot.]]></i>
 </Weapon>
 
-<Weapon id="disruptor" coolDown="700" damage="40">
+<Weapon id="disruptor" coolDown="700" damage="120">
 	<i id="title"><![CDATA[Disruptor]]></i>
 	<i id="notes"><![CDATA[This is the disruptor, the 742 and 711 use.]]></i>
 </Weapon>
 
-<Weapon id="exterminator" coolDown="700" damage="80">
+<Weapon id="exterminator" coolDown="700" damage="40">
 	<i id="title"><![CDATA[Exterminator]]></i>
 	<i id="notes"><![CDATA[This is the exterminator, the 883 uses.]]></i>
 </Weapon>
 
-<Weapon id="sonic" coolDown="500" damage="40">
+<Weapon id="sonic" coolDown="500" damage="50">
 	<i id="title"><![CDATA[Sonic Rifle]]></i>
 	<i id="notes"><![CDATA[This is the sonic rifle of the 614.]]></i>
 </Weapon>

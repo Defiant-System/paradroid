@@ -172,7 +172,7 @@
 				value = !!Self.arena.led.floor ? 0 : 1;
 				if (event.complete) value = event.complete;
 				name = value ? "lights-off" : "lights-on";
-				console.log( value, name );
+				// transition to dark
 				Self.els.el.cssSequence(name, "transitionend", el => {
 					// reset element
 					el.removeClass("lights-off lights-on");

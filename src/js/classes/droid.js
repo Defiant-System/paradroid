@@ -34,7 +34,6 @@ class Droid {
 		this.acceleration = new Point(0, 0);
 		this.maxSpeed = 1;
 		this.maxForce = .0075;
-		this.health = 100;
 
 		// droid physics body
 		let path = window.find(`svg#droid-mask path`)[0],
@@ -85,7 +84,6 @@ class Droid {
 			if (this.arena.map.droids.length === 1 && this.arena.map.droids[0].isPlayer) {
 				// all droids killed - turn off lights
 				paradroid.mobile.dispatch({ type: "toggle-lights", complete: 1 });
-				// this.arena.setLights({ clear: 1 });
 			}
 		}
 	}
@@ -213,8 +211,10 @@ class Droid {
 		this.energy = +xDroid.getAttribute("energy");
 		this.loss = +xDroid.getAttribute("loss");
 		this.agression = +xDroid.getAttribute("agression");
+		this.health = +xDroid.getAttribute("health");
 		
 		this.fire.name = xWeapon.getAttribute("id");
+		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
 		// paint digits on droid

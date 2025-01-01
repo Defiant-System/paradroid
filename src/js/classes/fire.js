@@ -1,7 +1,7 @@
 
 class Fire {
 	constructor(cfg) {
-		let { arena, owner, type, angle, speed } = cfg;
+		let { arena, owner, type, angle, speed, damage } = cfg;
 
 		this.arena = arena;
 		this.owner = owner;

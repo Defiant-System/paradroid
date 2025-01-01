@@ -22,26 +22,32 @@ class Map {
 				let [a1, b1] = pair.bodyA.label.split("-"),
 					[a2, b2] = pair.bodyB.label.split("-");
 				if (a1 === "fire") {
-					let index = this.entries.findIndex(e => e.bullet == +b1);
+					let index = this.entries.findIndex(e => e.bullet == +b1),
+						damage = 0;
 					if (index > -1) {
 						let entry = this.entries.splice(index, 1)[0],
 							{ arena, owner } = entry,
 							{ x, y } = pair.collision.supports[0];
 						new Sparks({ arena, owner, x, y });
+						// weapon damage value
+						damage = owner.fire.damage;
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyA);
-					if (a2 === "droid") this.damageDroid(pair.bodyB, 20);
+					if (a2 === "droid") this.damageDroid(pair.bodyB, damage);
 				}
 				if (a2 === "fire") {
-					let index = this.entries.findIndex(e => e.bullet == +b2);
+					let index = this.entries.findIndex(e => e.bullet == +b2),
+						damage = 0;
 					if (index > -1) {
 						let entry = this.entries.splice(index, 1)[0],
 							{ arena, owner } = entry,
 							{ x, y } = pair.collision.supports[0];
 						new Sparks({ arena, owner, x, y });
+						// weapon damage value
+						damage = owner.fire.damage;
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
-					if (a1 === "droid") this.damageDroid(pair.bodyA, 20);
+					if (a1 === "droid") this.damageDroid(pair.bodyA, damage);
 				}
 			});
 		});
