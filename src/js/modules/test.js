@@ -115,7 +115,7 @@ let Test = {
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 
-			setTimeout(() => spawn.find(`.layer-droids .list .row`).get(0).trigger("click"), 500);
+			setTimeout(() => spawn.find(`.layer-droids .list .row`).get(2).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.layer-background b.m06`).trigger("click"), 500);
 			// setTimeout(() => window.find(`.layer-collision b.c4`).get(2).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.tiles b[data-size="2x2"]`).trigger("click"), 500);

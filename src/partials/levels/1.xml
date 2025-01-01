@@ -3,7 +3,7 @@
 	<Layer id="droids">
 		<i nr="1" id="476" patrol="[[22,5],[27,5],[30,9]]"/>
 		<i nr="2" id="476" patrol=""/>
-		<i nr="3" id="493" patrol=""/>
+		<i nr="3" id="493" patrol="[[31,9],[35,9]]"/>
 		<i nr="4" id="516" patrol=""/>
 		<i nr="5" id="598" patrol=""/>
 		<i nr="6" id="598" patrol=""/>

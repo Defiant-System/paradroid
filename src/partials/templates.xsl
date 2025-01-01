@@ -496,6 +496,28 @@
 		<div class="layer-droids" data-click="put-tile">
 			<xsl:for-each select="./Layer[@id='droids']/*[@patrol != '']">
 			<div class="patrol-group">
+				<svg viewBox="0 0 100 100">
+					<xsl:for-each select="./*">
+					<xsl:choose>
+						<xsl:when test="following-sibling::node()">
+							<line>
+								<xsl:attribute name="x1"><xsl:value-of select="@x * 32" /></xsl:attribute>
+								<xsl:attribute name="y1"><xsl:value-of select="@y * 32" /></xsl:attribute>
+								<xsl:attribute name="x2"><xsl:value-of select="following-sibling::i/@x * 32" /></xsl:attribute>
+								<xsl:attribute name="y2"><xsl:value-of select="following-sibling::i/@y * 32" /></xsl:attribute>
+							</line>
+						</xsl:when>
+						<xsl:otherwise>
+							<line>
+								<xsl:attribute name="x1"><xsl:value-of select="@x * 32" /></xsl:attribute>
+								<xsl:attribute name="y1"><xsl:value-of select="@y * 32" /></xsl:attribute>
+								<xsl:attribute name="x2"><xsl:value-of select="../i[1]/@x * 32" /></xsl:attribute>
+								<xsl:attribute name="y2"><xsl:value-of select="../i[1]/@y * 32" /></xsl:attribute>
+							</line>
+						</xsl:otherwise>
+					</xsl:choose>
+					</xsl:for-each>
+				</svg>
 				<xsl:for-each select="./*">
 				<xsl:choose>
 					<xsl:when test="position() = 1">
