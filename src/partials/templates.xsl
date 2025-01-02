@@ -497,6 +497,7 @@
 			<xsl:for-each select="./Layer[@id='droids']/*[@patrol != '']">
 			<div class="patrol-group">
 				<xsl:attribute name="data-nr"><xsl:value-of select="@nr" /></xsl:attribute>
+				<xsl:attribute name="data-id"><xsl:value-of select="@id" /></xsl:attribute>
 				<svg viewBox="0 0 100 100">
 					<xsl:for-each select="./*">
 					<xsl:choose>
@@ -521,7 +522,6 @@
 				</svg>
 				<xsl:for-each select="./*">
 					<span class="patrol-point">
-						<xsl:attribute name="data-nr"><xsl:value-of select="../@nr" /></xsl:attribute>
 						<xsl:attribute name="style">--x: <xsl:value-of select="@x" />; --y: <xsl:value-of select="@y" />;</xsl:attribute>
 						<xsl:if test="position() = 1"><span class="droid">
 							<xsl:attribute name="data-id"><xsl:value-of select="../@id" /></xsl:attribute>

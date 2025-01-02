@@ -579,7 +579,9 @@
 				// update spawn window
 				Self.els.content.find(`.droid-patrol .row[data-nr="${event.value}"] span:nth-child(3)`).html(JSON.stringify(arr));
 				break;
-			case "update-droid-patrol":
+			case "delete-patrol-point":
+				console.log(event);
+				break;
 			case "reset-droid-patrol":
 				console.log(event);
 				break;
@@ -870,7 +872,31 @@
 		switch (event.type) {
 			case "mousedown":
 				let el = $(event.target).parents("?.patrol-point");
-				if (!el.length) return;
+				if (!el.length) {
+					let pEl = Self.els.viewport.find(`.layer-droids .patrol-group.active`),
+						arr = pEl.find(".patrol-point").map(elem => {
+							let el = $(elem);
+							return { x: +el.cssProp("--x"), y: +el.cssProp("--y") };
+						}),
+						newPoint = {
+							x: Math.round(event.offsetX / 32),
+							y: Math.round(event.offsetY / 32),
+						};
+					
+					arr.push(newPoint);
+					arr = Utils.sortPointsCW(arr);
+					let newStr = arr.map((p, i) => {
+							let droidEl = i === 0 ? `<span class="droid" data-id="${pEl.data("id")}"><b></b></span>` : "";
+							return `<span class="patrol-point" style="--x: ${p.x}; --y: ${p.y};">${droidEl}</span>`;
+						});
+					pEl.find(".patrol-point").remove();
+					pEl.append(newStr.join(""));
+					// continue with new point element
+					el = pEl.find(`.patrol-point[style="--x: ${newPoint.x}; --y: ${newPoint.y};"]`);
+					// console.log(el);
+				}
+				// make active
+				el.addClass("active");
 
 				let doc = $(document),
 					offset = {
@@ -905,7 +931,7 @@
 				// unbind event handlers
 				Self.patrol.doc.off("mousemove mouseup", Self.doPatrol);
 				// redraw patrol lines
-				Self.dispatch({ type: "redraw-patrol-lines", value: Patrol.el.data("nr") });
+				Self.dispatch({ type: "redraw-patrol-lines", value: Patrol.el.parent().data("nr") });
 				// reset "light" object
 				delete Self.patrol;
 				break;
