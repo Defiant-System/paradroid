@@ -2,7 +2,12 @@
 content {
 	&.fade-out[data-show] {
 		// before animation
-		.start-view {
+		.start-view.no-anim {
+			.logo {
+				opacity: 0;
+				transform: scale(.95);
+			}
+
 			.menu {
 				.option {
 					opacity: 0;
@@ -13,19 +18,16 @@ content {
 		&[data-show="start"].fade-in {
 			.start-view {
 				.logo {
-					// opacity: 0;
-					// transition: opacity 300ms ease-in-out;
+					opacity: 1;
+					transform: scale(1);
+					transition: all 300ms ease-in-out;
 				}
-			}
-		}
 
-		&[data-show="start"].fade-out {
-			// transition-delay: 300ms;
-
-			.start-view {
-				.logo {
-					// opacity: 0;
-					// transition: opacity 300ms ease-in-out;
+				.menu {
+					.option {
+						opacity: 1;
+						transition: all 300ms ease-in-out;
+					}
 				}
 			}
 		}
@@ -34,10 +36,42 @@ content {
 	&[data-show="start"].leave {
 		min-height: 2px;
 		transition: min-height 300ms ease-in-out;
+		transition-delay: 700ms;
 		
 		.start-view {
 			opacity: 0;
 			transition: opacity 300ms ease-in-out;
+			transition-delay: 400ms;
+
+			.logo {
+				opacity: 0;
+				transform: scale(.95);
+				transition: all 300ms ease-in-out;
+			}
+
+			.menu {
+				.option {
+					opacity: 0;
+					transform: translateY(50px) translateZ(100px);
+					transition: all 350ms ease-in-out;
+
+					&:nth-child(1) {
+						transition-delay: 400ms;
+					}
+
+					&:nth-child(2) {
+						transition-delay: 300ms;
+					}
+
+					&:nth-child(3) {
+						transition-delay: 200ms;
+					}
+
+					&:nth-child(4) {
+						transition-delay: 100ms;
+					}
+				}
+			}
 		}
 	}
 }
