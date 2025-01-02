@@ -22,10 +22,10 @@
 	.carousel {
 		// background: #0001;
 		position: absolute;
-		top: 47px;
+		top: 37px;
 		left: 28px;
 		width: 694px;
-		height: 370px;
+		height: 400px;
 		font-size: 0;
 		filter: drop-shadow(0 2px 3px #0005);
 
@@ -33,7 +33,7 @@
 			position: relative;
 			display: inline-block;
 			width: 67px;
-			height: 370px;
+			height: 400px;
 			vertical-align: top;
 			// overflow: hidden;
 			padding: 13px 17px;
@@ -83,6 +83,7 @@
 			&:nth-child(1) .icon {
 				background: url(~/icons/icon-thumb.png) 50% 17px no-repeat;
 				background-size: 41px auto;
+				filter: drop-shadow(0 1px 0 #fff);
 			}
 
 			&:nth-child(2) .icon {
@@ -96,8 +97,8 @@
 			}
 
 			&:nth-child(4) .icon {
-				background: url(~/icons/icon-ship.png) 50% 17px no-repeat;
-				background-size: 50px auto;
+				background: url(~/icons/bp-r2d2.png) 50% 2px no-repeat;
+				background-size: auto 73px;
 			}
 
 			&:nth-child(5) .icon {
@@ -154,7 +155,7 @@
 			.text {
 				// background: #0001;
 				position: relative;
-				top: 30px;
+				top: 20px;
 				opacity: 0;
 				font-family: Oxanium;
 				font-size: 13px;
@@ -165,6 +166,10 @@
 				pointer-events: none;
 				transition: opacity 300ms ease-in-out,
 							top 300ms ease-in-out;
+
+				p {
+					padding-bottom: 7px;
+				}
 			}
 		}
 	}
@@ -172,8 +177,8 @@
 	.menu {
 		position: absolute;
 		left: 120px;
-		bottom: 43px;
-		height: 43px;
+		bottom: 37px;
+		height: 37px;
 		width: 500px;
 		margin: 0 auto;
 		text-align: center;
@@ -183,7 +188,7 @@
 			position: relative;
 			margin: 0 33px 0 -3px;
 			display: inline-block;
-			height: 43px;
+			height: 37px;
 			// transform: translateY(50px) translateZ(100px);
 			// pointer-events: none;
 

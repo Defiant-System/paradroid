@@ -112,8 +112,9 @@
 
 				.patrol-group {
 					position: absolute;
-					opacity: .75;
+					opacity: .6;
 
+					&.active,
 					&:hover { opacity: 1; }
 
 					svg {
@@ -129,8 +130,7 @@
 					}
 				}
 
-				span.patrol-point,
-				span.droid {
+				span.patrol-point {
 					position: absolute;
 					top: calc( var( --tile ) * var( --y ) );
 					left: calc( var( --tile ) * var( --x ) );
@@ -138,12 +138,14 @@
 					height: 45px;
 					cursor: move;
 
-					b { box-shadow: none; }
 					&:before { animation: none; }
 				}
 
 				span.droid {
 					margin: -22px 0 0 -22px;
+					pointer-events: none;
+
+					b { box-shadow: none; }
 				}
 
 				span.patrol-point {

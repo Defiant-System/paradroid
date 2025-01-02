@@ -550,9 +550,14 @@
 
 				value = JSON.parse(value);
 				[x, y] = value[0].map(i => +i);
-
 				layers = [".layer-background", ".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).css({ "--y": 7-y, "--x": 11-x });
+				// make patrol polygon active
+				value = el.find("span").get(0).html().slice(1);
+				Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${value}"]`).addClass("active");
+				break;
+			case "redraw-patrol-lines":
+				console.log(event);
 				break;
 			case "update-droid-patrol":
 			case "reset-droid-patrol":
@@ -838,6 +843,54 @@
 				break;
 		}
 	},
+	doPatrol(event) {
+		let APP = paradroid,
+			Self = APP.editor,
+			Patrol = Self.patrol;
+		switch (event.type) {
+			case "mousedown":
+				let el = $(event.target).parents("?.patrol-point");
+				if (!el.length) return;
+
+				let doc = $(document),
+					offset = {
+						"--x": +el.cssProp("--x"),
+						"--y": +el.cssProp("--y"),
+					},
+					click = {
+						x: event.clientX,
+						y: event.clientY,
+					};
+				// drag light info
+				Self.patrol = { doc, el, click, offset };
+
+				// cover app view
+				APP.els.content.addClass("cover");
+				// bind event handlers
+				Self.patrol.doc.on("mousemove mouseup", Self.doPatrol);
+				break;
+			case "mousemove":
+				let dY = event.clientY - Patrol.click.y,
+					dX = event.clientX - Patrol.click.x,
+					data = {
+						"--y": Math.round(dY / 32) + Patrol.offset["--y"],
+						"--x": Math.round(dX / 32) + Patrol.offset["--x"],
+					};
+				// UI update
+				Patrol.el.css(data);
+				break;
+			case "mouseup":
+				// uncover app view
+				APP.els.content.removeClass("cover");
+				// unbind event handlers
+				Self.patrol.doc.off("mousemove mouseup", Self.doPatrol);
+				// redraw patrol lines
+				Self.dispatch({ type: "redraw-patrol-lines", value: Patrol.el.data("nr") });
+				// reset "light" object
+				delete Self.patrol;
+				break;
+		}
+	},
 	doPan(event) {
 		let APP = paradroid,
 			Self = APP.editor,
@@ -854,6 +907,7 @@
 						case "collision": return Self.dragEditbox(event);
 						case "lights": return Self.doLight(event);
 						case "los": return Self.doSegment(event);
+						case "droids": return Self.doPatrol(event);
 					}
 				}
 

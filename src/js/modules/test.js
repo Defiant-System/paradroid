@@ -46,9 +46,9 @@ let Test = {
 		
 		/*
 		 * BRIEFING View
+		 */
 		APP.dispatch({ type: "show-view", arg: "briefing" });
 		return;
-		 */
 
 		
 		// view animation
@@ -91,10 +91,12 @@ let Test = {
 		/*
 		 * CONSOLE View
 		APP.mobile.arena = { player: { id: 598 } };
+		APP.mobile.arena.colors = { base: "#f90" };
 		APP.dispatch({ type: "show-view", arg: "console" });
 		// setTimeout(() => APP.console.dispatch({ type: "init-view", id: "598" }), 600);
 		return;
 		 */
+
 
 		/*
 		 * LIFT View
@@ -106,6 +108,7 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		return setTimeout(() => {
 			let spawn = window.open("editor");
 
@@ -114,7 +117,7 @@ let Test = {
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 
-			setTimeout(() => spawn.find(`.layer-droids .list .row`).get(2).trigger("click"), 500);
+			setTimeout(() => spawn.find(`.layer-droids .list .row`).get(0).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.layer-background b.m06`).trigger("click"), 500);
 			// setTimeout(() => window.find(`.layer-collision b.c4`).get(2).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.tiles b[data-size="2x2"]`).trigger("click"), 500);
@@ -126,7 +129,6 @@ let Test = {
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
-		 */
 
 
 		return setTimeout(() => {
