@@ -31,7 +31,13 @@
 				});
 				break;
 			case "start-game":
-				console.log(event);
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// animate / switch to view
+					APP.dispatch({ type: "switch-to-view", arg: "mobile" });
+				});
 				break;
 			case "toggle-music":
 				value = event.el.hasClass("off");

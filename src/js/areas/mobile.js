@@ -118,6 +118,12 @@
 				}
 				break;
 			// custom events
+			case "init-view":
+				APP.mobile.dispatch({
+					type: "restore-state",
+					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 25, y: 9, power: .35 }, debug: { mode: 0 } },
+				});
+				break;
 			case "game-loop-pause":
 				if (Self.arena.map && !Self.arena.fpsControl._stopped) {
 					Matter.Runner.stop(APP.mobile.arena.map.runner);
@@ -132,9 +138,6 @@
 				break;
 			case "restore-state":
 			case "go-to-section":
-				// set view
-				APP.dispatch({ type: "show-view", arg: "mobile" });
-
 				let ship = APP.lift.els.el.find(`.ship`),
 					sectionEl = ship.find(`.section[data-id="${event.state.map.id}"]`);
 				xSection = window.bluePrint.selectSingleNode(`//Section[@id="${event.state.map.id}"]`);

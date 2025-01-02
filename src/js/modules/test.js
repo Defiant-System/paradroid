@@ -143,6 +143,9 @@ let Test = {
 					// map: { id: 11, clear: .1 }, player: { x: 6, y: 9, power: .85 }, debug: { mode: 0 },
 					// map: { id: 5, clear: .1 }, player: { id: "001", x: 3, y: 3, power: .25 }, debug: { mode: 0 },
 				};
+			
+			// set view
+			APP.dispatch({ type: "show-view", arg: "mobile" });
 			APP.mobile.dispatch({ type: "restore-state", state });
 
 			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 1500);
