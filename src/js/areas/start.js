@@ -21,6 +21,12 @@
 				value = event.anim === "none" ? "no-anim" : "view-anim";
 				Self.els.el.removeClass("no-anim").addClass(value);
 				break;
+			case "show-briefing":
+				APP.dispatch({ type: "switch-to-view", arg: "briefing" });
+				break;
+			case "start-game":
+				console.log(event);
+				break;
 			case "toggle-music":
 				value = event.el.hasClass("off");
 				

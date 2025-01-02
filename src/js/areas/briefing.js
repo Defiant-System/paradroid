@@ -15,6 +15,9 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
+			case "goto-start":
+				APP.dispatch({ type: "switch-to-view", arg: "start" });
+				break;
 			case "select-page":
 				el = $(event.target);
 				if (!el.hasClass("page") || el.hasClass("active")) return;

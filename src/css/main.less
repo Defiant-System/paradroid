@@ -25,8 +25,23 @@ content {
 	background: radial-gradient(ellipse at top center, #dcdcdc, transparent),
 				linear-gradient(180deg, #e3e3e3, #bbb);
 
+	&:before {
+		content: "";
+		display: none;
+		background: url(~/icons/circuit-board.png) 50% 50%/cover no-repeat;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: .15;
+		border-radius: inherit;
+		filter: grayscale(1);
+		mix-blend-mode: plus-lighter;
+	}
+
 	&.cover {
-		&:before {
+		&:after {
 			content: "";
 			background: transparent;
 			position: absolute;
@@ -39,6 +54,8 @@ content {
 	}
 
 	&[data-show="start"] {
+		&:before { display: block; }
+
 		> div.start-view {
 			opacity: 1;
 			visibility: visible;
@@ -46,6 +63,8 @@ content {
 	}
 
 	&[data-show="briefing"] {
+		&:before { display: block; }
+		
 		> div.briefing-view {
 			opacity: 1;
 			visibility: visible;
@@ -85,18 +104,10 @@ content {
 	}
 
 	&[data-show="terminated"] {
-		// > div.hud-view {
-		// 	opacity: 1;
-		// 	visibility: visible;
+		background: #cc4949 linear-gradient(0deg, rgba(#fff,.15), transparent);
 
-		// 	.left,
-		// 	.right {
-		// 		opacity: 0;
-		// 		visibility: hidden;
-		// 		pointer-events: none;
-		// 	}
-		// }
-
+		&:before { display: block; }
+		
 		> div.terminated-view {
 			opacity: 1;
 			visibility: visible;
