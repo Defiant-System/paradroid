@@ -16,7 +16,13 @@
 		switch (event.type) {
 			// custom events
 			case "goto-start":
-				APP.dispatch({ type: "switch-to-view", arg: "start" });
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// animate / switch to view
+					APP.dispatch({ type: "switch-to-view", arg: "start" });
+				});
 				break;
 			case "select-page":
 				el = $(event.target);

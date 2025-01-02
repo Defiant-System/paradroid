@@ -1,26 +1,5 @@
 
 content {
-	&.fade-out[data-show="briefing"] {
-		// transition-delay: 500ms;
-
-		.briefing-view {		
-			transition-delay: 500ms;
-			
-			.carousel {
-				.page {
-					opacity: 0;
-					margin-top: 30px;
-
-					&:nth-child(1) { transition-delay: 400ms; }
-					&:nth-child(2) { transition-delay: 300ms; }
-					&:nth-child(3) { transition-delay: 200ms; }
-					&:nth-child(4) { transition-delay: 100ms; }
-					&:nth-child(5) { transition-delay: 0ms; }
-				}
-			}
-		}
-	}
-
 	&.fade-out[data-show] {
 		// before animation
 		.briefing-view {
@@ -34,25 +13,63 @@ content {
 			.menu {
 				.option {
 					opacity: 0;
+					margin-top: 20px;
 				}
 			}
 		}
 
 		&[data-show="briefing"].fade-in {
+			transition-delay: 600ms;
+			
 			.briefing-view {
-				// transition-delay: 1000ms;
-
 				.carousel {
 					.page {
 						opacity: 1;
 						margin-top: 0px;
 
-						&:nth-child(1) { transition-delay: 0ms; }
-						&:nth-child(2) { transition-delay: 100ms; }
-						&:nth-child(3) { transition-delay: 200ms; }
-						&:nth-child(4) { transition-delay: 300ms; }
-						&:nth-child(5) { transition-delay: 400ms; }
+						&:nth-child(1) { transition-delay: 100ms; }
+						&:nth-child(2) { transition-delay: 200ms; }
+						&:nth-child(3) { transition-delay: 300ms; }
+						&:nth-child(4) { transition-delay: 400ms; }
+						&:nth-child(5) { transition-delay: 500ms; }
 					}
+				}
+
+				.menu {
+					.option {
+						opacity: 1;
+						margin-top: 0;
+						transition: all 200ms ease-in-out;
+						transition-delay: 600ms;
+					}
+				}
+			}
+		}
+	}
+
+	&[data-show="briefing"].leave {
+		min-height: 2px;
+		transition: min-height 900ms ease-in-out;
+
+		.briefing-view {
+			.carousel {
+				.page {
+					opacity: 0;
+					margin-top: 30px;
+
+					&:nth-child(1) { transition-delay: 500ms; }
+					&:nth-child(2) { transition-delay: 400ms; }
+					&:nth-child(3) { transition-delay: 300ms; }
+					&:nth-child(4) { transition-delay: 200ms; }
+					&:nth-child(5) { transition-delay: 100ms; }
+				}
+			}
+
+			.menu {
+				.option {
+					opacity: 0;
+					margin-top: 10px;
+					transition: all 200ms ease-in-out;
 				}
 			}
 		}

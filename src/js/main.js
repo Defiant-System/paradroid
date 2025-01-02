@@ -89,7 +89,6 @@ const paradroid = {
 				Self[event.arg].dispatch({ type: "init-view" });
 				// reset css/view
 				Self.els.content.cssSequence("fade-out", "transitionend", el => {
-					// return;
 					// fade in view
 					el.data({ show: event.arg })
 						.cssSequence("fade-in", "transitionend", el => {

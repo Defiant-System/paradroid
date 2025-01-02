@@ -22,7 +22,13 @@
 				Self.els.el.removeClass("no-anim").addClass(value);
 				break;
 			case "show-briefing":
-				APP.dispatch({ type: "switch-to-view", arg: "briefing" });
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// animate / switch to view
+					APP.dispatch({ type: "switch-to-view", arg: "briefing" });
+				});
 				break;
 			case "start-game":
 				console.log(event);

@@ -3,11 +3,7 @@ content {
 	&.fade-out[data-show] {
 		// before animation
 		.start-view {
-			opacity: 0;
-
 			.menu {
-				opacity: 1;
-
 				.option {
 					opacity: 0;
 				}
@@ -24,14 +20,24 @@ content {
 		}
 
 		&[data-show="start"].fade-out {
-			transition-delay: 300ms;
+			// transition-delay: 300ms;
 
 			.start-view {
 				.logo {
-					opacity: 0;
-					transition: opacity 300ms ease-in-out;
+					// opacity: 0;
+					// transition: opacity 300ms ease-in-out;
 				}
 			}
+		}
+	}
+	
+	&[data-show="start"].leave {
+		min-height: 2px;
+		transition: min-height 300ms ease-in-out;
+		
+		.start-view {
+			opacity: 0;
+			transition: opacity 300ms ease-in-out;
 		}
 	}
 }
