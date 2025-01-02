@@ -548,6 +548,8 @@
 				value = el.find("span").get(2).html();
 				if (!value) return;
 
+				Self.els.viewport.find(`.layer-droids .patrol-group.active`).removeClass("active");
+
 				value = JSON.parse(value);
 				[x, y] = value[0].map(i => +i);
 				layers = [".layer-background", ".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
@@ -580,10 +582,24 @@
 				Self.els.content.find(`.droid-patrol .row[data-nr="${event.value}"] span:nth-child(3)`).html(JSON.stringify(arr));
 				break;
 			case "delete-patrol-point":
-				console.log(event);
+				el = Self.els.viewport.find(`.patrol-point.active`);
+				value = el.parent().data("nr");
+				// remove point
+				el.remove();
+				// update lines
+				Self.dispatch({ type: "redraw-patrol-lines", value });
 				break;
-			case "reset-droid-patrol":
-				console.log(event);
+			case "output-patrol-pgn":
+				value = [];
+				Self.els.viewport.find(`.layer-droids .patrol-group`).map(elem => {
+					let el = $(elem),
+						patrol = el.find(".patrol-point").map(pp => {
+							let ppEl = $(pp);
+							return [+ppEl.cssProp("--x"), +ppEl.cssProp("--y")];
+						});
+					value.push(`<i nr="${el.data("nr")}" id="${el.data("id")}" patrol="${JSON.stringify(patrol)}"/>`);
+				});
+				console.log(value.join("\n"));
 				break;
 
 			case "col-duplicate-active":

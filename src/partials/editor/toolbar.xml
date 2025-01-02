@@ -73,10 +73,10 @@
 		<Group>
 			<Select name="Droids" menu="editor-layer"></Select>
 			<Divider />
-			<Tool name="Delete" click="lights-delete"/>
+			<Tool name="Delete" click="delete-patrol-point"/>
 			<Options type="grouped">
 				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-lights-pgn"/>
+				<Tool name="PGN" click="output-patrol-pgn"/>
 			</Options>
 		</Group>
 	</ToolSet>
