@@ -46,9 +46,9 @@ let Test = {
 		
 		/*
 		 * BRIEFING View
-		 */
 		APP.dispatch({ type: "show-view", arg: "briefing" });
 		return;
+		 */
 
 		
 		// view animation

@@ -536,7 +536,7 @@
 	<xsl:template name="droids-list">
 		<xsl:for-each select="./*">
 			<div class="row">
-				<!-- <xsl:if test="position() = 2"><xsl:attribute name="class">row active</xsl:attribute></xsl:if> -->
+				<xsl:attribute name="data-nr"><xsl:value-of select="@nr" /></xsl:attribute>
 				<span>#<xsl:value-of select="@nr" /></span>
 				<span><xsl:value-of select="@id" /></span>
 				<span><xsl:value-of select="@patrol" /></span>

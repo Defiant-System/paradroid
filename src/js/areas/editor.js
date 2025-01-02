@@ -557,7 +557,27 @@
 				Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${value}"]`).addClass("active");
 				break;
 			case "redraw-patrol-lines":
-				console.log(event);
+				let svgEl = Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${event.value}"] svg`),
+					points = Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${event.value}"] .patrol-point`),
+					arr = [],
+					lines = [];
+				// remove old lines
+				svgEl.find(`line`).remove();
+				// iterate patrol points
+				points.map((elem, i, r) => {
+					let el = $(elem),
+						next = i < r.length - 1 ? points.get(i+1) : points.get(0),
+						x1 = +el.cssProp("--x"),
+						y1 = +el.cssProp("--y"),
+						x2 = +next.cssProp("--x"),
+						y2 = +next.cssProp("--y");
+					arr.push([x1, y1]);
+					lines.push(`<line x1="${x1*32}" y1="${y1*32}" x2="${x2*32}" y2="${y2*32}"/>`);
+				});
+				// replace SVG element
+				svgEl.replace(`<svg viewBox="0 0 100 100">${lines.join("")}</svg>`);
+				// update spawn window
+				Self.els.content.find(`.droid-patrol .row[data-nr="${event.value}"] span:nth-child(3)`).html(JSON.stringify(arr));
 				break;
 			case "update-droid-patrol":
 			case "reset-droid-patrol":
