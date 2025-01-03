@@ -125,8 +125,10 @@ const paradroid = {
 							Self.editor.dispatch({ type: "toggle-overflow" });
 						}
 						break;
-					case "lift":
 					case "mobile":
+						if (event.start !== undefined) return;
+						/* falls through */
+					case "lift":
 					case "terminated":
 					case "transfer":
 						// view animation

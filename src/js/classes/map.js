@@ -49,9 +49,19 @@ class Map {
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
 					if (a1 === "droid") this.damageDroid(pair.bodyA, damage);
 				}
+				if (a1 === a2 && a1 === "droid") {
+					this.changeDroidPath([pair.bodyA, pair.bodyB]);
+				}
 			});
 		});
 	}
+
+	changeDroidPath(collided=[]) {
+		collided.map(body => {
+			let droid = this.droids.filter(item => item.body === body);
+			if (droid.length && !droid[0].isPlayer) droid[0].setPath();
+		});
+ 	}
 
 	damageDroid(body, value) {
 		let droid = this.droids.filter(item => item.body === body);
@@ -119,7 +129,7 @@ class Map {
 		backgrounds.map((xTile, col) => {
 			let id = xTile.getAttribute("id"),
 				row = Math.floor(col / this.width) * 2,
-				group = !!doors[id] ? doors[id] : gap.includes(id) ? [[2,2],[2,2]] : [[0,0],[0,0]];
+				group = !!doors[id] ? doors[id] : gap.includes(id) ? [[1,1],[1,1]] : [[0,0],[0,0]];
 			// if (id === "m02") console.log( group );
 			this.grid[row].push(...group[0]);
 			this.grid[row+1].push(...group[1]);
