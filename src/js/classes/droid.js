@@ -106,8 +106,8 @@ class Droid {
 	setPath() {
 		let tile = this.arena.config.tile,
 			patrol = this.home.patrol.filter(p => {
-				let dist = this.position.distance({ x: p[0]*tile, y: p[1]*tile });
-				return dist > tile;
+				let dist = this.position.distance({ x: p[0] * tile, y: p[1] * tile });
+				return dist > tile * 1.5;
 			}),
 			target = patrol[Utils.randomInt(0, patrol.length)],
 			graph = new Finder.Graph(this.arena.map.grid),
@@ -115,7 +115,9 @@ class Droid {
 			end = graph.grid[target[1]*2][target[0]*2],
 			result = Finder.astar.search(graph, start, end);
 		
+		// console.log( this.arena.map.grid.join("\n") );
 		this._path = result.map(p => [p.y/2, p.x/2]);
+		// if (!this._path.length) console.log( patrol.join("\n") );
 		// console.log( this._path.join("\n") );
 	}
 
@@ -308,7 +310,7 @@ class Droid {
 				if (!this._path.length) this.setPath();
 				let [x1, y1] = this._path.shift(),
 					target = new Point(x1, y1);
-				this.home.target = target.multiply(tile);
+				this.home.target = target.multiply(tile).subtract(hT);
 			} else {
 				this.move(this.home.force.clone());
 			}
@@ -343,8 +345,8 @@ class Droid {
 			let tile = this.arena.config.tile,
 				hT = tile >> 1,
 				path = this._path.map(p => {
-					return [(p[0] * tile),
-					 		(p[1] * tile)];
+					return [(p[0] * tile) - hT,
+					 		(p[1] * tile) - hT];
 				});
 			// temp draw path
 			ctx.save();

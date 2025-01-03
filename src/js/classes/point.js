@@ -67,10 +67,12 @@ class Point {
 	}
 
 	add(point) {
+		if (point.constructor === Number) point = { x: point, y: point };
 		return new Point(this.x + point.x, this.y + point.y);
 	}
 
 	subtract(point) {
+		if (point.constructor === Number) point = { x: point, y: point };
 		return new Point(this.x - point.x, this.y - point.y);
 	}
 
