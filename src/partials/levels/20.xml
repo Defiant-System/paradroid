@@ -1,7 +1,7 @@
 
 <Section id="20" width="12" height="6" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="droids">
-		<i nr="1" id="" patrol=""/>
+		<i nr="1" id="629" patrol="[[9,3],[5,3]]"/>
 	</Layer>
 	<Layer id="lights">
 		<i x="145" y="95" r="0.65"/>

@@ -597,7 +597,7 @@
 				Self.els.content.find(`.droid-patrol .row[data-nr="${event.value}"] span:nth-child(3)`).html(JSON.stringify(arr));
 				break;
 			case "select-patrol-droid":
-				console.log(event);
+				// console.log(event);
 				break;
 			case "center-patrol-point":
 				let pEl = Self.els.viewport.find(`.layer-droids`),

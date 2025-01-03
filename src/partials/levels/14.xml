@@ -1,14 +1,14 @@
 
 <Section id="14" width="64" height="26" color="#b94bb5" filter="sepia(1) hue-rotate(245deg) saturate(2) brightness(0.95)">
 	<Layer id="droids">
-		<i nr="1" id="139" patrol=""/>
-		<i nr="2" id="249" patrol=""/>
-		<i nr="3" id="296" patrol=""/>
-		<i nr="4" id="302" patrol=""/>
-		<i nr="5" id="420" patrol=""/>
-		<i nr="6" id="476" patrol=""/>
-		<i nr="7" id="493" patrol=""/>
-		<i nr="8" id="516" patrol=""/>
+		<i nr="1" id="139" patrol="[[7,15],[15,15],[37,9],[9,23]]"/>
+<i nr="2" id="249" patrol="[[27,5],[41,17],[28,17],[33,21],[3,19]]"/>
+<i nr="3" id="296" patrol="[[43,9],[29,13],[53,15],[11,15],[7,13]]"/>
+<i nr="4" id="302" patrol="[[23,9],[51,11],[37,17],[5,23],[19,17]]"/>
+<i nr="5" id="420" patrol="[[5,11],[22,5],[57,13],[25,21]]"/>
+<i nr="6" id="476" patrol="[[5,5],[17,9],[23,13],[17,21]]"/>
+<i nr="7" id="493" patrol="[[9,3],[33,7],[51,13],[41,13]]"/>
+<i nr="8" id="516" patrol="[[17,7],[33,15],[25,17],[17,13]]"/>
 	</Layer>
 	<Layer id="lights">
 		<i x="148" y="128" r="1"/>

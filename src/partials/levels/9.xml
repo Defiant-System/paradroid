@@ -1,10 +1,10 @@
 
 <Section id="9" width="20" height="30" color="#009c87" filter="sepia(.9) hue-rotate(135deg) brightness(.925)">
 	<Layer id="droids">
-		<i nr="1" id="614" patrol=""/>
-		<i nr="2" id="615" patrol=""/>
-		<i nr="3" id="629" patrol=""/>
-		<i nr="4" id="711" patrol=""/>
+		<i nr="1" id="614" patrol="[[5,7],[9,9],[15,11],[13,21]]"/>
+<i nr="2" id="615" patrol="[[3,11],[13,7],[17,25],[5,21]]"/>
+<i nr="3" id="629" patrol="[[3,5],[17,5],[11,13],[11,25],[9,21]]"/>
+<i nr="4" id="711" patrol="[[7,13],[9,3],[17,15],[13,25]]"/>
 	</Layer>
 	<Layer id="lights">
 		<i x="125" y="705" r="1"/>
