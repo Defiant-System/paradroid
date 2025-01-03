@@ -26,6 +26,8 @@
 				Self.els.content.cssSequence("leave", "transitionend", el => {
 					// reset element
 					el.removeClass("leave");
+					// reset start view
+					Self.els.el.removeClass("no-anim").addClass("view-anim");
 					// animate / switch to view
 					APP.dispatch({ type: "switch-to-view", arg: "briefing" });
 				});
@@ -33,10 +35,10 @@
 			case "start-game":
 				// reset css/view
 				Self.els.content.cssSequence("leave", "transitionend", el => {
-					// reset element
-					el.removeClass("leave");
+					// reset start view
+					Self.els.el.removeClass("no-anim").addClass("view-anim");
 					// animate / switch to view
-					APP.dispatch({ type: "switch-to-view", arg: "mobile" });
+					APP.dispatch({ type: "switch-to-view", arg: "mobile", done() { el.removeClass("leave"); } });
 				});
 				break;
 			case "toggle-music":
