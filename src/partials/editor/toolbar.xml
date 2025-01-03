@@ -73,6 +73,7 @@
 		<Group>
 			<Select name="Droids" menu="editor-layer"></Select>
 			<Divider />
+			<Tool name="Center" click="center-patrol-point"/>
 			<Tool name="Delete" click="delete-patrol-point"/>
 			<Options type="grouped">
 				<Tool name="Overflow" click="toggle-overflow"/>

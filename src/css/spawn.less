@@ -209,24 +209,27 @@ content.editor {
 				}
 
 				span {
-					padding: 8px;
+					padding: 8px 0;
 					flex: initial;
-					pointer-events: none;
+					// pointer-events: none;
 
-					&:nth-child(1) { width: 29px; color: #999; }
-					&:nth-child(2) { width: 31px; font-weight: 700; }
+					&:nth-child(1) {
+						width: 29px;
+						color: #999;
+						text-align: center;
+					}
+
+					&:nth-child(2) {
+						width: 31px;
+						font-weight: 700;
+						text-align: center;
+					}
+
 					&:nth-child(3) {
 						flex: 1;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
-					}
-
-					input {
-						background: transparent;
-						box-shadow: none;
-						top: -6px;
-						width: 100%;
 					}
 				}
 			}

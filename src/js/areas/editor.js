@@ -376,7 +376,10 @@
 				// save reference to current
 				Self.xSection = xSection;
 				// pre-process home positions of droids
-				xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xPatrol => {
+				xSection.selectNodes(`./Layer[@id="droids"]/i`).map(xPatrol => {
+					if (!xPatrol.getAttribute("patrol")) {
+						xPatrol.setAttribute("patrol", "[[2,2]]");
+					}
 					JSON.parse(xPatrol.getAttribute("patrol")).map(p => {
 						let xP = $.nodeFromString(`<i x="${p[0]}" y="${p[1]}"/>`);
 						xPatrol.appendChild(xP);
@@ -541,22 +544,34 @@
 
 			case "show-droid-patrol":
 				el = $(event.target);
-				if (!el.hasClass("row")) return;
+				let row = el.parents("?.row");
+				if (!row.hasClass("row")) return;
 				event.el.find(".active").removeClass("active");
-				el.addClass("active");
+				row.addClass("active");
 
-				value = el.find("span").get(2).html();
+				value = row.find("span").get(2).html();
 				if (!value) return;
-
+				// reset active patrol point
 				Self.els.viewport.find(`.layer-droids .patrol-group.active`).removeClass("active");
+				// make patrol polygon active
+				let patrolPoint = Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${row.find("span").get(0).html().slice(1)}"]`);
+				// if (patrolPoint.hasClass("active")) return;
+				patrolPoint.addClass("active");
+
+				if (el.index() === 1) {
+					let pEl = Self.els.viewport.find(`.layer-droids`),
+						gEl = pEl.find(`.patrol-group.active`);
+					gEl.find(".patrol-point").get(0).css({
+						"--x": (+pEl.cssProp("--x") - 11) * -1,
+						"--y": (+pEl.cssProp("--y") - 8) * -1,
+					});
+					return;
+				}
 
 				value = JSON.parse(value);
 				[x, y] = value[0].map(i => +i);
 				layers = [".layer-background", ".level-bg", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).css({ "--y": 7-y, "--x": 11-x });
-				// make patrol polygon active
-				value = el.find("span").get(0).html().slice(1);
-				Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${value}"]`).addClass("active");
 				break;
 			case "redraw-patrol-lines":
 				let svgEl = Self.els.viewport.find(`.layer-droids .patrol-group[data-nr="${event.value}"] svg`),
@@ -580,6 +595,17 @@
 				svgEl.replace(`<svg viewBox="0 0 100 100">${lines.join("")}</svg>`);
 				// update spawn window
 				Self.els.content.find(`.droid-patrol .row[data-nr="${event.value}"] span:nth-child(3)`).html(JSON.stringify(arr));
+				break;
+			case "select-patrol-droid":
+				console.log(event);
+				break;
+			case "center-patrol-point":
+				let pEl = Self.els.viewport.find(`.layer-droids`),
+					gEl = pEl.find(`.patrol-group.active`);
+				gEl.find(".patrol-point").get(0).css({
+					"--x": (+pEl.cssProp("--x") - 11) * -1,
+					"--y": (+pEl.cssProp("--y") - 8) * -1,
+				});
 				break;
 			case "delete-patrol-point":
 				el = Self.els.viewport.find(`.patrol-point.active`);
@@ -913,6 +939,11 @@
 				}
 				// make active
 				el.addClass("active");
+				// make list row active
+				if (!el.parent().hasClass("active")) {
+					let nr = el.parent().data("nr");
+					Self.els.content.find(`.droid-patrol .row[data-nr="${nr}"] span:nth-child(1)`).trigger("click");
+				}
 
 				let doc = $(document),
 					offset = {

@@ -493,7 +493,7 @@
 	</xsl:template>
 
 	<xsl:template name="layer-droids">
-		<div class="layer-droids" data-click="put-tile">
+		<div class="layer-droids" data-click="select-patrol-droid">
 			<xsl:for-each select="./Layer[@id='droids']/*[@patrol != '']">
 			<div class="patrol-group">
 				<xsl:attribute name="data-nr"><xsl:value-of select="@nr" /></xsl:attribute>
@@ -521,10 +521,12 @@
 					</xsl:for-each>
 				</svg>
 				<xsl:for-each select="./*">
+					<xsl:variable name="id" select="../@id"/>
 					<span class="patrol-point">
+						<xsl:attribute name="data-name"><xsl:value-of select="//Droid[@id = $id]/i[@id='type']/text()" /></xsl:attribute>
 						<xsl:attribute name="style">--x: <xsl:value-of select="@x" />; --y: <xsl:value-of select="@y" />;</xsl:attribute>
 						<xsl:if test="position() = 1"><span class="droid">
-							<xsl:attribute name="data-id"><xsl:value-of select="../@id" /></xsl:attribute>
+							<xsl:attribute name="data-id"><xsl:value-of select="$id" /></xsl:attribute>
 							<b></b></span></xsl:if>
 					</span>
 				</xsl:for-each>

@@ -137,9 +137,32 @@
 					width: 45px;
 					height: 45px;
 					cursor: move;
+
+					&:before {
+						content: attr( data-name );
+						position: relative;
+						top: -25px;
+						left: -50px;
+						right: -50px;
+						white-space: nowrap;
+						padding: 2px 5px;
+						font-size: 12px;
+						border-radius: 3px;
+						background: #ddd;
+						color: #555;
+					}
+
+					&:not(:nth-child(2)):before {
+						display: none;
+					}
+
+					// &:hover:before {
+					// 	display: initial;
+					// }
 				}
 
 				span.droid {
+					z-index: -1;
 					margin: -22px 0 0 -22px;
 					pointer-events: none;
 
