@@ -1,5 +1,5 @@
 
-<Section id="16" width="76" height="30" color="#d60" filter="hue-rotate(35deg) saturate(2) brightness(.95)">
+<Section id="16" level="5" width="76" height="30" color="#d60" filter="hue-rotate(35deg) saturate(2) brightness(.95)">
 	<Layer id="droids">
 		<i nr="1" id="139" patrol="[[23,7],[41,17],[23,19],[5,19]]"/>
 <i nr="2" id="139" patrol="[[13,5],[29,19],[11,21],[5,17]]"/>

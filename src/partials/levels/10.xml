@@ -1,5 +1,5 @@
 
-<Section id="10" width="12" height="18" color="#e84f46" filter="saturate(1.35) brightness(.95)">
+<Section id="10" level="14" width="12" height="18" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="droids">
 		<i nr="1" id="493" patrol="[[5,3],[9,9],[3,15]]"/>
 	</Layer>

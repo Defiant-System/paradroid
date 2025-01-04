@@ -66,7 +66,7 @@ A small-scale plan of the whole deck is available, as well as a side elevation o
 Robots are represented on-screen as a symbol showing a three-digit number. The first digit shown is the 
 important one, the class of the robot. It denotes the strength also.
 
-To find out more about any given robot, use the robot enquiry sýstem at a console. Only data about units of 
+To find out more about any given robot, use the robot enquiry system at a console. Only data about units of 
 lower class than your current host is available, since it is the host's security clearance which is used to access the console.
 
 Press fire to play
