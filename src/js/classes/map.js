@@ -260,8 +260,15 @@ class Map {
 			}
 		});
 
+		// disable droids if stated dead
+		if (state.dead) {
+			xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xItem => {
+				let nr = +xItem.getAttribute("nr");
+				if (state.dead.includes(nr)) xItem.setAttribute("dead", "1");
+			});
+		}
 		// add droids
-		xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""]`).map(xItem => {
+		xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""][not(@dead)]`).map(xItem => {
 			let id = xItem.getAttribute("id"),
 				patrol = JSON.parse(xItem.getAttribute("patrol")),
 				droid = new Droid({ arena: this.arena, section, id, patrol });

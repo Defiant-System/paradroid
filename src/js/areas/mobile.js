@@ -148,7 +148,8 @@
 					filter = xSection.getAttribute("filter") || "none",
 					percentage = 1 - (event.state.map.clear || 0),
 					power = event.state.player ? event.state.player.power : undefined;
-
+				// reset player mode
+				Self.arena.player.transfer.active = false;
 				// set debug mode, if provided
 				if (event.state.debug) Self.els.content.data({ debug: event.state.debug.mode });
 				// adjust hud with new color

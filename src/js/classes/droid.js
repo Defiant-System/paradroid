@@ -265,10 +265,6 @@ class Droid {
 		this.position.y = this.body.position.y;
 	}
 
-	collision() {
-		
-	}
-
 	update(delta) {
 		// dont move
 		if (this._freeze) return;
@@ -295,13 +291,22 @@ class Droid {
 			// console.log( pos, target, distance );
 			// console.log( target, this.position );
 			
-			// keep track of movement - if stuck re-calculate path
-			// this.home.log.unshift(distance);
-			// this.home.log.splice(10, 1);
-			// let rngMin = Math.min(...this.home.log),
-			// 	rngMax = Math.max(...this.home.log),
-			// 	rng = Math.abs(rngMax - rngMin);
-			// if (rng === 0) this.setPath();
+			// keep track of movement - alter weight of position in grid
+			this.home.log.unshift(distance);
+			this.home.log.splice(10, 1);
+			let rngMin = Math.min(...this.home.log),
+				rngMax = Math.max(...this.home.log),
+				rng = Math.abs(rngMax - rngMin);
+			if (this.home.log.length > 9 && rng <= 0.15) {
+				// push away from stuck position
+				let push = {
+						x: this.home.force.x > 0 ? -10 : 10,
+						y: this.home.force.y > 0 ? -10 : 10,
+					};
+				this.move(this.home.force.add(push));
+				// reset path
+				distance = 1;
+			}
 
 			// apply movement force
 			this.home.force = this.home.target.subtract(pos).norm().multiply(.5);
