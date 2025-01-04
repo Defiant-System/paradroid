@@ -320,6 +320,7 @@ class Droid {
 					target = new Point(x1, y1);
 				this.home.target = target.multiply(tile).subtract(hT);
 			} else {
+				let pDist = this.position.distance(this.arena.player.position);
 				// apply aggression
 				switch (this.aggression) {
 					case "ignore":
@@ -327,14 +328,23 @@ class Droid {
 						break;
 					case "evade":
 						// keep distance to player droid
-						distance = this.position.distance(this.arena.player.position);
-						console.log( distance );
+						if (pDist < 150) {
+							this.home.force = this.evade(this.arena.player).multiply(2);
+							if (this._path.length > 1) this._path.shift();
+						}
 						break;
-					case "shoot-if-close": break;
+					case "shoot-if-close":
+						if (pDist < 150) {
+							this.target = this.arena.player.position;
+							this.dir = this.position.direction(this.target);
+							this.fire.shooting = true;
+						} else {
+							this.fire.shooting = false;
+						}
+						break;
 					case "pursue-if-close": break;
 					case "seek-destroy": break;
 				}
-
 				this.move(this.home.force.clone());
 			}
 		}
