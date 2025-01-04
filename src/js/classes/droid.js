@@ -217,12 +217,17 @@ class Droid {
 		this.speed = +xDroid.getAttribute("speed") * .00015;
 		this.energy = +xDroid.getAttribute("energy");
 		this.loss = +xDroid.getAttribute("loss");
-		this.agression = +xDroid.getAttribute("agression");
 		this.health = +xDroid.getAttribute("health");
 		
 		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
+
+		let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
+			value = +xDroid.getAttribute("aggression"),
+			aggression;
+		strategy.map((e, i, r) => { if (!aggression && value < (100 / r.length) * i) aggression = e; });
+		this.aggression = aggression || strategy[0];
 
 		// paint digits on droid
 		this.digits = id.toString().split("").map((x, i) => {
@@ -288,8 +293,6 @@ class Droid {
 				pos = this.position.clone(),
 				target = this.home.target,
 				distance = target.distance(pos);
-			// console.log( pos, target, distance );
-			// console.log( target, this.position );
 			
 			// keep track of movement - alter weight of position in grid
 			this.home.log.unshift(distance);
@@ -317,6 +320,21 @@ class Droid {
 					target = new Point(x1, y1);
 				this.home.target = target.multiply(tile).subtract(hT);
 			} else {
+				// apply aggression
+				switch (this.aggression) {
+					case "ignore":
+						// do nothing
+						break;
+					case "evade":
+						// keep distance to player droid
+						distance = this.position.distance(this.arena.player.position);
+						console.log( distance );
+						break;
+					case "shoot-if-close": break;
+					case "pursue-if-close": break;
+					case "seek-destroy": break;
+				}
+
 				this.move(this.home.force.clone());
 			}
 		}
