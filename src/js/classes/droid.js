@@ -223,14 +223,16 @@ class Droid {
 		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
-		let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
-			value = +xDroid.getAttribute("aggression"),
-			segSize = 100 / strategy.length,
-			length = 150 + (value * 3),
-			aggression = { value, length, segValue: 3 + (value % segSize) };
-		strategy.map((e, i) => { if (!aggression.name && value < segSize * i) aggression.name = e; });
-		if (!aggression.name) aggression.name = strategy[0];
-		this.aggression = aggression;
+		if (!this.isPlayer) {
+			let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
+				value = +xDroid.getAttribute("aggression"),
+				segSize = 100 / strategy.length,
+				length = 150 + (value * 3),
+				aggression = { value, length, segValue: 3 + (value % segSize) };
+			strategy.map((e, i) => { if (!aggression.name && value < segSize * i) aggression.name = e; });
+			if (!aggression.name) aggression.name = strategy[0];
+			this.aggression = aggression;
+		}
 
 		// paint digits on droid
 		this.digits = id.toString().split("").map((x, i) => {
@@ -273,7 +275,7 @@ class Droid {
 		this.position.y = this.body.position.y;
 	}
 
-	update(delta) {
+	update(delta, time) {
 		// dont move
 		if (this._freeze) return;
 
@@ -310,6 +312,7 @@ class Droid {
 						y: this.home.force.y > 0 ? -10 : 10,
 					};
 				this.move(this.home.force.add(push));
+				this._cornered = true;
 				// reset path
 				distance = 1;
 			}
@@ -323,7 +326,11 @@ class Droid {
 					target = new Point(x1, y1);
 				this.home.target = target.multiply(tile).subtract(hT);
 			} else {
-				let pDist = this.position.distance(this.arena.player.position);
+				let pDist = this.position.distance(this.arena.player.position),
+					prand,
+					target,
+					bodies,
+					ray;
 				// apply aggression
 				switch (this.aggression.name) {
 					case "ignore":
@@ -331,28 +338,44 @@ class Droid {
 						break;
 					case "evade":
 						// keep distance to player droid
-						if (pDist < 150) {
-							this.home.force = this.evade(this.arena.player).multiply(2);
-							if (this._path.length > 1) this._path.shift();
+						target = this.arena.player.position;
+						bodies = Matter.Composite.allBodies(this.arena.map.engine.world);
+						ray = Matter.Query.ray(bodies, target, this.position);
+						if (pDist < 150 && ray.length === 2) {
+							this.home.force = this.evade(this.arena.player).multiply(1 + (this.aggression.segValue / 20));
+							if (this._path.length > 2) this._path.shift();
+							// if cornered, start shooting
+							if (!this.fire.shooting && this._cornered) {
+								this.target = target;
+								this.dir = this.position.direction(this.target);
+								this.fire.shooting = true;
+								this.fire._start = time;
+							}
+							if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
+								this.fire.shooting = false;
+								delete this._cornered;
+							}
 						}
 						break;
 					case "shoot-if-close":
-						let now = Date.now(),
-							prand = Utils.prand() * 700,
-							target = this.arena.player.position,
-							bodies = Matter.Composite.allBodies(this.arena.map.engine.world),
-							ray = Matter.Query.ray(bodies, target, this.position);
+						prand = Utils.prand() * 700;
+						target = this.arena.player.position;
+						bodies = Matter.Composite.allBodies(this.arena.map.engine.world);
+						ray = Matter.Query.ray(bodies, target, this.position);
 						if (pDist < 150 && !this.fire.shooting && ray.length === 2 && prand < this.aggression.segValue) {
 							this.target = target;
 							this.dir = this.position.direction(this.target);
 							this.fire.shooting = true;
-							this.fire._start = now;
+							this.fire._start = time;
 						}
-						if (this.fire.shooting && now - this.fire._start > this.aggression.length) {
+						if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
 							this.fire.shooting = false;
 						}
 						break;
 					case "pursue-if-close":
+						if (pDist < 150) {
+							console.log(this.aggression.name);
+						}
 						break;
 					case "seek-destroy":
 						break;
