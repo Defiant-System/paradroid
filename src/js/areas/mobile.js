@@ -94,8 +94,9 @@
 						}
 						break;
 					case "p":
-						if (Self.arena.fpsControl._stopped) Self.dispatch({ type: "game-loop-resume" });
-						else Self.dispatch({ type: "game-loop-pause" });
+						APP.hud.dispatch({ type: "toggle-play-pause" });
+						// if (Self.arena.fpsControl._stopped) Self.dispatch({ type: "game-loop-resume" });
+						// else Self.dispatch({ type: "game-loop-pause" });
 						break;
 				}
 				break;
@@ -121,7 +122,7 @@
 			case "init-view":
 				APP.mobile.dispatch({
 					type: "restore-state",
-					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 25, y: 9, power: .35 }, debug: { mode: 0 } },
+					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 0 } },
 				});
 				break;
 			case "game-loop-pause":
@@ -146,14 +147,13 @@
 				// level colors
 				let background = xSection.getAttribute("color"),
 					filter = xSection.getAttribute("filter") || "none",
-					percentage = 1 - (event.state.map.clear || 0),
-					power = event.state.player ? event.state.player.power : undefined;
+					percentage = 1 - (event.state.map.clear || 0);
 				// reset player mode
 				Self.arena.player.transfer.active = false;
 				// set debug mode, if provided
 				if (event.state.debug) Self.els.content.data({ debug: event.state.debug.mode });
 				// adjust hud with new color
-				APP.hud.dispatch({ type: "set-level-data", background, percentage, power });
+				APP.hud.dispatch({ type: "set-level-data", background, percentage });
 				// canvas background color
 				Self.els.el.css({ background });
 				// droid-FX

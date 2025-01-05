@@ -133,10 +133,10 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					// map: { id: 1, clear: .1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25, power: .35 }, debug: { mode: 1 },
-					// map: { id: 1, clear: .1 }, player: { id: "001", x: 25, y: 9, power: .35 }, debug: { mode: 1 },
-					map: { id: 11, clear: 0 }, player: { id: "001", x: 5, y: 9, power: .35 }, debug: { mode: 1 },
-					// map: { id: 20, clear: .1 }, player: { id: "001", x: 3, y: 3, power: .35 }, debug: { mode: 1 },
+					// map: { id: 1, clear: .1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
+					// map: { id: 1, clear: .1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
+					map: { id: 11, clear: 0 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 1 },
+					// map: { id: 20, clear: .1 }, player: { id: "001", x: 3, y: 3 }, debug: { mode: 1 },
 				};
 
 			// set view
@@ -161,7 +161,7 @@ let Test = {
 			// }, 500);
 
 			// pause test
-			// setTimeout(() => APP.mobile.dispatch({ type: "game-loop-pause" }), 1200);
+			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1200);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);

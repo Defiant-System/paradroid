@@ -8,6 +8,8 @@
 			content: window.find("content"),
 			el: window.find(".hud-view"),
 			barLeft: window.find(".left"),
+			barRight: window.find(".right"),
+			btnRight: window.find(".right .cube-title"),
 		};
 	},
 	dispatch(event) {
@@ -18,6 +20,21 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
+			case "toggle-play-pause":
+				el = Self.els.btnRight;
+				value = el.text();
+				el.html(el.data("toggle"));
+				el.data({ toggle: value });
+				if (Self.els.barRight.hasClass("paused")) {
+					Self.els.barRight.removeClass("paused");
+					// resume game
+					APP.mobile.dispatch({ type: "game-loop-resume" });
+				} else {
+					Self.els.barRight.addClass("paused");
+					// pause game
+					APP.mobile.dispatch({ type: "game-loop-pause" });
+				}
+				break;
 			case "set-view-title":
 				if (event.name) value = event.name;
 				else {
@@ -27,20 +44,11 @@
 				if (value) Self.els.el.find(".view-title").html(value);
 				break;
 			case "set-level-data":
-				el = Self.els.el.find(".left .box");
+				el = Self.els.barLeft.find(".box");
 				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10) / 100;
 				el.css({
 					"--val": `${value * 100}%`,
 					"--c1": event.background,
-				});
-				// update power if value is provided
-				if (event.power !== undefined) {
-					Self.dispatch({ ...event, type: "set-power" });
-				}
-				break;
-			case "set-power":
-				Self.els.el.find(".right .box").css({
-					"--val": `${event.power * 100}%`,
 				});
 				break;
 			case "choose-color":

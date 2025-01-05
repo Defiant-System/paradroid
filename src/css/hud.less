@@ -11,7 +11,6 @@
 	font-size: 27px;
 
 
-	// .right,
 	.left {
 		position: relative;
 		flex: 1;
@@ -154,9 +153,46 @@
 		// flex: 1;
 		width: 210px;
 
+		&:hover {
+			.bar .box .back:before {
+				box-shadow: -3px -10px 15px var(--c1);
+			}
+		}
+
 		&.hidden {
 			opacity: 0;
 			visibility: hidden;
+		}
+
+		&.paused .bar {
+			.box { --c1: #fff633; }
+		}
+
+		.bar {
+			top: -17px;
+
+			.box {
+				--c1: #5dff2c;
+
+				.back:before {
+					box-shadow: -1px -5px 2px var(--c1);
+				}
+			}
+		}
+
+		.cube-title {
+			padding: 8px 0 0 9px;
+			position: absolute;
+			top: 6px;
+			left: 15px;
+			width: 178px;
+			height: 28px;
+			font-size: 17px;
+			color: rgba(#222,.375);
+			text-shadow: 0 1px 0 rgba(#fff,.3);
+			mix-blend-mode: luminosity;
+			pointer-events: all;
+			cursor: pointer;
 		}
 	}
 
