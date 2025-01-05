@@ -225,9 +225,12 @@ class Droid {
 
 		let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
 			value = +xDroid.getAttribute("aggression"),
-			aggression;
-		strategy.map((e, i, r) => { if (!aggression && value < (100 / r.length) * i) aggression = e; });
-		this.aggression = aggression || strategy[0];
+			segSize = 100 / strategy.length,
+			length = 150 + (value * 3),
+			aggression = { value, length, segValue: 3 + (value % segSize) };
+		strategy.map((e, i) => { if (!aggression.name && value < segSize * i) aggression.name = e; });
+		if (!aggression.name) aggression.name = strategy[0];
+		this.aggression = aggression;
 
 		// paint digits on droid
 		this.digits = id.toString().split("").map((x, i) => {
@@ -322,7 +325,7 @@ class Droid {
 			} else {
 				let pDist = this.position.distance(this.arena.player.position);
 				// apply aggression
-				switch (this.aggression) {
+				switch (this.aggression.name) {
 					case "ignore":
 						// do nothing
 						break;
@@ -334,16 +337,25 @@ class Droid {
 						}
 						break;
 					case "shoot-if-close":
-						if (pDist < 150) {
-							this.target = this.arena.player.position;
+						let now = Date.now(),
+							prand = Utils.prand() * 700,
+							target = this.arena.player.position,
+							bodies = Matter.Composite.allBodies(this.arena.map.engine.world),
+							ray = Matter.Query.ray(bodies, target, this.position);
+						if (pDist < 150 && !this.fire.shooting && ray.length === 2 && prand < this.aggression.segValue) {
+							this.target = target;
 							this.dir = this.position.direction(this.target);
 							this.fire.shooting = true;
-						} else {
+							this.fire._start = now;
+						}
+						if (this.fire.shooting && now - this.fire._start > this.aggression.length) {
 							this.fire.shooting = false;
 						}
 						break;
-					case "pursue-if-close": break;
-					case "seek-destroy": break;
+					case "pursue-if-close":
+						break;
+					case "seek-destroy":
+						break;
 				}
 				this.move(this.home.force.clone());
 			}

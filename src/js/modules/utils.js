@@ -27,6 +27,22 @@ let Utils = {
 			});
 		// Sort your points by angle
 		return angles.sort((a, b) => a.angle - b.angle);
+	},
+	grand: 0,
+	rSeed: Math.random() * 8388607 + 24478357,
+	prand() {
+		[...Array(25)].map(e => this.prandi());
+		return this.prandi();
+	},
+	prandi() {
+		this.grand += 1;
+		this.rSeed = this.rSeed << 1;
+		this.rSeed = this.rSeed | (this.rSeed & 1073741824) >> 30;
+		this.rSeed = this.rSeed ^ (this.rSeed & 614924288) >> 9;
+		this.rSeed = this.rSeed ^ (this.rSeed & 4241) << 17;
+		this.rSeed = this.rSeed ^ (this.rSeed & 272629760) >> 23;
+		this.rSeed = this.rSeed ^ (this.rSeed & 318767104) >> 10;
+		return (this.rSeed & 16777215) / 16777216;
 	}
 };
 
