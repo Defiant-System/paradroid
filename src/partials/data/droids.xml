@@ -39,7 +39,7 @@
 	<i id="notes"><![CDATA[Early type messenger robot. Large wheels impede motion on small craft.]]></i>
 </Droid>
 
-<Droid id="420" digits="-1,-1,-1" weight="57" speed="3" energy="60" loss="2" aggression="10" health="180" weapon="laser" score="100">
+<Droid id="420" digits="-1,-1,-1" weight="57" speed="3" energy="60" loss="2" aggression="59" health="180" weapon="laser" score="100">
 	<i id="type"><![CDATA[Maintenance Robot]]></i>
 	<i id="notes"><![CDATA[Slow maintenance robot. Confined to drive maintenance during flight.]]></i>
 </Droid>

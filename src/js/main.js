@@ -67,12 +67,12 @@ const paradroid = {
 				break;
 			case "window.focus":
 				// resume "matter.js" runner
-				Self.mobile.dispatch({ type: "game-loop-resume" });
+				Self.hud.dispatch({ type: "toggle-play-pause" });
 				break;
 			case "window.blur":
 			case "window.close":
 				// stop "matter.js" runner
-				Self.mobile.dispatch({ type: "game-loop-pause" });
+				Self.hud.dispatch({ type: "toggle-play-pause", pause: true });
 				break;
 			case "window.keydown":
 			case "window.keyup":

@@ -228,7 +228,7 @@ class Droid {
 				value = +xDroid.getAttribute("aggression"),
 				segSize = 100 / strategy.length,
 				length = 150 + (value * 3),
-				aggression = { value, length, segValue: 3 + (value % segSize) };
+				aggression = { value, length, segValue: 5 + (value % segSize) };
 			strategy.map((e, i) => { if (!aggression.name && value < segSize * i) aggression.name = e; });
 			if (!aggression.name) aggression.name = strategy[0];
 			this.aggression = aggression;
@@ -373,8 +373,23 @@ class Droid {
 						}
 						break;
 					case "pursue-if-close":
-						if (pDist < 150) {
-							console.log(this.aggression.name);
+						prand = Utils.prand() * 700;
+						target = this.arena.player.position;
+						bodies = Matter.Composite.allBodies(this.arena.map.engine.world);
+						ray = Matter.Query.ray(bodies, target, this.position);
+						if (pDist < 250 && ray.length === 2) {
+							this.home.target = target;
+							// if (this._path.length > 2) this._path.shift();
+
+							if (pDist < 150 && !this.fire.shooting && prand < this.aggression.segValue) {
+								this.target = target;
+								this.dir = this.position.direction(this.target);
+								this.fire.shooting = true;
+								this.fire._start = time;
+							}
+							if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
+								this.fire.shooting = false;
+							}
 						}
 						break;
 					case "seek-destroy":

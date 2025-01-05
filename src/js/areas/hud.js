@@ -25,7 +25,7 @@
 				value = el.text();
 				el.html(el.data("toggle"));
 				el.data({ toggle: value });
-				if (Self.els.barRight.hasClass("paused")) {
+				if (Self.els.barRight.hasClass("paused") && !event.pause) {
 					Self.els.barRight.removeClass("paused");
 					// resume game
 					APP.mobile.dispatch({ type: "game-loop-resume" });
