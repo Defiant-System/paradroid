@@ -3,7 +3,7 @@ class Electric {
 	constructor(cfg) {
 		let { arena, owner, color, lineWidth, droid, amplitude } = cfg,
 			vPoint = { x: arena.viewport.x, y: arena.viewport.y },
-			origin = arena.player.position.clone().add(vPoint),
+			origin = owner.position.clone().add(vPoint),
 			target = droid.position.add({ x: arena.viewport.x, y: arena.viewport.y });
 		
 		this.arena = arena;
@@ -74,6 +74,7 @@ class Electric {
 
 		// freeze droid while being "zapped"
 		this.droid.freeze = true;
+		this.owner.freeze = true;
 
 		// count down ttl (Time To Live)
 		if (this.children) {
@@ -83,6 +84,7 @@ class Electric {
 				arena.map.entries.splice(index, 1);
 				// unfreeze droid
 				this.droid.freeze = false;
+				this.owner.freeze = false;
 			}
 		}
 	}

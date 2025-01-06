@@ -84,7 +84,7 @@
 	<i id="notes"><![CDATA[Low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version.]]></i>
 </Droid>
 
-<Droid id="711" digits="2,2,0" weight="102" speed="5" energy="110" loss="4" aggression="59" health="270" weapon="disruptor" score="175">
+<Droid id="711" digits="2,2,0" weight="102" speed="5" energy="110" loss="4" aggression="52" health="270" weapon="disruptor" score="175">
 	<i id="type"><![CDATA[Disruptor Droid]]></i>
 	<i id="notes"><![CDATA[Heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military.]]><![CDATA[]]></i>
 </Droid>

@@ -14,7 +14,7 @@
 	<i id="notes"><![CDATA[This is the double 821 military shot.]]></i>
 </Weapon>
 
-<Weapon id="disruptor" coolDown="700" damage="120">
+<Weapon id="disruptor" coolDown="700" damage="50">
 	<i id="title"><![CDATA[Disruptor]]></i>
 	<i id="notes"><![CDATA[This is the disruptor, the 742 and 711 use.]]></i>
 </Weapon>

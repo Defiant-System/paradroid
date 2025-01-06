@@ -204,9 +204,9 @@ class Droid {
 					});
 				} else {
 					let droid = cfg.arena.player;
-					new Electric({ ...cfg, droid, color: "#fff" });
-					// // deal damage to droid
-					// cfg.arena.map.damageDroid(droid.body, cfg.damage);
+					new Electric({ ...cfg, droid, color: "#222" });
+					// deal damage to droid
+					cfg.arena.map.damageDroid(droid.body, cfg.damage);
 				}
 				break;
 		}
@@ -252,7 +252,12 @@ class Droid {
 		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
-		if (!this.isPlayer) {
+		if (this.isPlayer) {
+			if (this.fire.name === "disruptor") {
+				// make white version of electric halo asset
+				this.electric.asset = this.assetToWhite(this.arena.assets["electric"].img);
+			}
+		} else {
 			let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
 				value = +xDroid.getAttribute("aggression"),
 				segSize = 100 / strategy.length,
@@ -307,6 +312,17 @@ class Droid {
 	}
 
 	update(delta, time) {
+		if (this.fire.name === "disruptor") {
+			// electric gloria
+			this.electric.last -= delta;
+			if (this.electric.last < 0) {
+				this.electric.last = (this.electric.last + this.electric.speed) % this.electric.speed;
+				this.electric.angle -= .015;
+				this.electric.index++;
+				if (this.electric.index > 29) this.electric.index = 0;
+			}
+		}
+
 		// dont move
 		if (this._freeze) return;
 
@@ -322,17 +338,6 @@ class Droid {
 		if (this.fire.shooting && now - this.fire.lastShot > this.fire.coolDown) {
 			this.fire.lastShot = now;
 			this.shoot();
-		}
-
-		if (this.fire.name === "disruptor") {
-			// electric gloria
-			this.electric.last -= delta;
-			if (this.electric.last < 0) {
-				this.electric.last = (this.electric.last + this.electric.speed) % this.electric.speed;
-				this.electric.angle -= .015;
-				this.electric.index++;
-				if (this.electric.index > 29) this.electric.index = 0;
-			}
 		}
 
 		if (!this.isPlayer && this.home.patrol.length > 1) {
