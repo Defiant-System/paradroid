@@ -1,11 +1,12 @@
 
 class Droid {
 	constructor(cfg) {
-		let { arena, section, id, x, y, patrol } = cfg;
+		let { arena, section, xItem, id, x, y, patrol } = cfg;
 
 		this.APP = paradroid;
 		this.arena = arena;
 		this.section = section;
+		this.xItem = xItem;
 		// droid tile coords
 		this.x = x || 0;
 		this.y = y || 0;
@@ -95,11 +96,6 @@ class Droid {
 			this.kill();
 			// inset explosion animation
 			new Explosion({ arena: this.arena, x: this.position.x, y: this.position.y });
-
-			if (this.arena.map.droids.length === 1 && this.arena.map.droids[0].isPlayer) {
-				// all droids killed - turn off lights
-				this.APP.mobile.dispatch({ type: "toggle-lights", complete: 1 });
-			}
 		}
 	}
 
@@ -115,6 +111,11 @@ class Droid {
 				// player droid killed - show "game over"
 				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
 			}, 1500);
+		} else {
+			// make node "dead"
+			this.xItem.setAttribute("dead", 1);
+			// notify map / section / level
+			this.arena.map.mapUpdate();
 		}
 	}
 

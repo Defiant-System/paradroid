@@ -75,13 +75,27 @@ class Map {
 		if (item.body) Matter.Composite.add(this.engine.world, item.body);
 	}
 
+	mapUpdate() {
+		let xPath = `//Data/Section[@level="${this.xSection.getAttribute("level")}"]`,
+			// keep track of droid count
+			total = window.bluePrint.selectNodes(`${xPath}/Layer[@id="droids"]/i`).length,
+			alive = window.bluePrint.selectNodes(`${xPath}/Layer[@id="droids"]/i[not(@dead)]`).length,
+			level = alive / total;
+		// update progress bar for level droid count
+		paradroid.hud.dispatch({ type: "progress-update", level });
+	}
+
 	setState(state) {
 		let tile = this.arena.config.tile,
 			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`),
 			section = { id: xSection.getAttribute("id") };
+		// keep reference to nodes
+		this.xSection = xSection;
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
+		// keep track of droid count
+		this.mapUpdate();
 
 		// set player droid section
 		this.arena.player.section = section;
@@ -271,7 +285,7 @@ class Map {
 		xSection.selectNodes(`./Layer[@id="droids"]/i[@patrol != ""][not(@dead)]`).map(xItem => {
 			let id = xItem.getAttribute("id"),
 				patrol = JSON.parse(xItem.getAttribute("patrol")),
-				droid = new Droid({ arena: this.arena, section, id, patrol });
+				droid = new Droid({ arena: this.arena, section, id, xItem, patrol });
 			// add droid to map droid list
 			this.droids.push(droid);
 			// add droid body to physical world

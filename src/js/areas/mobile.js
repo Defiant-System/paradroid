@@ -174,7 +174,7 @@
 				break;
 			case "toggle-lights":
 				value = !!Self.arena.led.floor ? 0 : 1;
-				if (event.complete) value = event.complete;
+				if (event.off) value = 1;
 				name = value ? "lights-off" : "lights-on";
 				// transition to dark
 				Self.els.el.cssSequence(name, "transitionend", el => {

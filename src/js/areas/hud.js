@@ -53,7 +53,11 @@
 				});
 				break;
 			case "progress-update":
-				Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
+				if (event.level !== undefined) Self.els.progress.find(`.box-track[data-id="level"]`).css({ "--val": event.level });
+				if (event.health !== undefined) Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
+
+				// all droids killed - turn off lights
+				if (event.level === 0) APP.mobile.dispatch({ type: "toggle-lights", off: true });
 				break;
 			case "choose-color":
 				Self.els.barLeft
