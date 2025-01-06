@@ -110,7 +110,7 @@ class Droid {
 				return dist > tile * 1.5;
 			}),
 			seek = [this.arena.player.x, this.arena.player.y],
-			isSeekDestroy = this.aggression.name === "seek-destroy",
+			isSeekDestroy = this.aggression.name === "seek-destroy" && this.arena.player.health > 0,
 			target = isSeekDestroy ? seek : patrol[Utils.randomInt(0, patrol.length)],
 			graph = new Finder.Graph(this.arena.map.grid),
 			start = graph.grid[this.y*2][this.x*2],
@@ -135,6 +135,10 @@ class Droid {
 			count,
 			inc,
 			a;
+		// stop shooting if player is dead
+		if (cfg.arena.player.health < 1) {
+			this.fire.shooting = false;
+		}
 		// weapons and implementations
 		switch (this.fire.name) {
 			case "laser":
@@ -235,7 +239,7 @@ class Droid {
 			if (!aggression.name) aggression.name = strategy[0];
 			if (value === 100) aggression.name = strategy[4];
 			this.aggression = aggression;
-			console.log(aggression);
+			// console.log(aggression);
 		}
 
 		// paint digits on droid

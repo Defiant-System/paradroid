@@ -33,7 +33,7 @@ class Map {
 						damage = owner.fire.damage;
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyA);
-					if (a2 === "droid") this.damageDroid(pair.bodyB, damage);
+					if (["player", "droid"].includes(a2)) this.damageDroid(pair.bodyB, damage);
 				}
 				if (a2 === "fire") {
 					let index = this.entries.findIndex(e => e.bullet == +b2),
@@ -47,7 +47,7 @@ class Map {
 						damage = owner.fire.damage;
 					}
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
-					if (a1 === "droid") this.damageDroid(pair.bodyA, damage);
+					if (["player", "droid"].includes(a1)) this.damageDroid(pair.bodyA, damage);
 				}
 				if (a1 === a2 && a1 === "droid") {
 					this.changeDroidPath([pair.bodyA, pair.bodyB]);
@@ -450,7 +450,7 @@ class Map {
 		ctx.restore();
 
 		// player droid
-		arena.player.render(ctx);
+		if (arena.player.health > 0) arena.player.render(ctx);
 
 		// now render fx layer
 		this.entries
