@@ -55,6 +55,12 @@
 			case "progress-update":
 				if (event.level !== undefined) Self.els.progress.find(`.box-track[data-id="level"]`).css({ "--val": event.level });
 				if (event.health !== undefined) Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
+				if (event.reject !== undefined) {
+					el = Self.els.progress.find(`.box-track[data-id="reject"]`);
+					// set speed
+					el.css({ "--speed": event.reject +"ms" });
+					setTimeout(() => el.css({ "--val": 0 }), 310);
+				}
 
 				// all droids killed - turn off lights
 				if (event.level === 0) APP.mobile.dispatch({ type: "toggle-lights", off: true });

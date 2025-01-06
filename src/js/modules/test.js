@@ -135,7 +135,8 @@ let Test = {
 			let state = {
 					// map: { id: 1, clear: .1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1, clear: .1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
-					map: { id: 4, clear: 0 }, player: { id: "001", x: 5, y: 3 }, debug: { mode: 0 },
+					// map: { id: 4, clear: 0 }, player: { id: "001", x: 5, y: 3 }, debug: { mode: 0 },
+					map: { id: 11, clear: 0 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 20, clear: .1 }, player: { id: "001", x: 3, y: 3 }, debug: { mode: 1 },
 				};
 

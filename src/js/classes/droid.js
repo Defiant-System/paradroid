@@ -256,6 +256,9 @@ class Droid {
 		this.health = +xDroid.getAttribute("health");
 		// full health
 		this._health = +xDroid.getAttribute("health");
+		// host droid reject hack speed
+		let reject = 180e3; // change droid in 3 minutes
+		this.APP.hud.dispatch({ type: "progress-update", reject });
 		
 		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.damage = +xWeapon.getAttribute("damage");

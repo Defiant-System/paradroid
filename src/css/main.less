@@ -623,7 +623,8 @@ content {
 		bottom: 13px;
 		left: 15px;
 		height: 79px;
-		--val: 100%;
+		--val: 1;
+		--speed: 300ms;
 	}
 
 	.box-track {
@@ -656,11 +657,23 @@ content {
 			left: 0;
 			height: 82px;
 			width: 28px;
-			background: url(~/icons/prog-bar.png) no-repeat;
-			background-size: 100% auto;
-			background-position: 50% calc( calc( 1 - var( --val ) ) * 62px );
+			// background: url(~/icons/prog-bar.png) no-repeat;
+			// background-size: 100% auto;
+			// background-position: 50% calc( calc( 1 - var( --val ) ) * 62px );
 			mix-blend-mode: color;
 			clip-path: polygon(100% 0, 100% 70px, 50% 79px, 0 70px, 0 0);
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: calc( calc( 1 - var( --val ) ) * 62px );
+				left: 0;
+				height: 82px;
+				width: 28px;
+				background: url(~/icons/prog-bar.png) no-repeat;
+				background-size: 100% auto;
+				transition: top var( --speed ) ease-in-out;
+			}
 		}
 	}
 }
