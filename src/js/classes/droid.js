@@ -109,14 +109,16 @@ class Droid {
 				let dist = this.position.distance({ x: p[0] * tile, y: p[1] * tile });
 				return dist > tile * 1.5;
 			}),
-			target = patrol[Utils.randomInt(0, patrol.length)],
+			seek = [this.arena.player.x, this.arena.player.y],
+			isSeekDestroy = this.aggression.name === "seek-destroy",
+			target = isSeekDestroy ? seek : patrol[Utils.randomInt(0, patrol.length)],
 			graph = new Finder.Graph(this.arena.map.grid),
 			start = graph.grid[this.y*2][this.x*2],
 			end = graph.grid[target[1]*2][target[0]*2],
 			result = Finder.astar.search(graph, start, end);
 		
 		// console.log( this.arena.map.grid.join("\n") );
-		this._path = result.map(p => [p.y/2, p.x/2]);
+		this._path = result.length ? result.map(p => [p.y/2, p.x/2]) : [seek];
 		// if (!this._path.length) console.log( patrol.join("\n") );
 		// console.log( this._path.join("\n") );
 	}
@@ -229,9 +231,11 @@ class Droid {
 				segSize = 100 / strategy.length,
 				length = 150 + (value * 3),
 				aggression = { value, length, segValue: 5 + (value % segSize) };
-			strategy.map((e, i) => { if (!aggression.name && value < segSize * i) aggression.name = e; });
+			strategy.map((e, i) => { if (!aggression.name && value < segSize * (i+1)) aggression.name = e; });
 			if (!aggression.name) aggression.name = strategy[0];
+			if (value === 100) aggression.name = strategy[4];
 			this.aggression = aggression;
+			console.log(aggression);
 		}
 
 		// paint digits on droid
@@ -379,7 +383,6 @@ class Droid {
 						ray = Matter.Query.ray(bodies, target, this.position);
 						if (pDist < 250 && ray.length === 2) {
 							this.home.target = target;
-							// if (this._path.length > 2) this._path.shift();
 
 							if (pDist < 150 && !this.fire.shooting && prand < this.aggression.segValue) {
 								this.target = target;
@@ -393,6 +396,26 @@ class Droid {
 						}
 						break;
 					case "seek-destroy":
+						prand = Utils.prand() * 700;
+						target = this.arena.player.position;
+						bodies = Matter.Composite.allBodies(this.arena.map.engine.world);
+						ray = Matter.Query.ray(bodies, target, this.position);
+
+						let pathTarget = [this.arena.player.x, this.arena.player.y];
+						if ((this.home.targeting || []).join() != pathTarget.join()) this.setPath();
+						this.home.targeting = pathTarget;
+
+						if (pDist < 200 && ray.length === 2) {
+							if (!this.fire.shooting && prand < this.aggression.segValue) {
+								this.target = target;
+								this.dir = this.position.direction(this.target);
+								this.fire.shooting = true;
+								this.fire._start = time;
+							}
+							if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
+								this.fire.shooting = false;
+							}
+						}
 						break;
 				}
 				this.move(this.home.force.clone());
