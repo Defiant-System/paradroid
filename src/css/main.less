@@ -35,6 +35,7 @@ content {
 		width: 100%;
 		height: 100%;
 		opacity: .15;
+		z-index: 1;
 		border-radius: inherit;
 		filter: grayscale(1);
 		mix-blend-mode: plus-lighter;
@@ -104,9 +105,21 @@ content {
 	}
 
 	&[data-show="terminated"] {
-		background: #cc4949 linear-gradient(0deg, rgba(#fff,.15), transparent);
-
 		&:before { display: block; }
+	
+		&:after {
+			content: "";
+			background: #cc4949 linear-gradient(0deg, rgba(#fff,.15), transparent);
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: inherit;
+			z-index: 0;
+			opacity: 1;
+			transition: opacity 300ms ease-in-out;
+		}
 		
 		> div.terminated-view {
 			opacity: 1;
@@ -170,6 +183,7 @@ content {
 		left: 7px;
 		right: 7px;
 		bottom: 7px;
+		z-index: 1;
 		border-radius: inherit;
 
 		&.hidden {

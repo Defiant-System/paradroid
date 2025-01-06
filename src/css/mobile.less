@@ -8,12 +8,34 @@ content {
 			}
 		}
 
-		&[data-show="lift"].fade-in {
+		&[data-show="mobile"].fade-in {
 			.mobile-view {
 				canvas.game {
 					
 				}
 			}
+		}
+	}
+
+	&[data-show="mobile"] {
+		&.leave {
+			min-height: 2px;
+			transition: min-height 400ms ease-in-out;
+
+			.hud-view {
+				opacity: 0;
+				transition: opacity 250ms ease-in-out;
+			}
+
+			.mobile-view {
+				opacity: 0;
+				transition: opacity 250ms ease-in-out;
+				transition-delay: 100ms;
+			}
+		}
+
+		&.fade-out > div.hud-view {
+			display: none;
 		}
 	}
 
@@ -232,7 +254,7 @@ content {
 	}
 
 	.debug {
-		// display: none;
+		display: none;
 		background: rgba(#000,.4);
 		position: absolute;
 		top: 47px;

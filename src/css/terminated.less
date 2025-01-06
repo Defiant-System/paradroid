@@ -3,6 +3,8 @@ content {
 	&.fade-out[data-show] {
 		// before animation
 		.terminated-view {
+			opacity: 0;
+
 			.above,
 			.below {
 				opacity: 0;
@@ -23,9 +25,10 @@ content {
 		}
 
 		&[data-show="terminated"].fade-in {
-			transition-delay: 900ms;
-
 			.terminated-view {
+				opacity: 1;
+				transition: all 300ms ease-in-out;
+
 				.above,
 				.below,
 				.errors {

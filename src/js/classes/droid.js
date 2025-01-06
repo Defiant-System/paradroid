@@ -90,10 +90,17 @@ class Droid {
 
 	kill() {
 		// remove this droid from map
-		let index = this.arena.map.droids.indexOf(this);
-		this.arena.map.droids.splice(index, 1);
+		let index = this.arena.map.droids.indexOf(this),
+			droid = this.arena.map.droids.splice(index, 1)[0];
 		// remove droid from physical world
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
+		
+		if (droid.isPlayer) {
+			setTimeout(() => {
+				// player droid killed - show "game over"
+				paradroid.mobile.dispatch({ type: "player-droid-destroyed" });
+			}, 1500);
+		}
 	}
 
 	setDirection(x, y) {

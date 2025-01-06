@@ -194,6 +194,17 @@
 					}
 				});
 				break;
+			case "player-droid-destroyed":
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// pause game loop
+					Self.dispatch({ type: "game-loop-pause" });
+					// show game over view
+					APP.dispatch({ type: "switch-to-view", arg: "terminated" });
+				});
+				break;
 			case "set-player-droid":
 				Player.setId(event.arg);
 				break;

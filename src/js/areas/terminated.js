@@ -14,7 +14,7 @@
 			el;
 		// console.log(event);
 		switch (event.type) {
-			// custom events
+			// system events
 			case "window.keydown":
 				// reset css/view
 				Self.els.content.cssSequence("leave", "transitionend", el => {
@@ -23,6 +23,10 @@
 					// animate / switch to view
 					APP.dispatch({ type: "show-view", arg: "start" });
 				});
+				break;
+			// custom events
+			case "init-view":
+				// console.log(event);
 				break;
 		}
 	}
