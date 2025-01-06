@@ -3,32 +3,32 @@ content {
 	&.fade-out[data-show] {
 		// before animation
 		.terminated-view {
-			opacity: 0;
-
-			.above,
-			.below {
+			.above {
 				opacity: 0;
 				scale: 0;
 				transition: all	150ms ease-in-out;
-			}
-
-			.below {
-				transition-delay: 600ms;
+				transition-delay: 300ms;
 			}
 
 			.errors {
 				opacity: 0;
 				scale: 0;
-				transition: all	400ms ease-in-out;
-				transition-delay: 200ms;
+				transition-duration: 300ms;
+				transition-delay: 500ms;
+			}
+
+			.below {
+				opacity: 0;
+				scale: 0;
+				transition: all	150ms ease-in-out;
+				transition-delay: 700ms;
 			}
 		}
 
 		&[data-show="terminated"].fade-in {
-			.terminated-view {
-				opacity: 1;
-				transition: all 300ms ease-in-out;
+			transition-delay: 900ms;
 
+			.terminated-view {
 				.above,
 				.below,
 				.errors {
@@ -42,11 +42,11 @@ content {
 	&[data-show="terminated"].leave {
 		min-height: 2px;
 		transition: min-height 900ms ease-in-out;
-
+			
 		.terminated-view {
 			opacity: 0;
 			transition: opacity	200ms ease-in-out;
-			transition-delay: 300ms;
+			transition-delay: 600ms;
 
 			.above,
 			.below,
@@ -73,20 +73,6 @@ content {
 	left: 0;
 	right: 0;
 	bottom: 0;
-
-	// &:before {
-	// 	content: "";
-	// 	background: url(~/icons/circuit-board.png) 50% 50%/cover no-repeat;
-	// 	position: absolute;
-	// 	top: 0;
-	// 	left: 0;
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	opacity: .125;
-	// 	border-radius: inherit;
-	// 	filter: grayscale(1);
-	// 	mix-blend-mode: plus-lighter;
-	// }
 
 	h2 {
 		position: absolute;
