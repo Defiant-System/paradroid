@@ -39,7 +39,7 @@
 	<i id="notes"><![CDATA[Early type messenger robot. Large wheels impede motion on small craft.]]></i>
 </Droid>
 
-<Droid id="420" digits="-1,-1,-1" weight="57" speed="3" energy="60" loss="2" aggression="99" health="180" weapon="laser" score="100">
+<Droid id="420" digits="-1,-1,-1" weight="57" speed="3" energy="60" loss="2" aggression="0" health="180" weapon="laser" score="100">
 	<i id="type"><![CDATA[Maintenance Robot]]></i>
 	<i id="notes"><![CDATA[Slow maintenance robot. Confined to drive maintenance during flight.]]></i>
 </Droid>
@@ -54,7 +54,7 @@
 	<i id="notes"><![CDATA[Slave maintenance droid. Standard version will carry its own toolbox.]]></i>
 </Droid>
 
-<Droid id="516" digits="2,0,-2" weight="74" speed="3" energy="80" loss="3" aggression="0" health="200" weapon="laser" score="125">
+<Droid id="516" digits="2,0,-2" weight="74" speed="3" energy="80" loss="3" aggression="23" health="200" weapon="laser" score="125">
 	<i id="type"><![CDATA[Crew Droid]]></i>
 	<i id="notes"><![CDATA[Early crew droid. Able to carry out simple flight checks only. No longer supplied.]]></i>
 </Droid>
@@ -69,52 +69,52 @@
 	<i id="notes"><![CDATA[A highly sophisticated device. Able to control the Robo-Freighter on its own.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="614" digits="2,0,-2" weight="121" speed="3" energy="100" loss="3" aggression="30" health="280" weapon="sonic" score="150">
+<Droid id="614" digits="2,0,-2" weight="121" speed="3" energy="100" loss="3" aggression="55" health="280" weapon="sonic" score="150">
 	<i id="type"><![CDATA[Sentinel Droid]]></i>
 	<i id="notes"><![CDATA[Low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device.]]></i>
 </Droid>
 
-<Droid id="615" digits="0,-2,-2" weight="29" speed="4" energy="100" loss="3" aggression="30" health="280" weapon="phaser" score="150">
+<Droid id="615" digits="0,-2,-2" weight="29" speed="4" energy="100" loss="3" aggression="60" health="280" weapon="phaser" score="150">
 	<i id="type"><![CDATA[Sentinel Droid]]></i>
 	<i id="notes"><![CDATA[Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare.]]></i>
 </Droid>
 
-<Droid id="629" digits="0,0,0" weight="59" speed="3" energy="100" loss="3" aggression="40" health="220" weapon="plasma" score="150">
+<Droid id="629" digits="0,0,0" weight="59" speed="3" energy="100" loss="3" aggression="73" health="220" weapon="plasma" score="150">
 	<i id="type"><![CDATA[Sentinel Droid]]></i>
 	<i id="notes"><![CDATA[Low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version.]]></i>
 </Droid>
 
-<Droid id="711" digits="2,2,0" weight="102" speed="5" energy="110" loss="4" aggression="60" health="270" weapon="disruptor" score="175">
+<Droid id="711" digits="2,2,0" weight="102" speed="5" energy="110" loss="4" aggression="59" health="270" weapon="disruptor" score="175">
 	<i id="type"><![CDATA[Disruptor Droid]]></i>
 	<i id="notes"><![CDATA[Heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="737" digits="2,0,0" weight="102" speed="5" energy="110" loss="4" aggression="30" health="210" weapon="phaser" score="125">
+<Droid id="737" digits="2,0,0" weight="102" speed="5" energy="110" loss="4" aggression="82" health="210" weapon="phaser" score="125">
 	<i id="type"><![CDATA[Sentinel Droid]]></i>
 	<i id="notes"><![CDATA[This droid identifies itself as non-binary, disregarding its PC ancestry. Droid 737 is not allowed to fly the ship due to the historical association of the modelnumber.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="742" digits="1,0,0" weight="140" speed="4" energy="130" loss="4" aggression="60" health="310" weapon="disruptor" score="175">
+<Droid id="742" digits="1,0,0" weight="140" speed="4" energy="130" loss="4" aggression="89" health="310" weapon="disruptor" score="175">
 	<i id="type"><![CDATA[Battle Droid]]></i>
 	<i id="notes"><![CDATA[This version is the one mainly used by the Military.]]></i>
 </Droid>
 
-<Droid id="751" digits="2,2,0" weight="227" speed="5" energy="150" loss="4" aggression="80" health="320" weapon="phaser" score="175">
+<Droid id="751" digits="2,2,0" weight="227" speed="5" energy="150" loss="4" aggression="95" health="320" weapon="phaser" score="175">
 	<i id="type"><![CDATA[Battle Droid]]></i>
 	<i id="notes"><![CDATA[Very heavy duty battle droid. Also known as Droideka. Only a few have so far entered service. These are the most powerful battle units ever built.]]></i>
 </Droid>
 
-<Droid id="821" digits="1,2,0" weight="28" speed="6" energy="160" loss="4" aggression="65" health="240" weapon="plasma" score="200">
+<Droid id="821" digits="1,2,0" weight="28" speed="6" energy="160" loss="4" aggression="78" health="240" weapon="plasma" score="200">
 	<i id="type"><![CDATA[Security Droid]]></i>
 	<i id="notes"><![CDATA[A very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors.]]></i>
 </Droid>
 
-<Droid id="834" digits="0,0,0" weight="34" speed="8" energy="140" loss="4" aggression="70" health="220" weapon="phaser" score="200">
+<Droid id="834" digits="0,0,0" weight="34" speed="8" energy="140" loss="4" aggression="87" health="220" weapon="phaser" score="200">
 	<i id="type"><![CDATA[Security Droid]]></i>
 	<i id="notes"><![CDATA[Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable.]]></i>
 </Droid>
 
-<Droid id="883" digits="-1,-1,-1" weight="79" speed="2" energy="180" loss="4" aggression="90" health="220" weapon="exterminator" score="200">
+<Droid id="883" digits="-1,-1,-1" weight="79" speed="2" energy="180" loss="4" aggression="60" health="220" weapon="exterminator" score="200">
 	<i id="type"><![CDATA[Archive Droid]]></i>
 	<i id="notes"><![CDATA[This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries.]]><![CDATA[]]></i>
 </Droid>

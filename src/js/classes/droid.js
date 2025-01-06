@@ -19,6 +19,15 @@ class Droid {
 			shooting: false,
 			lastShot: Date.now(),
 		};
+		// electric gloria
+		this.electric = {
+			active: true,
+			index: 0,
+			last: 25,
+			speed: 25,
+			angle: 0,
+			asset: this.arena.assets["electric"].img,
+		};
 		// used to animate droid "spin"
 		this.frame = {
 			index: 0,
@@ -146,6 +155,7 @@ class Droid {
 		if (cfg.arena.player.health < 1) {
 			this.fire.shooting = false;
 		}
+
 		// weapons and implementations
 		switch (this.fire.name) {
 			case "laser":
@@ -175,23 +185,29 @@ class Droid {
 				});
 				break;
 			case "disruptor":
-				let droids = cfg.arena.map.droids.filter(d => !d.isPlayer),
-					bodies = Matter.Composite.allBodies(cfg.arena.map.engine.world),
-					origin = {
-						x: -(cfg.arena.viewport.x - cfg.arena.viewport.half.w),
-						y: -(cfg.arena.viewport.y - cfg.arena.viewport.half.h),
-					};
-				// loop droids and disrupt those in view
-				droids.map(droid => {
-					let collisions = Matter.Query.ray(bodies, origin, droid.position),
-						color = this.isPlayer ? "#fff" : "#000";
-					// if nothing is in the way, disruptor
-					if (collisions.length === 2) {
-						new Electric({ ...cfg, droid, color });
-						// deal damage to droid
-						cfg.arena.map.damageDroid(droid.body, cfg.damage);
-					}
-				});
+				if (this.isPlayer) {
+					let droids = cfg.arena.map.droids.filter(d => !d.isPlayer),
+						bodies = Matter.Composite.allBodies(cfg.arena.map.engine.world),
+						origin = {
+							x: -(cfg.arena.viewport.x - cfg.arena.viewport.half.w),
+							y: -(cfg.arena.viewport.y - cfg.arena.viewport.half.h),
+						};
+					// loop droids and disrupt those in view
+					droids.map(droid => {
+						let collisions = Matter.Query.ray(bodies, origin, droid.position);
+						// if nothing is in the way, disruptor
+						if (collisions.length === 2) {
+							new Electric({ ...cfg, droid, color: "#fff" });
+							// deal damage to droid
+							cfg.arena.map.damageDroid(droid.body, cfg.damage);
+						}
+					});
+				} else {
+					let droid = cfg.arena.player;
+					new Electric({ ...cfg, droid, color: "#fff" });
+					// // deal damage to droid
+					// cfg.arena.map.damageDroid(droid.body, cfg.damage);
+				}
 				break;
 		}
 	}
@@ -306,6 +322,17 @@ class Droid {
 		if (this.fire.shooting && now - this.fire.lastShot > this.fire.coolDown) {
 			this.fire.lastShot = now;
 			this.shoot();
+		}
+
+		if (this.fire.name === "disruptor") {
+			// electric gloria
+			this.electric.last -= delta;
+			if (this.electric.last < 0) {
+				this.electric.last = (this.electric.last + this.electric.speed) % this.electric.speed;
+				this.electric.angle -= .015;
+				this.electric.index++;
+				if (this.electric.index > 29) this.electric.index = 0;
+			}
 		}
 
 		if (!this.isPlayer && this.home.patrol.length > 1) {
