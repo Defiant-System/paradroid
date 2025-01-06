@@ -10,6 +10,7 @@
 			barLeft: window.find(".left"),
 			barRight: window.find(".right"),
 			btnRight: window.find(".right .cube-title"),
+			progress: window.find(".progress"),
 		};
 	},
 	dispatch(event) {
@@ -50,6 +51,9 @@
 					"--val": `${value * 100}%`,
 					"--c1": event.background,
 				});
+				break;
+			case "progress-update":
+				Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
 				break;
 			case "choose-color":
 				Self.els.barLeft

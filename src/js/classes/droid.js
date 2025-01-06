@@ -3,6 +3,7 @@ class Droid {
 	constructor(cfg) {
 		let { arena, section, id, x, y, patrol } = cfg;
 
+		this.APP = paradroid;
 		this.arena = arena;
 		this.section = section;
 		// droid tile coords
@@ -84,6 +85,11 @@ class Droid {
 
 	dealDamage(v) {
 		this.health -= v;
+		// update hud UI, if this is player
+		if (this.isPlayer) {
+			let health = this.health / this._health;
+			this.APP.hud.dispatch({ type: "progress-update", health });
+		}
 		if (this.health <= 0) {
 			// kill this droid
 			this.kill();
@@ -92,7 +98,7 @@ class Droid {
 
 			if (this.arena.map.droids.length === 1 && this.arena.map.droids[0].isPlayer) {
 				// all droids killed - turn off lights
-				paradroid.mobile.dispatch({ type: "toggle-lights", complete: 1 });
+				this.APP.mobile.dispatch({ type: "toggle-lights", complete: 1 });
 			}
 		}
 	}
@@ -107,7 +113,7 @@ class Droid {
 		if (droid.isPlayer) {
 			setTimeout(() => {
 				// player droid killed - show "game over"
-				paradroid.mobile.dispatch({ type: "player-droid-destroyed" });
+				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
 			}, 1500);
 		}
 	}
@@ -247,6 +253,8 @@ class Droid {
 		this.energy = +xDroid.getAttribute("energy");
 		this.loss = +xDroid.getAttribute("loss");
 		this.health = +xDroid.getAttribute("health");
+		// full health
+		this._health = +xDroid.getAttribute("health");
 		
 		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.damage = +xWeapon.getAttribute("damage");
