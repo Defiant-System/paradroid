@@ -64,7 +64,7 @@
 	<i id="notes"><![CDATA[Standard crew droid. Supplied with the ship.]]></i>
 </Droid>
 
-<Droid id="598" digits="0,0,0" weight="93" speed="3" energy="80" loss="3" aggression="0" health="170" weapon="laser" score="125">
+<Droid id="598" digits="0,0,0" weight="93" speed="3" energy="80" loss="3" aggression="43" health="170" weapon="laser" score="125">
 	<i id="type"><![CDATA[Freighter Droid]]></i>
 	<i id="notes"><![CDATA[A highly sophisticated device. Able to control the Robo-Freighter on its own.]]><![CDATA[]]></i>
 </Droid>

@@ -14,17 +14,17 @@
 	<i id="notes"><![CDATA[This is the double 821 military shot.]]></i>
 </Weapon>
 
-<Weapon id="disruptor" coolDown="700" damage="50">
+<Weapon id="disruptor" coolDown="700" damage="40">
 	<i id="title"><![CDATA[Disruptor]]></i>
 	<i id="notes"><![CDATA[This is the disruptor, the 742 and 711 use.]]></i>
 </Weapon>
 
-<Weapon id="exterminator" coolDown="700" damage="40">
+<Weapon id="exterminator" coolDown="700" damage="35">
 	<i id="title"><![CDATA[Exterminator]]></i>
 	<i id="notes"><![CDATA[This is the exterminator, the 883 uses.]]></i>
 </Weapon>
 
-<Weapon id="sonic" coolDown="500" damage="50">
+<Weapon id="sonic" coolDown="500" damage="40">
 	<i id="title"><![CDATA[Sonic Rifle]]></i>
 	<i id="notes"><![CDATA[This is the sonic rifle of the 614.]]></i>
 </Weapon>
