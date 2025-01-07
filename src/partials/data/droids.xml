@@ -64,7 +64,7 @@
 	<i id="notes"><![CDATA[Standard crew droid. Supplied with the ship.]]></i>
 </Droid>
 
-<Droid id="598" digits="0,0,0" weight="93" speed="3" energy="80" loss="3" aggression="43" health="170" weapon="laser" score="125">
+<Droid id="598" digits="0,0,0" weight="93" speed="3" energy="80" loss="3" aggression="31" health="170" weapon="laser" score="125">
 	<i id="type"><![CDATA[Freighter Droid]]></i>
 	<i id="notes"><![CDATA[A highly sophisticated device. Able to control the Robo-Freighter on its own.]]><![CDATA[]]></i>
 </Droid>
@@ -79,7 +79,7 @@
 	<i id="notes"><![CDATA[Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare.]]></i>
 </Droid>
 
-<Droid id="629" digits="0,0,0" weight="59" speed="3" energy="100" loss="3" aggression="73" health="220" weapon="plasma" score="150">
+<Droid id="629" digits="0,0,0" weight="59" speed="3" energy="100" loss="3" aggression="73" health="220" weapon="ripper" score="150">
 	<i id="type"><![CDATA[Sentinel Droid]]></i>
 	<i id="notes"><![CDATA[Low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version.]]></i>
 </Droid>
@@ -104,7 +104,7 @@
 	<i id="notes"><![CDATA[Very heavy duty battle droid. Also known as Droideka. Only a few have so far entered service. These are the most powerful battle units ever built.]]></i>
 </Droid>
 
-<Droid id="821" digits="1,2,0" weight="28" speed="6" energy="160" loss="4" aggression="78" health="240" weapon="plasma" score="200">
+<Droid id="821" digits="1,2,0" weight="28" speed="6" energy="160" loss="4" aggression="78" health="240" weapon="ripper" score="200">
 	<i id="type"><![CDATA[Security Droid]]></i>
 	<i id="notes"><![CDATA[A very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors.]]></i>
 </Droid>
@@ -119,7 +119,7 @@
 	<i id="notes"><![CDATA[This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="999" digits="0,0,0" weight="162" speed="6" energy="100" loss="5" aggression="90" health="290" weapon="plasma" score="225">
+<Droid id="999" digits="0,0,0" weight="162" speed="6" energy="100" loss="5" aggression="90" health="290" weapon="ripper" score="225">
 	<i id="type"><![CDATA[Command Cyborg]]></i>
 	<i id="notes"><![CDATA[Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long.]]></i>
 </Droid>

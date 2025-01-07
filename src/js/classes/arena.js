@@ -72,7 +72,7 @@ class Arena {
 				{ id: "mist",     width: 30, height: 30, oX: 15, oY: 15, src: "~/icons/mist.png" },
 				{ id: "laser",    width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/laser.png" },
 				{ id: "phaser",   width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/phaser.png" },
-				{ id: "plasma",   width: 10, height: 10, oX: 5, oY: 5, src: "~/icons/plasma.png" },
+				{ id: "ripper",   width: 40, height: 40, oX: 20, oY: 20, src: "~/icons/ripper.png" },
 				{ id: "sonic",    width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/sonic.png" },
 				{ id: "missile",  width: 40, height: 48, oX: 20, oY: 2, src: "~/icons/missile.png" },
 			],

@@ -9,9 +9,9 @@
 	<i id="notes"><![CDATA[This is the 476 standard shot.]]></i>
 </Weapon>
 
-<Weapon id="plasma" coolDown="700" damage="15">
-	<i id="title"><![CDATA[Military Grade Plasma]]></i>
-	<i id="notes"><![CDATA[This is the double 821 military shot.]]></i>
+<Weapon id="ripper" coolDown="700" damage="25">
+	<i id="title"><![CDATA[Mach 2 Ripper]]></i>
+	<i id="notes"><![CDATA[This is the 821 Mach 2 ripper shot.]]></i>
 </Weapon>
 
 <Weapon id="disruptor" coolDown="700" damage="40">

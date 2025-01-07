@@ -657,9 +657,6 @@ content {
 			left: 0;
 			height: 82px;
 			width: 28px;
-			// background: url(~/icons/prog-bar.png) no-repeat;
-			// background-size: 100% auto;
-			// background-position: 50% calc( calc( 1 - var( --val ) ) * 62px );
 			mix-blend-mode: color;
 			clip-path: polygon(100% 0, 100% 70px, 50% 79px, 0 70px, 0 0);
 
@@ -673,6 +670,7 @@ content {
 				background: url(~/icons/prog-bar.png) no-repeat;
 				background-size: 100% auto;
 				transition: top var( --speed ) ease-in-out;
+				filter: saturate(2) contrast(1.25);
 			}
 		}
 	}

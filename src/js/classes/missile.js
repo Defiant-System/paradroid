@@ -9,6 +9,7 @@ class Missile {
 		this.asset = arena.assets.missile;
 		this.bullet = Math.random();
 		this.trail = [];
+		this.color = owner.isPlayer ? "#fff" : "#222";
 		// this ensures this to be rendered on top
 		this._fx = true;
 
@@ -105,7 +106,7 @@ class Missile {
 						y1 = p.y + viewport.y,
 						x2 = r[i+1].x + viewport.x,
 						y2 = r[i+1].y + viewport.y;
-					ctx.strokeStyle = `#fff${(14-i).toString(16)}`;
+					ctx.strokeStyle = `${this.color}${(14-i).toString(16)}`;
 					ctx.beginPath();
 					ctx.moveTo(x1, y1);
 					ctx.lineTo(x2, y2);

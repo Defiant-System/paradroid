@@ -172,12 +172,12 @@ class Droid {
 			case "sonic":
 				new Sonic(cfg);
 				break;
-			case "plasma":
-				count = 16;
+			case "ripper":
+				count = 12;
 				inc = 360 / count;
 				a = 0;
 				[...Array(count)].map(e => {
-					new Fire({ ...cfg, angle: a * Math.PI / 180 });
+					new Fire({ ...cfg, angle: a * Math.PI / 180, scale: -1, rotate: .5 });
 					a += inc;
 				});
 				break;
@@ -201,9 +201,10 @@ class Droid {
 						};
 					// loop droids and disrupt those in view
 					droids.map(droid => {
-						let collisions = Matter.Query.ray(bodies, origin, droid.position);
+						let collisions = Matter.Query.ray(bodies, origin, droid.position),
+							dist = droid.position.distance(origin);
 						// if nothing is in the way, disruptor
-						if (collisions.length === 2) {
+						if (collisions.length === 2 && dist < 275) {
 							new Electric({ ...cfg, droid, color: "#fff" });
 							// deal damage to droid
 							cfg.arena.map.damageDroid(droid.body, cfg.damage);
@@ -257,7 +258,7 @@ class Droid {
 		// full health
 		this._health = +xDroid.getAttribute("health");
 		// host droid reject hack speed
-		let reject = 180e3; // change droid in 3 minutes
+		let reject = 180e3; // TODO: change droid in 3 minutes
 		this.APP.hud.dispatch({ type: "progress-update", reject });
 		
 		this.fire.name = xWeapon.getAttribute("id");
