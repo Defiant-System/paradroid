@@ -292,8 +292,6 @@ class Map {
 
 		// physics setup
 		Matter.Composite.add(this.engine.world, bodies);
-		// run the engine
-		// Matter.Runner.run(this.runner, this.engine);
 		
 		// keep track of droid count
 		this.mapUpdate();

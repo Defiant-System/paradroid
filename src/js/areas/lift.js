@@ -84,6 +84,14 @@
 				}
 				break;
 			// custom events
+			case "init-view":
+				Self.els.el.find(`.deck .section`).map(elem => {
+					let el = $(elem),
+						xPath = `//Data/Section[@level="${el.data("level")}"]/Layer[@id="droids"]/i[not(@dead)]`,
+						xDroids = window.bluePrint.selectNodes(xPath);
+					el.toggleClass("cleared", xDroids.length);
+				});
+				break;
 			case "enter-lift":
 				Self.els.el.find(".lift.active").removeClass("active");
 				// get lift element

@@ -633,8 +633,18 @@ content {
 		left: 0;
 		height: 82px;
 		width: 28px;
-		background: url(~/icons/prog-bar-bg.png) no-repeat;
-		background-size: 100% auto;
+
+		&:before {
+			content: "";
+			background: url(~/icons/prog-bar-bg.png) no-repeat;
+			background-size: 100% auto;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			filter: drop-shadow(0 0 1px #fff);
+		}
 
 		&:nth-child(1) {
 			left: 0;
