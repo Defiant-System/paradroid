@@ -94,8 +94,6 @@ class Map {
 		// dimensions of this level map
 		this.width = +xSection.getAttribute("width");
 		this.height = +xSection.getAttribute("height");
-		// keep track of droid count
-		this.mapUpdate();
 
 		// set player droid section
 		this.arena.player.section = section;
@@ -296,6 +294,9 @@ class Map {
 		Matter.Composite.add(this.engine.world, bodies);
 		// run the engine
 		// Matter.Runner.run(this.runner, this.engine);
+		
+		// keep track of droid count
+		this.mapUpdate();
 	}
 
 	update(delta, time) {

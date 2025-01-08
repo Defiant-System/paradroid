@@ -298,13 +298,20 @@ class Droid {
 	}
 
 	spawn(cfg) {
-		let { id, x, y, patrol } = cfg,
+		let { id, x, y, patrol, health } = cfg,
 			tile = this.arena.config.tile;
 		// tile coords
 		this.x = x;
 		this.y = y;
 		// optional values ()
 		if (id) this.setId(id);
+		// if plyaer & health, set health
+		if (health) {
+			this.health = health;
+			// update player health bar
+			health = this.health / this._health;
+			this.APP.hud.dispatch({ type: "progress-update", health });
+		}
 
 		let pos = {
 				x: (this.x - .5) * tile,

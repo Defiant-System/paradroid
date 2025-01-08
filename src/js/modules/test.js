@@ -133,16 +133,19 @@ let Test = {
 
 		return setTimeout(() => {
 			let state = {
-					// map: { id: 1, clear: .1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
-					// map: { id: 1, clear: .1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
+					cleared: {
+						"4": [1, 2],
+					},
+					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
+					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					
-					map: { id: 4, clear: 0 }, player: { id: "001", x: 5, y: 3 }, debug: { mode: 0 },
-					// map: { id: 1, clear: 0 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
-					// map: { id: 10, clear: 0 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
-					// map: { id: 11, clear: 0 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
-					// map: { id: 9, clear: 0 }, player: { id: "001", x: 3, y: 5 }, debug: { mode: 0 },
+					map: { id: 4 }, player: { id: "001", x: 30, y: 4, health: 40 }, debug: { mode: 0 },
+					// map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
+					// map: { id: 10 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
+					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
+					// map: { id: 9 }, player: { id: "001", x: 3, y: 5 }, debug: { mode: 0 },
 					
-					// map: { id: 20, clear: .1 }, player: { id: "001", x: 3, y: 3 }, debug: { mode: 1 },
+					// map: { id: 20 }, player: { id: "001", x: 3, y: 3 }, debug: { mode: 1 },
 				};
 
 			// set view

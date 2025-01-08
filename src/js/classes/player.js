@@ -64,11 +64,11 @@ class Player extends Droid {
 		// console.log( item );
 		switch (item.id) {
 			case "recharge":
-				if (this.power !== 1) {
-					// update player droid power / energy
-					this.power = 1;
-					// update UI
-					APP.hud.dispatch({ type: "set-power", power: this.power });
+				if (this.health !== this._health) {
+					// recharge player health
+					this.health = this._health;
+					// update player health bar
+					this.APP.hud.dispatch({ type: "progress-update", health: 1 });
 				}
 				break;
 			case "exit":

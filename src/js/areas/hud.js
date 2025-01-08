@@ -63,7 +63,9 @@
 				}
 
 				// all droids killed - turn off lights
-				if (event.level === 0) APP.mobile.dispatch({ type: "toggle-lights", off: true });
+				if (event.level === 0) {
+					setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights", off: true }), 1);
+				}
 				break;
 			case "choose-color":
 				Self.els.barLeft
