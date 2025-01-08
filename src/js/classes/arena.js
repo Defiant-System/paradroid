@@ -150,15 +150,16 @@ class Arena {
 	setState(state) {
 		// change debug state
 		if (state.debug) this.debug.mode = state.debug.mode;
-
 		// restore dead droids (if any)
-		Object.keys(state.cleared).map(level => {
-			let xPath = `//Data/Section[@id="${level}"]/Layer[@id="droids"]`;
-			state.cleared[level].map(i => {
-				let xDroid = window.bluePrint.selectSingleNode(`${xPath}/i[@nr="${i}"]`);
-				if (xDroid) xDroid.setAttribute("dead", 1);
+		if (state.cleared) {
+			Object.keys(state.cleared).map(level => {
+				let xPath = `//Data/Section[@id="${level}"]/Layer[@id="droids"]`;
+				state.cleared[level].map(i => {
+					let xDroid = window.bluePrint.selectSingleNode(`${xPath}/i[@nr="${i}"]`);
+					if (xDroid) xDroid.setAttribute("dead", 1);
+				});
 			});
-		});
+		}
 
 		let mapState = { droids: [], ...state.map };
 		// move player / "001"

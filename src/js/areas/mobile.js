@@ -176,23 +176,27 @@
 				value = !!Self.arena.led.floor ? 0 : 1;
 				if (event.off) value = 1;
 				name = value ? "lights-off" : "lights-on";
+
+				let animDone = () => {
+						// reset element
+						Self.els.el.removeClass("lights-off lights-on");
+						// switch asset map / turn on "floor led lights"
+						Self.arena.setLights({ clear: value });
+						// restore bg color + filter
+						if (!value) {
+							// update arena base background color
+							Self.els.el.css({ background: Self.arena.colors.base });
+							// set level colors
+							Self.arena.setFilter({
+								color: Self.arena.colors.base,
+								filter: Self.arena.copy.ctx.filter,
+							});
+						}
+					};
+
 				// transition to dark
-				Self.els.el.cssSequence(name, "transitionend", el => {
-					// reset element
-					el.removeClass("lights-off lights-on");
-					// switch asset map / turn on "floor led lights"
-					Self.arena.setLights({ clear: value });
-					// restore bg color + filter
-					if (!value) {
-						// update arena base background color
-						Self.els.el.css({ background: Self.arena.colors.base });
-						// set level colors
-						Self.arena.setFilter({
-							color: Self.arena.colors.base,
-							filter: Self.arena.copy.ctx.filter,
-						});
-					}
-				});
+				if (Self.els.droidFx.hasClass("fast-focus")) animDone()
+				else Self.els.el.cssSequence(name, "transitionend", animDone);
 				break;
 			case "player-droid-destroyed":
 				// reset css/view
