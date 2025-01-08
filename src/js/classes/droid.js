@@ -15,6 +15,10 @@ class Droid {
 		this.sprites = {
 			bg: arena.assets["droid"].img,
 			digits: arena.assets["digits"].img,
+			sonic: this.arena.assets["sonic"].img,
+			ripper: this.arena.assets["ripper"].img,
+			missile: this.arena.assets["missile"].img,
+			electric: this.arena.assets["electric"].img,
 		};
 		// droid fire details
 		this.fire = {
@@ -28,7 +32,6 @@ class Droid {
 			last: 25,
 			speed: 25,
 			angle: 0,
-			asset: this.arena.assets["electric"].img,
 		};
 		// used to animate droid "spin"
 		this.frame = {
@@ -268,7 +271,7 @@ class Droid {
 		if (this.isPlayer) {
 			if (this.fire.name === "disruptor") {
 				// make white version of electric halo asset
-				this.electric.asset = this.assetToWhite(this.arena.assets["electric"].img);
+				// this.electric.asset = this.assetToWhite(this.arena.assets["electric"].img);
 			}
 		} else {
 			let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
@@ -529,20 +532,6 @@ class Droid {
 			// droid "player"
 			ctx.shadowColor = this.blur.color;
 			ctx.shadowBlur = this.blur.size;
-
-			if (this.aura) {
-				let aura = this.aura,
-					gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, aura.radius);
-				gradient.addColorStop(0, `rgba(${aura.color.join(",")}, ${aura.strength})`);
-				gradient.addColorStop(1, `rgba(${aura.color.join(",")}, 0)`);
-
-				ctx.save();
-				ctx.beginPath();
-				ctx.fillStyle = gradient;
-				ctx.arc(0, 0, aura.radius, 0, Math.TAU);
-				ctx.fill();
-				ctx.restore();
-			}
 		} else {
 			// other droids
 			f = (8 - this.frame.index) * w;
@@ -581,7 +570,7 @@ class Droid {
 			ctx.translate(-35, -35);
 			ctx.shadowBlur = 0;
 			// top + bottom caps
-			ctx.drawImage(this.electric.asset,
+			ctx.drawImage(this.sprites.electric,
 				f, 0, w, w,
 				0, 0, 70, 70
 			);

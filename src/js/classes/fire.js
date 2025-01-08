@@ -8,7 +8,10 @@ class Fire {
 		this.bullet = Math.random();
 		this.type = type;
 		this.angle = angle + Math.PI / 2;
-		this.asset = arena.assets[this.type];
+		// firearm asset
+		this.asset = owner.sprites[this.type] || arena.assets[this.type].img;
+		this.asset.oX = arena.assets[this.type].item.oX;
+		this.asset.oY = arena.assets[this.type].item.oY;
 		// ripper uses scale + rotate
 		this.rotate = rotate || 0;
 		this.scale = scale || 1;
@@ -63,7 +66,7 @@ class Fire {
 			ctx.translate(x, y);
 			ctx.rotate(this.angle);
 			ctx.scale(this.scale, this.scale);
-			ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
+			ctx.drawImage(this.asset, -this.asset.oX, -this.asset.oY);
 			ctx.restore();
 		}
 	}

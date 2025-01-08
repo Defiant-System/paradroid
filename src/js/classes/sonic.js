@@ -46,7 +46,7 @@ class Sonic extends Fire {
 					ctx.globalAlpha = 1-(i/5);
 					ctx.translate(x, y);
 					ctx.rotate(this.angle);
-					ctx.drawImage(this.asset.img, -ring.oX, -ring.oX, ring.w, ring.w);
+					ctx.drawImage(this.owner.sprites.sonic, -ring.oX, -ring.oX, ring.w, ring.w);
 					ctx.restore();
 				});
 		}

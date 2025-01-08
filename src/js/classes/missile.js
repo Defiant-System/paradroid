@@ -6,7 +6,11 @@ class Missile {
 		this.arena = arena;
 		this.owner = owner;
 		this.angle = angle + Math.PI / 2;
-		this.asset = arena.assets.missile;
+		this.asset = {
+			img: owner.sprites.missile,
+			oX: arena.assets.missile.item.oX,
+			oY: arena.assets.missile.item.oY,
+		};
 		this.bullet = Math.random();
 		this.trail = [];
 		this.color = owner.isPlayer ? "#fff" : "#222";
@@ -93,7 +97,7 @@ class Missile {
 		ctx.save();
 		ctx.translate(x, y);
 		ctx.rotate(this.angle);
-		ctx.drawImage(this.asset.img, -this.asset.item.oX, -this.asset.item.oY);
+		ctx.drawImage(this.asset.img, -this.asset.oX, -this.asset.oY);
 		ctx.restore();
 
 		if (this.trail.length > 10) {

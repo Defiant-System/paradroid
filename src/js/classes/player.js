@@ -3,12 +3,6 @@ class Player extends Droid {
 	constructor(cfg) {
 		super(cfg);
 
-		// "aura" borealis
-		// this.aura = {
-		// 	color: [255, 255, 255],
-		// 	strength: .5,
-		// 	radius: 100,
-		// };
 		// this.speed = .0015;
 		this.isPlayer = true;
 		this.isVisible = true;
