@@ -93,6 +93,11 @@ class Droid {
 		if (this.isPlayer) {
 			let health = this.health / this._health;
 			this.APP.hud.dispatch({ type: "progress-update", health });
+			// shake screen on damage hit
+			this.arena.viewport.addShake(.25 + (v/50));
+		} else {
+			// player can deal more damage
+			this.health -= v;
 		}
 		if (this.health <= 0) {
 			// kill this droid

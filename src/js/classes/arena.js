@@ -174,6 +174,7 @@ class Arena {
 
 	update(delta, time) {
 		this.map.update(delta, time);
+		this.viewport.update(delta, time);
 	}
 
 	render() {
@@ -182,7 +183,11 @@ class Arena {
 		this.led.cvs.attr({ width: this.width });
 
 		this.viewport.center();
+		this.ctx.save();
+		// this.ctx.translate(-this.viewport.half.w, -this.viewport.half.h);
+		this.ctx.rotate(this.viewport.shake.angle);
 		this.map.render(this.ctx);
+		this.ctx.restore();
 
 		if (this.debug.mode >= 1) {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);

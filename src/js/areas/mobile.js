@@ -46,9 +46,6 @@
 					case "shift":
 						Player.setState({ id: "transfer", active: true });
 						break;
-					// case "space":
-					// 	Player.setState({ id: "fire", active: true });
-					// 	break;
 					case "return":
 						// don't do anything if not next to "something"
 						if (!Player.nextTo) return;
@@ -97,6 +94,11 @@
 						APP.hud.dispatch({ type: "toggle-play-pause" });
 						// if (Self.arena.fpsControl._stopped) Self.dispatch({ type: "game-loop-resume" });
 						// else Self.dispatch({ type: "game-loop-pause" });
+						break;
+
+					// test key for screen shake
+					case "space":
+						// Self.arena.viewport.addShake(1);
 						break;
 				}
 				break;

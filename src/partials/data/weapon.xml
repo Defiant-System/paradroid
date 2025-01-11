@@ -1,30 +1,30 @@
 
-<Weapon id="laser" coolDown="150" damage="25">
+<Weapon id="laser" coolDown="150" damage="5">
 	<i id="title"><![CDATA[Small Laser]]></i>
 	<i id="notes"><![CDATA[This is the influencers laser shot.]]></i>
 </Weapon>
 
-<Weapon id="phaser" coolDown="200" damage="40">
+<Weapon id="phaser" coolDown="200" damage="10">
 	<i id="title"><![CDATA[Double Phaser]]></i>
 	<i id="notes"><![CDATA[This is the 476 standard shot.]]></i>
 </Weapon>
 
-<Weapon id="ripper" coolDown="700" damage="25">
+<Weapon id="ripper" coolDown="700" damage="15">
 	<i id="title"><![CDATA[Mach 2 Ripper]]></i>
 	<i id="notes"><![CDATA[This is the 821 Mach 2 ripper shot.]]></i>
 </Weapon>
 
-<Weapon id="disruptor" coolDown="700" damage="40">
+<Weapon id="disruptor" coolDown="700" damage="20">
 	<i id="title"><![CDATA[Disruptor]]></i>
 	<i id="notes"><![CDATA[This is the disruptor, the 742 and 711 use.]]></i>
 </Weapon>
 
-<Weapon id="exterminator" coolDown="700" damage="35">
+<Weapon id="exterminator" coolDown="700" damage="15">
 	<i id="title"><![CDATA[Exterminator]]></i>
 	<i id="notes"><![CDATA[This is the exterminator, the 883 uses.]]></i>
 </Weapon>
 
-<Weapon id="sonic" coolDown="500" damage="40">
+<Weapon id="sonic" coolDown="500" damage="20">
 	<i id="title"><![CDATA[Sonic Rifle]]></i>
 	<i id="notes"><![CDATA[This is the sonic rifle of the 614.]]></i>
 </Weapon>
