@@ -115,6 +115,9 @@ class Droid {
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
 		
 		if (droid.isPlayer) {
+			// shake screen on damage hit
+			this.arena.viewport.addShake(.75);
+
 			setTimeout(() => {
 				// player droid killed - show "game over"
 				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
@@ -122,6 +125,8 @@ class Droid {
 		} else {
 			// make node "dead"
 			this.xItem.setAttribute("dead", 1);
+			// shake screen on damage hit
+			this.arena.viewport.addShake(.5);
 			// notify map / section / level
 			this.arena.map.mapUpdate();
 		}
