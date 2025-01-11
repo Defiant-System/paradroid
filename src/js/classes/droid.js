@@ -221,6 +221,8 @@ class Droid {
 							new Electric({ ...cfg, droid, color: "#fff" });
 							// deal damage to droid
 							cfg.arena.map.damageDroid(droid.body, cfg.damage);
+							// shake screen on damage hit
+							this.arena.viewport.addShake(.35);
 						}
 					});
 				} else {
@@ -228,6 +230,8 @@ class Droid {
 					new Electric({ ...cfg, droid, color: "#222" });
 					// deal damage to droid
 					cfg.arena.map.damageDroid(droid.body, cfg.damage);
+					// shake screen on damage hit
+					this.arena.viewport.addShake(.25);
 				}
 				break;
 		}

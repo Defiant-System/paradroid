@@ -49,6 +49,11 @@ class Map {
 					Matter.Composite.remove(this.engine.world, pair.bodyB);
 					if (["player", "droid"].includes(a1)) this.damageDroid(pair.bodyA, damage);
 				}
+				if (arena.player.transfer.active) {
+					if ((a1 === "player" && a2 === "droid") || a2 === "player" && a1 === "droid") {
+						console.log("init transfer view");
+					}
+				}
 				if (a1 === a2 && a1 === "droid") {
 					this.changeDroidPath([pair.bodyA, pair.bodyB]);
 				}
