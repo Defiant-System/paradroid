@@ -341,12 +341,20 @@ class Map {
 			xMin = Math.floor(vX / tile),
 			yMin = Math.floor(vY / tile),
 			xMax = Math.ceil((vX + viewport.w) / tile),
-			yMax = Math.ceil((vY + viewport.h) / tile);
+			yMax = Math.ceil((vY + viewport.h) / tile),
+			vhX = viewport.half.w,
+			vhY = viewport.half.h;
 
 		if (xMin < 0) xMin = 0;
 		if (yMin < 0) yMin = 0;
 		if (xMax > this.width) xMax = this.width;
 		if (yMax > this.height) yMax = this.height;
+
+
+		ctx.save();
+		ctx.translate(vhX, vhY);
+		ctx.rotate(viewport.shake.angle);
+		ctx.translate(-vhX, -vhY);
 
 		// normal draw if debug mode is < 2
 		if (debug < 2) {
@@ -462,6 +470,7 @@ class Map {
 		// restore drawing context
 		ctx.restore();
 
+
 		// player droid
 		if (arena.player.health > 0) arena.player.render(ctx);
 
@@ -469,5 +478,7 @@ class Map {
 		this.entries
 			.filter(entry => entry._fx)
 			.map(entry => entry.render(ctx));
+
+		ctx.restore();
 	}
 }

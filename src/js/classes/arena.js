@@ -184,14 +184,6 @@ class Arena {
 
 		this.viewport.center();
 		this.map.render(this.ctx);
-		
-		// screen shake
-		if (this.viewport.shake.angle !== 0) {
-			this.ctx.save();
-			this.ctx.translate(-this.viewport.half.w, -this.viewport.half.h);
-			this.ctx.rotate(this.viewport.shake.angle);
-			this.ctx.restore();
-		}
 
 		if (this.debug.mode >= 1) {
 			let bodies = Matter.Composite.allBodies(this.map.engine.world);

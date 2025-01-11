@@ -98,7 +98,7 @@
 
 					// test key for screen shake
 					case "space":
-						// Self.arena.viewport.addShake(.5);
+						Self.arena.viewport.addShake(.5);
 						break;
 				}
 				break;

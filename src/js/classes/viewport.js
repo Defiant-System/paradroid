@@ -11,9 +11,9 @@ class Viewport {
 
 		// screen shake options
 		this.shake = {
-			maxAngle: 35,
-			maxOffsetX: 50,
-			maxOffsetY: 50,
+			maxAngle: .1,
+			maxOffsetX: 4,
+			maxOffsetY: 4,
 			duration: 30, // The amount of updates until trauma goes from 1 to 0
 
 			angle: 0,
