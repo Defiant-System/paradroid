@@ -431,10 +431,10 @@ class Droid {
 								this.fire.shooting = true;
 								this.fire._start = time;
 							}
-							if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
-								this.fire.shooting = false;
-								delete this._cornered;
-							}
+						}
+						if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
+							this.fire.shooting = false;
+							delete this._cornered;
 						}
 						break;
 					case "shoot-if-close":
@@ -466,9 +466,9 @@ class Droid {
 								this.fire.shooting = true;
 								this.fire._start = time;
 							}
-							if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
-								this.fire.shooting = false;
-							}
+						}
+						if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
+							this.fire.shooting = false;
 						}
 						break;
 					case "seek-destroy":
@@ -488,9 +488,9 @@ class Droid {
 								this.fire.shooting = true;
 								this.fire._start = time;
 							}
-							if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
-								this.fire.shooting = false;
-							}
+						}
+						if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
+							this.fire.shooting = false;
 						}
 						break;
 				}

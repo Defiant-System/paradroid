@@ -14,7 +14,7 @@ class Viewport {
 			maxAngle: .1,
 			maxOffsetX: 4,
 			maxOffsetY: 4,
-			duration: 30, // The amount of updates until trauma goes from 1 to 0
+			duration: 4, // The amount of updates until trauma goes from 1 to 0
 
 			angle: 0,
 			offsetX: 0,
@@ -24,7 +24,7 @@ class Viewport {
 			anglePerlin: new SimplexNoise,
 			offsetXPerlin: new SimplexNoise,
 			offsetYPerlin: new SimplexNoise,
-			traumaReductionPerUpdate: .03, // (1 / duration)
+			traumaReductionPerUpdate: .025, // (1 / duration)
 		};
 
 		// mid point of viewport

@@ -181,7 +181,7 @@ class Arena {
 		// clear canvas
 		this.cvs.attr({ width: this.width });
 		this.led.cvs.attr({ width: this.width });
-
+		// center viewport + render map, etc
 		this.viewport.center();
 		this.map.render(this.ctx);
 
