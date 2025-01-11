@@ -66,7 +66,6 @@ class Droid {
 				force = new Point(0, 0);
 			target = target.multiply(tile).subtract({ x: hT, y: hT });
 			this.home = { patrol, target, force, log: [] };
-			// console.log( this.x, this.y, target );
 
 			// starting position
 			this.spawn({ id, x, y });
@@ -113,11 +112,10 @@ class Droid {
 			droid = this.arena.map.droids.splice(index, 1)[0];
 		// remove droid from physical world
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
+		// shake screen on damage hit
+		this.arena.viewport.addShake(.75);
 		
 		if (droid.isPlayer) {
-			// shake screen on damage hit
-			this.arena.viewport.addShake(.75);
-
 			setTimeout(() => {
 				// player droid killed - show "game over"
 				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
@@ -125,8 +123,6 @@ class Droid {
 		} else {
 			// make node "dead"
 			this.xItem.setAttribute("dead", 1);
-			// shake screen on damage hit
-			this.arena.viewport.addShake(.5);
 			// notify map / section / level
 			this.arena.map.mapUpdate();
 		}

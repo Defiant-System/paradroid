@@ -51,7 +51,14 @@ class Map {
 				}
 				if (arena.player.transfer.active) {
 					if ((a1 === "player" && a2 === "droid") || a2 === "player" && a1 === "droid") {
-						console.log("init transfer view");
+						// update progress bar for level droid count
+						let opponent = a1 === "droid"
+									? this.droids.filter(droid => droid.body === pair.bodyA)
+									: this.droids.filter(droid => droid.body === pair.bodyB);
+						// save opponent
+						arena.player.opponent = opponent[0];
+						// switch to transfer view
+						paradroid.mobile.dispatch({ type: "init-transfer-view" });
 					}
 				}
 				if (a1 === a2 && a1 === "droid") {

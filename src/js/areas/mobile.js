@@ -139,6 +139,12 @@
 					Self.arena.fpsControl.start();
 				}
 				break;
+			case "init-transfer-view":
+				Self.dispatch({ type: "game-loop-pause" });
+
+				// TODO: switch to transer view
+				console.log( Self.arena.player.opponent.id );
+				break;
 			case "restore-state":
 			case "go-to-section":
 				let ship = APP.lift.els.el.find(`.ship`),

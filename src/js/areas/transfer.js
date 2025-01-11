@@ -63,7 +63,7 @@
 							let player = APP.mobile.arena.player.id,
 								opponent = APP.mobile.arena.player.opponent;
 							Self.els.droidLeft.data({ id: player }).addClass("player");
-							Self.els.droidRight.data({ id: opponent }).removeClass("player");
+							Self.els.droidRight.data({ id: opponent.id }).removeClass("player");
 						}
 						break;
 					case "d":
@@ -71,7 +71,7 @@
 						if (Self.chooseColor) {
 							let player = APP.mobile.arena.player.id,
 								opponent = APP.mobile.arena.player.opponent;
-							Self.els.droidLeft.data({ id: opponent }).removeClass("player");
+							Self.els.droidLeft.data({ id: opponent.id }).removeClass("player");
 							Self.els.droidRight.data({ id: player }).addClass("player");
 						}
 						break;
