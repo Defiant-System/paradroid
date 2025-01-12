@@ -37,6 +37,8 @@
 				Self.els.content.cssSequence("leave", "transitionend", el => {
 					// reset start view
 					Self.els.el.removeClass("no-anim").addClass("view-anim");
+					// reset game
+					APP.mobile.dispatch({ type: "reset-game-player" });
 					// animate / switch to view
 					APP.dispatch({ type: "switch-to-view", arg: "mobile", done() { el.removeClass("leave"); } });
 				});

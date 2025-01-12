@@ -127,6 +127,9 @@
 					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 0 } },
 				});
 				break;
+			case "reset-game-player":
+
+				break;
 			case "game-loop-pause":
 				if (Self.arena.map && !Self.arena.fpsControl._stopped) {
 					Matter.Runner.stop(APP.mobile.arena.map.runner);
@@ -142,8 +145,16 @@
 			case "init-transfer-view":
 				Self.dispatch({ type: "game-loop-pause" });
 
-				// TODO: switch to transer view
-				console.log( Self.arena.player.opponent.id );
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// TODO: switch to transer view
+					console.log( Self.arena.player.opponent.id );
+
+					// reset element
+					el.removeClass("leave");
+					// animate / switch to view
+					APP.dispatch({ type: "switch-to-view", arg: "transfer" });
+				});
 				break;
 			case "restore-state":
 			case "go-to-section":
@@ -155,7 +166,9 @@
 				// level colors
 				let background = xSection.getAttribute("color"),
 					filter = xSection.getAttribute("filter") || "none",
-					percentage = 1 - (event.state.map.clear || 0);
+					xDroids = window.bluePrint.selectNodes(`//Section/Layer[@id="droids"]/i`),
+					xAlive = window.bluePrint.selectNodes(`//Section/Layer[@id="droids"]/i[not(@dead)]`),
+					percentage = xAlive.length / xDroids.length;
 				// reset player mode
 				Self.arena.player.transfer.active = false;
 				// set debug mode, if provided
@@ -219,6 +232,17 @@
 				break;
 			case "set-player-droid":
 				Player.setId(event.arg);
+				break;
+			case "ship-cleared":
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// pause game loop
+					Self.dispatch({ type: "game-loop-pause" });
+					// show game over view
+					APP.dispatch({ type: "switch-to-view", arg: "finished" });
+				});
 				break;
 			case "set-debug-mode":
 				Self.els.content.data({ debug: event.arg });

@@ -172,6 +172,8 @@ const paradroid = {
 	hud: @import "./areas/hud.js",
 	lift: @import "./areas/lift.js",
 	mobile: @import "./areas/mobile.js",
+	paused: @import "./areas/paused.js",
+	finished: @import "./areas/finished.js",
 	console: @import "./areas/console.js",
 	terminated: @import "./areas/terminated.js",
 	transfer: @import "./areas/transfer.js",

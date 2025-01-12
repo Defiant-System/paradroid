@@ -53,8 +53,21 @@
 				});
 				break;
 			case "progress-update":
-				if (event.level !== undefined) Self.els.progress.find(`.box-track[data-id="level"]`).css({ "--val": event.level });
-				if (event.health !== undefined) Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
+				if (event.level !== undefined) {
+					// update progress bar
+					Self.els.progress.find(`.box-track[data-id="level"]`).css({ "--val": event.level });
+					// update hud bar
+					let xDroids = window.bluePrint.selectNodes(`//Section/Layer[@id="droids"]/i`),
+						xAlive = window.bluePrint.selectNodes(`//Section/Layer[@id="droids"]/i[not(@dead)]`),
+						percentage = xAlive.length / xDroids.length;
+					// adjust hud with new color
+					Self.els.barLeft.find(".box").css({ "--val": `${percentage * 100}%` });
+					// are all droids killed?
+					if (xAlive.length === 0) return APP.mobile.dispatch({ type: "ship-cleared" });
+				}
+				if (event.health !== undefined) {
+					Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
+				}
 				if (event.reject !== undefined) {
 					// el = Self.els.progress.find(`.box-track[data-id="reject"]`);
 					// // set speed
