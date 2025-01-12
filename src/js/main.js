@@ -109,7 +109,10 @@ const paradroid = {
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				Self.hud.dispatch({ type: "set-view-title" });
 
-				switch (event.arg) {
+				// save reference to active view
+				Self.active = event.arg;
+
+				switch (Self.active) {
 					case "start":
 						Self.start.els.el.removeClass("no-anim view-anim");
 						setTimeout(() => Self.start.dispatch({ ...event, type: "init-anim" }), 100);
@@ -163,6 +166,8 @@ const paradroid = {
 						name = pEl.data("area");
 						return Self[name].dispatch(event);
 					}
+				} else if (Self.active) {
+					Self[Self.active].dispatch(event);
 				}
 		}
 	},

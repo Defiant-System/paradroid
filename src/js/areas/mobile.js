@@ -120,6 +120,44 @@
 					// 	break;
 				}
 				break;
+			// gamepad events
+			case "gamepad.connected":
+			case "gamepad.disconnected":
+				// anything todo?
+				break;
+			case "gamepad.stick":
+				let x = event.value[0],
+					y = event.value[1];
+				if (event.stick === "left") {
+					Player.input.left.pressed = x < 0;
+					Player.input.right.pressed = x > 0;
+					Player.input.up.pressed = y < 0;
+					Player.input.down.pressed = y > 0;
+				} else {
+					// set ship angle
+					let angle = Math.atan2(x, -y),
+						halfPI = Math.PI / 2,
+						dir = (x === 0 && y === 0) ? -halfPI : angle - halfPI,
+						firing = x !== 0 || y !== 0;
+
+					Self.arena.player.fire.shooting = firing;
+					Self.arena.player.dir = dir;
+				}
+				break;
+			// case "gamepad.up":
+			case "gamepad.down":
+				switch (event.button) {
+					case "b0": // x - enter
+						Self.dispatch({ type: "window.keydown", char: "return" });
+						break;
+					case "b1": // O - transfer
+						Self.dispatch({ type: "window.keydown", char: "shift" });
+						break;
+					case "b9": // options - toggle pause
+						APP.hud.dispatch({ type: "toggle-play-pause" });
+						break;
+				}
+				break;
 			// custom events
 			case "init-view":
 				APP.mobile.dispatch({
