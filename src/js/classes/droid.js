@@ -155,7 +155,7 @@ class Droid {
 				owner: this,
 				arena: this.arena,
 				target: this.target,
-				angle: this.dir || Math.PI / 4,
+				angle: this.dir, // || Math.PI / 4,
 				type: this.fire.name,
 				damage: this.fire.damage,
 			},

@@ -137,24 +137,30 @@
 					// set ship angle
 					let angle = Math.atan2(x, -y),
 						halfPI = Math.PI / 2,
-						dir = (x === 0 && y === 0) ? -halfPI : angle - halfPI,
+						dir = (x === 1 && y === 0) ? 0 : angle - halfPI,
 						firing = x !== 0 || y !== 0;
 
 					Self.arena.player.fire.shooting = firing;
 					Self.arena.player.dir = dir;
 				}
 				break;
-			// case "gamepad.up":
 			case "gamepad.down":
 				switch (event.button) {
 					case "b0": // x - enter
 						Self.dispatch({ type: "window.keydown", char: "return" });
 						break;
 					case "b1": // O - transfer
-						Self.dispatch({ type: "window.keydown", char: "shift" });
+						Player.setState({ id: "transfer", active: true });
 						break;
 					case "b9": // options - toggle pause
 						APP.hud.dispatch({ type: "toggle-play-pause" });
+						break;
+				}
+				break;
+			case "gamepad.up":
+				switch (event.button) {
+					case "b1": // O - transfer
+						Player.setState({ id: "transfer", pressed: false });
 						break;
 				}
 				break;
