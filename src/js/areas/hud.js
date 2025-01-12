@@ -9,7 +9,7 @@
 			el: window.find(".hud-view"),
 			barLeft: window.find(".left"),
 			barRight: window.find(".right"),
-			btnRight: window.find(".right .cube-title"),
+			btnRight: window.find(".right .bar"),
 			progress: window.find(".progress"),
 		};
 	},
@@ -23,9 +23,9 @@
 			// custom events
 			case "toggle-play-pause":
 				el = Self.els.btnRight;
-				value = el.text();
-				el.html(el.data("toggle"));
-				el.data({ toggle: value });
+				value = el.hasClass("paused");
+				el.toggleClass("paused", value);
+
 				if (Self.els.barRight.hasClass("paused") && !event.pause) {
 					Self.els.barRight.removeClass("paused");
 					// resume game

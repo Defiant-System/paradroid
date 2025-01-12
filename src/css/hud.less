@@ -164,12 +164,37 @@
 			visibility: hidden;
 		}
 
-		&.paused .bar {
-			.box { --c1: #fff633; }
+		&.paused {
+			.box {
+				--c1: #fff633;
+				--val: 73%;
+			}
+
+			.cube-title {
+				&:after {
+					opacity: .75;
+					transition-delay: 150ms;
+				}
+			}
+		}
+
+		.cube-title {
+			&:after {
+				content: "on";
+				opacity: 0;
+				position: absolute;
+				top: 5px;
+				right: 17px;
+				transition: opacity 120ms ease-in-out;
+			}
 		}
 
 		.bar {
 			top: -17px;
+
+			&[data-click="toggle-play-pause"] {
+				cursor: pointer;
+			}
 
 			.box {
 				--c1: #5dff2c;
@@ -191,8 +216,7 @@
 			color: rgba(#222,.375);
 			text-shadow: 0 1px 0 rgba(#fff,.3);
 			mix-blend-mode: luminosity;
-			pointer-events: all;
-			cursor: pointer;
+			pointer-events: none;
 		}
 	}
 

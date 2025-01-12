@@ -152,7 +152,9 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
 			APP.mobile.dispatch({ type: "restore-state", state });
 
+			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
+
 			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 1500);
 			// setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);
 			// setTimeout(() => APP.mobile.arena.player.fire(), 600);
@@ -172,7 +174,6 @@ let Test = {
 
 			// pause test
 			// setTimeout(() => APP.mobile.dispatch({ type: "player-droid-destroyed" }), 700);
-			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1200);
 			// setTimeout(() => APP.mobile.dispatch({ type: "level-lights-off" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "window.keydown", char: "return" }), 400);
 			// setTimeout(() => Matter.Runner.stop(APP.mobile.arena.map.runner), 1500);
