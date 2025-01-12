@@ -152,7 +152,7 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
+			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 1500);
 			// setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);
 			// setTimeout(() => APP.mobile.arena.player.fire(), 600);

@@ -128,7 +128,7 @@
 				});
 				break;
 			case "reset-game-player":
-
+				
 				break;
 			case "game-loop-pause":
 				if (Self.arena.map && !Self.arena.fpsControl._stopped) {
@@ -142,6 +142,19 @@
 					Self.arena.fpsControl.start();
 				}
 				break;
+				
+			case "ship-cleared":
+				// reset css/view
+				Self.els.content.cssSequence("leave", "transitionend", el => {
+					// reset element
+					el.removeClass("leave");
+					// pause game loop
+					Self.dispatch({ type: "game-loop-pause" });
+					// show game over view
+					APP.dispatch({ type: "switch-to-view", arg: "finished" });
+				});
+				break;
+
 			case "init-transfer-view":
 				Self.dispatch({ type: "game-loop-pause" });
 
@@ -232,17 +245,6 @@
 				break;
 			case "set-player-droid":
 				Player.setId(event.arg);
-				break;
-			case "ship-cleared":
-				// reset css/view
-				Self.els.content.cssSequence("leave", "transitionend", el => {
-					// reset element
-					el.removeClass("leave");
-					// pause game loop
-					Self.dispatch({ type: "game-loop-pause" });
-					// show game over view
-					APP.dispatch({ type: "switch-to-view", arg: "finished" });
-				});
 				break;
 			case "set-debug-mode":
 				Self.els.content.data({ debug: event.arg });

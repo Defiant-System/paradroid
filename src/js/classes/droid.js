@@ -44,8 +44,6 @@ class Droid {
 		this._path = [];
 
 		this.position = new Point(0, 0);
-		this.velocity = new Point(0, 0);
-		this.acceleration = new Point(0, 0);
 		this.maxSpeed = 1;
 		this.maxForce = .0075;
 
@@ -65,7 +63,7 @@ class Droid {
 				target = new Point(x, y),
 				force = new Point(0, 0);
 			target = target.multiply(tile).subtract({ x: hT, y: hT });
-			this.home = { patrol, target, force, log: [] };
+			this.home = { patrol, target, force, _backOff: 0, log: [] };
 
 			// starting position
 			this.spawn({ id, x, y });
@@ -148,11 +146,8 @@ class Droid {
 			start = graph.grid[this.y*2][this.x*2],
 			end = graph.grid[target[1]*2][target[0]*2],
 			result = Finder.astar.search(graph, start, end);
-		
-		// console.log( this.arena.map.grid.join("\n") );
+		// new path to patrol
 		this._path = result.length ? result.map(p => [p.y/2, p.x/2]) : [seek];
-		// if (!this._path.length) console.log( patrol.join("\n") );
-		// console.log( this._path.join("\n") );
 	}
 
 	shoot() {
@@ -236,16 +231,12 @@ class Droid {
 	seek(target) {
 		let force = target.subtract(this.position);
 		force = force.setMagnitude(this.maxSpeed);
-		force = force.subtract(this.velocity);
 		force = force.limit(this.maxForce);
 		return force;
 	}
 
 	pursue(droid) {
 		let target = droid.position.clone();
-		let prediction = droid.velocity.clone();
-		prediction.multiply(10);
-		target = target.add(prediction);
 		return this.seek(target);
 	}
 
@@ -414,23 +405,44 @@ class Droid {
 				// apply aggression
 				switch (this.aggression.name) {
 					case "ignore":
-						// do nothing
+						// do nothing - just patrol
 						break;
 					case "evade":
 						// keep distance to player droid
 						target = this.arena.player.position;
 						bodies = Matter.Composite.allBodies(this.arena.map.engine.world);
 						ray = Matter.Query.ray(bodies, target, this.position);
-						if (pDist < 150 && ray.length === 2) {
-							this.home.force = this.evade(this.arena.player).multiply(1 + (this.aggression.segValue / 20));
-							if (this._path.length > 2) this._path.shift();
-							// if cornered, start shooting
-							if (!this.fire.shooting && this._cornered) {
-								this.target = target;
-								this.dir = this.position.direction(this.target);
-								this.fire.shooting = true;
-								this.fire._start = time;
+						
+						if (pDist < 150) {
+							if (ray.length === 2) {
+								this.home.force = this.evade(this.arena.player).multiply(1 + (this.aggression.segValue / 20));
+								if (!this.home._pushed) {
+									this.home._pushed = true;
+									this.home._backOff++;
+
+									if (this.home._backOff > 3) {
+										this.home._backOff = 0;
+										// re-new patrol path
+										this.setPath();
+										let [x1, y1] = this._path.shift(),
+											target = new Point(x1, y1);
+										this.home.target = target.multiply(tile).subtract(hT);
+									}
+								}
+
+								if (this._path.length > 1) {
+									this._path.shift();
+								}
+								// if cornered, start shooting
+								if (!this.fire.shooting && this._cornered) {
+									this.target = target;
+									this.dir = this.position.direction(this.target);
+									this.fire.shooting = true;
+									this.fire._start = time;
+								}
 							}
+						} else {
+							this.home._pushed = false;
 						}
 						if (this.fire.shooting && time - this.fire._start > this.aggression.length) {
 							this.fire.shooting = false;
