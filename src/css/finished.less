@@ -1,0 +1,31 @@
+
+content {
+	&.fade-out[data-show] {
+		// before animation
+		.finished-view {
+			
+		}
+
+		&[data-show="finished"].fade-in {
+			transition-delay: 900ms;
+
+			.finished-view {
+				
+			}
+		}
+	}
+
+	&[data-show="finished"].leave {
+		.finished-view {
+			
+		}
+	}
+}
+
+
+.finished-view {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}

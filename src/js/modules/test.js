@@ -101,7 +101,7 @@ let Test = {
 		/*
 		 * LIFT View
 		APP.dispatch({ type: "show-view", arg: "lift" });
-		APP.lift.els.el.find(".lift").get(0).trigger("click");
+		// APP.lift.els.el.find(".lift").get(0).trigger("click");
 		return;
 		 */
 
@@ -152,7 +152,7 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 500);
+			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 
 			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 1500);

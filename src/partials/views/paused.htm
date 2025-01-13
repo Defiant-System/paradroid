@@ -1,5 +1,39 @@
 
 <!-- game paused view -->
-<div class="paused-view hidden" data-area="paused">
-	
+<div class="paused-view hidden1" data-area="paused">
+	<div class="dialog">
+
+		<svg class="svg-text" viewBox="0 0 130 60" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<defs>
+				<filter id="drop-stroke-shadow">
+					<fegaussianblur in="SourceAlpha" stddeviation="2"></fegaussianblur>
+				</filter>
+				<symbol id="stroke">
+					<text class="bold" x="50%" y="66%" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke fill" text-anchor="middle">Paused</text>
+				</symbol>
+				<symbol id="fill">
+					<text class="bold" x="50%" y="60%" text-anchor="middle">Paused</text>
+				</symbol>
+			</defs>
+			<g class="svg-text__shaded__stroke" stroke="#00cccc">
+				<use y="5%" xlink:href="#stroke" opacity="0.5" filter="url(#drop-stroke-shadow)"></use>
+				<use y="3%" xlink:href="#stroke"></use>
+				<use y="2%" xlink:href="#stroke"></use>
+				<use y="1%" xlink:href="#stroke"></use>
+				<use xlink:href="#stroke" stroke="cyan"></use>
+			</g>
+			<g fill="#e6e6e6">
+				<use class="svg-text__shaded" y="7%" xlink:href="#fill"></use>
+				<use y="6.5%" xlink:href="#fill"></use>
+				<use y="6%" xlink:href="#fill"></use>
+				<use y="5.5%" xlink:href="#fill"></use>
+				<use y="5%" xlink:href="#fill"></use>
+				<use y="4.5%" xlink:href="#fill"></use>
+				<use y="4%" xlink:href="#fill"></use>
+				<use y="3.5%" xlink:href="#fill"></use>
+				<use y="3%" xlink:href="#fill" fill="white"></use>
+			</g>
+		</svg>
+
+	</div>
 </div>

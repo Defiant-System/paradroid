@@ -1,0 +1,61 @@
+
+content {
+	&.fade-out[data-show] {
+		// before animation
+		.paused-view {
+			
+		}
+
+		&[data-show="paused"].fade-in {
+			transition-delay: 900ms;
+
+			.paused-view {
+				
+			}
+		}
+	}
+
+	&[data-show="paused"].leave {
+		.paused-view {
+			
+		}
+	}
+}
+
+
+.paused-view {
+	top: 49px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	opacity: 1;
+	visibility: visible;
+	backdrop-filter: blur(2px) grayscale(1);
+
+	.dialog {
+		position: absolute;
+		top: 200px;
+		left: 200px;
+		height: 240px;
+		width: 360px;
+
+		.svg-text {
+			width: 330px;
+			overflow: visible;
+			font-family: Paradrew;
+			font-size: 37px;
+
+			.svg-text__shaded__stroke {
+
+			}
+
+			.svg-text__shaded {
+				text-shadow: 0 1px 1px rgba(#111, .15),
+							0 3px 10px rgba(#111, .15),
+							0 3px 20px rgba(#111, .35);
+			}
+		}
+	}
+}
+
