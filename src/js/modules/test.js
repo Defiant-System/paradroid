@@ -38,10 +38,10 @@ let Test = {
 		
 		/*
 		 * START View
-		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
-		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
-		return;
 		 */
+		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
+		setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
+		return;
 
 		
 		/*
