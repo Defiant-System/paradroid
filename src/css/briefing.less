@@ -238,42 +238,84 @@ content {
 		}
 	}
 
+	.gamepad {
+		background: url(~/icons/gamepad-outline.png) 50% 50%/contain no-repeat;
+		position: absolute;
+		top: 50px;
+		left: 40px;
+		width: 265px;
+		height: 177px;
+		filter: drop-shadow(0 1px 0 #fff);
+	}
+
 	.key-group {
-		position: relative;
-		width: 103px;
-		height: 67px;
+		position: absolute;
+		width: 78px;
+		height: 47px;
 		font-size: 0;
 		pointer-events: all;
 
+		&.wasd {
+			top: 260px;
+			left: 10px;
+		}
+
+		&.arrows {
+			top: 260px;
+			left: 100px;
+
+			.key {
+				i {
+					&:before {
+						content: "";
+						background: url(~/icons/icon-left.png) 50% 50%/contain no-repeat;
+						position: absolute;
+						top: 4px;
+						left: 5px;
+						width: 13px;
+						height: 13px;
+					}
+				}
+
+				&.up i:before {
+					left: 6px;
+					transform: rotate(90deg);
+					filter: drop-shadow(-1px 0 0 #888);
+				}
+
+				&.left i:before {
+					filter: drop-shadow(0 -1px 0 #888);
+				}
+
+				&.down i:before {
+					top: 5px;
+					transform: rotate(-90deg);
+					filter: drop-shadow(1px 0 0 #888);
+				}
+
+				&.right i:before {
+					top: 5px;
+					left: 6px;
+					transform: rotate(180deg);
+					filter: drop-shadow(0 1px 0 #888);
+				}
+			}
+		}
+
 		span.key {
 			position: absolute;
-			width: 29px;
-			height: 25px;
-			display: inline-block;
-			font-size: 16px;
-			border-radius: 3px;
+			top: 0;
+			left: 0;
+			width: 24px;
+			height: 21px;
+			border-radius: 4px;
 
-			&.up { top: 0px; left: 33px; }
-			&.left { top: 33px; left: 0px; }
-			&.down { top: 33px; left: 33px; }
-			&.right { top: 33px; left: 66px; }
+			&.up { top: 0px; left: 26px; }
+			&.left { top: 24px; left: 0px; }
+			&.down { top: 24px; left: 26px; }
+			&.right { top: 24px; left: 52px; }
 
-			&:before {
-				content: "";
-				background: #f90 radial-gradient(ellipse at bottom center, rgba(#fff,.15), transparent);
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: inherit;
-				height: inherit;
-				border-radius: inherit;
-				filter: drop-shadow(0 1px 0 #e80)
-						drop-shadow(0 2px 0 #e80)
-						drop-shadow(0 3px 0 #e80)
-						// drop-shadow(0 4px 0 #e80)
-						drop-shadow(0 1px 1px rgba(#111, .2));
-			}
-
+			&:before,
 			&:after {
 				content: "";
 				position: absolute;
@@ -282,7 +324,31 @@ content {
 				right: 0;
 				height: 1px;
 				z-index: 2;
-				background: linear-gradient(90deg, transparent, rgba(#fff,.75), transparent);
+				background: linear-gradient(90deg, #fff0, #fff5, #fff0);
+			}
+
+			&:after {
+				bottom: -2px;
+			}
+
+			i {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				border-radius: inherit;
+				padding-top: 2px;
+				font-size: 15px;
+				font-style: normal;
+				text-align: center;
+				background: #aaa radial-gradient(ellipse at bottom center, rgba(#fff,.15), transparent);
+				color: #fff;
+				text-shadow: 0 -1px 0 #999;
+				filter: drop-shadow(0 1px 0 #999)
+						// drop-shadow(0 2px 0 #e80)
+						// drop-shadow(0 3px 0 #e80)
+						drop-shadow(0 1px 0 rgba(#fff, .15));
 			}
 		}
 	}

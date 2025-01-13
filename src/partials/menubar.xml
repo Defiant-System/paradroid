@@ -10,6 +10,8 @@
 			<Menu name="Briefing" click="show-view" arg="briefing"/>
 			<Menu name="Lift" click="show-view" arg="lift"/>
 			<Menu name="Mobile" click="show-view" arg="mobile"/>
+			<Menu name="Paused" click="show-view" arg="paused"/>
+			<Menu name="Finished" click="show-view" arg="finished"/>
 			<Menu name="Transfer" click="show-view" arg="transfer"/>
 			<Menu name="Console" click="show-view" arg="console"/>
 			<Menu name="Terminated" click="show-view" arg="terminated"/>
