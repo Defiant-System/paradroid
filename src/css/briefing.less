@@ -238,67 +238,44 @@ content {
 		}
 	}
 
-	.gamepad {
-		background: url(~/icons/gamepad-outline.png) 50% 50%/contain no-repeat;
-		position: absolute;
-		top: 50px;
-		left: 40px;
-		width: 265px;
-		height: 177px;
-		filter: drop-shadow(0 1px 0 #fff);
-	}
-
-	.key-group {
-		position: absolute;
-		width: 78px;
-		height: 47px;
-		font-size: 0;
-		pointer-events: all;
-
-		&.wasd {
-			top: 260px;
-			left: 10px;
+	.controls {
+		.gamepad {
+			background: url(~/icons/gamepad-outline.png) 50% 50%/contain no-repeat;
+			position: absolute;
+			top: 65px;
+			left: 40px;
+			width: 265px;
+			height: 177px;
+			filter: drop-shadow(0 1px 0 #fff);
 		}
 
-		&.arrows {
-			top: 260px;
-			left: 100px;
+		h3 {
+			position: absolute;
+			text-transform: uppercase;
 
-			.key {
-				i {
-					&:before {
-						content: "";
-						background: url(~/icons/icon-left.png) 50% 50%/contain no-repeat;
-						position: absolute;
-						top: 4px;
-						left: 5px;
-						width: 13px;
-						height: 13px;
-					}
-				}
+			&.move {
+				top: 250px;
+				left: 40px;
+			}
 
-				&.up i:before {
-					left: 6px;
-					transform: rotate(90deg);
-					filter: drop-shadow(-1px 0 0 #888);
-				}
+			&.aim {
+				top: 250px;
+				left: 230px;
+			}
 
-				&.left i:before {
-					filter: drop-shadow(0 -1px 0 #888);
-				}
+			&.transfer {
+				top: 20px;
+				left: 153px;
+			}
 
-				&.down i:before {
-					top: 5px;
-					transform: rotate(-90deg);
-					filter: drop-shadow(1px 0 0 #888);
-				}
+			&.enter {
+				top: 30px;
+				left: 294px;
+			}
 
-				&.right i:before {
-					top: 5px;
-					left: 6px;
-					transform: rotate(180deg);
-					filter: drop-shadow(0 1px 0 #888);
-				}
+			&.pause {
+				top: 31px;
+				left: 31px;
 			}
 		}
 
@@ -314,6 +291,23 @@ content {
 			&.left { top: 24px; left: 0px; }
 			&.down { top: 24px; left: 26px; }
 			&.right { top: 24px; left: 52px; }
+
+			&.pause {
+				top: 27px;
+				left: 2px;
+			}
+
+			&.shift {
+				top: 16px;
+				left: 102px;
+				width: 47px;
+			}
+			
+			&.enter {
+				top: 27px;
+				left: 237px;
+				width: 51px;
+			}
 
 			&:before,
 			&:after {
@@ -349,6 +343,61 @@ content {
 						// drop-shadow(0 2px 0 #e80)
 						// drop-shadow(0 3px 0 #e80)
 						drop-shadow(0 1px 0 rgba(#fff, .15));
+			}
+		}
+
+		.key-group {
+			position: absolute;
+			width: 78px;
+			height: 47px;
+			font-size: 0;
+			pointer-events: all;
+
+			&.wasd {
+				top: 280px;
+				left: 10px;
+			}
+
+			&.arrows {
+				top: 280px;
+				left: 100px;
+
+				.key {
+					i {
+						&:before {
+							content: "";
+							background: url(~/icons/icon-left.png) 50% 50%/contain no-repeat;
+							position: absolute;
+							top: 4px;
+							left: 5px;
+							width: 13px;
+							height: 13px;
+						}
+					}
+
+					&.up i:before {
+						left: 6px;
+						transform: rotate(90deg);
+						filter: drop-shadow(-1px 0 0 #888);
+					}
+
+					&.left i:before {
+						filter: drop-shadow(0 -1px 0 #888);
+					}
+
+					&.down i:before {
+						top: 5px;
+						transform: rotate(-90deg);
+						filter: drop-shadow(1px 0 0 #888);
+					}
+
+					&.right i:before {
+						top: 5px;
+						left: 6px;
+						transform: rotate(180deg);
+						filter: drop-shadow(0 1px 0 #888);
+					}
+				}
 			}
 		}
 	}
