@@ -1,115 +1,47 @@
 
 <!-- transfer view -->
-<div class="transfer-view success hidden" data-area="transfer" data-name="Transfer">
+<div class="transfer-view finished hidden" data-area="transfer" data-name="Transfer">
 
-	<!-- circuit board filters -->
-	<div class="filters">
-		<svg viewBox="0 0 277 584">
-			<defs>
-				<filter id="line" filterUnits="userSpaceOnUse">
-					<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
-					<feGaussianBlur in="dilated" stdDeviation="4" result="blur1"/>
-					<feComposite in="blur1" in2="SourceGraphic" operator="lighter" result="blur"/>
-					<feColorMatrix in="SourceGraphic"
-									result="white"
-									type="matrix"
-									values="0 0 0 1 0
-											0 0 0 1 0
-											0 0 0 1 0
-											0 0 0 1 0" />
-					<feComposite in="blur" in2="white" operator="over" result="blur"/>
-				</filter>
-
-				<filter id="stream" filterUnits="userSpaceOnUse">
-					<feMorphology operator="dilate" radius="1" in="SourceGraphic" result="dilated"/>
-					<feGaussianBlur in="dilated" stdDeviation="1" result="blur1"/>
-					<feGaussianBlur in="dilated" stdDeviation="2" result="blur2"/>
-					<feComposite in="blur1" in2="blur2" operator="lighter" result="blur"/>
-					<feColorMatrix in="SourceGraphic"
-									result="white"
-									type="matrix"
-									values="0 0 0 1 0
-											0 0 0 1 0
-											0 0 0 1 0
-											0 0 0 1 0" />
-					<feComposite in="blur" in2="white" operator="over" result="blur"/>
-				</filter>
-			</defs>
-		</svg>
-	</div>
-
-	<div class="finish" data-id="302">
-		<!--
+	<div class="finish success failure" data-id="999">
 		<svg class="text-success" viewBox="0 0 130 60" xmlns:xlink="http://www.w3.org/1999/xlink">
-			<defs>
-				<filter id="drop-stroke-shadow-2" height="130%">
-					<fegaussianblur in="SourceAlpha" stddeviation="2"></fegaussianblur>
-				</filter>
-				<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="40">
-					<stop  offset="0" style="stop-color:#ddd"/>
-					<stop  offset="1" style="stop-color:#eee"/>
-				</linearGradient>
-				<symbol id="stroke-2">
-					<text x="50%" y="66%" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke fill" text-anchor="middle">Success</text>
-				</symbol>
-				<symbol id="fill-2">
-					<text x="50%" y="60%" text-anchor="middle">Success</text>
-				</symbol>
-			</defs>
-			<g class="svg-text__shaded__stroke" stroke="#00ae01">
-				<use y="5%" xlink:href="#stroke-2" opacity="0.5" filter="url(#drop-stroke-shadow-2)"></use>
-				<use y="3%" xlink:href="#stroke-2"></use>
-				<use y="2%" xlink:href="#stroke-2"></use>
-				<use y="1%" xlink:href="#stroke-2"></use>
-				<use xlink:href="#stroke-2" stroke="#50f14a"></use>
+			<g class="svg-text__shaded__stroke">
+				<use y="5%" xlink:href="#stroke-success" opacity="0.5" filter="url(#drop-stroke-shadow)"></use>
+				<use y="3%" xlink:href="#stroke-success"></use>
+				<use y="2%" xlink:href="#stroke-success"></use>
+				<use y="1%" xlink:href="#stroke-success"></use>
+				<use class="svg-text__stroke" xlink:href="#stroke-success"></use>
 			</g>
 			<g fill="#d4d4d4">
-				<use class="svg-text__shaded" y="7%" xlink:href="#fill-2"></use>
-				<use y="6.5%" xlink:href="#fill-2"></use>
-				<use y="6%" xlink:href="#fill-2"></use>
-				<use y="5.5%" xlink:href="#fill-2"></use>
-				<use y="5%" xlink:href="#fill-2"></use>
-				<use y="4.5%" xlink:href="#fill-2"></use>
-				<use y="4%" xlink:href="#fill-2"></use>
-				<use y="3.5%" xlink:href="#fill-2"></use>
-				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-2" fill="url(#SVGID_2_)"></use>
+				<use class="svg-text__shaded" y="7%" xlink:href="#fill-success"></use>
+				<use y="6.5%" xlink:href="#fill-success"></use>
+				<use y="6%" xlink:href="#fill-success"></use>
+				<use y="5.5%" xlink:href="#fill-success"></use>
+				<use y="5%" xlink:href="#fill-success"></use>
+				<use y="4.5%" xlink:href="#fill-success"></use>
+				<use y="4%" xlink:href="#fill-success"></use>
+				<use y="3.5%" xlink:href="#fill-success"></use>
+				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-success" fill="url(#text_fill)"></use>
 			</g>
 		</svg>
-		-->
 
-		<svg class="text-fail" viewBox="0 0 130 60" xmlns:xlink="http://www.w3.org/1999/xlink">
-			<defs>
-				<filter id="drop-stroke-shadow-3" height="130%">
-					<fegaussianblur in="SourceAlpha" stddeviation="2"></fegaussianblur>
-				</filter>
-				<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="40">
-					<stop  offset="0" style="stop-color:#ddd"/>
-					<stop  offset="1" style="stop-color:#eee"/>
-				</linearGradient>
-				<symbol id="stroke-3">
-					<text x="50%" y="66%" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke fill" text-anchor="middle">Failure</text>
-				</symbol>
-				<symbol id="fill-3">
-					<text x="50%" y="60%" text-anchor="middle">Failure</text>
-				</symbol>
-			</defs>
-			<g class="svg-text__shaded__stroke" stroke="#ca71c9">
-				<use y="5%" xlink:href="#stroke-3" opacity="0.5" filter="url(#drop-stroke-shadow-3)"></use>
-				<use y="3%" xlink:href="#stroke-3"></use>
-				<use y="2%" xlink:href="#stroke-3"></use>
-				<use y="1%" xlink:href="#stroke-3"></use>
-				<use xlink:href="#stroke-3" stroke="#ffa4ff"></use>
+		<svg class="text-failure" viewBox="0 0 130 60" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<g class="svg-text__shaded__stroke">
+				<use y="5%" xlink:href="#stroke-failure" opacity="0.5" filter="url(#drop-stroke-shadow)"></use>
+				<use y="3%" xlink:href="#stroke-failure"></use>
+				<use y="2%" xlink:href="#stroke-failure"></use>
+				<use y="1%" xlink:href="#stroke-failure"></use>
+				<use class="svg-text__stroke" xlink:href="#stroke-failure"></use>
 			</g>
 			<g fill="#d4d4d4">
-				<use class="svg-text__shaded" y="7%" xlink:href="#fill-3"></use>
-				<use y="6.5%" xlink:href="#fill-3"></use>
-				<use y="6%" xlink:href="#fill-3"></use>
-				<use y="5.5%" xlink:href="#fill-3"></use>
-				<use y="5%" xlink:href="#fill-3"></use>
-				<use y="4.5%" xlink:href="#fill-3"></use>
-				<use y="4%" xlink:href="#fill-3"></use>
-				<use y="3.5%" xlink:href="#fill-3"></use>
-				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-3" fill="url(#SVGID_3_)"></use>
+				<use class="svg-text__shaded" y="7%" xlink:href="#fill-failure"></use>
+				<use y="6.5%" xlink:href="#fill-failure"></use>
+				<use y="6%" xlink:href="#fill-failure"></use>
+				<use y="5.5%" xlink:href="#fill-failure"></use>
+				<use y="5%" xlink:href="#fill-failure"></use>
+				<use y="4.5%" xlink:href="#fill-failure"></use>
+				<use y="4%" xlink:href="#fill-failure"></use>
+				<use y="3.5%" xlink:href="#fill-failure"></use>
+				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-failure" fill="url(#text_fill)"></use>
 			</g>
 		</svg>
 

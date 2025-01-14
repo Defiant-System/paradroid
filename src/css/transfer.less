@@ -161,7 +161,7 @@ content {
 		pointer-events: none;
 	}
 
-	&.success {
+	&.finished {
 		.finish {
 			display: block;
 		}
@@ -209,8 +209,37 @@ content {
 		&[data-id="883"] { span.droid-id:before { content: "883"; } .blueprint { background-image: url(~/icons/bp-883.png); } }
 		&[data-id="999"] { span.droid-id:before { content: "999"; } .blueprint { background-image: url(~/icons/bp-999.png); } }
 
+		&.success {
+			svg.text-success {
+				display: inline-block;
+
+				.svg-text__shaded__stroke {
+					stroke: #00ae01;
+
+					.svg-text__stroke {
+						stroke: #50f14a;
+					}
+				}
+			}
+		}
+
+		&.failure {
+			svg.text-failure {
+				display: inline-block;
+
+				.svg-text__shaded__stroke {
+					stroke: #c68433;
+
+					.svg-text__stroke {
+						stroke: #fcbf42;
+					}
+				}
+			}
+		}
+
 		svg.text-success,
-		svg.text-fail {
+		svg.text-failure {
+			display: none;
 			text-shadow: none;
 			margin-bottom: -23px;
 		}
