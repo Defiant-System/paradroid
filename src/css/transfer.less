@@ -117,8 +117,10 @@ content {
 		}
 	}
 
-	&.paused {
-		.transfer-view {
+	&[data-show="transfer"].paused {
+		div.transfer-view {
+			opacity: .35;
+			
 			.board {
 				.droid {
 					&:before {
@@ -213,6 +215,10 @@ content {
 
 		h3 {
 			font-size: 29px;
+		}
+
+		svg {
+			text-shadow: none;
 		}
 
 		.blueprint {
