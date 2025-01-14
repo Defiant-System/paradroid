@@ -174,7 +174,7 @@ content {
 	.finish {
 		display: none;
 		position: absolute;
-		top: 37px;
+		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -209,23 +209,22 @@ content {
 		&[data-id="883"] { span.droid-id:before { content: "883"; } .blueprint { background-image: url(~/icons/bp-883.png); } }
 		&[data-id="999"] { span.droid-id:before { content: "999"; } .blueprint { background-image: url(~/icons/bp-999.png); } }
 
-		h2 {
-			font-size: 43px;
+		svg.text-success,
+		svg.text-fail {
+			text-shadow: none;
+			margin-bottom: -23px;
 		}
 
 		h3 {
 			font-size: 29px;
-		}
-
-		svg {
-			text-shadow: none;
+			margin-bottom: -11px;
 		}
 
 		.blueprint {
 			background: 50% 50% / auto 100% no-repeat;
 			display: inline-block;
 			position: relative;
-			top: 13px;
+			top: 3px;
 			width: 300px;
 			height: 300px;
 			// filter: drop-shadow(0 0 9px #fff7);
