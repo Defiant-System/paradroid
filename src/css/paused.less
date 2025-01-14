@@ -7,8 +7,6 @@ content {
 		}
 
 		&[data-show="paused"].fade-in {
-			transition-delay: 900ms;
-
 			.paused-view {
 				
 			}
@@ -29,8 +27,8 @@ content {
 	right: 0;
 	bottom: 0;
 	z-index: 2;
-	opacity: 1;
-	visibility: visible;
+	opacity: 0;
+	visibility: hidden;
 	backdrop-filter: blur(2px) grayscale(1);
 
 	.dialog {

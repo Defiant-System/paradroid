@@ -27,10 +27,12 @@
 				el.toggleClass("paused", value);
 
 				if (Self.els.barRight.hasClass("paused") && !event.pause) {
+					Self.els.content.removeClass("paused");
 					Self.els.barRight.removeClass("paused");
 					// resume game
 					APP.mobile.dispatch({ type: "game-loop-resume" });
 				} else {
+					Self.els.content.addClass("paused");
 					Self.els.barRight.addClass("paused");
 					// pause game
 					APP.mobile.dispatch({ type: "game-loop-pause" });

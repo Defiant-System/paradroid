@@ -6,6 +6,7 @@
 		// fast references
 		this.els = {
 			content: window.find("content"),
+			el: window.find("briefing-view"),
 		};
 	},
 	dispatch(event) {
@@ -23,6 +24,9 @@
 					// animate / switch to view
 					APP.dispatch({ type: "switch-to-view", arg: "start" });
 				});
+				break;
+			case "show-controls":
+				Self.els.el.find(".page.controls").trigger("click");
 				break;
 			case "select-page":
 				el = $(event.target);
