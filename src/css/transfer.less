@@ -171,6 +171,31 @@ content {
 		}
 	}
 
+	.choose-side {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		text-align: center;
+
+		svg.text-choose {
+			top: 90px;
+			width: 360px;
+			display: inline-block;
+			font-size: 33px;
+
+			.svg-text__shaded__stroke {
+				stroke: #c68433;
+
+				.svg-text__stroke {
+					stroke: #fcbf42;
+				}
+			}
+		}
+	}
+
 	.finish {
 		display: none;
 		position: absolute;

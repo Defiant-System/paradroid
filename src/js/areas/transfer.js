@@ -95,8 +95,8 @@
 						group.removeClass("on joint-on");
 						// console.log(group);
 						group.find(".chip").removeClass("i1 i2 i3").addClass("joint");
-						group.find(`.socket.on`).removeClass("on").addClass("joint");
-						group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
+						// group.find(`.socket.on`).removeClass("on").addClass("joint");
+						// group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
 					});
 					// light up SVG group
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");

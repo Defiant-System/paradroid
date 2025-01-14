@@ -1,18 +1,18 @@
 
 <Data>
 	<CircuitBoard id="left">
+    <i row="3-repeater"/>
+    <i row="2-join-2-1"/>
+    <i row="2-join-2-2"/>
+    <i row="1-stump"/>
+    <i row="6-split-repeater-3-2"/>
+    <i row="1-stump"/>
+    <i row="2-join-2-1"/>
+    <i row="2-join-2-2"/>
+    <i row="purple"/>
     <i row="1-join-3-1"/>
     <i row="1-join-3-2"/>
     <i row="1-join-3-3"/>
-    <i />
-    <i />
-    <i row="1-join-3-1"/>
-    <i row="1-join-3-2"/>
-    <i row="1-join-3-3"/>
-    <i />
-    <i />
-    <i />
-    <i />
 </CircuitBoard>
 <CircuitBoard id="right">
     <i row="3-repeater"/>

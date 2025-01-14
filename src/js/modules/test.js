@@ -58,6 +58,7 @@ let Test = {
 
 		/*
 		 * TRANSFER View
+		 */
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
 		setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
@@ -68,8 +69,8 @@ let Test = {
 		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
 		// setTimeout(() => APP.transfer.chooseColor = true, 150);
 
-		// let el = APP.transfer.els.cbLeft.find(`.toggler`);
-		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 2 }), 150);
+		let el = APP.transfer.els.cbLeft.find(`.toggler`);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 2 }), 150);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 4 }), 350);
 		// return;
 
@@ -85,7 +86,6 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
-		 */
 
 
 		/*
