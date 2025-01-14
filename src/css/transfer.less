@@ -116,6 +116,18 @@ content {
 			}
 		}
 	}
+
+	&.paused {
+		.transfer-view {
+			.board {
+				.droid {
+					&:before {
+						animation-duration: 0s;
+					}
+				}
+			}
+		}
+	}
 }
 
 .transfer-view {

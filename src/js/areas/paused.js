@@ -11,11 +11,17 @@
 	dispatch(event) {
 		let APP = paradroid,
 			Self = APP.paused,
+			value,
 			el;
 		// console.log(event);
 		switch (event.type) {
 			// custom events
 			case "init-view":
+				break;
+			case "toggle-music":
+			case "toggle-sound-fx":
+				// forward event
+				APP.start.dispatch(event);
 				break;
 		}
 	}

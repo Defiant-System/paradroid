@@ -42,17 +42,19 @@
 				});
 				break;
 			case "toggle-music":
-				value = event.el.hasClass("off");
+				el = Self.els.content.find(`.bar[data-click="toggle-music"]`);
+				value = el.hasClass("off");
 				
 				// play/pause chiptune
 				if (value) window.audio.play("cydonian");
 				else window.audio.stop("cydonian");
 
-				event.el.toggleClass("off", value);
+				el.toggleClass("off", value);
 				break;
 			case "toggle-sound-fx":
-				value = event.el.hasClass("off");
-				event.el.toggleClass("off", value);
+				el = Self.els.content.find(`.bar[data-click="toggle-sound-fx"]`);
+				value = el.hasClass("off");
+				el.toggleClass("off", value);
 				break;
 		}
 	}
