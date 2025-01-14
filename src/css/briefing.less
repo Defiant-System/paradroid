@@ -118,7 +118,7 @@ content {
 				filter: drop-shadow(0 1px 0 hsl(174, 0%, 71%))
 						drop-shadow(0 2px 0 hsl(174, 0%, 69%))
 						drop-shadow(0 3px 0 hsl(174, 0%, 67%))
-						drop-shadow(0 4px 0 hsl(174, 0%, 65%))
+						// drop-shadow(0 4px 0 hsl(174, 0%, 65%))
 						drop-shadow(0 1px 0 rgba(#222, .2));
 			}
 
@@ -166,7 +166,7 @@ content {
 			}
 
 			&:nth-child(5) .icon {
-				background: url(~/icons/gamepad.png) 50% 17px no-repeat;
+				background: url(~/icons/gamepad.png) 1px 17px no-repeat;
 				background-size: 50px auto;
 			}
 
@@ -187,6 +187,7 @@ content {
 				.text {
 					opacity: 1;
 					top: 10px;
+					transition-duration: 300ms;
 					transition-delay: 400ms;
 				}
 			}
@@ -228,8 +229,9 @@ content {
 				text-shadow: 0 1px 0 #fff7;
 				width: 350px;
 				pointer-events: none;
-				transition: opacity 300ms ease-in-out,
-							top 300ms ease-in-out;
+				transition: opacity 80ms ease-in-out,
+							top 80ms ease-in-out;
+				transition-delay: 10ms;
 
 				p {
 					padding-bottom: 7px;
@@ -238,7 +240,11 @@ content {
 		}
 	}
 
-	.controls {
+	.page.controls {
+		// .text {
+		// 	pointer-events: all;
+		// }
+
 		.gamepad {
 			background: url(~/icons/gamepad-outline.png) 50% 50%/contain no-repeat;
 			position: absolute;
@@ -253,30 +259,105 @@ content {
 			position: absolute;
 			text-transform: uppercase;
 
+			&:before {
+				content: "";
+				position: absolute;
+				border-right: 1px solid #99ffcf;
+				border-bottom: 1px solid #99ffcf;
+				border-left: 1px solid #99ffcf;
+				filter: drop-shadow(0 0 3px #99ffcf);
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 5px;
+				left: -4px;
+				background: #99ffcf;
+				width: 3px;
+				height: 3px;
+				border-radius: 50%;
+			}
+
 			&.move {
 				top: 250px;
-				left: 40px;
+				left: 76px;
+
+				&:before {
+					top: -71px;
+					left: 39px;
+					width: 24px;
+					height: 77px;
+					border-left: 0;
+				}
+
+				&:after {
+					left: auto;
+					right: -4px;
+				}
 			}
 
 			&.aim {
 				top: 250px;
 				left: 230px;
+
+				&:before {
+					top: -71px;
+					left: -24px;
+					width: 19px;
+					height: 77px;
+					border-right: 0;
+				}
 			}
 
 			&.transfer {
-				top: 20px;
-				left: 153px;
+				top: 41px;
+				left: 53px;
+
+				&:before {
+					top: 7px;
+					left: -3px;
+					width: 177px;
+					height: 87px;
+					border-right: 0;
+				}
 			}
 
 			&.enter {
-				top: 30px;
+				top: 37px;
 				left: 294px;
+
+				&:before {
+					top: 7px;
+					left: -29px;
+					width: 26px;
+					height: 75px;
+					border-left: 0;
+				}
 			}
 
 			&.pause {
-				top: 31px;
-				left: 31px;
+				top: 20px;
+				left: 167px;
+
+				&:before {
+					top: 7px;
+					left: -3px;
+					width: 20px;
+					height: 94px;
+					border-right: 0;
+				}
 			}
+		}
+
+		.mouse {
+			background: url(~/icons/icon-mouse.png) 50% 50%/contain no-repeat;
+			position: absolute;
+			top: 280px;
+			left: 250px;
+			width: 22px;
+			height: 37px;
+			filter: drop-shadow(0 1px 0 #fff);
 		}
 
 		span.key {
@@ -293,18 +374,18 @@ content {
 			&.right { top: 24px; left: 52px; }
 
 			&.pause {
-				top: 27px;
-				left: 2px;
+				top: 16px;
+				left: 137px;
 			}
 
 			&.shift {
-				top: 16px;
-				left: 102px;
+				top: 37px;
+				left: 0px;
 				width: 47px;
 			}
 			
 			&.enter {
-				top: 27px;
+				top: 34px;
 				left: 237px;
 				width: 51px;
 			}
