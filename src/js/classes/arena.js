@@ -69,6 +69,8 @@ class Arena {
 				{ id: "digits",   width: 140, height: 16, src: "~/icons/droid-digits.png" },
 				{ id: "electric", width: 45, height: 45, src: "~/icons/electric.png" },
 				{ id: "explosion",width: 64, height: 64, src: "~/icons/explosion.png" },
+				{ id: "crosshair-1",width: 48, height: 48, src: "~/icons/crosshair-1.png" },
+				{ id: "crosshair-2",width: 48, height: 48, src: "~/icons/crosshair-2.png" },
 				{ id: "mist",     width: 30, height: 30, oX: 15, oY: 15, src: "~/icons/mist.png" },
 				{ id: "laser",    width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/laser.png" },
 				{ id: "phaser",   width: 96, height: 96, oX: 48, oY: 48, src: "~/icons/phaser.png" },
