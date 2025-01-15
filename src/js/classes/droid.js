@@ -166,6 +166,8 @@ class Droid {
 		if (cfg.arena.player.health < 1) {
 			this.fire.shooting = false;
 		}
+		// play sound fx
+		window.audio.play("sonic");
 
 		// weapons and implementations
 		switch (this.fire.name) {

@@ -3,6 +3,9 @@
 	<i id="tune-2" url="/cdn/audio/mp3/droid-tune-2.mp3"/>
 	<i id="tune-3" url="/cdn/audio/mp3/droid-tune-3.mp3"/>
 	<i id="tune-4" url="/cdn/audio/mp3/droid-tune-4.mp3"/>
+	<i id="confirm" url="~/sounds/confirm.mp3"/>
 	<i id="swipe" url="~/sounds/swipe.mp3"/>
 	<i id="click" url="~/sounds/click.mp3"/>
+	<i id="sonic" url="~/sounds/sonic.mp3"/>
+	<i id="clear" url="~/sounds/clear.mp3"/>
 </Sounds>

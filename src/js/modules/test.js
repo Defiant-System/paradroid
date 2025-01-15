@@ -38,10 +38,10 @@ let Test = {
 		
 		/*
 		 * START View
-		 */
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
 		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
 		return;
+		 */
 
 		
 		/*
@@ -58,7 +58,6 @@ let Test = {
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.mobile.arena = {
 			player: {
 				id: "001",
@@ -93,6 +92,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
@@ -159,7 +159,7 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 500);
+			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 
 			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 1500);

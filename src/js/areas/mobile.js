@@ -77,15 +77,16 @@
 								});
 								break;
 							case "console":
+								// play sound fx
+								window.audio.play("confirm");
+
 								APP.dispatch({
 									type: "switch-to-view",
 									arg: "console",
-									done: () => {
-										// pause game loop
-										Self.dispatch({ type: "game-loop-pause" });
-										// initiate console view post animation transition
-										APP.console.dispatch({ type: "init-view" });
-									}
+									// done: () => {
+									// 	// pause game loop
+									// 	Self.dispatch({ type: "game-loop-pause" });
+									// }
 								});
 								break;
 						}
@@ -254,6 +255,8 @@
 				value = !!Self.arena.led.floor ? 0 : 1;
 				if (event.off) value = 1;
 				name = value ? "lights-off" : "lights-on";
+				// play sound fx
+				window.audio.play("clear");
 
 				let animDone = () => {
 						// reset element

@@ -82,7 +82,7 @@
 				// prepare console view
 				value = APP.mobile.arena.player.id;
 				// update left side menu; first option icon
-				Self.els.el.find(`.menu .option .droid`).data({ id: value });
+				Self.els.el.find(`.console-menu .option .droid`).data({ id: value });
 				// default blueprint; set to active player droid ID
 				Self.dispatch({ type: "show-droid", value });
 				// toggle if player droid
@@ -127,8 +127,8 @@
 				Self.els.info.find(".speed").html(xNode.getAttribute("speed") +" M/S");
 				Self.els.info.find(".notes").html(xNode.selectSingleNode(`./i[@id="notes"]`).textContent);
 				// update left side menu; second option - active droid ID
-				Self.els.el.find(`.menu .sub span.active`).removeClass("active");
-				Self.els.el.find(`.menu .sub span:contains("${event.value}")`).addClass("active");
+				Self.els.el.find(`.console-menu .sub span.active`).removeClass("active");
+				Self.els.el.find(`.console-menu .sub span:contains("${event.value}")`).addClass("active");
 				// toggle if player droid
 				value = APP.mobile.arena.player.id === event.value;
 				Self.els.el.find(".player-droid").toggleClass("hidden", value);

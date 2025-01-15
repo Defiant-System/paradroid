@@ -142,12 +142,6 @@ const paradroid = {
 						break;
 				}
 				break;
-			case "play-song":
-				window.audio.play(event.arg);
-				break;
-			case "stop-song":
-				window.audio.stop(event.arg);
-				break;
 			// proxy event
 			case "toggle-lights":
 				return Self.mobile.dispatch(event);
