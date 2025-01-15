@@ -8,6 +8,8 @@
 			content: window.find("content"),
 			el: window.find("content .start-view"),
 		};
+		// music info
+		this.tune = { name: "tune-1" };
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -48,26 +50,30 @@
 			case "toggle-music":
 				el = Self.els.content.find(`.bar[data-click="toggle-music"]`);
 				value = el.hasClass("off");
-				
-				if (!Self.song) {
-					let opt = {
-						onend: e => {
-							// turn "off" button
-							Self.els.content.find(`.bar[data-click="toggle-music"]`).addClass("off");
-							// reset reference
-							delete Self.song;
-						}
-					};
-					window.audio.play("tune-1", opt).then(song => Self.song = song);
-				} else {
-					Self.song.stop();
-					delete Self.song;
-				}
-
+				el.toggleClass("off", value);
 				// play sound fx
 				window.audio.play("click");
+				
+				if (!Self.tune.song) {
+					let opt = {
+							onend: e => {
+								if (!Self.tune.song) return;
 
-				el.toggleClass("off", value);
+								let [a, b] = Self.tune.name.split("-");
+								b = (+b) + 1;
+								// next tune
+								if (b > 4) b = 1;
+								Self.tune.name = "tune-"+ b;
+								// play next song
+								playSong();
+							}
+						},
+						playSong = () => window.audio.play(Self.tune.name, opt).then(song => Self.tune.song = song);
+					playSong();
+				} else {
+					Self.tune.song.stop();
+					delete Self.tune.song;
+				}
 				break;
 			case "toggle-sound-fx":
 				el = Self.els.content.find(`.bar[data-click="toggle-sound-fx"]`);

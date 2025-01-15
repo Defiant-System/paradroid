@@ -35,6 +35,8 @@
 				if (!el.hasClass("page") || el.hasClass("active")) return;
 				event.el.find(".active").removeClass("active");
 				el.addClass("active");
+				// play sound fx
+				window.audio.play("swipe");
 				break;
 		}
 	}
