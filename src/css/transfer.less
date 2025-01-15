@@ -136,6 +136,8 @@ content {
 	background: radial-gradient(ellipse at top center, #028ceb99, transparent),
 				linear-gradient(180deg, #018fed, #003d92);
 	border-radius: 5px;
+	min-height: 0px;
+	transition: min-height 2220ms ease-in-out;
 
 	&:before {
 		content: "";
@@ -171,7 +173,18 @@ content {
 		}
 	}
 
+	&.choose-side-title {
+		min-height: 2px;
+		transition-duration: 2500ms;
+
+		.choose-side {
+			display: block;
+			animation: show-hide-text 2500ms forwards;
+		}
+	}
+
 	.choose-side {
+		display: none;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -1071,6 +1084,13 @@ content {
 			}
 		}
 	}
+}
+
+@keyframes show-hide-text {
+	0%   { opacity: 0; transform: translateY(35px); }
+	35%  { opacity: 1; transform: translateY(0px); }
+	80%  { opacity: 1; transform: translateY(0px); }
+	100% { opacity: 0; transform: translateY(35px); }
 }
 
 @keyframes yellow-stream {

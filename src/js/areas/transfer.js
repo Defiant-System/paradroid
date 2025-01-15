@@ -79,7 +79,8 @@
 				break;
 			// custom events
 			case "init-view":
-				Self.dispatch({ type: "render-schemas" });
+				// Self.dispatch({ type: "render-schemas" });
+				Self.dispatch({ type: "new-hacking-game" });
 				break;
 			case "toggle-io-row":
 				el = event.el;
@@ -191,7 +192,7 @@
 					// for debug / dev
 					value = [];
 					window.bluePrint.selectNodes(`//CircuitBoard`).map(x => value.push(x.xml));
-					console.log(value.join("\n"));
+					// console.log(value.join("\n"));
 				}
 				break;
 			case "render-schemas":
@@ -258,11 +259,16 @@
 			case "new-hacking-game":
 				// generate circuit board
 				Self.dispatch({ type: "generate-schemas" });
-				// choose color flag
-				Self.chooseColor = true;
-				// start timer
-				callback = () => Self.dispatch({ type: "start-hacking" });
-				APP.hud.dispatch({ type: "choose-color", callback });
+				// show "choose side" text
+				Self.els.el.cssSequence("choose-side-title", "transitionend", el => {
+					// reset element
+					el.removeClass("choose-side");
+					// choose color flag
+					Self.chooseColor = true;
+					// start timer
+					callback = () => Self.dispatch({ type: "start-hacking" });
+					APP.hud.dispatch({ type: "choose-color", callback });
+				});
 				break;
 			case "start-hacking":
 				// start hacking game

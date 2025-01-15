@@ -17,6 +17,8 @@
 		switch (event.type) {
 			// custom events
 			case "goto-start":
+				// play sound fx
+				window.audio.play("click");
 				// reset css/view
 				Self.els.content.cssSequence("leave", "transitionend", el => {
 					// reset element

@@ -85,8 +85,6 @@ const paradroid = {
 				break;
 			case "switch-to-view":
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
-				// init view in the background
-				Self[event.arg].dispatch({ type: "init-view" });
 				// reset css/view
 				Self.els.content.cssSequence("fade-out", "transitionend", el => {
 					// fade in view
@@ -95,6 +93,8 @@ const paradroid = {
 							el.removeClass("fade-out fade-in");
 							// remove "no-anim" flag
 							Self.els.content.removeAttr("data-anim");
+							// init view in the background
+							Self[event.arg].dispatch({ type: "init-view" });
 							// callback
 							if (event.done) event.done();
 						});

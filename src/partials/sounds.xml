@@ -1,10 +1,4 @@
 <Sounds>
-	<i id="mech8" url="/cdn/audio/chiptune/mech8.s3m"/>
-	<i id="ninja" url="/cdn/audio/chiptune/return_of_the_ninja.xm"/>
-	<i id="turican" url="/cdn/audio/chiptune/turicanii.mod"/>
-	<i id="cydonian" url="~/sounds/cydonian_sky.xm"/>
-	<!-- <i id="lift-enter" url="~/sounds/lift-enter.mp3"/>
-	<i id="lift-move" url="~/sounds/lift-move.mp3"/>
-	<i id="moving" url="~/sounds/moving.mp3"/>
-	<i id="electric" url="~/sounds/electric.mp3"/> -->
+	<i id="tune-1" url="/cdn/audio/mp3/droid-tune-1.mp3"/>
+	<i id="click" url="~/sounds/click.mp3"/>
 </Sounds>

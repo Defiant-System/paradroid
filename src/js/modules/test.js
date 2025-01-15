@@ -38,10 +38,10 @@ let Test = {
 		
 		/*
 		 * START View
+		 */
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
 		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
 		return;
-		 */
 
 		
 		/*
@@ -59,8 +59,15 @@ let Test = {
 		/*
 		 * TRANSFER View
 		 */
+		APP.mobile.arena = {
+			player: {
+				id: "001",
+				opponent: { id: "249" }
+			}
+		};
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
-		setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
+		return;
+		// setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
