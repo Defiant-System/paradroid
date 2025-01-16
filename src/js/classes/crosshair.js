@@ -18,7 +18,7 @@ class Crosshair {
 	}
 
 	follow(event) {
-		if (!event.target.classList.contains("game")) return;
+		// if (!event.target.classList.contains("game")) return;
 		this.target = {
 			x: event.offsetX,
 			y: event.offsetY,

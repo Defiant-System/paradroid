@@ -13,7 +13,7 @@
 		// create arena
 		this.arena = new Arena(this.els.cvs);
 		// bind event handlers
-		this.els.cvs.on("mousedown", this.doFire);
+		this.els.cvs.on("mousedown mousemove", this.doFire);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -325,22 +325,27 @@
 				// auto trigger "mousemove"
 				Self.doFire({ type: "mousemove", clientX: event.clientX, clientY: event.clientY });
 				// cover app window
-				APP.els.content.addClass("cover");
+				// APP.els.content.addClass("cover");
 				// bind event handlers
 				Self.fire.doc.on("mousemove mouseup", Self.doFire);
 				break;
 			case "mousemove":
-				let x = event.clientX - Fire.click.x,
-					y = event.clientY - Fire.click.y;
-				Fire.player.setDirection(x, y);
+				if (Fire) {
+					let x = event.clientX - Fire.click.x,
+						y = event.clientY - Fire.click.y;
+					Fire.player.setDirection(x, y);
+				}
+				Self.arena.player.crosshair.follow(event);
 				break;
 			case "mouseup":
 				// shooting flag
 				Fire.player.fire.shooting = false;
 				// cover app window
-				APP.els.content.removeClass("cover");
+				// APP.els.content.removeClass("cover");
 				// bind event handlers
-				Self.fire.doc.off("mousemove mouseup", Self.doFire);
+				Fire.doc.off("mousemove mouseup", Self.doFire);
+				// reset fire object
+				delete Self.fire;
 				break;
 		}
 	}

@@ -89,18 +89,18 @@ class Player extends Droid {
 		super.spawn(cfg);
 	}
 
-	setId(id) {
-		super.setId(id);
+	// setId(id) {
+	// 	super.setId(id);
 
-		if (this.crosshair) {
-			let fn = this.crosshair.follow.bind(this.crosshair);
-			if (this.fire.name === "exterminator") {
-				this.APP.mobile.els.el.on("mousemove", fn);
-			} else {
-				this.APP.mobile.els.el.off("mousemove", fn);
-			}
-		}
-	}
+	// 	if (this.crosshair) {
+	// 		let fn = this.crosshair.follow.bind(this.crosshair);
+	// 		if (this.fire.name === "exterminator") {
+	// 			this.APP.mobile.els.el.on("mousemove", fn);
+	// 		} else {
+	// 			this.APP.mobile.els.el.off("mousemove", fn);
+	// 		}
+	// 	}
+	// }
 
 	update(delta, time) {
 		// USER input
@@ -185,9 +185,9 @@ class Player extends Droid {
 			ctx.restore();
 		}
 
-		if (this.fire.name === "exterminator") {
+		// if (this.fire.name === "exterminator") {
 			// update crosshair
 			this.crosshair.render(ctx);
-		}
+		// }
 	}
 }
