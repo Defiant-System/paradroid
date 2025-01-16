@@ -29,6 +29,9 @@ class Player extends Droid {
 		// update label
 		this.body.label = "player";
 
+		// add crosshair
+		this.crossHair = new Crosshair(cfg);
+
 		this.input = {
 			up:    { pressed: false, force: { x: 0, y: -1 } },
 			left:  { pressed: false, force: { x: -1, y: 0 } },
@@ -127,6 +130,9 @@ class Player extends Droid {
 			});
 		}
 
+		// update crosshair
+		this.crossHair.update(delta, time);
+
 		super.update(delta);
 	}
 
@@ -165,5 +171,8 @@ class Player extends Droid {
 			});
 			ctx.restore();
 		}
+
+		// update crosshair
+		this.crossHair.render(ctx);
 	}
 }

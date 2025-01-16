@@ -5,6 +5,7 @@
 @import "./classes/point.js"
 @import "./classes/droid.js"
 @import "./classes/player.js"
+@import "./classes/crosshair.js"
 @import "./classes/recharge.js"
 @import "./classes/door.js"
 @import "./classes/exit.js"
