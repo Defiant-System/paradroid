@@ -1,10 +1,10 @@
 
-<Weapon id="laser" coolDown="150" damage="5">
+<Weapon id="laser" coolDown="150" damage="8">
 	<i id="title"><![CDATA[Small Laser]]></i>
 	<i id="notes"><![CDATA[This is the influencers laser shot.]]></i>
 </Weapon>
 
-<Weapon id="phaser" coolDown="200" damage="10">
+<Weapon id="phaser" coolDown="200" damage="11">
 	<i id="title"><![CDATA[Double Phaser]]></i>
 	<i id="notes"><![CDATA[This is the 476 standard shot.]]></i>
 </Weapon>
@@ -24,7 +24,7 @@
 	<i id="notes"><![CDATA[This is the exterminator, the 883 uses.]]></i>
 </Weapon>
 
-<Weapon id="sonic" coolDown="500" damage="20">
+<Weapon id="sonic" coolDown="500" damage="15">
 	<i id="title"><![CDATA[Sonic Rifle]]></i>
 	<i id="notes"><![CDATA[This is the sonic rifle of the 614.]]></i>
 </Weapon>

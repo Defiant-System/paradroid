@@ -8,7 +8,7 @@ class Crosshair {
 		this.y = y || 0;
 		this.rotation = 0;
 		this.angle = Math.PI / 180;
-		this.target = { x: 0, y: 0 };
+		this.target = { x: 0, y: 0, visible: false };
 
 		// crosshair sprite
 		this.sprites = {
@@ -18,8 +18,9 @@ class Crosshair {
 	}
 
 	follow(event) {
-		// if (!event.target.classList.contains("game")) return;
+		let visible = event.target && event.target.classList.contains("game");
 		this.target = {
+			visible,
 			x: event.offsetX,
 			y: event.offsetY,
 		};
@@ -34,12 +35,14 @@ class Crosshair {
 			pX = this.target.x,
 			pY = this.target.y;
 
-		ctx.save();
-		ctx.translate(pX, pY);
-		ctx.drawImage(this.sprites.outer, -24, -24);
+		if (this.target.visible) {
+			ctx.save();
+			ctx.translate(pX, pY);
+			ctx.drawImage(this.sprites.outer, -24, -24);
 
-		ctx.rotate(this.rotation * this.angle);
-		ctx.drawImage(this.sprites.inner, -24, -24);
-		ctx.restore();
+			ctx.rotate(this.rotation * this.angle);
+			ctx.drawImage(this.sprites.inner, -24, -24);
+			ctx.restore();
+		}
 	}
 }

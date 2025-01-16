@@ -13,7 +13,7 @@
 		// create arena
 		this.arena = new Arena(this.els.cvs);
 		// bind event handlers
-		this.els.cvs.on("mousedown mousemove", this.doFire);
+		this.els.el.on("mousedown mousemove", this.doFire);
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -335,7 +335,9 @@
 						y = event.clientY - Fire.click.y;
 					Fire.player.setDirection(x, y);
 				}
-				Self.arena.player.crosshair.follow(event);
+				if (event.target) {
+					Self.arena.player.crosshair.follow(event);
+				}
 				break;
 			case "mouseup":
 				// shooting flag
