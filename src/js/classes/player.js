@@ -30,7 +30,7 @@ class Player extends Droid {
 		this.body.label = "player";
 
 		// add crosshair
-		this.crossHair = new Crosshair(cfg);
+		this.crosshair = new Crosshair(cfg);
 
 		this.input = {
 			up:    { pressed: false, force: { x: 0, y: -1 } },
@@ -89,6 +89,19 @@ class Player extends Droid {
 		super.spawn(cfg);
 	}
 
+	setId(id) {
+		super.setId(id);
+
+		if (this.crosshair) {
+			let fn = this.crosshair.follow.bind(this.crosshair);
+			if (this.fire.name === "exterminator") {
+				this.APP.mobile.els.el.on("mousemove", fn);
+			} else {
+				this.APP.mobile.els.el.off("mousemove", fn);
+			}
+		}
+	}
+
 	update(delta, time) {
 		// USER input
 		let force = { x: 0, y: 0 };
@@ -131,7 +144,7 @@ class Player extends Droid {
 		}
 
 		// update crosshair
-		this.crossHair.update(delta, time);
+		this.crosshair.update(delta, time);
 
 		super.update(delta);
 	}
@@ -172,7 +185,9 @@ class Player extends Droid {
 			ctx.restore();
 		}
 
-		// update crosshair
-		this.crossHair.render(ctx);
+		if (this.fire.name === "exterminator") {
+			// update crosshair
+			this.crosshair.render(ctx);
+		}
 	}
 }

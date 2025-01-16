@@ -274,12 +274,7 @@ class Droid {
 		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
-		if (this.isPlayer) {
-			if (this.fire.name === "disruptor") {
-				// make white version of electric halo asset
-				// this.electric.asset = this.assetToWhite(this.arena.assets["electric"].img);
-			}
-		} else {
+		if (!this.isPlayer) {
 			let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
 				value = +xDroid.getAttribute("aggression"),
 				segSize = 100 / strategy.length,
