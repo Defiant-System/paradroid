@@ -331,6 +331,8 @@
 					if (winner === "deadlock") {
 						// show "choose side" text
 						Self.els.el.cssSequence("deadlock-title", "transitionend", el => {
+							// reset view
+							el.removeClass("deadlock-title finished finish-deadlock");
 							// start hacking game
 							Self.dispatch({ type: "new-hacking-game" });
 						});
