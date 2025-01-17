@@ -1,8 +1,9 @@
 
-<!-- transfer view -->
-<div class="transfer-view finished1 hidden" data-area="transfer" data-name="Transfer">
+<!-- transfer view [ finish-win finish-loose deadlock-title hidden ] -->
+<div class="transfer-view hidden" data-area="transfer" data-name="Transfer">
 
-	<div class="finish success1 failure1" data-id="999">
+	<!-- transfer SUCCESS -->
+	<div class="finish-success" data-id="999">
 		<svg class="text-success" viewBox="0 0 130 60" xmlns:xlink="http://www.w3.org/1999/xlink">
 			<g class="svg-text__shaded__stroke">
 				<use y="5%" xlink:href="#stroke-success" opacity="0.5" filter="url(#drop-stroke-shadow)"></use>
@@ -23,7 +24,12 @@
 				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-success" fill="url(#text_fill)"></use>
 			</g>
 		</svg>
+		<h3>You have hacked droid <span class="droid-id"></span></h3>
+		<div class="blueprint"></div>
+	</div>
 
+	<!-- transfer FAIL -->
+	<div class="finish-failure" data-id="999">
 		<svg class="text-failure" viewBox="0 0 130 60" xmlns:xlink="http://www.w3.org/1999/xlink">
 			<g class="svg-text__shaded__stroke">
 				<use y="5%" xlink:href="#stroke-failure" opacity="0.5" filter="url(#drop-stroke-shadow)"></use>
@@ -32,7 +38,7 @@
 				<use y="1%" xlink:href="#stroke-failure"></use>
 				<use class="svg-text__stroke" xlink:href="#stroke-failure"></use>
 			</g>
-			<g fill="#d4d4d4">
+			<g class="svg-text__shaded__fg">
 				<use class="svg-text__shaded" y="7%" xlink:href="#fill-failure"></use>
 				<use y="6.5%" xlink:href="#fill-failure"></use>
 				<use y="6%" xlink:href="#fill-failure"></use>
@@ -41,12 +47,33 @@
 				<use y="4.5%" xlink:href="#fill-failure"></use>
 				<use y="4%" xlink:href="#fill-failure"></use>
 				<use y="3.5%" xlink:href="#fill-failure"></use>
-				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-failure" fill="url(#text_fill)"></use>
+				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-failure"></use>
 			</g>
 		</svg>
+		<h3>You failed to hack droid <span class="droid-id"></span></h3>
+	</div>
 
-		<h3>You have hacked droid <span class="droid-id"></span></h3>
-		<div class="blueprint"></div>
+	<div class="deadlock">
+		<svg class="text-deadlock" viewBox="0 0 160 70" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<g class="svg-text__shaded__stroke">
+				<use y="5%" xlink:href="#stroke-deadlock" opacity="0.5" filter="url(#drop-stroke-shadow)"></use>
+				<use y="3%" xlink:href="#stroke-deadlock"></use>
+				<use y="2%" xlink:href="#stroke-deadlock"></use>
+				<use y="1%" xlink:href="#stroke-deadlock"></use>
+				<use class="svg-text__stroke" xlink:href="#stroke-deadlock"></use>
+			</g>
+			<g fill="#d4d4d4">
+				<use class="svg-text__shaded" y="7%" xlink:href="#fill-deadlock"></use>
+				<use y="6.5%" xlink:href="#fill-deadlock"></use>
+				<use y="6%" xlink:href="#fill-deadlock"></use>
+				<use y="5.5%" xlink:href="#fill-deadlock"></use>
+				<use y="5%" xlink:href="#fill-deadlock"></use>
+				<use y="4.5%" xlink:href="#fill-deadlock"></use>
+				<use y="4%" xlink:href="#fill-deadlock"></use>
+				<use y="3.5%" xlink:href="#fill-deadlock"></use>
+				<use class="svg-text-top-hl" y="3%" xlink:href="#fill-deadlock" fill="url(#text_fill)"></use>
+			</g>
+		</svg>
 	</div>
 
 	<div class="choose-side">

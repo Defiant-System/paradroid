@@ -163,8 +163,18 @@ content {
 		pointer-events: none;
 	}
 
-	&.finished {
-		.finish {
+	&.finish-win {
+		.finish-success {
+			display: block;
+		}
+
+		.board {
+			display: none;
+		}
+	}
+
+	&.finish-loose {
+		.finish-failure {
 			display: block;
 		}
 
@@ -205,6 +215,45 @@ content {
 
 			svg {
 				animation: show-hide-text 2500ms forwards;
+			}
+		}
+	}
+
+	&.deadlock-title {
+		min-height: 2px;
+		transition-duration: 2500ms;
+
+		.deadlock {
+			display: block;
+
+			svg {
+				animation: show-hide-text 2500ms forwards;
+			}
+		}
+	}
+
+	.deadlock {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		text-align: center;
+
+		svg.text-deadlock {
+			top: 90px;
+			width: 360px;
+			display: inline-block;
+			font-size: 33px;
+
+			.svg-text__shaded__stroke {
+				stroke: #959595;
+
+				.svg-text__stroke {
+					stroke: #bdbdbd;
+				}
 			}
 		}
 	}
@@ -261,7 +310,75 @@ content {
 		}
 	}
 
-	.finish {
+	.finish-failure {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		color: #fff;
+		text-shadow: 0 1px 1px rgba(#000,.25);
+		text-align: center;
+		font-family: "ParaDrew";
+
+		svg.text-failure {
+			display: inline-block;
+			left: auto;
+			text-shadow: none;
+			margin: 53px 0 3px;
+
+			.svg-text__shaded__stroke {
+				stroke: #adadad;
+
+				.svg-text__stroke {
+					stroke: #eee;
+				}
+			}
+
+			.svg-text__shaded__fg {
+				fill: #ff8e00;
+
+				.svg-text-top-hl {
+					fill: #ffc12f;
+					text-shadow: 0 -1px 1px #ffe3a2;
+				}
+			}
+		}
+
+		h3 {
+			font-size: 29px;
+			margin-bottom: -11px;
+		}
+
+		&[data-id="001"] { span.droid-id:before { content: "001"; } }
+		&[data-id="123"] { span.droid-id:before { content: "123"; } }
+		&[data-id="139"] { span.droid-id:before { content: "139"; } }
+		&[data-id="247"] { span.droid-id:before { content: "247"; } }
+		&[data-id="249"] { span.droid-id:before { content: "249"; } }
+		&[data-id="296"] { span.droid-id:before { content: "296"; } }
+		&[data-id="302"] { span.droid-id:before { content: "302"; } }
+		&[data-id="329"] { span.droid-id:before { content: "329"; } }
+		&[data-id="420"] { span.droid-id:before { content: "420"; } }
+		&[data-id="476"] { span.droid-id:before { content: "476"; } }
+		&[data-id="493"] { span.droid-id:before { content: "493"; } }
+		&[data-id="516"] { span.droid-id:before { content: "516"; } }
+		&[data-id="571"] { span.droid-id:before { content: "571"; } }
+		&[data-id="598"] { span.droid-id:before { content: "598"; } }
+		&[data-id="614"] { span.droid-id:before { content: "614"; } }
+		&[data-id="615"] { span.droid-id:before { content: "615"; } }
+		&[data-id="629"] { span.droid-id:before { content: "629"; } }
+		&[data-id="711"] { span.droid-id:before { content: "711"; } }
+		&[data-id="737"] { span.droid-id:before { content: "737"; } }
+		&[data-id="742"] { span.droid-id:before { content: "742"; } }
+		&[data-id="751"] { span.droid-id:before { content: "751"; } }
+		&[data-id="821"] { span.droid-id:before { content: "821"; } }
+		&[data-id="834"] { span.droid-id:before { content: "834"; } }
+		&[data-id="883"] { span.droid-id:before { content: "883"; } }
+		&[data-id="999"] { span.droid-id:before { content: "999"; } }
+	}
+
+	.finish-success {
 		display: none;
 		position: absolute;
 		top: 0;
@@ -299,39 +416,19 @@ content {
 		&[data-id="883"] { span.droid-id:before { content: "883"; } .blueprint { background-image: url(~/icons/bp-883.png); } }
 		&[data-id="999"] { span.droid-id:before { content: "999"; } .blueprint { background-image: url(~/icons/bp-999.png); } }
 
-		&.success {
-			svg.text-success {
-				display: inline-block;
-
-				.svg-text__shaded__stroke {
-					stroke: #00ae01;
-
-					.svg-text__stroke {
-						stroke: #50f14a;
-					}
-				}
-			}
-		}
-
-		&.failure {
-			svg.text-failure {
-				display: inline-block;
-
-				.svg-text__shaded__stroke {
-					stroke: #c68433;
-
-					.svg-text__stroke {
-						stroke: #fcbf42;
-					}
-				}
-			}
-		}
-
-		svg.text-success,
-		svg.text-failure {
-			display: none;
+		svg.text-success {
+			display: inline-block;
+			left: auto;
 			text-shadow: none;
 			margin-bottom: -23px;
+
+			.svg-text__shaded__stroke {
+				stroke: #00ae01;
+
+				.svg-text__stroke {
+					stroke: #50f14a;
+				}
+			}
 		}
 
 		h3 {
