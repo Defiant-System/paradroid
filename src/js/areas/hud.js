@@ -82,6 +82,9 @@
 				// all droids killed - turn off lights
 				if (event.level === 0) APP.mobile.dispatch({ type: "toggle-lights", off: true });
 				break;
+			case "start-hacking-game":
+				Self.els.barLeft.removeClass("color-timer choose-color").addClass("end-color-timer");
+				break;
 			case "choose-color":
 				Self.els.barLeft
 					.addClass("choose-color")
@@ -101,8 +104,8 @@
 				// reset hud
 				Self.els.barLeft
 					.removeClass("choose-color color-timer hacking-game hack-timer")
-					.cssSequence("reset", "transitionend", el => {
-						el.removeClass("reset");
+					.cssSequence("reset-bar", "transitionend", el => {
+						el.removeClass("reset-bar end-color-timer");
 						event.callback();
 					});
 				break;

@@ -16,8 +16,19 @@
 		flex: 1;
 		min-height: 0px;
 
-		&.reset {
+		&.end-color-timer {
+			--timer: 10ms;
+			transition: min-height var( --timer ) linear;
+
+			.bar .box {
+				--val: 100%;
+				--power-dur: var( --timer );
+			}
+		}
+
+		&.reset-bar {
 			--timer: 60ms;
+			min-height: 3px;
 			transition: min-height var( --timer ) linear;
 
 			.bar .box {
@@ -41,7 +52,6 @@
 				--val: 0%;
 			}
 		}
-
 
 		&.color-timer {
 			--timer: 9s;

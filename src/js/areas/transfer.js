@@ -54,7 +54,7 @@
 						break;
 					case "space":
 					case "return":
-						if (Self.chooseColor) Self.dispatch({ type: "start-hacking" });
+						if (Self.chooseColor) APP.hud.dispatch({ type: "start-hacking-game" });
 						else Self.dispatch({ type: "toggle-io-row", el, index });
 						break;
 					case "a":
@@ -277,14 +277,18 @@
 				});
 				break;
 			case "start-hacking":
+				if (Self.gameEnded) return;
+
+				APP.hud.els.barLeft.removeClass("end-color-timer");
+
 				// reset player droid
 				Self.els.el.removeClass("show-gloria");
 				// start hacking game
 				delete Self.chooseColor;
-				// reset hud box
-				callback = () => {
-					// show "choose side" text
-					Self.els.el.cssSequence("get-ready-title", "transitionend", el => {
+				// show "choose side" text
+				Self.els.el.cssSequence("get-ready-title", "transitionend", el => {
+					// reset hud box
+					callback = () => {
 						// reset element
 						el.removeClass("get-ready-title");
 
@@ -295,11 +299,15 @@
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
 						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
-					});
-				};
-				APP.hud.dispatch({ type: "reset-choose-color", callback });
+					};
+					APP.hud.dispatch({ type: "reset-choose-color", callback });
+				});
 				break;
 			case "finish-hacking":
+				// game ended
+				Self.gameEnded = true;
+				return console.log("asses winner");
+				// asses winner
 				callback = () => {
 					Self.els.el.addClass("success");
 					value = Self.els.board.find(".droid:not(.player)").data("id");
