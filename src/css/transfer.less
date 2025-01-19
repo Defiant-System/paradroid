@@ -187,6 +187,8 @@ content {
 		min-height: 3px;
 		transition-duration: 2500ms;
 
+		.io .toggler { display: none; }
+
 		.choose-side {
 			display: block;
 
@@ -210,6 +212,8 @@ content {
 		min-height: 2px;
 		transition-duration: 2500ms;
 
+		.io .toggler { display: none; }
+
 		.get-ready {
 			display: block;
 
@@ -222,6 +226,8 @@ content {
 	&.deadlock-title {
 		min-height: 2px;
 		transition-duration: 2500ms;
+
+		.io .toggler { display: none; }
 
 		.deadlock {
 			display: block;
@@ -241,6 +247,18 @@ content {
 		bottom: 0;
 		z-index: 2;
 		text-align: center;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 5px;
+			backdrop-filter: blur(3px);
+			filter: grayscale(1) brightness(1.25);
+		}
 
 		svg.text-deadlock {
 			top: 90px;
@@ -268,6 +286,18 @@ content {
 		z-index: 2;
 		text-align: center;
 
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 5px;
+			backdrop-filter: blur(3px);
+			filter: grayscale(1) brightness(1.25);
+		}
+
 		svg.text-choose {
 			top: 90px;
 			width: 360px;
@@ -293,6 +323,18 @@ content {
 		bottom: 0;
 		z-index: 2;
 		text-align: center;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 5px;
+			backdrop-filter: blur(3px);
+			filter: grayscale(1) brightness(1.25);
+		}
 
 		svg.text-get-ready {
 			top: 90px;
@@ -322,6 +364,18 @@ content {
 		text-align: center;
 		font-family: "ParaDrew";
 
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 5px;
+			backdrop-filter: blur(3px);
+			filter: grayscale(1) brightness(1.25);
+		}
+
 		svg.text-failure {
 			display: inline-block;
 			left: auto;
@@ -337,16 +391,18 @@ content {
 			}
 
 			.svg-text__shaded__fg {
-				fill: #ff8e00;
+				fill: #ff6666;
 
 				.svg-text-top-hl {
-					fill: #ffc12f;
-					text-shadow: 0 -1px 1px #ffe3a2;
+					fill: #ff8a8a;
+					text-shadow: 0 -1px 1px #ffa2a2;
 				}
 			}
 		}
 
 		h3 {
+			position: relative;
+			z-index: 2;
 			font-size: 29px;
 			margin-bottom: -11px;
 		}
@@ -860,7 +916,28 @@ content {
 					&[data-left="9"] > div:nth-child(7),
 					&[data-left="9"] > div:nth-child(8),
 					&[data-left="9"] > div:nth-child(9) { display: block; }
-					&[data-left="10"] > div { display: block; }
+					&[data-left="10"] > div:nth-child(1),
+					&[data-left="10"] > div:nth-child(2),
+					&[data-left="10"] > div:nth-child(3),
+					&[data-left="10"] > div:nth-child(4),
+					&[data-left="10"] > div:nth-child(5),
+					&[data-left="10"] > div:nth-child(6),
+					&[data-left="10"] > div:nth-child(7),
+					&[data-left="10"] > div:nth-child(8),
+					&[data-left="10"] > div:nth-child(9),
+					&[data-left="10"] > div:nth-child(10) { display: block; }
+					&[data-left="11"] > div:nth-child(1),
+					&[data-left="11"] > div:nth-child(2),
+					&[data-left="11"] > div:nth-child(3),
+					&[data-left="11"] > div:nth-child(4),
+					&[data-left="11"] > div:nth-child(5),
+					&[data-left="11"] > div:nth-child(6),
+					&[data-left="11"] > div:nth-child(7),
+					&[data-left="11"] > div:nth-child(8),
+					&[data-left="11"] > div:nth-child(9),
+					&[data-left="11"] > div:nth-child(10),
+					&[data-left="11"] > div:nth-child(11) { display: block; }
+					&[data-left="12"] > div { display: block; }
 
 					> div {
 						display: none;

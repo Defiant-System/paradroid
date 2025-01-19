@@ -10,9 +10,11 @@
 			cpu: window.find(".center .cpu"),
 			ioLeds: window.find(".board .io-leds"),
 			cbLeft: window.find(".board .left .io"),
+			ammoLeft: window.find(".board .left .side .ammo"),
 			droidLeft: window.find(".board .left .droid"),
 			cbRight: window.find(".board .right .io"),
 			droidRight: window.find(".board .right .droid"),
+			ammoRight: window.find(".board .right .side .ammo"),
 		};
 	},
 	dispatch(event) {
@@ -65,7 +67,9 @@
 								opponent = APP.mobile.arena.player.opponent;
 							Self._playerColor = "yellow";
 							Self.els.droidLeft.data({ id: player }).addClass("player");
+							Self.els.ammoLeft.data({ left: 3 + +player[0] });
 							Self.els.droidRight.data({ id: opponent.id }).removeClass("player");
+							Self.els.ammoRight.data({ left: 3 + +opponent.id[0] });
 						}
 						break;
 					case "d":
@@ -75,7 +79,9 @@
 								opponent = APP.mobile.arena.player.opponent;
 							Self._playerColor = "purple";
 							Self.els.droidLeft.data({ id: opponent.id }).removeClass("player");
+							Self.els.ammoLeft.data({ left: 3 + +opponent.id[0] });
 							Self.els.droidRight.data({ id: player }).addClass("player");
+							Self.els.ammoRight.data({ left: 3 + +player[0] });
 						}
 						break;
 				}
@@ -85,9 +91,15 @@
 				// droid id's
 				value = APP.mobile.arena.player.id;
 				Self.els.droidLeft.data({ id: value }).addClass("player");
+				Self.els.ammoLeft.data({ left: 3 + +value[0] });
+
 				value = APP.mobile.arena.player.opponent.id;
 				Self.els.droidRight.data({ id: value }).removeClass("player");
-				
+				Self.els.ammoRight.data({ left: 3 + +value[0] });
+
+				// TODO: remove
+				// return Self.els.el.addClass("get-ready-title");
+
 				// start hacking game
 				Self.dispatch({ type: "new-hacking-game" });
 				break;
@@ -266,6 +278,9 @@
 				});
 				break;
 			case "new-hacking-game":
+				// reset toggles
+				Self.els.el.find(".toggler .active").removeClass("active");
+				
 				// generate circuit board
 				Self.dispatch({ type: "generate-schemas" });
 				// show "choose side" text
@@ -312,7 +327,7 @@
 			case "finish-hacking":
 				// game ended
 				Self._gameEnded = true;
-				// asses winner
+				// assess winner
 				callback = () => {
 					let winner = Self.els.cpu.data("winner"),
 						name = "finished ";
@@ -322,6 +337,7 @@
 						default: name += "finish-loose";
 					}
 					Self.els.el.removeClass("hidden").addClass(name);
+					Self.els.el.find(`[data-id]`).data({ id: APP.mobile.arena.player.opponent.id });
 
 					// reset state
 					delete Self._chooseColor;
