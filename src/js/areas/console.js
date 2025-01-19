@@ -94,13 +94,15 @@
 					options.from = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
 					index = Self.droids.indexOf(options.from);
 					index--;
-					if (index < 0) index = 0;
+					if (index < 0) return;
+					// if (index < 0) index = 0;
 					options.to = Self.droids[index];
 				} else {
 					options.from = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
 					index = Self.droids.indexOf(options.from);
 					index++;
-					if (index > Self.droids.length-1) index = Self.droids.length-1;
+					if (index > Self.droids.length-1) return;
+					// if (index > Self.droids.length-1) index = Self.droids.length-1;
 					options.to = Self.droids[index];
 					// check if droid is "enabled"
 					el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${options.to}")`);

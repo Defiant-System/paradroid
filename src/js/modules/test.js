@@ -97,10 +97,13 @@ let Test = {
 
 		/*
 		 * CONSOLE View
-		APP.mobile.arena = { player: { id: 598 } };
+		APP.mobile.arena = { player: { id: "001" } };
 		APP.mobile.arena.colors = { base: "#f90" };
 		APP.dispatch({ type: "show-view", arg: "console" });
-		// setTimeout(() => APP.console.dispatch({ type: "init-view", id: "598" }), 600);
+		setTimeout(() => {
+			// APP.console.dispatch({ type: "init-view", id: "001" });
+			APP.console.dispatch({ type: "show-view", arg: 1 });
+		}, 600);
 		return;
 		 */
 
