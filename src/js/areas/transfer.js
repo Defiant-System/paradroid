@@ -97,6 +97,9 @@
 				Self.els.droidRight.data({ id: value }).removeClass("player");
 				Self.els.ammoRight.data({ left: 3 + +value[0] });
 
+				// defaults
+				Self._playerColor = "yellow";
+
 				// TODO: remove
 				// return Self.els.el.addClass("get-ready-title");
 
@@ -329,36 +332,51 @@
 				Self._gameEnded = true;
 				// assess winner
 				callback = () => {
-					let winner = Self.els.cpu.data("winner"),
-						name = "finished ";
-					switch (winner) {
-						case Self._playerColor: name += "finish-win"; break;
-						case "deadlock": name += "finish-deadlock"; break;
-						default: name += "finish-loose";
-					}
-					Self.els.el.removeClass("hidden").addClass(name);
+					// reset view
+					Self.els.el.removeClass("hidden");
 					Self.els.el.find(`[data-id]`).data({ id: APP.mobile.arena.player.opponent.id });
 
-					// reset state
-					delete Self._chooseColor;
-					delete Self._gameStarted;
-					delete Self._gameEnded;
+					switch (Self.els.cpu.data("winner")) {
+						case Self._playerColor:
+							Self.els.el.cssSequence("finished finish-win", "transitionend", el => {
+								Self.dispatch({ type: "reset-transfer-view" });
+								// console.log("switch to mobile view");
+								APP.mobile.arena.player.opponent.kill({ silent: true });
+								APP.mobile.arena.player.setId(APP.mobile.arena.player.opponent.id);
+								// start / resume game loop
+								APP.mobile.dispatch({ type: "game-loop-resume" });
+								// go to mobile view
+								APP.dispatch({ type: "switch-to-view", arg: "mobile" });
+							});
+							return;
+						case "deadlock":
+							Self.els.el.addClass("finished finish-deadlock");
+							// show "choose side" text
+							Self.els.el.cssSequence("deadlock-title", "transitionend", el => {
+								Self.dispatch({ type: "reset-transfer-view" });
+								// start hacking game
+								Self.dispatch({ type: "new-hacking-game" });
+							});
+							return;
+						default:
+							Self.els.el.cssSequence("finished finish-loose", "transitionend", el => {
+								Self.dispatch({ type: "reset-transfer-view" });
 
-					if (winner === "deadlock") {
-						// show "choose side" text
-						Self.els.el.cssSequence("deadlock-title", "transitionend", el => {
-							// reset view
-							el.removeClass("deadlock-title finished finish-deadlock");
-							// start hacking game
-							Self.dispatch({ type: "new-hacking-game" });
-						});
-						return;
+								console.log("demote player droid AND switch to mobile view");
+							});
 					}
-					
-					value = Self.els.board.find(".droid:not(.player)").data("id");
-					Self.els.el.find(".finish").data({ id: value });
+					// value = Self.els.board.find(".droid:not(.player)").data("id");
+					// Self.els.el.find(".finish").data({ id: value });
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
+				break;
+			case "reset-transfer-view":
+				// reset view
+				Self.els.el.removeClass("deadlock-title finished finish-win finish-loose finish-deadlock");
+				// reset state
+				delete Self._chooseColor;
+				delete Self._gameStarted;
+				delete Self._gameEnded;
 				break;
 		}
 	}

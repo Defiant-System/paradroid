@@ -58,7 +58,6 @@ let Test = {
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.mobile.arena = {
 			player: {
 				id: "711",
@@ -93,6 +92,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
@@ -161,6 +161,8 @@ let Test = {
 
 			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
+			
+			// setTimeout(() => APP.mobile.arena.player.setId("614"), 1500);
 
 			// setTimeout(() => APP.mobile.dispatch({ type: "toggle-lights" }), 1500);
 			// setTimeout(() => APP.mobile.arena.map.droids[1].setPath(), 600);

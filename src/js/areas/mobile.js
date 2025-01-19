@@ -167,9 +167,11 @@
 				break;
 			// custom events
 			case "init-view":
-				APP.mobile.dispatch({
+				if (Self._started) return;
+				Self._started = true;
+				Self.dispatch({
 					type: "restore-state",
-					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 0 } },
+					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 } },
 				});
 				break;
 			case "reset-game-player":
@@ -202,12 +204,8 @@
 
 			case "init-transfer-view":
 				Self.dispatch({ type: "game-loop-pause" });
-
 				// reset css/view
 				Self.els.content.cssSequence("leave", "transitionend", el => {
-					// TODO: switch to transer view
-					console.log( Self.arena.player.opponent.id );
-
 					// reset element
 					el.removeClass("leave");
 					// animate / switch to view
@@ -237,6 +235,8 @@
 				Self.els.el.css({ background });
 				// droid-FX
 				Self.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
+				// started flag
+				Self._started = true;
 
 				let func = (state, cfg) => {
 						// this prevents setting state if not completly ready

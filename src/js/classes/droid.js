@@ -104,14 +104,14 @@ class Droid {
 		}
 	}
 
-	kill() {
+	kill(opt={}) {
 		// remove this droid from map
 		let index = this.arena.map.droids.indexOf(this),
 			droid = this.arena.map.droids.splice(index, 1)[0];
 		// remove droid from physical world
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
 		// play sound fx
-		window.audio.play("explosion");
+		if (opt.silent === undefined) window.audio.play("explosion");
 		
 		// shake screen on damage hit
 		this.arena.viewport.addShake(.75);
@@ -258,6 +258,7 @@ class Droid {
 	setId(id) {
 		let xDroid = window.bluePrint.selectSingleNode(`//Droid[@id="${id}"]`),
 			xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xDroid.getAttribute("weapon")}"]`);
+		if (this.isPlayer) console.log( 2, id );
 		// update this droid properties
 		this.weight = +xDroid.getAttribute("weight");
 		this.speed = +xDroid.getAttribute("speed") * .00015;

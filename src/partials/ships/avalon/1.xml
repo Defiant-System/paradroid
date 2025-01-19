@@ -1,7 +1,8 @@
 
 <Section id="1" level="14" width="52" height="30" color="#e84f46" filter="saturate(1.35) brightness(.95)">
 	<Layer id="droids">
-		<i nr="1" id="476" patrol="[[22,5],[42,3],[43,9]]"/>
+		<i nr="1" id="476" patrol="[[9,7]]"/>
+		<!-- <i nr="1" id="476" patrol="[[22,5],[42,3],[43,9]]"/> -->
 <i nr="2" id="476" patrol="[[13,5],[31,9],[41,15]]"/>
 <i nr="3" id="493" patrol="[[35,17],[31,25],[11,23]]"/>
 <i nr="4" id="516" patrol="[[9,7],[35,9],[29,17]]"/>
