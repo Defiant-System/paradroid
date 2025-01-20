@@ -226,7 +226,7 @@
 					xAlive = window.bluePrint.selectNodes(`//Section/Layer[@id="droids"]/i[not(@dead)]`),
 					percentage = xAlive.length / xDroids.length;
 				// reset player mode
-				Self.arena.player.transfer.active = false;
+				if (Self.arena.player) Self.arena.player.transfer.active = false;
 				// set debug mode, if provided
 				if (event.state.debug) Self.els.content.data({ debug: event.state.debug.mode });
 				// adjust hud with new color

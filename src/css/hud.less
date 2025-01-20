@@ -1,4 +1,19 @@
 
+content {
+	&[data-show="transfer"].paused {
+		.left {
+			--timer: 9999s;
+			transition: none;
+			min-height: 6px;
+
+			.bar .box {
+				--val: 0;
+				--power-dur: 9999s;
+			}
+		}
+	}
+}
+
 .hud-view {
 	top: 7px;
 	left: 7px;

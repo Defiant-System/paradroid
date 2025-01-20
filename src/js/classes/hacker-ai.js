@@ -18,7 +18,7 @@ class HackerAI {
 				Self.tick();
 			}
 		});
-		// this.fpsControl.start();
+		this.fpsControl.start();
 	}
 
 	setOrder(arr) {
@@ -26,7 +26,7 @@ class HackerAI {
 	}
 
 	chooseConn() {
-		if (this.order) {
+		if (this.order.length) {
 			this.target = this.order.shift();
 		} else {
 			let available = this.pEl.find(".io .toggler > div:not(.active)").map(el => $(el).index()+1);

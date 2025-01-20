@@ -283,7 +283,11 @@ class Droid {
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
 		if (this.isPlayer) {
-			// this.force = new Point(0, 0);
+			// reset movement forces
+			for (let key in this.input) {
+				this.input[key].pressed = false;
+			}
+			// reset transfer mode
 			this.transfer.active = false;
 		} else {
 			let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],

@@ -92,9 +92,13 @@
 				// reset hud box
 				Self.els.barLeft.find(".box").css({ "--val": "" });
 				// change purpose of hud
+						console.log(1);
 				Self.els.barLeft
 					.addClass("choose-color")
 					.cssSequence("color-timer", "transitionend", el => {
+						console.log(2);
+						el.removeClass("choose-color color-timer");
+
 						event.callback();
 					});
 				break;

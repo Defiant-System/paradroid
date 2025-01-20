@@ -328,6 +328,7 @@
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
 				break;
 			case "finish-hacking":
+				console.log(event);
 				// game ended
 				Self._gameEnded = true;
 				// assess winner
@@ -338,9 +339,7 @@
 
 					switch (Self.els.cpu.data("winner")) {
 						case Self._playerColor:
-								console.log(1);
 							Self.els.el.cssSequence("finished finish-win", "transitionend", el => {
-								console.log(2);
 								Self.dispatch({ type: "reset-transfer-view" });
 								// console.log("switch to mobile view");
 								APP.mobile.arena.player.opponent.kill({ silent: true });
@@ -348,7 +347,8 @@
 								// start / resume game loop
 								APP.mobile.dispatch({ type: "game-loop-resume" });
 								// go to mobile view
-								APP.dispatch({ type: "switch-to-view", arg: "mobile" });
+								let done = () => Self.els.el.addClass("hidden");
+								APP.dispatch({ type: "switch-to-view", arg: "mobile", done });
 							});
 							return;
 						case "deadlock":
@@ -374,7 +374,7 @@
 				break;
 			case "reset-transfer-view":
 				// reset view
-				Self.els.el.removeClass("deadlock-title finished finish-win finish-loose finish-deadlock");
+				Self.els.el.removeClass("show-gloria deadlock-title finished finish-win finish-loose finish-deadlock");
 				// reset state
 				delete Self._chooseColor;
 				delete Self._gameStarted;

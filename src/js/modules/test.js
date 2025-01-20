@@ -58,13 +58,16 @@ let Test = {
 
 		/*
 		 * TRANSFER View
+		 */
 		APP.mobile.arena = {
 			player: {
-				id: "711",
+				id: "001",
 				opponent: { id: "249" }
 			}
 		};
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
+		
+		// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 5000);
 		return;
 		// setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
@@ -92,7 +95,6 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
-		 */
 
 
 		/*

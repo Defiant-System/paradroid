@@ -68,9 +68,10 @@ const paradroid = {
 				break;
 			case "window.focus":
 				// resume "matter.js" runner
-				Self.hud.dispatch({ type: "toggle-play-pause" });
+				// Self.hud.dispatch({ type: "toggle-play-pause" });
 				break;
 			case "window.blur":
+				break;
 			case "window.close":
 				// stop "matter.js" runner
 				Self.hud.dispatch({ type: "toggle-play-pause", pause: true });
