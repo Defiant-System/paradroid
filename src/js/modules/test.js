@@ -97,7 +97,7 @@ let Test = {
 
 		/*
 		 * CONSOLE View
-		APP.mobile.arena = { player: { id: "001" } };
+		APP.mobile.arena = { player: { id: "001" }, map: { id: 1 }, fpsControl: { _stopped: true } };
 		APP.mobile.arena.colors = { base: "#f90" };
 		APP.dispatch({ type: "show-view", arg: "console" });
 		setTimeout(() => {

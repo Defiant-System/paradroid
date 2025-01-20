@@ -57,20 +57,28 @@
 						break;
 					case "up":
 						Self.dispatch({ type: "show-view", arg: -1 });
+						// play sound fx
+						window.audio.play("confirm");
 						break;
 					case "down":
 						Self.dispatch({ type: "show-view", arg: 1 });
+						// play sound fx
+						window.audio.play("confirm");
 						break;
 					case "left":
 						options = Self.els.el.find(".option.active .sub[data-step]");
 						if (options.length) {
 							Self.dispatch({ type: options.data("step"), arg: -1 });
+							// play sound fx
+							window.audio.play("swipe");
 						}
 						break;
 					case "right":
 						options = Self.els.el.find(".option.active .sub[data-step]");
 						if (options.length) {
 							Self.dispatch({ type: options.data("step"), arg: 1 });
+							// play sound fx
+							window.audio.play("swipe");
 						}
 						break;
 				}

@@ -169,17 +169,19 @@ class Droid {
 		if (cfg.arena.player.health < 1) {
 			this.fire.shooting = false;
 		}
-		// play sound fx
-		window.audio.play("sonic");
 
 		// weapons and implementations
 		switch (this.fire.name) {
 			case "laser":
 			case "phaser":
 				new Fire(cfg);
+				// play sound fx
+				window.audio.play("laser");
 				break;
 			case "sonic":
 				new Sonic(cfg);
+				// play sound fx
+				window.audio.play("sonic");
 				break;
 			case "ripper":
 				count = 12;
@@ -189,6 +191,8 @@ class Droid {
 					new Fire({ ...cfg, angle: a * Math.PI / 180, scale: -1, rotate: .5 });
 					a += inc;
 				});
+				// play sound fx
+				window.audio.play("ripper");
 				break;
 			case "exterminator":
 				count = 7;
@@ -199,6 +203,8 @@ class Droid {
 					new Missile({ ...cfg, angle: a });
 					a += inc;
 				});
+				// play sound fx
+				window.audio.play("io");
 				break;
 			case "disruptor":
 				if (this.isPlayer) {
@@ -229,6 +235,8 @@ class Droid {
 					// shake screen on damage hit
 					this.arena.viewport.addShake(.25);
 				}
+				// play sound fx
+				window.audio.play("electric");
 				break;
 		}
 	}
@@ -258,7 +266,6 @@ class Droid {
 	setId(id) {
 		let xDroid = window.bluePrint.selectSingleNode(`//Droid[@id="${id}"]`),
 			xWeapon = window.bluePrint.selectSingleNode(`//Weapon[@id="${xDroid.getAttribute("weapon")}"]`);
-		if (this.isPlayer) console.log( 2, id );
 		// update this droid properties
 		this.weight = +xDroid.getAttribute("weight");
 		this.speed = +xDroid.getAttribute("speed") * .00015;

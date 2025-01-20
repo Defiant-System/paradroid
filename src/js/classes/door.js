@@ -48,7 +48,12 @@ class Door {
 
 	update(delta) {
 		let arena = this.arena;
-		let dist = arena.map.droids.map(droid => this.pos.distance(droid.body.position));
+		let playerDist = [];
+		let dist = arena.map.droids.map(droid => {
+			let dd = this.pos.distance(droid.body.position);
+			if (droid.isPlayer && dd < 450 && this.state !== "open") playerDist.push(this);
+			return dd;
+		});
 		let closest = Math.min(...dist);
 		// if closest droid is within range, open door
 		if (closest < 64 && this.state !== "open") this.state = "opening";
@@ -66,6 +71,10 @@ class Door {
 						this.frame.index = 4;
 						delete this.isAdded;
 						Matter.Composite.remove(arena.map.engine.world, this.body);
+						if (playerDist.includes(this)) {
+							// play sound fx
+							window.audio.play("door-open");
+						}
 					}
 				}
 				break;
@@ -81,6 +90,10 @@ class Door {
 						if (!this.isAdded) {
 							this.isAdded = true;
 							Matter.Composite.add(arena.map.engine.world, this.body);
+						}
+						if (playerDist.includes(this)) {
+							// play sound fx
+							window.audio.play("door-open");
 						}
 					}
 				}
