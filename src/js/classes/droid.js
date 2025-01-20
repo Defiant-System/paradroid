@@ -110,11 +110,13 @@ class Droid {
 			droid = this.arena.map.droids.splice(index, 1)[0];
 		// remove droid from physical world
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
-		// play sound fx
-		if (opt.silent === undefined) window.audio.play("explosion");
 		
-		// shake screen on damage hit
-		this.arena.viewport.addShake(.75);
+		if (opt.silent === undefined) {
+			// play sound fx
+			window.audio.play("explosion");
+			// shake screen on damage hit
+			this.arena.viewport.addShake(.75);
+		}
 		
 		if (droid.isPlayer) {
 			setTimeout(() => {
