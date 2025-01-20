@@ -283,8 +283,7 @@ class Droid {
 
 		if (this.isPlayer) {
 			// host droid reject hack speed
-			let reject = 180e3; // TODO: change droid in 3 minutes
-			console.log( reject );
+			let reject = 5e3; // TODO: change droid in 3 minutes
 			this.APP.hud.dispatch({ type: "progress-update", reject });
 			// reset movement forces
 			for (let key in this.input) {

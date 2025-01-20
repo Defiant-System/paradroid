@@ -90,6 +90,24 @@ content {
 			opacity: 1;
 			visibility: visible;
 		}
+
+		&.paused {
+			.progress {
+				.box-track:nth-child(3) {
+					--speed: 9999s;
+					--val: 1;
+
+					.box-bar.rejection {
+						transition: none;
+						min-height: 2px;
+
+						&:before {
+							transition: none;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	&[data-show="lift"] {
@@ -681,6 +699,12 @@ content {
 			width: 28px;
 			mix-blend-mode: color;
 			clip-path: polygon(100% 0, 100% 70px, 50% 79px, 0 70px, 0 0);
+			min-height: 1px;
+			transition: min-height var( --speed ) linear;
+
+			&.rejection {
+				min-height: 0px;
+			}
 
 			&:before {
 				content: "";

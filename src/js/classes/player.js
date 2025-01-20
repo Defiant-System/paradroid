@@ -60,6 +60,10 @@ class Player extends Droid {
 		return cvs[0];
 	}
 
+	demote() {
+		console.log("demote player droid");
+	}
+
 	setState(item) {
 		let APP = paradroid;
 		// console.log( item );

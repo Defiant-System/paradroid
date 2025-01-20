@@ -77,10 +77,19 @@
 					Self.els.progress.find(`.box-track[data-id="health"]`).css({ "--val": event.health });
 				}
 				if (event.reject !== undefined) {
-					// el = Self.els.progress.find(`.box-track[data-id="reject"]`);
-					// // set speed
-					// el.css({ "--speed": event.reject +"ms" });
-					// setTimeout(() => el.css({ "--val": 0 }), 310);
+					el = Self.els.progress.find(`.box-track[data-id="reject"]`);
+					// set speed
+					el.css({ "--speed": event.reject +"ms" });
+					el.find(".box-bar").removeClass("rejection");
+					setTimeout(() => {
+						el.css({ "--val": 0 });
+						el.find(".box-bar").cssSequence("rejection", "transitionend", el => {
+							// reset element
+							el.removeClass("rejection");
+							// time has run out - demote player droid
+							APP.mobile.arena.player.demote();
+						});
+					}, 310);
 				}
 
 				// all droids killed - turn off lights
