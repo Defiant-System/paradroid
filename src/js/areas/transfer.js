@@ -84,6 +84,9 @@
 							Self.els.ammoRight.data({ left: 3 + +player[0] });
 						}
 						break;
+					case "p":
+						APP.hud.dispatch({ type: "toggle-play-pause" });
+						break;
 				}
 				break;
 			// custom events
@@ -328,7 +331,6 @@
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
 				break;
 			case "finish-hacking":
-				console.log(event);
 				// game ended
 				Self._gameEnded = true;
 				// assess winner
@@ -379,6 +381,7 @@
 				delete Self._chooseColor;
 				delete Self._gameStarted;
 				delete Self._gameEnded;
+				delete Self.AI;
 				break;
 		}
 	}

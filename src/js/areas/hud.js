@@ -33,11 +33,15 @@
 					Self.els.barRight.removeClass("paused");
 					// resume game
 					APP.mobile.dispatch({ type: "game-loop-resume" });
+					// start hacking game, if in transfer view
+					if (APP.transfer.AI) APP.transfer.AI.fpsControl.start();
 				} else {
 					Self.els.content.addClass("paused");
 					Self.els.barRight.addClass("paused");
 					// pause game
 					APP.mobile.dispatch({ type: "game-loop-pause" });
+					// stop hacking game, if in transfer view
+					if (APP.transfer.AI) APP.transfer.AI.fpsControl.stop();
 				}
 				break;
 			case "set-view-title":
