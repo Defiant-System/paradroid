@@ -110,6 +110,8 @@ class Droid {
 			droid = this.arena.map.droids.splice(index, 1)[0];
 		// remove droid from physical world
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
+
+		console.log( droid );
 		
 		if (opt.silent === undefined) {
 			// play sound fx

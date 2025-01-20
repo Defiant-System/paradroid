@@ -87,8 +87,13 @@
 
 	<svg id="logo-p" viewBox="0 0 94 68">
 		<style type="text/css">
-			.st0{fill:#eee;}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="68">
+			<stop offset="0" style="stop-color:#fafafa"/>
+			<stop offset=".5" style="stop-color:#fff"/>
+			<stop offset="1" style="stop-color:#eee"/>
+		</linearGradient>
 		<path class="st0" d="M88.2,0.2H36.9h-4.3H5.4c-2.8,0-5.1,2.2-5.1,5.1v57.3c0,2.8,2.2,5.1,5.1,5.1H37c2.8,0,5.1-2.2,5.1-5.1
 			v-2.5c0-2.7,2.2-4.9,5.1-4.9h3l0,0h38.3c2.8,0,5.1-2.2,5.1-5.1V5.3C93.2,2.5,90.8,0.2,88.2,0.2z M77.1,33.7c0,2.8-2.2,5.1-5.1,5.1
 			H46.9c-2.8,0-5.1-2.2-5.1-5.1V21.4c0-2.8,2.2-5.1,5.1-5.1H72c2.8,0,5.1,2.2,5.1,5.1V33.7z"/>
@@ -96,8 +101,13 @@
 
 	<svg id="logo-a" viewBox="0 0 94 68">
 		<style type="text/css">
-			.st0{fill:#eee;}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="68">
+			<stop offset="0" style="stop-color:#fafafa"/>
+			<stop offset=".5" style="stop-color:#fff"/>
+			<stop offset="1" style="stop-color:#eee"/>
+		</linearGradient>
 		<path class="st0" d="M88.6,0.2h-0.3h-6H36.9h-6.1H5.4c-2.8,0-5.1,2.2-5.1,5.1v57.3c0,2.8,2.2,5.1,5.1,5.1H37
 			c2.8,0,5.1-2.2,5.1-5.1v-2.8c0-2.7,2.2-4.9,5.1-4.9h25.3c2.7,0,4.9,2.2,4.9,4.9v2.8c0,2.8,2.2,5.1,5.1,5.1h6.1
 			c2.8,0,5.1-2.2,5.1-5.1V5.1C93.5,2.5,91.3,0.2,88.6,0.2z M42,21.3c0-2.8,2.2-5.1,5.1-5.1h25.2c2.8,0,5.1,2.2,5.1,5.1v12.3
@@ -106,8 +116,13 @@
 
 	<svg id="logo-r" viewBox="0 0 94 68">
 		<style type="text/css">
-			.st0{fill:#eee;}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="68">
+			<stop offset="0" style="stop-color:#fafafa"/>
+			<stop offset=".5" style="stop-color:#fff"/>
+			<stop offset="1" style="stop-color:#eee"/>
+		</linearGradient>
 		<path class="st0" d="M88.5,38.9L88.5,38.9L88.5,38.9c-0.1,0-0.1,0-0.3,0h-2.5c-2.7,0-4.9-2.2-4.9-5.1v-3l0,0V11.5V5.3
 			c0-2.8-2.2-5.1-5.1-5.1h-6.1H37.1H31H5.6c-2.8,0-5.1,2.2-5.1,5.1v57.3c0,2.8,2.2,5.1,5.1,5.1h31.6c2.8,0,5.1-2.2,5.1-5.1v-1.3l0,0
 			v-1c0-2.7,2.2-4.9,4.9-5.1h22.6h2.5c2.7,0,4.9,2.2,4.9,4.9v2.5c0,2.8,2.2,5.1,5.1,5.1h6.1c2.8,0,5.1-2.2,5.1-5.1V50v-6.3
@@ -117,8 +132,13 @@
 
 	<svg id="logo-d" viewBox="0 0 94 68">
 		<style type="text/css">
-			.st0{fill:#eee;}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="68">
+			<stop offset="0" style="stop-color:#fafafa"/>
+			<stop offset=".5" style="stop-color:#fff"/>
+			<stop offset="1" style="stop-color:#eee"/>
+		</linearGradient>
 		<path class="st0" d="M88.7,0h-6.1c-2.8,0-5.1,2.2-5.1,5.1l0,0v2.7c0,2.8-2.2,5.1-5.1,5.1h-3l0,0H37.2h-6.1H5.6
 			c-2.8,0-5.1,2.2-5.1,5.1v44.8c0,2.8,2.2,5.1,5.1,5.1H31h6.2h45.2h6.1c2.8,0,5.1-2.2,5.1-5.1v-6.1V24.4v-6.3V5.2
 			C93.6,2.2,91.3,0,88.7,0z M47.4,51.3c-2.8,0-5.1-2.2-5.1-5.1v-3l0,0v-6.4l0,0v-2.7c0-2.7,2.2-4.9,4.9-5.1h22.3l0,0h2.7
@@ -127,8 +147,13 @@
 
 	<svg id="logo-o" viewBox="0 0 94 68">
 		<style type="text/css">
-			.st0{fill:#eee;}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="68">
+			<stop offset="0" style="stop-color:#fafafa"/>
+			<stop offset=".5" style="stop-color:#fff"/>
+			<stop offset="1" style="stop-color:#eee"/>
+		</linearGradient>
 		<path class="st0" d="M88.4,0.2H5.6c-2.8,0-5.1,2.2-5.1,5.1v57.3c0,2.8,2.2,5.1,5.1,5.1h82.9c2.8,0,5.1-2.2,5.1-5.1V5.3
 			C93.6,2.5,91.2,0.2,88.4,0.2z M77.4,46.5c0,2.8-2.2,5.1-5.1,5.1H47.2c-2.8,0-5.1-2.2-5.1-5.1V21.4c0-2.8,2.2-5.1,5.1-5.1h25.1
 			c2.8,0,5.1,2.2,5.1,5.1V46.5z"/>
@@ -136,8 +161,13 @@
 
 	<svg id="logo-i" viewBox="0 0 68 68">
 		<style type="text/css">
-			.st0{fill:#eee;}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="68">
+			<stop offset="0" style="stop-color:#fafafa"/>
+			<stop offset=".5" style="stop-color:#fff"/>
+			<stop offset="1" style="stop-color:#eee"/>
+		</linearGradient>
 		<path class="st0" d="M59.6,16.4h2.7c2.8,0,5.1-2.2,5.1-5.1v-6c0-2.8-2.2-5.1-5.1-5.1l0,0H5.1l0,0C2.3,0.2,0,2.4,0,5.3l0,0
 			v5.8c0,2.8,2.2,5.1,5.1,5.1h3c2.8,0,5.1,2.2,5.1,5.1v25.1c0,2.8-2.2,5.1-5.1,5.1h-3c-2.8,0-5.1,2.2-5.1,5.1v6c0,2.8,2.2,5.1,5.1,5.1
 			h57.3c2.8,0,5.1-2.2,5.1-5.1v-6c0-2.8-2.2-5.1-5.1-5.1h-2.7c-2.8,0-5.1-2.2-5.1-5.1v-25C54.6,18.8,56.9,16.4,59.6,16.4z"/>

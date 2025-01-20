@@ -285,7 +285,10 @@
 				break;
 			case "new-hacking-game":
 				// reset toggles
-				Self.els.el.find(".toggler .active").removeClass("active");
+				Self.els.el.find(".toggler .active").removeClass("active").data({ active: 1 });
+				// reset lights
+				Self.els.cpu.data({ winner: "deadlock" });
+				Self.els.ioLeds.find("> div").map((elem, i) => elem.className = i % 2 == 0 ? "yellow" : "purple");
 				
 				// generate circuit board
 				Self.dispatch({ type: "generate-schemas" });
@@ -377,6 +380,7 @@
 			case "reset-transfer-view":
 				// reset view
 				Self.els.el.removeClass("show-gloria deadlock-title finished finish-win finish-loose finish-deadlock");
+
 				// reset state
 				delete Self._chooseColor;
 				delete Self._gameStarted;
