@@ -36,7 +36,7 @@
 				event.el.find(".active").removeClass("active");
 				el.addClass("active");
 				// play sound fx
-				window.audio.play("swipe");
+				window.audio.play("ring");
 				break;
 		}
 	}

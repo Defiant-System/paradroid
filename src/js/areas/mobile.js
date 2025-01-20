@@ -43,6 +43,7 @@
 					case "d":
 					case "right": Player.input.right.pressed = true; break;
 
+					case "space":
 					case "shift":
 						Player.setState({ id: "transfer", active: true });
 						break;
@@ -96,11 +97,6 @@
 						// if (Self.arena.fpsControl._stopped) Self.dispatch({ type: "game-loop-resume" });
 						// else Self.dispatch({ type: "game-loop-pause" });
 						break;
-
-					// test key for screen shake
-					case "space":
-						// Self.arena.viewport.addShake(1);
-						break;
 				}
 				break;
 			case "window.keyup":
@@ -116,9 +112,6 @@
 					case "shift":
 						Player.setState({ id: "transfer", pressed: false });
 						break;
-					// case "space":
-					// 	Player.setState({ id: "fire", pressed: false });
-					// 	break;
 				}
 				break;
 			// gamepad events

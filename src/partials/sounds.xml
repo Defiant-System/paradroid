@@ -17,6 +17,6 @@
 	<i id="thud" url="~/sounds/thud.mp3"/>
 
 	<i id="io" url="~/sounds/io.mp3"/>
-	<i id="door-ring" url="~/sounds/ring.mp3"/>
-	<i id="door-open" url="~/sounds/door.mp3"/>
+	<i id="ring" url="~/sounds/ring.mp3"/>
+	<i id="door" url="~/sounds/door.mp3"/>
 </Sounds>

@@ -73,7 +73,7 @@ class Door {
 						Matter.Composite.remove(arena.map.engine.world, this.body);
 						if (playerDist.includes(this)) {
 							// play sound fx
-							window.audio.play("door-open");
+							window.audio.play("door");
 						}
 					}
 				}
@@ -93,7 +93,7 @@ class Door {
 						}
 						if (playerDist.includes(this)) {
 							// play sound fx
-							window.audio.play("door-open");
+							window.audio.play("door");
 						}
 					}
 				}

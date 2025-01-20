@@ -38,10 +38,10 @@ let Test = {
 		
 		/*
 		 * START View
+		 */
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
 		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
 		return;
-		 */
 
 		
 		/*
@@ -152,7 +152,7 @@ let Test = {
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 40 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 1 },
+					map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
 					// map: { id: 10 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 9 }, player: { id: "001", x: 3, y: 5 }, debug: { mode: 0 },
