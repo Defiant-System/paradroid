@@ -276,15 +276,16 @@ class Droid {
 		this.health = +xDroid.getAttribute("health");
 		// full health
 		this._health = +xDroid.getAttribute("health");
-		// host droid reject hack speed
-		let reject = 180e3; // TODO: change droid in 3 minutes
-		this.APP.hud.dispatch({ type: "progress-update", reject });
 		
 		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
 		if (this.isPlayer) {
+			// host droid reject hack speed
+			let reject = 180e3; // TODO: change droid in 3 minutes
+			console.log( reject );
+			this.APP.hud.dispatch({ type: "progress-update", reject });
 			// reset movement forces
 			for (let key in this.input) {
 				this.input[key].pressed = false;
