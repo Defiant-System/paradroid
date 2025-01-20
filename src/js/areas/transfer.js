@@ -91,6 +91,8 @@
 				break;
 			// custom events
 			case "init-view":
+				// generate circuit board
+				Self.dispatch({ type: "generate-schemas" });
 				// start hacking game
 				Self.dispatch({ type: "new-hacking-game" });
 				break;
@@ -286,8 +288,6 @@
 				Self.els.cpu.data({ winner: "deadlock" });
 				Self.els.ioLeds.find("> div").map((elem, i) => elem.className = i % 2 == 0 ? "yellow" : "purple");
 				
-				// generate circuit board
-				Self.dispatch({ type: "generate-schemas" });
 				// show "choose side" text
 				Self.els.el.cssSequence("choose-side-title", "transitionend", el => {
 					// reset element
@@ -357,6 +357,8 @@
 							// show "choose side" text
 							Self.els.el.cssSequence("deadlock-title", "transitionend", el => {
 								Self.dispatch({ type: "reset-transfer-view" });
+								// generate circuit board
+								Self.dispatch({ type: "generate-schemas" });
 								// start hacking game
 								Self.dispatch({ type: "new-hacking-game" });
 							});
@@ -368,8 +370,6 @@
 								console.log("demote player droid AND switch to mobile view");
 							});
 					}
-					// value = Self.els.board.find(".droid:not(.player)").data("id");
-					// Self.els.el.find(".finish").data({ id: value });
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
 				break;
@@ -380,9 +380,12 @@
 				Self._playerColor = "yellow";
 				// reset toggles
 				Self.els.el.find(".toggler .active").removeClass("active").removeAttr("active");
+				Self.els.el.find(".toggler").data({ active: 1 });
 				// reset lights
 				Self.els.cpu.data({ winner: "deadlock" });
 				Self.els.ioLeds.find("> div").map((elem, i) => elem.className = i % 2 == 0 ? "yellow" : "purple");
+				// reset svg
+				Self.els.board.find(`svg .on`).removeClass("on");
 
 				// reset state
 				delete Self._chooseColor;
