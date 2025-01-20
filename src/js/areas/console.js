@@ -170,7 +170,7 @@
 				APP.hud.dispatch({
 					type: "set-level-data",
 					background: APP.mobile.arena.colors.base,
-					percentage: Utils.random(.1, 1) // TODO
+					// percentage: Utils.random(.1, 1) // TODO
 				});
 
 				// view specific actions
@@ -226,10 +226,12 @@
 						"--filter": xNode.getAttribute("filter") || "none",
 					});
 				// update hud details about level
+				let deadDroids = xNode.selectNodes(`./Layer[@id="droids"]/i[@dead]`).length,
+					totalDroids = xNode.selectNodes(`./Layer[@id="droids"]/i`).length;
 				APP.hud.dispatch({
 					type: "set-level-data",
 					background: xNode.getAttribute("color"),
-					percentage: Utils.random(.1, 1) // TODO
+					percentage: 1 - (deadDroids / totalDroids),
 				});
 				break;
 		}

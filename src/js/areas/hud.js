@@ -83,9 +83,15 @@
 				if (event.level === 0) APP.mobile.dispatch({ type: "toggle-lights", off: true });
 				break;
 			case "start-hacking-game":
+				// reset hud box
+				Self.els.barLeft.find(".box").css({ "--val": "" });
+				// change purpose of hud
 				Self.els.barLeft.removeClass("color-timer choose-color").addClass("end-color-timer");
 				break;
 			case "choose-color":
+				// reset hud box
+				Self.els.barLeft.find(".box").css({ "--val": "" });
+				// change purpose of hud
 				Self.els.barLeft
 					.addClass("choose-color")
 					.cssSequence("color-timer", "transitionend", el => {
@@ -93,6 +99,9 @@
 					});
 				break;
 			case "hacking-progress":
+				// reset hud box
+				Self.els.barLeft.find(".box").css({ "--val": "" });
+				// change purpose of hud
 				Self.els.barLeft
 					.removeClass("choose-color color-timer")
 					.addClass("hacking-game")
@@ -101,6 +110,8 @@
 					});
 				break;
 			case "reset-choose-color":
+				// reset hud box
+				Self.els.barLeft.find(".box").css({ "--val": "" });
 				// reset hud
 				Self.els.barLeft
 					.removeClass("choose-color color-timer hacking-game hack-timer")

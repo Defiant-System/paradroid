@@ -282,7 +282,10 @@ class Droid {
 		this.fire.damage = +xWeapon.getAttribute("damage");
 		this.fire.coolDown = +xWeapon.getAttribute("coolDown");
 
-		if (!this.isPlayer) {
+		if (this.isPlayer) {
+			// this.force = new Point(0, 0);
+			this.transfer.active = false;
+		} else {
 			let strategy = ["ignore", "evade", "shoot-if-close", "pursue-if-close", "seek-destroy"],
 				value = +xDroid.getAttribute("aggression"),
 				segSize = 100 / strategy.length,

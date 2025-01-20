@@ -209,7 +209,7 @@
 					// reset element
 					el.removeClass("leave");
 					// animate / switch to view
-					APP.dispatch({ type: "switch-to-view", arg: "transfer" });
+					APP.dispatch({ type: "show-view", arg: "transfer" });
 				});
 				break;
 			case "restore-state":

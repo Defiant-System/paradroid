@@ -338,7 +338,9 @@
 
 					switch (Self.els.cpu.data("winner")) {
 						case Self._playerColor:
+								console.log(1);
 							Self.els.el.cssSequence("finished finish-win", "transitionend", el => {
+								console.log(2);
 								Self.dispatch({ type: "reset-transfer-view" });
 								// console.log("switch to mobile view");
 								APP.mobile.arena.player.opponent.kill({ silent: true });
