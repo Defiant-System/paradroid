@@ -111,7 +111,7 @@ class Droid {
 		// remove droid from physical world
 		Matter.Composite.remove(this.arena.map.engine.world, this.body);
 
-		console.log( droid );
+		console.log( droid.id, opt );
 		
 		if (opt.silent === undefined) {
 			// play sound fx

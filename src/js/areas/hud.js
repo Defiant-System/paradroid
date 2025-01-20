@@ -7,10 +7,10 @@
 		this.els = {
 			content: window.find("content"),
 			el: window.find(".hud-view"),
-			barLeft: window.find(".left"),
-			barRight: window.find(".right"),
-			btnRight: window.find(".right .bar"),
-			progress: window.find(".progress"),
+			barLeft: window.find(".hud-view .left"),
+			barRight: window.find(".hud-view .right"),
+			btnRight: window.find(".hud-view .right .bar"),
+			progress: window.find(".hud-view .progress"),
 		};
 	},
 	dispatch(event) {

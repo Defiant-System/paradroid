@@ -91,21 +91,6 @@
 				break;
 			// custom events
 			case "init-view":
-				// droid id's
-				value = APP.mobile.arena.player.id;
-				Self.els.droidLeft.data({ id: value }).addClass("player");
-				Self.els.ammoLeft.data({ left: 3 + +value[0] });
-
-				value = APP.mobile.arena.player.opponent.id;
-				Self.els.droidRight.data({ id: value }).removeClass("player");
-				Self.els.ammoRight.data({ left: 3 + +value[0] });
-
-				// defaults
-				Self._playerColor = "yellow";
-
-				// TODO: remove
-				// return Self.els.el.addClass("get-ready-title");
-
 				// start hacking game
 				Self.dispatch({ type: "new-hacking-game" });
 				break;
@@ -284,8 +269,19 @@
 				});
 				break;
 			case "new-hacking-game":
+				// droid id's
+				value = APP.mobile.arena.player.id;
+				Self.els.droidLeft.data({ id: value }).addClass("player");
+				Self.els.ammoLeft.data({ left: 3 + +value[0] });
+
+				value = APP.mobile.arena.player.opponent.id;
+				Self.els.droidRight.data({ id: value }).removeClass("player");
+				Self.els.ammoRight.data({ left: 3 + +value[0] });
+
+				// defaults
+				Self._playerColor = "yellow";
 				// reset toggles
-				Self.els.el.find(".toggler .active").removeClass("active").data({ active: 1 });
+				Self.els.el.find(".toggler .active").removeClass("active").removeAttr("active");
 				// reset lights
 				Self.els.cpu.data({ winner: "deadlock" });
 				Self.els.ioLeds.find("> div").map((elem, i) => elem.className = i % 2 == 0 ? "yellow" : "purple");
@@ -380,6 +376,13 @@
 			case "reset-transfer-view":
 				// reset view
 				Self.els.el.removeClass("show-gloria deadlock-title finished finish-win finish-loose finish-deadlock");
+				// defaults
+				Self._playerColor = "yellow";
+				// reset toggles
+				Self.els.el.find(".toggler .active").removeClass("active").removeAttr("active");
+				// reset lights
+				Self.els.cpu.data({ winner: "deadlock" });
+				Self.els.ioLeds.find("> div").map((elem, i) => elem.className = i % 2 == 0 ? "yellow" : "purple");
 
 				// reset state
 				delete Self._chooseColor;
