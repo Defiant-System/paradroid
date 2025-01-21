@@ -91,16 +91,31 @@ content {
 			visibility: visible;
 		}
 
-		// &.paused {
-		// 	> div.mobile-view {
-		// 		opacity: 1;
-		// 	}
-		// 	> div.paused-view {
-		// 		display: none;
-		// 		opacity: 0;
-		// 		visibility: hidden;
-		// 	}
-		// }
+		&.paused {
+			> div.mobile-view {
+				opacity: 1;
+			}
+			> div.paused-view {
+				display: none;
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			.progress {
+				.box-track:nth-child(3) {
+					.box-bar,
+					.box-bar.rejection {
+						transition: none;
+						min-height: 5px;
+						--speed: 9999s;
+
+						> b {
+							// --speed: 9999s;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	&[data-show="lift"] {

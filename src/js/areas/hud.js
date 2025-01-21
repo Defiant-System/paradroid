@@ -94,7 +94,7 @@
 						el.css({ "--val": 0 });
 						el.find(".box-bar").cssSequence("rejection", "transitionend", el => {
 							// reset element
-							// el.removeClass("rejection");
+							el.removeClass("rejection");
 							// time has run out - demote player droid
 							APP.mobile.arena.player.demote();
 						});
