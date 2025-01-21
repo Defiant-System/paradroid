@@ -54,7 +54,7 @@
 						// select section
 						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index-1] });
 						// play sound fx
-						window.audio.play("lift-move");
+						window.audio.play("swipe");
 						break;
 					case "down":
 						el = Self.els.el.find(".lift.active");
@@ -64,7 +64,7 @@
 						// select section
 						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index+1] });
 						// play sound fx
-						window.audio.play("lift-move");
+						window.audio.play("swipe");
 						break;
 					// temp for dev purposes
 					case "left":
@@ -131,10 +131,12 @@
 						"--filter": xSection.getAttribute("filter"),
 					});
 				// update hud details about level
+				let xDroids = xSection.selectNodes(`./Layer[@id="droids"]/i`),
+					xAlive = xSection.selectNodes(`./Layer[@id="droids"]/i[not(@dead)]`);
 				APP.hud.dispatch({
 					type: "set-level-data",
 					background: xSection.getAttribute("color"),
-					percentage: Utils.random(.1, 1) // TODO
+					percentage: xAlive.length / xDroids.length,
 				});
 				// save level information
 				Self.elevator.level = el.data("level");

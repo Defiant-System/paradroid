@@ -268,8 +268,7 @@ class Droid {
 		// update this droid properties
 		this.weight = +xDroid.getAttribute("weight");
 		this.speed = +xDroid.getAttribute("speed") * .00015;
-		this.energy = +xDroid.getAttribute("energy");
-		this.loss = +xDroid.getAttribute("loss");
+		this.reject = +xDroid.getAttribute("reject");
 		this.health = +xDroid.getAttribute("health");
 		// full health
 		this._health = +xDroid.getAttribute("health");
@@ -280,7 +279,7 @@ class Droid {
 
 		if (this.isPlayer) {
 			// host droid reject hack speed
-			let reject = 3e3; // TODO: change droid in 3 minutes
+			let reject = this.reject * 1000; // default "001" rejects in 180 seconds (3 minutes)
 			this.APP.hud.dispatch({ type: "progress-update", reject });
 			// reset movement forces
 			for (let key in this.input) {

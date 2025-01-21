@@ -66,14 +66,14 @@ class Player extends Droid {
 			let index = this.arena.map.droids.indexOf(this);
 			this.arena.map.droids.splice(index, 1)[0];
 			this.health = -1;
-			return;
 			// wait until explosion animation is done
 			setTimeout(() => {
 				// player droid killed - show "game over"
 				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
 			}, 1500);
 		} else {
-			this.setId("001");
+			// demote player droid to "001"
+			setTimeout(() => this.setId("001"), 100);
 		}
 	}
 

@@ -60,6 +60,18 @@ content {
 		}
 	}
 
+	&[data-show="lift"].paused {
+		div.lift-view {
+			opacity: .35;
+
+			.lift.active {
+				.elevator:before {
+					animation: none;
+				}
+			}
+		}
+	}
+
 	// &.fade-out[data-show="lift"]:not(.fade-in) {
 	// 	transition-duration: 300ms;
 

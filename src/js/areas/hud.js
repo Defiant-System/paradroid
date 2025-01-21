@@ -96,7 +96,6 @@
 							// reset element
 							barEl.removeClass("rejection");
 							el.css({ "--speed": "1ms", "--val": 1 });
-							console.log(event);
 							// time has run out - kill/demote player droid
 							APP.mobile.arena.player.kill();
 						});
