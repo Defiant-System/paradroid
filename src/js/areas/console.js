@@ -55,16 +55,19 @@
 							}
 						});
 						break;
+					case "w":
 					case "up":
 						Self.dispatch({ type: "show-view", arg: -1 });
 						// play sound fx
 						window.audio.play("confirm");
 						break;
+					case "s":
 					case "down":
 						Self.dispatch({ type: "show-view", arg: 1 });
 						// play sound fx
 						window.audio.play("confirm");
 						break;
+					case "a":
 					case "left":
 						options = Self.els.el.find(".option.active .sub[data-step]");
 						if (options.length) {
@@ -73,6 +76,7 @@
 							window.audio.play("swipe");
 						}
 						break;
+					case "d":
 					case "right":
 						options = Self.els.el.find(".option.active .sub[data-step]");
 						if (options.length) {
@@ -80,6 +84,28 @@
 							// play sound fx
 							window.audio.play("swipe");
 						}
+						break;
+				}
+				break;
+			case "gamepad.stick":
+				let x = event.value[0],
+					y = event.value[1];
+				if (event.stick === "left") {
+					switch (true) {
+						case y < 0: Self.dispatch({ type: "window.keydown", char: "up" }); break;
+						case y > 0: Self.dispatch({ type: "window.keydown", char: "down" }); break;
+						case x < 0: Self.dispatch({ type: "window.keydown", char: "left" }); break;
+						case x > 0: Self.dispatch({ type: "window.keydown", char: "right" }); break;
+					}
+				}
+				break;
+			case "gamepad.down":
+				switch (event.button) {
+					case "b0": // x - enter
+						Self.dispatch({ type: "window.keydown", char: "return" });
+						break;
+					case "b9": // options - toggle pause
+						APP.hud.dispatch({ type: "toggle-play-pause" });
 						break;
 				}
 				break;
