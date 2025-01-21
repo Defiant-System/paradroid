@@ -92,14 +92,14 @@ content {
 		}
 
 		&.paused {
-			> div.mobile-view {
-				opacity: 1;
-			}
-			> div.paused-view {
-				display: none;
-				opacity: 0;
-				visibility: hidden;
-			}
+			// > div.mobile-view {
+			// 	opacity: 1;
+			// }
+			// > div.paused-view {
+			// 	display: none;
+			// 	opacity: 0;
+			// 	visibility: hidden;
+			// }
 
 			.progress {
 				.box-track:nth-child(3) {
@@ -709,6 +709,15 @@ content {
 			clip-path: polygon(100% 0, 100% 70px, 50% 79px, 0 70px, 0 0);
 			min-height: 1px;
 			transition: min-height var( --speed ) linear;
+
+			&.reset-bar {
+				min-height: 2px;
+				transition-duration: 1ms;
+				
+				> b {
+					transition-duration: 1ms;
+				}
+			}
 
 			&.rejection {
 				min-height: 0px;

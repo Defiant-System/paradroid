@@ -484,7 +484,9 @@ class Map {
 
 
 		// player droid
-		if (arena.player.health > 0) arena.player.render(ctx);
+		if (arena.player.health >= 0) {
+			arena.player.render(ctx);
+		}
 
 		// now render fx layer
 		this.entries

@@ -152,7 +152,7 @@ let Test = {
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 40 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
+					map: { id: 1 }, player: { id: "614", x: 3, y: 7 }, debug: { mode: 0 },
 					// map: { id: 10 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 9 }, player: { id: "001", x: 3, y: 5 }, debug: { mode: 0 },
@@ -164,7 +164,7 @@ let Test = {
 			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
 			APP.mobile.dispatch({ type: "restore-state", state });
 
-			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 3500);
+			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 3500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 			
 			// setTimeout(() => APP.mobile.arena.player.setId("614"), 1500);

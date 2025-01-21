@@ -92,11 +92,13 @@
 					el.find(".box-bar").removeClass("rejection");
 					setTimeout(() => {
 						el.css({ "--val": 0 });
-						el.find(".box-bar").cssSequence("rejection", "transitionend", el => {
+						el.find(".box-bar").cssSequence("rejection", "transitionend", barEl => {
 							// reset element
-							el.removeClass("rejection");
-							// time has run out - demote player droid
-							APP.mobile.arena.player.demote();
+							barEl.removeClass("rejection");
+							el.css({ "--speed": "1ms", "--val": 1 });
+							console.log(event);
+							// time has run out - kill/demote player droid
+							APP.mobile.arena.player.kill();
 						});
 					}, 310);
 				}

@@ -99,31 +99,28 @@ class Droid {
 		if (this.health <= 0) {
 			// kill this droid
 			this.kill();
-			// inset explosion animation
-			new Explosion({ arena: this.arena, x: this.position.x, y: this.position.y });
 		}
 	}
 
 	kill(opt={}) {
-		// remove this droid from map
-		let index = this.arena.map.droids.indexOf(this),
-			droid = this.arena.map.droids.splice(index, 1)[0];
-		// remove droid from physical world
-		Matter.Composite.remove(this.arena.map.engine.world, this.body);
-
 		if (opt.silent === undefined) {
+			// inset explosion animation
+			new Explosion({ arena: this.arena, x: this.position.x, y: this.position.y });
 			// play sound fx
 			window.audio.play("explosion");
 			// shake screen on damage hit
 			this.arena.viewport.addShake(.75);
 		}
-		
-		if (droid.isPlayer) {
-			setTimeout(() => {
-				// player droid killed - show "game over"
-				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
-			}, 1500);
+		if (this.isPlayer) {
+			// first demote player if, above "001".
+			// if "001", explosion
+			this.demote();
 		} else {
+			// remove this droid from map
+			let index = this.arena.map.droids.indexOf(this);
+			this.arena.map.droids.splice(index, 1)[0];
+			// remove droid from physical world
+			Matter.Composite.remove(this.arena.map.engine.world, this.body);
 			// make node "dead"
 			this.xItem.setAttribute("dead", 1);
 			// notify map / section / level
@@ -283,7 +280,7 @@ class Droid {
 
 		if (this.isPlayer) {
 			// host droid reject hack speed
-			let reject = 7e3; // TODO: change droid in 3 minutes
+			let reject = 3e3; // TODO: change droid in 3 minutes
 			this.APP.hud.dispatch({ type: "progress-update", reject });
 			// reset movement forces
 			for (let key in this.input) {

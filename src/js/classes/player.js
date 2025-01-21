@@ -61,7 +61,20 @@ class Player extends Droid {
 	}
 
 	demote() {
-		console.log("demote player droid");
+		if (this.id === "001") {
+			// remove this droid from map
+			let index = this.arena.map.droids.indexOf(this);
+			this.arena.map.droids.splice(index, 1)[0];
+			this.health = -1;
+			return;
+			// wait until explosion animation is done
+			setTimeout(() => {
+				// player droid killed - show "game over"
+				this.APP.mobile.dispatch({ type: "player-droid-destroyed" });
+			}, 1500);
+		} else {
+			this.setId("001");
+		}
 	}
 
 	setState(item) {
