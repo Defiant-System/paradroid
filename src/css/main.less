@@ -24,8 +24,8 @@ content {
 	bottom: 0;
 	min-height: 0;
 	border-radius: inherit;
-	background: radial-gradient(ellipse at top center, #dcdcdc, transparent),
-				linear-gradient(180deg, #e3e3e3, #bbb);
+	background: radial-gradient(ellipse at top center, #e5e5e5, transparent),
+				linear-gradient(180deg, #ebebeb, #d3d3d3);
 
 	&:before {
 		content: "";
@@ -91,33 +91,16 @@ content {
 			visibility: visible;
 		}
 
-		&.paused {
-			> div.mobile-view {
-				opacity: 1;
-			}
-			> div.paused-view {
-				display: none;
-				opacity: 0;
-				visibility: hidden;
-			}
-
-			.progress {
-				.box-track:nth-child(3) {
-					.box-bar,
-					.box-bar.rejection {
-						transition: none;
-						// min-height: 2px;
-						--speed: 9999s;
-
-						&:before {
-							// transition: none;
-							--val: 0%;
-							--speed: 9999s;
-						}
-					}
-				}
-			}
-		}
+		// &.paused {
+		// 	> div.mobile-view {
+		// 		opacity: 1;
+		// 	}
+		// 	> div.paused-view {
+		// 		display: none;
+		// 		opacity: 0;
+		// 		visibility: hidden;
+		// 	}
+		// }
 	}
 
 	&[data-show="lift"] {
@@ -716,8 +699,7 @@ content {
 				min-height: 0px;
 			}
 
-			&:before {
-				content: "";
+			> b {
 				position: absolute;
 				top: calc( calc( 1 - var( --val ) ) * 62px );
 				left: 0;

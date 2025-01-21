@@ -31,6 +31,9 @@
 				if (Self.els.barRight.hasClass("paused") && !event.pause) {
 					Self.els.content.removeClass("paused");
 					Self.els.barRight.removeClass("paused");
+					// resume rejection bar
+					el = Self.els.progress.find(`.box-track[data-id="reject"]`).find("b");
+					el.css({ "top": "", "--speed": "" });
 					// resume game
 					APP.mobile.dispatch({ type: "game-loop-resume" });
 					// start hacking game, if in transfer view
@@ -38,6 +41,12 @@
 				} else {
 					Self.els.content.addClass("paused");
 					Self.els.barRight.addClass("paused");
+					// stop rejection bar
+					el = Self.els.progress.find(`.box-track[data-id="reject"]`).find("b");
+					el.css({
+						"top": el.prop("offsetTop"),
+						"--speed": "9999s",
+					});
 					// pause game
 					APP.mobile.dispatch({ type: "game-loop-pause" });
 					// stop hacking game, if in transfer view
@@ -79,7 +88,7 @@
 				if (event.reject !== undefined) {
 					el = Self.els.progress.find(`.box-track[data-id="reject"]`);
 					// set speed
-					el.css({ "--speed": event.reject +"ms" });
+					el.css({ "--val": "", "--speed": event.reject +"ms" });
 					el.find(".box-bar").removeClass("rejection");
 					setTimeout(() => {
 						el.css({ "--val": 0 });
