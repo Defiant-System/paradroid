@@ -92,17 +92,27 @@ content {
 		}
 
 		&.paused {
+			> div.mobile-view {
+				opacity: 1;
+			}
+			> div.paused-view {
+				display: none;
+				opacity: 0;
+				visibility: hidden;
+			}
+
 			.progress {
 				.box-track:nth-child(3) {
-					--speed: 9999s;
-					--val: 1;
-
+					.box-bar,
 					.box-bar.rejection {
 						transition: none;
-						min-height: 2px;
+						// min-height: 2px;
+						--speed: 9999s;
 
 						&:before {
-							transition: none;
+							// transition: none;
+							--val: 0%;
+							--speed: 9999s;
 						}
 					}
 				}
@@ -688,7 +698,7 @@ content {
 
 		&:nth-child(3) {
 			left: 66px;
-			.box-bar { filter: hue-rotate(105deg); }
+			.box-bar { filter: hue-rotate(255deg); }
 		}
 
 		.box-bar {

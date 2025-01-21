@@ -10,7 +10,7 @@
 			barLeft: window.find(".hud-view .left"),
 			barRight: window.find(".hud-view .right"),
 			btnRight: window.find(".hud-view .right .bar"),
-			progress: window.find(".hud-view .progress"),
+			progress: window.find(".progress"),
 		};
 	},
 	dispatch(event) {
@@ -85,7 +85,7 @@
 						el.css({ "--val": 0 });
 						el.find(".box-bar").cssSequence("rejection", "transitionend", el => {
 							// reset element
-							el.removeClass("rejection");
+							// el.removeClass("rejection");
 							// time has run out - demote player droid
 							APP.mobile.arena.player.demote();
 						});
