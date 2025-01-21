@@ -259,40 +259,81 @@ content {
 			height: 45px;
 
 			b[class^="logo-"] {
-				// background: rgba(#f00,.6);
 				position: absolute;
 				top: 5px;
 				left: 0;
 				width: 34px;
 				height: 24px;
 				z-index: 2;
-				background-position: 0 0;
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-image: inherit;
-				filter: drop-shadow(0 1px 0 hsl(174, 0%, 90%))
-						drop-shadow(0 2px 0 hsl(174, 0%, 85%))
-						drop-shadow(0 3px 0 hsl(174, 0%, 80%))
-						drop-shadow(0 1px 2px rgba(#000, .25));
+				background-size: 0 0;
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: inherit;
+					height: inherit;
+					background-position: 0 0;
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-image: inherit;
+					filter: drop-shadow(0 1px 0 hsl(174, 0%, 90%))
+							drop-shadow(0 2px 0 hsl(174, 0%, 85%))
+							drop-shadow(0 3px 0 hsl(174, 0%, 80%))
+							drop-shadow(0 1px 3px rgba(#000, .1));
+				}
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: -2px;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, #fff0, #fff, #fff0);
+				}
+
+				s {
+					display: none;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: linear-gradient(90deg, #fff0 3%, #fff, #fff0 97%);
+				}
 
 				&.logo-c1-p {
 					background-image: url(~/icons/logo-p.png);
 					left: 0px;
+
+					&:after { left: 1px; right: 20px; }
+					s { display: block; top: 19px; left: 13px; right: 1px; }
 				}
 
 				&.logo-c2-a {
 					background-image: url(~/icons/logo-a.png);
 					left: 36px;
+
+					&:after { left: 1px; right: 20px; }
+					s { display: block; top: 19px; left: 15px; right: 8px; }
 				}
 
 				&.logo-c3-r {
 					background-image: url(~/icons/logo-r.png);
 					left: 72px;
+
+					&:after { left: 1px; right: 20px; }
+					s { display: block; top: 19px; left: 15px; right: 8px; }
 				}
 
 				&.logo-c4-a {
 					background-image: url(~/icons/logo-a.png);
 					left: 108px;
+
+					&:after { left: 1px; right: 20px; }
+					s { display: block; top: 19px; left: 15px; right: 8px; }
 				}
 
 				&.logo-c5-d {
@@ -303,6 +344,9 @@ content {
 				&.logo-c6-r {
 					background-image: url(~/icons/logo-r.png);
 					left: 180px;
+
+					&:after { left: 1px; right: 20px; }
+					s { display: block; top: 19px; left: 15px; right: 8px; }
 				}
 
 				&.logo-c7-o {
