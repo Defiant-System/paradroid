@@ -2,9 +2,6 @@
 content {
 	&[data-show="mobile"] {
 		.view-controls {
-			opacity: 1;
-			visibility: visible;
-
 			span.key {
 				--c2: color-mix(in lab, #fff 35%, var( --c1 ) 65% );
 				--c3: color-mix(in lab, #000 10%, var( --c1 ) 90% );
@@ -21,14 +18,9 @@ content {
 
 	&[data-show="console"] {
 		.view-controls {
-			opacity: 1;
-			visibility: visible;
 			color: #777;
-
-			.glass-bg {
-				background: #6662;
-				backdrop-filter: blur(2px);
-			}
+			background: #6662;
+			backdrop-filter: blur(2px);
 
 			h3 {
 				&:before {
@@ -53,9 +45,6 @@ content {
 
 	&[data-show="transfer"] {
 		.view-controls {
-			opacity: 1;
-			visibility: visible;
-
 			span.key {
 				i {
 					background-color: #80a7f8;
@@ -68,14 +57,9 @@ content {
 
 	&[data-show="lift"] {
 		.view-controls {
-			opacity: 1;
-			visibility: visible;
 			color: #777;
-
-			.glass-bg {
-				background: #6662;
-				backdrop-filter: blur(2px);
-			}
+			background: #6662;
+			backdrop-filter: blur(2px);
 
 			h3 {
 				&:before {
@@ -110,41 +94,38 @@ content {
 }
 
 .view-controls {
-	// background: #0001;
 	position: absolute;
 	top: auto;
 	left: 110px;
 	bottom: 25px;
 	width: 556px;
-	height: 141px;
+	height: 155px;
 	z-index: 3;
 	font-family: Oxanium;
 	line-height: 1.35;
-	// text-shadow: 0 1px 0 #fff3;
 	color: #fff;
+	background: #69f2;
+	backdrop-filter: blur(5px);
+	border-radius: 5px;
+	pointer-events: none;
+	box-shadow: inset 0 1px 0 #fff2,
+				inset 0 -1px 1px #1114,
+				0 1px 7px #0004;
 
-	.glass-bg {
+	&:before {
+		content: "";
 		position: absolute;
-		top: -9px;
+		top: 0;
 		left: 0;
 		right: 0;
-		bottom: -5px;
-		background: #69f2;
-		backdrop-filter: blur(5px);
-		box-shadow: inset 0 1px 0 #fff2,
-					inset 0 -1px 1px #1114,
-					0 1px 7px #0004;
-		border-radius: 4px;
+		height: 1px;
+		background: linear-gradient(90deg, #fff0, #fff7, #fff0);
+	}
 
-		&:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 1px;
-			background: linear-gradient(90deg, #fff0, #fff7, #fff0);
-		}
+	&.show-hide {
+		opacity: 0;
+		visibility: visible;
+		animation: show-controls 5000ms ease-in-out 1500ms forwards;
 	}
 
 	.gamepad,
@@ -175,7 +156,7 @@ content {
 		}
 
 		&.move {
-			top: 50px;
+			top: 59px;
 			left: 111px;
 
 			&:before {
@@ -194,7 +175,7 @@ content {
 		}
 
 		&.aim {
-			top: 110px;
+			top: 119px;
 			left: 425px;
 
 			&:before {
@@ -208,7 +189,7 @@ content {
 		}
 
 		&.transfer {
-			top: 38px;
+			top: 47px;
 			left: 419px;
 
 			&:before {
@@ -221,7 +202,7 @@ content {
 		}
 
 		&.enter {
-			top: 68px;
+			top: 77px;
 			left: 444px;
 
 			&:before {
@@ -235,7 +216,7 @@ content {
 		}
 
 		&.pause {
-			top: 8px;
+			top: 17px;
 			left: 443px;
 
 			&:before {
@@ -254,7 +235,7 @@ content {
 .gamepad {
 	background: url(~/icons/gamepad-outline.png) 50% 50%/contain no-repeat;
 	position: absolute;
-	top: 1px;
+	top: 10px;
 	left: 192px;
 	width: 175px;
 	height: 117px;
@@ -264,7 +245,7 @@ content {
 .mouse {
 	background: url(~/icons/icon-mouse.png) 50% 50%/contain no-repeat;
 	position: absolute;
-	top: 98px;
+	top: 107px;
 	left: 493px;
 	width: 22px;
 	height: 37px;
@@ -285,18 +266,18 @@ span.key {
 	&.right { top: 24px; left: 52px; }
 
 	&.pause {
-		top: 4px;
+		top: 13px;
 		left: 489px;
 	}
 
 	&.shift {
-		top: 34px;
+		top: 43px;
 		left: 489px;
 		width: 47px;
 	}
 	
 	&.enter {
-		top: 64px;
+		top: 73px;
 		left: 489px;
 		width: 51px;
 	}
@@ -338,18 +319,18 @@ span.key {
 
 .key-group {
 	position: absolute;
-	width: 78px;
+	width: 87px;
 	height: 47px;
 	font-size: 0;
 	pointer-events: all;
 
 	&.wasd {
-		top: 8px;
+		top: 17px;
 		left: 15px;
 	}
 
 	&.arrows {
-		top: 70px;
+		top: 79px;
 		left: 15px;
 
 		.key {
@@ -389,4 +370,13 @@ span.key {
 			}
 		}
 	}
+}
+
+
+@keyframes show-controls {
+	0%   { opacity: 0; transform: translateY(20px); }
+	10%  { opacity: 1; transform: translateY(0px); }
+	90%  { opacity: 1; transform: translateY(0px); }
+	// 100%  { opacity: 1; transform: translateY(0px); }
+	100% { opacity: 0; transform: translateY(20px); }
 }

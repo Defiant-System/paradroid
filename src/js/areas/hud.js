@@ -66,7 +66,10 @@
 				el = Self.els.barLeft.find(".box");
 				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10) / 100;
 				el.css({ "--val": `${value * 100}%`, "--c1": event.background });
-				Self.els.controls.css({ "--c1": event.background });
+				Self.els.controls
+					.data({ view: "mobile" })
+					.css({ "--c1": event.background })
+					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide1"));
 				break;
 			case "progress-update":
 				if (event.level !== undefined) {
