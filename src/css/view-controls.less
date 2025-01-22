@@ -1,17 +1,161 @@
 
+content {
+	&[data-show="mobile"] {
+		.view-controls {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&[data-show="lift"] {
+		.view-controls {
+			opacity: 1;
+			visibility: visible;
+
+			h3.transfer,
+			h3.aim {
+				display: none;
+			}
+
+			.mouse,
+			.key.shift {
+				display: none;
+			}
+
+			.key.left,
+			.key.right {
+				opacity: .5;
+			}
+		}
+	}
+}
+
 .view-controls {
 	// background: #0001;
 	position: absolute;
 	top: auto;
-	left: 7px;
-	right: 7px;
-	bottom: 7px;
-	height: 181px;
-	border-radius: 4px;
+	left: 110px;
+	bottom: 25px;
+	width: 556px;
+	height: 141px;
+	z-index: 3;
+	font-family: Oxanium;
+	line-height: 1.35;
+	// text-shadow: 0 1px 0 #fff3;
+	color: #fff;
 
-	&[data-view="lift"] {
-		opacity: 1;
-		visibility: visible;
+	.glass-bg {
+		position: absolute;
+		top: -7px;
+		left: 0;
+		right: 0;
+		bottom: -5px;
+		background: #69f2;
+		backdrop-filter: blur(5px);
+		box-shadow: 0 1px 5px #0005;
+		border-radius: 4px;
+	}
+
+	.gamepad,
+	.mouse {
+		filter: invert(1) brightness(2);
+	}
+
+	h3 {
+		position: absolute;
+		text-transform: uppercase;
+
+		&:before {
+			content: "";
+			position: absolute;
+			border: 1px solid #fff9;
+			filter: drop-shadow(0 0 3px #fff9);
+		}
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 5px;
+			left: -4px;
+			background: #fff9;
+			width: 3px;
+			height: 3px;
+			border-radius: 50%;
+		}
+
+		&.move {
+			top: 50px;
+			left: 111px;
+
+			&:before {
+				top: 6px;
+				left: 39px;
+				height: 5px;
+				width: 98px;
+				border-top: 0;
+				border-right: 0;
+			}
+
+			&:after {
+				left: auto;
+				right: -5px;
+			}
+		}
+
+		&.aim {
+			top: 110px;
+			left: 425px;
+
+			&:before {
+				top: -39px;
+				left: -124px;
+				width: 119px;
+				height: 45px;
+				border-top: 0;
+				border-right: 0;
+			}
+		}
+
+		&.transfer {
+			top: 38px;
+			left: 419px;
+
+			&:before {
+				top: 6px;
+				left: -85px;
+				width: 81px;
+				height: 6px;
+				border-top: 0;
+			}
+		}
+
+		&.enter {
+			top: 68px;
+			left: 444px;
+
+			&:before {
+				top: -12px;
+				left: -122px;
+				width: 117px;
+				height: 18px;
+				border-top: 0;
+				border-right: 0;
+			}
+		}
+
+		&.pause {
+			top: 8px;
+			left: 443px;
+
+			&:before {
+				top: 6px;
+				left: -151px;
+				width: 147px;
+				height: 19px;
+				border-right: 0;
+				border-bottom: 0;
+			}
+		}
 	}
 }
 
@@ -19,8 +163,8 @@
 .gamepad {
 	background: url(~/icons/gamepad-outline.png) 50% 50%/contain no-repeat;
 	position: absolute;
-	top: 31px;
-	left: 282px;
+	top: 1px;
+	left: 192px;
 	width: 175px;
 	height: 117px;
 	filter: drop-shadow(0 1px 0 #fff);
@@ -29,8 +173,8 @@
 .mouse {
 	background: url(~/icons/icon-mouse.png) 50% 50%/contain no-repeat;
 	position: absolute;
-	top: 80px;
-	left: 550px;
+	top: 98px;
+	left: 493px;
 	width: 22px;
 	height: 37px;
 	filter: drop-shadow(0 1px 0 #fff);
@@ -50,19 +194,19 @@ span.key {
 	&.right { top: 24px; left: 52px; }
 
 	&.pause {
-		top: 16px;
-		left: 137px;
+		top: 4px;
+		left: 489px;
 	}
 
 	&.shift {
-		top: 37px;
-		left: 0px;
+		top: 34px;
+		left: 489px;
 		width: 47px;
 	}
 	
 	&.enter {
-		top: 34px;
-		left: 237px;
+		top: 64px;
+		left: 489px;
 		width: 51px;
 	}
 
@@ -111,13 +255,13 @@ span.key {
 	pointer-events: all;
 
 	&.wasd {
-		top: 30px;
-		left: 100px;
+		top: 8px;
+		left: 15px;
 	}
 
 	&.arrows {
-		top: 100px;
-		left: 100px;
+		top: 70px;
+		left: 15px;
 
 		.key {
 			i {

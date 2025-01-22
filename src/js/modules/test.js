@@ -23,19 +23,6 @@ let Test = {
 		 */
 
 
-		// let arr = [
-		// 		{ x: -5, y: 5 },
-		// 		{ x: 5, y: 5 },
-		// 		{ x: 5, y: -5 },
-		// 		{ x: -5, y: -5 },
-		// 		{ x: 3, y: 4 },
-		// 		// { x: 3, y: 2 },
-		// 		// { x: -3, y: -2 },
-		// 		// { x: -3, y: 1 },
-		// 	],
-		// 	sorted = Utils.sortPointsCW(arr);
-		// return console.log( JSON.stringify(sorted, null, "  ") );
-		
 		/*
 		 * START View
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
@@ -47,6 +34,13 @@ let Test = {
 		/*
 		 * BRIEFING View
 		APP.dispatch({ type: "show-view", arg: "briefing" });
+		return;
+		 */
+
+		
+		/*
+		 * FINISHED View
+		APP.dispatch({ type: "show-view", arg: "finished" });
 		return;
 		 */
 
@@ -112,10 +106,10 @@ let Test = {
 
 		/*
 		 * LIFT View
-		 */
 		APP.dispatch({ type: "show-view", arg: "lift" });
 		// APP.lift.els.el.find(".lift").get(0).trigger("click");
 		return;
+		 */
 
 
 		/*

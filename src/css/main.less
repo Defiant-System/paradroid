@@ -67,6 +67,15 @@ content {
 		}
 	}
 
+	&[data-show="finished"] {
+		&:before { display: block; }
+
+		> div.finished-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
 	&[data-show="start"] {
 		&:before { display: block; }
 
