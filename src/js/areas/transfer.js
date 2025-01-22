@@ -279,6 +279,11 @@
 				value = APP.mobile.arena.player.opponent.id;
 				Self.els.droidRight.data({ id: value }).removeClass("player");
 				Self.els.ammoRight.data({ left: 3 + +value[0] });
+				
+				// controls view
+				APP.hud.els.controls
+					.addClass("hacking-game")
+					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
 
 				// defaults
 				Self._playerColor = "yellow";
@@ -304,7 +309,12 @@
 			case "start-hacking":
 				if (Self._gameEnded) return;
 				// reset player droid
-				Self.els.el.removeClass("show-gloria");
+				Self.els.el.addClass("hacking-game").removeClass("show-gloria");
+				// controls view
+				APP.hud.els.controls
+					.addClass("hacking-game")
+					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
+
 				// start hacking game
 				delete Self._chooseColor;
 				// get ready
@@ -337,6 +347,8 @@
 					// reset view
 					Self.els.el.removeClass("hidden");
 					Self.els.el.find(`[data-id]`).data({ id: APP.mobile.arena.player.opponent.id });
+					// reset controls view
+					APP.hud.els.controls.removeClass("hacking-game");
 
 					switch (Self.els.cpu.data("winner")) {
 						case Self._playerColor:
@@ -375,7 +387,7 @@
 				break;
 			case "reset-transfer-view":
 				// reset view
-				Self.els.el.removeClass("show-gloria deadlock-title finished finish-win finish-loose finish-deadlock");
+				Self.els.el.removeClass("show-gloria hacking-game deadlock-title finished finish-win finish-loose finish-deadlock");
 				// defaults
 				Self._playerColor = "yellow";
 				// reset toggles

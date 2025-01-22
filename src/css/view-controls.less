@@ -45,11 +45,98 @@ content {
 
 	&[data-show="transfer"] {
 		.view-controls {
-			span.key {
-				i {
-					background-color: #80a7f8;
-					filter: drop-shadow(0 1px 0 #88e)
-							drop-shadow(0 1px 0 rgba(#fff, .15));
+			&.show-hide {
+				animation-delay: 200ms;
+				animation-duration: 3000ms;
+			}
+
+			&:not(.hacking-game) {
+				h3 {
+					&.move {
+						&:before {
+							width: 96px;
+						}
+					}
+
+					&.transfer,
+					&.aim {
+						display: none;
+					}
+				}
+
+				.gamepad {
+					.stick-left-right {
+						display: block;
+
+						&:before,
+						&:after {
+							background: #0007;
+							border-color: #000;
+						}
+					}
+				}
+
+				.mouse,
+				.key.shift {
+					display: none;
+				}
+
+				span.key {
+					i {
+						background-color: #80a7f8;
+						filter: drop-shadow(0 1px 0 #88e)
+								drop-shadow(0 1px 0 rgba(#fff, .15));
+					}
+
+					&.up,
+					&.down {
+						opacity: .5;
+					}
+				}
+			}
+
+
+			&.hacking-game {
+				&.show-hide {
+					animation-delay: 200ms;
+					animation-duration: 3000ms;
+				}
+				
+				h3 {
+					&.transfer,
+					&.aim {
+						display: none;
+					}
+				}
+
+				.gamepad {
+					.stick-up-down {
+						display: block;
+
+						&:before,
+						&:after {
+							background: #0007;
+							border-color: #000;
+						}
+					}
+				}
+
+				.mouse,
+				.key.shift {
+					display: none;
+				}
+
+				span.key {
+					i {
+						background-color: #80a7f8;
+						filter: drop-shadow(0 1px 0 #88e)
+								drop-shadow(0 1px 0 rgba(#fff, .15));
+					}
+
+					&.left,
+					&.right {
+						opacity: .5;
+					}
 				}
 			}
 		}
@@ -61,6 +148,10 @@ content {
 			background: #6662;
 			backdrop-filter: blur(2px);
 
+			&.show-hide {
+				animation-delay: 100ms;
+			}
+
 			h3 {
 				&:before {
 					border-color: #99ffcf;
@@ -69,15 +160,25 @@ content {
 				&:after {
 					background: #99ffcf;
 				}
-			}
 
-			h3.transfer,
-			h3.aim {
-				display: none;
+				&.move {
+					&:before {
+						width: 103px;
+					}
+				}
+
+				&.transfer,
+				&.aim {
+					display: none;
+				}
 			}
 
 			.gamepad {
 				filter: none;
+
+				.stick-up-down {
+					display: block;
+				}
 			}
 
 			.mouse,
@@ -107,7 +208,7 @@ content {
 	background: #69f2;
 	backdrop-filter: blur(5px);
 	border-radius: 5px;
-	pointer-events: none;
+	// pointer-events: none;
 	box-shadow: inset 0 1px 0 #fff2,
 				inset 0 -1px 1px #1114,
 				0 1px 7px #0004;
@@ -120,6 +221,11 @@ content {
 		right: 0;
 		height: 1px;
 		background: linear-gradient(90deg, #fff0, #fff7, #fff0);
+	}
+
+	&.show {
+		opacity: 1;
+		visibility: visible;
 	}
 
 	&.show-hide {
@@ -240,6 +346,70 @@ content {
 	width: 175px;
 	height: 117px;
 	filter: drop-shadow(0 1px 0 #fff);
+
+	.stick-up-down {
+		display: none;
+		position: absolute;
+		top: 50px;
+		left: 61px;
+		width: 9px;
+		height: 23px;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: 11px;
+			border: 1px solid #99ffcf;
+			background: #99ffcf77;
+		}
+
+		&:before {
+			top: 0;
+			border-bottom: 0;
+			border-radius: 3px 3px 0 0;
+		}
+
+		&:after {
+			bottom: 0;
+			border-top: 0;
+			border-radius: 0 0 3px 3px;
+		}
+	}
+
+	.stick-left-right {
+		display: none;
+		position: absolute;
+		top: 56px;
+		left: 54px;
+		width: 22px;
+		height: 9px;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 10px;
+			border: 1px solid #99ffcf;
+			background: #99ffcf77;
+		}
+
+		&:before {
+			left: 0;
+			border-right: 0;
+			border-radius: 3px 0 0 3px;
+		}
+
+		&:after {
+			right: 0;
+			border-left: 0;
+			border-radius: 0 3px 3px 0;
+		}
+	}
 }
 
 .mouse {
