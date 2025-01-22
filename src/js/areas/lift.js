@@ -113,6 +113,9 @@
 				break;
 			// custom events
 			case "init-view":
+				// quick show controls for this view
+				Self.els.content.find(".view-controls").data({ view: "lift" });
+
 				Self.els.el.find(`.deck .section`).map(elem => {
 					let el = $(elem),
 						xPath = `//Data/Section[@level="${el.data("level")}"]/Layer[@id="droids"]/i[not(@dead)]`,
