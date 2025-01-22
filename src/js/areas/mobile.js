@@ -161,11 +161,15 @@
 			// custom events
 			case "init-view":
 				if (Self._started) return;
+				// reset game
 				Self._started = true;
-				Self.dispatch({
-					type: "restore-state",
-					state: { map: { id: 1, clear: 0 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 } },
-				});
+				// reset killed droids
+				window.bluePrint.selectNodes(`//Layer[@id="droids"]/*[@dead]`).map(x => x.removeAttribute("dead"));
+				// stop engine, if stopped
+				Self.dispatch({ type: "game-loop-resume" });
+				// restore game state
+				value = { map: { id: 1, clear: 0 }, player: { id: "001", x: 3, y: 7, health: 100 }, debug: { mode: 0 } };
+				Self.dispatch({ type: "restore-state", state: value });
 				break;
 			case "reset-game-player":
 				

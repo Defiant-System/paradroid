@@ -20,8 +20,10 @@
 				Self.els.content.cssSequence("leave", "transitionend", el => {
 					// reset element
 					el.removeClass("leave");
+					// flag will restart the game
+					APP.mobile._started = false;
 					// animate / switch to view
-					APP.dispatch({ type: "show-view", arg: "start" });
+					APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
 				});
 				break;
 			// custom events

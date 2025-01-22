@@ -409,6 +409,8 @@ class Droid {
 				let [x1, y1] = this._path.shift(),
 					target = new Point(x1, y1);
 				this.home.target = target.multiply(tile).subtract(hT);
+			} else if (this.arena.player.health <= 0) {
+				this.fire.shooting = false;
 			} else {
 				let pDist = this.position.distance(this.arena.player.position),
 					prand,
