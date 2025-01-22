@@ -44,11 +44,6 @@ let Test = {
 		return;
 		 */
 
-		
-		// view animation
-		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "transfer" }), 100);
-		// setTimeout(() => APP.dispatch({ type: "switch-to-view", arg: "terminated" }), 100);
-		// return;
 
 		/*
 		 * TRANSFER View
@@ -106,10 +101,10 @@ let Test = {
 
 		/*
 		 * LIFT View
+		 */
 		APP.dispatch({ type: "show-view", arg: "lift" });
 		// APP.lift.els.el.find(".lift").get(0).trigger("click");
 		return;
-		 */
 
 
 		/*

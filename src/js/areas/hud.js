@@ -11,6 +11,7 @@
 			barRight: window.find(".hud-view .right"),
 			btnRight: window.find(".hud-view .right .bar"),
 			progress: window.find(".progress"),
+			controls: window.find(".view-controls"),
 		};
 	},
 	dispatch(event) {
@@ -64,10 +65,8 @@
 			case "set-level-data":
 				el = Self.els.barLeft.find(".box");
 				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10) / 100;
-				el.css({
-					"--val": `${value * 100}%`,
-					"--c1": event.background,
-				});
+				el.css({ "--val": `${value * 100}%`, "--c1": event.background });
+				Self.els.controls.css({ "--c1": event.background });
 				break;
 			case "progress-update":
 				if (event.level !== undefined) {

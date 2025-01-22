@@ -4,6 +4,65 @@ content {
 		.view-controls {
 			opacity: 1;
 			visibility: visible;
+
+			span.key {
+				--c2: color-mix(in lab, #fff 35%, var( --c1 ) 65% );
+				--c3: color-mix(in lab, #000 10%, var( --c1 ) 90% );
+
+				i {
+					background-color: var( --c2 );
+					text-shadow: 0 -1px 0 var( --c3 );
+					filter: drop-shadow(0 1px 0 var( --c3 ))
+							drop-shadow(0 1px 0 rgba(#fff, .15));
+				}
+			}
+		}
+	}
+
+	&[data-show="console"] {
+		.view-controls {
+			opacity: 1;
+			visibility: visible;
+			color: #777;
+
+			.glass-bg {
+				background: #6662;
+				backdrop-filter: blur(2px);
+			}
+
+			h3 {
+				&:before {
+					border-color: #8081ff;
+				}
+
+				&:after {
+					background: #8081ff;
+				}
+			}
+
+			.gamepad {
+				filter: none;
+			}
+
+			.mouse,
+			.key.shift {
+				display: none;
+			}
+		}
+	}
+
+	&[data-show="transfer"] {
+		.view-controls {
+			opacity: 1;
+			visibility: visible;
+
+			span.key {
+				i {
+					background-color: #80a7f8;
+					filter: drop-shadow(0 1px 0 #88e)
+							drop-shadow(0 1px 0 rgba(#fff, .15));
+				}
+			}
 		}
 	}
 
@@ -11,10 +70,30 @@ content {
 		.view-controls {
 			opacity: 1;
 			visibility: visible;
+			color: #777;
+
+			.glass-bg {
+				background: #6662;
+				backdrop-filter: blur(2px);
+			}
+
+			h3 {
+				&:before {
+					border-color: #99ffcf;
+				}
+
+				&:after {
+					background: #99ffcf;
+				}
+			}
 
 			h3.transfer,
 			h3.aim {
 				display: none;
+			}
+
+			.gamepad {
+				filter: none;
 			}
 
 			.mouse,
@@ -46,14 +125,26 @@ content {
 
 	.glass-bg {
 		position: absolute;
-		top: -7px;
+		top: -9px;
 		left: 0;
 		right: 0;
 		bottom: -5px;
 		background: #69f2;
 		backdrop-filter: blur(5px);
-		box-shadow: 0 1px 5px #0005;
+		box-shadow: inset 0 1px 0 #fff2,
+					inset 0 -1px 1px #1114,
+					0 1px 7px #0004;
 		border-radius: 4px;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: linear-gradient(90deg, #fff0, #fff7, #fff0);
+		}
 	}
 
 	.gamepad,
@@ -241,8 +332,6 @@ span.key {
 		color: #fff;
 		text-shadow: 0 -1px 0 #999;
 		filter: drop-shadow(0 1px 0 #999)
-				// drop-shadow(0 2px 0 #e80)
-				// drop-shadow(0 3px 0 #e80)
 				drop-shadow(0 1px 0 rgba(#fff, .15));
 	}
 }
