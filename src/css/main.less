@@ -693,6 +693,7 @@ content {
 			left: 0;
 			right: 0;
 			bottom: 0;
+			z-index: 2;
 			filter: drop-shadow(0 0 1px #fff);
 		}
 
@@ -709,6 +710,22 @@ content {
 		&:nth-child(3) {
 			left: 66px;
 			.box-bar { filter: hue-rotate(255deg); }
+
+			&[style*="--val: 0.0"],
+			&[style*="--val: 0.1"] {
+				&:after {
+					content: "";
+					background: url(~/icons/prog-bar-bg.png) no-repeat;
+					background-size: 100% auto;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					z-index: 1;
+					animation: reject-alert 1s infinite alternate;
+				}
+			}
 		}
 
 		.box-bar {
@@ -717,6 +734,7 @@ content {
 			left: 0;
 			height: 82px;
 			width: 28px;
+			z-index: 3;
 			mix-blend-mode: color;
 			clip-path: polygon(100% 0, 100% 70px, 50% 79px, 0 70px, 0 0);
 			min-height: 1px;
@@ -751,6 +769,11 @@ content {
 }
 
 
+
+@keyframes reject-alert {
+	0%   { filter: drop-shadow(0 0 7px #fff) drop-shadow(0 0 11px #fff); }
+	100% { filter: drop-shadow(0 0 7px #f00) drop-shadow(0 0 11px #f00); }
+}
 
 @keyframes droid-spin {
 	0%   { background-position: -360px 0px; }

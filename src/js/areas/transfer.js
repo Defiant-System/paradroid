@@ -89,6 +89,29 @@
 						break;
 				}
 				break;
+			// gamepad events
+			case "gamepad.stick":
+				let x = event.value[0],
+					y = event.value[1];
+				if (event.stick === "left") {
+					switch (true) {
+						case y < 0: Self.dispatch({ type: "window.keydown", char: "up" }); break;
+						case y > 0: Self.dispatch({ type: "window.keydown", char: "down" }); break;
+						case x < 0: Self.dispatch({ type: "window.keydown", char: "left" }); break;
+						case x > 0: Self.dispatch({ type: "window.keydown", char: "right" }); break;
+					}
+				}
+				break;
+			case "gamepad.down":
+				switch (event.button) {
+					case "b0": // x - enter
+						Self.dispatch({ type: "window.keydown", char: "return" });
+						break;
+					case "b9": // options - toggle pause
+						APP.hud.dispatch({ type: "toggle-play-pause" });
+						break;
+				}
+				break;
 			// custom events
 			case "init-view":
 				// generate circuit board
@@ -336,7 +359,7 @@
 
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
-						// Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
@@ -380,8 +403,14 @@
 						default:
 							Self.els.el.cssSequence("finished finish-loose", "transitionend", el => {
 								Self.dispatch({ type: "reset-transfer-view" });
-
-								console.log("demote player droid AND switch to mobile view");
+								// console.log("switch to mobile view");
+								APP.mobile.arena.player.opponent.kill();
+								APP.mobile.arena.player.kill();
+								// start / resume game loop
+								APP.mobile.dispatch({ type: "game-loop-resume" });
+								// go to mobile view
+								let done = () => Self.els.el.addClass("hidden");
+								APP.dispatch({ type: "switch-to-view", arg: "mobile", done });
 							});
 					}
 				};

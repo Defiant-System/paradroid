@@ -87,6 +87,7 @@
 						break;
 				}
 				break;
+			// gamepad events
 			case "gamepad.stick":
 				let x = event.value[0],
 					y = event.value[1];
@@ -211,8 +212,7 @@
 						value = APP.mobile.arena.player.id;
 						el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${value}")`);
 						// droids after player droid are "disabled"
-						// temp: hbi
-						// el.nextAll("span").addClass("disabled");
+						el.nextAll("span").addClass("disabled");
 						break;
 					case "level":
 						Self.drawMinimap(APP.mobile.arena.map.id);

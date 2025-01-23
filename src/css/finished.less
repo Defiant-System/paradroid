@@ -30,19 +30,28 @@ content {
 	bottom: 0;
 
 	.congrats {
-		padding: 73px 0;
+		padding: 53px 0 0;
 		text-align: center;
 		text-shadow: 0 1px 0 #fff;
 		color: #999;
 
-		h2 {
-			font-family: "ParaDrew";
-			font-size: 50px;
+		svg.text-avalon {
+			text-shadow: none;
+			margin: -13px auto 0;
+
+			.svg-text__shaded__stroke {
+				stroke: #c0c0c0;
+
+				.svg-text__stroke {
+					stroke: #e3e3e3;
+				}
+			}
 		}
 
 		.ship {
 			position: relative;
-			display: inline-block;
+			margin: -31px auto 0;
+			display: block;
 			width: 140px;
 			height: 140px;
 			background-size: contain;
@@ -50,5 +59,155 @@ content {
 			background-repeat: no-repeat;
 			background-image: url(~/icons/icon-ship.png);
 		}
+
+		.icon-tre-kronor {
+			position: relative;
+			top: 5px;
+			display: inline-block;
+			margin-right: 3px;
+			width: 32px;
+			height: 32px;
+			opacity: .75;
+			background-size: contain;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-image: url(~/icons/icon-tre-kronor.png);
+			filter: drop-shadow(0 1px 0 #fff);
+		}
+
+		h2 {
+			font-family: Paradrew;
+			font-size: 30px;
+			opacity: .5;
+		}
+
+		h3 {
+			font-family: Oxanium;
+			font-size: 20px;
+			line-height: 2;
+		}
+			
+		.pyro {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 100;
+
+			> .before,
+			> .after {
+				position: absolute;
+				width: 5px;
+				height: 5px;
+				border-radius: 50%;
+				.pyroShadowLoop(50);
+				animation: 1s bang ease-out 7 backwards,
+							1s gravity ease-in 7 backwards,
+							5s position linear 7 backwards;
+			}
+
+			> .after {
+				animation-delay: 1.25s, 1.25s, 1.25s;
+				animation-duration: 1.25s, 1.25s, 6.25s;
+			}
+		}
+	}
+}
+
+
+.pyroShadowLoop(@count) when (@count > 0) {
+		.pyroShadowLoop(@count - 1);
+		box-shadow+: 0 0 #fff;
+}
+
+// copied from: https://codepen.io/yshlin/pen/ylDEk
+@keyframes bang {
+	to {
+		box-shadow: -195px -358.6666666667px #ff3300,
+					-188px 74.3333333333px #9dff00,
+					86px -174.6666666667px #ff001e,
+					-70px -41.6666666667px #7b00ff,
+					199px -331.6666666667px #ff00d5,
+					-70px -103.6666666667px #c4ff00,
+					4px -387.6666666667px #00eeff,
+					-61px -229.6666666667px #ff002f,
+					112px -146.6666666667px #00ffdd,
+					187px 67.3333333333px #ff00b7,
+					-50px -396.6666666667px #5500ff,
+					177px -356.6666666667px #00eeff,
+					-165px -120.6666666667px #ff00b3,
+					151px 37.3333333333px #ff007b,
+					17px -32.6666666667px #00ff26,
+					215px -115.6666666667px #8cff00,
+					-139px -41.6666666667px #77ff00,
+					-84px -100.6666666667px #ff009d,
+					-90px -130.6666666667px #91ff00,
+					-100px -343.6666666667px #2600ff,
+					222px -415.6666666667px #9900ff,
+					-102px -216.6666666667px #ff0051,
+					-135px -414.6666666667px #00ff1e,
+					-130px -80.6666666667px #00ff73,
+					-83px -50.6666666667px #0d00ff,
+					149px -135.6666666667px #002bff,
+					-174px -307.6666666667px #004dff,
+					-155px -252.6666666667px #00ffb3,
+					28px -402.6666666667px #ffd000,
+					-150px -236.6666666667px #00ffd9,
+					249px -164.6666666667px #ff0004,
+					49px -94.6666666667px #1aff00,
+					-216px -98.6666666667px #00ff77,
+					-101px -147.6666666667px #2200ff,
+					240px 1.3333333333px #00ffea,
+					-55px -139.6666666667px #ff5900,
+					-120px 1.3333333333px #ff8800,
+					75px -265.6666666667px #00ffbb,
+					204px -4.6666666667px #ff00ea,
+					-76px -108.6666666667px #0044ff,
+					-180px -48.6666666667px #ff5500,
+					-129px -367.6666666667px #8000ff,
+					-19px -189.6666666667px #91ff00,
+					210px -100.6666666667px #ffc400,
+					-71px -170.6666666667px #00ff33,
+					-155px -117.6666666667px #0091ff,
+					66px -259.6666666667px #00ff9d,
+					98px -3.6666666667px #0026ff,
+					-143px -128.6666666667px #0dff00,
+					127px -47.6666666667px #00b3ff,
+					79px -216.6666666667px #ff00d9;
+	}
+}
+
+@keyframes gravity {
+	to {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+}
+
+@keyframes position {
+	0%,
+	19.9% {
+		margin-top: 10%;
+		margin-left: 40%;
+	}
+	20%,
+	39.9% {
+		margin-top: 40%;
+		margin-left: 30%;
+	}
+	40%,
+	59.9% {
+		margin-top: 20%;
+		margin-left: 70%;
+	}
+	60%,
+	79.9% {
+		margin-top: 30%;
+		margin-left: 20%;
+	}
+	80%,
+	99.9% {
+		margin-top: 30%;
+		margin-left: 80%;
 	}
 }
