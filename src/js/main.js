@@ -96,6 +96,8 @@ const paradroid = {
 							// remove "no-anim" flag
 							Self.els.content.removeAttr("data-anim");
 							Self.hud.dispatch({ type: "set-view-title" });
+							// save reference to active view
+							Self.active = event.arg;
 
 							if (["mobile", "console", "transfer", "lift"].includes(event.arg)) {
 								Self.hud.els.controls

@@ -16,6 +16,8 @@
 			droidRight: window.find(".board .right .droid"),
 			ammoRight: window.find(".board .right .side .ammo"),
 		};
+		// reset gamepad tick
+		this._gamepadTick = Date.now();
 	},
 	dispatch(event) {
 		let APP = paradroid,
@@ -92,8 +94,10 @@
 			// gamepad events
 			case "gamepad.stick":
 				let x = event.value[0],
-					y = event.value[1];
-				if (event.stick === "left") {
+					y = event.value[1],
+					now = Date.now();
+				if (event.stick === "left" && now - Self._gamepadTick > 3e2) {
+					Self._gamepadTick = now;
 					switch (true) {
 						case y < 0: Self.dispatch({ type: "window.keydown", char: "up" }); break;
 						case y > 0: Self.dispatch({ type: "window.keydown", char: "down" }); break;

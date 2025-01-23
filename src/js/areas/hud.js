@@ -69,7 +69,7 @@
 				Self.els.controls
 					.data({ view: "mobile" })
 					.css({ "--c1": event.background })
-					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide1"));
+					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
 				break;
 			case "progress-update":
 				if (event.level !== undefined) {

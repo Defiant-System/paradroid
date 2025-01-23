@@ -711,20 +711,17 @@ content {
 			left: 66px;
 			.box-bar { filter: hue-rotate(255deg); }
 
-			&[style*="--val: 0.0"],
-			&[style*="--val: 0.1"] {
-				&:after {
-					content: "";
-					background: url(~/icons/prog-bar-bg.png) no-repeat;
-					background-size: 100% auto;
-					position: absolute;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-					z-index: 1;
-					animation: reject-alert 1s infinite alternate;
-				}
+			&:after {
+				content: "";
+				background: url(~/icons/prog-bar-bg.png) no-repeat;
+				background-size: 100% auto;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 1;
+				animation: reject-alert 1s infinite alternate;
 			}
 		}
 

@@ -22,6 +22,11 @@ content {
 			background: #6662;
 			backdrop-filter: blur(2px);
 
+			&.show-hide {
+				animation-delay: 100ms;
+				animation-duration: 2500ms;
+			}
+
 			h3 {
 				&:before {
 					border-color: #8081ff;
@@ -30,10 +35,20 @@ content {
 				&:after {
 					background: #8081ff;
 				}
+
+				&.transfer,
+				&.aim {
+					display: none;
+				}
 			}
 
 			.gamepad {
 				filter: none;
+			}
+
+			.mouse,
+			.key.shift {
+				display: none;
 			}
 
 			.mouse,
