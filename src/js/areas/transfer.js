@@ -102,6 +102,8 @@
 				ammo = el.parent().parent().find(".ammo");
 				left = +ammo.data("left");
 				if (index > 1 && left > -1) {
+					// play sound fx
+					window.audio.play("swipe");
 					// light up active line
 					el.find(`> div:nth-child(${index})`).cssSequence("active", "transitionend", el => {
 						// reset switch start
@@ -122,6 +124,7 @@
 						let line = $(elem),
 							input = line.attr("join"),
 							jLine = input === "i1" ? group : (input === "i2" ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
+							a = console.log(jLine),
 							chip = jLine.find(".chip.joint");
 						// handles join special scenario
 						if (input === "i3") input = "i2";
@@ -176,7 +179,8 @@
 					isLeft = side === "left",
 					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
-				xBoard.map(x => x.removeAttribute("row"));
+				// TODO: enable
+				// xBoard.map(x => x.removeAttribute("row"));
 				// populate groups sets
 				let groups = [[""]],
 					schema = [];
@@ -196,7 +200,8 @@
 				}
 				// apply randomized schema set to xml nodes
 				schema.map((r, i) => {
-					if (r.id) xBoard[i].setAttribute("row", r.id);
+					// TODO: enable
+					// if (r.id) xBoard[i].setAttribute("row", r.id);
 				});
 
 				if (isLeft) {
@@ -334,7 +339,7 @@
 
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
-						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+						// Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });

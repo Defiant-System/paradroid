@@ -95,10 +95,13 @@ const paradroid = {
 							el.removeClass("fade-out fade-in");
 							// remove "no-anim" flag
 							Self.els.content.removeAttr("data-anim");
+							Self.hud.dispatch({ type: "set-view-title" });
 
-							Self.hud.els.controls
-								.data({ view: event.arg })
-								.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
+							if (["mobile", "console", "transfer", "lift"].includes(event.arg)) {
+								Self.hud.els.controls
+									.data({ view: event.arg })
+									.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
+							}
 
 							// init view in the background
 							Self[event.arg].dispatch({ type: "init-view" });

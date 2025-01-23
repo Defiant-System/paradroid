@@ -50,18 +50,18 @@ let Test = {
 		 */
 		APP.mobile.arena = {
 			player: {
-				id: "001",
-				opponent: { id: "249" }
+				id: "999",
+				opponent: { id: "999" }
 			}
 		};
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
 		
 		// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 5000);
-		return;
 		// setTimeout(() => APP.transfer.dispatch({ type: "render-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
-		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 1500);
+		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 500);
+		return;
 
 		// setTimeout(() => APP.transfer.els.ioLeds.find("div").get(0).addClass("flicker"), 250);
 		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
