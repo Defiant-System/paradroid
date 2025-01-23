@@ -59,13 +59,13 @@
 					case "up":
 						Self.dispatch({ type: "show-view", arg: -1 });
 						// play sound fx
-						window.audio.play("confirm");
+						window.audio.play("button");
 						break;
 					case "s":
 					case "down":
 						Self.dispatch({ type: "show-view", arg: 1 });
 						// play sound fx
-						window.audio.play("confirm");
+						window.audio.play("button");
 						break;
 					case "a":
 					case "left":

@@ -6,6 +6,7 @@
 
 	<i id="explosion" url="~/sounds/explosion.mp3"/>
 	<i id="confirm" url="~/sounds/confirm.mp3"/>
+	<i id="button" url="~/sounds/button.mp3"/>
 	<i id="swipe" url="~/sounds/swipe.mp3"/>
 	<i id="click" url="~/sounds/click.mp3"/>
 	<i id="clear" url="~/sounds/clear.mp3"/>
@@ -14,7 +15,6 @@
 	<i id="ripper" url="~/sounds/ripper.mp3"/>
 	<i id="sonic" url="~/sounds/sonic.mp3"/>
 	<i id="electric" url="~/sounds/electric.mp3"/>
-	<i id="thud" url="~/sounds/thud.mp3"/>
 
 	<i id="io" url="~/sounds/io.mp3"/>
 	<i id="ring" url="~/sounds/ring.mp3"/>

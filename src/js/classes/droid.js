@@ -99,6 +99,9 @@ class Droid {
 		if (this.health <= 0) {
 			// kill this droid
 			this.kill();
+		} else {
+			// play sound fx
+			window.audio.play("swipe");
 		}
 	}
 

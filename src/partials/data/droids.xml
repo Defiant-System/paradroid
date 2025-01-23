@@ -94,7 +94,7 @@
 	<i id="notes"><![CDATA[This droid identifies itself as non-binary, disregarding its PC ancestry. Droid 737 is not allowed to fly the ship due to the historical association of the modelnumber.]]><![CDATA[]]></i>
 </Droid>
 
-<Droid id="742" digits="1,0,0" weight="140" speed="4" reject="180" aggression="89" health="310" weapon="disruptor" score="175">
+<Droid id="742" digits="1,0,0" weight="140" speed="4" reject="180" aggression="79" health="310" weapon="disruptor" score="175">
 	<i id="type"><![CDATA[Battle Droid]]></i>
 	<i id="notes"><![CDATA[This version is the one mainly used by the Military.]]></i>
 </Droid>
