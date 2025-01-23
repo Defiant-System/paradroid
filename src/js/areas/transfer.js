@@ -311,7 +311,6 @@
 				
 				// controls view
 				APP.hud.els.controls
-					.addClass("hacking-game")
 					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
 
 				// defaults
@@ -342,7 +341,7 @@
 				// controls view
 				APP.hud.els.controls
 					.addClass("hacking-game")
-					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide"));
+					.cssSequence("show-hide", "animationend", el => el.removeClass("show-hide hacking-game"));
 
 				// start hacking game
 				delete Self._chooseColor;

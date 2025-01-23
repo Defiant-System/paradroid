@@ -26,6 +26,10 @@
 					APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
 				});
 				break;
+			// gamepad events
+			case "gamepad.down":
+				Self.dispatch({ type: "window.keydown", char: "return" });
+				break;
 			// custom events
 			case "init-view":
 				// console.log(event);

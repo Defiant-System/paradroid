@@ -32,6 +32,13 @@ let Test = {
 
 		
 		/*
+		 * TERMINATED View
+		 */
+		APP.dispatch({ type: "show-view", arg: "terminated" });
+		return;
+
+		
+		/*
 		 * BRIEFING View
 		APP.dispatch({ type: "show-view", arg: "briefing" });
 		return;

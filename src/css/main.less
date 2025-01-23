@@ -675,6 +675,8 @@ content {
 		height: 79px;
 		--val: 1;
 		--speed: 1000ms;
+
+
 	}
 
 	.box-track {
@@ -700,28 +702,34 @@ content {
 		&:nth-child(1) {
 			left: 0;
 			.box-bar { filter: none; }
+
+			&[style*="--val: 0;"] .box-bar > b { display: none; }
 		}
 
 		&:nth-child(2) {
 			left: 33px;
 			.box-bar { filter: hue-rotate(135deg); }
+
+			&[style*="--val: 0;"] .box-bar > b { display: none; }
 		}
 
 		&:nth-child(3) {
 			left: 66px;
 			.box-bar { filter: hue-rotate(255deg); }
 
-			&:after {
-				content: "";
-				background: url(~/icons/prog-bar-bg.png) no-repeat;
-				background-size: 100% auto;
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				z-index: 1;
-				animation: reject-alert 1s infinite alternate;
+			&[s1tyle*="--val: 0"] {
+				&:after {
+					content: "";
+					background: url(~/icons/prog-bar-bg.png) no-repeat;
+					background-size: 100% auto;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					z-index: 1;
+					animation: reject-alert 1s infinite alternate;
+				}
 			}
 		}
 
