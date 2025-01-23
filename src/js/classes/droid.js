@@ -272,8 +272,8 @@ class Droid {
 		this.weight = +xDroid.getAttribute("weight");
 		this.speed = +xDroid.getAttribute("speed") * .00015;
 		this.reject = +xDroid.getAttribute("reject");
-		this.health = +xDroid.getAttribute("health");
 		// full health
+		this.health = +xDroid.getAttribute("health");
 		this._health = +xDroid.getAttribute("health");
 		
 		this.fire.name = xWeapon.getAttribute("id");

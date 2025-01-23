@@ -1,5 +1,17 @@
 
 content {
+	&[data-show="terminated"] {
+		.view-controls {
+			opacity: 0;
+			visibility: hidden;
+			
+			&.show-hide {
+				animation-delay: 0ms;
+				animation-duration: 0ms;
+			}
+		}
+	}
+
 	&[data-show="mobile"] {
 		.view-controls {
 			span.key {
