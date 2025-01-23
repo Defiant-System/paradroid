@@ -118,10 +118,6 @@ content {
 						transition: none;
 						min-height: 5px;
 						--speed: 9999s;
-
-						> b {
-							// --speed: 9999s;
-						}
 					}
 				}
 			}
@@ -135,6 +131,19 @@ content {
 		> div.lift-view {
 			opacity: 1;
 			visibility: visible;
+		}
+
+		.mobile-view {
+			.progress {
+				.box-track:nth-child(3) {
+					.box-bar,
+					.box-bar.rejection {
+						transition: none;
+						min-height: 5px;
+						--speed: 9999s;
+					}
+				}
+			}
 		}
 	}
 
