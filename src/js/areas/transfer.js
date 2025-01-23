@@ -123,8 +123,7 @@
 					group.find("[join]").map(elem => {
 						let line = $(elem),
 							input = line.attr("join"),
-							jLine = input === "i1" ? group : (input === "i2" ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
-							a = console.log(jLine),
+							jLine = input === "i1" ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
 							chip = jLine.find(".chip.joint");
 						// handles join special scenario
 						if (input === "i3") input = "i2";
