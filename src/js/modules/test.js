@@ -47,7 +47,6 @@ let Test = {
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.mobile.arena = {
 			player: {
 				id: "999",
@@ -84,6 +83,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
@@ -152,6 +152,12 @@ let Test = {
 			// set view
 			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
 			APP.mobile.dispatch({ type: "restore-state", state });
+
+			// setTimeout(() => {
+			// 	APP.mobile.arena = { player: { id: "999", opponent: { id: "999" } } };
+			// 	APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
+			// }, 1000);
+		
 
 			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 3500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
