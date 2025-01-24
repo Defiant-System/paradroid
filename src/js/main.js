@@ -83,7 +83,7 @@ const paradroid = {
 				break;
 			// custom events
 			case "open-help":
-				karaqu.shell("fs -u '~/help/index.md'");
+				karaqu.shell("fs -u '~/help/toc.md'");
 				break;
 			case "switch-to-view":
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
