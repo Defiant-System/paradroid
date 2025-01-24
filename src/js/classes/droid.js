@@ -275,6 +275,8 @@ class Droid {
 		// full health
 		this.health = +xDroid.getAttribute("health");
 		this._health = +xDroid.getAttribute("health");
+		// update player health bar
+		this.APP.hud.dispatch({ type: "progress-update", health: 1 });
 		
 		this.fire.name = xWeapon.getAttribute("id");
 		this.fire.damage = +xWeapon.getAttribute("damage");
