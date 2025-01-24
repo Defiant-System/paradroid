@@ -21,11 +21,6 @@ class Player extends Droid {
 				{ speed: 0.0015, rotateAngle: Math.PI * -1/3 },
 			]
 		};
-		// a little bit blur
-		this.blur = {
-			color: "#00000055",
-			size: 3,
-		};
 		// update label
 		this.body.label = "player";
 

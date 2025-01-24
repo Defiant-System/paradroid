@@ -61,6 +61,8 @@
 									lift: xLift.getAttribute("lift"),
 									section: Player.nextTo.section.id
 								});
+								// play sound fx
+								window.audio.play("button");
 
 								// pause game loop
 								Self.dispatch({ type: "game-loop-pause" });
@@ -170,9 +172,6 @@
 				// restore game state
 				value = { map: { id: 1, clear: 0 }, player: { id: "001", x: 3, y: 7, health: 100 }, debug: { mode: 0 } };
 				Self.dispatch({ type: "restore-state", state: value });
-				break;
-			case "reset-game-player":
-				
 				break;
 			case "game-loop-pause":
 				if (Self.arena.map && !Self.arena.fpsControl._stopped) {

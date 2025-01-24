@@ -10,6 +10,7 @@
 	<i id="swipe" url="~/sounds/swipe.mp3"/>
 	<i id="click" url="~/sounds/click.mp3"/>
 	<i id="clear" url="~/sounds/clear.mp3"/>
+	<i id="lift" url="~/sounds/lift.mp3"/>
 
 	<i id="laser" url="~/sounds/laser.mp3"/>
 	<i id="ripper" url="~/sounds/ripper.mp3"/>

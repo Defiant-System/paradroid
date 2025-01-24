@@ -36,17 +36,10 @@
 								y: +xExit.getAttribute("y") + 1,
 							},
 							state = { player: exit, map: { id: +Self.elevator.section } };
-						// pause game loop
-						// APP.mobile.dispatch({ type: "game-loop-resume" });
+						// go to view
+						APP.mobile.dispatch({ type: "go-to-section", state });
 						// smooth transition to view
-						APP.dispatch({
-							type: "switch-to-view",
-							arg: "mobile",
-							done: () => {
-								// go to view
-								APP.mobile.dispatch({ type: "go-to-section", state });
-							}
-						});
+						APP.dispatch({ type: "switch-to-view", arg: "mobile" });
 						break;
 					case "w":
 					case "up":
@@ -55,9 +48,9 @@
 						index = sections.indexOf(el.data("section"));
 						if (!sections[index-1]) return;
 						// select section
-						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index-1] });
+						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index-1], inLift: true });
 						// play sound fx
-						window.audio.play("swipe");
+						window.audio.play("lift");
 						break;
 					case "s":
 					case "down":
@@ -66,9 +59,9 @@
 						index = sections.indexOf(el.data("section"));
 						if (!sections[index+1]) return;
 						// select section
-						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index+1] });
+						Self.dispatch({ type: "select-level", lift: el.data("id"), section: sections[index+1], inLift: true });
 						// play sound fx
-						window.audio.play("swipe");
+						window.audio.play("lift");
 						break;
 					// temp for dev purposes
 					case "left":
@@ -169,6 +162,7 @@
 				let xDroids = xSection.selectNodes(`./Layer[@id="droids"]/i`),
 					xAlive = xSection.selectNodes(`./Layer[@id="droids"]/i[not(@dead)]`);
 				APP.hud.dispatch({
+					...event,
 					type: "set-level-data",
 					background: xSection.getAttribute("color"),
 					percentage: xAlive.length / xDroids.length,

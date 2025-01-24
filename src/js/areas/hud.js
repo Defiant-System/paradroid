@@ -66,6 +66,10 @@
 				el = Self.els.barLeft.find(".box");
 				value = event.percentage !== undefined ? event.percentage : parseInt(el.cssProp("--val"), 10) / 100;
 				el.css({ "--val": `${value * 100}%`, "--c1": event.background });
+
+				// dont show controls if in live-view
+				if (event.inLift) return;
+				
 				Self.els.controls
 					.data({ view: "mobile" })
 					.css({ "--c1": event.background })
