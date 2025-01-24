@@ -138,8 +138,9 @@
 						// turn off SVG group
 						group.removeClass("on joint-on");
 						// console.log(group);
-						group.find(".chip").removeClass("i1 i2 i3").addClass("joint");
-						// group.find(`.socket.on`).removeClass("on").addClass("joint");
+						group.find(".chip").removeClass("i1 i2 i3 s1 s2 s3").addClass("joint");
+						group.find(`.socket.on`).removeClass("on").addClass("joint");
+						group.find(`line.r-joint, polyline.r-joint`).removeClass("r-joint").addClass("joint");
 						// group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
 					});
 					// light up SVG group
@@ -150,7 +151,8 @@
 					group.find("[join]").map(elem => {
 						let line = $(elem),
 							input = line.attr("join"),
-							jLine = input === "i1" ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
+							// a = console.log(input),
+							jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
 							chip = jLine.find(".chip.joint");
 						// handles join special scenario
 						if (input === "i3") input = "i2";
@@ -158,7 +160,7 @@
 						chip.addClass(input);
 						// enable joint line
 						if (chip.hasClass("i1") && chip.hasClass("i2")) {
-							jLine.find(".joint").removeClass("joint");
+							jLine.find(".joint").removeClass("joint").addClass("r-joint");
 							jLine.addClass("joint-on");
 							// toggle IO led
 							if (input === "i2") {
@@ -205,6 +207,7 @@
 					isLeft = side === "left",
 					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
+				// TODO: toggle for debug
 				xBoard.map(x => x.removeAttribute("row"));
 				// populate groups sets
 				let groups = [[""]],
@@ -225,6 +228,7 @@
 				}
 				// apply randomized schema set to xml nodes
 				schema.map((r, i) => {
+					// TODO: toggle for debug
 					if (r.id) xBoard[i].setAttribute("row", r.id);
 				});
 
@@ -362,7 +366,7 @@
 
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
-						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+						// Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });

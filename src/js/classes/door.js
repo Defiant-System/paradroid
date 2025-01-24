@@ -51,7 +51,7 @@ class Door {
 		let playerDist = [];
 		let dist = arena.map.droids.map(droid => {
 			let dd = this.pos.distance(droid.body.position);
-			if (droid.isPlayer && dd < 380 && this.state !== "open") playerDist.push(this);
+			if (droid.isPlayer && dd < 320 && this.state !== "open") playerDist.push(this);
 			return dd;
 		});
 		let closest = Math.min(...dist);

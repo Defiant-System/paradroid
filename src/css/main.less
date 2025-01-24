@@ -769,7 +769,7 @@ content {
 
 			> b {
 				position: absolute;
-				top: calc( calc( 1 - var( --val ) ) * 62px );
+				top: 0;
 				left: 0;
 				height: 82px;
 				width: 28px;
@@ -777,6 +777,8 @@ content {
 				background-size: 100% auto;
 				transition: top var( --speed ) ease-in-out;
 				filter: saturate(2) contrast(1.25);
+				top: calc( calc( 1 - var( --val ) ) * 62px );
+				// transform: translateY( calc( calc( 1 - var( --val ) ) * 62px ) );
 			}
 		}
 	}
