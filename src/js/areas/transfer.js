@@ -366,7 +366,7 @@
 
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
-						// Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });

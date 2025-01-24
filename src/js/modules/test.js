@@ -54,7 +54,6 @@ let Test = {
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.mobile.arena = {
 			player: {
 				id: "999",
@@ -91,6 +90,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
