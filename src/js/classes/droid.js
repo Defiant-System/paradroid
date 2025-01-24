@@ -127,7 +127,7 @@ class Droid {
 			// make node "dead"
 			this.xItem.setAttribute("dead", 1);
 			// notify map / section / level
-			this.arena.map.mapUpdate();
+			this.arena.map.mapUpdate({ killed: 1 });
 		}
 	}
 

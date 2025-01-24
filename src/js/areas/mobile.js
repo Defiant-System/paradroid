@@ -252,8 +252,6 @@
 				value = !!Self.arena.led.floor ? 0 : 1;
 				if (event.off) value = 1;
 				name = value ? "lights-off" : "lights-on";
-				// play sound fx
-				window.audio.play("clear");
 
 				let animDone = () => {
 						// reset element

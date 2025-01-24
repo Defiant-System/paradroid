@@ -87,7 +87,7 @@ class Map {
 		if (item.body) Matter.Composite.add(this.engine.world, item.body);
 	}
 
-	mapUpdate() {
+	mapUpdate(opt={}) {
 		let xPath = `//Data/Section[@level="${this.xSection.getAttribute("level")}"]`,
 			// keep track of droid count
 			total = window.bluePrint.selectNodes(`${xPath}/Layer[@id="droids"]/i`).length,
@@ -95,6 +95,11 @@ class Map {
 			level = alive / total;
 		// update progress bar for level droid count
 		paradroid.hud.dispatch({ type: "progress-update", level });
+
+		// play sound fx
+		if (opt.killed && level <= 0) {
+			setTimeout(() => window.audio.play("clear"), 700);
+		}
 	}
 
 	setState(state) {
