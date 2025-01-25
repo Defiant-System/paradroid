@@ -169,7 +169,7 @@ let Test = {
 			// }, 1000);
 		
 
-			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 3500);
+			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 			
 			// setTimeout(() => APP.mobile.arena.player.setId("614"), 1500);

@@ -84,6 +84,15 @@
 				// play sound fx
 				window.audio.play("click");
 				break;
+			case "toggle-controls":
+				el = Self.els.content.find(`.bar[data-click="toggle-controls"]`);
+				value = el.hasClass("off");
+				el.toggleClass("off", value);
+				// toggle controls
+				APP.hud.els.controls.toggleClass("off", value);
+				// play sound fx
+				window.audio.play("click");
+				break;
 		}
 	}
 }

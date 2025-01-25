@@ -219,6 +219,19 @@ content {
 			}
 		}
 	}
+
+	&[data-show="terminated"],
+	&[data-show="mobile"],
+	&[data-show="console"],
+	&[data-show="transfer"],
+	&[data-show="lift"],
+	&[data-show="mobile"] {
+		.view-controls.off {
+			opacity: 0;
+			visibility: hidden;
+			display: none;
+		}
+	}
 }
 
 .view-controls {

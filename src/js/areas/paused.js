@@ -20,6 +20,7 @@
 				break;
 			case "toggle-music":
 			case "toggle-sound-fx":
+			case "toggle-controls":
 				// forward event
 				APP.start.dispatch(event);
 				break;

@@ -34,7 +34,7 @@ content {
 
 	.dialog {
 		position: absolute;
-		top: 90px;
+		top: 70px;
 		left: 200px;
 		height: 240px;
 		width: 360px;
@@ -59,6 +59,20 @@ content {
 		.option {
 			opacity: 1;
 			transform: translateY(0px) translateZ(0px);
+
+			.bar[data-click="toggle-controls"] {
+				top: 9px;
+				width: 167px;
+
+				&.off .box {
+					--val: 78%;
+				}
+
+				.box {
+					--c1: #61c4ff;
+					transform: rotateX(79deg) rotateZ(0deg);
+				}
+			}
 		}
 	}
 }
