@@ -94,20 +94,21 @@
 				if (event.reject !== undefined) {
 					el = Self.els.progress.find(`.box-track[data-id="reject"]`);
 					// set speed
-					el.css({ "--val": "", "--speed": event.reject +"ms" });
+					el.css({ "--speed": event.reject +"ms" });
 					el.find(".box-bar").removeClass("rejection");
+
 					setTimeout(() => {
 						el.css({ "--val": 0 });
 						el.find(".box-bar").cssSequence("rejection", "transitionend", barEl => {
-							// reset element
-							barEl.removeClass("rejection");
-							// reset timer
-							let timer = APP.mobile.arena.player.id === "001" ? 1000 : 1;
-							setTimeout(() => el.css({ "--speed": "1ms", "--val": 1 }), timer);
+							setTimeout(() => {
+								el.css({ "--speed": "1ms", "--val": 1 });
+								// reset element
+								barEl.removeClass("rejection");
+							}, 10);
 							// time has run out - kill/demote player droid
 							APP.mobile.arena.player.kill();
 						});
-					}, 310);
+					}, 10);
 				}
 
 				// all droids killed - turn off lights
