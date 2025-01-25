@@ -27,6 +27,13 @@
 					state.player.health = arena.player.health;
 					state.player.x = arena.player.x;
 					state.player.y = arena.player.y;
+					// save "killed" droids
+					state.cleared = {};
+					window.bluePrint.selectNodes(`//Section/Layer[@id="droids"]/i[@dead]`).map(xDroid => {
+						let sId = xDroid.parentNode.parentNode.getAttribute("id");
+						if (!state.cleared[sId]) state.cleared[sId] = [];
+						state.cleared[sId].push(+xDroid.getAttribute("nr"));
+					});
 				}
 				// console.log(state);
 				APP.settings.state = state;
