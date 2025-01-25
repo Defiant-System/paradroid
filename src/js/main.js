@@ -65,6 +65,9 @@ const paradroid = {
 		// init settings
 		this.dispatch({ type: "init-settings" });
 
+		// show start view
+		this.dispatch({ type: "show-view", arg: "start" });
+
 		// DEV-ONLY-START
 		Test.init(this);
 		// DEV-ONLY-END

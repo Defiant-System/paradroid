@@ -137,6 +137,8 @@ let Test = {
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
 		 */
+		
+		// return;
 
 		return setTimeout(() => {
 			let state = {

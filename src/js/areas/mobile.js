@@ -329,7 +329,7 @@
 						y = event.clientY - Fire.click.y;
 					Fire.player.setDirection(x, y);
 				}
-				if (event.target) {
+				if (event.target && Self.arena.player) {
 					Self.arena.player.crosshair.follow(event);
 				}
 				break;
