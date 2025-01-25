@@ -201,7 +201,8 @@
 				APP.hud.dispatch({
 					type: "set-level-data",
 					background: APP.mobile.arena.colors.base,
-					// percentage: Utils.random(.1, 1) // TODO
+					// percentage: Utils.random(.1, 1) // TODO,
+					inLift: true,
 				});
 
 				// view specific actions
@@ -262,6 +263,7 @@
 					type: "set-level-data",
 					background: xNode.getAttribute("color"),
 					percentage: 1 - (deadDroids / totalDroids),
+					inLift: true,
 				});
 				break;
 		}
