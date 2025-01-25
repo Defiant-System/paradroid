@@ -436,6 +436,12 @@
 				Self.els.ioLeds.find("> div").map((elem, i) => elem.className = i % 2 == 0 ? "yellow" : "purple");
 				// reset svg
 				Self.els.board.find(`svg .on`).removeClass("on");
+				Self.els.cbLeft.find("svg").remove();
+				Self.els.cbRight.find("svg").remove();
+				// reset droids
+				Self.els.droidLeft.data({ id: "" }).removeClass("player");
+				Self.els.droidRight.data({ id: "" }).removeClass("player");
+
 
 				// reset state
 				delete Self._chooseColor;

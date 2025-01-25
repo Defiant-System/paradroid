@@ -721,6 +721,7 @@ content {
 
 		&:nth-child(1) {
 			left: 0;
+			--speed: 300ms;
 			.box-bar { filter: none; }
 
 			&[style*="--val: 0;"] .box-bar > b { display: none; }
@@ -728,6 +729,7 @@ content {
 
 		&:nth-child(2) {
 			left: 33px;
+			--speed: 300ms;
 			.box-bar { filter: hue-rotate(135deg); }
 
 			&[style*="--val: 0;"] .box-bar > b { display: none; }
