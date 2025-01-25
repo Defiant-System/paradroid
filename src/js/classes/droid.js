@@ -302,6 +302,7 @@ class Droid {
 		if (this.isPlayer) {
 			// host droid reject hack speed
 			let reject = this.reject * 1000; // default "001" rejects in 180 seconds (3 minutes)
+			reject = 5 * 1000;
 			this.APP.hud.dispatch({ type: "progress-update", reject });
 			// reset movement forces
 			for (let key in this.input) {

@@ -96,7 +96,7 @@
 				if (event.reject !== undefined) {
 					el = Self.els.progress.find(`.box-track[data-id="reject"]`);
 					// set speed
-					el.css({ "--speed": event.reject +"ms" });
+					el.css({ "--val": 1, "--speed": event.reject +"ms" });
 					el.find(".box-bar").removeClass("rejection");
 
 					setTimeout(() => {
