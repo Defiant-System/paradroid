@@ -10,7 +10,7 @@ class Sonic extends Fire {
 		this.width = 5;
 		this.trail = [];
 
-		this.speed = speed || .0000075;
+		this.speed = speed || .0000105;
 		let vX = Math.cos(angle) * this.speed,
  			vY = Math.sin(angle) * this.speed;
 		this.force = new Point(vX, vY);
