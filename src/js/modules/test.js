@@ -3,26 +3,6 @@ let Test = {
 	init(APP) {
 		// return;
 
-		// let pos = new Point(100, 100),
-		// 	vel = new Point(10, 0);
-		// console.log( pos.clone().subtract(vel).normalize() );
-		// return APP.dispatch({ type: "show-view", arg: "terminated" });
-
-
-		/*
-		 * Finder algorithm
-		var graph = new Finder.Graph([
-			[1,1,1,1],
-			[0,1,1,0],
-			[0,0,1,1]
-		]);
-		var start = graph.grid[0][0];
-		var end = graph.grid[2][2];
-		var result = Finder.astar.search(graph, start, end);
-		console.log( result );
-		 */
-
-
 		/*
 		 * START View
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
