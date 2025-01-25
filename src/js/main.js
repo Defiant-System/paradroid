@@ -44,7 +44,7 @@ const Matter = window.Matter;
 const defaultSettings = {
 	"music": "off",
 	"sound-fx": "on",
-	"controls": "off",
+	"controls": "on",
 	// default game state
 	"state": { map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
 };
@@ -101,19 +101,15 @@ const paradroid = {
 			case "open-help":
 				karaqu.shell("fs -u '~/help/toc.md'");
 				break;
-
 			case "init-settings":
 				// get settings, if any
 				Self.settings = window.settings.getItem("settings") || defaultSettings;
-
 				// settings
 				["music", "sound-fx", "controls"].map(e => {
 					let value = Self.settings[e] === "on";
 					Self.start.dispatch({ type: `toggle-${e}`, value });
 				});
-
 				break;
-
 			case "switch-to-view":
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				// reset css/view

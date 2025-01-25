@@ -52,6 +52,8 @@
 					APP.mobile.dispatch({ type: "game-loop-pause" });
 					// stop hacking game, if in transfer view
 					if (APP.transfer.AI) APP.transfer.AI.fpsControl.stop();
+					// create game state
+					APP.paused.dispatch({ type: "create-state" });
 				}
 				break;
 			case "set-view-title":

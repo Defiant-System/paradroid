@@ -138,6 +138,7 @@ let Test = {
 		}, 100);
 		 */
 
+
 		return setTimeout(() => {
 			let state = {
 					cleared: {
@@ -146,7 +147,7 @@ let Test = {
 					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 100 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "123", x: 3, y: 7 }, debug: { mode: 0 },
+					map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
 					// map: { id: 1 }, player: { id: "001", x: 35, y: 15 }, debug: { mode: 0 },
 					// map: { id: 10 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
