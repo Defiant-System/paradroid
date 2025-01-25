@@ -101,7 +101,9 @@
 						el.find(".box-bar").cssSequence("rejection", "transitionend", barEl => {
 							// reset element
 							barEl.removeClass("rejection");
-							el.css({ "--speed": "1ms", "--val": 1 });
+							// reset timer
+							let timer = APP.mobile.arena.player.id === "001" ? 1000 : 1;
+							setTimeout(() => el.css({ "--speed": "1ms", "--val": 1 }), timer);
 							// time has run out - kill/demote player droid
 							APP.mobile.arena.player.kill();
 						});

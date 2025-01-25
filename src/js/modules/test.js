@@ -25,10 +25,10 @@ let Test = {
 
 		/*
 		 * START View
+		 */
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
 		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
 		return;
-		 */
 
 		
 		/*
@@ -138,7 +138,6 @@ let Test = {
 		}, 100);
 		 */
 
-
 		return setTimeout(() => {
 			let state = {
 					cleared: {
@@ -147,8 +146,8 @@ let Test = {
 					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 100 }, debug: { mode: 0 },
-					// map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "001", x: 35, y: 15 }, debug: { mode: 0 },
+					map: { id: 1 }, player: { id: "123", x: 3, y: 7 }, debug: { mode: 0 },
+					// map: { id: 1 }, player: { id: "001", x: 35, y: 15 }, debug: { mode: 0 },
 					// map: { id: 10 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 9 }, player: { id: "001", x: 3, y: 5 }, debug: { mode: 0 },
@@ -169,7 +168,7 @@ let Test = {
 			// }, 1000);
 		
 
-			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1500);
+			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 			
 			// setTimeout(() => APP.mobile.arena.player.setId("614"), 1500);

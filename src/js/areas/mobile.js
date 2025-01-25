@@ -170,7 +170,7 @@
 				// stop engine, if stopped
 				Self.dispatch({ type: "game-loop-resume" });
 				// restore game state
-				value = { map: { id: 1, clear: 0 }, player: { id: "001", x: 3, y: 7, health: 100 }, debug: { mode: 0 } };
+				value = defaultSettings.state;
 				Self.dispatch({ type: "restore-state", state: value });
 				break;
 			case "game-loop-pause":

@@ -39,6 +39,17 @@ const {
 const Matter = window.Matter;
 
 
+
+// default settings
+const defaultSettings = {
+	"music": "off",
+	"sound-fx": "on",
+	"controls": "off",
+	// default game state
+	"state": { map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
+};
+
+
 const paradroid = {
 	init() {
 		// fast references
@@ -50,6 +61,9 @@ const paradroid = {
 		Object.keys(this)
 			.filter(i => typeof this[i].init === "function")
 			.map(i => this[i].init(this));
+
+		// init settings
+		this.dispatch({ type: "init-settings" });
 
 		// DEV-ONLY-START
 		Test.init(this);
@@ -73,6 +87,8 @@ const paradroid = {
 			case "window.blur":
 				break;
 			case "window.close":
+				// save settings
+				window.settings.setItem("settings", Self.settings);
 				// stop "matter.js" runner
 				Self.hud.dispatch({ type: "toggle-play-pause", pause: true });
 				break;
@@ -85,6 +101,19 @@ const paradroid = {
 			case "open-help":
 				karaqu.shell("fs -u '~/help/toc.md'");
 				break;
+
+			case "init-settings":
+				// get settings, if any
+				Self.settings = window.settings.getItem("settings") || defaultSettings;
+
+				// settings
+				["music", "sound-fx", "controls"].map(e => {
+					let value = Self.settings[e] === "on";
+					Self.start.dispatch({ type: `toggle-${e}`, value });
+				});
+
+				break;
+
 			case "switch-to-view":
 				Self.els.content.find(`.${event.arg}-view`).removeClass("hidden");
 				// reset css/view

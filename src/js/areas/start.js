@@ -50,11 +50,12 @@
 			case "toggle-music":
 				el = Self.els.content.find(`.bar[data-click="toggle-music"]`);
 				value = el.hasClass("off");
+				if (event.value !== undefined) value = event.value;
 				el.toggleClass("off", value);
 				// play sound fx
-				window.audio.play("click");
+				if (event.value === undefined) window.audio.play("click");
 				
-				if (!Self.tune.song) {
+				if (!Self.tune.song && value) {
 					let opt = {
 							onend: e => {
 								if (!Self.tune.song) return;
@@ -70,28 +71,28 @@
 						},
 						playSong = () => window.audio.play(Self.tune.name, opt).then(song => Self.tune.song = song);
 					playSong();
-				} else {
+				} else if (Self.tune.song) {
 					Self.tune.song.stop();
 					delete Self.tune.song;
 				}
 				break;
 			case "toggle-sound-fx":
 				el = Self.els.content.find(`.bar[data-click="toggle-sound-fx"]`);
-				value = el.hasClass("off");
+				value = event.value || el.hasClass("off");
 				el.toggleClass("off", value);
 				// toggle "mute"
 				window.audio.mute = !value;
 				// play sound fx
-				window.audio.play("click");
+				if (event.value === undefined) window.audio.play("click");
 				break;
 			case "toggle-controls":
 				el = Self.els.content.find(`.bar[data-click="toggle-controls"]`);
-				value = el.hasClass("off");
+				value = event.value || el.hasClass("off");
 				el.toggleClass("off", value);
 				// toggle controls
 				APP.hud.els.controls.toggleClass("off", value);
 				// play sound fx
-				window.audio.play("click");
+				if (event.value === undefined) window.audio.play("click");
 				break;
 		}
 	}
