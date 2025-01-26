@@ -139,9 +139,10 @@
 						// turn off SVG group
 						group.removeClass("on joint-on");
 						// console.log(group);
-						group.find(".chip").removeClass("i1 i2 i3 s1 s2 s3").addClass("joint");
-						group.find(`.socket.on`).removeClass("on").addClass("joint");
+						group.find(".chip").removeClass("i1 i2 i3 s1 s2 s3"); //.addClass("joint");
+						group.find(`.socket.on`).removeClass("on joint"); // .addClass("joint");
 						group.find(`line.r-joint, polyline.r-joint`).removeClass("r-joint").addClass("joint");
+						group.find(`.socket.r-joint, .chip.r-joint`).removeClass("r-joint").addClass("joint");
 						// group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
 					});
 					// light up SVG group
@@ -367,6 +368,7 @@
 
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
+						// TODO: enable
 						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
