@@ -7,8 +7,8 @@
 		this.els = {
 			content: window.find("content"),
 			el: window.find(".console-view"),
-			bp: window.find(".blueprint"),
-			info: window.find(".info"),
+			bp: window.find(".console-view .blueprint"),
+			info: window.find(".console-view .info"),
 		};
 		// minimap canvas
 		let cvs = this.els.el.find("canvas.minimap");

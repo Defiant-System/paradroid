@@ -15,6 +15,7 @@
 			cbRight: window.find(".board .right .io"),
 			droidRight: window.find(".board .right .droid"),
 			ammoRight: window.find(".board .right .side .ammo"),
+			successBp: window.find(".transfer-view .blueprint"),
 		};
 		// reset gamepad tick
 		this._gamepadTick = Date.now();
@@ -376,19 +377,22 @@
 				Self._gameEnded = true;
 				// assess winner
 				callback = () => {
+					let id = APP.mobile.arena.player.opponent.id;
 					// reset view
 					Self.els.el.removeClass("hidden");
-					Self.els.el.find(`[data-id]`).data({ id: APP.mobile.arena.player.opponent.id });
+					Self.els.el.find(`[data-id]`).data({ id });
+					Self.els.successBp.css({ "background-image": `url("~/icons/bp-${id}.png")` });
 					// reset controls view
 					APP.hud.els.controls.removeClass("hacking-game");
 
 					switch (Self.els.cpu.data("winner")) {
 						case Self._playerColor:
+
 							Self.els.el.cssSequence("finished finish-win", "transitionend", el => {
 								Self.dispatch({ type: "reset-transfer-view" });
 								// console.log("switch to mobile view");
 								APP.mobile.arena.player.opponent.kill({ silent: true });
-								APP.mobile.arena.player.setId(APP.mobile.arena.player.opponent.id);
+								APP.mobile.arena.player.setId(id);
 								// start / resume game loop
 								APP.mobile.dispatch({ type: "game-loop-resume" });
 								// go to mobile view
