@@ -52,6 +52,8 @@
 								Self.dispatch({ type: "show-view", arg: "player" });
 								// reset info boxes
 								Self.els.el.find(".view-ship .player-section, .return-exit").addClass("hidden");
+								// update hud bar-left to indicate total droids left
+								APP.mobile.arena.map.mapUpdate();
 								// droid-FX
 								APP.mobile.els.droidFx.cssSequence("fast-focus", "animationend", el => el.removeClass("fast-focus"));
 							}
