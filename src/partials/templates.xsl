@@ -145,7 +145,9 @@
 							<line class="line stream" x1="181" y1="-22" x2="233" y2="-22" sub="rep"/>
 							<polyline class="line stream l66" points="52,-2 60,-2 85,-22 164,-22" />
 							<polyline class="line stream l66" points="52,2 60,2 85,22 233,22" />
-							<polygon class="repeater" points="164,-29 169,-29 181,-22 169,-15 164,-15" sub="rep"/>
+							<polygon class="repeater" points="164,-29 169,-29 181,-22 169,-15 164,-15" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos - 1"/></xsl:attribute>
+							</polygon>
 							<line class="line disconnected" x1="138" y1="0" x2="233" y2="0"/>
 							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
@@ -172,7 +174,9 @@
 							<line class="line stream purple" x1="181" y1="22" x2="233" y2="22" sub="rep"/>
 							<polyline class="line stream l66" points="52,-2 60,-2 85,-22 233,-22" />
 							<polyline class="line stream l66" points="52,2 60,2 85,22 164,22" />
-							<polygon class="repeater purple" points="164,29 169,29 181,22 169,15 164,15" sub="rep"/>
+							<polygon class="repeater purple" points="164,29 169,29 181,22 169,15 164,15" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</polygon>
 							<line class="line disconnected" x1="138" y1="0" x2="233" y2="0"/>
 							<polygon class="gpu disconnected" points="128,-7 138,-7 138,7 123,7 123,-2"/>
 							<circle class="start" cx="-3" cy="0" r="3"/>
@@ -200,7 +204,9 @@
 							<polyline class="line stream l66" points="119,-2 127,-2 152,-22 233,-22" sub="rep" />
 							<polyline class="line stream l66" points="119,2 127,2 152,22 233,22" sub="rep" />
 							<rect class="chip" x="105" y="-7" width="14" height="14" sub="rep"/>
-							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep"/>
+							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos - 1"/>,<xsl:value-of select="$pos + 1"/></xsl:attribute>
+							</polygon>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket" x="233" y="-27" width="13" height="9" rx="3" sub="rep">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos - 1"/></xsl:attribute>
@@ -318,7 +324,9 @@
 							<line class="line" x1="159" y1="0" x2="234" y2="0" sub="rep"/>
 							<line class="line stream l66" x1="0" y1="0" x2="144" y2="0"/>
 							<line class="line stream l65" x1="159" y1="0" x2="234" y2="0" sub="rep"/>
-							<polygon class="repeater" points="144,-7 149,-7 161,0 149,7 144,7" sub="rep"/>
+							<polygon class="repeater" points="144,-7 149,-7 161,0 149,7 144,7" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos"/></xsl:attribute>
+							</polygon>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3" sub="rep">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
@@ -329,7 +337,9 @@
 							<line class="line purple" x1="54" y1="0" x2="234" y2="0" sub="rep"/>
 							<line class="line stream l65" x1="0" y1="0" x2="40" y2="0"/>
 							<line class="line stream purple l66" x1="54" y1="0" x2="234" y2="0" sub="rep"/>
-							<polygon class="repeater purple" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep"/>
+							<polygon class="repeater purple" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos"/></xsl:attribute>
+							</polygon>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket purple" x="233" y="-5" width="13" height="9" rx="3" sub="rep">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
@@ -340,7 +350,9 @@
 							<line class="line purple" x1="159" y1="0" x2="234" y2="0" sub="rep"/>
 							<line class="line stream l66" x1="0" y1="0" x2="144" y2="0"/>
 							<line class="line stream l65 purple" x1="159" y1="0" x2="234" y2="0" sub="rep"/>
-							<polygon class="repeater purple" points="144,-7 149,-7 161,0 149,7 144,7" sub="rep"/>
+							<polygon class="repeater purple" points="144,-7 149,-7 161,0 149,7 144,7" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos"/></xsl:attribute>
+							</polygon>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket purple" x="233" y="-5" width="13" height="9" rx="3" sub="rep">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>
@@ -351,7 +363,9 @@
 							<line class="line" x1="54" y1="0" x2="234" y2="0" sub="rep"/>
 							<line class="line stream l65" x1="0" y1="0" x2="40" y2="0"/>
 							<line class="line stream l66" x1="54" y1="0" x2="234" y2="0" sub="rep"/>
-							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep"/>
+							<polygon class="repeater" points="40,-7 45,-7 57,0 45,7 40,7" sub="rep">
+								<xsl:attribute name="data-socket"><xsl:value-of select="$pos"/></xsl:attribute>
+							</polygon>
 							<circle class="start" cx="-3" cy="0" r="3"/>
 							<rect class="socket" x="233" y="-5" width="13" height="9" rx="3" sub="rep">
 								<xsl:attribute name="data-pos"><xsl:value-of select="$pos"/></xsl:attribute>

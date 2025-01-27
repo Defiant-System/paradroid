@@ -144,6 +144,11 @@
 						group.find(`line.r-joint, polyline.r-joint`).removeClass("r-joint").addClass("joint");
 						group.find(`.socket.r-joint, .chip.r-joint`).removeClass("r-joint").addClass("joint");
 						// group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
+						group.find(`.repeater.on[data-socket]`).map(rep => {
+							rep.getAttribute("data-socket").split(",").map(sockId => {
+								group.find(`.socket[data-pos="${sockId}"]`).addClass("on");
+							});
+						});
 					});
 					// light up SVG group
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
@@ -210,7 +215,7 @@
 					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
 				// TODO: toggle for debug
-				xBoard.map(x => x.removeAttribute("row"));
+				// xBoard.map(x => x.removeAttribute("row"));
 				// populate groups sets
 				let groups = [[""]],
 					schema = [];
@@ -231,7 +236,7 @@
 				// apply randomized schema set to xml nodes
 				schema.map((r, i) => {
 					// TODO: toggle for debug
-					if (r.id) xBoard[i].setAttribute("row", r.id);
+					// if (r.id) xBoard[i].setAttribute("row", r.id);
 				});
 
 				if (isLeft) {
