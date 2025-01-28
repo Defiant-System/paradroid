@@ -287,9 +287,9 @@
 					// render right side as well
 					Self.dispatch({ ...event, side: "right" });
 					Self.dispatch({ type: "render-schemas" });
-					// for debug / dev
-					value = [];
-					window.bluePrint.selectNodes(`//CircuitBoard`).map(x => value.push(x.xml));
+					// TODO: for debug / dev
+					// value = [];
+					// window.bluePrint.selectNodes(`//CircuitBoard`).map(x => value.push(x.xml));
 					// console.log(value.join("\n"));
 				}
 				break;

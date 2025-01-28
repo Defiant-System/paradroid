@@ -44,7 +44,7 @@ const Matter = window.Matter;
 const defaultSettings = {
 	"music": "off",
 	"sound-fx": "on",
-	"controls": "off", // TODO
+	"controls": "on", // TODO
 	// default game state
 	"state": { map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
 };
@@ -106,8 +106,8 @@ const paradroid = {
 				break;
 			case "init-settings":
 				// get settings, if any
-				Self.settings = defaultSettings; // TODO
-				// Self.settings = window.settings.getItem("settings") || defaultSettings;
+				// Self.settings = defaultSettings; // TODO
+				Self.settings = window.settings.getItem("settings") || defaultSettings;
 				// settings
 				["music", "sound-fx", "controls"].map(e => {
 					let value = Self.settings[e] === "on";
