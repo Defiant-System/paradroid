@@ -191,6 +191,7 @@ content {
 
 	&.choose-side-title {
 		min-height: 3px;
+		// transition-duration: 200ms; // TODO
 		transition-duration: 2500ms;
 
 		.io .toggler { display: none; }
@@ -216,6 +217,7 @@ content {
 
 	&.get-ready-title {
 		min-height: 2px;
+		// transition-duration: 200ms; // TODO
 		transition-duration: 2500ms;
 
 		.io .toggler { display: none; }
@@ -1323,8 +1325,8 @@ content {
 									0 0 2px #9c0fd877;
 					}
 
-					&.flicker {
-						animation: led-flicker 300ms infinite;
+					&.yellow.purple {
+						animation: led-flicker 250ms ease-in-out alternate infinite;
 					}
 				}
 			}
@@ -1355,14 +1357,16 @@ content {
 }
 
 @keyframes led-flicker {
-	0%   {
+	0%,
+	25%   {
 		background: #ea4;
 		box-shadow: 0 -1px 0 rgba(#111,.15),
 					inset 0px 5px 0px 0px rgba(#a50,.15),
 					inset 0 0 1px rgba(#940,.95),
 					0 0 2px #fb3;
 	}
-	50% {
+	75%,
+	100% {
 		background: #b4f;
 		box-shadow: 0 -1px 0 rgba(#111,.15),
 					inset 0px 5px 0px 0px rgba(#50a,.15),

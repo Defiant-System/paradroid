@@ -142,7 +142,9 @@
 					.removeClass("choose-color color-timer")
 					.addClass("hacking-game")
 					.cssSequence("hack-timer", "transitionend", el => {
-						event.callback();
+						el.cssSequence("hack-end-wait-timer", "transitionend", el => {
+							event.callback();
+						});
 					});
 				break;
 			case "reset-choose-color":
@@ -150,7 +152,7 @@
 				Self.els.barLeft.find(".box").css({ "--val": "" });
 				// reset hud
 				Self.els.barLeft
-					.removeClass("choose-color color-timer hacking-game hack-timer")
+					.removeClass("choose-color color-timer hacking-game hack-timer hack-end-wait-timer")
 					.cssSequence("reset-bar", "transitionend", el => {
 						el.removeClass("reset-bar end-color-timer");
 						event.callback();

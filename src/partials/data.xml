@@ -17,10 +17,10 @@
 <CircuitBoard id="right">
     <i row="2-join-2-1"/>
     <i row="2-join-2-2"/>
-    <i/>
     <i row="1-stump"/>
     <i row="6-split-repeater-3-2"/>
     <i row="1-stump"/>
+    <i/>
     <i row="2-join-2-1"/>
     <i row="2-join-2-2"/>
     <i row="1-join-3-1"/>

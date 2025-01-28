@@ -37,8 +37,8 @@ let Test = {
 		 */
 		APP.mobile.arena = {
 			player: {
-				id: "999",
-				opponent: { id: "999" }
+				id: "247",
+				opponent: { id: "493" }
 			}
 		};
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
@@ -54,10 +54,13 @@ let Test = {
 		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
 		// setTimeout(() => APP.transfer.chooseColor = true, 150);
 
-		let el = APP.transfer.els.cbLeft.find(`.toggler`);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 2 }), 150);
+		let el1 = APP.transfer.els.cbLeft.find(`.toggler`);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el1, index: 2 }), 1500);
+		
+		let el2 = APP.transfer.els.cbRight.find(`.toggler`);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 10 }), 2000);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 4 }), 350);
-		// return;
+		return;
 
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 7 }), 1100);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);

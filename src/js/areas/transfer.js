@@ -136,6 +136,16 @@
 					el.find(`> div:nth-child(${index})`).cssSequence("active", "transitionend", el => {
 						// reset switch start
 						el.removeClass("active");
+
+						let color = group.cssProp("--yellow") === group.cssProp("--color") ? "yellow" : "purple",
+							ledEl = Self.els.ioLeds.find(`> div:nth-child(${index-1})`);
+						if (ledEl[0].classList.length > 1) {
+							// update led light
+							ledEl.removeClass(color);
+							// update CPU led
+							setTimeout(() => Self.dispatch({ type: "update-winning-cpu" }), 50);
+						}
+
 						// turn off SVG group
 						group.removeClass("on joint-on");
 						// console.log(group);
@@ -146,7 +156,10 @@
 						// group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
 						group.find(`.repeater.on[data-socket]`).map(rep => {
 							rep.getAttribute("data-socket").split(",").map(sockId => {
-								group.find(`.socket[data-pos="${sockId}"]`).addClass("on");
+								let sEl = group.find(`.socket[data-pos="${sockId}"]`).addClass("on"),
+									color = sEl.cssProp("--yellow") === sEl.cssProp("--color") ? "yellow" : "purple";
+								// keep connected led light on
+								Self.els.ioLeds.find(`> div:nth-child(${sockId})`).addClass(color);
 							});
 						});
 					});
@@ -192,10 +205,13 @@
 					if (socket.hasClass("on")) {
 						let index = socket.data("pos"),
 							ledEl = Self.els.ioLeds.find(`> div:nth-child(${index})`),
+							oppo = Self.els.board.find(`svg .socket[data-pos="${index}"]`).filter(e => e !== elem),
+							oColor = oppo.cssProp("--yellow") === oppo.cssProp("--color") ? "yellow" : "purple",
 							color = "";
+						if (!oppo.hasClass("on")) ledEl.removeClass(oColor);
 						if (socket.cssProp("--color") === socket.cssProp("--yellow")) color = "yellow";
 						if (socket.cssProp("--color") === socket.cssProp("--purple")) color = "purple";
-						if (color) ledEl.removeClass("purple yellow").addClass(color);
+						if (color) ledEl.addClass(color);
 					}
 				});
 				break;
@@ -315,10 +331,12 @@
 				value = APP.mobile.arena.player.id;
 				Self.els.droidLeft.data({ id: value }).addClass("player");
 				Self.els.ammoLeft.data({ left: 3 + +value[0] });
+				// Self.els.ammoLeft.data({ left: 0 }); // TODO: disabled
 
 				value = APP.mobile.arena.player.opponent.id;
 				Self.els.droidRight.data({ id: value }).removeClass("player");
 				Self.els.ammoRight.data({ left: 3 + +value[0] });
+				// Self.els.ammoRight.data({ left: 0 }); // TODO: disabled
 				
 				// controls view
 				APP.hud.els.controls
