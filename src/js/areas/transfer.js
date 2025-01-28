@@ -166,32 +166,38 @@
 					// light up SVG group
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
 					group.find(`[sub="rep"]`).addClass("on");
-					// let sockEl = group.find(`[sub="soc"]`);
 
-					// join 1
-					group.find("[join]").map(elem => {
-						let line = $(elem),
-							input = line.attr("join"),
-							// a = console.log(input),
-							jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
-							chip = jLine.find(".chip.joint");
-						// handles join special scenario
-						if (input === "i3") input = "i2";
-						// add to chip inputs
-						chip.addClass(input);
-						// enable joint line
-						if (chip.hasClass("i1") && chip.hasClass("i2")) {
-							// turn on socket
-							chip.parent().find(".socket.joint").addClass("on");
-							// logical actions
-							jLine.find(".joint").removeClass("joint").addClass("r-joint");
-							jLine.addClass("joint-on");
-							// toggle IO led
-							if (input === "i2") {
-								Self.dispatch({ type: "toggle-io-led", group: jLine });
+					let groupJoin = group.find("[join]");
+					
+					if (groupJoin.length) {
+						// join 1
+						groupJoin.map(elem => {
+							let line = $(elem),
+								input = line.attr("join"),
+								// a = console.log(input),
+								jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
+								chip = jLine.find(".chip.joint");
+							// handles join special scenario
+							if (input === "i3") input = "i2";
+							// add to chip inputs
+							chip.addClass(input);
+							// enable joint line
+							if (chip.hasClass("i1") && chip.hasClass("i2")) {
+								// turn on socket
+								chip.parent().find(".socket.joint").addClass("on");
+								// logical actions
+								jLine.find(".joint").removeClass("joint").addClass("r-joint");
+								jLine.addClass("joint-on");
+								// toggle IO led
+								if (input === "i2") {
+									Self.dispatch({ type: "toggle-io-led", group: jLine });
+								}
 							}
-						}
-					});
+						});
+					} else {
+						// split rows
+						group.find(`.socket[sub="soc"]:not(.disconnected)`).addClass("on");
+					}
 					// toggle IO led
 					Self.dispatch({ type: "toggle-io-led", group });
 					// update CPU led
