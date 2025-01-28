@@ -55,11 +55,14 @@ let Test = {
 
 		let el1 = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el1, index: 2 }), 1500);
-		// return;
+		return;
 		
 		let el2 = APP.transfer.els.cbRight.find(`.toggler`);
-		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 8 }), 9000);
-		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 9 }), 1500);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 2 }), 2500);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 3 }), 2000);
+
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 8 }), 3000);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 9 }), 1500);
 		
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 5 }), 2500);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 11 }), 3000);

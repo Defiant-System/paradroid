@@ -160,6 +160,10 @@
 								// a = console.log(input),
 								jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
 								chip = jLine.find(".chip.joint");
+							if (!chip.length) {
+								jLine.find(".r-joint").removeClass("r-joint").addClass("joint");
+								chip = jLine.find(".chip.joint");
+							}
 							// console.log(chip);
 							chip.removeClass("i1 i2 i3 s1 s2 s3");
 						});
@@ -202,13 +206,11 @@
 							}
 						}
 					});
-					// joint rows
-					if (group.find(`.chip.joint`).hasClass("on")) {
+					// joint & split rows
+					if (group.find(`.chip.joint`).hasClass("on") || group.find(`.chip:not(.joint)`).length) {
 						group.find(`.socket[sub="soc"]:not(.disconnected)`).addClass("on");
-					}
-					// split rows
-					if (group.find(`.chip:not(.joint)`).length) {
-						group.find(`.socket[sub="soc"]:not(.disconnected)`).addClass("on");
+					} else if (!group.find(`.chip`).length) {
+						group.find(`[sub="soc"]`).addClass("on");
 					}
 					// toggle IO led
 					Self.dispatch({ type: "toggle-io-led", group });
