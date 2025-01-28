@@ -34,11 +34,10 @@ let Test = {
 
 		/*
 		 * TRANSFER View
-		 */
 		APP.mobile.arena = {
 			player: {
 				id: "247",
-				opponent: { id: "493" }
+				opponent: { id: "999" }
 			}
 		};
 		APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
@@ -59,9 +58,11 @@ let Test = {
 		// return;
 		
 		let el2 = APP.transfer.els.cbRight.find(`.toggler`);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 2 }), 2000);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 5 }), 3500);
-		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 4 }), 350);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 8 }), 9000);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 9 }), 1500);
+		
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 5 }), 2500);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 11 }), 3000);
 		return;
 
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 7 }), 1100);
@@ -76,6 +77,7 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return;
+		 */
 
 
 		/*
@@ -123,7 +125,7 @@ let Test = {
 		}, 100);
 		 */
 
-		// return;
+		return;
 
 		return setTimeout(() => {
 			let state = {
@@ -134,8 +136,8 @@ let Test = {
 					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 100 }, debug: { mode: 0 },
-					// map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "999", x: 35, y: 15 }, debug: { mode: 0 },
+					map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
+					// map: { id: 1 }, player: { id: "999", x: 35, y: 15 }, debug: { mode: 0 },
 					// map: { id: 16 }, player: { id: "711", x: 16, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
 					// map: { id: 9 }, player: { id: "001", x: 3, y: 5 }, debug: { mode: 0 },

@@ -153,6 +153,17 @@
 						group.find(`.socket.on`).removeClass("on joint"); // .addClass("joint");
 						group.find(`line.r-joint, polyline.r-joint`).removeClass("r-joint").addClass("joint");
 						group.find(`.socket.r-joint, .chip.r-joint`).removeClass("r-joint").addClass("joint");
+
+						group.find("[join]").map(elem => {
+							let line = $(elem),
+								input = line.attr("join"),
+								// a = console.log(input),
+								jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
+								chip = jLine.find(".chip.joint");
+							// console.log(chip);
+							chip.removeClass("i1 i2 i3 s1 s2 s3");
+						});
+
 						// group.find(`line:not([join]), polyline:not([join])`).addClass("joint");
 						group.find(`.repeater.on[data-socket]`).map(rep => {
 							rep.getAttribute("data-socket").split(",").map(sockId => {
@@ -167,35 +178,36 @@
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
 					group.find(`[sub="rep"]`).addClass("on");
 
-					let groupJoin = group.find("[join]");
-					
-					if (groupJoin.length) {
-						// join 1
-						groupJoin.map(elem => {
-							let line = $(elem),
-								input = line.attr("join"),
-								// a = console.log(input),
-								jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
-								chip = jLine.find(".chip.joint");
-							// handles join special scenario
-							if (input === "i3") input = "i2";
-							// add to chip inputs
-							chip.addClass(input);
-							// enable joint line
-							if (chip.hasClass("i1") && chip.hasClass("i2")) {
-								// turn on socket
-								chip.parent().find(".socket.joint").addClass("on");
-								// logical actions
-								jLine.find(".joint").removeClass("joint").addClass("r-joint");
-								jLine.addClass("joint-on");
-								// toggle IO led
-								if (input === "i2") {
-									Self.dispatch({ type: "toggle-io-led", group: jLine });
-								}
+					// join 1
+					group.find("[join]").map(elem => {
+						let line = $(elem),
+							input = line.attr("join"),
+							// a = console.log(input),
+							jLine = ["i1", "s1"].includes(input) ? group : (["i2", "s2"].includes(input) ? group.prevAll("g").get(+line.attr("prev")) : group.nextAll("g").get(+line.attr("next"))),
+							chip = jLine.find(".chip.joint");
+						// handles join special scenario
+						if (input === "i3") input = "i2";
+						// add to chip inputs
+						chip.addClass(input);
+						// enable joint line
+						if (chip.hasClass("i1") && chip.hasClass("i2")) {
+							// turn on socket
+							chip.parent().find(".socket.joint").addClass("on");
+							// logical actions
+							jLine.find(".joint").removeClass("joint").addClass("r-joint");
+							jLine.addClass("joint-on");
+							// toggle IO led
+							if (input === "i2") {
+								Self.dispatch({ type: "toggle-io-led", group: jLine });
 							}
-						});
-					} else {
-						// split rows
+						}
+					});
+					// joint rows
+					if (group.find(`.chip.joint`).hasClass("on")) {
+						group.find(`.socket[sub="soc"]:not(.disconnected)`).addClass("on");
+					}
+					// split rows
+					if (group.find(`.chip:not(.joint)`).length) {
 						group.find(`.socket[sub="soc"]:not(.disconnected)`).addClass("on");
 					}
 					// toggle IO led
@@ -247,7 +259,7 @@
 					xBoard = window.bluePrint.selectNodes(`//CircuitBoard[@id="${side}"]/i`);
 				// reset blueprint
 				// TODO: toggle for debug
-				// xBoard.map(x => x.removeAttribute("row"));
+				xBoard.map(x => x.removeAttribute("row"));
 				// populate groups sets
 				let groups = [[""]],
 					schema = [];
@@ -268,7 +280,7 @@
 				// apply randomized schema set to xml nodes
 				schema.map((r, i) => {
 					// TODO: toggle for debug
-					// if (r.id) xBoard[i].setAttribute("row", r.id);
+					if (r.id) xBoard[i].setAttribute("row", r.id);
 				});
 
 				if (isLeft) {
@@ -346,13 +358,13 @@
 				// droid id's
 				value = APP.mobile.arena.player.id;
 				Self.els.droidLeft.data({ id: value }).addClass("player");
-				// Self.els.ammoLeft.data({ left: 3 + +value[0] });
-				Self.els.ammoLeft.data({ left: 1 }); // TODO: disabled
+				Self.els.ammoLeft.data({ left: 3 + +value[0] });
+				// Self.els.ammoLeft.data({ left: 3 }); // TODO: disabled
 
 				value = APP.mobile.arena.player.opponent.id;
 				Self.els.droidRight.data({ id: value }).removeClass("player");
-				// Self.els.ammoRight.data({ left: 3 + +value[0] });
-				Self.els.ammoRight.data({ left: 1 }); // TODO: disabled
+				Self.els.ammoRight.data({ left: 3 + +value[0] });
+				// Self.els.ammoRight.data({ left: 3 }); // TODO: disabled
 				
 				// controls view
 				APP.hud.els.controls
@@ -408,7 +420,7 @@
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
 						// TODO: enable
-						// Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
