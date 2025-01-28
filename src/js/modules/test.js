@@ -48,17 +48,19 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 500);
-		return;
+		// return;
 
 		// setTimeout(() => APP.transfer.els.ioLeds.find("div").get(0).addClass("flicker"), 250);
 		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
 		// setTimeout(() => APP.transfer.chooseColor = true, 150);
 
 		let el1 = APP.transfer.els.cbLeft.find(`.toggler`);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el1, index: 2 }), 1500);
+		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el1, index: 2 }), 1500);
+		// return;
 		
 		let el2 = APP.transfer.els.cbRight.find(`.toggler`);
-		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 10 }), 2000);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 2 }), 2000);
+		setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 5 }), 3500);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 4 }), 350);
 		return;
 

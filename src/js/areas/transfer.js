@@ -165,7 +165,8 @@
 					});
 					// light up SVG group
 					group = el.parent().find(`svg g:nth-child(${index-1})`).addClass("on");
-					group.find(`[sub="rep"], [sub="soc"]`).addClass("on");
+					group.find(`[sub="rep"]`).addClass("on");
+					// let sockEl = group.find(`[sub="soc"]`);
 
 					// join 1
 					group.find("[join]").map(elem => {
@@ -180,6 +181,9 @@
 						chip.addClass(input);
 						// enable joint line
 						if (chip.hasClass("i1") && chip.hasClass("i2")) {
+							// turn on socket
+							chip.parent().find(".socket.joint").addClass("on");
+							// logical actions
 							jLine.find(".joint").removeClass("joint").addClass("r-joint");
 							jLine.addClass("joint-on");
 							// toggle IO led
@@ -202,13 +206,19 @@
 				// update IO leds
 				event.group.find(".socket[data-pos]").map(elem => {
 					let socket = $(elem);
+					// let isChipJoint = event.group.find(".chip.joint");
+					// console.log( isChipJoint[0] );
+					// if (isChipJoint.hasClass("on")) {
+					// 	socket.addClass("on");
+					// }
 					if (socket.hasClass("on")) {
 						let index = socket.data("pos"),
 							ledEl = Self.els.ioLeds.find(`> div:nth-child(${index})`),
 							oppo = Self.els.board.find(`svg .socket[data-pos="${index}"]`).filter(e => e !== elem),
-							oColor = oppo.cssProp("--yellow") === oppo.cssProp("--color") ? "yellow" : "purple",
+							// oColor = oppo.cssProp("--yellow") === oppo.cssProp("--color") ? "yellow" : "purple",
 							color = "";
-						if (!oppo.hasClass("on")) ledEl.removeClass(oColor);
+						// console.log( socket[0] );
+						if (!oppo.hasClass("on")) ledEl.removeClass("yellow purple");
 						if (socket.cssProp("--color") === socket.cssProp("--yellow")) color = "yellow";
 						if (socket.cssProp("--color") === socket.cssProp("--purple")) color = "purple";
 						if (color) ledEl.addClass(color);
@@ -330,13 +340,13 @@
 				// droid id's
 				value = APP.mobile.arena.player.id;
 				Self.els.droidLeft.data({ id: value }).addClass("player");
-				Self.els.ammoLeft.data({ left: 3 + +value[0] });
-				// Self.els.ammoLeft.data({ left: 0 }); // TODO: disabled
+				// Self.els.ammoLeft.data({ left: 3 + +value[0] });
+				Self.els.ammoLeft.data({ left: 1 }); // TODO: disabled
 
 				value = APP.mobile.arena.player.opponent.id;
 				Self.els.droidRight.data({ id: value }).removeClass("player");
-				Self.els.ammoRight.data({ left: 3 + +value[0] });
-				// Self.els.ammoRight.data({ left: 0 }); // TODO: disabled
+				// Self.els.ammoRight.data({ left: 3 + +value[0] });
+				Self.els.ammoRight.data({ left: 1 }); // TODO: disabled
 				
 				// controls view
 				APP.hud.els.controls
@@ -392,7 +402,7 @@
 						// create opponent AI
 						el = Self.els.board.find(".droid:not(.player)");
 						// TODO: enable
-						Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
+						// Self.AI = new HackerAI({ el, id: el.data("id"), owner: Self });
 					});
 				};
 				APP.hud.dispatch({ type: "reset-choose-color", callback });
