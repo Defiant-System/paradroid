@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		// return;
+		return;
 
 		/*
 		 * START View
@@ -128,8 +128,6 @@ let Test = {
 		}, 100);
 		 */
 
-		return;
-
 		return setTimeout(() => {
 			let state = {
 					cleared: {
@@ -155,10 +153,10 @@ let Test = {
 			// setTimeout(() => APP.mobile.arena.player.dealDamage(30), 2000);
 			// setTimeout(() => APP.mobile.arena.player.setId(493), 14000);
 
-			// setTimeout(() => {
-			// 	APP.mobile.arena = { player: { id: "999", opponent: { id: "999" } } };
-			// 	APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
-			// }, 1000);
+			setTimeout(() => {
+				APP.mobile.arena = { player: { id: "999", opponent: { id: "999" } } };
+				APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
+			}, 1000);
 		
 
 			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1500);

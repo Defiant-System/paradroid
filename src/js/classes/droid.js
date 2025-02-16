@@ -181,6 +181,7 @@ class Droid {
 				type: this.fire.name,
 				damage: this.fire.damage,
 			},
+			audio = { detune: Utils.randomInt(-100, 100) },
 			count,
 			inc,
 			a;
@@ -195,12 +196,12 @@ class Droid {
 			case "phaser":
 				new Fire(cfg);
 				// play sound fx
-				window.audio.play("laser");
+				window.audio.play("laser", audio);
 				break;
 			case "sonic":
 				new Sonic(cfg);
 				// play sound fx
-				window.audio.play("sonic");
+				window.audio.play("sonic", audio);
 				break;
 			case "ripper":
 				count = 12;
@@ -211,7 +212,7 @@ class Droid {
 					a += inc;
 				});
 				// play sound fx
-				window.audio.play("ripper");
+				window.audio.play("ripper", audio);
 				break;
 			case "exterminator":
 				count = 7;
@@ -223,7 +224,7 @@ class Droid {
 					a += inc;
 				});
 				// play sound fx
-				window.audio.play("io");
+				window.audio.play("io", audio);
 				break;
 			case "disruptor":
 				if (this.isPlayer) {
