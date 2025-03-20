@@ -71,7 +71,12 @@
 						},
 						playSong = () => window.audio.play(Self.tune.name, opt).then(song => Self.tune.song = song);
 					playSong();
-				} else if (Self.tune.song) {
+				} else {
+					Self.dispatch({ type: "stop-song" });
+				}
+				break;
+			case "stop-song":
+				if (Self.tune.song) {
 					Self.tune.song.stop();
 					delete Self.tune.song;
 				}

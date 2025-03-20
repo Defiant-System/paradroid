@@ -27,7 +27,7 @@
 				value = el.hasClass("paused");
 				el.toggleClass("paused", value);
 				// play sound fx
-				window.audio.play("click");
+				if (!event.pause) window.audio.play("click");
 
 				if (Self.els.barRight.hasClass("paused") && !event.pause) {
 					Self.els.content.removeClass("paused");

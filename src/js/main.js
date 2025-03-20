@@ -94,6 +94,7 @@ const paradroid = {
 				window.settings.setItem("settings", Self.settings);
 				// stop "matter.js" runner
 				Self.hud.dispatch({ type: "toggle-play-pause", pause: true });
+				Self.start.dispatch({ type: "stop-song" });
 				break;
 			case "window.keydown":
 			case "window.keyup":
