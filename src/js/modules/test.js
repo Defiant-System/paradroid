@@ -3,32 +3,35 @@ let Test = {
 	init(APP) {
 		return;
 
+		APP.start.dispatch({ type: "start-game" });
+		return true;
+
 		/*
 		 * START View
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
-		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(2) .box-title`).trigger("click"), 600);
-		return;
+		setTimeout(() => APP.start.els.el.find(`.option:nth-child(4) .box-title`).trigger("click"), 600);
+		return true;
 		 */
 
 		
 		/*
 		 * TERMINATED View
 		APP.dispatch({ type: "show-view", arg: "terminated" });
-		return;
+		return true;
 		 */
 
 		
 		/*
 		 * BRIEFING View
 		APP.dispatch({ type: "show-view", arg: "briefing" });
-		return;
+		return true;
 		 */
 
 		
 		/*
 		 * FINISHED View
 		APP.dispatch({ type: "show-view", arg: "finished" });
-		return;
+		return true;
 		 */
 
 
@@ -47,7 +50,7 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 500);
-		// return;
+		// return true;
 
 		// setTimeout(() => APP.transfer.els.ioLeds.find("div").get(0).addClass("flicker"), 250);
 		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
@@ -55,7 +58,7 @@ let Test = {
 
 		let el1 = APP.transfer.els.cbLeft.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el1, index: 2 }), 1500);
-		return;
+		return true;
 		
 		let el2 = APP.transfer.els.cbRight.find(`.toggler`);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 2 }), 2500);
@@ -66,7 +69,7 @@ let Test = {
 		
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 5 }), 2500);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el: el2, index: 11 }), 3000);
-		return;
+		return true;
 
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 7 }), 1100);
 		// setTimeout(() => APP.transfer.dispatch({ type: "toggle-io-row", el, index: 6 }), 1100);
@@ -79,7 +82,7 @@ let Test = {
 			APP.transfer.AI = new HackerAI({ el, id: el.data("id"), owner, order });
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
-		return;
+		return true;
 		 */
 
 
@@ -92,7 +95,7 @@ let Test = {
 			// APP.console.dispatch({ type: "init-view", id: "001" });
 			APP.console.dispatch({ type: "show-view", arg: 1 });
 		}, 600);
-		return;
+		return true;
 		 */
 
 
@@ -100,7 +103,7 @@ let Test = {
 		 * LIFT View
 		APP.dispatch({ type: "show-view", arg: "lift" });
 		// APP.lift.els.el.find(".lift").get(0).trigger("click");
-		return;
+		return true;
 		 */
 
 
@@ -137,7 +140,7 @@ let Test = {
 					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 100 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "001", x: 3, y: 7 }, debug: { mode: 0 },
+					map: { id: 1 }, player: { id: "001", x: 13, y: 7 }, debug: { mode: 0 },
 					// map: { id: 1 }, player: { id: "999", x: 35, y: 15 }, debug: { mode: 0 },
 					// map: { id: 16 }, player: { id: "711", x: 16, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
@@ -147,15 +150,15 @@ let Test = {
 				};
 
 			// set view
-			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
-			APP.mobile.dispatch({ type: "restore-state", state });
+			// APP.dispatch({ type: "show-view", arg: "mobile", start: false });
+			// APP.mobile.dispatch({ type: "restore-state", state });
 
 			// setTimeout(() => APP.mobile.arena.player.dealDamage(30), 2000);
 			// setTimeout(() => APP.mobile.arena.player.setId(493), 14000);
 
 			setTimeout(() => {
 				APP.mobile.arena = { player: { id: "999", opponent: { id: "999" } } };
-				APP.dispatch({ type: "show-view", arg: "transfer", anim: "none" });
+				APP.dispatch({ type: "show-view", arg: "transfer" });
 			}, 1000);
 		
 

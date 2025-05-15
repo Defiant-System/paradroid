@@ -163,12 +163,14 @@
 			// custom events
 			case "init-view":
 				if (Self._started) return;
-				// reset game
-				Self._started = true;
 				// reset killed droids
 				window.bluePrint.selectNodes(`//Layer[@id="droids"]/*[@dead]`).map(x => x.removeAttribute("dead"));
+
+				delete Self.arena.player.killed;
+
 				// stop engine, if stopped
 				Self.dispatch({ type: "game-loop-resume" });
+
 				// restore game state
 				value = defaultSettings.state;
 				Self.dispatch({ type: "restore-state", state: value });
@@ -274,6 +276,7 @@
 				else Self.els.el.cssSequence(name, "transitionend", animDone);
 				break;
 			case "player-droid-destroyed":
+				setTimeout(() => APP.hud.dispatch({ type: "reset-rejection" }), 2e3);
 				// reset css/view
 				Self.els.content.cssSequence("leave", "transitionend", el => {
 					// reset element

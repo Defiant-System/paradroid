@@ -501,7 +501,6 @@
 				Self.els.droidLeft.data({ id: "" }).removeClass("player");
 				Self.els.droidRight.data({ id: "" }).removeClass("player");
 
-
 				// reset state
 				delete Self._chooseColor;
 				delete Self._gameStarted;

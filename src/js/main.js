@@ -46,7 +46,7 @@ const defaultSettings = {
 	"sound-fx": "on",
 	"controls": "on", // TODO
 	// default game state
-	"state": { map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
+	"state": { map: { id: 1 }, player: { id: "001", x: 23, y: 7, health: 100 } },
 };
 
 
@@ -65,12 +65,12 @@ const paradroid = {
 		// init settings
 		this.dispatch({ type: "init-settings" });
 
+		// DEV-ONLY-START
+		if (Test.init(this)) return;
+		// DEV-ONLY-END
+
 		// show start view
 		this.dispatch({ type: "show-view", arg: "start" });
-
-		// DEV-ONLY-START
-		Test.init(this);
-		// DEV-ONLY-END
 	},
 	dispatch(event) {
 		let Self = paradroid,

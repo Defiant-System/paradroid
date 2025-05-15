@@ -106,11 +106,13 @@ class Droid {
 	}
 
 	demote() {
+		// if "001", explosion
 		if (this.id === "001") {
 			// remove this droid from map
 			let index = this.arena.map.droids.indexOf(this);
-			this.arena.map.droids.splice(index, 1)[0];
+			this.arena.map.droids.splice(index, 1);
 			this.health = -1;
+			this._killed = true;
 			// wait until explosion animation is done
 			setTimeout(() => {
 				// player droid killed - show "game over"
@@ -133,12 +135,11 @@ class Droid {
 		}
 		if (this.isPlayer) {
 			// first demote player if, above "001".
-			// if "001", explosion
 			this.demote();
 		} else {
 			// remove this droid from map
 			let index = this.arena.map.droids.indexOf(this);
-			this.arena.map.droids.splice(index, 1)[0];
+			this.arena.map.droids.splice(index, 1);
 			// remove droid from physical world
 			Matter.Composite.remove(this.arena.map.engine.world, this.body);
 			// make node "dead"
@@ -343,7 +344,7 @@ class Droid {
 		this.y = y;
 		// optional values ()
 		if (id) this.setId(id);
-		// if plyaer & health, set health
+		// if player & health, set health
 		if (health) {
 			this.health = health;
 			// update player health bar
