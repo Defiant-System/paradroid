@@ -46,7 +46,7 @@ const defaultSettings = {
 	"sound-fx": "on",
 	"controls": "on", // TODO
 	// default game state
-	"state": { map: { id: 1 }, player: { id: "001", x: 23, y: 7, health: 100 } },
+	"state": { map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
 };
 
 

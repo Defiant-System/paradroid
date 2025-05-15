@@ -276,7 +276,7 @@
 				else Self.els.el.cssSequence(name, "transitionend", animDone);
 				break;
 			case "player-droid-destroyed":
-				setTimeout(() => APP.hud.dispatch({ type: "reset-rejection" }), 2e3);
+				setTimeout(() => APP.hud.dispatch({ type: "reset-rejection" }), 1e3);
 				// reset css/view
 				Self.els.content.cssSequence("leave", "transitionend", el => {
 					// reset element

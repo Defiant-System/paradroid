@@ -102,9 +102,12 @@
 					setTimeout(() => {
 						el.css({ "--val": 0 });
 						el.find(".box-bar").cssSequence("rejection", "transitionend", barEl => {
-							setTimeout(() => Self.dispatch({ type: "reset-rejection" }), 10);
+							setTimeout(() => Self.dispatch({ type: "reset-rejection" }), 2e3);
 							// time has run out - kill/demote player droid
-							if (!APP.mobile.arena.player._killed) APP.mobile.arena.player.kill();
+							if (!APP.mobile.arena.player._killed) {
+								APP.mobile.arena.player.kill();
+								delete APP.mobile.arena.player._killed;
+							}
 						});
 					}, 10);
 				}
@@ -114,7 +117,8 @@
 				break;
 			case "reset-rejection":
 				el = Self.els.progress.find(`.box-track[data-id="reject"]`);
-				el.css({ "--speed": "1ms", "--val": 1 }).removeClass("rejection");
+				el.css({ "--speed": "1ms", "--val": 1 });
+				el.find(".rejection").removeClass("rejection");
 				break;
 			case "start-hacking-game":
 				// reset hud box

@@ -3,8 +3,8 @@ let Test = {
 	init(APP) {
 		return;
 
-		APP.start.dispatch({ type: "start-game" });
-		return true;
+		// APP.start.dispatch({ type: "start-game" });
+		// return true;
 
 		/*
 		 * START View
