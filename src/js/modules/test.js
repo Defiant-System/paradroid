@@ -94,7 +94,7 @@ let Test = {
 		APP.dispatch({ type: "show-view", arg: "console" });
 		setTimeout(() => {
 			// APP.console.dispatch({ type: "init-view", id: "001" });
-			APP.console.dispatch({ type: "show-view", arg: 1 });
+			APP.console.dispatch({ type: "show-view", arg: 3 });
 		}, 600);
 		return true;
 
