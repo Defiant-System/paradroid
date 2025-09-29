@@ -43,8 +43,8 @@ content {
 	// display: flex;
 	padding: 7px 17px 7px 7px;
 	border-radius: 6px;
-	background: radial-gradient(ellipse at 50% 50%, rgba(#fff,.9), transparent 115%);
-	--outline: #b3b3b3;
+	background: #36f radial-gradient(circle at 50% 50%, #fff5, #fff0 85%);
+	--outline: #fff;
 	
 	&:before {
 		content: "";
@@ -67,10 +67,10 @@ content {
 		width: 100%;
 		height: 100%;
 		z-index: 1;
-		background-image: repeating-linear-gradient(90deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 60px),
-							repeating-linear-gradient(0deg, #a2a2a20d 0, #a2a2a20d 1px, transparent 1px, transparent 60px),
-							repeating-linear-gradient(0deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 15px),
-							repeating-linear-gradient(90deg, #a2a2a212 0, #a2a2a212 1px, transparent 1px, transparent 15px);
+		background-image: repeating-linear-gradient(90deg, #ffffff12 0, #ffffff12 1px, transparent 1px, transparent 60px),
+							repeating-linear-gradient(0deg, #ffffff12 0, #ffffff12 1px, transparent 1px, transparent 60px),
+							repeating-linear-gradient(0deg, #fff2 0, #fff2 1px, transparent 1px, transparent 15px),
+							repeating-linear-gradient(90deg, #fff2 0, #fff2 1px, transparent 1px, transparent 15px);
 		background-position: 6px -43px;
 		pointer-events: none;
 	}
@@ -98,7 +98,7 @@ content {
 		letter-spacing: 1px;
 		font-size: 11px;
 		font-weight: 400;
-		color: #aaa;
+		color: #fff;
 	}
 
 	.console-menu {
@@ -127,7 +127,8 @@ content {
 					left: 5px;
 					right: 5px;
 					bottom: 5px;
-					border: 2px solid #bbb;
+					background: #4272ff;
+					border: 2px solid var( --outline );
 					border-radius: 11px;
 				}
 
@@ -174,22 +175,22 @@ content {
 						left: 81px;
 						width: 53px;
 						height: 1px;
-						background: #bbb;
+						background: #fff;
 						transform: rotate(29deg);
 					}
 				}
 
 				.sub {
 					position: absolute;
-					top: -97px;
+					top: -113px;
 					left: 130px;
 					width: 45px;
 					z-index: 2;
-					font-family: Paradrew;
-					font-size: 14px;
-					line-height: 12px;
+					font-family: Oxanium;
+					font-size: 12px;
+					line-height: 13px;
 					text-align: center;
-					color: #999b;
+					color: #fffb;
 
 					&:before {
 						content: "";
@@ -198,7 +199,7 @@ content {
 						left: 0;
 						right: 0;
 						height: 5px;
-						border: 1px solid #bbb;
+						border: 1px solid var( --outline );
 						border-bottom: 0;
 						border-radius: 3px 3px 0 0;
 					}
@@ -210,7 +211,7 @@ content {
 						left: 0;
 						right: 0;
 						height: 5px;
-						border: 1px solid #bbb;
+						border: 1px solid var( --outline );
 						border-top: 0;
 						border-radius: 0 0 3px 3px;
 					}
@@ -219,7 +220,7 @@ content {
 						position: relative;
 						display: block;
 						padding: 2px 0;
-						border: 1px solid #bbb;
+						border: 1px solid var( --outline );
 						border-top: 0;
 						border-bottom: 0;
 
@@ -227,15 +228,15 @@ content {
 						&[data-id="476"],
 						&[data-id="493"] {
 							&:before {
-								background: #eee;
+								// background: #eee;
 							}
 						}
 
 						&.active {
-							color: #666;
-							font-size: 29px;
-							padding-top: 7px;
-							padding-bottom: 11px;
+							color: #fff;
+							font-size: 21px;
+							padding-top: 9px;
+							padding-bottom: 7px;
 							border-width: 0;
 
 							&:before {
@@ -246,13 +247,14 @@ content {
 								right: -5px;
 								bottom: 0;
 								z-index: -1;
-								border: 1px solid #bbb;
+								background: #4e7aff;
+								border: 1px solid var( --outline );
 								border-radius: 4px;
 							}
 						}
 
 						&.disabled {
-							color: #ccc;
+							color: #fffa;
 						}
 					}
 				}
@@ -272,7 +274,7 @@ content {
 		font-family: "Oxanium";
 		text-transform: uppercase;
 		font-weight: 400;
-		color: #9b9b9b;
+		color: #fffc;
 
 		.return-exit {
 			position: absolute;
@@ -360,7 +362,7 @@ content {
 			width: 527px;
 			height: 318px;
 			background-size: 0 0;
-			filter: hue-rotate(235deg) opacity(0.6);
+			filter: grayscale(1) brightness(2);
 
 			&:before {
 				content: "";
@@ -390,7 +392,7 @@ content {
 				position: absolute;
 				top: 0;
 				left: 104px;
-				filter: opacity(.65);
+				filter: opacity(.65) invert(1) brightness(2);
 				transition: opacity 150ms ease-in-out;
 			}
 		}
@@ -400,7 +402,7 @@ content {
 			bottom: 0;
 			right: 0;
 			width: 199px;
-			background: #eee3;
+			background: #4876ff;
 			border-top-left-radius: 4px;
 			border: 2px solid var( --outline );
 			border-bottom: 0;
@@ -434,7 +436,7 @@ content {
 					font-size: 16px;
 					font-weight: 500;
 					border-bottom: 1px solid var( --outline );
-					color: #888;
+					color: #fff;
 				}
 
 				&.vessel {
@@ -451,7 +453,8 @@ content {
 						left: 5px;
 						width: 17px;
 						height: 17px;
-						opacity: .65;
+						// opacity: .65;
+						filter: invert(1) brightness(2);
 					}
 				}
 
@@ -477,7 +480,7 @@ content {
 					text-transform: none;
 					font-size: 9px;
 					line-height: 1.5;
-					color: #888;
+					color: #fff;
 				}
 			}
 		}

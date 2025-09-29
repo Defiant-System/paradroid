@@ -219,7 +219,7 @@
 						value = APP.mobile.arena.player.id;
 						el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${value}")`);
 						// droids after player droid are "disabled"
-						el.nextAll("span").addClass("disabled");
+						// el.nextAll("span").addClass("disabled");
 						break;
 					case "level":
 						Self.drawMinimap(APP.mobile.arena.map.id);

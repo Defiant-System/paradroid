@@ -57,6 +57,7 @@
 		</Menu>
 		<Menu type="divider"/>
 		<Menu name="Editor" for="editor-content">
+			<Menu name="Toggle Overflow" click="toggle-overflow"/>
 			<Menu name="Toggle Grid" click="toggle-grid"/>
 			<Menu type="divider"/>
 			<Menu name="Layers&#8230;" for="editor-layer">
@@ -67,27 +68,58 @@
 				<Menu name="Lights" click="select-editor-layer" check-group="editor-layer" arg="lights"/>
 				<Menu name="Droids" click="select-editor-layer" check-group="editor-layer" arg="droids"/>
 			</Menu>
-			<Menu name="Section&#8230;">
-				<Menu name="1" check-group="game-level" click="render-level" arg="1" is-checked="1"/>
-				<Menu name="2" check-group="game-level" click="render-level" arg="2"/>
-				<Menu name="3" check-group="game-level" click="render-level" arg="3"/>
-				<Menu name="4" check-group="game-level" click="render-level" arg="4"/>
-				<Menu name="5" check-group="game-level" click="render-level" arg="5"/>
-				<Menu name="6" check-group="game-level" click="render-level" arg="6"/>
-				<Menu name="7" check-group="game-level" click="render-level" arg="7"/>
-				<Menu name="8" check-group="game-level" click="render-level" arg="8"/>
-				<Menu name="9" check-group="game-level" click="render-level" arg="9"/>
-				<Menu name="10" check-group="game-level" click="render-level" arg="10"/>
-				<Menu name="11" check-group="game-level" click="render-level" arg="11"/>
-				<Menu name="12" check-group="game-level" click="render-level" arg="12"/>
-				<Menu name="13" check-group="game-level" click="render-level" arg="13"/>
-				<Menu name="14" check-group="game-level" click="render-level" arg="14"/>
-				<Menu name="15" check-group="game-level" click="render-level" arg="15"/>
-				<Menu name="16" check-group="game-level" click="render-level" arg="16"/>
-				<Menu name="17" check-group="game-level" click="render-level" arg="17"/>
-				<Menu name="18" check-group="game-level" click="render-level" arg="18"/>
-				<Menu name="19" check-group="game-level" click="render-level" arg="19"/>
-				<Menu name="20" check-group="game-level" click="render-level" arg="20"/>
+			<Menu name="Ships&#8230;">
+				<Menu name="Avalon Levels">
+					<Menu name="1" check-group="game-level" click="render-level" arg="1" is-checked="1"/>
+					<Menu name="2" check-group="game-level" click="render-level" arg="2"/>
+					<Menu name="3" check-group="game-level" click="render-level" arg="3"/>
+					<Menu name="4" check-group="game-level" click="render-level" arg="4"/>
+					<Menu name="5" check-group="game-level" click="render-level" arg="5"/>
+					<Menu name="6" check-group="game-level" click="render-level" arg="6"/>
+					<Menu name="7" check-group="game-level" click="render-level" arg="7"/>
+					<Menu name="8" check-group="game-level" click="render-level" arg="8"/>
+					<Menu name="9" check-group="game-level" click="render-level" arg="9"/>
+					<Menu name="10" check-group="game-level" click="render-level" arg="10"/>
+					<Menu name="11" check-group="game-level" click="render-level" arg="11"/>
+					<Menu name="12" check-group="game-level" click="render-level" arg="12"/>
+					<Menu name="13" check-group="game-level" click="render-level" arg="13"/>
+					<Menu name="14" check-group="game-level" click="render-level" arg="14"/>
+					<Menu name="15" check-group="game-level" click="render-level" arg="15"/>
+					<Menu name="16" check-group="game-level" click="render-level" arg="16"/>
+					<Menu name="17" check-group="game-level" click="render-level" arg="17"/>
+					<Menu name="18" check-group="game-level" click="render-level" arg="18"/>
+					<Menu name="19" check-group="game-level" click="render-level" arg="19"/>
+					<Menu name="20" check-group="game-level" click="render-level" arg="20"/>
+				</Menu>
+				<Menu name="Rubicon Levels">
+					<Menu name="1" check-group="game-level" click="render-level" arg="1"/>
+					<Menu name="2" check-group="game-level" click="render-level" arg="2"/>
+					<Menu name="3" check-group="game-level" click="render-level" arg="3"/>
+					<Menu name="4" check-group="game-level" click="render-level" arg="4"/>
+					<Menu name="5" check-group="game-level" click="render-level" arg="5"/>
+					<Menu name="6" check-group="game-level" click="render-level" arg="6"/>
+					<Menu name="7" check-group="game-level" click="render-level" arg="7"/>
+					<Menu name="8" check-group="game-level" click="render-level" arg="8"/>
+					<Menu name="9" check-group="game-level" click="render-level" arg="9"/>
+					<Menu name="10" check-group="game-level" click="render-level" arg="10"/>
+					<Menu name="11" check-group="game-level" click="render-level" arg="11"/>
+					<Menu name="12" check-group="game-level" click="render-level" arg="12"/>
+					<Menu name="13" check-group="game-level" click="render-level" arg="13"/>
+					<Menu name="14" check-group="game-level" click="render-level" arg="14"/>
+					<Menu name="15" check-group="game-level" click="render-level" arg="15"/>
+					<Menu name="16" check-group="game-level" click="render-level" arg="16"/>
+					<Menu name="17" check-group="game-level" click="render-level" arg="17"/>
+					<Menu name="18" check-group="game-level" click="render-level" arg="18"/>
+					<Menu name="19" check-group="game-level" click="render-level" arg="19"/>
+					<Menu name="20" check-group="game-level" click="render-level" arg="20"/>
+					<Menu name="21" check-group="game-level" click="render-level" arg="21"/>
+					<Menu name="22" check-group="game-level" click="render-level" arg="22"/>
+					<Menu name="23" check-group="game-level" click="render-level" arg="23"/>
+					<Menu name="24" check-group="game-level" click="render-level" arg="24"/>
+					<Menu name="25" check-group="game-level" click="render-level" arg="25"/>
+					<Menu name="26" check-group="game-level" click="render-level" arg="26"/>
+					<Menu name="27" check-group="game-level" click="render-level" arg="27"/>
+				</Menu>
 			</Menu>
 			<Menu type="divider"/>
 			<Menu name="Output PGN" click="output-pgn"/>

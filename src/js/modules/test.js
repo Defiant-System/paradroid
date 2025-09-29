@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		return;
+		// return;
 
 		// APP.start.dispatch({ type: "start-game" });
 		// return true;
@@ -9,7 +9,7 @@ let Test = {
 		/*
 		 * START View
 		APP.dispatch({ type: "show-view", arg: "start", anim: "none" });
-		setTimeout(() => APP.start.els.el.find(`.option:nth-child(4) .box-title`).trigger("click"), 600);
+		// setTimeout(() => APP.start.els.el.find(`.option:nth-child(4) .box-title`).trigger("click"), 600);
 		return true;
 		 */
 
@@ -88,6 +88,7 @@ let Test = {
 
 		/*
 		 * CONSOLE View
+		 */
 		APP.mobile.arena = { player: { id: "001" }, map: { id: 1 }, fpsControl: { _stopped: true } };
 		APP.mobile.arena.colors = { base: "#f90" };
 		APP.dispatch({ type: "show-view", arg: "console" });
@@ -96,7 +97,6 @@ let Test = {
 			APP.console.dispatch({ type: "show-view", arg: 1 });
 		}, 600);
 		return true;
-		 */
 
 
 		/*

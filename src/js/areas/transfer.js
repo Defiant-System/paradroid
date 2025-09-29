@@ -59,6 +59,7 @@
 						}
 						break;
 					case "space":
+					case "shift":
 					case "return":
 						if (Self._chooseColor) APP.hud.dispatch({ type: "start-hacking-game" });
 						else if (Self._gameStarted) Self.dispatch({ type: "toggle-io-row", el, index });
