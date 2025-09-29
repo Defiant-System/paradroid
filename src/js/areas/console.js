@@ -283,8 +283,6 @@
 			oY = (height - (sHeight * tile)) >> 1,
 			background = [];
 
-		console.log(1111, APP.mobile.arena);
-
 		// minor tweak - aligns mininmap to grid
 		oX -= (oX % 15) - 15;
 		oY -= (oY % 15) + 1;

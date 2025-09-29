@@ -10839,7 +10839,7 @@ let Raycaster = (() => {
 let Shifter = (() => {
 	"use strict";
 	
-	let DOTS = 50e3, // 100k-200k seems reasonable
+	let DOTS = 50e3,
 		shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
 			alpha: 0.125,
 			speed: 5,
@@ -10914,7 +10914,7 @@ let Shifter = (() => {
 						j = 0,
 						xtra = 0;
 					for (let i=0, il=pixels.length; i<il; i+=4) {
-						if (pixels[i+3] <= 192) continue;
+						if (pixels[i] <= 230) continue;
 						let avg = (pixels[i+0] + pixels[i+1] + pixels[i+2]) / 3,
 							k = i/4,
 							pX = ((k % w) / (w * .5)) - 1,
@@ -10940,7 +10940,7 @@ let Shifter = (() => {
 			// Chromatic blur: draw blue, cyan, green, orange, red versions of each point,
 			// and have them added together using blending so they'll be white if they're
 			// all present. The sums of R, G, B should be roughly equal to get white.
-			let chromaticblur = 0.0005;
+			let chromaticblur = 0.0015;
 			draw({ u_color: [0.1, 0.1, 0.1], u_chromaticblur: 0 });
 			draw({ u_color: [0.2, 0.2, 0.2], u_chromaticblur: 1 * chromaticblur });
 			draw({ u_color: [0.3, 0.3, 0.3], u_chromaticblur: 2 * chromaticblur });
@@ -10955,9 +10955,9 @@ let Shifter = (() => {
 					uniform vec3 u_color;
 					uniform float u_alpha;
 					void main () {
-						vec3 color = vec3(0, 0, 1);
-						gl_FragColor = vec4(color, u_alpha);
-						// gl_FragColor = vec4(u_color, u_alpha);
+						vec3 color = vec3(1, 1, 1);
+						gl_FragColor = vec4(color * u_alpha, u_alpha);
+						// gl_FragColor = vec4(u_color * u_alpha, u_alpha);
 					}`,
 				
 				vert: `
@@ -10968,7 +10968,7 @@ let Shifter = (() => {
 					void main () {
 						float phase = (.125 + cos(u_speed * (u_tick + u_chromaticblur) + a_jitter * u_spread));
 						phase = smoothstep(0.1, 0.9, phase);
-						gl_PointSize = .85;
+						gl_PointSize = .5;
 						gl_Position = vec4(mix(a_position1, a_position2, phase), 0, 1);
 					}`,
 

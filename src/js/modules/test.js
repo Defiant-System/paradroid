@@ -89,12 +89,16 @@ let Test = {
 		/*
 		 * CONSOLE View
 		 */
-		APP.mobile.arena = { player: { id: "001" }, map: { id: 1 }, fpsControl: { _stopped: true } };
-		APP.mobile.arena.colors = { base: "#f90" };
-		APP.dispatch({ type: "show-view", arg: "console" });
+		// APP.mobile.arena = { player: { id: "001" }, map: { id: 1 }, fpsControl: { _stopped: true } };
+		setTimeout(() => {
+			APP.mobile.arena.colors = { base: "#f90" };
+			APP.mobile.arena.map.id = 1;
+			APP.mobile.arena.fpsControl._stopped = true;
+			APP.dispatch({ type: "show-view", arg: "console" });
+		}, 300);
 		setTimeout(() => {
 			// APP.console.dispatch({ type: "init-view", id: "001" });
-			APP.console.dispatch({ type: "show-view", arg: 3 });
+			APP.console.dispatch({ type: "show-view", arg: 1 });
 		}, 600);
 		return true;
 
