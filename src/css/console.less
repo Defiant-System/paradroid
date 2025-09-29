@@ -71,7 +71,7 @@ content {
 							repeating-linear-gradient(0deg, #ffffff12 0, #ffffff12 1px, transparent 1px, transparent 60px),
 							repeating-linear-gradient(0deg, #fff2 0, #fff2 1px, transparent 1px, transparent 15px),
 							repeating-linear-gradient(90deg, #fff2 0, #fff2 1px, transparent 1px, transparent 15px);
-		background-position: 6px -43px;
+		background-position: 8px -6px;
 		pointer-events: none;
 	}
 
@@ -98,7 +98,7 @@ content {
 		letter-spacing: 1px;
 		font-size: 11px;
 		font-weight: 400;
-		color: #fff;
+		color: #ddf;
 	}
 
 	.console-menu {
@@ -136,12 +136,12 @@ content {
 					display: block;
 				}
 
-				// .icon-droid,
-				// .icon-droid-info,
-				// .icon-level,
-				// .icon-ship {
-				// 	filter: contrast(.8) sepia(1) hue-rotate(175deg) saturate(3);
-				// }
+				.icon-droid,
+				.icon-droid-info,
+				.icon-level,
+				.icon-ship {
+					filter: drop-shadow(0px 0px 5px #fff);
+				}
 			}
 
 			.icon-droid {
@@ -152,14 +152,15 @@ content {
 				b {
 					top: 25px;
 					left: 15px;
-					opacity: .25;
+					opacity: .6;
+					filter: invert(1) brightness(2);
 				}
 			}
 
 			.icon-droid-info,
 			.icon-level,
 			.icon-ship {
-				filter: contrast(.8);
+				// filter: contrast(.8);
 			}
 
 			.sub {
@@ -182,18 +183,20 @@ content {
 
 				.sub {
 					position: absolute;
-					top: -113px;
+					top: -101px;
 					left: 130px;
 					width: 45px;
 					z-index: 2;
 					font-family: Oxanium;
 					font-size: 12px;
-					line-height: 13px;
+					line-height: 12px;
 					text-align: center;
+					background: #4e7aff;
 					color: #fffb;
 
 					&:before {
 						content: "";
+						background: #4e7aff;
 						position: absolute;
 						top: -5px;
 						left: 0;
@@ -206,6 +209,7 @@ content {
 
 					&:after {
 						content: "";
+						background: #4e7aff;
 						position: absolute;
 						bottom: -5px;
 						left: 0;
@@ -234,10 +238,12 @@ content {
 
 						&.active {
 							color: #fff;
+							text-shadow: 0 0 5px #fff;
 							font-size: 21px;
 							padding-top: 9px;
 							padding-bottom: 7px;
 							border-width: 0;
+							z-index: 2;
 
 							&:before {
 								content: "";
@@ -286,7 +292,9 @@ content {
 			padding: 5px 7px 2px;
 			font-size: 11px;
 			line-height: 1.35;
-			color: #999;
+			background: #517cff;
+			color: #fff;
+			text-shadow: 0 0 2px #fff;
 
 			&.hidden {
 				display: none;
@@ -294,7 +302,7 @@ content {
 
 			&:before {
 				content: "";
-				background: #bbb;
+				background: #fff;
 				position: absolute;
 				top: 31px;
 				left: -67px;
@@ -305,7 +313,7 @@ content {
 
 			&:after {
 				content: "";
-				background: #b2b2b2;
+				background: #fff;
 				position: absolute;
 				top: 39px;
 				left: -70px;
@@ -316,7 +324,7 @@ content {
 		}
 
 		.player-droid {
-				display: none;
+			display: none;
 			position: absolute;
 			top: 61px;
 			right: 37px;
@@ -326,7 +334,7 @@ content {
 			padding: 5px 7px 2px;
 			font-size: 11px;
 			line-height: 1.35;
-			color: #999;
+			color: #fff;
 
 			&.hidden {
 				display: none;
@@ -432,11 +440,13 @@ content {
 				font-size: 11px;
 
 				&.unit {
-					padding-bottom: 1px;
+					padding-top: 5px;
+					padding-bottom: 3px;
 					font-size: 16px;
 					font-weight: 500;
 					border-bottom: 1px solid var( --outline );
 					color: #fff;
+					text-shadow: 0 0 5px #fff;
 				}
 
 				&.vessel {
@@ -1192,7 +1202,7 @@ content {
 			padding: 5px 7px 2px;
 			font-size: 11px;
 			line-height: 1.35;
-			color: #999;
+			color: #fff;
 
 			&.hidden {
 				display: none;

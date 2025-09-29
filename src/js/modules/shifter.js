@@ -2,7 +2,7 @@
 let Shifter = (() => {
 	"use strict";
 	
-	let DOTS = 50e3, // 100k-200k seems reasonable
+	let DOTS = 60e3, // 100k-200k seems reasonable
 		shaderConfig = { // these affect the shaders; changing them does *not* require updating buffers
 			alpha: 0.125,
 			speed: 5,

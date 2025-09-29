@@ -58,7 +58,6 @@
 							if (index) el.data({ active: index });
 						}
 						break;
-					case "space":
 					case "shift":
 					case "return":
 						if (Self._chooseColor) APP.hud.dispatch({ type: "start-hacking-game" });

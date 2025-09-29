@@ -1,9 +1,9 @@
 
 <svg id="bp-r2d2" viewBox="0 0 53 79">
 <style type="text/css">
-	.st0{fill:#fff7;stroke:#4448;stroke-width:0.75;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#9998;stroke-width:0.5;stroke-miterlimit:10;}
-	.st2{fill:#999;}
+	.st0{fill:#fff1;stroke:#fff;stroke-width:0.85;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#fff;stroke-width:0.25;stroke-miterlimit:10;}
+	.st2{fill:#fff2;}
 </style>
 <g>
 	<path class="st0" d="M45,58.6c0.1-0.3,0.3-1.4-0.1-2.4c-0.2-0.5-0.4-0.7-0.8-0.9c0,0-0.1,0-0.1,0v-5.1l-1-1.2V38.2h0.4l2-2v-0.1
