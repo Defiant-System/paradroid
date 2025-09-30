@@ -513,7 +513,7 @@
 
 	<svg id="icon-droid-info" viewBox="0 0 70 70">
 		<style type="text/css">
-			.st0{fill:#fff3;stroke:#fff5;stroke-miterlimit:10;}
+			.st0{fill:#6b90ff;stroke:#fff5;stroke-miterlimit:10;}
 			.st1{fill:none;stroke:#fffa;stroke-width:0.5;stroke-miterlimit:10;}
 			.st2{fill:none;stroke:#fffa;stroke-width:0.25;stroke-miterlimit:10;}
 			.st3{fill:#fffb;stroke:#fffa;stroke-width:0.5;stroke-miterlimit:10;}
@@ -588,8 +588,8 @@
 
 	<svg id="icon-level" viewBox="0 0 70 70">
 <style type="text/css">
-	.st0{fill:#fff2;stroke:#fff9;stroke-miterlimit:10;}
-	.st1{fill:#fff2;stroke:#fff9;stroke-width:0.5;stroke-miterlimit:10;}
+	.st0{fill:#6b90ff;stroke:#fff9;stroke-miterlimit:10;}
+	.st1{fill:#6b90ff;stroke:#fff9;stroke-width:0.5;stroke-miterlimit:10;}
 	.st2{fill:none;stroke:#fff9;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st3{fill:#fff2;}
 </style>
@@ -642,7 +642,7 @@
 
 	<svg id="icon-ship" viewBox="0 0 70 70">
 		<style type="text/css">
-			.st0{fill:#fff4;stroke:#fff9;stroke-width:0.3;stroke-miterlimit:10;enable-background:new    ;}
+			.st0{fill:#6b90ff;stroke:#fff9;stroke-width:0.3;stroke-miterlimit:10;enable-background:new    ;}
 			.st1{fill:none;stroke:#fff9;stroke-width:0.3;stroke-linejoin:round;stroke-miterlimit:10;enable-background:new    ;}
 			.st2{fill:none;stroke:#fff9;stroke-width:0.3;stroke-miterlimit:10;}
 		</style>

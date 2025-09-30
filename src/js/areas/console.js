@@ -32,6 +32,7 @@
 			xNode,
 			xWeapon,
 			options,
+			done,
 			index,
 			value,
 			el;
@@ -131,6 +132,12 @@
 				break;
 			case "select-droid":
 				options = {};
+				done = () => {
+					// remove class "shifting"
+					Self.els.bp.removeClass("shifting");
+					// show info for droid
+					Self.dispatch({ type: "show-droid", value: options.to });
+				};
 				if (event.arg === -1) {
 					options.from = Self.els.bp.css("background-image").toString().match(/bp-(\d{3})/i)[1];
 					index = Self.droids.indexOf(options.from);
@@ -149,15 +156,13 @@
 					el = Self.els.el.find(`.option[data-view="droid"] .sub span:contains("${options.to}")`);
 					if (el.hasClass("disabled")) return;
 				}
+				if (Self.els.bp.hasClass("shifting")) {
+					return done();
+				}
 				// hides background image and shows shifter canvas
 				Self.els.bp.addClass("shifting");
 				// trigger shifter
-				Shifter.shift({ ...options, done() {
-					// remove class "shifting"
-					Self.els.bp.removeClass("shifting");
-					// show info for droid
-					Self.dispatch({ type: "show-droid", value: options.to });
-				} });
+				Shifter.shift({ ...options, done });
 				break;
 			case "show-droid":
 				xNode = window.bluePrint.selectSingleNode(`//Droid[@id="${event.value}"]`);

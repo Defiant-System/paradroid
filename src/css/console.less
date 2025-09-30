@@ -69,8 +69,8 @@ content {
 		z-index: 1;
 		background-image: repeating-linear-gradient(90deg, #ffffff12 0, #ffffff12 1px, transparent 1px, transparent 60px),
 							repeating-linear-gradient(0deg, #ffffff12 0, #ffffff12 1px, transparent 1px, transparent 60px),
-							repeating-linear-gradient(0deg, #fff2 0, #fff2 1px, transparent 1px, transparent 15px),
-							repeating-linear-gradient(90deg, #fff2 0, #fff2 1px, transparent 1px, transparent 15px);
+							repeating-linear-gradient(0deg, #fff1 0, #fff1 1px, transparent 1px, transparent 15px),
+							repeating-linear-gradient(90deg, #fff1 0, #fff1 1px, transparent 1px, transparent 15px);
 		background-position: 8px -6px;
 		pointer-events: none;
 	}
@@ -103,7 +103,7 @@ content {
 
 	.console-menu {
 		position: absolute;
-		top: 10px;
+		top: 25px;
 		left: 7px;
 		width: 91px;
 		z-index: 5;
@@ -146,7 +146,7 @@ content {
 				.icon-droid-info,
 				.icon-level,
 				.icon-ship {
-					filter: drop-shadow(0px 0px 5px #fff);
+					filter: drop-shadow(0px 0px 1px #fff);
 				}
 			}
 
@@ -189,7 +189,7 @@ content {
 
 				.sub {
 					position: absolute;
-					top: -101px;
+					top: -108px;
 					left: 128px;
 					width: 45px;
 					z-index: 2;
@@ -452,20 +452,22 @@ content {
 					font-weight: 500;
 					border-bottom: 1px solid var( --outline );
 					color: #fff;
-					text-shadow: 0 0 5px #fff;
+					text-shadow: 0 0 3px #fff;
 				}
 
 				&.vessel {
 					position: relative;
+					padding-top: 3px;
 					padding-left: 25px;
 					font-size: 13px;
+					color: #fff;
 					border-bottom: 1px solid var( --outline );
 
 					&:before {
 						content: "";
 						background: url(~/icons/icon-tre-kronor.png) 50% 50%/contain no-repeat;
 						position: absolute;
-						top: 0;
+						top: 1px;
 						left: 5px;
 						width: 17px;
 						height: 17px;
@@ -491,11 +493,11 @@ content {
 				}
 
 				&.notes {
-					padding-top: 5px;
-					padding-bottom: 7px;
+					padding-top: 6px;
+					padding-bottom: 5px;
 					text-transform: none;
-					font-size: 9px;
-					line-height: 1.5;
+					font-size: 11px;
+					line-height: 1.35;
 					color: #fff;
 				}
 			}
@@ -1176,6 +1178,7 @@ content {
 		left: 99px;
 		width: 630px;
 		height: 456px;
+		z-index: 3;
 		min-height: 0px;
 		transition: min-height 1400ms;
 
@@ -1213,7 +1216,7 @@ content {
 			line-height: 1.35;
 			background: #4b78ff;
 			color: #fff;
-			text-shadow: 0 0 2px #fff;
+			text-shadow: 0 0 1px #fff;
 
 			&.hidden {
 				display: none;
@@ -1299,8 +1302,9 @@ content {
 				// display: none;
 				position: absolute;
 				width: 16px;
-				background: #ff74;
-				box-shadow: inset 0 0 0 1px #ff7;
+				z-index: 4;
+				background: #7b9cff;
+				box-shadow: inset 0 0 0 1px #fff;
 				opacity: 0;
 				scale: 1.15;
 				transition: all 120ms ease-in-out;
@@ -1334,7 +1338,7 @@ content {
 					position: absolute;
 					top: 0;
 					height: inherit;
-					background: #fff2;
+					background: #6b90ff;
 					box-shadow: inset 0 0 0 1px #fff;
 					--color: #3a3;
 
@@ -1357,7 +1361,7 @@ content {
 						&:after {
 							content: "";
 							background: var( --color );
-							box-shadow: inset 0 0 0 1px var( --color );
+							// box-shadow: inset 0 0 0 1px var( --color );
 							position: absolute;
 							top: 0;
 							left: 0;
