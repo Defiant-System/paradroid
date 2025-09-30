@@ -45,6 +45,9 @@
 		let APP = paradroid,
 			Self = APP.editor,
 			Spawn = event.spawn || Self.spawn,
+			data,
+			ship,
+			level,
 			layers,
 			tiles,
 			value,
@@ -336,6 +339,9 @@
 
 			case "render-level":
 				if (!event.arg) return;
+
+				[ship, level] = event.arg.split(":");
+
 				// if active level; save modifications
 				if (Self.xSection) {
 					let nodes = Self.dispatch({ type: "output-pgn", arg: "get-nodes" }),
@@ -362,9 +368,9 @@
 					Self.xSection.setAttribute("x", +el.css("--x"));
 				}
 				// check if level has tile nodes
-				let xSection = window.bluePrint.selectSingleNode(`//Section[@id = "${event.arg}"]`),
+				let xSection = window.bluePrint.selectSingleNode(`//Ship[@id="${ship}"]/Section[@id="${level}"]`),
 					xBg = xSection.selectSingleNode(`./Layer[@id="background"]`),
-					sectionEl = APP.lift.els.el.find(`.ship .section[data-id="${event.arg}"]`);
+					sectionEl = APP.lift.els.el.find(`.ship .section[data-id="${level}"]`);
 				if (!xBg.selectNodes(`./i`).length) {
 					let nodes = [],
 						len = +xSection.getAttribute("height") * +xSection.getAttribute("width");
@@ -387,67 +393,76 @@
 				});
 				// update menu
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
-				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${event.arg}"]`).setAttribute("is-checked", "1");
+				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${level}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
 				layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).remove();
 				// render + append HTML
 				window.render({
 					template: "layer-background",
-					match: `//Section[@id = "${event.arg}"]`,
+					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render collision layer
 				window.render({
 					template: "layer-collision",
-					match: `//Section[@id = "${event.arg}"]`,
+					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render action layer
 				window.render({
 					template: "layer-action",
-					match: `//Section[@id = "${event.arg}"]`,
+					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render los layer
 				window.render({
 					template: "layer-los",
-					match: `//Section[@id = "${event.arg}"]`,
+					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render lights layer
 				window.render({
 					template: "layer-lights",
-					match: `//Section[@id = "${event.arg}"]`,
+					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render droids layer
 				window.render({
 					template: "layer-droids",
-					match: `//Section[@id = "${event.arg}"]`,
+					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render droids list in spawn
 				window.render({
 					template: "droids-list",
-					match: `//Section[@id = "${event.arg}"]/Layer[@id="droids"]`,
+					match: `Ship[@id="${ship}"]/Section[@id="${level}"]/Layer[@id="droids"]`,
 					target: Self.els.content.find(`.droid-patrol .list`),
 				});
 				// prevent "see-through"
 				el = Self.els.viewport.find(".layer-background");
-				Self.els.viewport.find(".level-bg").css({
+				// editor UI view
+				data = {
 					background: xSection.getAttribute("color"),
 					"--x": el.cssProp("--x"),
 					"--y": el.cssProp("--y"),
 					"--w": el.cssProp("--w"),
 					"--h": el.cssProp("--h"),
-				});
+				};
+				// if image is dspecified, is it only
+				if (xSection.getAttribute("img")) {
+					data.background = `url(${xSection.getAttribute("img")}) 0 0 no-repeat`;
+					data.filter = `opacity(.35)`;
+					// data.backgroundSize = xSection.getAttribute("size");
+				}
+
+				Self.els.viewport.find(".level-bg").css(data);
 				el.css({ filter: xSection.getAttribute("filter") });
 				break;
 			case "grid-size":
 				event.el.parent().find(".active").removeClass("active");
 				event.el.addClass("active");
-				
+				console.log(event);
 				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
 				break;
 			case "set-action-id":

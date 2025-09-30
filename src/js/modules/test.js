@@ -88,8 +88,6 @@ let Test = {
 
 		/*
 		 * CONSOLE View
-		 */
-		// APP.mobile.arena = { player: { id: "001" }, map: { id: 1 }, fpsControl: { _stopped: true } };
 		setTimeout(() => {
 			APP.mobile.arena.colors = { base: "#f90" };
 			APP.mobile.arena.player.id = "001";
@@ -102,6 +100,7 @@ let Test = {
 			APP.console.dispatch({ type: "show-view", arg: 2 });
 		}, 600);
 		return true;
+		 */
 
 
 		/*
@@ -114,15 +113,16 @@ let Test = {
 
 		/*
 		 * EDITOR
+		 */
 		return setTimeout(() => {
 			let spawn = window.open("editor");
 
 			APP.dispatch({ type: "show-view", arg: "editor" });
-			APP.editor.dispatch({ type: "render-level", arg: 6, spawn });
+			APP.editor.dispatch({ type: "render-level", arg: "rubicon:1", spawn });
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
-			APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
+			// APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 
-			setTimeout(() => spawn.find(`.layer-droids .list .row`).get(0).trigger("click"), 500);
+			// setTimeout(() => spawn.find(`.layer-droids .list .row`).get(0).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.layer-background b.m06`).trigger("click"), 500);
 			// setTimeout(() => window.find(`.layer-collision b.c4`).get(2).trigger("click"), 500);
 			// setTimeout(() => spawn.find(`.tiles b[data-size="2x2"]`).trigger("click"), 500);
@@ -134,10 +134,14 @@ let Test = {
 
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 100);
-		 */
 
+
+		/*
+		 * MISC shortcuts
+		 */
 		return setTimeout(() => {
 			let state = {
+					ship: "rubicon",
 					cleared: {
 						// "4": [1],
 						// "16": [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -155,8 +159,9 @@ let Test = {
 				};
 
 			// set view
-			// APP.dispatch({ type: "show-view", arg: "mobile", start: false });
-			// APP.mobile.dispatch({ type: "restore-state", state });
+			APP.dispatch({ type: "show-view", arg: "mobile", start: false });
+			APP.mobile.dispatch({ type: "restore-state", state });
+			return;
 
 			// setTimeout(() => APP.mobile.arena.player.dealDamage(30), 2000);
 			// setTimeout(() => APP.mobile.arena.player.setId(493), 14000);

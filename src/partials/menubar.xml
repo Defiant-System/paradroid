@@ -69,7 +69,7 @@
 				<Menu name="Droids" click="select-editor-layer" check-group="editor-layer" arg="droids"/>
 			</Menu>
 			<Menu name="Ships&#8230;">
-				<Menu name="Avalon Levels">
+				<Menu name="Avalon Levels" id="avalon">
 					<Menu name="1" check-group="game-level" click="render-level" arg="1" is-checked="1"/>
 					<Menu name="2" check-group="game-level" click="render-level" arg="2"/>
 					<Menu name="3" check-group="game-level" click="render-level" arg="3"/>
@@ -91,7 +91,7 @@
 					<Menu name="19" check-group="game-level" click="render-level" arg="19"/>
 					<Menu name="20" check-group="game-level" click="render-level" arg="20"/>
 				</Menu>
-				<Menu name="Rubicon Levels">
+				<Menu name="Rubicon Levels" id="rubicon">
 					<Menu name="1" check-group="game-level" click="render-level" arg="1"/>
 					<Menu name="2" check-group="game-level" click="render-level" arg="2"/>
 					<Menu name="3" check-group="game-level" click="render-level" arg="3"/>

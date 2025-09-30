@@ -19,6 +19,7 @@
 		let APP = paradroid,
 			Self = APP.mobile,
 			Player = Self.arena.player,
+			ship = Self.arena.ship,
 			xSection,
 			name,
 			value,
@@ -45,7 +46,7 @@
 
 					case "space":
 					case "shift":
-						Player.setState({ id: "transfer", active: true });
+						Player.setState({ ship, id: "transfer", active: true });
 						break;
 					case "return":
 						// don't do anything if not next to "something"
@@ -112,7 +113,7 @@
 					case "d":
 					case "right": Player.input.right.pressed = false; break;
 					case "shift":
-						Player.setState({ id: "transfer", pressed: false });
+						Player.setState({ ship, id: "transfer", pressed: false });
 						break;
 				}
 				break;
@@ -146,7 +147,7 @@
 						Self.dispatch({ type: "window.keydown", char: "return" });
 						break;
 					case "b1": // O - transfer
-						Player.setState({ id: "transfer", active: true });
+						Player.setState({ ship, id: "transfer", active: true });
 						break;
 					case "b9": // options - toggle pause
 						APP.hud.dispatch({ type: "toggle-play-pause" });
@@ -156,7 +157,7 @@
 			case "gamepad.up":
 				switch (event.button) {
 					case "b1": // O - transfer
-						Player.setState({ id: "transfer", pressed: false });
+						Player.setState({ ship, id: "transfer", pressed: false });
 						break;
 				}
 				break;

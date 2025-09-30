@@ -161,7 +161,7 @@ class Arena {
 			});
 		}
 
-		let mapState = { droids: [], ...state.map };
+		let mapState = { ship: state.ship, droids: [], ...state.map };
 		// move player / "001"
 		this.player.spawn(state.player);
 		// center viewport

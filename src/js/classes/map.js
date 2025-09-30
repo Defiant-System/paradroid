@@ -104,7 +104,7 @@ class Map {
 
 	setState(state) {
 		let tile = this.arena.config.tile,
-			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${state.id}"]`),
+			xSection = window.bluePrint.selectSingleNode(`//Data//Ship[@id="${state.ship}"]/Section[@id="${state.id}"]`),
 			section = { id: xSection.getAttribute("id") };
 		// keep reference to nodes
 		this.xSection = xSection;
@@ -119,6 +119,7 @@ class Map {
 		Matter.Composite.clear(this.engine.world);
 
 		// save reference to active map
+		this.ship = state.ship;
 		this.id = state.id;
 
 		// reset map arrays

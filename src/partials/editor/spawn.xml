@@ -2,9 +2,9 @@
 	<Head>
 		<meta name="title" value="Level Editor"/>
 		<meta name="width" value="512"/>
-		<meta name="height" value="420"/>
+		<meta name="height" value="320"/>
 		<meta name="top" value="80"/>
-		<meta name="left" value="900"/>
+		<meta name="left" value="300"/>
 		<meta name="minimize"/>
 		<meta name="maximize" value="disabled"/>
 		<meta name="maximize" value="disabled"/>
