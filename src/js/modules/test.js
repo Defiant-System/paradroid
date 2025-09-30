@@ -118,7 +118,7 @@ let Test = {
 			let spawn = window.open("editor");
 
 			APP.dispatch({ type: "show-view", arg: "editor" });
-			APP.editor.dispatch({ type: "render-level", arg: "rubicon:6", spawn });
+			APP.editor.dispatch({ type: "render-level", arg: "rubicon:24", spawn });
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			// APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 

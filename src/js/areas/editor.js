@@ -460,11 +460,16 @@
 				el.css({ filter: xSection.getAttribute("filter") });
 				break;
 			case "grid-size":
-				event.el.parent().find(".active").removeClass("active");
-				event.el.addClass("active");
-				console.log(event);
+				// update toolbar buttons
+				Spawn.find(`.tool-active_[data-click="grid-size"]`).removeClass("tool-active_");
+
+				// console.log(window.find(`.tool-active_[data-click="grid-size"]`));
+
+				// event.el.parent().find(".active").removeClass("active");
+				// event.el.addClass("active");
+				
 				Self.els.viewport.parent().removeClass("big-tiles small-tiles").addClass(event.arg === "1" ? "big-tiles" : "small-tiles");
-				break;
+				return true;
 			case "set-action-id":
 				value = event.el.data("arg");
 				Self.els.content.find(`input[name="action-id"]`).val(value);
