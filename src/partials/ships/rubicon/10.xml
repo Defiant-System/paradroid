@@ -1,5 +1,5 @@
 
-<Section id="10" level="1" width="40" height="32"
+<Section id="10" level="1" width="40" height="38"
 	img="http://localhost:40100/cdn/img/tmp/4360_map10.png"
 	color1="#d5665b" filter1="saturate(1.35) brightness(.95)">
 	<Layer id="droids"></Layer>
