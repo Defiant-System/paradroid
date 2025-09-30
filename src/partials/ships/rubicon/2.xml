@@ -1,0 +1,13 @@
+
+<Section id="2" level="1" width="72" height="24"
+	img="http://localhost:40100/cdn/img/tmp/4360_map2.png"
+	color1="#d5665b" filter1="saturate(1.35) brightness(.95)">
+	<Layer id="droids"></Layer>
+	<Layer id="lights"></Layer>
+	<Layer id="los"></Layer>
+	<Layer id="action"></Layer>
+	<Layer id="collision"></Layer>
+	<Layer id="background">
+		<i /><i /><i /><i /><i /><i />
+	</Layer>
+</Section>

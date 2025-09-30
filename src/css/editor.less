@@ -15,7 +15,7 @@
 		--tile: 8px;
 
 		.layer-background {
-			background: #f90;
+			// background: #f905;
 
 			&:before {
 				display: none;
@@ -46,6 +46,9 @@
 			left: calc( var( --tile ) * var( --x ) );
 			width: calc( var( --tile ) * var( --w ) );
 			height: calc( var( --tile ) * var( --h ) );
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
 		}
 
 		&.hide-cursor {

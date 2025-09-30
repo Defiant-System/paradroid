@@ -393,7 +393,7 @@
 				});
 				// update menu
 				window.bluePrint.selectNodes(`//Menu[@check-group="game-level"][@is-checked]`).map(x => x.removeAttribute("is-checked"));
-				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${level}"]`).setAttribute("is-checked", "1");
+				window.bluePrint.selectSingleNode(`//Menu[@check-group="game-level"][@arg="${ship}:${level}"]`).setAttribute("is-checked", "1");
 				// delete old level HTML
 				layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).remove();
@@ -451,7 +451,7 @@
 				};
 				// if image is dspecified, is it only
 				if (xSection.getAttribute("img")) {
-					data.background = `url(${xSection.getAttribute("img")}) 0 0 no-repeat`;
+					data.backgroundImage = `url(${xSection.getAttribute("img")})`;
 					data.filter = `opacity(.35)`;
 					// data.backgroundSize = xSection.getAttribute("size");
 				}
