@@ -251,6 +251,8 @@
 				el.addClass("active");
 				// selected "tile"
 				Self.palette.tile = el.prop("class").split(" ")[0];
+				// update toolbar
+				Spawn.find(`.toolbar-tool_[data-click="cursor-eraser"]`).removeClass("tool-active_");
 				
 				// grouped tiles
 				if (Self.groups[Self.palette.tile]) {
@@ -324,6 +326,13 @@
 				Self.els.cursor.html(value);
 				break;
 
+			case "cursor-eraser":
+				Self.palette.cursor = [{ x: 0, y: 0, id: "" }];
+				// update viewport cursor
+				Self.els.cursor.html(`<b class="a1" style="--x: 0; --y: 0; --w: 1; --h: 1;"></b>`);
+				// update tiles view
+				Spawn.find(`.tiles b.active`).removeClass("active");
+				return true;
 			case "toggle-overflow":
 				el = Self.els.viewport;
 				value = el.hasClass("show-overflow");
