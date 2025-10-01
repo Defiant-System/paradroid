@@ -1,61 +1,52 @@
 
 <content class="editor" data-show1="background">
-	<div class="tree">
+	<div class="tree" data-click="handle-tree-click">
 		<div class="list">
 			<div class="tree-item expanded">
-				<div>
-					<i class="icon-arrow"></i>
-					<span>Avalon</span>
+				<i class="icon-arrow"></i>
+				<span>Avalon</span>
+				<div class="children">
+					<div class="tree-item">
+						<i class="icon-arrow"></i>
+						<span>Level 1</span>
+						<div class="children"></div>
+					</div>
+					<div class="tree-item expanded active">
+						<i class="icon-arrow"></i>
+						<span>Level 2</span>
+						<div class="children">
 
-					<div class="children">
-						<div class="tree-item">
-							<div>
-								<i class="icon-arrow"></i>
-								<span>Level 1</span>
-								<div class="children"></div>
+							<div class="tree-item">
+								<i class="icon-blank"></i>
+								<span>Background</span>
 							</div>
-						</div>
-						<div class="tree-item expanded active">
-							<div>
-								<i class="icon-arrow"></i>
-								<span>Level 2</span>
-								<div class="children">
+							<div class="tree-item">
+								<i class="icon-blank"></i>
+								<span>Collision</span>
+							</div>
+							<div class="tree-item">
+								<i class="icon-blank"></i>
+								<span>Action</span>
+							</div>
+							<div class="tree-item">
+								<i class="icon-blank"></i>
+								<span>LOS</span>
+							</div>
+							<div class="tree-item">
+								<i class="icon-blank"></i>
+								<span>Lights</span>
+							</div>
+							<div class="tree-item">
+								<i class="icon-blank"></i>
+								<span>Droids</span>
+							</div>
 
-									<div class="tree-item">
-										<i class="icon-blank"></i>
-										<span>Background</span>
-									</div>
-									<div class="tree-item">
-										<i class="icon-blank"></i>
-										<span>Collision</span>
-									</div>
-									<div class="tree-item">
-										<i class="icon-blank"></i>
-										<span>Action</span>
-									</div>
-									<div class="tree-item">
-										<i class="icon-blank"></i>
-										<span>LOS</span>
-									</div>
-									<div class="tree-item">
-										<i class="icon-blank"></i>
-										<span>Lights</span>
-									</div>
-									<div class="tree-item">
-										<i class="icon-blank"></i>
-										<span>Droids</span>
-									</div>
-
-								</div>
-							</div>
 						</div>
-						<div class="tree-item">
-							<div>
-								<i class="icon-arrow"></i>
-								<span>Level 3</span>
-								<div class="children"></div>
-							</div>
-						</div>
+					</div>
+					<div class="tree-item">
+						<i class="icon-arrow"></i>
+						<span>Level 3</span>
+						<div class="children"></div>
 					</div>
 				</div>
 			</div>

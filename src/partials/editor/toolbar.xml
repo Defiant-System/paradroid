@@ -20,9 +20,9 @@
 				<Tool symbol="icon-grid" title="Grid" click="toggle-grid" state="active"/>
 			</Options>
 			<Options type="grouped">
-				<Tool symbol="icon-bg-color"/>
-				<Tool symbol="icon-bg-transparent"/>
-				<Tool symbol="icon-bg-image"/>
+				<Tool symbol="icon-bg-color" click="set-bg-alpha" arg="0"/>
+				<Tool symbol="icon-bg-transparent" click="set-bg-alpha" arg=".35" state="active"/>
+				<Tool symbol="icon-bg-image" click="set-bg-alpha" arg="1"/>
 			</Options>
 		</Group>
 		<Group></Group>

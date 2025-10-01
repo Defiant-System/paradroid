@@ -13,7 +13,7 @@ content.editor {
 	.tree {
 		background: #fff;
 		position: relative;
-		width: 160px;
+		width: 150px;
 		display: flex;
 		flex-direction: column;
 
@@ -36,11 +36,11 @@ content.editor {
 		}
 
 		.tree-item {
-			height: 18px;
-			overflow: hidden;
+			// height: 18px;
+			// overflow: hidden;
 
 			&.active {
-				> div > span {
+				> span {
 					background: #369;
 					color: #fff;
 					padding: 2px 5px 2px 3px;
@@ -50,15 +50,15 @@ content.editor {
 
 			&.expanded {
 				height: auto;
+				// overflow: visible;
 
-				> div {
-					> .icon-arrow {
-						transform: rotate(90deg);
-					}
+				> .icon-arrow {
+					transform: rotate(90deg);
+				}
 
-					> .children {
-						height: auto;
-					}
+				> .children {
+					height: calc-size(auto, size);
+					// overflow: visible;
 				}
 			}
 
@@ -72,7 +72,9 @@ content.editor {
 			}
 
 			.icon-arrow {
+				transform: rotate(0deg);
 				cursor: pointer;
+				transition: transform 80ms ease-in-out;
 
 				&:before {
 					content: "";
@@ -95,15 +97,20 @@ content.editor {
 			}
 
 			.children {
+				position: relative;
 				padding-left: 11px;
+				display: block;
 				height: 0;
 				overflow: hidden;
+				transition: height 180ms ease-in-out;
+				transition-behavior: allow-discrete;
 			}
 		}
 	}
 
 	.workarea {
 		flex: 1;
+		padding: 7px;
 	}
 
 	&[data-show="background"] .layer-background { display: block; }
@@ -115,8 +122,8 @@ content.editor {
 
 	.layer-background {
 		display: none;
-		background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
-		background-size: 32px 32px;
+		// background-image: conic-gradient(#bcb 0 25%,#cdc 25% 50%,#bcb 50% 75%,#cdc 75% 100%);
+		// background-size: 32px 32px;
 	}
 
 	.layer-collision,
@@ -134,9 +141,9 @@ content.editor {
 		font-size: 0;
 		width: calc( var( --tile ) * var( --w ) );
 		height: calc( var( --tile ) * var( --h ) );
-		box-shadow: 0 0 0 2px rgba(#000,.75);
-		background-image: conic-gradient(#ccc 0 25%,#aaa 25% 50%,#ccc 50% 75%,#aaa 75% 100%);
-		background-size: 16px 16px;
+		// box-shadow: 0 0 0 2px rgba(#000,.75);
+		// background-image: conic-gradient(#ccc 0 25%,#aaa 25% 50%,#ccc 50% 75%,#aaa 75% 100%);
+		// background-size: 16px 16px;
 		--tile: 32px;
 
 		&.big {

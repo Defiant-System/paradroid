@@ -67,11 +67,19 @@
 				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 
 				// properly init first view (background)
-				// Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
+				Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
 				break;
 			case "spawn.close":
 				break;
 			// custom events
+			case "handle-tree-click":
+				el = $(event.target);
+				if (el.prop("className") === "icon-arrow") {
+					// toggle expand
+					value = el.parent().hasClass("expanded");
+					el.parent().toggleClass("expanded", value);
+				}
+				break;
 			case "put-tile":
 				el = $(event.target);
 				value = el.parents(".viewport").data("show");
@@ -351,6 +359,13 @@
 				Spawn.find(`.toolbar-tool_[data-click="toggle-grid"]`).toggleClass("tool-active_", value);
 				return value;
 
+			case "set-bg-alpha":
+				// update image transparency
+				Self.els.viewport.find(".level-bg").css({ "--img-opacity": event.arg });
+				// update toolbar
+				Spawn.find(`.toolbar-tool_[data-click="set-bg-alpha"]`).removeClass("tool-active_");
+				return true;
+
 			case "render-level":
 				if (!event.arg) return;
 
@@ -457,7 +472,8 @@
 				el = Self.els.viewport.find(".layer-background");
 				// editor UI view
 				data = {
-					background: xSection.getAttribute("color"),
+					"--bg-color": xSection.getAttribute("color"),
+					"--bg-filter": xSection.getAttribute("filter"),
 					"--x": el.cssProp("--x"),
 					"--y": el.cssProp("--y"),
 					"--w": el.cssProp("--w"),
@@ -465,9 +481,8 @@
 				};
 				// if image is dspecified, is it only
 				if (xSection.getAttribute("img")) {
-					data.backgroundImage = `url(${xSection.getAttribute("img")})`;
-					data.filter = `opacity(.35)`;
-					// data.backgroundSize = xSection.getAttribute("size");
+					data["--bg-image"] = `url(${xSection.getAttribute("img")})`;
+					data["--img-opacity"] = `.35`;
 				}
 
 				Self.els.viewport.find(".level-bg").css(data);

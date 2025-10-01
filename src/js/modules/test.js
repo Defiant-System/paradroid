@@ -123,8 +123,8 @@ let Test = {
 			let spawn = window.open("editor");
 
 			APP.dispatch({ type: "show-view", arg: "editor" });
-			APP.editor.dispatch({ type: "render-level", arg: "avalon:1", spawn });
-			// APP.editor.dispatch({ type: "render-level", arg: "rubicon:1", spawn });
+			// APP.editor.dispatch({ type: "render-level", arg: "avalon:1", spawn });
+			APP.editor.dispatch({ type: "render-level", arg: "rubicon:9", spawn });
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			// APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 
@@ -139,7 +139,7 @@ let Test = {
 			// setTimeout(() => console.log( APP.els.content.find(`.layer-los .segment`).get(3)[] ), 500);
 
 			// APP.editor.dispatch({ type: "output-pgn" });
-		}, 100);
+		}, 10);
 
 
 		/*

@@ -46,9 +46,30 @@
 			left: calc( var( --tile ) * var( --x ) );
 			width: calc( var( --tile ) * var( --w ) );
 			height: calc( var( --tile ) * var( --h ) );
-			background-position: 0 0;
-			background-repeat: no-repeat;
-			background-size: 100% auto;
+			background-size: 0 0;
+			--img-opacity: .5;
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+
+			&:before {
+				background-color: var( --bg-color );
+			}
+
+			&:after {
+				background-image: var( --bg-image );
+				background-position: 0 0;
+				background-repeat: no-repeat;
+				background-size: 100% auto;
+				opacity: var( --img-opacity );
+			}
 		}
 
 		&.hide-cursor {
