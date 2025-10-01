@@ -65,6 +65,9 @@
 
 				// pan viewport events
 				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
+
+				// properly init first view (background)
+				Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
 				break;
 			case "spawn.close":
 				break;
@@ -244,6 +247,8 @@
 					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="select-editor-layer"][@arg="${event.arg}"]`);
 					Spawn.find(`.toolbar-selectbox_ .selectbox-selected_`).text(xMenu.getAttribute("name"));
 				}
+				// auto click on first tile in spawn
+				Self.els.content.find(`.layer-${event.arg} .tiles *:nth-child(1)`).trigger("click");
 				break;
 			case "select-bg-tile":
 				el = $(event.target);

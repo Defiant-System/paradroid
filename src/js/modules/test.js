@@ -37,6 +37,11 @@ let Test = {
 
 		/*
 		 * TRANSFER View
+
+		// APP.els.content.data({ show: "transfer" });
+		// APP.transfer.els.el.removeClass("hidden").addClass("finish-win");
+		// return true;
+
 		APP.mobile.arena = {
 			player: {
 				id: "247",
@@ -50,7 +55,7 @@ let Test = {
 		// setTimeout(() => APP.transfer.dispatch({ type: "generate-schemas" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "new-hacking-game" }), 50);
 		// setTimeout(() => APP.transfer.dispatch({ type: "start-hacking" }), 500);
-		// return true;
+		return true;
 
 		// setTimeout(() => APP.transfer.els.ioLeds.find("div").get(0).addClass("flicker"), 250);
 		// setTimeout(() => APP.transfer.els.cpu.data({ winner: "flicker" }), 250);
@@ -118,7 +123,8 @@ let Test = {
 			let spawn = window.open("editor");
 
 			APP.dispatch({ type: "show-view", arg: "editor" });
-			APP.editor.dispatch({ type: "render-level", arg: "rubicon:24", spawn });
+			APP.editor.dispatch({ type: "render-level", arg: "avalon:1", spawn });
+			// APP.editor.dispatch({ type: "render-level", arg: "rubicon:1", spawn });
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			// APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 
