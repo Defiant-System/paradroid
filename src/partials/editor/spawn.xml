@@ -1,7 +1,7 @@
 <Spawn id="editor">
 	<Head>
 		<meta name="title" value="Ship Editor"/>
-		<meta name="width" value="720"/>
+		<meta name="width" value="672"/>
 		<meta name="height" value="320"/>
 		<meta name="top" value="80"/>
 		<meta name="left" value="300"/>
