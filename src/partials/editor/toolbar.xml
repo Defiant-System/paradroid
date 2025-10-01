@@ -1,9 +1,10 @@
 
 <ToolBar>
 	<ToolSet id="background" state="active">
-		<Group>
+		<Group width="148px">
 			<Select name="Background" menu="editor-layer"></Select>
-			<Divider />
+		</Group>
+		<Group width="calc( 100% - 148px )">
 			<Options type="grouped">
 				<Tool name="8px" click="grid-size" arg=".25"/>
 				<Tool name="32px" click="grid-size" arg="1" state="active"/>
@@ -14,6 +15,7 @@
 				<Tool name="Grid" click="toggle-grid"/>
 			</Options>
 		</Group>
+		<Group></Group>
 	</ToolSet>
 
 	<ToolSet id="collision">
