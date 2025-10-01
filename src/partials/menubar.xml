@@ -130,4 +130,17 @@
 		<Menu type="divider"/>
 		<Menu name="License" shell="win -al"/>
 	</Menu>
+
+	<Menu for="bg-color">
+		<Menu caption="Select Color:" type="colors" click="editor-set-color" break="10">
+			<Color arg="#000000"/><Color arg="#434343"/><Color arg="#666666"/><Color arg="#999999"/><Color arg="#b7b7b7"/><Color arg="#cccccc"/><Color arg="#d9d9d9"/><Color arg="#efefef"/><Color arg="#f3f3f3"/><Color arg="#ffffff"/>
+			<Color arg="#96040b"/><Color arg="#fc0d1b"/><Color arg="#fd9927"/><Color arg="#fffd38"/><Color arg="#29fd2f"/><Color arg="#2dfffe"/><Color arg="#4e89e5"/><Color arg="#0b24fb"/><Color arg="#9825fb"/><Color arg="#fd28fc"/>
+			<Color arg="#e5b8b0"/><Color arg="#f3cccd"/><Color arg="#fce5cf"/><Color arg="#fff2ce"/><Color arg="#daead4"/><Color arg="#d1e0e3"/><Color arg="#cadbf7"/><Color arg="#d0e2f2"/><Color arg="#d9d3e8"/><Color arg="#ead2dc"/>
+			<Color arg="#db7e6e"/><Color arg="#e99a9a"/><Color arg="#f8cb9f"/><Color arg="#fee49e"/><Color arg="#b7d6aa"/><Color arg="#a3c4c9"/><Color arg="#a5c3f2"/><Color arg="#a1c6e7"/><Color arg="#8e7ec1"/><Color arg="#c17ca0"/>
+			<Color arg="#ca422d"/><Color arg="#de6769"/><Color arg="#f5b271"/><Color arg="#fed86f"/><Color arg="#95c380"/><Color arg="#78a5ae"/><Color arg="#6fa0e9"/><Color arg="#72a9da"/><Color arg="#8e7ec1"/><Color arg="#c17ca0"/>
+			<Color arg="#a41e0e"/><Color arg="#ca0813"/><Color arg="#e49142"/><Color arg="#f0c143"/><Color arg="#6ca754"/><Color arg="#48818d"/><Color arg="#407bd5"/><Color arg="#4187c4"/><Color arg="#6751a5"/><Color arg="#a54f79"/>
+			<Color arg="#842113"/><Color arg="#97040b"/><Color arg="#b35f19"/><Color arg="#be8f1f"/><Color arg="#3a7524"/><Color arg="#174f5b"/><Color arg="#1959c9"/><Color arg="#125592"/><Color arg="#352073"/><Color arg="#731d47"/>
+			<Color arg="#5a1004"/><Color arg="#650205"/><Color arg="#773f0e"/><Color arg="#7e6011"/><Color arg="#284d17"/><Color arg="#0e343d"/><Color arg="#1f4785"/><Color arg="#0b3862"/><Color arg="#20144c"/><Color arg="#4b1230"/>
+		</Menu>
+	</Menu>
 </MenuBar>

@@ -1,0 +1,24 @@
+
+.toolbar-tool_[data-menu="bg-color"] {
+	--fg-color: #333;
+
+	&.blurred:after,
+	&.tool-disabled_:after {
+		opacity: .25;
+	}
+	
+	span.icon-font-color {
+		top: 3px;
+	}
+
+	&:after {
+		content: "";
+		background: var(--fg-color);
+		position: absolute;
+		left: 5px;
+		bottom: 3px;
+		height: 3px;
+		width: 15px;
+		opacity: .75;
+	}
+}

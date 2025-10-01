@@ -66,18 +66,36 @@
 				// pan viewport events
 				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 
+				// init tree view
+				Self.dispatch({ type: "init-tree-view" });
+
+				// set color of toolbar color tool
+				Spawn.find(`.toolbar-tool_[data-menu="bg-color"]`).css({ "--fg-color": "#f33" });
+
 				// properly init first view (background)
-				Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
+				// Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
 				break;
 			case "spawn.close":
 				break;
 			// custom events
+			case "init-tree-view":
+				console.log(window.bluePrint.selectSingleNode(`//Data/Ship`));
+				// render + append HTML
+				window.render({
+					template: "editor-tree",
+					match: `//Data`,
+					append: Self.els.content.find(".tree .list"),
+				});
+				break;
 			case "handle-tree-click":
 				el = $(event.target);
 				if (el.prop("className") === "icon-arrow") {
 					// toggle expand
 					value = el.parent().hasClass("expanded");
 					el.parent().toggleClass("expanded", value);
+				} else if (el.nodeName() === "span") {
+					event.el.find(".active").removeClass("active");
+					el.parents(".tree-item").addClass("active");
 				}
 				break;
 			case "put-tile":

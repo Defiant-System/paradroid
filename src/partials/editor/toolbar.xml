@@ -19,6 +19,7 @@
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
 				<Tool symbol="icon-grid" title="Grid" click="toggle-grid" state="active"/>
 			</Options>
+			<Tool symbol="icon-font-color" menu="bg-color"/>
 			<Options type="grouped">
 				<Tool symbol="icon-bg-color" click="set-bg-alpha" arg="0"/>
 				<Tool symbol="icon-bg-transparent" click="set-bg-alpha" arg=".35" state="active"/>

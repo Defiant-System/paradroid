@@ -2,6 +2,7 @@
 <content class="editor" data-show1="background">
 	<div class="tree" data-click="handle-tree-click">
 		<div class="list">
+			<!--
 			<div class="tree-item expanded">
 				<i class="icon-arrow"></i>
 				<span>Avalon</span>
@@ -11,32 +12,32 @@
 						<span>Level 1</span>
 						<div class="children"></div>
 					</div>
-					<div class="tree-item expanded active">
+					<div class="tree-item expanded" data-level="2">
 						<i class="icon-arrow"></i>
 						<span>Level 2</span>
 						<div class="children">
 
-							<div class="tree-item">
+							<div class="tree-item" data-layer="background">
 								<i class="icon-blank"></i>
 								<span>Background</span>
 							</div>
-							<div class="tree-item">
+							<div class="tree-item" data-layer="collision">
 								<i class="icon-blank"></i>
 								<span>Collision</span>
 							</div>
-							<div class="tree-item">
+							<div class="tree-item" data-layer="action">
 								<i class="icon-blank"></i>
 								<span>Action</span>
 							</div>
-							<div class="tree-item">
+							<div class="tree-item" data-layer="los">
 								<i class="icon-blank"></i>
 								<span>LOS</span>
 							</div>
-							<div class="tree-item">
+							<div class="tree-item" data-layer="lights">
 								<i class="icon-blank"></i>
 								<span>Lights</span>
 							</div>
-							<div class="tree-item">
+							<div class="tree-item" data-layer="droids">
 								<i class="icon-blank"></i>
 								<span>Droids</span>
 							</div>
@@ -58,6 +59,7 @@
 					<div class="children"></div>
 				</div>
 			</div>
+			-->
 		</div>
 	</div>
 	<div class="workarea">

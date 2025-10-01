@@ -115,7 +115,7 @@
 @import "data/weapon.xml"
 @import "data/droids.xml"
 
-	<Ship id="avalon">
+	<Ship id="avalon" name="Avalon">
 		@import "ships/avalon/1.xml"
 		@import "ships/avalon/2.xml"
 		@import "ships/avalon/3.xml"
@@ -138,7 +138,7 @@
 		@import "ships/avalon/20.xml"
 	</Ship>
 
-	<Ship id="rubicon">
+	<Ship id="rubicon" name="Rubicon">
 		@import "ships/rubicon/1.xml"
 		@import "ships/rubicon/2.xml"
 		@import "ships/rubicon/3.xml"

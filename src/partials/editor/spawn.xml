@@ -9,6 +9,7 @@
 		<meta name="maximize" value="disabled"/>
 		<meta name="resize" value="disabled"/>
 		<meta name="style" value="../../css/spawn.less"/>
+		<meta name="toolbar-style" value="../css/spawn-toolbar.less"/>
 		<meta name="content" value="content.htm"/>
 		<meta name="focus" value="disabled"/>
 		<meta name="state" value="forget"/>
