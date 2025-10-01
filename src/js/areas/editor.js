@@ -67,7 +67,7 @@
 				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 
 				// properly init first view (background)
-				Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
+				// Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
 				break;
 			case "spawn.close":
 				break;
@@ -343,13 +343,13 @@
 				value = el.hasClass("show-overflow");
 				el.toggleClass("show-overflow", value);
 				Spawn.find(`.toolbar-tool_[data-click="toggle-overflow"]`).toggleClass("tool-active_", value);
-				return !value;
+				return value;
 			case "toggle-grid":
 				el = Self.els.viewport.find(".layer-background");
 				value = el.hasClass("hide-grid");
 				el.toggleClass("hide-grid", value);
 				Spawn.find(`.toolbar-tool_[data-click="toggle-grid"]`).toggleClass("tool-active_", value);
-				return !value;
+				return value;
 
 			case "render-level":
 				if (!event.arg) return;

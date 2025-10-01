@@ -1,18 +1,28 @@
 
 <ToolBar>
 	<ToolSet id="background" state="active">
-		<Group width="148px">
-			<Select name="Background" menu="editor-layer"></Select>
-		</Group>
-		<Group width="calc( 100% - 148px )">
+		<Group width="150px">
+			<!-- <Select name="Background" menu="editor-layer"></Select> -->
 			<Options type="grouped">
-				<Tool name="8px" click="grid-size" arg=".25"/>
-				<Tool name="32px" click="grid-size" arg="1" state="active"/>
+				<Tool symbol="icon-new" title="New Ship"/>
+				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-folder" title="Open file"/>
+			</Options>
+		</Group>
+		<Group width="calc( 100% - 150px )">
+			<Options type="grouped">
+				<Tool symbol="icon-mountain-mini" title="Minimap" click="grid-size" arg=".25"/>
+				<Tool symbol="icon-mountain" title="Normal size" click="grid-size" arg="1" state="active"/>
 			</Options>
 			<Options type="grouped">
-				<Tool name="Eraser" click="cursor-eraser"/>
-				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="Grid" click="toggle-grid"/>
+				<Tool symbol="icon-eraser" title="Eraser" click="cursor-eraser"/>
+				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
+				<Tool symbol="icon-grid" title="Grid" click="toggle-grid" state="active"/>
+			</Options>
+			<Options type="grouped">
+				<Tool symbol="icon-bg-color"/>
+				<Tool symbol="icon-bg-transparent"/>
+				<Tool symbol="icon-bg-image"/>
 			</Options>
 		</Group>
 		<Group></Group>
@@ -23,8 +33,8 @@
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
 			<Options type="grouped">
-				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-collision-pgn"/>
+				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
+				<!-- <Tool name="PGN" click="output-collision-pgn"/> -->
 			</Options>
 			<Tool name="Duplicate" click="col-duplicate-active"/>
 			<Tool name="Delete" click="col-delete-active"/>
@@ -36,8 +46,8 @@
 			<Select name="Background" menu="editor-layer"></Select>
 			<Divider />
 			<Options type="grouped">
-				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-action-pgn"/>
+				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
+				<!-- <Tool name="PGN" click="output-action-pgn"/> -->
 			</Options>
 		</Group>
 	</ToolSet>
@@ -51,8 +61,8 @@
 				<Tool name="Delete" click="los-delete-segment"/>
 			</Options>
 			<Options type="grouped">
-				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-los-pgn"/>
+				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
+				<!-- <Tool name="PGN" click="output-los-pgn"/> -->
 			</Options>
 		</Group>
 	</ToolSet>
@@ -65,8 +75,8 @@
 			<Tool name="Delete" click="lights-delete"/>
 			<Options type="grouped">
 				<Tool name="Helpers" click="toggle-lights-helpers"/>
-				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-lights-pgn"/>
+				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
+				<!-- <Tool name="PGN" click="output-lights-pgn"/> -->
 			</Options>
 		</Group>
 	</ToolSet>
@@ -78,8 +88,8 @@
 			<Tool name="Center" click="center-patrol-point"/>
 			<Tool name="Delete" click="delete-patrol-point"/>
 			<Options type="grouped">
-				<Tool name="Overflow" click="toggle-overflow"/>
-				<Tool name="PGN" click="output-patrol-pgn"/>
+				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
+				<!-- <Tool name="PGN" click="output-patrol-pgn"/> -->
 			</Options>
 		</Group>
 	</ToolSet>

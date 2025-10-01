@@ -17,6 +17,16 @@ content.editor {
 		display: flex;
 		flex-direction: column;
 
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 0;
+			border-right: 1px solid #0002;
+		}
+
 		.list {
 			flex: 1;
 			position: relative;
@@ -93,7 +103,6 @@ content.editor {
 	}
 
 	.workarea {
-		background: #f001;
 		flex: 1;
 	}
 
