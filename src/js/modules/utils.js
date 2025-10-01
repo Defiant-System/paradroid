@@ -45,10 +45,3 @@ let Utils = {
 		return (this.rSeed & 16777215) / 16777216;
 	}
 };
-
-// get digit adjustments from xml data
-window.bluePrint.selectNodes(`//Droid`).map(x => {
-	let id = x.getAttribute("id"),
-		arr = x.getAttribute("digits").split(",").map(i => +i);
-	Utils.digits[id] = arr;
-});

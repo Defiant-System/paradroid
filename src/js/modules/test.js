@@ -147,7 +147,7 @@ let Test = {
 		 */
 		return setTimeout(() => {
 			let state = {
-					ship: "rubicon",
+					ship: "avalon",
 					cleared: {
 						// "4": [1],
 						// "16": [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -155,7 +155,7 @@ let Test = {
 					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 100 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "001", x: 13, y: 7 }, debug: { mode: 0 },
+					map: { id: 1 }, player: { id: "001", x: 13, y: 7 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "999", x: 35, y: 15 }, debug: { mode: 0 },
 					// map: { id: 16 }, player: { id: "711", x: 16, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
@@ -178,7 +178,7 @@ let Test = {
 			}, 1000);
 		
 
-			// setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1500);
+			setTimeout(() => APP.hud.dispatch({ type: "toggle-play-pause" }), 1500);
 			// setTimeout(() => APP.mobile.dispatch({ type: "ship-cleared" }), 500);
 			
 			// setTimeout(() => APP.mobile.arena.player.setId("614"), 1500);

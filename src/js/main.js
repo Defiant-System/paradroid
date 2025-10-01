@@ -2,7 +2,6 @@
 @import "./classes/arena.js"
 @import "./classes/map.js"
 @import "./classes/viewport.js"
-@import "./classes/point.js"
 @import "./classes/droid.js"
 @import "./classes/player.js"
 @import "./classes/crosshair.js"
@@ -10,20 +9,7 @@
 @import "./classes/door.js"
 @import "./classes/exit.js"
 @import "./classes/console.js"
-@import "./classes/hacker-ai.js"
 
-@import "./classes/explosion.js"
-@import "./classes/sparks.js"
-@import "./classes/missile.js"
-@import "./classes/electric.js"
-@import "./classes/simplexnoise.js"
-@import "./classes/fire.js"
-@import "./classes/sonic.js"
-
-@import "./ext/matter.min.js"
-@import "./ext/pathseg.js"
-
-@import "./modules/utils.js"
 @import "./modules/test.js"
 
 
@@ -34,10 +20,27 @@ const {
 	Shifter,
 	Raycaster,
 	Color,
+	Matter,
+
+	Point,
+	HackerAI,
+	Explosion,
+	Sparks,
+	Missile,
+	Electric,
+	SimplexNoise,
+	Fire,
+	Sonic,
+	
+	Utils,
 } = await window.fetch("~/js/bundle.js");
 
-const Matter = window.Matter;
-
+// get digit adjustments from xml data
+window.bluePrint.selectNodes(`//Droid`).map(x => {
+	let id = x.getAttribute("id"),
+		arr = x.getAttribute("digits").split(",").map(i => +i);
+	Utils.digits[id] = arr;
+});
 
 
 // default settings
@@ -46,7 +49,7 @@ const defaultSettings = {
 	"sound-fx": "on",
 	"controls": "on", // TODO
 	// default game state
-	"state": { map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
+	"state": { ship: "avalon", map: { id: 1 }, player: { id: "001", x: 3, y: 7, health: 100 } },
 };
 
 
