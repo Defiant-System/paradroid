@@ -67,7 +67,7 @@
 				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 
 				// init tree view
-				Self.dispatch({ type: "init-tree-view" });
+				Self.dispatch({ type: "render-tree-view", el: Self.els.content.find(".tree .list") });
 
 				// set color of toolbar color tool
 				Spawn.find(`.toolbar-tool_[data-menu="bg-color"]`).css({ "--fg-color": "#f33" });
@@ -78,24 +78,60 @@
 			case "spawn.close":
 				break;
 			// custom events
-			case "init-tree-view":
-				console.log(window.bluePrint.selectSingleNode(`//Data/Ship`));
+			case "render-tree-view":
+				// console.log(window.bluePrint.selectSingleNode(`//Data/Ship`));
+
 				// render + append HTML
-				window.render({
-					template: "editor-tree",
-					match: `//Data`,
-					append: Self.els.content.find(".tree .list"),
-				});
+				switch (event.node) {
+					case "ship":
+						window.render({
+							template: "editor-tree-section",
+							match: `//Data/Ship[@id="${event.id}"]`,
+							append: event.el,
+						});
+						break;
+					case "section":
+						[ship, value] = event.id.split(":");
+						window.render({
+							template: "editor-tree-layer",
+							match: `//Data/Ship[@id="${ship}"]/Section[@id=${value}]`,
+							append: event.el,
+						});
+						break;
+					default:
+						window.render({
+							template: "editor-tree-ship",
+							match: `//Data`,
+							append: event.el,
+						});
+				}
 				break;
 			case "handle-tree-click":
 				el = $(event.target);
 				if (el.prop("className") === "icon-arrow") {
 					// toggle expand
-					value = el.parent().hasClass("expanded");
-					el.parent().toggleClass("expanded", value);
+					let pEl = el.parent();
+					value = pEl.hasClass("expanded");
+					pEl.toggleClass("expanded", value);
+					// expand tree leaf
+					if (!pEl.find("> .children > .tree-item").length) {
+						Self.dispatch({
+							type: "render-tree-view",
+							node: pEl.data("type"),
+							id: pEl.data("id"),
+							el: pEl.find("> .children"),
+						});
+					}
 				} else if (el.nodeName() === "span") {
+					let pEl = el.parent();
 					event.el.find(".active").removeClass("active");
-					el.parents(".tree-item").addClass("active");
+					pEl.addClass("active");
+
+					if (["ship", "section"].includes(pEl.data("type"))) {
+						pEl.find("> .icon-arrow").trigger("click");
+					} else {
+						console.log("load workarea", pEl.data("type"));
+					}
 				}
 				break;
 			case "put-tile":

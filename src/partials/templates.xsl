@@ -389,15 +389,40 @@
 	</xsl:template>
 
 
-	<xsl:template name="editor-tree">
+	<xsl:template name="editor-tree-ship">
 		<xsl:for-each select="./Ship[@name]">
-			<div class="tree-item">
+			<div class="tree-item" data-type="ship">
+				<xsl:attribute name="data-id"><xsl:value-of select="@id" /></xsl:attribute>
 				<i class="icon-arrow"></i>
 				<span><xsl:value-of select="@name" /></span>
 				<div class="children"></div>
 			</div>
 		</xsl:for-each>
 	</xsl:template>
+
+
+	<xsl:template name="editor-tree-section">
+		<xsl:for-each select="./Section">
+			<div class="tree-item" data-type="section">
+				<xsl:attribute name="data-id"><xsl:value-of select="../@id" />:<xsl:value-of select="@id" /></xsl:attribute>
+				<i class="icon-arrow"></i>
+				<span>Section <xsl:value-of select="@level" />:<xsl:value-of select="@id" /></span>
+				<div class="children"></div>
+			</div>
+		</xsl:for-each>
+	</xsl:template>
+
+
+	<xsl:template name="editor-tree-layer">
+		<xsl:for-each select="./Layer">
+			<div class="tree-item" data-type="layer">
+				<xsl:attribute name="data-id"><xsl:value-of select="../../@id" />:<xsl:value-of select="../@id" />:<xsl:value-of select="@id" /></xsl:attribute>
+				<i class="icon-blank"></i>
+				<span>Layer <xsl:value-of select="@id" /></span>
+			</div>
+		</xsl:for-each>
+	</xsl:template>
+
 
 	<xsl:template name="layer-background">
 		<div class="layer-background" data-click="put-tile">

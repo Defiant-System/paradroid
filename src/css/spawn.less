@@ -37,19 +37,19 @@ content.editor {
 
 		.tree-item {
 			min-height: 19px;
+			padding-top: 2px;
+			white-space: nowrap;
+			overflow: hidden;
 
 			&.active {
 				> span {
 					background: #2377e5;
 					color: #fff;
-					padding: 2px 5px 2px 3px;
-					border-radius: 2px;
 				}
 			}
 
 			&.expanded {
 				height: auto;
-				// overflow: visible;
 
 				> .icon-arrow {
 					transform: rotate(90deg);
@@ -57,7 +57,6 @@ content.editor {
 
 				> .children {
 					height: calc-size(auto, size);
-					// overflow: visible;
 				}
 			}
 
@@ -65,21 +64,21 @@ content.editor {
 			.icon-arrow {
 				position: relative;
 				display: inline-block;
-				width: 17px;
+				width: 16px;
 				height: 17px;
 				vertical-align: top;
 			}
 
 			.icon-arrow {
 				transform: rotate(0deg);
-				cursor: pointer;
 				transition: transform 80ms ease-in-out;
+				cursor: pointer;
 
 				&:before {
 					content: "";
 					position: absolute;
-					top: 4px;
-					left: 4px;
+					top: 5px;
+					left: 5px;
 					width: 0;
 					height: 0;
 					border-left: 8px solid #999;
@@ -91,13 +90,15 @@ content.editor {
 			span {
 				display: inline-block;
 				vertical-align: top;
-				padding: 2px 0 0 1px;
+				padding: 3px 5px 2px 3px;
+				border-radius: 3px;
 				font-size: 13px;
+				cursor: pointer;
 			}
 
 			.children {
 				position: relative;
-				margin: 1px 0;
+				// margin: 1px 0;
 				padding-left: 11px;
 				display: block;
 				height: 0;

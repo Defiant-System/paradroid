@@ -1,15 +1,13 @@
 <Spawn id="editor">
 	<Head>
 		<meta name="title" value="Ship Editor"/>
-		<meta name="width" value="672"/>
-		<meta name="height" value="320"/>
+		<meta name="width" value="672" min="650"/>
+		<meta name="height" value="320" min="300"/>
 		<meta name="top" value="80"/>
 		<meta name="left" value="300"/>
 		<meta name="minimize"/>
 		<meta name="maximize" value="disabled"/>
-		<meta name="resize" value="disabled"/>
 		<meta name="style" value="../../css/spawn.less"/>
-		<meta name="toolbar-style" value="../css/spawn-toolbar.less"/>
 		<meta name="content" value="content.htm"/>
 		<meta name="focus" value="disabled"/>
 		<meta name="state" value="forget"/>
