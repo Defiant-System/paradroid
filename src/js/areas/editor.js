@@ -47,6 +47,8 @@
 			Spawn = event.spawn || Self.spawn,
 			data,
 			ship,
+			section,
+			layer,
 			level,
 			layers,
 			tiles,
@@ -62,25 +64,29 @@
 				// fast references
 				Self.els.spawn = Spawn.find("content.editor");
 				Self.els.content = Spawn.find("content.editor");
+				Self.els.tree = Self.els.content.find(".tree .list");
 
 				// pan viewport events
 				Self.els.viewport.on("mousedown mousemove mouseup", this.doPan);
 
 				// init tree view
-				Self.dispatch({ type: "render-tree-view", el: Self.els.content.find(".tree .list") });
-
-				// set color of toolbar color tool
-				Spawn.find(`.toolbar-tool_[data-menu="bg-color"]`).css({ "--fg-color": "#f33" });
-
+				el = Self.els.tree;
+				Self.dispatch({ type: "render-tree-view", el });
+				if (event.options.leaf) {
+					[ship, section, layer] = event.options.leaf.split(":");
+					// auto-expand tree nodes
+					if (ship) setTimeout(() => el.find(`.tree-item[data-type="ship"][data-id="${ship}"] .icon-arrow`).trigger("click"), 20);
+					if (section) setTimeout(() => el.find(`.tree-item[data-type="section"][data-id="${ship}:${section}"] .icon-arrow`).trigger("click"), 50);
+					if (layer) setTimeout(() => el.find(`.tree-item[data-type="layer"][data-id="${ship}:${section}:${layer}"] span`).trigger("click"), 100);
+				}
+				
 				// properly init first view (background)
-				// Self.dispatch({ type: "select-editor-layer", arg: "background", spawn: Spawn });
+				Self.dispatch({ type: "render-level", arg: event.options.leaf });
 				break;
 			case "spawn.close":
 				break;
 			// custom events
 			case "render-tree-view":
-				// console.log(window.bluePrint.selectSingleNode(`//Data/Ship`));
-
 				// render + append HTML
 				switch (event.node) {
 					case "ship":
@@ -130,7 +136,13 @@
 					if (["ship", "section"].includes(pEl.data("type"))) {
 						pEl.find("> .icon-arrow").trigger("click");
 					} else {
-						console.log("load workarea", pEl.data("type"));
+						// make sure tree leaf in in view
+						// if (pEl.inView(Self.els.tree)) pEl.scrollIntoView();
+						
+						// properly init first view (background)
+						Self.dispatch({ type: "select-editor-layer", arg: pEl.data("id"), spawn: Spawn });
+						// render layer
+						Self.dispatch({ type: "render-level", arg: pEl.data("id") });
 					}
 				}
 				break;
@@ -298,19 +310,15 @@
 				break;
 
 			case "select-editor-layer":
+				[ship, section, layer] = event.arg.split(":");
 				// change toolset
-				Spawn.toolset = event.arg;
+				Spawn.toolset = layer;
 				// changes spawn content
-				Self.els.spawn.data({ show: event.arg });
+				Self.els.spawn.data({ show: layer });
 				// toggles layers depending on selected tab
-				Self.els.viewport.data({ show: event.arg });
-				// correct text for selectbox
-				if (!event.origin) {
-					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="select-editor-layer"][@arg="${event.arg}"]`);
-					Spawn.find(`.toolbar-selectbox_ .selectbox-selected_`).text(xMenu.getAttribute("name"));
-				}
+				Self.els.viewport.data({ show: layer });
 				// auto click on first tile in spawn
-				Self.els.content.find(`.layer-${event.arg} .tiles *:nth-child(1)`).trigger("click");
+				Self.els.content.find(`.layer-${layer} .tiles *:nth-child(1)`).trigger("click");
 				break;
 			case "select-bg-tile":
 				el = $(event.target);
@@ -422,8 +430,11 @@
 
 			case "render-level":
 				if (!event.arg) return;
+				[ship, level, layer] = event.arg.split(":");
 
-				[ship, level] = event.arg.split(":");
+				Self.els.viewport.data({ show: layer });
+				if (Self._activeSection === `${ship}:${level}`) return; // already rendered
+				Self._activeSection = `${ship}:${level}`;
 
 				// if active level; save modifications
 				if (Self.xSection) {

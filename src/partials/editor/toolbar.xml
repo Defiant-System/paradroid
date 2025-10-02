@@ -2,7 +2,6 @@
 <ToolBar>
 	<ToolSet id="background" state="active">
 		<Group width="150px">
-			<!-- <Select name="Background" menu="editor-layer"></Select> -->
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
 				<Tool symbol="icon-save" title="Save"/>
@@ -30,9 +29,14 @@
 	</ToolSet>
 
 	<ToolSet id="collision">
-		<Group>
-			<Select name="Background" menu="editor-layer"></Select>
-			<Divider />
+		<Group width="150px">
+			<Options type="grouped">
+				<Tool symbol="icon-new" title="New Ship"/>
+				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-folder" title="Open file"/>
+			</Options>
+		</Group>
+		<Group width="calc( 100% - 150px )">
 			<Options type="grouped">
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
 				<!-- <Tool name="PGN" click="output-collision-pgn"/> -->
@@ -40,23 +44,35 @@
 			<Tool name="Duplicate" click="col-duplicate-active"/>
 			<Tool name="Delete" click="col-delete-active"/>
 		</Group>
+		<Group></Group>
 	</ToolSet>
 
 	<ToolSet id="action">
-		<Group>
-			<Select name="Background" menu="editor-layer"></Select>
-			<Divider />
+		<Group width="150px">
+			<Options type="grouped">
+				<Tool symbol="icon-new" title="New Ship"/>
+				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-folder" title="Open file"/>
+			</Options>
+		</Group>
+		<Group width="calc( 100% - 150px )">
 			<Options type="grouped">
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
 				<!-- <Tool name="PGN" click="output-action-pgn"/> -->
 			</Options>
 		</Group>
+		<Group></Group>
 	</ToolSet>
 
 	<ToolSet id="los">
-		<Group>
-			<Select name="Background" menu="editor-layer"></Select>
-			<Divider />
+		<Group width="150px">
+			<Options type="grouped">
+				<Tool symbol="icon-new" title="New Ship"/>
+				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-folder" title="Open file"/>
+			</Options>
+		</Group>
+		<Group width="calc( 100% - 150px )">
 			<Options>
 				<Tool name="Add" click="los-add-segment"/>
 				<Tool name="Delete" click="los-delete-segment"/>
@@ -66,12 +82,18 @@
 				<!-- <Tool name="PGN" click="output-los-pgn"/> -->
 			</Options>
 		</Group>
+		<Group></Group>
 	</ToolSet>
 
 	<ToolSet id="lights">
-		<Group>
-			<Select name="Background" menu="editor-layer"></Select>
-			<Divider />
+		<Group width="150px">
+			<Options type="grouped">
+				<Tool symbol="icon-new" title="New Ship"/>
+				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-folder" title="Open file"/>
+			</Options>
+		</Group>
+		<Group width="calc( 100% - 150px )">
 			<Tool name="Duplicate" click="lights-duplicate"/>
 			<Tool name="Delete" click="lights-delete"/>
 			<Options type="grouped">
@@ -80,12 +102,18 @@
 				<!-- <Tool name="PGN" click="output-lights-pgn"/> -->
 			</Options>
 		</Group>
+		<Group></Group>
 	</ToolSet>
 
 	<ToolSet id="droids">
-		<Group>
-			<Select name="Droids" menu="editor-layer"></Select>
-			<Divider />
+		<Group width="150px">
+			<Options type="grouped">
+				<Tool symbol="icon-new" title="New Ship"/>
+				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-folder" title="Open file"/>
+			</Options>
+		</Group>
+		<Group width="calc( 100% - 150px )">
 			<Tool name="Center" click="center-patrol-point"/>
 			<Tool name="Delete" click="delete-patrol-point"/>
 			<Options type="grouped">
@@ -93,5 +121,6 @@
 				<!-- <Tool name="PGN" click="output-patrol-pgn"/> -->
 			</Options>
 		</Group>
+		<Group></Group>
 	</ToolSet>
 </ToolBar>

@@ -120,11 +120,14 @@ let Test = {
 		 * EDITOR
 		 */
 		return setTimeout(() => {
-			let spawn = window.open("editor");
+			let options = { leaf: "avalon:1:background" },
+			// let options = { leaf: "rubicon:9:background" },
+				spawn = window.open("editor", options);
 
-			APP.dispatch({ type: "show-view", arg: "editor" });
-			// APP.editor.dispatch({ type: "render-level", arg: "avalon:1", spawn });
-			APP.editor.dispatch({ type: "render-level", arg: "rubicon:9", spawn });
+			APP.els.content.data({ "show": "editor" })
+			APP.els.content.find(`.editor-view`).removeClass("hidden");
+
+			// APP.editor.dispatch({ type: "render-level", arg, spawn });
 			// APP.editor.dispatch({ type: "toggle-overflow", spawn });
 			// APP.editor.dispatch({ type: "select-editor-layer", arg: "droids", spawn });
 

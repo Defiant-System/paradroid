@@ -406,7 +406,7 @@
 			<div class="tree-item" data-type="section">
 				<xsl:attribute name="data-id"><xsl:value-of select="../@id" />:<xsl:value-of select="@id" /></xsl:attribute>
 				<i class="icon-arrow"></i>
-				<span>Section <xsl:value-of select="@level" />:<xsl:value-of select="@id" /></span>
+				<span>Section <xsl:value-of select="@id" /></span>
 				<div class="children"></div>
 			</div>
 		</xsl:for-each>
@@ -415,6 +415,7 @@
 
 	<xsl:template name="editor-tree-layer">
 		<xsl:for-each select="./Layer">
+			<xsl:sort order="descending" select="position()"/>
 			<div class="tree-item" data-type="layer">
 				<xsl:attribute name="data-id"><xsl:value-of select="../../@id" />:<xsl:value-of select="../@id" />:<xsl:value-of select="@id" /></xsl:attribute>
 				<i class="icon-blank"></i>
