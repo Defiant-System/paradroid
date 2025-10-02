@@ -147,6 +147,9 @@
 				}
 				break;
 			case "put-tile":
+				// dont put any tile, if panning
+				if (Self.palette.cursor === "pan") return;
+
 				el = $(event.target);
 				value = el.parents(".viewport").data("show");
 				if (event.shiftKey) {
@@ -401,12 +404,20 @@
 				Self.els.cursor.html(value);
 				break;
 
+			case "select-pan":
+				// update toolbar
+				Spawn.find(`.toolbar-tool_[data-click="cursor-eraser"]`).removeClass("tool-active_");
+				// update cursor
+				Self.palette.cursor = "pan";
+				return true;
 			case "cursor-eraser":
 				Self.palette.cursor = [{ x: 0, y: 0, id: "" }];
 				// update viewport cursor
 				Self.els.cursor.html(`<b class="a1" style="--x: 0; --y: 0; --w: 1; --h: 1;"></b>`);
 				// update tiles view
 				Spawn.find(`.tiles b.active`).removeClass("active");
+				// update toolbar
+				Spawn.find(`.toolbar-tool_[data-click="select-pan"]`).removeClass("tool-active_");
 				return true;
 			case "toggle-overflow":
 				el = Self.els.viewport;

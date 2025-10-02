@@ -4,7 +4,7 @@
 		<Group width="150px">
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
-				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-save" title="Save" click="output-pgn"/>
 				<Tool symbol="icon-folder" title="Open file"/>
 			</Options>
 		</Group>
@@ -14,6 +14,7 @@
 				<Tool symbol="icon-mountain" title="Normal size" click="grid-size" arg="1" state="active"/>
 			</Options>
 			<Options type="grouped">
+				<Tool symbol="icon-hand" title="Pan" click="select-pan"/>
 				<Tool symbol="icon-eraser" title="Eraser" click="cursor-eraser"/>
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
 				<Tool symbol="icon-grid" title="Grid" click="toggle-grid" state="active"/>
@@ -32,17 +33,17 @@
 		<Group width="150px">
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
-				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-save" title="Save" click="output-collision-pgn"/>
 				<Tool symbol="icon-folder" title="Open file"/>
 			</Options>
 		</Group>
 		<Group width="calc( 100% - 150px )">
 			<Options type="grouped">
+				<Tool symbol="icon-hand" title="Pan" click="select-pan"/>
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
-				<!-- <Tool name="PGN" click="output-collision-pgn"/> -->
 			</Options>
-			<Tool name="Duplicate" click="col-duplicate-active"/>
-			<Tool name="Delete" click="col-delete-active"/>
+			<Tool symbol="icon-duplicate" title="Duplicate" click="col-duplicate-active"/>
+			<Tool symbol="icon-trashcan" title="Delete" click="col-delete-active"/>
 		</Group>
 		<Group></Group>
 	</ToolSet>
@@ -51,14 +52,14 @@
 		<Group width="150px">
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
-				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-save" title="Save" click="output-action-pgn"/>
 				<Tool symbol="icon-folder" title="Open file"/>
 			</Options>
 		</Group>
 		<Group width="calc( 100% - 150px )">
 			<Options type="grouped">
+				<Tool symbol="icon-hand" title="Pan" click="select-pan"/>
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
-				<!-- <Tool name="PGN" click="output-action-pgn"/> -->
 			</Options>
 		</Group>
 		<Group></Group>
@@ -68,18 +69,18 @@
 		<Group width="150px">
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
-				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-save" title="Save" click="output-los-pgn"/>
 				<Tool symbol="icon-folder" title="Open file"/>
 			</Options>
 		</Group>
 		<Group width="calc( 100% - 150px )">
 			<Options>
-				<Tool name="Add" click="los-add-segment"/>
-				<Tool name="Delete" click="los-delete-segment"/>
+				<Tool symbol="icon-hand" title="Pan" click="select-pan"/>
+				<Tool symbol="icon-plus" title="Add" click="los-add-segment"/>
+				<Tool symbol="icon-trashcan" title="Delete" click="los-delete-segment"/>
 			</Options>
 			<Options type="grouped">
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
-				<!-- <Tool name="PGN" click="output-los-pgn"/> -->
 			</Options>
 		</Group>
 		<Group></Group>
@@ -89,17 +90,17 @@
 		<Group width="150px">
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
-				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-save" title="Save" click="output-lights-pgn"/>
 				<Tool symbol="icon-folder" title="Open file"/>
 			</Options>
 		</Group>
 		<Group width="calc( 100% - 150px )">
-			<Tool name="Duplicate" click="lights-duplicate"/>
-			<Tool name="Delete" click="lights-delete"/>
+			<Tool symbol="icon-duplicate" title="Duplicate" click="lights-duplicate"/>
+			<Tool symbol="icon-trashcan" title="Delete" click="lights-delete"/>
 			<Options type="grouped">
+				<Tool symbol="icon-hand" title="Pan" click="select-pan"/>
 				<Tool name="Helpers" click="toggle-lights-helpers"/>
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
-				<!-- <Tool name="PGN" click="output-lights-pgn"/> -->
 			</Options>
 		</Group>
 		<Group></Group>
@@ -109,16 +110,16 @@
 		<Group width="150px">
 			<Options type="grouped">
 				<Tool symbol="icon-new" title="New Ship"/>
-				<Tool symbol="icon-save" title="Save"/>
+				<Tool symbol="icon-save" title="Save" click="output-patrol-pgn"/>
 				<Tool symbol="icon-folder" title="Open file"/>
 			</Options>
 		</Group>
 		<Group width="calc( 100% - 150px )">
-			<Tool name="Center" click="center-patrol-point"/>
-			<Tool name="Delete" click="delete-patrol-point"/>
+			<Tool symbox="icon-center" title="Center" click="center-patrol-point"/>
+			<Tool symbol="icon-trashcan" title="Delete" click="delete-patrol-point"/>
 			<Options type="grouped">
+				<Tool symbol="icon-hand" title="Pan" click="select-pan"/>
 				<Tool symbol="icon-crop" title="Overflow" click="toggle-overflow" state="active"/>
-				<!-- <Tool name="PGN" click="output-patrol-pgn"/> -->
 			</Options>
 		</Group>
 		<Group></Group>
