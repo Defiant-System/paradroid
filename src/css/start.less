@@ -119,8 +119,15 @@ content {
 			}
 
 			.paradroid-3001 {
-				opacity: 1;
-				transition: opacity 80ms 3300ms;
+				i {
+					opacity: 1;
+					transition: opacity 120ms ease-in-out;
+
+					&:nth-child(1) { transition-delay: 3300ms; }
+					&:nth-child(2) { transition-delay: 3400ms; }
+					&:nth-child(3) { transition-delay: 3500ms; }
+					&:nth-child(4) { transition-delay: 3600ms; }
+				}
 			}
 		}
 
@@ -393,14 +400,27 @@ content {
 		}
 
 		.paradroid-3001 {
-			background: url(~/icons/paradroid-3001.png) 50% 50%/contain no-repeat;
+			// background: url(~/icons/paradroid-3001.png) 50% 50%/contain no-repeat;
 			position: absolute;
-			top: 270px;
-			left: 356px;
-			width: 111px;
-			height: 28px;
+			top: 277px;
+			left: 352px;
+			width: 116px;
+			height: 23px;
 			z-index: 5;
-			opacity: 0;
+
+			i {
+				background: url(~/icons/paradroid-3001.png) no-repeat;
+				background-size: auto 100%;
+				position: absolute;
+				width: 30px;
+				height: 22px;
+				opacity: 0;
+
+				&:nth-child(1) { left: 0; background-position: 0 0; }
+				&:nth-child(2) { left: 32px; background-position: -31px 0; }
+				&:nth-child(3) { left: 64px; background-position: -62px 0; }
+				&:nth-child(4) { left: 96px; background-position: -93px 0; }
+			}
 		}
 	}
 }

@@ -35,6 +35,7 @@
 			done,
 			index,
 			value,
+			ship, id,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -227,7 +228,9 @@
 						// el.nextAll("span").addClass("disabled");
 						break;
 					case "level":
-						Self.drawMinimap(APP.mobile.arena.map.id);
+						ship = APP.mobile.arena.map.ship;
+						id = APP.mobile.arena.map.id;
+						Self.drawMinimap({ ship, id });
 						break;
 					case "ship":
 						setTimeout(() => {
@@ -275,12 +278,12 @@
 				break;
 		}
 	},
-	drawMinimap(id) {
+	drawMinimap({ ship, id }) {
 		let APP = paradroid,
 			assets = APP.mobile.arena.assets,
 			player = APP.mobile.arena.player,
 			{ cvs, ctx, width, height } = this.minimap,
-			xSection = window.bluePrint.selectSingleNode(`//Data/Section[@id="${id}"]`),
+			xSection = window.bluePrint.selectSingleNode(`//Data/Ship[@id="${ship}"]/Section[@id="${id}"]`),
 			sWidth = +xSection.getAttribute("width"),
 			sHeight = +xSection.getAttribute("height"),
 			tile = 7,

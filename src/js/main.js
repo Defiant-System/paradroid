@@ -95,8 +95,8 @@ const paradroid = {
 			case "window.close":
 				// save settings
 				window.settings.setItem("settings", Self.settings);
-				// stop "matter.js" runner
-				Self.hud.dispatch({ type: "toggle-play-pause", pause: true });
+				// pause game & stop "matter.js" runner
+				Self.mobile.dispatch({ type: "game-loop-pause" });
 				Self.start.dispatch({ type: "stop-song" });
 				break;
 			case "window.keydown":
