@@ -35,7 +35,8 @@
 								x: +xExit.getAttribute("x") + 1,
 								y: +xExit.getAttribute("y") + 1,
 							},
-							state = { player: exit, map: { id: +Self.elevator.section } };
+							ship = APP.mobile.arena.ship,
+							state = { ship, player: exit, map: { id: +Self.elevator.section } };
 						// go to view
 						APP.mobile.dispatch({ type: "go-to-section", state });
 						// smooth transition to view
@@ -115,7 +116,8 @@
 
 				Self.els.el.find(`.deck .section`).map(elem => {
 					let el = $(elem),
-						xPath = `//Data/Section[@level="${el.data("level")}"]/Layer[@id="droids"]/i[not(@dead)]`,
+						ship = APP.mobile.arena.ship,
+						xPath = `//Data//Ship[@id="${ship}"]/Section[@level="${el.data("level")}"]/Layer[@id="droids"]/i[not(@dead)]`,
 						xDroids = window.bluePrint.selectNodes(xPath);
 					el.toggleClass("cleared", xDroids.length);
 				});

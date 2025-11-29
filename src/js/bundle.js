@@ -9,7 +9,6 @@
 @import "./modules/utils.js"
 
 @import "./classes/point.js"
-@import "./classes/hacker-ai.js"
 @import "./classes/explosion.js"
 @import "./classes/sparks.js"
 @import "./classes/missile.js"
@@ -33,7 +32,6 @@ module.exports = {
 	Matter,
 
 	Point,
-	HackerAI,
 	Explosion,
 	Sparks,
 	Missile,

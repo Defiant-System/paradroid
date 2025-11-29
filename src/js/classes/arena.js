@@ -162,6 +162,8 @@ class Arena {
 		}
 
 		let mapState = { ship: state.ship, droids: [], ...state.map };
+		// set ship name
+		this.ship = state.ship;
 		// move player / "001"
 		this.player.spawn(state.player);
 		// center viewport

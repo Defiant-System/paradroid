@@ -4,6 +4,7 @@
 @import "./classes/viewport.js"
 @import "./classes/droid.js"
 @import "./classes/player.js"
+@import "./classes/hacker-ai.js"
 @import "./classes/crosshair.js"
 @import "./classes/recharge.js"
 @import "./classes/door.js"
@@ -23,7 +24,6 @@ const {
 	Matter,
 
 	Point,
-	HackerAI,
 	Explosion,
 	Sparks,
 	Missile,

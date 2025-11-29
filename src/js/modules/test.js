@@ -37,6 +37,7 @@ let Test = {
 
 		/*
 		 * TRANSFER View
+		 */
 
 		// APP.els.content.data({ show: "transfer" });
 		// APP.transfer.els.el.removeClass("hidden").addClass("finish-win");
@@ -88,12 +89,10 @@ let Test = {
 			// APP.transfer.AI.setOrder([2, 6]);
 		}, 1000);
 		return true;
-		 */
 
 
 		/*
 		 * CONSOLE View
-		 */
 		setTimeout(() => {
 			APP.mobile.arena.colors = { base: "#f90" };
 			APP.mobile.arena.player.id = "001";
@@ -107,6 +106,7 @@ let Test = {
 			APP.console.dispatch({ type: "show-view", arg: 1 });
 		}, 600);
 		return true;
+		 */
 
 
 		/*
@@ -119,7 +119,6 @@ let Test = {
 
 		/*
 		 * EDITOR
-		 */
 		return setTimeout(() => {
 			let options = { leaf: "avalon:1:background" },
 			// let options = { leaf: "rubicon:9:background" },
@@ -145,6 +144,7 @@ let Test = {
 			// APP.editor.dispatch({ type: "output-pgn" });
 		}, 10);
 
+		 */
 
 		/*
 		 * MISC shortcuts
@@ -159,7 +159,7 @@ let Test = {
 					// map: { id: 1, dead: [1,2,3,4,5,7] }, player: { id: "001", x: 27, y: 25 }, debug: { mode: 1 },
 					// map: { id: 1 }, player: { id: "001", x: 25, y: 9 }, debug: { mode: 1 },
 					// map: { id: 4 }, player: { id: "001", x: 7, y: 4, health: 100 }, debug: { mode: 0 },
-					map: { id: 1 }, player: { id: "001", x: 13, y: 7 }, debug: { mode: 1 },
+					map: { id: 1 }, player: { id: "001", x: 35, y: 16 }, debug: { mode: 0 },
 					// map: { id: 1 }, player: { id: "999", x: 35, y: 15 }, debug: { mode: 0 },
 					// map: { id: 16 }, player: { id: "711", x: 16, y: 9 }, debug: { mode: 0 },
 					// map: { id: 11 }, player: { id: "001", x: 5, y: 9 }, debug: { mode: 0 },
