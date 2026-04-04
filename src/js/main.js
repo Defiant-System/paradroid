@@ -75,7 +75,7 @@ const paradroid = {
 		// show start view
 		this.dispatch({ type: "show-view", arg: "start" });
 	},
-	dispatch(event) {
+	async dispatch(event) {
 		let Self = paradroid,
 			name,
 			el;
@@ -167,7 +167,7 @@ const paradroid = {
 						break;
 					case "editor":
 						if (Self.mobile.arena.map) {
-							Self.editor.spawn = window.open("editor");
+							Self.editor.spawn = await window.open("editor");
 							// default render for editor
 							Self.editor.dispatch({ type: "render-level", arg: Self.mobile.arena.map.id });
 							Self.editor.dispatch({ type: "toggle-overflow" });

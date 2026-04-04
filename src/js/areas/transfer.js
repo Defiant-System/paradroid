@@ -20,7 +20,7 @@
 		// reset gamepad tick
 		this._gamepadTick = Date.now();
 	},
-	dispatch(event) {
+	async dispatch(event) {
 		let APP = paradroid,
 			Self = APP.transfer,
 			callback,
@@ -299,7 +299,7 @@
 				// delete "old" schema
 				Self.els.cbLeft.find("svg").remove();
 				// render circuit board HTML
-				window.render({
+				await window.render({
 					template: "circuit-board",
 					match: `//CircuitBoard[@id="left"]`,
 					append: Self.els.cbLeft,
@@ -307,7 +307,7 @@
 				// delete "old" schema
 				Self.els.cbRight.find("svg").remove();
 				// render circuit board HTML
-				window.render({
+				await window.render({
 					template: "circuit-board",
 					match: `//CircuitBoard[@id="right"]`,
 					append: Self.els.cbRight,

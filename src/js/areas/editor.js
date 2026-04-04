@@ -41,7 +41,7 @@
 			"m6c": [{ x: 0, y: 0, id: "m6c" }, { x: 1, y: 0, id: "m6d" }, { x: 0, y: 1, id: "m7c" }, { x: 1, y: 1, id: "m7d" }],
 		};
 	},
-	dispatch(event) {
+	async dispatch(event) {
 		let APP = paradroid,
 			Self = APP.editor,
 			Spawn = event.spawn || Self.spawn,
@@ -90,7 +90,7 @@
 				// render + append HTML
 				switch (event.node) {
 					case "ship":
-						window.render({
+						await window.render({
 							template: "editor-tree-section",
 							match: `//Data/Ship[@id="${event.id}"]`,
 							append: event.el,
@@ -98,14 +98,14 @@
 						break;
 					case "section":
 						[ship, value] = event.id.split(":");
-						window.render({
+						await window.render({
 							template: "editor-tree-layer",
 							match: `//Data/Ship[@id="${ship}"]/Section[@id=${value}]`,
 							append: event.el,
 						});
 						break;
 					default:
-						window.render({
+						await window.render({
 							template: "editor-tree-ship",
 							match: `//Data`,
 							append: event.el,
@@ -503,43 +503,43 @@
 				layers = [".layer-background", ".layer-collision", ".layer-action", ".layer-los", ".layer-lights", ".layer-droids"];
 				Self.els.viewport.find(layers.join(",")).remove();
 				// render + append HTML
-				window.render({
+				await window.render({
 					template: "layer-background",
 					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render collision layer
-				window.render({
+				await window.render({
 					template: "layer-collision",
 					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render action layer
-				window.render({
+				await window.render({
 					template: "layer-action",
 					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render los layer
-				window.render({
+				await window.render({
 					template: "layer-los",
 					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render lights layer
-				window.render({
+				await window.render({
 					template: "layer-lights",
 					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render droids layer
-				window.render({
+				await window.render({
 					template: "layer-droids",
 					match: `//Ship[@id="${ship}"]/Section[@id="${level}"]`,
 					append: Self.els.viewport,
 				});
 				// render droids list in spawn
-				window.render({
+				await window.render({
 					template: "droids-list",
 					match: `Ship[@id="${ship}"]/Section[@id="${level}"]/Layer[@id="droids"]`,
 					target: Self.els.content.find(`.droid-patrol .list`),

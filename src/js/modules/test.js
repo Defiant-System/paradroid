@@ -119,10 +119,10 @@ let Test = {
 
 		/*
 		 * EDITOR
-		return setTimeout(() => {
+		return setTimeout(async () => {
 			let options = { leaf: "avalon:1:background" },
 			// let options = { leaf: "rubicon:9:background" },
-				spawn = window.open("editor", options);
+				spawn = await window.open("editor", options);
 
 			APP.els.content.data({ "show": "editor" })
 			APP.els.content.find(`.editor-view`).removeClass("hidden");
